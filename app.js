@@ -826,7 +826,6 @@ function Simulator(canvas){
   this.bounds = new Rect(1,this.width-1,this.height-1,1);
   this.physics = new Physics();
   this.renderer = new Renderer(canvas);
-  this.reset();
 }
 
 Simulator.prototype = {
@@ -871,7 +870,7 @@ Simulator.prototype = {
     }
   },
 
-  reset: function(){
+  create: function(){
     // keep a list of pointMasses
     this.pointMasses = 
       this.physics.pointMasses = 
@@ -881,11 +880,21 @@ Simulator.prototype = {
     this.createBodies(25);
   },
 
+  destroy: function(){
+    delete this.pointMasses
+    delete this.physics.pointMasses 
+    delete this.renderer.pointMasses
+  },
+
   controls: function(inputs){
-    this.pointMasses.forEach(function(pointMass){
+    for(var i=0; i<this.pointMasses.length; i++){
+      var pointMass = this.pointMasses[i];
 
       // Add gravity to all pointmasses
       pointMass.applyForce(0,980);
+
+      // Add random left-to-right wind
+      pointMass.applyForce(Math.random()*900,0);
 
       // TODO Add other forces to all pointmasses?
 
@@ -904,7 +913,7 @@ Simulator.prototype = {
           )
         }
       }
-    })
+    }
   },
   
   update: function(dt,t){
