@@ -485,6 +485,17 @@ function Physics(){
 }
 
 Physics.prototype = {
+
+  reverse: function(){
+    // reverse positions of each point mass
+    for(var i=0; i < this.pointMasses.length; i++){
+      var pointMass = this.pointMasses[i]
+        , tempx = pointMass.current.x
+        , tempy = pointMass.current.y;
+      pointMass.current.set(pointMass.previous);
+      pointMass.previous.set(tempx,tempy);
+    }
+  },
     
   update: function(timeStep){
     // solve constraints
@@ -566,7 +577,7 @@ PointMass.prototype = {
       var intersection = intersections[0];
 
       // Reflect against surface normal (n)
-      // v' = v - 2(v . n)n
+      // v' = v - 2(v⋅n)n
       var v1 = this.velocity.clone()
         , n = intersection.normal
         , vd = v1.dot(n) * 2
@@ -575,18 +586,10 @@ PointMass.prototype = {
       var p2 = v2.clone().mul(-Point.distance(intersection,this.previous))
         , c2 = v2.clone().mul(+Point.distance(intersection,this.current)) 
 
-      console.log('curr-inter-prev length',Point.distance(intersection,this.previous)+Point.distance(intersection,this.current))
-      console.log('curr-prev length',Point.distance(this.current,this.previous))
-
       this.previous.set(p2).add(intersection)
       this.current.set(c2).add(intersection)
 
       this.acceleration.reset()
-      this.update(1/60)
-
-      console.log('velocity length',this.velocity.length)
-      console.log('curr-inter-prev length',Point.distance(intersection,this.previous)+Point.distance(intersection,this.current))
-      console.log('curr-prev length',Point.distance(this.current,this.previous))
     }
 
     // Pinned
@@ -1033,9 +1036,10 @@ Simulator.prototype = {
 
   createPuck: function(){
     var puck = new PointMass(this.width/2,this.height/2);
+    puck.mass = 100;
     puck.bounds = this.bounds;
     this.puck = puck
-    puck.applyForce(-10000,10000)
+    puck.applyForce(-10000*puck.mass,10000*puck.mass)
     this.pointMasses.push(puck);
   },
 
@@ -1047,7 +1051,7 @@ Simulator.prototype = {
 
     this.form = document.forms[0];
 
-    this.currentFrame = 0;
+    this.form.frame.value = 0;
 
     // this.createCurtain(60,40);
     // this.createBodies(25);
@@ -1061,8 +1065,17 @@ Simulator.prototype = {
   },
 
   controls: function(inputs){
-    var gravity = this.form.gravity.checked
-      , wind = this.form.wind.value;
+    if( this.form.paused.checked ) return;
+
+    this.form.frame.value = this.reversed ? +this.form.frame.value-1 : +this.form.frame.value+1;
+    this.form.speed.value = this.puck.velocity.length;
+
+    if( this.form.reverse.checked != this.reversed )
+      this.physics.reverse();
+
+    this.reversed = this.form.reverse.checked;
+    // var gravity = this.form.gravity.checked
+    //   , wind = this.form.wind.value;
 
     for(var i=0; i<this.pointMasses.length; i++){
       var pointMass = this.pointMasses[i];
@@ -1078,27 +1091,32 @@ Simulator.prototype = {
 
       if( inputs.mouse.down ){
         // every PointMass within this many pixels will be influenced by the cursor
-        var mouseInfluenceSize = 20*20; // squared 
-        var mouseInfluenceScalar = 2;
-        var distSquared = distPointToSegmentSquared(inputs.mouse.last,inputs.mouse,pointMass.current);
-        if( distSquared < mouseInfluenceSize ){
-          // To change the velocity of our PointMass, we subtract that change from the lastPosition.
-          // When the physics gets integrated (see updatePhysics()), the change is calculated
-          // Here, the velocity is set equal to the cursor's velocity
-          pointMass.previous.set(
-            pointMass.current.x - (inputs.mouse.x-inputs.mouse.last.x) * mouseInfluenceScalar,
-            pointMass.current.y - (inputs.mouse.y-inputs.mouse.last.y) * mouseInfluenceScalar
-          )
+        // var mouseInfluenceSize = 20*20; // squared 
+        // var mouseInfluenceScalar = 2;
+        // var distSquared = distPointToSegmentSquared(inputs.mouse.last,inputs.mouse,pointMass.current);
+        // if( distSquared < mouseInfluenceSize ){
+        //   // To change the velocity of our PointMass, we subtract that change from the lastPosition.
+        //   // When the physics gets integrated (see updatePhysics()), the change is calculated
+        //   // Here, the velocity is set equal to the cursor's velocity
+        //   pointMass.previous.set(
+        //     pointMass.current.x - (inputs.mouse.x-inputs.mouse.last.x) * mouseInfluenceScalar,
+        //     pointMass.current.y - (inputs.mouse.y-inputs.mouse.last.y) * mouseInfluenceScalar
+        //   )
+        // }
+
+        // gravitate the PointMass towards the mouse
+        var force = inputs.mouse.clone().sub(pointMass.current);
+        if( force.length < 200 ){
+          force.mul(1000)
+          pointMass.applyForce(force.x,force.y)
         }
       }
     }
   },
   
   update: function(dt,t){
-    this.form.frame.value = ++this.currentFrame;
-    this.form.speed.value = this.puck.velocity.length;
-    if( !this.form.paused.checked )
-      this.physics.update(dt);
+    if( this.form.paused.checked ) return;
+    this.physics.update(dt);
   },
 
   render: function(){
