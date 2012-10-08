@@ -9,3 +9,4 @@ A port to javascript from: http://gamedev.tutsplus.com/tutorials/implementation/
 * Use linked lists to avoid using Array#splice
 * Add a third dimension! 
 * It would be great to test a WebGL renderer vs the Canvas one.
+* Add friction 

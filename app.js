@@ -351,11 +351,12 @@ function Inputs(){
   this.mouse.last = new Point();
   this.touches = [];
   this.keyboard = {};
+  this.forms = [];
 
   var inputs = this;
 
-  // handle browser mouse events
   if( document ){
+    // handle browser mouse events
     document.addEventListener('mousedown', function(e){
       e.preventDefault();
       inputs.onmousedown(e);
@@ -368,10 +369,50 @@ function Inputs(){
       e.preventDefault();
       inputs.onmouseup(e);
     }, false);
+
+    // handle browser form elements
+    this.form = {};
+    for(var f=0; f < document.forms.length; f++){
+      var form = document.forms[f];
+      for(var e=0; e < form.elements.length; e++){
+        var element = form.elements[e];
+
+        console.log(element.nodeName,element.type,element.name)
+
+        // TODO add listeners to elements
+        switch(element.nodeName.toLowerCase()){
+          case 'button':
+            element.addEventListener('mousedown',function(e){
+              e.stopImmediatePropagation();
+              e.preventDefault();
+              inputs.onbuttondown(e,element);
+            },false)
+            element.addEventListener('mouseup',function(e){
+              e.stopImmediatePropagation();
+              e.preventDefault();
+              inputs.onbuttonup(e,element);
+            },false)
+            break;
+        }
+      }
+    }
   }
 }
 
+Inputs.prototype.pressed = function(key){
+  if( /(\w+) (\w+)/.exec(key) ){
+    var type = RegExp.$1
+      , name = RegExp.$2;
+    return this[type][name];
+  }
+}
 
+Inputs.prototype.onbuttondown = function(e,element){
+  this.form[element.name] = true;
+}
+Inputs.prototype.onbuttonup = function(e,element){
+  this.form[element.name] = false;
+}
 Inputs.prototype.onmousedown = function(e){
   this.mouse.down = true;
   this.mouse.up = false;
@@ -485,10 +526,15 @@ PointMass.prototype = {
   update: function(timeStep){
     var tsq = timeStep * timeStep;
 
+    // update velocity
     this.velocity.set(
       this.current.x-this.previous.x,
       this.current.y-this.previous.y
-    ).mul(.99); // TODO use this.damping
+    )
+
+    // apply damping
+    if( this.damping != 1 )
+      this.velocity.mul(this.damping);
 
     this._next.set(
       this.current.x + this.velocity.x + .5 * this.acceleration.x * tsq,
@@ -507,8 +553,41 @@ PointMass.prototype = {
       this.links[i].solve();
 
     // Boundaries
-    if( this.bounds )
-      this.bounds.restrain(this.current);
+    if( this.bounds && !this.bounds.within(this.current) ){
+      // Find intersection
+      var intersections = this.bounds.intersectsWithLine(this.previous,this.current);
+
+      // Make sure it's one, and only one
+      if( !intersections )
+        return;
+      if( intersections.length > 1 )
+        console.warn('something went wrong',intersections);
+
+      var intersection = intersections[0];
+
+      // Reflect against surface normal (n)
+      // v' = v - 2(v . n)n
+      var v1 = this.velocity.clone()
+        , n = intersection.normal
+        , vd = v1.dot(n) * 2
+        , v2 = v1.clone().sub(n.mul(vd)).normalize()
+
+      var p2 = v2.clone().mul(-Point.distance(intersection,this.previous))
+        , c2 = v2.clone().mul(+Point.distance(intersection,this.current)) 
+
+      console.log('curr-inter-prev length',Point.distance(intersection,this.previous)+Point.distance(intersection,this.current))
+      console.log('curr-prev length',Point.distance(this.current,this.previous))
+
+      this.previous.set(p2).add(intersection)
+      this.current.set(c2).add(intersection)
+
+      this.acceleration.reset()
+      this.update(1/60)
+
+      console.log('velocity length',this.velocity.length)
+      console.log('curr-inter-prev length',Point.distance(intersection,this.previous)+Point.distance(intersection,this.current))
+      console.log('curr-prev length',Point.distance(this.current,this.previous))
+    }
 
     // Pinned
     if( this._pinned )
@@ -532,7 +611,8 @@ PointMass.prototype = {
   },
 
   applyForce: function(x,y){
-    this.acceleration.add(x/this.mass,y/this.mass);
+    var invMass = 1/this.mass;
+    this.acceleration.add(x*invMass,y*invMass);
   },
 
   pinTo: function(x,y){
@@ -668,14 +748,33 @@ Point.prototype = {
     return this//.validate();
   },
 
+  abs: function(){
+    this.x = Math.abs(this.x);
+    this.y = Math.abs(this.y);
+    return this;
+  },
+
+  dot: function(pt){
+    return this.x*pt.x+this.y*pt.y;
+  },
+
   get length(){
-    return Math.sqrt(this.x * this.x + this.y * this.y);
+    return Math.sqrt(this.dot(this));
   },
 
   reset: function(){
     this.x = 0;
     this.y = 0;
     return this//.validate();
+  },
+
+  normalize: function(){
+    var len = this.length;
+    if( len ){
+      this.x /= len;
+      this.y /= len;
+    }
+    return this;
   },
 
   clone: function(){
@@ -725,6 +824,8 @@ Point.diff = function(a,b){
   return new Point(b.x-a.x,b.y-a.y);
 }
 });require.register("rect.js", function(module, exports, require, global){
+var Point = require('./point');
+
 
 module.exports = Rect;
 
@@ -751,8 +852,68 @@ Rect.prototype = {
       pt.x = 2 * this.l - pt.x;
     if( pt.x > this.r )
       pt.x = 2 * this.r - pt.x;
+  },
+
+  // source: http://www.kevlindev.com/gui/math/intersection/Intersection.js
+  intersectsWithLine: function(a1,a2){
+    var topLeft = new Point(this.l,this.t)
+      , topRight = new Point(this.r,this.t)
+      , bottomLeft = new Point(this.l,this.b)
+      , bottomRight = new Point(this.r,this.b)
+      , pt
+      , results = [];
+
+    pt = intersectsLineLine(topLeft,topRight,a1,a2)
+    if( pt ) results.push(pt);
+    pt = intersectsLineLine(topRight,bottomRight,a1,a2)
+    if( pt ) results.push(pt);
+    pt = intersectsLineLine(bottomRight,bottomLeft,a1,a2)
+    if( pt ) results.push(pt);
+    pt = intersectsLineLine(bottomLeft,topLeft,a1,a2)
+    if( pt ) results.push(pt);
+
+    return results.length ? results : null;
   }
 
+}
+
+
+function intersectsLineLine(a1,a2,b1,b2){
+  var result;
+
+  var ua_t = (b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x);
+  var ub_t = (a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x);
+  var u_b  = (b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y);
+
+  if ( u_b != 0 ) {
+    var ua = ua_t / u_b;
+    var ub = ub_t / u_b;
+
+    // intersects!
+    if ( 0 <= ua && ua <= 1 && 0 <= ub && ub <= 1 ) {
+      var pt = new Point(
+        a1.x + ua * (a2.x - a1.x),
+        a1.y + ua * (a2.y - a1.y)
+      )
+      // add normal vector for the crossed line
+      var dx = a2.x - a1.x
+        , dy = a2.y - a1.y;
+      // or dy, -dx (for ccw)
+      pt.normal = new Point(-dy,dx).normalize(); 
+      return pt;
+    } 
+
+    // no intersection!
+    return null;
+  } else {
+    // Coincident (on top of each other)
+    if ( ua_t == 0 || ub_t == 0 ) {
+      return null; 
+    // Parallel
+    } else {
+      return null; 
+    }
+  }
 }
 });require.register("renderer.js", function(module, exports, require, global){
 
@@ -774,7 +935,7 @@ Renderer.prototype = {
       for(var i=0, l=pointMass.links.length; i < l; i++)
         this.drawLink(pointMass.links[i]);
     } else {
-      this.context.rect(pointMass.current.x,pointMass.current.y,1,1)
+      this.context.rect(pointMass.current.x-1,pointMass.current.y-1,2,2)
     }
     this.stats.pointMass++;
   },
@@ -870,14 +1031,27 @@ Simulator.prototype = {
     }
   },
 
+  createPuck: function(){
+    var puck = new PointMass(this.width/2,this.height/2);
+    puck.bounds = this.bounds;
+    this.puck = puck
+    puck.applyForce(-10000,10000)
+    this.pointMasses.push(puck);
+  },
+
   create: function(){
     // keep a list of pointMasses
     this.pointMasses = 
       this.physics.pointMasses = 
       this.renderer.pointMasses = [];
 
-    this.createCurtain(60,40);
-    this.createBodies(25);
+    this.form = document.forms[0];
+
+    this.currentFrame = 0;
+
+    // this.createCurtain(60,40);
+    // this.createBodies(25);
+    this.createPuck();
   },
 
   destroy: function(){
@@ -887,14 +1061,18 @@ Simulator.prototype = {
   },
 
   controls: function(inputs){
+    var gravity = this.form.gravity.checked
+      , wind = this.form.wind.value;
+
     for(var i=0; i<this.pointMasses.length; i++){
       var pointMass = this.pointMasses[i];
 
       // Add gravity to all pointmasses
-      pointMass.applyForce(0,980);
+      // if( gravity )
+      //   pointMass.applyForce(0,980);
 
       // Add random left-to-right wind
-      pointMass.applyForce(Math.random()*900,0);
+      // pointMass.applyForce(Math.random()*wind,0);
 
       // TODO Add other forces to all pointmasses?
 
@@ -917,7 +1095,10 @@ Simulator.prototype = {
   },
   
   update: function(dt,t){
-    this.physics.update(dt);
+    this.form.frame.value = ++this.currentFrame;
+    this.form.speed.value = this.puck.velocity.length;
+    if( !this.form.paused.checked )
+      this.physics.update(dt);
   },
 
   render: function(){
