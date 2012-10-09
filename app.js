@@ -123,8 +123,55 @@ if (window.localStorage) debug.enable(localStorage.debug);function require(p, pa
 var Game = require('./game')
   , Simulator = require('./simulator');
 
+function Channel(receiver){
+  this.receiver = receiver;
+  this.latency = 100;
+  this.onmessage = function(){}; // override
+  this.send = function(msg){
+    var jitter = -5+Math.random()*10;
+    setTimeout(function(){
+      this.receiver.onmessage(msg)
+    }.bind(this),this.latency+jitter);
+  }.bind(this)
+}
+
+var PlayState = {
+  create: function(){
+    var hostChannel = new Channel()
+    var guestChannel = new Channel()
+    hostChannel.receiver = guestChannel;
+    guestChannel.receiver = hostChannel;
+
+    this.host = new Simulator(document.getElementById('host'),document.getElementById('host-form'))
+    this.host.channel = hostChannel;
+    this.host.create()
+
+    this.guest = new Simulator(document.getElementById('guest'),document.getElementById('guest-form'))
+    this.guest.channel = guestChannel;
+    this.guest.create()
+  },
+  destroy: function(){
+    this.host.destroy()
+    this.guest.destroy()
+    delete this.host
+    delete this.guest
+  },
+  controls: function(inputs){
+    this.host.controls(inputs)
+    this.guest.controls(inputs)
+  },
+  update: function(dt,t){
+    this.host.update(dt,t)
+    this.guest.update(dt,t)
+  },
+  render: function(){
+    this.host.render()
+    this.guest.render()
+  }
+}
+
 new Game()
-  .pushState(new Simulator(document.getElementById('canv')))
+  .pushState(PlayState)
   .run()
 });require.register("body.js", function(module, exports, require, global){
 var PointMass = require('./point-mass');
@@ -571,8 +618,11 @@ PointMass.prototype = {
       // Make sure it's one, and only one
       if( !intersections )
         return;
-      if( intersections.length > 1 )
-        console.warn('something went wrong',intersections);
+
+      if( intersections.length > 1 ){
+        console.warn('woops, multiple intersections. FIXME!',intersections);
+        return this.bounds.restrain(this.current)
+      }
 
       var intersection = intersections[0];
 
@@ -984,7 +1034,8 @@ var Physics = require('./physics')
 
 module.exports = Simulator;
 
-function Simulator(canvas){
+function Simulator(canvas,form){
+  this.form = form;
   this.width = canvas.width;
   this.height = canvas.height;
   this.bounds = new Rect(1,this.width-1,this.height-1,1);
@@ -1049,9 +1100,11 @@ Simulator.prototype = {
       this.physics.pointMasses = 
       this.renderer.pointMasses = [];
 
-    this.form = document.forms[0];
-
     this.form.frame.value = 0;
+
+    this.channel.onmessage = function(msg){
+      console.log('onmessage',msg)
+    }
 
     // this.createCurtain(60,40);
     // this.createBodies(25);
@@ -1070,8 +1123,10 @@ Simulator.prototype = {
     this.form.frame.value = this.reversed ? +this.form.frame.value-1 : +this.form.frame.value+1;
     this.form.speed.value = this.puck.velocity.length;
 
-    if( this.form.reverse.checked != this.reversed )
+    if( this.form.reverse.checked != this.reversed ){
       this.physics.reverse();
+      this.channel.send('reverse')
+    }
 
     this.reversed = this.form.reverse.checked;
     // var gravity = this.form.gravity.checked
@@ -1107,8 +1162,11 @@ Simulator.prototype = {
         // gravitate the PointMass towards the mouse
         var force = inputs.mouse.clone().sub(pointMass.current);
         if( force.length < 200 ){
-          force.mul(1000)
-          pointMass.applyForce(force.x,force.y)
+          // TODO make it stronger the closer it is, right now
+          // the force equals the distance from the point. it should
+          // equal the inverse (so distance=0 is much stronger 
+          // than distance=200)
+          // pointMass.applyForce(force.x,force.y)
         }
       }
     }
