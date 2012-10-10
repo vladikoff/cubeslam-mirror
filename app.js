@@ -143,10 +143,12 @@ var PlayState = {
     guestChannel.receiver = hostChannel;
 
     this.host = new Simulator(document.getElementById('host'),document.getElementById('host-form'))
+    this.host.host = true;
     this.host.channel = hostChannel;
     this.host.create()
 
     this.guest = new Simulator(document.getElementById('guest'),document.getElementById('guest-form'))
+    this.guest.host = false;
     this.guest.channel = guestChannel;
     this.guest.create()
   },
@@ -164,9 +166,9 @@ var PlayState = {
     this.host.update(dt,t)
     this.guest.update(dt,t)
   },
-  render: function(){
-    this.host.render()
-    this.guest.render()
+  render: function(alpha){
+    this.host.render(alpha)
+    this.guest.render(alpha)
   }
 }
 
@@ -473,6 +475,14 @@ Inputs.prototype.onmousemove = function(e){
   this.mouse.set(e.offsetX,e.offsetY);
 }
 
+
+Inputs.prototype.reset = function(){
+  this.mouse.up = false;
+  this.mouse.down = false;
+
+  for(var key in this.keyboard)
+    delete this.keyboard[key];
+}
 });require.register("link.js", function(module, exports, require, global){
 var Point = require('./point');
 
@@ -523,17 +533,37 @@ Link.prototype = {
 
 }
 });require.register("physics.js", function(module, exports, require, global){
+var debug = require('debug')('physics');
+
 
 module.exports = Physics;
 
 function Physics(){
+  this.frame = 0;
+  this.direction = 1;
   this.pointMasses = [];
   this.constraintAccuracy = 3;
 }
 
 Physics.prototype = {
 
+  goto: function(frame){
+    debug('goto',frame)
+    var direction = this.direction;
+
+    // set the direction depending on the frame
+    this.direction = this.frame > frame ? -1 : +1;
+
+    // run updates until we arrive at the desired frame
+    while( this.frame != frame  )
+      this.update(1/60); // TODO don't hard code the timeStep
+    
+    // reset the direction to the original one
+    this.direction = direction;
+  },
+
   reverse: function(){
+    debug('reverse')
     // reverse positions of each point mass
     for(var i=0; i < this.pointMasses.length; i++){
       var pointMass = this.pointMasses[i]
@@ -542,20 +572,20 @@ Physics.prototype = {
       pointMass.current.set(pointMass.previous);
       pointMass.previous.set(tempx,tempy);
     }
+    this.direction = -this.direction;
   },
     
   update: function(timeStep){
     // solve constraints
-    for(var i=0; i < this.constraintAccuracy; i++){
+    for(var i=0; i < this.constraintAccuracy; i++)
       for(var j=0; j < this.pointMasses.length; j++)
         this.pointMasses[j].solveConstraints();
-      
-      // TODO circles?
-    }
 
     // update position
     for(var i=0; i < this.pointMasses.length; i++)
       this.pointMasses[i].update(timeStep);
+
+    this.frame += this.direction;
   }
 
 }
@@ -628,18 +658,14 @@ PointMass.prototype = {
 
       // Reflect against surface normal (n)
       // v' = v - 2(v⋅n)n
-      var v1 = this.velocity.clone()
-        , n = intersection.normal
-        , vd = v1.dot(n) * 2
-        , v2 = v1.clone().sub(n.mul(vd)).normalize()
-
-      var p2 = v2.clone().mul(-Point.distance(intersection,this.previous))
+      var n = intersection.normal
+        , vd = this.velocity.dot(n) * 2
+        , v2 = this.velocity.clone().sub(n.mul(vd)).normalize()
+        , p2 = v2.clone().mul(-Point.distance(intersection,this.previous))
         , c2 = v2.clone().mul(+Point.distance(intersection,this.current)) 
 
       this.previous.set(p2).add(intersection)
       this.current.set(c2).add(intersection)
-
-      this.acceleration.reset()
     }
 
     // Pinned
@@ -830,6 +856,12 @@ Point.prototype = {
     return this;
   },
 
+  lerp: function(pt,t){
+    this.x += (pt.x - this.x) * t;
+    this.y += (pt.y - this.y) * t;
+    return this;
+  },
+
   clone: function(){
     return new Point(this.x,this.y);
   },
@@ -857,9 +889,10 @@ Point.prototype = {
 }
 
 // aliases
-Point.prototype.multiply = Point.prototype.mul;
-Point.prototype.subtract = Point.prototype.sub;
-Point.prototype.divide   = Point.prototype.div;
+Point.prototype.multiply    = Point.prototype.mul;
+Point.prototype.subtract    = Point.prototype.sub;
+Point.prototype.divide      = Point.prototype.div;
+Point.prototype.interpolate = Point.prototype.lerp;
 
 Point.polar = function(angle,length){
   var toRadian = Math.PI/180;
@@ -876,6 +909,20 @@ Point.distance = function(a,b){
 Point.diff = function(a,b){
   return new Point(b.x-a.x,b.y-a.y);
 }
+
+// Generate static versions of the prototype methods which
+// returns a new Point instance
+//
+//    ex. Point.add(pt1,pt2) or Point.sub(pt1,pt2)
+//
+var methods = ['add','sub','mul','div','dot','abs','lerp'];
+methods.forEach(function(k){
+  Point[k] = function(a){ 
+    var pt = a.clone()
+      , args = [].slice.call(arguments,1);
+    return pt[k].apply(pt,args); 
+  }
+})
 });require.register("rect.js", function(module, exports, require, global){
 var Point = require('./point');
 
@@ -974,15 +1021,27 @@ module.exports = Renderer;
 
 function Renderer(canvas){
   this.pointMasses = [];
+  this.attractors = [];
   this.canvas = canvas;
   this.context = canvas.getContext('2d');
   this.stats = {
+    attractors: 0,
     pointMass: 0,
     links: 0
   }
 }
 
 Renderer.prototype = {
+  // Draw a gradient based on the mass of the attractor
+  drawAttractor: function(attr){
+    // Create radial gradient
+    var grad = this.context.createRadialGradient(attr.x,attr.y,0,attr.x,attr.y,attr.mass/2); 
+    grad.addColorStop(0, 'rgba(0,0,0,1)');
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    this.context.fillStyle = grad;
+    this.context.fillRect(attr.x-attr.mass/2,attr.y-attr.mass/2,attr.mass,attr.mass)
+    this.stats.attractors++;
+  },
   drawPointMass: function(pointMass){
     if( pointMass.links.length ){
       for(var i=0, l=pointMass.links.length; i < l; i++)
@@ -1002,9 +1061,14 @@ Renderer.prototype = {
   clear: function(){
     this.canvas.width = this.canvas.width;
   },
-  render: function(){
+  render: function(alpha){
+    this.stats.attractors = 0
     this.stats.pointMass = 0
     this.stats.links = 0
+    
+    for(var i=0, l=this.attractors.length; i < l; i++)
+      this.drawAttractor(this.attractors[i]);
+
     this.context.strokeStyle = '#000';
     for(var i=0, l=this.pointMasses.length; i < l; i++)
       this.drawPointMass(this.pointMasses[i]);
@@ -1087,11 +1151,16 @@ Simulator.prototype = {
 
   createPuck: function(){
     var puck = new PointMass(this.width/2,this.height/2);
-    puck.mass = 100;
     puck.bounds = this.bounds;
     this.puck = puck
-    puck.applyForce(-10000*puck.mass,10000*puck.mass)
+    puck.applyForce(-10000,10000)
     this.pointMasses.push(puck);
+  },
+
+  createAttractor: function(pt){
+    var attr = new Attractor(pt);
+    attr.mass = 100+Math.random()*200;
+    this.attractors.push(attr);
   },
 
   create: function(){
@@ -1100,11 +1169,43 @@ Simulator.prototype = {
       this.physics.pointMasses = 
       this.renderer.pointMasses = [];
 
-    this.form.frame.value = 0;
+    this.attractors = 
+      this.renderer.attractors = [];
+
+    this.form.frame.value = this.physics.frame;
+    this.reversed = this.form.reverse.checked;
 
     this.channel.onmessage = function(msg){
-      console.log('onmessage',msg)
-    }
+      console.log('onmessage',msg,this.physics.frame)
+
+      // reversed
+      if( msg[0] == 'r' ){
+        var b = msg[1] == 't'
+          , frame = +msg.slice(2)
+          , currentFrame = this.physics.frame;
+
+        console.log('reversed %s @%d',b,frame)
+
+        // rewind to `frame`
+        this.physics.reverse();
+        this.physics.goto(frame);
+        
+        // update state (set reversed to `b`)
+        if( this.reversed != b ){
+          this.physics.reverse();
+          this.reversed = this.form.reverse.checked = b;
+        }
+
+        // playback to `currentFrame`
+        this.physics.reverse();
+        this.physics.goto(currentFrame);
+
+        
+        // TODO next step is to:
+        //      1. Store any actions that occurred since `lastFrame` (the last frame received from the channel)
+        //      2. When playing back, include any actions that has occured during that frame.
+      }
+    }.bind(this)
 
     // this.createCurtain(60,40);
     // this.createBodies(25);
@@ -1120,15 +1221,21 @@ Simulator.prototype = {
   controls: function(inputs){
     if( this.form.paused.checked ) return;
 
-    this.form.frame.value = this.reversed ? +this.form.frame.value-1 : +this.form.frame.value+1;
+    this.form.frame.value = this.physics.frame;
     this.form.speed.value = this.puck.velocity.length;
 
     if( this.form.reverse.checked != this.reversed ){
       this.physics.reverse();
-      this.channel.send('reverse')
+      if( this.host )
+        this.channel.send('r'+(this.form.reverse.checked?'t':'f')+this.form.frame.value)
+      this.reversed = this.form.reverse.checked;
     }
 
-    this.reversed = this.form.reverse.checked;
+    if( inputs.mouse.up ){
+      // Add an attractor
+      this.createAttractor(inputs.mouse);
+    }
+
     // var gravity = this.form.gravity.checked
     //   , wind = this.form.wind.value;
 
@@ -1142,7 +1249,12 @@ Simulator.prototype = {
       // Add random left-to-right wind
       // pointMass.applyForce(Math.random()*wind,0);
 
+      // Add an attraction force (if any)
+      for( var a=0; a < this.attractors.length; a++ )
+        this.attractors[a].applyForce(pointMass);
+
       // TODO Add other forces to all pointmasses?
+
 
       if( inputs.mouse.down ){
         // every PointMass within this many pixels will be influenced by the cursor
@@ -1170,16 +1282,17 @@ Simulator.prototype = {
         }
       }
     }
+    inputs.reset();
   },
   
   update: function(dt,t){
     if( this.form.paused.checked ) return;
-    this.physics.update(dt);
+    this.physics.update(dt,t);
   },
 
-  render: function(){
+  render: function(alpha){
     this.renderer.clear()
-    this.renderer.render()
+    this.renderer.render(alpha)
   }
 
 }
@@ -1206,6 +1319,30 @@ function distPointToSegmentSquared(a, b, c){
   return (det*det) / len;
 }
 
+
+/**
+ * An Attractor is a point which pulls on the PointMasses
+ */
+function Attractor(pt,mass){
+  this.mass = mass,1;
+  Point.call(this,pt);
+}
+
+Attractor.prototype = {
+  __proto__: Point.prototype,
+
+  applyForce: function(pointMass){
+    var force = Point.sub(this, pointMass.current);
+    if( force.length < 200 ){
+      // TODO make it stronger the closer it is, right now
+      // the force equals the distance from the point. it should
+      // equal the inverse (so distance=0 is much stronger 
+      // than distance=200)
+      pointMass.applyForce(force.x,force.y)
+    }
+  }
+
+}
 
 });app = require('app');
 })();
