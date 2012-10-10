@@ -1021,26 +1021,31 @@ module.exports = Renderer;
 
 function Renderer(canvas){
   this.pointMasses = [];
-  this.attractors = [];
+  this.forces = [];
   this.canvas = canvas;
   this.context = canvas.getContext('2d');
   this.stats = {
-    attractors: 0,
+    forces: 0,
     pointMass: 0,
     links: 0
   }
 }
 
 Renderer.prototype = {
-  // Draw a gradient based on the mass of the attractor
-  drawAttractor: function(attr){
+  // Draw a gradient based on the type and mass of the force
+  drawForce: function(force){
     // Create radial gradient
-    var grad = this.context.createRadialGradient(attr.x,attr.y,0,attr.x,attr.y,attr.mass/2); 
-    grad.addColorStop(0, 'rgba(0,0,0,1)');
-    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    var grad = this.context.createRadialGradient(force.x,force.y,0,force.x,force.y,force.mass/2); 
+    if( force.type == 'attract' ){
+      grad.addColorStop(0, 'rgba(1,0,0,1)');
+      grad.addColorStop(1, 'rgba(1,0,0,0)');
+    } else if( force.type == 'repell' ) {
+      grad.addColorStop(0, 'rgba(0,1,0,1)');
+      grad.addColorStop(1, 'rgba(0,1,0,0)');
+    }
     this.context.fillStyle = grad;
-    this.context.fillRect(attr.x-attr.mass/2,attr.y-attr.mass/2,attr.mass,attr.mass)
-    this.stats.attractors++;
+    this.context.fillRect(force.x-force.mass/2,force.y-force.mass/2,force.mass,force.mass)
+    this.stats.forces++;
   },
   drawPointMass: function(pointMass){
     if( pointMass.links.length ){
@@ -1062,12 +1067,12 @@ Renderer.prototype = {
     this.canvas.width = this.canvas.width;
   },
   render: function(alpha){
-    this.stats.attractors = 0
+    this.stats.forces = 0
     this.stats.pointMass = 0
     this.stats.links = 0
     
-    for(var i=0, l=this.attractors.length; i < l; i++)
-      this.drawAttractor(this.attractors[i]);
+    for(var i=0, l=this.forces.length; i < l; i++)
+      this.drawForce(this.forces[i]);
 
     this.context.strokeStyle = '#000';
     for(var i=0, l=this.pointMasses.length; i < l; i++)
@@ -1158,9 +1163,9 @@ Simulator.prototype = {
   },
 
   createAttractor: function(pt){
-    var attr = new Attractor(pt);
-    attr.mass = 100+Math.random()*200;
-    this.attractors.push(attr);
+    var force = new Force('attract',pt);
+    force.mass = 100+Math.random()*200;
+    this.forces.push(force);
   },
 
   create: function(){
@@ -1169,8 +1174,8 @@ Simulator.prototype = {
       this.physics.pointMasses = 
       this.renderer.pointMasses = [];
 
-    this.attractors = 
-      this.renderer.attractors = [];
+    this.forces = 
+      this.renderer.forces = [];
 
     this.form.frame.value = this.physics.frame;
     this.reversed = this.form.reverse.checked;
@@ -1213,9 +1218,11 @@ Simulator.prototype = {
   },
 
   destroy: function(){
+    delete this.forces
     delete this.pointMasses
-    delete this.physics.pointMasses 
+    delete this.renderer.forces
     delete this.renderer.pointMasses
+    delete this.physics.pointMasses 
   },
 
   controls: function(inputs){
@@ -1249,12 +1256,9 @@ Simulator.prototype = {
       // Add random left-to-right wind
       // pointMass.applyForce(Math.random()*wind,0);
 
-      // Add an attraction force (if any)
-      for( var a=0; a < this.attractors.length; a++ )
-        this.attractors[a].applyForce(pointMass);
-
-      // TODO Add other forces to all pointmasses?
-
+      // Apply forces (if any)
+      for( var a=0; a < this.forces.length; a++ )
+        this.forces[a].applyForce(pointMass);
 
       if( inputs.mouse.down ){
         // every PointMass within this many pixels will be influenced by the cursor
@@ -1321,28 +1325,42 @@ function distPointToSegmentSquared(a, b, c){
 
 
 /**
- * An Attractor is a point which pulls on the PointMasses
+ * A Force is a point which pulls or pushes on the PointMasses
  */
-function Attractor(pt,mass){
-  this.mass = mass,1;
+function Force(type,pt,mass){
+  if( !type ) throw new Error('missing type')
+  this.type = type;
+  this.mass = mass || 1;
   Point.call(this,pt);
 }
 
-Attractor.prototype = {
+Force.prototype = {
   __proto__: Point.prototype,
 
   applyForce: function(pointMass){
-    var force = Point.sub(this, pointMass.current);
-    if( force.length < 200 ){
-      // TODO make it stronger the closer it is, right now
-      // the force equals the distance from the point. it should
-      // equal the inverse (so distance=0 is much stronger 
-      // than distance=200)
-      pointMass.applyForce(force.x,force.y)
+    if( this.type == 'repell' ){
+      var diff = Point.diff(this, pointMass.current)
+        , dist = diff.length;
+      if( dist * 2 < this.mass ){
+        var f = this.mass / dist;
+        pointMass.applyForce(
+          f * diff.x,
+          f * diff.y
+        );
+      }
+    } else if( this.type == 'attract' ){
+      var diff = Point.diff(this, pointMass.current)
+        , dist = diff.length*2;
+      if( dist < this.mass ){
+        var f = (1 - dist/this.mass) * -this.mass;
+        pointMass.applyForce(
+          f * diff.x,
+          f * diff.y
+        );
+      }
     }
   }
 
 }
-
 });app = require('app');
 })();
