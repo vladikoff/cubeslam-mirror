@@ -1,0 +1,24 @@
+{
+  "name": "verlet-sim",
+  "dependencies": {
+    "component/assert": "*",
+    "component/emitter": "*",
+    "slaskis/debug": "*"
+  },
+  "scripts": [
+    "lib/app.js",
+    "lib/force.js",
+    "lib/point.js",
+    "lib/point-mass.js",
+    "lib/physics.js",
+    "lib/rect.js",
+    "lib/game.js",
+    "lib/inputs.js",
+    "lib/renderer.js",
+    "lib/request-animation-frame.js",
+    "lib/simulator.js",
+    "lib/link.js",
+    "lib/body.js"
+  ],
+  "main": "lib/app.js"
+}
