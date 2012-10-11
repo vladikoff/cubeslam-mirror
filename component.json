@@ -19,6 +19,8 @@
     "lib/request-animation-frame.js",
     "lib/simulator.js",
     "lib/link.js",
-    "lib/body.js"
+    "lib/body.js",
+    "lib/diff.js",
+    "lib/inspect.js"
   ]
 }
