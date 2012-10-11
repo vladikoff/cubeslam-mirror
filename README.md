@@ -3,6 +3,17 @@ Verlet Simulation
 
 A port to javascript from: http://gamedev.tutsplus.com/tutorials/implementation/simulate-fabric-and-ragdolls-with-simple-verlet-integration/
 
+## Build
+
+To build the app we use [component](http://github.com/component). It should either be installed using a global npm (recommended) like this: `npm i -g component` or locally using `npm i`.
+
+Then to build you simply call:
+
+```
+$ component build
+```
+
+While developing I'd recommend using [watch](http://github.com/visionmedia/watch) so you don't have to keep running that command by yourself.
 
 ## TODO
 
