@@ -13,7 +13,7 @@ Then to build you simply call:
 $ component build
 ```
 
-While developing I'd recommend using [watch](http://github.com/visionmedia/watch) so you don't have to keep running that command by yourself.
+While developing I'd recommend using [watch](http://github.com/visionmedia/watch) so you don't have to keep running that command manually.
 
 ## TODO
 

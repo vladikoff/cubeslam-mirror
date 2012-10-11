@@ -6,6 +6,7 @@
     "visionmedia/debug": "*"
   },
   "scripts": [
+    "index.js",
     "lib/app.js",
     "lib/force.js",
     "lib/point.js",
@@ -19,6 +20,5 @@
     "lib/simulator.js",
     "lib/link.js",
     "lib/body.js"
-  ],
-  "main": "lib/app.js"
+  ]
 }
