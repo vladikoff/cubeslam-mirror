@@ -3,7 +3,7 @@
   "dependencies": {
     "component/assert": "*",
     "component/emitter": "*",
-    "slaskis/debug": "*"
+    "visionmedia/debug": "*"
   },
   "scripts": [
     "lib/app.js",
