@@ -8,20 +8,20 @@
   "scripts": [
     "index.js",
     "lib/app.js",
-    "lib/force.js",
-    "lib/point.js",
-    "lib/point-mass.js",
-    "lib/physics.js",
-    "lib/rect.js",
+    "lib/sim/force.js",
+    "lib/sim/point.js",
+    "lib/sim/point-mass.js",
+    "lib/sim/physics.js",
+    "lib/sim/rect.js",
+    "lib/sim/link.js",
+    "lib/support/diff.js",
+    "lib/support/inspect.js",
     "lib/game.js",
     "lib/inputs.js",
-    "lib/renderer.js",
-    "lib/renderer-3d.js",
     "lib/request-animation-frame.js",
+    "lib/renderer-2d.js",
+    "lib/renderer-3d.js",
     "lib/simulator.js",
-    "lib/link.js",
-    "lib/body.js",
-    "lib/diff.js",
-    "lib/inspect.js"
+    "lib/body.js"
   ]
 }
