@@ -16,6 +16,7 @@
     "lib/game.js",
     "lib/inputs.js",
     "lib/renderer.js",
+    "lib/renderer-3d.js",
     "lib/request-animation-frame.js",
     "lib/simulator.js",
     "lib/link.js",
