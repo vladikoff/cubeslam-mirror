@@ -4,9 +4,8 @@
     <meta charset='utf8'>
     <title>Verlet Simulator</title>
     <style>
-      .sim {display: none; width: 49%;}
+      .sim, .hidden {display: none;}
       .sim.active {display: inline-block;}
-      .hidden {display: none;}
     </style>
   </head>
   <body>
@@ -14,7 +13,8 @@
       <canvas id="host" width="320" height="480"></canvas>
       <form id="host-form">
         <!-- <button type="button" name="reset" value="1">Reset</button> -->
-        <label>Score <input type="number" step="1" name="score" value="0"></label>
+        <label>Guest <input type="number" step="1" name="guestScore" value="0"></label>
+        <label>Host <input type="number" step="1" name="hostScore" value="0"></label>
         <label>Frame <input type="number" step="1" name="frame" value="0"></label>
         <label>Speed <input type="number" name="speed" value="0"></label>
         <!-- 
@@ -30,7 +30,8 @@
       <canvas id="guest" width="320" height="480"></canvas>
       <form id="guest-form">
         <!-- <button type="button" name="reset" value="1">Reset</button> -->
-        <label>Score <input type="number" step="1" name="score" value="0"></label>
+        <label>Guest <input type="number" step="1" name="guestScore" value="0"></label>
+        <label>Host <input type="number" step="1" name="hostScore" value="0"></label>
         <label>Frame <input type="number" step="1" name="frame" value="0"></label>
         <label>Speed <input type="number" name="speed" value="0"></label>
         <!-- 
