@@ -69,15 +69,17 @@
         return;
       }
 
-      if (typeof(new PeerConnection(null).createDataChannel) !== 'undefined') {
+      var pc = new PeerConnection(null);
+
+      if (typeof(pc.createDataChannel) !== 'undefined') {
         try {
           // This will throw when data channels is not implemented properly yet
-          new PeerConnection(null).createDataChannel('polyfill')
+          pc.createDataChannel('polyfill')
 
           // If we get this far you already have DataChannel support.
           return;
         } catch(e){
-          // TODO maybe verify the Error
+          // TODO verify the Error
         }
       }
 
@@ -99,7 +101,7 @@
         }.bind(this);
 
         this._webSocket.onmessage = function(msg) {
-          if (this.onmessage) {
+          if (typeof this.onmessage == 'function') {
             this.onmessage(msg);
           }
         }.bind(this);
