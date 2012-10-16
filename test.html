@@ -70,13 +70,20 @@
       }
 
       if (typeof(new PeerConnection(null).createDataChannel) !== 'undefined') {
-        // You already have DataChannel support.
-        return;
+        try {
+          // This will throw when data channels is not implemented properly yet
+          new PeerConnection(null).createDataChannel('polyfill')
+
+          // If we get this far you already have DataChannel support.
+          return;
+        } catch(e){
+          // TODO maybe verify the Error
+        }
       }
 
-      function DataChannel(peerConnection) {
-        this.label = '';
-        this.reliable = false;
+      function DataChannel(peerConnection,label,dataChannelDict) {
+        this.label = label;
+        this.reliable = dataChannelDict && dataChannelDict.reliable;
         this._peerConnection = peerConnection;
 
         this._webSocket = new WebSocket(websocketServer);
@@ -125,7 +132,7 @@
       };
 
       PeerConnection.prototype.createDataChannel = function(label, dataChannelDict) {
-        var channel = new DataChannel(this);
+        var channel = new DataChannel(this,label,dataChannelDict);
 
         if (typeof(this._allDataChannels) == 'undefined') {
           this._allDataChannels = [];
