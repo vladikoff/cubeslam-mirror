@@ -20,10 +20,6 @@ type Message struct {
   Data interface{}
 }
 
-type FirstpageData struct {
-  Random string
-}
-
 type ConferenceData struct {
   Room string
   User string
@@ -84,9 +80,9 @@ func init() {
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
     if r.URL.Path == "/" {
-      first(w, r);
+      http.Redirect(w, r, "/"+randStr(), 302);
     } else {
-      conference(w, r);
+      Room(w, r);
     }
   })
 }
@@ -101,25 +97,8 @@ func randStr() string {
   return result
 }
 
-// --- FIRST PAGE ---
 
-
-func first(w http.ResponseWriter, r *http.Request) {
-  // Data to be sent to the template:
-  data := FirstpageData{Random:randStr()}
-
-  // Parse the template and output HTML:
-  template, err := template.New("first.html").ParseFiles("templates/first.html")
-  if err != nil { log.Fatalf("execution failed: %s", err) }
-  err = template.Execute(w, data)
-  if err != nil { log.Fatalf("execution failed: %s", err) }
-
-}
-
-// --- CONFERENCE PAGE ---
-
-
-func conference(w http.ResponseWriter, r *http.Request) {
+func Room(w http.ResponseWriter, r *http.Request) {
   roomName := r.URL.Path
   c := appengine.NewContext(r)
   clientId := randStr()
