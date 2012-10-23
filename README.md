@@ -22,3 +22,13 @@ While developing I'd recommend using [watch](http://github.com/visionmedia/watch
 * It would be great to test a WebGL renderer vs the Canvas one.
 * Add friction on the paddles
 * Refactor Rect -> Polygon and make the collision detection more generic
+
+
+### 2012-10-23
+
+* Singleplayer -> Multiplayer
+  - RTC "negotationneeded" thingie
+  - 
+* Effects list
+* Room full-bug
+* 
