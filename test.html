@@ -12,6 +12,7 @@
 
     <div class='sim' id='lobby'>
       <h1>Pong Realtime Multiplayer test</h1>
+      <h2><button id='play'>Play</button></h2>
       <p>The purpose of this is making sure realtime synchronization between two peers is possible.</p>
       <p>It does this by using a deterministic simulation (in plain english, a simulation that runs the exact same way) on both peers. Then one of the peers (the first one to enter the room at the moment) is a <i>host</i> and the other is a <i>guest</i>. This is important as the host is the one that will solve any conflicts while te guest is simply a "dumb client" telling the host where it's paddle is at the moment.</p>
       <p>Whenever the simulation changes, like when an <i>attract force</i> has been added (when the host clicks on the canvas), the change is propagated to the guest which will replay from the frame of the change using those changes (and in the future, including any changes the guest has done in between).</p>
@@ -29,17 +30,9 @@
         <li><i>Rooms get full</i> – The room handling needs some love, it doesn't disconnect users properly sometimes which causes the room to be full. The workaround now is to start a new one.</li>
         <li><i>Design</i> – Not even considered.</li>
       </ul>
-      <h2>Play</h2>
-      <ul>
-        <li>Waiting for player...</li>
-        <li id='ful' class='hidden'>Room full</li>
-        <li id='con' class='hidden'>Player connected</li>
-        <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
-        <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
-      </ul>
     </div>
     
-    <div class='sim'>
+    <div class='sim' id='game'>
       <canvas id="canv" width="320" height="480"></canvas>
       <form id="form">
         <!-- <button type="button" name="reset" value="1">Reset</button> -->
@@ -55,6 +48,13 @@
         <label class='hidden'>Paused <input type="checkbox" name="paused"></label>
         <label class='hidden'>Reverse <input type="checkbox" name="reverse"></label>
       </form>
+      <ul>
+        <li>Waiting for player...</li>
+        <li id='ful' class='hidden'>Room full</li>
+        <li id='con' class='hidden'>Player connected</li>
+        <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
+        <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
+      </ul>
     </div>
 
     <script>
