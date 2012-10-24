@@ -23,7 +23,7 @@
     "lib/renderer-3d.js",
     "lib/motion-tracker.js",
     "lib/simulator.js",
-    "lib/body.js",
+    "lib/actions.js",
     "lib/rtc.js",
     "lib/time-sync.js"
   ]
