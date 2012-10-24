@@ -28,7 +28,7 @@ While developing I'd recommend using [watch](http://github.com/visionmedia/watch
 
 * Singleplayer -> Multiplayer
   - RTC "negotationneeded" thingie
-  - 
+  - Set host from beginning (from go app)
 * Effects list
 * Room full-bug
 * 

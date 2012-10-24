@@ -22,7 +22,6 @@
     "lib/renderer-2d.js",
     "lib/renderer-3d.js",
     "lib/simulator.js",
-    "lib/body.js",
     "lib/rtc.js",
     "lib/time-sync.js"
   ]
