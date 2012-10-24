@@ -21,6 +21,7 @@
     "lib/request-animation-frame.js",
     "lib/renderer-2d.js",
     "lib/renderer-3d.js",
+    "lib/motion-tracker.js",
     "lib/simulator.js",
     "lib/body.js",
     "lib/rtc.js",
