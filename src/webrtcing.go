@@ -20,11 +20,9 @@ type Message struct {
   Data interface{}
 }
 
-type ConferenceData struct {
+type RoomData struct {
   Room string
-  User string
   ChannelToken string
-  Key string
 }
 
 func init() {
@@ -66,7 +64,10 @@ func init() {
   /*
    Because we can't know which room a client was in when we
    get the AppEngine Channel "disconnect" we create our own
-   which also takes the room name as an argument
+   which also takes the room name as an argument.
+
+   If we move to another channel (like WebSockets) we should
+   do this on a proper connection "close" instead.
   */
   http.HandleFunc("/disconnected", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
@@ -109,7 +110,7 @@ func Room(w http.ResponseWriter, r *http.Request) {
   }
 
   // Data to be sent to the template:
-  data := ConferenceData{Room:roomName, ChannelToken: token}
+  data := RoomData{Room:roomName, ChannelToken: token}
 
   // Parse the template and output HTML:
   template, err := template.New("test.html").ParseFiles("test.html")
@@ -139,6 +140,8 @@ func Join(c appengine.Context, room string, client string) {
     if err := memcache.Set(c,roomItem); err != nil {
       log.Fatalf("join, set error ",err)  
     }
+    // let the client know the room was just created (host!)
+    channel.SendJSON(c, client, Message{Type: "created", Data: room})
   } else if err != nil {
     log.Fatalf("join, get error ",err)
   } else {
