@@ -140,8 +140,8 @@ func Join(c appengine.Context, room string, client string) {
     if err := memcache.Set(c,roomItem); err != nil {
       log.Fatalf("join, set error ",err)  
     }
-    // let the client know the room was just created (host!)
-    channel.SendJSON(c, client, Message{Type: "created", Data: room})
+    // let the promote the client (= host)
+    channel.SendJSON(c, client, Message{Type: "promoted", Data: client})
   } else if err != nil {
     log.Fatalf("join, get error ",err)
   } else {
@@ -182,7 +182,10 @@ func Leave(c appengine.Context, room string, client string) {
 
     // if room is empty, remove it
     if len(list) == 0 {
-      // TODO Delete room?
+      err := memcache.Delete(c, room)
+      if err != nil {
+        log.Fatalf("leave, error while deleting room",err)
+      }
 
     // or let the already connected users know
     } else {
