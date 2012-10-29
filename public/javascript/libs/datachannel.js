@@ -3,8 +3,8 @@
 
   var
     // Configuration:
-    hostname = window.CHANNEL_HOST || window.location.hostname || 'localhost',
-    websocketServer = "ws://"+hostname+":8000/",
+    hostname = window.CHANNEL_HOST || window.location.host || 'localhost:8000',
+    websocketServer = "ws://"+hostname+"/",
   
     // For browser compatibility:
     PeerConnection = window.PeerConnection 
@@ -26,7 +26,7 @@
       pc.createDataChannel('polyfill')
 
       // If we get this far you already have DataChannel support.
-      return;
+      return console.log('REAL DATACHANNELS!');
     } catch(e){
       // TODO verify the Error
     }
@@ -53,6 +53,10 @@
       if (typeof this.onmessage == 'function') {
         this.onmessage(msg);
       }
+    }.bind(this);
+
+    this._webSocket.onerror = function(msg) {
+      console.error(msg)
     }.bind(this);
   };
 
