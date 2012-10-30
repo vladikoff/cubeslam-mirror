@@ -1,3 +1,3 @@
 #!/bin/sh
-sed -i 's/application: .*/application: gogglesgame/' app.yaml
+sed -i.tmp 's/application: .*/application: gogglesgame/' app.yaml
 appcfg.py update .
