@@ -10,6 +10,7 @@ To build the app we use [component](http://github.com/component). It should eith
 Then to build you simply call:
 
 ```
+$ component install
 $ component build
 ```
 
