@@ -6,18 +6,24 @@ api_version: go1
 handlers:
 - url: /build
   static_dir: build
+  login: admin
 - url: /javascript
   static_dir: public/javascript
+  login: admin
 - url: /images
   static_dir: public/images
+  login: admin
 - url: /stylesheets
   static_dir: public/stylesheets
+  login: admin
 - url: /(.*\.html)
   static_files: public/\1
   upload: public/(.*\.html)
+  login: admin
 
 - url: /.*
   script: _go_app
+  login: admin
 
 inbound_services:
 - channel_presence
