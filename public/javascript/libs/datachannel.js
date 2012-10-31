@@ -33,20 +33,25 @@
   }
 
   function DataChannel(peerConnection,label,dataChannelDict) {
+    this.readyState = "connecting";
     this.label = label;
-    this.reliable = dataChannelDict && dataChannelDict.reliable;
+    this.reliable = dataChannelDict && dataChannelDict.reliable !== false;
     this._peerConnection = peerConnection;
+    this._queue = [];
 
     this._webSocket = new WebSocket(websocketServer);
+
     this._webSocket.onclose = function() {
-      // Do something!
-    }
-
-    this.readyState = "connecting";
-
+      this.readyState = "closed";
+    }.bind(this);
+    
     this._webSocket.onopen = function() {
       this.readyState = "open";
       this._identify();
+
+      // empty the queue
+      while(this._queue.length)
+        this.send(this._queue.shift());
     }.bind(this);
 
     this._webSocket.onmessage = function(msg) {
@@ -57,6 +62,9 @@
 
     this._webSocket.onerror = function(msg) {
       console.error(msg)
+      if (typeof this.onerror == 'function') {
+        this.onerror(msg);
+      }
     }.bind(this);
   };
 
@@ -78,12 +86,15 @@
   };
 
   DataChannel.prototype.close = function() {
+    this.readyState = "closing";
     this._webSocket.close();
   };
 
-  DataChannel.prototype.send = function(data, onErrorCallback) {
+  DataChannel.prototype.send = function(data) {
     if( this.readyState == 'open' )
-      this._webSocket.send(data, onErrorCallback);
+      this._webSocket.send(data);
+    else if( this.reliable ) // queue messages when "reliable"
+      this._queued.push(data);
   };
 
   PeerConnection.prototype.createDataChannel = function(label, dataChannelDict) {
