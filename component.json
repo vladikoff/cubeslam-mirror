@@ -27,6 +27,7 @@
     "lib/simulator.js",
     "lib/actions.js",
     "lib/rtc.js",
-    "lib/time-sync.js"
+    "lib/time-sync.js",
+    "lib/audio.js"
   ]
 }
