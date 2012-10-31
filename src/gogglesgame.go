@@ -195,6 +195,12 @@ func Leave(c appengine.Context, room string, client string) {
           channel.SendJSON(c, id, Message{Type: "disconnected", Data: client})
         }
       }
+
+      // only one left, promote that user
+      if len(list) == 1 {
+        host := list[0]
+        channel.SendJSON(c, host, Message{Type: "promoted", Data: host})
+      }
     }
   }
 }

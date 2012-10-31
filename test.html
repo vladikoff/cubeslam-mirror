@@ -6,6 +6,14 @@
     <style>
       .sim, .hidden {display: none;}
       .sim.active {display: inline-block;}
+      .renderer-2d canvas {
+        margin-top: 30px;
+      }
+      .renderer-2d ul {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 30px;
+      }
 
       #colorSelectContainer {
         z-index:1000;
@@ -110,18 +118,18 @@
     
     <div class='sim' id='game'>
       <canvas id="canv" width="320" height="480"></canvas>
+      <ul>
+        <li>Waiting for player...</li>
+        <li id='ful' class='hidden'>Room full</li>
+        <li id='con' class='hidden'>Player connected <span id='vid' class='hidden'>with video</span></li>
+        <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
+        <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
+      </ul>
       <form id="form">
         <label>Alive <input type="number" step="1" name="aliveScore" value="0"></label>
         <label>Guest <input type="number" step="1" name="guestScore" value="0"></label>
         <label>Host  <input type="number" step="1" name="hostScore" value="0"></label>
       </form>
-      <ul>
-        <li>Waiting for player...</li>
-        <li id='ful' class='hidden'>Room full</li>
-        <li id='con' class='hidden'>Player connected</li>
-        <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
-        <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
-      </ul>
     </div>
 
     <script>
