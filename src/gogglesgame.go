@@ -5,7 +5,6 @@ import (
   "appengine/channel"
   "appengine/memcache"
   "encoding/json"
-  "log"
   "math/rand"
   "net/http"
   "text/template"
@@ -35,11 +34,11 @@ func init() {
     client := r.FormValue("key")
     var msg Message
     if err := json.Unmarshal([]byte(r.FormValue("msg")),&msg); err != nil { 
-      log.Fatalf("%s",err) 
+      c.Criticalf("%s",err) 
       return
     }
 
-    log.Print("received channel data: ",r.FormValue("key"), msg)
+    c.Debugf("received channel data: ",r.FormValue("key"), msg)
 
     switch msg.Type {
     case "join":
@@ -47,15 +46,15 @@ func init() {
     case "leave":
       Leave(c,"room:"+msg.Data.(string),client)
     case "offer":
-      log.Print("offer")
+      c.Debugf("offer")
       data := msg.Data.([]interface{})
       channel.SendJSON(c, data[0].(string), Message{Type: "offer", Data: []string{client,data[1].(string)}})
     case "answer":
-      log.Print("answer")
+      c.Debugf("answer")
       data := msg.Data.([]interface{})
       channel.SendJSON(c, data[0].(string), Message{Type: "answer", Data: data[1]})
     case "icecandidate":
-      log.Print("icecandidate")
+      c.Debugf("icecandidate")
       data := msg.Data.([]interface{})
       channel.SendJSON(c, data[0].(string), Message{Type: "icecandidate", Data: []string{data[1].(string),data[2].(string),strconv.FormatFloat(data[3].(float64),'e',-1,64)}})
     }
@@ -73,7 +72,7 @@ func init() {
     c := appengine.NewContext(r)
     room := r.FormValue("room")
     client := r.FormValue("client")
-    log.Printf("Disconnecting %s from %s",client, room)
+    c.Debugf("Disconnecting %s from %s",client, room)
     Leave(c, "room:"+room, client)
   })
 
@@ -114,9 +113,9 @@ func Room(w http.ResponseWriter, r *http.Request) {
 
   // Parse the template and output HTML:
   template, err := template.New("test.html").ParseFiles("test.html")
-  if err != nil { log.Fatalf("execution failed: %s", err) }
+  if err != nil { c.Criticalf("execution failed: %s", err) }
   err = template.Execute(w, data)
-  if err != nil { log.Fatalf("execution failed: %s", err) }
+  if err != nil { c.Criticalf("execution failed: %s", err) }
 
 }
 
@@ -133,35 +132,35 @@ func Filter(s []string, fn func(string) bool) []string {
 func Join(c appengine.Context, room string, client string) {
   item, err := memcache.Get(c, room)
   if err == memcache.ErrCacheMiss {
-    log.Print("join, room not found. creating new room")
+    c.Debugf("join, room not found. creating new room")
 
     // create room, with single client in
     roomItem := &memcache.Item{Key: room, Value: []byte(client)}
     if err := memcache.Set(c,roomItem); err != nil {
-      log.Fatalf("join, set error ",err)  
+      c.Criticalf("join, set error ",err)  
     }
     // let the promote the client (= host)
     channel.SendJSON(c, client, Message{Type: "promoted", Data: client})
   } else if err != nil {
-    log.Fatalf("join, get error ",err)
+    c.Criticalf("join, get error ",err)
   } else {
-    log.Printf("join, found room %s: %s",item.Key,string(item.Value))
+    c.Debugf("join, found room %s: %s",item.Key,string(item.Value))
     list := ListRoom(c, item, room, client, false);
 
     if( len(list) > 2 ){
-      log.Printf("Room full:",list)
+      c.Debugf("Room full:",list)
       channel.SendJSON(c, client, Message{Type: "full", Data: len(list)})
 
     // no need to broadcast (should never happen)
     } else if len(list) == 0 {
-      log.Fatalf("No clients in the room (but it should be)")
+      c.Criticalf("No clients in the room (but it should be)")
 
     // or let the already connected users know
     } else {
       UpdateRoom(c, item, list);
       for _,id := range list {
         if id != client {
-          log.Printf("connected(%s) ",id,client)
+          c.Debugf("connected(%s) ",id,client)
           channel.SendJSON(c, id, Message{Type: "connected", Data: client})
         }
       }
@@ -172,11 +171,11 @@ func Join(c appengine.Context, room string, client string) {
 func Leave(c appengine.Context, room string, client string) {
   item, err := memcache.Get(c, room)
   if err == memcache.ErrCacheMiss {
-    log.Print("leave, room not found. ")
+    c.Debugf("leave, room not found. ")
   } else if err != nil {
-    log.Fatalf("leave, error ",err)
+    c.Criticalf("leave, error ",err)
   } else {
-    log.Printf("leave, found room %s: %s",item.Key,string(item.Value))
+    c.Debugf("leave, found room %s: %s",item.Key,string(item.Value))
     list := ListRoom(c, item, room, client, true);
     UpdateRoom(c, item, list);
 
@@ -184,14 +183,14 @@ func Leave(c appengine.Context, room string, client string) {
     if len(list) == 0 {
       err := memcache.Delete(c, room)
       if err != nil {
-        log.Fatalf("leave, error while deleting room",err)
+        c.Criticalf("leave, error while deleting room",err)
       }
 
     // or let the already connected users know
     } else {
       for _,id := range list {
         if id != client {
-          log.Printf("disconnected(%s) ",id,client)
+          c.Debugf("disconnected(%s) ",id,client)
           channel.SendJSON(c, id, Message{Type: "disconnected", Data: client})
         }
       }
@@ -219,6 +218,6 @@ func ListRoom(c appengine.Context, room *memcache.Item, name string, client stri
 func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
   item := &memcache.Item{Key: room.Key, Value: []byte(strings.Join(list,"|"))}
   if err := memcache.Set(c,item); err != nil {
-    log.Fatalf("UpdateRoom, set error ",err)  
+    c.Criticalf("UpdateRoom, set error ",err)  
   }
 }
