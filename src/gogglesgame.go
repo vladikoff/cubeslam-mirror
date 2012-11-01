@@ -29,12 +29,12 @@ func init() {
   now := time.Now()
   rand.Seed(now.Unix())
 
-  http.HandleFunc("/_ah/channel/connected/", funct (w http.ResponseWriter, r *http.Request){
+  http.HandleFunc("/_ah/channel/connected/", func (w http.ResponseWriter, r *http.Request){
     c := appengine.NewContext(r)
     c.Debugf("connected %v",r)
   })
 
-  http.HandleFunc("/_ah/channel/disconnected/", funct (w http.ResponseWriter, r *http.Request){
+  http.HandleFunc("/_ah/channel/disconnected/", func (w http.ResponseWriter, r *http.Request){
     c := appengine.NewContext(r)
     c.Debugf("disconnected %v",r)
   })
