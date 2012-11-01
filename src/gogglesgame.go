@@ -29,32 +29,36 @@ func init() {
   now := time.Now()
   rand.Seed(now.Unix())
 
-  var maxMem int64 = 1024*1024*10
-
   http.HandleFunc("/_ah/channel/connected/", func (w http.ResponseWriter, r *http.Request){
     c := appengine.NewContext(r)
 
-    if err := r.ParseMultipartForm(maxMem); err != nil {
-      c.Criticalf("error while parsing form",err)
-    }
+    from := r.FormValue("from")
+    to := r.FormValue("to") // only populated in production?
+    room, client := ParseFrom(from)
 
-    c.Debugf("connected %v",r)
+    c.Debugf("connected from: %s to: %s",from,to)
+    c.Debugf("connected client: %s to room: %s",client,room)
+
+    Join(c,room,from)
   })
 
   http.HandleFunc("/_ah/channel/disconnected/", func (w http.ResponseWriter, r *http.Request){
     c := appengine.NewContext(r)
 
-    if err := r.ParseMultipartForm(maxMem); err != nil {
-      c.Criticalf("error while parsing form",err)
-    }
+    from := r.FormValue("from")
+    to := r.FormValue("to") // only populated in production?
+    room, client := ParseFrom(from)
 
-    c.Debugf("disconnected %v",r)
+    c.Debugf("disconnected from: %s to: %s",from,to)
+    c.Debugf("disconnected client: %s to room: %s",client,room)
+
+    Leave(c,room,from)
   })
 
   http.HandleFunc("/message", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     
-    client := r.FormValue("client")
+    from := r.FormValue("from")
     message := r.FormValue("msg")
     var msg Message
     if err := json.Unmarshal([]byte(message),&msg); err != nil { 
@@ -62,25 +66,35 @@ func init() {
       return
     }
 
-    c.Debugf("received channel data: ",r.FormValue("key"), msg)
+    c.Debugf("received channel data from: %s message: %+v",from, msg)
+
+    room, client := ParseFrom(from)
 
     switch msg.Type {
     case "join":
-      Join(c,"room:"+msg.Data.(string),client)
+      Join(c,room,from)
     case "leave":
-      Leave(c,"room:"+msg.Data.(string),client)
+      Leave(c,room,from)
     case "offer":
       c.Debugf("offer")
       data := msg.Data.([]interface{})
-      SendJSON(c, data[0].(string), Message{Type: "offer", Data: []string{client,data[1].(string)}})
+      peer := data[0].(string)
+      sdp := data[1].(string)
+      SendJSON(c, room+"@"+peer, Message{Type: "offer", Data: []string{client,sdp}})
     case "answer":
       c.Debugf("answer")
       data := msg.Data.([]interface{})
-      SendJSON(c, data[0].(string), Message{Type: "answer", Data: data[1]})
+      peer := data[0].(string)
+      sdp := data[1].(string)
+      SendJSON(c, room+"@"+peer, Message{Type: "answer", Data: sdp})
     case "icecandidate":
       c.Debugf("icecandidate")
       data := msg.Data.([]interface{})
-      SendJSON(c, data[0].(string), Message{Type: "icecandidate", Data: []string{data[1].(string),data[2].(string),strconv.FormatFloat(data[3].(float64),'e',-1,64)}})
+      peer := data[0].(string)
+      candidate := data[1].(string)
+      sdpMid := data[2].(string)
+      sdpMLineIndex := strconv.FormatFloat(data[3].(float64),'e',-1,64)
+      SendJSON(c, room+"@"+peer, Message{Type: "icecandidate", Data: []string{candidate,sdpMid,sdpMLineIndex}})
     }
   })
 
@@ -92,41 +106,31 @@ func init() {
    If we move to another channel (like WebSockets) we should
    do this on a proper connection "close" instead.
   */
-  http.HandleFunc("/disconnect", func (w http.ResponseWriter, r *http.Request) {
-    c := appengine.NewContext(r)
-    room := r.FormValue("room")
-    client := r.FormValue("client")
-    c.Debugf("Disconnecting %s from %s",client, room)
-    Leave(c, "room:"+room, client)
-  })
+  // http.HandleFunc("/disconnect", func (w http.ResponseWriter, r *http.Request) {
+  //   c := appengine.NewContext(r)
+  //   room := r.FormValue("room")
+  //   client := r.FormValue("client")
+  //   c.Debugf("Disconnecting %s from %s",client, room)
+  //   Leave(c, "room:"+room, client)
+  // })
 
 
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
     if r.URL.Path == "/" {
-      http.Redirect(w, r, "/"+randStr(), 302);
+      http.Redirect(w, r, "/"+Random(12), 302);
     } else {
-      Room(w, r);
+      Room(c, w, r);
     }
   })
 }
 
-func randStr() string {
-  printables := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"
-  result := ""
-  for i := 0; i < 12; i++ {
-    pos := rand.Intn(len(printables) - 1)
-    result = result + printables[pos:pos + 1]
-  }
-  return result
-}
 
-
-func Room(w http.ResponseWriter, r *http.Request) {
+func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   roomName := r.URL.Path
-  c := appengine.NewContext(r)
-  clientId := randStr()
-  token, err := channel.Create(c, clientId)
+  clientId := Random(10)
+  token, err := channel.Create(c, roomName+"@"+clientId)
   if err != nil {
     http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
     return
@@ -143,17 +147,8 @@ func Room(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func Filter(s []string, fn func(string) bool) []string {
-  var p []string // == nil
-  for _, i := range s {
-    if fn(i) {
-      p = append(p, i)
-    }
-  }
-  return p
-}
-
-func Join(c appengine.Context, room string, client string) {
+func Join(c appengine.Context, room string, from string) {
+  room, client := ParseFrom(from)
   item, err := memcache.Get(c, room)
   if err == memcache.ErrCacheMiss {
     c.Debugf("join, room not found. creating new room")
@@ -164,7 +159,7 @@ func Join(c appengine.Context, room string, client string) {
       c.Criticalf("join, set error ",err)  
     }
     // let the promote the client (= host)
-    SendJSON(c, client, Message{Type: "promoted", Data: client})
+    SendJSON(c, from, Message{Type: "promoted", Data: client})
 
   } else if err != nil {
     c.Criticalf("join, get error ",err)
@@ -174,7 +169,7 @@ func Join(c appengine.Context, room string, client string) {
 
     if( len(list) > 2 ){
       c.Debugf("Room full:",list)
-      SendJSON(c, client, Message{Type: "full", Data: len(list)})
+      SendJSON(c, from, Message{Type: "full", Data: len(list)})
 
     // no need to broadcast (should never happen)
     } else if len(list) == 0 {
@@ -186,21 +181,15 @@ func Join(c appengine.Context, room string, client string) {
       for _,id := range list {
         if id != client {
           c.Debugf("connected(%s) ",id,client)
-          SendJSON(c, id, Message{Type: "connected", Data: client})
+          SendJSON(c, room+"@"+id, Message{Type: "connected", Data: client})
         }
       }
     }
   }
 }
 
-func SendJSON(c appengine.Context, to string, msg Message) {
-  c.Debugf("SendJSON (%s) %v",to,msg)
-  if err := channel.SendJSON(c, to, msg); err != nil {
-    c.Criticalf("send json error ",err)
-  }
-}
-
-func Leave(c appengine.Context, room string, client string) {
+func Leave(c appengine.Context, room string, from string) {
+  room, client := ParseFrom(from)
   item, err := memcache.Get(c, room)
   if err == memcache.ErrCacheMiss {
     c.Debugf("leave, room not found. ")
@@ -251,5 +240,38 @@ func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
   item := &memcache.Item{Key: room.Key, Value: []byte(strings.Join(list,"|"))}
   if err := memcache.Set(c,item); err != nil {
     c.Criticalf("UpdateRoom, set error ",err)  
+  }
+}
+
+func Random(length int) string {
+  printables := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"
+  result := ""
+  for i := 0; i < length; i++ {
+    pos := rand.Intn(len(printables) - 1)
+    result = result + printables[pos:pos + 1]
+  }
+  return result
+}
+
+func Filter(s []string, fn func(string) bool) []string {
+  var p []string // == nil
+  for _, i := range s {
+    if fn(i) {
+      p = append(p, i)
+    }
+  }
+  return p
+}
+
+func ParseFrom(s string) (string, string) {
+  from := strings.Split(s,"@")
+  // room, client
+  return from[0], from[1];
+}
+
+func SendJSON(c appengine.Context, to string, msg Message) {
+  c.Debugf("SendJSON (%s) %+v",to,msg)
+  if err := channel.SendJSON(c, to, msg); err != nil {
+    c.Criticalf("send json error ",err)
   }
 }
