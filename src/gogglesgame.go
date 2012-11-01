@@ -50,15 +50,15 @@ func init() {
     case "offer":
       c.Debugf("offer")
       data := msg.Data.([]interface{})
-      channel.SendJSON(c, data[0].(string), Message{Type: "offer", Data: []string{client,data[1].(string)}})
+      SendJSON(c, data[0].(string), Message{Type: "offer", Data: []string{client,data[1].(string)}})
     case "answer":
       c.Debugf("answer")
       data := msg.Data.([]interface{})
-      channel.SendJSON(c, data[0].(string), Message{Type: "answer", Data: data[1]})
+      SendJSON(c, data[0].(string), Message{Type: "answer", Data: data[1]})
     case "icecandidate":
       c.Debugf("icecandidate")
       data := msg.Data.([]interface{})
-      channel.SendJSON(c, data[0].(string), Message{Type: "icecandidate", Data: []string{data[1].(string),data[2].(string),strconv.FormatFloat(data[3].(float64),'e',-1,64)}})
+      SendJSON(c, data[0].(string), Message{Type: "icecandidate", Data: []string{data[1].(string),data[2].(string),strconv.FormatFloat(data[3].(float64),'e',-1,64)}})
     }
   })
 
@@ -142,7 +142,8 @@ func Join(c appengine.Context, room string, client string) {
       c.Criticalf("join, set error ",err)  
     }
     // let the promote the client (= host)
-    channel.SendJSON(c, client, Message{Type: "promoted", Data: client})
+    SendJSON(c, client, Message{Type: "promoted", Data: client})
+    
   } else if err != nil {
     c.Criticalf("join, get error ",err)
   } else {
@@ -151,7 +152,7 @@ func Join(c appengine.Context, room string, client string) {
 
     if( len(list) > 2 ){
       c.Debugf("Room full:",list)
-      channel.SendJSON(c, client, Message{Type: "full", Data: len(list)})
+      SendJSON(c, client, Message{Type: "full", Data: len(list)})
 
     // no need to broadcast (should never happen)
     } else if len(list) == 0 {
@@ -163,10 +164,16 @@ func Join(c appengine.Context, room string, client string) {
       for _,id := range list {
         if id != client {
           c.Debugf("connected(%s) ",id,client)
-          channel.SendJSON(c, id, Message{Type: "connected", Data: client})
+          SendJSON(c, id, Message{Type: "connected", Data: client})
         }
       }
     }
+  }
+}
+
+func SendJSON(c appengine.Context, to string, msg Message) {
+  if err := channel.SendJSON(c, to, msg); err != nil {
+    c.Criticalf("join, send json error ",err)
   }
 }
 
@@ -193,14 +200,14 @@ func Leave(c appengine.Context, room string, client string) {
       for _,id := range list {
         if id != client {
           c.Debugf("disconnected(%s) ",id,client)
-          channel.SendJSON(c, id, Message{Type: "disconnected", Data: client})
+          SendJSON(c, id, Message{Type: "disconnected", Data: client})
         }
       }
 
       // only one left, promote that user
       if len(list) == 1 {
         host := list[0]
-        channel.SendJSON(c, host, Message{Type: "promoted", Data: host})
+        SendJSON(c, host, Message{Type: "promoted", Data: host})
       }
     }
   }
