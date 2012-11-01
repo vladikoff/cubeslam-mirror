@@ -143,7 +143,7 @@ func Join(c appengine.Context, room string, client string) {
     }
     // let the promote the client (= host)
     SendJSON(c, client, Message{Type: "promoted", Data: client})
-    
+
   } else if err != nil {
     c.Criticalf("join, get error ",err)
   } else {
@@ -172,8 +172,9 @@ func Join(c appengine.Context, room string, client string) {
 }
 
 func SendJSON(c appengine.Context, to string, msg Message) {
+  c.Debugf("SendJSON (%s) %v",to,msg)
   if err := channel.SendJSON(c, to, msg); err != nil {
-    c.Criticalf("join, send json error ",err)
+    c.Criticalf("send json error ",err)
   }
 }
 
