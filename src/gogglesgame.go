@@ -29,20 +29,22 @@ func init() {
   now := time.Now()
   rand.Seed(now.Unix())
 
+  var maxMem int64 = 1024*1024*10
+
   http.HandleFunc("/_ah/channel/connected/", func (w http.ResponseWriter, r *http.Request){
     c := appengine.NewContext(r)
 
-    if err := r.ParseMultipartForm(); err != nil {
+    if err := r.ParseMultipartForm(maxMem); err != nil {
       c.Criticalf("error while parsing form",err)
     }
-    
+
     c.Debugf("connected %v",r)
   })
 
   http.HandleFunc("/_ah/channel/disconnected/", func (w http.ResponseWriter, r *http.Request){
     c := appengine.NewContext(r)
 
-    if err := r.ParseMultipartForm(); err != nil {
+    if err := r.ParseMultipartForm(maxMem); err != nil {
       c.Criticalf("error while parsing form",err)
     }
 
