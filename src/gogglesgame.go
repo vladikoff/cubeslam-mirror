@@ -28,10 +28,11 @@ func init() {
   now := time.Now()
   rand.Seed(now.Unix())
 
-  http.HandleFunc("/_ah/channel/receive", func (w http.ResponseWriter, r *http.Request) {
+  http.HandleFunc("/message", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     
     client := r.FormValue("key")
+    c.Debugf("%v",r)
     var msg Message
     if err := json.Unmarshal([]byte(r.FormValue("msg")),&msg); err != nil { 
       c.Criticalf("%s",err) 
