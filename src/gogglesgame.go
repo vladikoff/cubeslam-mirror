@@ -22,6 +22,7 @@ type Message struct {
 type RoomData struct {
   Room string
   ChannelToken string
+  ClientId string
 }
 
 func init() {
@@ -31,10 +32,10 @@ func init() {
   http.HandleFunc("/message", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     
-    client := r.FormValue("key")
-    c.Debugf("%v",r)
+    client := r.FormValue("client")
+    message := r.FormValue("msg")
     var msg Message
-    if err := json.Unmarshal([]byte(r.FormValue("msg")),&msg); err != nil { 
+    if err := json.Unmarshal([]byte(message),&msg); err != nil { 
       c.Criticalf("%s",err) 
       return
     }
@@ -69,7 +70,7 @@ func init() {
    If we move to another channel (like WebSockets) we should
    do this on a proper connection "close" instead.
   */
-  http.HandleFunc("/disconnected", func (w http.ResponseWriter, r *http.Request) {
+  http.HandleFunc("/disconnect", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     room := r.FormValue("room")
     client := r.FormValue("client")
@@ -110,7 +111,7 @@ func Room(w http.ResponseWriter, r *http.Request) {
   }
 
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, ChannelToken: token}
+  data := RoomData{Room:roomName, ChannelToken: token, ClientId: clientId}
 
   // Parse the template and output HTML:
   template, err := template.New("test.html").ParseFiles("test.html")
