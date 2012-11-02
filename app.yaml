@@ -26,7 +26,7 @@ handlers:
 
 - url: /.*
   script: _go_app
-  # login: admin
+  # login: admin # TODO required login on /xyz but not /_ah/*
 
 inbound_services:
 - channel_presence
