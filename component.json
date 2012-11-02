@@ -1,7 +1,6 @@
 {
   "name": "verlet-sim",
   "dependencies": {
-    "component/assert": "*",
     "component/emitter": "*",
     "visionmedia/debug": "*"
   },
