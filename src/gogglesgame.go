@@ -96,6 +96,8 @@ func init() {
       sdpMLineIndex := strconv.FormatFloat(data[3].(float64),'e',-1,64)
       SendJSON(c, room+"@"+peer, Message{Type: "icecandidate", Data: []string{candidate,sdpMid,sdpMLineIndex}})
     }
+
+    w.Write([]byte("OK"))
   })
 
   /*
@@ -106,13 +108,13 @@ func init() {
    If we move to another channel (like WebSockets) we should
    do this on a proper connection "close" instead.
   */
-  // http.HandleFunc("/disconnect", func (w http.ResponseWriter, r *http.Request) {
-  //   c := appengine.NewContext(r)
-  //   room := r.FormValue("room")
-  //   client := r.FormValue("client")
-  //   c.Debugf("Disconnecting %s from %s",client, room)
-  //   Leave(c, "room:"+room, client)
-  // })
+  http.HandleFunc("/disconnect", func (w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
+    from := r.FormValue("from")
+    c.Debugf("Disconnecting from %s",from)
+    room, _ := ParseFrom(from)
+    Leave(c, room, from)
+  })
 
 
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
@@ -212,15 +214,15 @@ func Leave(c appengine.Context, room string, from string) {
       for _,id := range list {
         if id != client {
           c.Debugf("disconnected(%s) ",id,client)
-          SendJSON(c, id, Message{Type: "disconnected", Data: client})
+          SendJSON(c, room+"@"+id, Message{Type: "disconnected", Data: client})
         }
       }
 
       // only one left, promote that user
-      if len(list) == 1 {
-        host := list[0]
-        SendJSON(c, host, Message{Type: "promoted", Data: host})
-      }
+      // if len(list) == 1 {
+      //   host := list[0]
+      //   SendJSON(c, room+"@"+host, Message{Type: "promoted", Data: host})
+      // }
     }
   }
 }
