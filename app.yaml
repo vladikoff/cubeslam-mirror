@@ -6,23 +6,23 @@ api_version: go1
 handlers:
 - url: /build
   static_dir: build
-  login: admin
+  # login: admin
 - url: /javascript
   static_dir: public/javascript
-  login: admin
+  # login: admin
 - url: /images
   static_dir: public/images
-  login: admin
+  # login: admin
 - url: /audio
   static_dir: public/audio
-  login: admin
+  # login: admin
 - url: /stylesheets
   static_dir: public/stylesheets
-  login: admin
+  # login: admin
 - url: /(.*\.html)
   static_files: public/\1
   upload: public/(.*\.html)
-  login: admin
+  # login: admin
 
 - url: /.*
   script: _go_app
