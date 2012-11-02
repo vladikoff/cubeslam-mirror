@@ -6,6 +6,17 @@
     <style>
       .sim, .hidden {display: none;}
       .sim.active {display: inline-block;}
+
+      .sim .info {
+        position: absolute;
+        top: 0;
+        left: 350px;
+      }
+
+      .sim .info video {
+        border: 1px dashed red;
+      }
+
       .renderer-2d canvas {
         margin-top: 30px;
       }
@@ -85,7 +96,6 @@
   <body>
     <div id="settingsGUIContainer">
       <div id="monitorFinalContainer"></div>
-      <video id="remoteInput" width="160" height="120" autoplay></video>
     </div>
     <div id="colorSelectContainer">
       <div id="colorSelectArea">
@@ -118,13 +128,16 @@
     
     <div class='sim' id='game'>
       <canvas id="canv" width="320" height="480"></canvas>
-      <ul>
-        <li>Waiting for player...</li>
-        <li id='ful' class='hidden'>Room full</li>
-        <li id='con' class='hidden'>Player connected <span id='vid' class='hidden'>with video</span></li>
-        <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
-        <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
-      </ul>
+      <div class='info'>
+        <ul>
+          <li>Waiting for player...<span id="hos" class='hidden'>as host</span></li>
+          <li id='ful' class='hidden'>Room full</li>
+          <li id='con' class='hidden'>Player connected <span id='vid' class='hidden'>with video</span></li>
+          <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
+          <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
+        </ul>
+        <video id="remoteInput" width="160" height="120" autoplay class='hidden'></video>
+      </div>
       <form id="form">
         <label>Alive <input type="number" step="1" name="aliveScore" value="0"></label>
         <label>Guest <input type="number" step="1" name="guestScore" value="0"></label>
