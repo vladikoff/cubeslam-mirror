@@ -10,13 +10,27 @@ import (
   "text/template"
   "strings"
   "sort"
-  "strconv"
+  "io/ioutil"
+  // "strconv"
   "time"
 )
 
+/*
+Message{
+  Room: 'room',
+  To: null/'peer',
+  From: 'client',
+  Type: "event"/"leave"/"offer"/"answer"/"icecandidate",
+  Data: '{"type":"offer","sdp":"xyz"}'
+}
+*/
+
 type Message struct {
+  Room string
+  To string
+  From string
   Type string
-  Data interface{}
+  Data string
 }
 
 type RoomData struct {
@@ -39,7 +53,7 @@ func init() {
     c.Debugf("connected from: %s to: %s",from,to)
     c.Debugf("connected client: %s to room: %s",client,room)
 
-    Join(c,room,from)
+    Join(c,Message{Room:room,From:client})
   })
 
   http.HandleFunc("/_ah/channel/disconnected/", func (w http.ResponseWriter, r *http.Request){
@@ -52,49 +66,35 @@ func init() {
     c.Debugf("disconnected from: %s to: %s",from,to)
     c.Debugf("disconnected client: %s to room: %s",client,room)
 
-    Leave(c,room,from)
+    Leave(c,Message{Room:room,From:client})
   })
 
   http.HandleFunc("/message", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
-    
-    from := r.FormValue("from")
-    message := r.FormValue("msg")
-    var msg Message
-    if err := json.Unmarshal([]byte(message),&msg); err != nil { 
+
+    b, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+      c.Criticalf("%s",err) 
+      return
+    }
+    r.Body.Close()
+
+    c.Debugf("received channel data message: %s",b)
+
+    var message Message
+    if err := json.Unmarshal(b, &message); err != nil { 
       c.Criticalf("%s",err) 
       return
     }
 
-    c.Debugf("received channel data from: %s message: %+v",from, msg)
-
-    room, client := ParseFrom(from)
-
-    switch msg.Type {
+    c.Debugf("%s",message.Type)
+    switch message.Type {
     case "join":
-      Join(c,room,from)
+      Join(c,message)
     case "leave":
-      Leave(c,room,from)
-    case "offer":
-      c.Debugf("offer")
-      data := msg.Data.([]interface{})
-      peer := data[0].(string)
-      sdp := data[1].(string)
-      SendJSON(c, room+"@"+peer, Message{Type: "offer", Data: []string{client,sdp}})
-    case "answer":
-      c.Debugf("answer")
-      data := msg.Data.([]interface{})
-      peer := data[0].(string)
-      sdp := data[1].(string)
-      SendJSON(c, room+"@"+peer, Message{Type: "answer", Data: sdp})
-    case "icecandidate":
-      c.Debugf("icecandidate")
-      data := msg.Data.([]interface{})
-      peer := data[0].(string)
-      candidate := data[1].(string)
-      sdpMid := data[2].(string)
-      sdpMLineIndex := strconv.FormatFloat(data[3].(float64),'e',-1,64)
-      SendJSON(c, room+"@"+peer, Message{Type: "icecandidate", Data: []string{candidate,sdpMid,sdpMLineIndex}})
+      Leave(c,message)
+    case "event", "offer", "answer", "icecandidate":
+      SendJSON(c, message)
     }
 
     w.Write([]byte("OK"))
@@ -112,8 +112,8 @@ func init() {
     c := appengine.NewContext(r)
     from := r.FormValue("from")
     c.Debugf("Disconnecting from %s",from)
-    room, _ := ParseFrom(from)
-    Leave(c, room, from)
+    room, client := ParseFrom(from)
+    Leave(c, Message{Room:room,From:client})
   })
 
 
@@ -132,7 +132,7 @@ func init() {
 func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   roomName := r.URL.Path
   clientId := Random(10)
-  token, err := channel.Create(c, roomName+"@"+clientId)
+  token, err := channel.Create(c, clientId+"@"+roomName)
   if err != nil {
     http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
     return
@@ -149,29 +149,28 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
 
 }
 
-func Join(c appengine.Context, room string, from string) {
-  room, client := ParseFrom(from)
-  item, err := memcache.Get(c, room)
+func Join(c appengine.Context, msg Message) {
+  item, err := memcache.Get(c, msg.Room)
   if err == memcache.ErrCacheMiss {
     c.Debugf("join, room not found. creating new room")
 
     // create room, with single client in
-    roomItem := &memcache.Item{Key: room, Value: []byte(client)}
+    roomItem := &memcache.Item{Key: msg.Room, Value: []byte(msg.From)}
     if err := memcache.Set(c,roomItem); err != nil {
       c.Criticalf("join, set error ",err)  
     }
     // let the promote the client (= host)
-    SendJSON(c, from, Message{Type: "promoted", Data: client})
+    SendJSON(c, Message{Room: msg.Room, To: msg.From, Type: "promoted", Data: msg.From})
 
   } else if err != nil {
     c.Criticalf("join, get error ",err)
   } else {
     c.Debugf("join, found room %s: %s",item.Key,string(item.Value))
-    list := ListRoom(c, item, room, client, false);
+    list := ListRoom(c, item, msg.Room, msg.From, false);
 
     if( len(list) > 2 ){
       c.Debugf("Room full:",list)
-      SendJSON(c, from, Message{Type: "full", Data: len(list)})
+      SendJSON(c, Message{Room: msg.Room, To: msg.From, Type: "full", Data: string(len(list))})
 
     // no need to broadcast (should never happen)
     } else if len(list) == 0 {
@@ -181,30 +180,29 @@ func Join(c appengine.Context, room string, from string) {
     } else {
       UpdateRoom(c, item, list);
       for _,id := range list {
-        if id != client {
-          c.Debugf("connected(%s) ",id,client)
-          SendJSON(c, room+"@"+id, Message{Type: "connected", Data: client})
+        if id != msg.From {
+          c.Debugf("connected(%s => %s)",id,msg.From)
+          SendJSON(c, Message{Room: msg.Room, To: id, Type: "connected", Data: msg.From})
         }
       }
     }
   }
 }
 
-func Leave(c appengine.Context, room string, from string) {
-  room, client := ParseFrom(from)
-  item, err := memcache.Get(c, room)
+func Leave(c appengine.Context, msg Message) {
+  item, err := memcache.Get(c, msg.Room)
   if err == memcache.ErrCacheMiss {
     c.Debugf("leave, room not found. ")
   } else if err != nil {
     c.Criticalf("leave, error ",err)
   } else {
     c.Debugf("leave, found room %s: %s",item.Key,string(item.Value))
-    list := ListRoom(c, item, room, client, true);
+    list := ListRoom(c, item, msg.Room, msg.From, true);
     UpdateRoom(c, item, list);
 
     // if room is empty, remove it
     if len(list) == 0 {
-      err := memcache.Delete(c, room)
+      err := memcache.Delete(c, msg.Room)
       if err != nil {
         c.Criticalf("leave, error while deleting room",err)
       }
@@ -212,16 +210,16 @@ func Leave(c appengine.Context, room string, from string) {
     // or let the already connected users know
     } else {
       for _,id := range list {
-        if id != client {
-          c.Debugf("disconnected(%s) ",id,client)
-          SendJSON(c, room+"@"+id, Message{Type: "disconnected", Data: client})
+        if id != msg.From {
+          c.Debugf("disconnected(%s) ",id,msg.From)
+          SendJSON(c, Message{Room: msg.Room, To: id, Type: "disconnected", Data: msg.From})
         }
       }
 
       // only one left, promote that user
       if len(list) == 1 {
         host := list[0]
-        SendJSON(c, room+"@"+host, Message{Type: "promoted", Data: host})
+        SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
       }
     }
   }
@@ -265,15 +263,24 @@ func Filter(s []string, fn func(string) bool) []string {
   return p
 }
 
-func ParseFrom(s string) (string, string) {
-  from := strings.Split(s,"@")
-  // room, client
-  return from[0], from[1];
+func ReadData(c appengine.Context, m Message) (interface{}) {
+  var data interface{}
+  if err := json.Unmarshal([]byte(m.Data), &data); err != nil { 
+    c.Criticalf("%s",err) 
+    return data
+  }
+  return data
 }
 
-func SendJSON(c appengine.Context, to string, msg Message) {
-  c.Debugf("SendJSON (%s) %+v",to,msg)
-  if err := channel.SendJSON(c, to, msg); err != nil {
+func ParseFrom(s string) (string, string) {
+  from := strings.Split(s,"@")
+  // client, room
+  return from[1], from[0];
+}
+
+func SendJSON(c appengine.Context, msg Message) {
+  c.Debugf("SendJSON %+v",msg)
+  if err := channel.SendJSON(c, msg.To+"@"+msg.Room, msg); err != nil {
     c.Criticalf("send json error ",err)
   }
 }
