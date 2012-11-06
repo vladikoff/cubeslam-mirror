@@ -90,9 +90,9 @@ func init() {
     c.Debugf("%s",message.Type)
     switch message.Type {
     case "join":
-      Join(c,message)
+      Join(c, message)
     case "leave":
-      Leave(c,message)
+      Leave(c, message)
     case "event", "offer", "answer", "icecandidate":
       SendJSON(c, message)
     }
@@ -211,7 +211,7 @@ func Leave(c appengine.Context, msg Message) {
     } else {
       for _,id := range list {
         if id != msg.From {
-          c.Debugf("disconnected(%s) ",id,msg.From)
+          c.Debugf("disconnected %s => %s ",id,msg.From)
           SendJSON(c, Message{Room: msg.Room, To: id, Type: "disconnected", Data: msg.From})
         }
       }
