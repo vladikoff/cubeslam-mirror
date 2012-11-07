@@ -66,6 +66,7 @@ func init() {
     c.Debugf("disconnected from: %s to: %s",from,to)
     c.Debugf("disconnected client: %s to room: %s",client,room)
 
+    // c.Debugf("Ignoring channel disconnect.")
     Leave(c,Message{Room:room,From:client})
   })
 
@@ -166,7 +167,7 @@ func Join(c appengine.Context, msg Message) {
     c.Criticalf("join, get error ",err)
   } else {
     c.Debugf("join, found room %s: %s",item.Key,string(item.Value))
-    list := ListRoom(c, item, msg.Room, msg.From, false);
+    list, _ := ListRoom(c, item, msg.Room, msg.From, false);
 
     if( len(list) > 2 ){
       c.Debugf("Room full:",list)
@@ -197,7 +198,7 @@ func Leave(c appengine.Context, msg Message) {
     c.Criticalf("leave, error ",err)
   } else {
     c.Debugf("leave, found room %s: %s",item.Key,string(item.Value))
-    list := ListRoom(c, item, msg.Room, msg.From, true);
+    list, found := ListRoom(c, item, msg.Room, msg.From, true);
     UpdateRoom(c, item, list);
 
     // if room is empty, remove it
@@ -208,7 +209,7 @@ func Leave(c appengine.Context, msg Message) {
       }
 
     // or let the already connected users know
-    } else {
+    } else if( found ){
       for _,id := range list {
         if id != msg.From {
           c.Debugf("disconnected %s => %s ",id,msg.From)
@@ -221,19 +222,31 @@ func Leave(c appengine.Context, msg Message) {
         host := list[0]
         SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
       }
+    } else {
+      c.Debugf("tried to leave a room client was never in")
     }
   }
 }
 
-func ListRoom(c appengine.Context, room *memcache.Item, name string, client string, remove bool) sort.StringSlice {
+func ListRoom(c appengine.Context, room *memcache.Item, name string, client string, remove bool) (sort.StringSlice, bool) {
   list := strings.Split(string(room.Value),"|")
+
+  // check if the user was in the room already
+  found := false
+  for _,id := range list {
+    if id == name {
+      found = true
+      break
+    }
+  }
+
   list = Filter(list,func(str string) bool { return str != client })
   if remove == false {
     list = append(list,client)
   }
   sorted := sort.StringSlice(list)
   sorted.Sort()
-  return sorted;
+  return sorted, found;
 }
 
 func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
