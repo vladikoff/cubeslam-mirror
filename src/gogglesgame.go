@@ -201,15 +201,8 @@ func Leave(c appengine.Context, msg Message) {
     list, found := ListRoom(c, item, msg.Room, msg.From, true);
     UpdateRoom(c, item, list);
 
-    // if room is empty, remove it
-    if len(list) == 0 {
-      err := memcache.Delete(c, msg.Room)
-      if err != nil {
-        c.Criticalf("leave, error while deleting room",err)
-      }
-
-    // or let the already connected users know
-    } else if( found ){
+    // then let the already connected users know
+    if( found ){
       for _,id := range list {
         if id != msg.From {
           c.Debugf("disconnected %s => %s ",id,msg.From)
@@ -217,13 +210,21 @@ func Leave(c appengine.Context, msg Message) {
         }
       }
 
-      // only one left, promote that user
-      if len(list) == 1 {
-        host := list[0]
-        SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
-      }
     } else {
       c.Debugf("tried to leave a room client was never in")
+    }
+
+    // if room is empty, remove it
+    if len(list) == 0 {
+      err := memcache.Delete(c, msg.Room)
+      if err != nil {
+        c.Criticalf("leave, error while deleting room",err)
+      }
+
+    // only one left, promote that user
+    } else if len(list) == 1 {
+      host := list[0]
+      SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
     }
   }
 }
