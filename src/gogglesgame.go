@@ -60,11 +60,9 @@ func init() {
     c := appengine.NewContext(r)
 
     from := r.FormValue("from")
-    to := r.FormValue("to") // only populated in production?
     room, client := ParseFrom(from)
 
-    c.Debugf("disconnected from: %s to: %s",from,to)
-    c.Debugf("disconnected client: %s to room: %s",client,room)
+    c.Debugf("Disconnecting (channel) from %s",from)
 
     // c.Debugf("Ignoring channel disconnect.")
     Leave(c,Message{Room:room,From:client})
@@ -112,7 +110,7 @@ func init() {
   http.HandleFunc("/disconnect", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     from := r.FormValue("from")
-    c.Debugf("Disconnecting from %s",from)
+    c.Debugf("Disconnecting (onunload) from %s",from)
     room, client := ParseFrom(from)
     Leave(c, Message{Room:room,From:client})
   })
@@ -167,7 +165,7 @@ func Join(c appengine.Context, msg Message) {
     c.Criticalf("join, get error ",err)
   } else {
     c.Debugf("join, found room %s: %s",item.Key,string(item.Value))
-    list, _ := ListRoom(c, item, msg.Room, msg.From, false);
+    list, _ := ListRoom(c, item, msg.From, false);
 
     if( len(list) > 2 ){
       c.Debugf("Room full:",list)
@@ -198,7 +196,7 @@ func Leave(c appengine.Context, msg Message) {
     c.Criticalf("leave, error ",err)
   } else {
     c.Debugf("leave, found room %s: %s",item.Key,string(item.Value))
-    list, found := ListRoom(c, item, msg.Room, msg.From, true);
+    list, found := ListRoom(c, item, msg.From, true);
     UpdateRoom(c, item, list);
 
     // then let the already connected users know
@@ -211,7 +209,7 @@ func Leave(c appengine.Context, msg Message) {
       }
 
     } else {
-      c.Debugf("tried to leave a room client was never in")
+      c.Debugf("tried to leave room (%s) client (%s) was never in",msg.Room, msg.From)
     }
 
     // if room is empty, remove it
@@ -229,13 +227,14 @@ func Leave(c appengine.Context, msg Message) {
   }
 }
 
-func ListRoom(c appengine.Context, room *memcache.Item, name string, client string, remove bool) (sort.StringSlice, bool) {
+func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bool) (sort.StringSlice, bool) {
   list := strings.Split(string(room.Value),"|")
 
   // check if the user was in the room already
   found := false
   for _,id := range list {
-    if id == name {
+    c.Debugf("checking if %s==%s",id,client)
+    if id == client {
       found = true
       break
     }
