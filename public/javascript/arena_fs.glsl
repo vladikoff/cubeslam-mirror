@@ -19,15 +19,21 @@ void main(void)
     vec2 position = vUv;
     position += 0.25;
     vec2 world = position*scale*3.1417;
-    float dist = 1./thing(world);
+    float color = 1./thing(world);
 
     /*dist += step( mod(position.x+0.241, 1./scale.x),0.002)*.3;
-    dist += step( mod(position.x+0.24, 1./scale.x),0.002)*.1;
-    dist += step( mod(position.x+0.239, 1./scale.x),0.002)*.1;*/
+    color += step( mod(position.x+0.24, 1./scale.x),0.002)*.1;
+    color += step( mod(position.x+0.239, 1./scale.x),0.002)*.1;*/
 
-    dist = texture2D( tGrid, vUv*scale ).x;
+    color = texture2D( tGrid, vUv*scale ).x;
 
-    gl_FragColor = vec4( dist, dist, dist, .1 );
+    float color2 = step( vUv.y,0.505);
+    color2 -= step(vUv.y,0.495);
+
+    vec3 gridColor = vec3(color, color, color);
+    vec3 centerColor = vec3(color2);
+    vec3 lineColor = vec3(0.89453125,0.89453125,0.7734375);
+    gl_FragColor = vec4( (gridColor + centerColor)*lineColor , (.1+color2) );
     
 }
 
