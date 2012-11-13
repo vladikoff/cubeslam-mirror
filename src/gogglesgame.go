@@ -35,6 +35,8 @@ type Message struct {
 
 type RoomData struct {
   Room string
+  RoomEmpty bool
+  RoomFull bool
   ChannelToken string
   ClientId string
 }
@@ -88,10 +90,6 @@ func init() {
 
     c.Debugf("%s",message.Type)
     switch message.Type {
-    case "join":
-      Join(c, message)
-    case "leave":
-      Leave(c, message)
     case "event", "offer", "answer", "icecandidate":
       SendJSON(c, message)
     }
@@ -137,8 +135,24 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     return
   }
 
+  roomEmpty := true;
+  roomFull := false;
+
+  item, err := memcache.Get(c, roomName)
+  if err != memcache.ErrCacheMiss {
+  list := strings.Split(string(item.Value),"|")
+    c.Debugf("Current list in this room: %s",list)
+    roomLen := len(list);
+    if roomLen > 0 {
+      roomEmpty = false;
+    }
+    if roomLen > 1 {
+      roomFull = true;
+    }
+  }
+
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, ChannelToken: token, ClientId: clientId}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, ClientId: clientId}
 
   // Parse the template and output HTML:
   template, err := template.New("test.html").ParseFiles("test.html")
