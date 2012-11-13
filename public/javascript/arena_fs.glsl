@@ -4,14 +4,10 @@ precision mediump float;
 
 varying vec2 vUv;
 uniform sampler2D tGrid;
+uniform sampler2D tDigits;
 uniform vec2 scale; 
+uniform vec2 points; 
 
-/*
-float pixel = 1.0 / resolution.y;
-float circle(vec2 uv, vec2 pos, float d){
-    // Modified to add anti-aliasing.
-    return 1.0 - smoothstep(d, d + pixel * 1.5, length(uv - pos));
-}*/
 
 float thing(vec2 pos) 
 {
@@ -27,21 +23,25 @@ void main(void)
     vec2 world = position*scale*3.1417;
     float color = 1./thing(world);
 
-    /*dist += step( mod(position.x+0.241, 1./scale.x),0.002)*.3;
-    color += step( mod(position.x+0.24, 1./scale.x),0.002)*.1;
-    color += step( mod(position.x+0.239, 1./scale.x),0.002)*.1;*/
-
-    color = texture2D( tGrid, vUv*scale ).x;
+    color = texture2D( tGrid, vUv*scale ).x*0.5;
 
     float color2 = step( vUv.y,0.505);
     color2 -= step(vUv.y,0.495);
 
-    /*float layer1 = circle(uv, pos1, 0.1) - circle(uv, pos1, 0.09) + circle(uv, pos2, 0.1) - circle(uv, pos2, 0.09);*/
+    if( vUv.y < 0.5 ) {
+        //color2 += texture2D(tDigits,vec2(vUv.x/7.1 + 1.0/7.1*points.x,1.0-(0.5-vUv.y)/4.9)).x;
+        color2 += texture2D(tDigits,vec2(vUv.x/3.55 - 1.0/3.55 + 1.0/3.55*points.x,1.0-(0.5-vUv.y)/2.45)).x;
+    }
+    else {
+        //color2 += texture2D(tDigits,vec2((1.0-vUv.x)/7.1 + 1.0/7.1*points.y,1.0-(0.5-(1.0-vUv.y))/4.9)).x;
+        color2 += texture2D(tDigits,vec2((1.0-vUv.x)/3.55 - 1.0/3.55 + 1.0/3.55*points.y,1.0-(0.5-(1.0-vUv.y))/2.45)).x;
+    }
 
     vec3 gridColor = vec3(color, color, color);
     vec3 centerColor = vec3(color2);
     vec3 lineColor = vec3(0.89453125,0.89453125,0.7734375);
-    gl_FragColor = vec4( (gridColor + centerColor)*lineColor , (.1+color2) );
+
+    gl_FragColor = vec4( gridColor*lineColor , step(gridColor.x,0.99) )*0.2 + vec4( centerColor*lineColor , color2 );
     
 }
 
