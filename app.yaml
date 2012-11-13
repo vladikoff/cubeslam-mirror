@@ -9,6 +9,10 @@ handlers:
   # login: admin
 - url: /javascript
   static_dir: public/javascript
+- url: /models
+  static_dir: lib/geometry
+- url: /shaders
+  static_dir: lib/shaders
   # login: admin
 - url: /images
   static_dir: public/images
