@@ -30,6 +30,14 @@
     "lib/rtc.js",
     "lib/time-sync.js",
     "lib/audio.js",
-    "lib/world.js"
+    "lib/world.js",
+    "lib/shaders/arena_fs.js",
+    "lib/shaders/arenaside_fs.js",
+    "lib/shaders/cpu_fs.js",
+    "lib/shaders/extraicon_fs.js",
+    "lib/shaders/extraicon_vs.js",
+    "lib/shaders/scan_fs.js",
+    "lib/shaders/shield_fs.js",
+    "lib/shaders/simple_vertex.js"
   ]
 }

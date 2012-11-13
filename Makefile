@@ -13,8 +13,11 @@ build-component: components/ $(COMPONENT) component.json
 components/:
 	component-install
 
-%.js: %.glsl
+lib/shaders/%.js: lib/shaders/%.glsl
 	cat $< | support/str-to-js > $@
+
+%.min.js: %.js
+	uglifyjs $< > $@
 
 clean: 
 	rm -Rf build/
