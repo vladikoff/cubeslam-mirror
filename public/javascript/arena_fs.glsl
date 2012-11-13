@@ -6,6 +6,12 @@ varying vec2 vUv;
 uniform sampler2D tGrid;
 uniform vec2 scale; 
 
+/*
+float pixel = 1.0 / resolution.y;
+float circle(vec2 uv, vec2 pos, float d){
+    // Modified to add anti-aliasing.
+    return 1.0 - smoothstep(d, d + pixel * 1.5, length(uv - pos));
+}*/
 
 float thing(vec2 pos) 
 {
@@ -29,6 +35,8 @@ void main(void)
 
     float color2 = step( vUv.y,0.505);
     color2 -= step(vUv.y,0.495);
+
+    /*float layer1 = circle(uv, pos1, 0.1) - circle(uv, pos1, 0.09) + circle(uv, pos2, 0.1) - circle(uv, pos2, 0.09);*/
 
     vec3 gridColor = vec3(color, color, color);
     vec3 centerColor = vec3(color2);
