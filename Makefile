@@ -13,7 +13,7 @@ build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 	@ #silent
 
 build-component: components/ $(COMPONENT) component.json
-	@component-build
+	component-build
 
 components/:
 	component-install
@@ -28,6 +28,6 @@ lib/geometry/%.js: lib/geometry/%.json
 	uglifyjs $< > $@
 
 clean: 
-	rm -Rf build/
+	rm -Rf build/ components/ $(GEOMETRY_JS) $(SHADERS_JS)
 
 .PHONY: clean build build-shaders build-component
