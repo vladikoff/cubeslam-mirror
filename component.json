@@ -46,6 +46,7 @@
     "lib/rtc.js",
     "lib/time-sync.js",
     "lib/audio.js",
-    "lib/world.js"
+    "lib/world.js",
+    "lib/ai.js"
   ]
 }
