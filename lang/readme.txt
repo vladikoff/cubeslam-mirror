@@ -1,7 +1,6 @@
 This stuff requires:
 
 $ npm install jsdom
-$ npm install jquery
 
 To run it:
 

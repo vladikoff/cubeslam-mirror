@@ -1,25 +1,29 @@
 var
   fs = require("fs"),
-  jquery = require("jquery"),
   jsdom = require("jsdom");
 
 jsdom.env({
   html: fs.readFileSync('/dev/stdin', 'utf8'),
+  scripts: [ 'jquery.js' ],
   done: function(err, window) {
 
-    var result = {};
+    var
+      $,
+      result = {};
 
-    if (!err) {
+    if (err) {
 
-      (function ($) {
+      console.log(err);
 
-        $('.copy').each(function() {
-          if ($(this).hasAttribute('id')) {
-            result[$(this).attr('id')] = $(this).html();
-          }
-        });
+    } else {
 
-      }(jQuery));
+      $ = window.jQuery;
+
+      $('.copy').each(function() {
+        if ($(this).attr('id')) {
+          result[$(this).attr('id')] = $(this).html();
+        }
+      });
 
     }
 
