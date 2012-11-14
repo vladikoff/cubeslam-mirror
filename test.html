@@ -105,15 +105,15 @@
       <video id="videoInput"></video>
     </div>
     <div class='sim' id='lobby'>
-      <h1>Pong Realtime Multiplayer test</h1>
+      <h1 class="copy" id="the_title">Pong Realtime Multiplayer test</h1>
       {{ if .RoomEmpty }}
         <h2><button id='play'>Play</button></h2>
       {{ else }}
         {{ if .RoomFull }}
-          <p>This Game Room is full.
+          <p class="copy" id="gameFull">This Game Room is full.</p>
         {{ else }}
           <p>Your friend is waiting for you to join this Game Room!</p>
-          <h2><button id='play'>Play</button></h2>
+          <h2><button id='play' class="copy">Play</button></h2>
         {{ end }}
       {{ end }}
     </div>
