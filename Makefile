@@ -1,18 +1,21 @@
+
+.SUFFIXES:
+.PHONY: clean build build-min build-shaders build-geometry build-component
+
+
 GEOMETRY=$(wildcard lib/geometry/*.json)
 GEOMETRY_JS=$(GEOMETRY:.json=.js)
 SHADERS=$(wildcard lib/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
-COMPONENT=$(shell find lib/ -name "*.js" -type f)
+COMPONENT=$(shell find lib -name "*.js" -type f)
 
 build: build-shaders build-geometry build-component
 
 build-min: build build/build.min.js
 
 build-shaders: $(SHADERS_JS) lib/shaders/index.js
-	@ #silent
 
 build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
-	@ #silent
 
 build-component: components/ $(COMPONENT) component.json
 	component-build
@@ -31,5 +34,3 @@ lib/geometry/%.js: lib/geometry/%.json
 
 clean: 
 	rm -Rf build/ components/ $(GEOMETRY_JS) $(SHADERS_JS)
-
-.PHONY: clean build build-min build-shaders build-geometry build-component
