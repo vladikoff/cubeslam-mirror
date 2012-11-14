@@ -6,6 +6,8 @@ COMPONENT=$(shell find lib/ -name "*.js" -type f)
 
 build: build-shaders build-geometry build-component
 
+build-min: build build/build.min.js
+
 build-shaders: $(SHADERS_JS) lib/shaders/index.js
 	@ #silent
 
@@ -30,4 +32,4 @@ lib/geometry/%.js: lib/geometry/%.json
 clean: 
 	rm -Rf build/ components/ $(GEOMETRY_JS) $(SHADERS_JS)
 
-.PHONY: clean build build-shaders build-component
+.PHONY: clean build build-min build-shaders build-geometry build-component
