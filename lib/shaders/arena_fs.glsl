@@ -40,7 +40,7 @@ void main(void)
     vec2 circleCenter = vec2(0.5,0.5);
     float circleRadius = 0.1;
     float dist = length(position - circleCenter );
-    float circle = smoothstep(circleRadius,circleRadius - 0.004,dist) - smoothstep(circleRadius*0.93,(circleRadius*.93) - 0.004,dist);
+    float circle = 0.0;//smoothstep(circleRadius,circleRadius - 0.004,dist) - smoothstep(circleRadius*0.93,(circleRadius*.93) - 0.004,dist);
 
     vec3 gridColor = vec3(color, color, color);
 
