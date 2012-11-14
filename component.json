@@ -2,7 +2,8 @@
   "name": "verlet-sim",
   "dependencies": {
     "component/emitter": "*",
-    "visionmedia/debug": "*"
+    "visionmedia/debug": "*",
+    "publicclass/request-animation-frame": "*"
   },
   "scripts": [
     "index.js",
@@ -20,7 +21,6 @@
     "lib/support/inspect.js",
     "lib/game.js",
     "lib/inputs.js",
-    "lib/request-animation-frame.js",
     "lib/renderer-2d.js",
     "lib/renderer-3d/index.js",
     "lib/renderer-3d/materials.js",
