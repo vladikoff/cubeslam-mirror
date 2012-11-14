@@ -1,4 +1,6 @@
+.DS_Store
 build/
 components/
 app.yaml.tmp
-.DS_Store
+lib/shaders/*.js
+lib/geometry/*.js
