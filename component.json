@@ -21,6 +21,7 @@
     "lib/support/inspect.js",
     "lib/game.js",
     "lib/inputs.js",
+    "lib/renderer-debug.js",
     "lib/renderer-2d.js",
     "lib/renderer-3d/index.js",
     "lib/renderer-3d/materials.js",
