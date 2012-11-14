@@ -90,20 +90,27 @@
         left:20px;
         z-index:4000;
       }
+
+      #cameraRequestAttention {
+        background-image: url('/images/cameraRequestAttention.gif');
+        background-repeat:no-repeat;
+        background-position:center bottom;
+        border-top: 10px solid #fd306f;
+        width: 100%;
+        height: 200px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: none;
+      }
+
     </style>
     
   </head>
   <body>
-    <div id="settingsGUIContainer">
-      <div id="monitorFinalContainer"></div>
-    </div>
-    <div id="colorSelectContainer">
-      <div id="colorSelectArea">
-        <div id="colorSelectCenter"></div> 
-      </div>
-      <div id="marker"></div>
-      <video id="videoInput"></video>
-    </div>
+
+    <!-- THE LOBBY -->
+
     <div class='sim' id='lobby'>
       <h1 class="copy" id="the_title">Pong Realtime Multiplayer test</h1>
       {{ if .RoomEmpty }}
@@ -117,7 +124,51 @@
         {{ end }}
       {{ end }}
     </div>
-    
+
+    <!-- CAMERA REQUEST ATTENTION -->
+
+    <div id="cameraRequestAttention">
+    </div>
+
+
+    <!-- CHOOSE PADDLE -->
+
+    <!-- COUNTDOWN -->
+
+    <!-- INSTRUCTION FOR GAMEPLAY -->
+
+    <!-- INVITE FRIEND BUTTON -->
+
+    <!-- INVITE FRIEND / PAUSE DIALOG -->
+
+    <!-- LEVEL MSG -->
+
+    <!-- GAME OVER DIALOG -->
+
+    <!-- FRIEND CHOOSING PADDLE PAUSE -->
+
+    <!-- PLAY FRIEND BUTTON -->
+
+
+    <!-- 2 PLAYER GAME OVER -->
+
+    <!-- YOUR FRIEND LEFT THE ROOM -->
+
+
+
+    <!-- GAME STUFF -->
+
+    <div id="settingsGUIContainer">
+      <div id="monitorFinalContainer"></div>
+    </div>
+    <div id="colorSelectContainer">
+      <div id="colorSelectArea">
+        <div id="colorSelectCenter"></div> 
+      </div>
+      <div id="marker"></div>
+      <video id="videoInput"></video>
+    </div>
+   
     <div class='sim' id='game'>
       <canvas id="canv" width="320" height="480"></canvas>
       <div class='info'>
@@ -132,6 +183,8 @@
         <video id="remoteInput" width="160" height="120" autoplay class='hidden'></video>
       </div>
     </div>
+
+    <!-- SCRIPTING -->
 
     <script>
       var conferenceRoom = "{{.Room}}"
@@ -149,5 +202,6 @@
     <script src="javascript/libs/datachannel.js"></script>
     <script src='./build/build.js'></script>
     <script> require('verlet-sim')() </script>
+
   </body>
 </html>
