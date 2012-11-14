@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+process.stdout.write("module.exports = '")
+process.stdin.on('data', function (chunk) {
+  process.stdout.write(chunk
+    .replace(/'/g, "\\'")
+    .replace(/\r\n|\r|\n/g, "\\n"));
+});
+process.stdin.on('end', function () {
+  process.stdout.write("';");
+});
