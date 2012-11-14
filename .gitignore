@@ -4,3 +4,5 @@ components/
 app.yaml.tmp
 lib/shaders/*.js
 lib/geometry/*.js
+!lib/shaders/index.js
+!lib/geometry/index.js
