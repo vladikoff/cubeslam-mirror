@@ -27,14 +27,6 @@
     "lib/renderer-3d/materials.js",
     "lib/renderer-3d/player.js",
     "lib/renderer-3d/environment.js",
-    "lib/motion-tracker.js",
-    "lib/glfx.js",
-    "lib/simulator.js",
-    "lib/actions.js",
-    "lib/rtc.js",
-    "lib/time-sync.js",
-    "lib/audio.js",
-    "lib/world.js",
     "lib/shaders/index.js",
     "lib/shaders/arena_fs.js",
     "lib/shaders/arenaside_fs.js",
@@ -46,6 +38,15 @@
     "lib/shaders/simple_vertex.js",
     "lib/geometry/index.js",
     "lib/geometry/extra_plus.js",
-    "lib/geometry/terrain1.js"
+    "lib/geometry/terrain1.js",
+    "lib/motion-tracker.js",
+    "lib/glfx.js",
+    "lib/simulator.js",
+    "lib/actions.js",
+    "lib/extras.js",
+    "lib/rtc.js",
+    "lib/time-sync.js",
+    "lib/audio.js",
+    "lib/world.js"
   ]
 }
