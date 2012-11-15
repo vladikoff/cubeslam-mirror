@@ -38,7 +38,7 @@
     "lib/shaders/simple_vertex.js",
     "lib/geometry/index.js",
     "lib/geometry/extra_plus.js",
-    "lib/geometry/terrain1.js",
+    "lib/geometry/terrain2.js",
     "lib/motion-tracker.js",
     "lib/glfx.js",
     "lib/simulator.js",
