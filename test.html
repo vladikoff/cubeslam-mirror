@@ -26,6 +26,20 @@
         margin-top: 30px;
       }
 
+      .renderer-debug #canv-2d {
+        background: rgba(255,255,255,0.5);
+        position: absolute;
+        z-index: 5;
+      }
+
+      .renderer-debug #canv-3d {
+        position: absolute;
+      }
+
+      .renderer-debug #canv {
+        display: none;
+      }
+
       #colorSelectContainer {
         z-index:1000;
         display:none;
@@ -122,6 +136,7 @@
     </div>
     
     <div class='sim' id='game'>
+      <canvas id="canv" width="320" height="480"></canvas>
       <canvas id="canv-2d" width="320" height="480"></canvas>
       <canvas id="canv-3d" width="320" height="480"></canvas>
       <div class='info'>
