@@ -155,7 +155,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, ClientId: clientId}
 
   // Parse the template and output HTML:
-  template, err := template.New("test.html").ParseFiles("test.html")
+  template, err := template.New("template.html").ParseFiles("template.html")
   if err != nil { c.Criticalf("execution failed: %s", err) }
   err = template.Execute(w, data)
   if err != nil { c.Criticalf("execution failed: %s", err) }

@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf8'>
+    <title>Verlet Simulator</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/build/build.css" />
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+
+    <div id="wrapper">
+
+      <div id="content">
+
+        <!-- THE LOBBY -->
+
+        <div class='sim' id='lobby'>
+          <h1 class="copy" id="the_title">Pong Realtime Multiplayer test</h1>
+          {{ if .RoomEmpty }}
+            <h2><button id='play'>Play</button></h2>
+          {{ else }}
+            {{ if .RoomFull }}
+              <p class="copy" id="gameFull">This Game Room is full.</p>
+            {{ else }}
+              <p>Your friend is waiting for you to join this Game Room!</p>
+              <h2><button id='play' class="copy">Play</button></h2>
+            {{ end }}
+          {{ end }}
+        </div>
+
+        <!-- CAMERA REQUEST ATTENTION -->
+
+        <div id="cameraRequestAttention">
+          <img src="/images/cameraRequestAttention.gif" />
+        </div>
+
+
+        <!-- CHOOSE PADDLE -->
+
+        <!-- COUNTDOWN -->
+
+        <!-- INSTRUCTION FOR GAMEPLAY -->
+
+        <!-- INVITE FRIEND BUTTON -->
+
+        <!-- INVITE FRIEND / PAUSE DIALOG -->
+
+        <!-- LEVEL MSG -->
+
+        <!-- GAME OVER DIALOG -->
+
+        <!-- FRIEND CHOOSING PADDLE PAUSE -->
+
+        <!-- PLAY FRIEND BUTTON -->
+
+
+        <!-- 2 PLAYER GAME OVER -->
+
+        <!-- YOUR FRIEND LEFT THE ROOM -->
+
+
+
+        <!-- GAME STUFF -->
+
+        <div id="settingsGUIContainer">
+          <div id="monitorFinalContainer"></div>
+        </div>
+        <div id="colorSelectContainer">
+          <div id="colorSelectArea">
+            <div id="colorSelectCenter"></div> 
+          </div>
+          <div id="marker"></div>
+          <video id="videoInput"></video>
+        </div>
+
+        <div id="game">
+          <canvas id="canv-2d" width="320" height="480"></canvas>
+          <canvas id="canv-3d" width="320" height="480"></canvas>
+          <video id="remoteInput" width="160" height="120" autoplay class='hidden'></video>
+        </div>
+
+        <div id="footer">
+           <div id="socials">
+             <div class="googleplus"><span>Google Plus</span></div>
+             <div class="facebook"><span>Facebook</span></div>
+             <div class="twitter"><span>Twitter</span></div>
+             <div class="something"><span>Something</span></div>
+           </div>
+           <div id="footMenu">
+              <ul>
+                <li><a href="#">Terms &amp; privacy</a></li>
+                <li><a href="#">EN / GE</a></li>
+                <li><a href="#" class="soundSwitch">Sound off</a></li>
+              </ul>
+           </div>
+        </div>
+
+        <!-- DEBUG YADA YADA -->
+
+        <div class='info'>
+          <ul>
+            <li>Waiting for player...<span id="hos" class='hidden'>as host</span></li>
+            <li id='ful' class='hidden'>Room full</li>
+            <li id='con' class='hidden'>Player connected <span id='vid' class='hidden'>with video</span></li>
+            <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
+            <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
+            <li id='go' class='hidden'>Go!</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SCRIPTING -->
+
+    <script>
+      var conferenceRoom = "{{.Room}}"
+        , channelToken = "{{.ChannelToken}}"
+        , clientId = "{{.ClientId}}";
+      window.CHANNEL_HOST = 'ec2-176-34-161-202.eu-west-1.compute.amazonaws.com:8000';
+    </script>
+    <script src="/_ah/channel/jsapi"></script>
+    <script src="javascript/libs/jquery-1.8.1.min.js"></script>
+    <script src='javascript/libs/three.js'></script>
+    <script src='javascript/libs/Stats.js'></script>
+    <script src='javascript/libs/Tween.js'></script>
+    <script src='javascript/libs/SimplexNoise.js'></script>
+    <script src="javascript/libs/dat.gui.min.js"></script>
+    <script src="javascript/libs/datachannel.js"></script>
+    <script src='./build/build.js'></script>
+    <script> require('verlet-sim')() </script>
+
+  </body>
+</html>
