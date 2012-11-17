@@ -27,8 +27,8 @@ void main( void ) {
     
     
     float layer1 = 0.0;
-    layer1 += circle(uv, pos1 , 0.035);
-    layer1 += circle(uv, pos2 , 0.035);
+    layer1 += circle(uv, pos1 , 0.065);
+    layer1 += circle(uv, pos2 , 0.065);
     
     gl_FragColor = vec4(layer1);
 
