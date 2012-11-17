@@ -36,6 +36,7 @@
     "lib/shaders/extraicon_vs.js",
     "lib/shaders/scan_fs.js",
     "lib/shaders/shield_fs.js",
+    "lib/shaders/camera_fs.js",
     "lib/shaders/simple_vertex.js",
     "lib/geometry/index.js",
     "lib/geometry/extra_plus.js",
