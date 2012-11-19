@@ -31,9 +31,9 @@ void main( void ) {
         col += rect(pos-vec2(1.0/18.0*i,1.0), vec2(1.0/36.0,uColumnValues[int(i)]), glow); 
     }
 
-    float glassFactor = vUv.x*(1.0-vUv.y)*0.4;
+    float glassFactor = vUv.x*(1.0-vUv.y)*0.2;
     vec3 clr = uColor*col;
  
-    gl_FragColor = vec4( clr+uColor, (col*uBrightness + glassFactor + 0.1)*(1.0-vUv.y));
+    gl_FragColor = vec4( clr+uColor, (col*uBrightness + glassFactor)*(1.0-vUv.y));
 
 }
