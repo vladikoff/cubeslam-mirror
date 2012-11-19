@@ -21,6 +21,7 @@
     "lib/support/inspect.js",
     "lib/game.js",
     "lib/inputs.js",
+    "lib/renderer-debug.js",
     "lib/renderer-2d.js",
     "lib/renderer-3d/index.js",
     "lib/renderer-3d/materials.js",
@@ -35,6 +36,7 @@
     "lib/shaders/extraicon_vs.js",
     "lib/shaders/scan_fs.js",
     "lib/shaders/shield_fs.js",
+    "lib/shaders/camera_fs.js",
     "lib/shaders/simple_vertex.js",
     "lib/geometry/index.js",
     "lib/geometry/extra_plus.js",
@@ -49,6 +51,7 @@
     "lib/time-sync.js",
     "lib/audio.js",
     "lib/camera-attention.js",
-    "lib/world.js"
+    "lib/world.js",
+    "lib/ai.js"
   ]
 }

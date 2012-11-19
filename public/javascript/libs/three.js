@@ -16507,7 +16507,6 @@ THREE.WebGLRenderer = function ( parameters ) {
 	function bufferGuessUVType ( material ) {
 
 		// material must use some texture to require uvs
-
 		if ( material.map || material.lightMap || material.bumpMap || material.normalMap || material.specularMap || material instanceof THREE.ShaderMaterial ) {
 
 			return true;
