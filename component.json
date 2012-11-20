@@ -13,6 +13,7 @@
     "lib/sim/point.js",
     "lib/sim/point-mass.js",
     "lib/sim/physics.js",
+    "lib/sim/history.js",
     "lib/sim/rect.js",
     "lib/sim/polygon.js",
     "lib/sim/link.js",
