@@ -11,12 +11,37 @@ body {
 
     #content {
 
+      #lobby {
+        position: absolute;
+        z-index: 100;
+        width: 100%;
+        top: 75px;
+
+        h1 {
+          padding: 0px 0px 0px 0px;
+          margin: 0px 0px 0px 0px;
+          width: 680px;
+          height: 105px;
+          background-image: url('/images/logo.png');
+          margin: 0px auto 0px auto;
+          span {
+            display: none;
+          }
+        }
+      }
+
       #game {
         display: block;
+
+        canvas {
+          position: absolute;
+        }
+
       }
 
       #footer {
         display: block;
+        overflow: hidden;
         height: 40px;
         background: #000;
 
