@@ -35,14 +35,15 @@ void main(void)
     
     float rectSum = rect1 - rect2;
 
+    //add rectangle in webcam
     color = color + vec3(rectSum)*0.4;
 
+    //ambient scanlines
     float lines = mix(1.0, abs(sin(gl_FragCoord.y/1.4))/2.0, 0.3);
     vec3 saturatedColor = vec3((color.r+color.b+color.g)/3.0);
 
-    float a = f(pos.x,pos.y);
+    float a = f(pos.x,1.0-pos.y);
     vec3 scanLines = vec3(sqrt(a)/10.0,  sqrt(a)/8.0,  sqrt(a)/5.0);
-
 
     vec3 scanMix = mix(color+scanLines*scanLines,saturatedColor*lines,1.0-rect2);
 
