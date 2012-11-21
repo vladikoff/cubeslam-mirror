@@ -31,7 +31,6 @@ void main(void)
 {
 
     if( active == 0.0 ) {
-        
         float c=noise(vUv,time);
         c*=0.2+0.05*clamp(sin(vUv.y*3.141592+time*3.0)-0.4,0.0,1.0);
         gl_FragColor=vec4(vec3(c),1.0);
@@ -45,6 +44,10 @@ void main(void)
         float rect2 = rect(pos-vec2(0.5,0.4), vec2(0.195,0.094));
         
         float rectSum = rect1 - rect2;
+
+        //cross
+        rectSum += rect(pos-vec2(0.5,0.4), vec2(0.05,0.001));
+        rectSum += rect(pos-vec2(0.5,0.4), vec2(0.001,0.05));
 
         //add rectangle in webcam
         color = color + vec3(rectSum)*0.4;
