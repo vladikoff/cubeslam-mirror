@@ -17,13 +17,13 @@
         <div class='state MainMenu'>
           <h1 class="copy" id="the_title"><span>Pong Realtime Multiplayer test</span></h1>
           {{ if .RoomEmpty }}
-            <h2><button id='play'>Play</button></h2>
+            <button id='play'>Play</button>
           {{ else }}
             {{ if .RoomFull }}
               <p class="copy" id="gameFull">This Game Room is full.</p>
             {{ else }}
               <p>Your friend is waiting for you to join this Game Room!</p>
-              <h2><button id='play' class="copy">Play</button></h2>
+              <button id='play' class="copy">Play</button>
             {{ end }}
           {{ end }}
         </div>
@@ -38,7 +38,7 @@
         <!-- CHOOSE PADDLE -->
 
         <div class="state PaddleSetup" id="paddleSelection">
-          <h2><button id="scanButton">Select paddle color</button></h2>
+          <button id="scanButton">Select paddle color</button>
         </div>
 
         <!-- COUNTDOWN -->
