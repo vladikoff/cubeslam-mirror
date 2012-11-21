@@ -14,7 +14,7 @@
 
         <!-- THE LOBBY -->
 
-        <div class='sim' id='lobby'>
+        <div class='state MainMenu'>
           <h1 class="copy" id="the_title"><span>Pong Realtime Multiplayer test</span></h1>
           {{ if .RoomEmpty }}
             <h2><button id='play'>Play</button></h2>
@@ -30,12 +30,16 @@
 
         <!-- CAMERA REQUEST ATTENTION -->
 
-        <div id="cameraRequestAttention">
+        <div id="cameraRequestAttention" class="state PaddleSetup">
           <img src="/images/cameraRequestAttention.gif" />
         </div>
 
 
         <!-- CHOOSE PADDLE -->
+
+        <div class="state PaddleSetup" id="paddleSelection">
+          <h2><button id="scanButton">Select paddle color</button></h2>
+        </div>
 
         <!-- COUNTDOWN -->
 
