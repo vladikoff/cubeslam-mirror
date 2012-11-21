@@ -18,13 +18,13 @@ build-shaders: $(SHADERS_JS) lib/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 
 build-styles: $(STYLES)
-	lessc $< > build/build.css
+	node_modules/.bin/lessc $(STYLES) > build/build.css
 
 build-component: components/ $(COMPONENT) component.json
-	component-build
+	node_modules/.bin/component-build
 
 components/:
-	component-install
+	node_modules/.bin/component-install
 
 lib/shaders/%.js: lib/shaders/%.glsl
 	cat $< | support/str-to-js > $@
@@ -35,5 +35,5 @@ lib/geometry/%.js: lib/geometry/%.json
 %.min.js: %.js
 	uglifyjs $< > $@
 
-clean: 
+clean:
 	rm -Rf build/ components/ $(GEOMETRY_JS) $(SHADERS_JS)
