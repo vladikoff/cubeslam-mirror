@@ -16,16 +16,16 @@
 
         <div class='state MainMenu'>
           <h1 class="copy" id="the_title"><span>Pong Realtime Multiplayer test</span></h1>
-          {{ if .RoomEmpty }}
-            <button id='play'>Play</button>
-          {{ else }}
+
             {{ if .RoomFull }}
               <p class="copy" id="gameFull">This Game Room is full.</p>
-            {{ else }}
-              <p>Your friend is waiting for you to join this Game Room!</p>
-              <button id='play' class="copy">Play</button>
             {{ end }}
-          {{ end }}
+
+            <p class="multi">Your friend is waiting for you to join this Game Room!</p>
+            <p class="single">Start a new Game Room!</p>
+
+            <button id='play'><span class="single">Play</span><span class="multi">Play friend</span></button>
+
         </div>
 
         <!-- CAMERA REQUEST ATTENTION -->

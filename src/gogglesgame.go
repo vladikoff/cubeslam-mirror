@@ -65,7 +65,6 @@ func init() {
 
     c.Debugf("Disconnecting (channel) from %s",from)
 
-    // c.Debugf("Ignoring channel disconnect.")
     Leave(c,Message{Room:room,From:client})
   })
 
@@ -147,13 +146,21 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
 
   item, err := memcache.Get(c, roomName)
   if err != memcache.ErrCacheMiss {
-  list := strings.Split(string(item.Value),"|")
+    list := strings.Split(string(item.Value),"|")
+    counter := 0
+    for _, roomParticipant := range list {
+      if roomParticipant != clientId {
+        counter = counter + 1;
+      } else {
+        c.Debugf("This user is already in the room: " + roomParticipant)
+      }
+    }
+
     c.Debugf("Current list in this room: %s", list)
-    roomLen := len(list);
-    if roomLen > 0 {
+    if counter > 0 {
       roomEmpty = false;
     }
-    if roomLen > 1 {
+    if counter > 1 {
       roomFull = true;
     }
   }
