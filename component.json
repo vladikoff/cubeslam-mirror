@@ -28,6 +28,7 @@
     "lib/renderer-3d/materials.js",
     "lib/renderer-3d/player.js",
     "lib/renderer-3d/environment.js",
+    "lib/renderer-3d/simplex-noise.js",
     "lib/shaders/index.js",
     "lib/shaders/arena_fs.js",
     "lib/shaders/arenaside_fs.js",
