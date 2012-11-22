@@ -10,7 +10,7 @@ uniform float active;
 float rect( vec2 p, vec2 b )
 {
     vec2 v = abs(p) - b;
-    float d = pow(length(max(v,0.0)),0.009);
+    float d = smoothstep(0.9,1.0,pow(length(max(v,0.0)),0.007));
     return (1.0-d);
 }
 
@@ -38,22 +38,23 @@ void main(void)
     else {
         vec2 pos = vUv;
         pos.x = (1.0-pos.x);
+      //  pos.y -= 0.3;
         vec3 color = texture2D(tCamera,pos).rgb; 
 
-        float rect1 = rect(pos-vec2(0.5,0.4), vec2(0.2,0.10));
-        float rect2 = rect(pos-vec2(0.5,0.4), vec2(0.195,0.094));
+        float rect1 = rect(pos-vec2(0.5,0.2), vec2(0.2,0.10));
+        float rect2 = rect(pos-vec2(0.5,0.2), vec2(0.194,0.093));
         
         float rectSum = rect1 - rect2;
 
         //cross
-        rectSum += rect(pos-vec2(0.5,0.4), vec2(0.05,0.001));
-        rectSum += rect(pos-vec2(0.5,0.4), vec2(0.001,0.05));
+        rectSum += rect(pos-vec2(0.5,0.2), vec2(0.05,0.001));
+        rectSum += rect(pos-vec2(0.5,0.2), vec2(0.001,0.05));
 
         //add rectangle in webcam
         color = color + vec3(rectSum)*0.4;
 
         //ambient scanlines
-        float lines = mix(1.0, abs(sin(gl_FragCoord.y/1.4))/2.0, 0.3);
+        float lines = mix(1.0, abs(sin(gl_FragCoord.y/1.1))/2.0, 0.3);
         vec3 saturatedColor = vec3((color.r+color.b+color.g)/3.0);
 
         float a = f(pos.x,1.0-pos.y);
