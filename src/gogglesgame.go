@@ -38,7 +38,6 @@ type RoomData struct {
   RoomEmpty bool
   RoomFull bool
   ChannelToken string
-  ClientId string
 }
 
 func init() {
@@ -128,7 +127,15 @@ func init() {
 
 func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   roomName := r.URL.Path
-  clientId := Random(10)
+  clientIdCookie, _ := r.Cookie("clientId")
+  clientId := ""
+  c.Debugf("clientIdCookie = %s", clientIdCookie)
+  if clientIdCookie == nil {
+    clientId = Random(10)
+  } else {
+    clientId = clientIdCookie.Value
+  }
+
   token, err := channel.Create(c, clientId+"@"+roomName)
   if err != nil {
     http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
@@ -141,7 +148,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   item, err := memcache.Get(c, roomName)
   if err != memcache.ErrCacheMiss {
   list := strings.Split(string(item.Value),"|")
-    c.Debugf("Current list in this room: %s",list)
+    c.Debugf("Current list in this room: %s", list)
     roomLen := len(list);
     if roomLen > 0 {
       roomEmpty = false;
@@ -152,7 +159,11 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   }
 
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, ClientId: clientId}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token}
+
+  // clientId cookie:
+  cookie := http.Cookie{Name: "clientId", Value: clientId}
+  http.SetCookie(w, &cookie)
 
   // Parse the template and output HTML:
   template, err := template.New("template.html").ParseFiles("template.html")
