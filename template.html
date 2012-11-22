@@ -126,7 +126,8 @@
     <script>
       // Expected globals:
       var globals = Object.keys(window).concat([
-        'require','$','jQuery','THREE'
+        'require','$','jQuery','THREE', 'TWEEN', 'Stats',
+        'dat', 'console', 'checkGlobalLeaks'
       ]);
     </script>
     <script src="/_ah/channel/jsapi"></script>
@@ -134,13 +135,18 @@
     <script src='javascript/libs/three.js'></script>
     <script src='javascript/libs/Stats.js'></script>
     <script src='javascript/libs/Tween.js'></script>
-    <script src='javascript/libs/SimplexNoise.js'></script>
     <script src="javascript/libs/dat.gui.min.js"></script>
     <script src="javascript/libs/datachannel.js"></script>
     <script src='./build/build.js'></script>
     <script> require('verlet-sim')() </script>
-    <script>setTimeout(function(){
-      console.log('leaks?',Object.keys(window).filter(function(k){return !~globals.indexOf(k)}))
-    },1000)</script>
+    <script>
+      function checkGlobalLeaks(){
+        var leaks = Object.keys(window).filter(function(k){return !~globals.indexOf(k)})
+        console.log('leaks?',leaks)
+      }
+      setTimeout(function(){
+        checkGlobalLeaks()
+      },1000)
+    </script>
   </body>
 </html>
