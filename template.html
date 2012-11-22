@@ -18,13 +18,15 @@
           <h1 class="copy" id="the_title"><span>Pong Realtime Multiplayer test</span></h1>
 
             {{ if .RoomFull }}
-              <p class="copy" id="gameFull">This Game Room is full.</p>
+              <p>This Game Room is full. Click below to go to another room.</p>
+              <button id='otherplay'>Another Room</button>
+            {{ else }}
+              <p class="multi">Your friend is waiting for you to join this Game Room!</p>
+              <p class="single">Start a new Game Room!</p>
+
+              <button id='play'><span class="single">Play</span><span class="multi">Play friend</span></button>
+
             {{ end }}
-
-            <p class="multi">Your friend is waiting for you to join this Game Room!</p>
-            <p class="single">Start a new Game Room!</p>
-
-            <button id='play'><span class="single">Play</span><span class="multi">Play friend</span></button>
 
         </div>
 
@@ -139,6 +141,8 @@
     <script src='./build/build.js'></script>
     <script> require('verlet-sim')() </script>
     <script>
+      // Crashing in my Chrome Stable:
+      /*
       function checkGlobalLeaks(){
         var leaks = Object.keys(window).filter(function(k){return !~globals.indexOf(k)})
         console.log('leaks?',leaks)
@@ -146,6 +150,7 @@
       setTimeout(function(){
         checkGlobalLeaks()
       },1000)
+      */
     </script>
   </body>
 </html>
