@@ -51,6 +51,7 @@
     "lib/rtc.js",
     "lib/time-sync.js",
     "lib/audio.js",
+    "lib/camera.js",
     "lib/camera-attention.js",
     "lib/world.js",
     "lib/pool.js",

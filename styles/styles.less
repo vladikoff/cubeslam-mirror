@@ -7,7 +7,7 @@
 }
 
 /*
- * Buttons
+ * BUTTONS
  */
 
 button {
@@ -104,6 +104,10 @@ body {
 
       }
 
+      /*
+       * FOOTER
+       */
+
       #footer {
         display: block;
         overflow: hidden;
@@ -173,25 +177,33 @@ body {
 
       }
 
+      /*
+       * DEBUGING
+       */
+
+      .info {
+        position: absolute;
+        bottom: 100px;
+        left: 20px;
+        background: rgba(127,127,127,0.5);
+      }
+
+      .info li {
+        &.hidden {
+          display: none;
+        }
+      }
+
+      .info video {
+        border: 1px dashed red;
+      }
+
     }
 
   }
 
 }
 
-
-.sim, .hidden {display: none;}
-.sim.active {display: inline-block;}
-
-.sim .info {
-  position: absolute;
-  top: 0;
-  left: 350px;
-}
-
-.sim .info video {
-  border: 1px dashed red;
-}
 
 .renderer-2d ul {
   display: inline-block;
