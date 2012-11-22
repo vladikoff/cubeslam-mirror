@@ -28,7 +28,20 @@
     "lib/renderer-3d/materials.js",
     "lib/renderer-3d/player.js",
     "lib/renderer-3d/environment.js",
+
     "lib/renderer-3d/simplex-noise.js",
+
+
+    "lib/renderer-3d/post/EffectComposer.js",
+    "lib/renderer-3d/post/RenderPass.js",
+    "lib/renderer-3d/post/SavePass.js",
+    "lib/renderer-3d/post/MaskPass.js",
+    "lib/renderer-3d/post/ShaderPass.js",
+    "lib/renderer-3d/post/shaders/VignetteShader.js",
+    "lib/renderer-3d/post/shaders/CopyShader.js",
+    "lib/renderer-3d/post/shaders/SepiaShader.js",
+    "lib/renderer-3d/post/shaders/FilmShader.js",
+
     "lib/shaders/index.js",
     "lib/shaders/arena_fs.js",
     "lib/shaders/arenaside_fs.js",
