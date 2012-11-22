@@ -33,7 +33,7 @@ lib/geometry/%.js: lib/geometry/%.json
 	cat $< | support/str-to-js > $@
 
 %.min.js: %.js
-	uglifyjs $< > $@
+	node_modules/.bin/uglifyjs $< > $@
 
 clean:
 	rm -Rf build/ components/ $(GEOMETRY_JS) $(SHADERS_JS)
