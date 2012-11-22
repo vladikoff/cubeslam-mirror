@@ -53,6 +53,7 @@
     "lib/audio.js",
     "lib/camera-attention.js",
     "lib/world.js",
+    "lib/pool.js",
     "lib/ai.js"
   ]
 }
