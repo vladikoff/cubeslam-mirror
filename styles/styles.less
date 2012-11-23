@@ -1,0 +1,299 @@
+/*
+ * All state-spcific elements should be hidden by default:
+ */
+
+.state {
+  display: none;
+}
+
+/*
+ * Single player mode is default
+ */
+
+.single {
+}
+.multi {
+  display: none;
+}
+
+/*
+ * BUTTONS
+ */
+
+button {
+  font-family: Arial;
+  font-size:20px;
+  color:#000000;
+  background: #e5e4c6;
+  border: 4px solid black;
+  width:200px;
+  height:60px;
+  line-height: 40px;
+  text-align: center;
+  padding:3px 10px 3px 10px;
+  cursor: pointer;
+  -webkit-transition: background 0.1s;
+}
+button:hover {
+  background: #000000;
+  color:#e5e4c6;
+  -webkit-transition: background 0.1s;
+}
+
+body {
+  overflow: hidden;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  background: #000;
+
+  #wrapper {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    #content {
+
+       /*
+        * MAIN MENU:
+        */
+
+      .state.MainMenu {
+        position: absolute;
+        z-index: 100;
+        width: 100%;
+        top: 75px;
+        text-align: center;
+
+        h1 {
+          padding: 0px 0px 0px 0px;
+          width: 680px;
+          height: 105px;
+          background-image: url('/images/logo.png');
+          margin: 0px auto 50px auto;
+          span {
+            display: none;
+          }
+        }
+      }
+
+      /*
+       * PADDLE SETUP:
+       */
+
+      #cameraRequestAttention {
+        border-top: 10px solid #fd306f;
+        width: 100%;
+        height: 200px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: none;
+        text-align: center;
+        z-index: 100;
+
+        img {
+          margin: -170px auto 0px auto;
+        }
+      }
+
+      #paddleSelection {
+        position: absolute;
+        margin: 0px auto 0px auto;
+        bottom: 150px;
+        z-index: 500;
+        width: 100%;
+        text-align: center;
+      }
+
+      #game {
+        display: block;
+
+        canvas {
+          position: absolute;
+          top: 0;
+        }
+
+        #canv-2d {
+          background: rgba(1,1,1,.3);
+          display: none;
+        }
+
+      }
+
+      /*
+       * FOOTER
+       */
+
+      #footer {
+        display: block;
+        overflow: hidden;
+        height: 40px;
+        background: #000;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+
+        #socials {
+
+          position: absolute;
+          display: inline-block;
+          width: 150px;
+
+          margin-left: 30px;
+
+          div {
+            width: 20px;
+            height: 20px;
+            margin-top: 9px;
+            margin-right: 5px;
+            display: inline-block;
+
+            &.googleplus { background-image: url('/images/socials_googleplus.png'); }
+            &.facebook { background-image: url('/images/socials_facebook.png'); }
+            &.twitter { background-image: url('/images/socials_twitter.png'); }
+            &.something { background-image: url('/images/socials_something.png'); }
+
+            span {
+              display: none;
+            }
+
+          }
+
+        }
+
+        #footMenu {
+          display: block;
+          text-align: right;
+          font-family: 'Varela', sans-serif;
+          font-size: 9px;
+
+          ul {
+            list-style: none;
+            margin: 0 0 0 0;
+            padding: 14px 0 0 0;
+            li {
+              text-transform: uppercase;
+              list-style: none;
+              margin: 0 0 0 0;
+              padding: 0 0 0 0;
+              display: inline-block;
+              margin-left: 20px;
+              a {
+                color: #e8e8ca;
+                text-decoration:none;
+                &:hover {
+                  text-decoration: underline;
+                }
+
+                &.soundSwitch {
+                  margin-right: 30px;
+                }
+              }
+            }
+          }
+
+        }
+
+      }
+
+      /*
+       * DEBUGING
+       */
+
+      .info {
+        position: absolute;
+        bottom: 100px;
+        left: 20px;
+        background: rgba(127,127,127,0.5);
+      }
+
+      .info li {
+        &.hidden {
+          display: none;
+        }
+      }
+
+      .info video {
+        border: 1px dashed red;
+      }
+
+    }
+
+  }
+
+}
+
+
+.renderer-2d ul {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 30px;
+}
+
+#colorSelectContainer {
+  z-index:1000;
+  display:none;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-240px;
+  margin-left:-320px;
+  width: 640px;
+    height:480px;
+}
+
+#colorSelectArea {
+  position:absolute;
+  width:100px;
+  height:100px;
+  left: 450px;
+  top:80px;
+  border: 10px solid red;
+  z-index:30;
+}
+
+#colorSelectCenter {
+  position:absolute;
+  display: block;
+  left:50%;
+  top:50%;
+  margin-left:-5px;
+  margin-top:-5px;
+  width:10px;
+  height:10px;
+  border: 1px solid black;
+  border-radius: 5px 5px 5px 5px;
+  z-index:31;
+}
+
+#marker {
+  position:absolute;
+  width:20px;
+  height:20px;
+  top:350px;
+  background-color: #ff0000;
+  border-radius: 10px 10px 10px 10px;
+  z-index:390;
+}
+
+#videoInput {
+  /*display:none;
+*/
+
+    left:5px;
+    margin-top: 15px;
+    -webkit-transform: scale(-1,1);
+    width: 640px;
+    height:480px;
+    border-radius: 8px 8px 8px 8px;
+
+}
+
+#settingsGUIContainer {
+  position:absolute;
+  left:20px;
+  z-index:4000;
+}
+
+

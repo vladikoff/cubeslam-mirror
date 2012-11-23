@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf8'>
+    <title>Boing</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/build/build.css" />
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+
+    <div id="wrapper">
+
+      <div id="content">
+
+        <!-- THE LOBBY -->
+
+        <div class='state MainMenu'>
+          <h1 class="copy" id="the_title"><span>Pong Realtime Multiplayer test</span></h1>
+
+            {{ if .RoomFull }}
+              <p>This Game Room is full. Click below to go to another room.</p>
+              <button id='otherplay'>Another Room</button>
+            {{ else }}
+              <p class="multi">Your friend is waiting for you to join this Game Room!</p>
+              <p class="single">Start a new Game Room!</p>
+
+              <button id='play'><span class="single">Play</span><span class="multi">Play friend</span></button>
+
+            {{ end }}
+
+        </div>
+
+        <!-- CAMERA REQUEST ATTENTION -->
+
+        <div id="cameraRequestAttention" class="state WebcamActivation">
+          <img src="/images/cameraRequestAttention.gif" />
+        </div>
+
+
+        <!-- CHOOSE PADDLE -->
+
+        <div class="state PaddleSetup" id="paddleSelection">
+          <button id="scanButton">Select paddle color</button>
+        </div>
+
+        <!-- COUNTDOWN -->
+
+        <!-- INSTRUCTION FOR GAMEPLAY -->
+
+        <!-- INVITE FRIEND BUTTON -->
+
+        <!-- INVITE FRIEND / PAUSE DIALOG -->
+
+        <!-- LEVEL MSG -->
+
+        <!-- GAME OVER DIALOG -->
+
+        <!-- FRIEND CHOOSING PADDLE PAUSE -->
+
+        <!-- PLAY FRIEND BUTTON -->
+
+
+        <!-- 2 PLAYER GAME OVER -->
+
+        <!-- YOUR FRIEND LEFT THE ROOM -->
+
+
+
+        <!-- GAME STUFF -->
+
+        <div id="settingsGUIContainer">
+          <div id="monitorFinalContainer"></div>
+        </div>
+        <div id="colorSelectContainer">
+          <div id="colorSelectArea">
+            <div id="colorSelectCenter"></div>
+          </div>
+          <div id="marker"></div>
+          <video id="videoInput"></video>
+        </div>
+
+        <div id="game">
+          <canvas id="canv-3d" width="320" height="480"></canvas>
+          <canvas id="canv-2d" width="320" height="480"></canvas>
+          <video id="remoteInput" width="160" height="120" autoplay class='hidden'></video>
+        </div>
+
+        <div id="footer">
+           <div id="socials">
+             <div class="googleplus"><span>Google Plus</span></div>
+             <div class="facebook"><span>Facebook</span></div>
+             <div class="twitter"><span>Twitter</span></div>
+             <div class="something"><span>Something</span></div>
+           </div>
+           <div id="footMenu">
+              <ul>
+                <li><a href="#">Terms &amp; privacy</a></li>
+                <li><a href="#">EN / GE</a></li>
+                <li><a href="#" class="soundSwitch">Sound off</a></li>
+              </ul>
+           </div>
+        </div>
+
+        <!-- DEBUG YADA YADA -->
+
+        <div class='info'>
+          <ul>
+            <li>Waiting for player...<span id="hos" class='hidden'>as host</span></li>
+            <li id='ful' class='hidden'>Room full</li>
+            <li id='con' class='hidden'>Player connected <span id='vid' class='hidden'>with video</span></li>
+            <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
+            <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
+            <li id='go' class='hidden'>Go!</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SCRIPTING -->
+
+    <script>
+      var conferenceRoom = "{{.Room}}"
+        , channelToken = "{{.ChannelToken}}";
+      window.CHANNEL_HOST = 'ec2-176-34-161-202.eu-west-1.compute.amazonaws.com:8000';
+    </script>
+    <script>
+      // Expected globals:
+      var globals = Object.keys(window).concat([
+        'require','$','jQuery','THREE', 'TWEEN', 'Stats',
+        'dat', 'console', 'checkGlobalLeaks'
+      ]);
+    </script>
+    <script src="/_ah/channel/jsapi"></script>
+    <script src="javascript/libs/jquery-1.8.1.min.js"></script>
+    <script src='javascript/libs/three.js'></script>
+    <script src='javascript/libs/Stats.js'></script>
+    <script src='javascript/libs/Tween.js'></script>
+    <script src="javascript/libs/dat.gui.min.js"></script>
+    <script src="javascript/libs/datachannel.js"></script>
+    <script src='./build/build.js'></script>
+    <script> require('verlet-sim')() </script>
+    <script>
+      // Crashing in my Chrome Stable:
+      /*
+      function checkGlobalLeaks(){
+        var leaks = Object.keys(window).filter(function(k){return !~globals.indexOf(k)})
+        console.log('leaks?',leaks)
+      }
+      setTimeout(function(){
+        checkGlobalLeaks()
+      },1000)
+      */
+    </script>
+  </body>
+</html>

@@ -35,8 +35,9 @@ type Message struct {
 
 type RoomData struct {
   Room string
+  RoomEmpty bool
+  RoomFull bool
   ChannelToken string
-  ClientId string
 }
 
 func init() {
@@ -64,7 +65,6 @@ func init() {
 
     c.Debugf("Disconnecting (channel) from %s",from)
 
-    // c.Debugf("Ignoring channel disconnect.")
     Leave(c,Message{Room:room,From:client})
   })
 
@@ -88,10 +88,6 @@ func init() {
 
     c.Debugf("%s",message.Type)
     switch message.Type {
-    case "join":
-      Join(c, message)
-    case "leave":
-      Leave(c, message)
     case "event", "offer", "answer", "icecandidate":
       SendJSON(c, message)
     }
@@ -130,18 +126,54 @@ func init() {
 
 func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   roomName := r.URL.Path
-  clientId := Random(10)
+  clientIdCookie, _ := r.Cookie("clientId")
+  clientId := ""
+  c.Debugf("clientIdCookie = %s", clientIdCookie)
+  if clientIdCookie == nil {
+    clientId = Random(10)
+  } else {
+    clientId = clientIdCookie.Value
+  }
+
   token, err := channel.Create(c, clientId+"@"+roomName)
   if err != nil {
     http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
     return
   }
 
+  roomEmpty := true;
+  roomFull := false;
+
+  item, err := memcache.Get(c, roomName)
+  if err != memcache.ErrCacheMiss {
+    list := strings.Split(string(item.Value),"|")
+    counter := 0
+    for _, roomParticipant := range list {
+      if roomParticipant != clientId {
+        counter = counter + 1;
+      } else {
+        c.Debugf("This user is already in the room: " + roomParticipant)
+      }
+    }
+
+    c.Debugf("Current list in this room: %s", list)
+    if counter > 0 {
+      roomEmpty = false;
+    }
+    if counter > 1 {
+      roomFull = true;
+    }
+  }
+
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, ChannelToken: token, ClientId: clientId}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token}
+
+  // clientId cookie:
+  cookie := http.Cookie{Name: "clientId", Value: clientId}
+  http.SetCookie(w, &cookie)
 
   // Parse the template and output HTML:
-  template, err := template.New("test.html").ParseFiles("test.html")
+  template, err := template.New("template.html").ParseFiles("template.html")
   if err != nil { c.Criticalf("execution failed: %s", err) }
   err = template.Execute(w, data)
   if err != nil { c.Criticalf("execution failed: %s", err) }
