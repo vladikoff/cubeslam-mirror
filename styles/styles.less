@@ -38,7 +38,6 @@ button, a.button {
   font-family: 'eboyregalpha';
   font-size: 24px;
   line-height: 24px;
-  display: inline-block;
   width: auto;
   background: #e2e2c5;
   border-top: 5px solid #f9f9da;
@@ -49,9 +48,37 @@ button, a.button {
   padding: 1px 45px 6px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
   text-transform: uppercase;
   text-decoration: none;
+  &.green {
+    color: #f9f9da;
+    background: #4daf4d;
+    border-top: 5px solid #58c458;
+    border-left: 5px solid  #58c458;
+    border-bottom: 5px solid #398239;
+    border-right: 5px solid  #398239;
+  }
+
+  &.alternative {
+    font-family: 'Varela', sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+
+    color: #e83028;
+    border: 1px solid #e83028;
+    padding: 2px 3px 2px 5px;
+    margin: 0px 4px 0px 3px;
+    text-decoration: none;
+  }
+
 }
 button:hover, a.button:hover {
   background: #c2c2a5;
+  &.green {
+    background: #40a040;
+  }
+  &.alternative {
+    background: #e83028;
+    color: #faf9db;
+}
 }
 
 /*
@@ -102,6 +129,30 @@ button:hover, a.button:hover {
       -webkit-filter:brightness(-0.5);
 }
 
+.dialog {
+
+  text-align: center;
+
+  h2 {
+    font-family: 'eboyregalpha';
+    color: #e83028;
+    font-weight: normal;
+    margin: 0;
+    font-size: 48px;
+    line-height: 48px;
+    padding: 35px 0px 10px 0px;
+  }
+  p {
+    color: #e83028;
+    font-family: 'Varela', sans-serif;
+    span {
+      &.green {
+        color: #2aa52a;
+      }
+    }
+  }
+
+}
 
 
 /*
@@ -146,23 +197,6 @@ body {
       .userName {
         color: #e83028;
         margin: 0px 19px 0px 0px;
-      }
-
-      button, a.button {
-        font-family: 'Varela', sans-serif;
-        font-size: 12px;
-        line-height: 12px;
-
-        color: #e83028;
-        border: 1px solid #e83028;
-        background: #faf9db;
-        padding: 7px 39px 7px 39px;
-        margin: 6px 6px 0px 0px;
-        text-decoration: none;
-      }
-      button:hover, a.button:hover {
-        background: #e83028;
-        color: #faf9db;
       }
 
     }
@@ -291,12 +325,9 @@ body {
       }
 
       #paddleSelection {
-        position: absolute;
-        margin: 0px auto 0px auto;
-        bottom: 150px;
-        z-index: 500;
-        width: 100%;
-        text-align: center;
+        button {
+          margin: 10px 0px 0px 0px;
+        }
       }
 
       #game {
