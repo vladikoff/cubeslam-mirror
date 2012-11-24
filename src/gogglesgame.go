@@ -5,6 +5,7 @@ import (
   "appengine/channel"
   "appengine/memcache"
   "encoding/json"
+  "os"
   "math/rand"
   "net/http"
   "text/template"
@@ -34,6 +35,7 @@ type Message struct {
 }
 
 type RoomData struct {
+  Styles string
   Room string
   RoomEmpty bool
   RoomFull bool
@@ -165,8 +167,13 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     }
   }
 
+  file, err := os.Open("build/build.css")
+  defer file.Close()
+  stylesBuf := make([]byte, 32768)
+  file.Read(stylesBuf)
+
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf)}
 
   // clientId cookie:
   cookie := http.Cookie{Name: "clientId", Value: clientId}
