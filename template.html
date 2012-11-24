@@ -12,6 +12,10 @@
 
     <div id="wrapper">
 
+      <!--
+
+      Login doesn't exist in art direction anymore?
+
       <div id="headBar" class="active state MainMenu">
         {{ if .User }}
           <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
@@ -19,6 +23,8 @@
           <a class="button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
         {{ end }}
       </div>
+
+      -->
 
       <div id="content">
 
@@ -166,6 +172,8 @@
     </div>
 
     <!-- SCRIPTING -->
+
+    <div id="#statsDebug" style="display:none"></div>
 
     <script>
       var conferenceRoom = "{{.Room}}"
