@@ -1,8 +1,4 @@
 
-/*
-font-family: 'eboyregalpha';
-*/
-
 @font-face { 
   font-family: 'eboyregalpha';
   src: url('/fonts/eboy-regalpha-webfont.eot');
@@ -39,6 +35,9 @@ font-family: 'eboyregalpha';
  */
 
 button, a.button {
+  font-family: 'eboyregalpha';
+  font-size: 24px;
+  line-height: 24px;
   display: inline-block;
   width: auto;
   background: #e2e2c5;
@@ -47,7 +46,7 @@ button, a.button {
   border-right: 5px solid #a7a793;
   border-bottom: 5px solid #a7a793;
   color: #449744;
-  padding: 8px 45px 8px 45px;
+  padding: 1px 45px 6px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -150,6 +149,10 @@ body {
       }
 
       button, a.button {
+        font-family: 'Varela', sans-serif;
+        font-size: 12px;
+        line-height: 12px;
+
         color: #e83028;
         border: 1px solid #e83028;
         background: #faf9db;
