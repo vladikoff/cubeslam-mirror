@@ -13,7 +13,11 @@
     <div id="wrapper">
 
       <div id="headBar">
-        <button id="signInButton">Sign in</button>
+        {{ if .User }}
+          <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
+        {{ else }}
+          <a class="button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
+        {{ end }}
       </div>
 
       <div id="content">

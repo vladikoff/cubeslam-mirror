@@ -4,6 +4,7 @@ import (
   "appengine"
   "appengine/channel"
   "appengine/memcache"
+  "appengine/user"
   "encoding/json"
   "os"
   "math/rand"
@@ -40,6 +41,8 @@ type RoomData struct {
   RoomEmpty bool
   RoomFull bool
   ChannelToken string
+  User string
+  LoginLogoutLink string
 }
 
 func init() {
@@ -172,8 +175,20 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   stylesBuf := make([]byte, 32768)
   file.Read(stylesBuf)
 
+  currentUser := user.Current(c);
+  loginLogoutLink := ""
+  userName := ""
+  if currentUser == nil {
+    loginLogoutLink, _ = user.LoginURL(c, "/")
+  } else {
+    loginLogoutLink, _ = user.LogoutURL(c, "/")
+    userName = currentUser.String()
+  }
+  c.Debugf("%s", loginLogoutLink)
+  c.Debugf("%s", loginLogoutLink)
+
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf)}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf), User: userName, LoginLogoutLink: loginLogoutLink}
 
   // clientId cookie:
   cookie := http.Cookie{Name: "clientId", Value: clientId}

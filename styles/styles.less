@@ -38,7 +38,7 @@ font-family: 'eboyregalpha';
  * BUTTONS
  */
 
-button {
+button, a.button {
   display: inline-block;
   width: auto;
   background: #e2e2c5;
@@ -49,8 +49,9 @@ button {
   color: #449744;
   padding: 8px 45px 8px 45px;
   text-transform: uppercase;
+  text-decoration: none;
 }
-button:hover {
+button:hover, a.button:hover {
   background: #c2c2a5;
 }
 
@@ -133,14 +134,20 @@ body {
       position: absolute;
       text-align: right;
 
-      button {
+      .userName {
+        color: #e83028;
+        margin: 0px 19px 0px 0px;
+      }
+
+      button, a.button {
         color: #e83028;
         border: 1px solid #e83028;
         background: #faf9db;
         padding: 7px 39px 7px 39px;
         margin: 6px 6px 0px 0px;
+        text-decoration: none;
       }
-      button:hover {
+      button:hover, a.button:hover {
         background: #e83028;
         color: #faf9db;
       }
