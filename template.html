@@ -4,7 +4,7 @@
     <meta charset='utf8'>
     <title>Boing</title>
     <link rel="stylesheet" type="text/css" media="screen" href="/build/build.css" />
-    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>-->
   </head>
   <body>
 
@@ -45,6 +45,10 @@
 
         <!-- COUNTDOWN -->
 
+        <div class="state GameStart">
+          <span id="countdown">3</span>
+        </div>
+
         <!-- INSTRUCTION FOR GAMEPLAY -->
 
         <!-- INVITE FRIEND BUTTON -->
@@ -55,12 +59,17 @@
 
         <!-- GAME OVER DIALOG -->
 
-        <div class="state GameOver">
+        <div class="inactive state GameOver">
           <div class="dialog">
-            <h2>Game Over</h2>
-            <button class="play">Play Computer</button>
-            <button class="paddleSetup">Paddle Setup</button>
-            <button>Score Board</button>
+            <div class="content">
+              <h2>Game Over</h2>
+              <p>
+                Share this link with a friend: <input type="text" value="" class="shareUrl" />
+              </p>
+              <button class="play">Play Computer</button>
+              <button class="paddleSetup">Paddle Setup</button>
+              <button>Score Board</button>
+            </div>
           </div>
         </div>
 
