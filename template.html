@@ -3,30 +3,42 @@
   <head>
     <meta charset='utf8'>
     <title>Boing</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/build/build.css" />
-    <!--<link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>-->
+    <style>
+      {{.Styles}}
+    </style>
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css' />
   </head>
   <body>
 
     <div id="wrapper">
+
+      <div id="headBar">
+        <button id="signInButton">Sign in</button>
+      </div>
 
       <div id="content">
 
         <!-- THE LOBBY -->
 
         <div class='state MainMenu'>
-          <h1 class="copy" id="the_title"><span>Pong Realtime Multiplayer test</span></h1>
+          <div id="title">
+            <h1 class="copy"><span>Pong Realtime Multiplayer test</span></h1>
+          </div>
 
-            {{ if .RoomFull }}
-              <p>This Game Room is full. Click below to go to another room.</p>
+          {{ if .RoomFull }}
+            <p>This Game Room is full. Click below to go to another room.</p>
+            <div class=".buttonWrapper">
               <button id='otherplay'>Another Room</button>
-            {{ else }}
-              <p class="multi">Your friend is waiting for you to join this Game Room!</p>
-              <p class="single">Start a new Game Room!</p>
+            </div>
+          {{ else }}
+            <p class="multi">Your friend is waiting for you to join this Game Room!</p>
+            <p class="single">Start a new Game Room!</p>
 
+            <div class=".buttonWrapper">
               <button class='play'><span class="single">Play</span><span class="multi">Play friend</span></button>
+            </div>
 
-            {{ end }}
+          {{ end }}
 
         </div>
 

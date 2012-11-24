@@ -1,3 +1,18 @@
+
+/*
+font-family: 'eboyregalpha';
+*/
+
+@font-face { 
+  font-family: 'eboyregalpha';
+  src: url('/fonts/eboy-regalpha-webfont.eot');
+  src: url('/fonts/eboy-regalpha-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/eboy-regalpha-webfont.woff') format('woff'),
+  url('/fonts/eboy-regalpha-webfont.ttf') format('truetype'),
+  url('/fonts/eboy-regalpha-webfont.svg#webfont') format('svg');
+}
+
+
 /*
  * All state-spcific elements should be hidden by default:
  */
@@ -24,23 +39,19 @@
  */
 
 button {
-  font-family: Arial;
-  font-size:20px;
-  color:#000000;
-  background: #e5e4c6;
-  border: 4px solid black;
-  width:200px;
-  height:60px;
-  line-height: 40px;
-  text-align: center;
-  padding:3px 10px 3px 10px;
-  cursor: pointer;
-  -webkit-transition: background 0.1s;
+  display: inline-block;
+  width: auto;
+  background: #e2e2c5;
+  border-top: 5px solid #f9f9da;
+  border-left: 5px solid #f9f9da;
+  border-right: 5px solid #a7a793;
+  border-bottom: 5px solid #a7a793;
+  color: #449744;
+  padding: 8px 45px 8px 45px;
+  text-transform: uppercase;
 }
 button:hover {
-  background: #000000;
-  color:#e5e4c6;
-  -webkit-transition: background 0.1s;
+  background: #c2c2a5;
 }
 
 /*
@@ -103,10 +114,38 @@ body {
   margin: 0px 0px 0px 0px;
   background: #000;
 
+  font-family: 'Varela', sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+
   #wrapper {
     overflow: hidden;
     width: 100%;
     height: 100%;
+
+    #headBar {
+      z-index: 50000000;
+      background: #faf9db;
+      width: 100%;
+      height: 40px;
+      top: 0;
+      position: absolute;
+      text-align: right;
+
+      button {
+        color: #e83028;
+        border: 1px solid #e83028;
+        background: #faf9db;
+        padding: 7px 39px 7px 39px;
+        margin: 6px 6px 0px 0px;
+      }
+      button:hover {
+        background: #e83028;
+        color: #faf9db;
+      }
+
+    }
 
     #content {
 
@@ -118,19 +157,46 @@ body {
         position: absolute;
         z-index: 100;
         width: 100%;
-        top: 75px;
+        height: 100%;
+        top: 0px;
         text-align: center;
 
-        h1 {
-          padding: 0px 0px 0px 0px;
-          width: 680px;
-          height: 105px;
-          background-image: url('/images/logo.png');
-          margin: 0px auto 50px auto;
-          span {
-            display: none;
+        color: #f8fadb;
+
+        #title {
+
+          padding: 75px 0px 30px 0px;
+
+          h1 {
+            padding: 0px 0px 0px 0px;
+            width: 680px;
+            height: 105px;
+            background-image: url('/images/logo.png');
+            margin: 0px auto 0px auto;
+            span {
+              display: none;
+            }
           }
+
         }
+
+        p {
+          margin: 0;
+          padding: 0;
+        }
+        
+        .buttonWrapper {
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+        }
+
+        button {
+          bottom: 92px;
+          position: absolute;
+        }
+
       }
 
       /*
@@ -237,7 +303,6 @@ body {
         #footMenu {
           display: block;
           text-align: right;
-          font-family: 'Varela', sans-serif;
           font-size: 9px;
 
           ul {
