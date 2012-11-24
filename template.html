@@ -12,7 +12,7 @@
 
     <div id="wrapper">
 
-      <div id="headBar">
+      <div id="headBar" class="active state MainMenu">
         {{ if .User }}
           <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
         {{ else }}
@@ -24,7 +24,7 @@
 
         <!-- THE LOBBY -->
 
-        <div class='state MainMenu'>
+        <div id="mainmenu" class='state MainMenu'>
           <div id="title">
             <h1 class="copy"><span>Pong Realtime Multiplayer test</span></h1>
           </div>
