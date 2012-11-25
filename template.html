@@ -69,7 +69,12 @@
             </p>
           {{ else }}
             <p class="multi"><span class="slave">Your friend is waiting for you to join this Game Room!</span></p>
-            <p class="single">&nbsp;</p>
+            <p class="single">
+              {{ if .NotViaSlash }}
+                Nobody is playing in this room right now.<br />
+                Try out the single player game!
+              {{ end }}
+            </p>
 
           {{ end }}
           <div class="buttonWrapper">

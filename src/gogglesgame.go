@@ -39,6 +39,7 @@ type RoomData struct {
   Room string
   RoomEmpty bool
   RoomFull bool
+  NotViaSlash bool
   ChannelToken string
   User string
   LoginLogoutLink string
@@ -118,9 +119,12 @@ func init() {
 
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
+    newRoom := Random(12)
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
     if r.URL.Path == "/" {
-      http.Redirect(w, r, "/"+Random(12), 302);
+      viaSlashCookie := http.Cookie{Name: "viaSlash", Value: newRoom}
+      http.SetCookie(w, &viaSlashCookie)
+      http.Redirect(w, r, "/"+newRoom, 302);
     } else {
       Room(c, w, r);
     }
@@ -212,8 +216,16 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   c.Debugf("%s", loginLogoutLink)
   c.Debugf("%s", loginLogoutLink)
 
+  notViaSlash := true
+  viaSlashCookie, _ := r.Cookie("viaSlash")
+  if viaSlashCookie != nil {
+    if viaSlashCookie.Value == roomName || "/" + viaSlashCookie.Value == roomName {
+      notViaSlash = false
+    }
+  }
+
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf), User: userName, LoginLogoutLink: loginLogoutLink}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf), User: userName, LoginLogoutLink: loginLogoutLink, NotViaSlash: notViaSlash}
 
   // clientId cookie:
   cookie := http.Cookie{Name: "clientId", Value: clientId}
