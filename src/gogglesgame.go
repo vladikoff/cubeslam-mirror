@@ -170,6 +170,29 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     }
   }
 
+  // Redirect on full game room.
+  if roomFull == true {
+
+    newRoom := Random(12);
+
+    roomFullCookie := http.Cookie{Name: "roomFullCookie", Value: newRoom}
+    http.SetCookie(w, &roomFullCookie)
+
+    http.Redirect(w, r, "/"+newRoom, 302);
+    return
+  }
+
+  // Set the roomFull variable on wheather we were redirected to here from a full room:
+  fullCookie, _ := r.Cookie("roomFullCookie")
+  if fullCookie != nil {
+    if fullCookie.Value == roomName || "/" + fullCookie.Value == roomName {
+      roomFull = true
+    }
+    // If the room full cookie exists, always delete it!
+    roomFullCookie := http.Cookie{Name: "roomFullCookie", Value: ""}
+    http.SetCookie(w, &roomFullCookie)
+  }
+
   file, err := os.Open("build/build.css")
   defer file.Close()
   stylesBuf := make([]byte, 32768)
