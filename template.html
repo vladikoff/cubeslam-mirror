@@ -46,13 +46,13 @@
 
         <!-- THE LOBBY -->
 
-        <a id="chromeTechLink" href="http://google.com/" target="_blank">
+        <a class="state MainMenu" id="chromeTechLink" href="http://google.com/" target="_blank">
           <small>About</small><br />
           Google Chrong<br />
           Technology
         </a>
 
-        <a id="chromeExperimentLink" href="http://google.com/" target="_blank">
+        <a class="state MainMenu" id="chromeExperimentLink" href="http://google.com/" target="_blank">
           <small>This is a</small>
           <p>
             Chrome<br />
@@ -71,8 +71,8 @@
               Try out the single player game!
             </p>
           {{ else }}
-            <p class="multi"><span class="slave">Your friend is waiting for you to join this Game Room!</span></p>
-            <p class="single">
+            <p class="multiplayer"><span class="slave">Your friend is waiting for you to join this Game Room!</span></p>
+            <p class="singleplayer">
               {{ if .NotViaSlash }}
                 Nobody is playing in this room right now.<br />
                 Try out the single player game!
@@ -81,7 +81,7 @@
 
           {{ end }}
           <div class="buttonWrapper">
-            <button class='play'><span class="single">Start Game</span><span class="multi">Play friend</span></button>
+            <button class='play'><span class="singleplayer">Start Game</span><span class="multiplayer">Play friend</span></button>
           </div>
 
 
@@ -124,6 +124,38 @@
 
         <!-- LEVEL MSG -->
 
+        <!-- OPPONENT LEFT DIALOG -->
+
+        <div class="inactive state OpponentLeft">
+          <div class="dialog top">
+            <div class="content">
+              <h2>Your friend left the game</h2>
+              <p>
+                Share this link with a friend: <input type="text" value="" class="shareUrl" />
+              </p>
+              <button class="play">Play Computer</button>
+              <button class="paddleSetup">Paddle Setup</button>
+              <button>Score Board</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAUSE DIALOG -->
+
+        <div class="inactive state Pause">
+          <div class="dialog top">
+            <div class="content">
+              <h2>Pause</h2>
+              <p>
+                Share this link with a friend: <input type="text" value="" class="shareUrl" />
+              </p>
+              <button class="play">Play Computer</button>
+              <button class="paddleSetup">Paddle Setup</button>
+              <button>Score Board</button>
+            </div>
+          </div>
+        </div>
+
         <!-- GAME OVER DIALOG -->
 
         <div class="inactive state GameOver">
@@ -152,6 +184,14 @@
 
 
         <!-- GAME STUFF -->
+
+        <div id="gameScores" class="inactive state Single">
+          <img src="/images/minipong.png" /><br />
+          Google Chrong<br />
+          Player 1 - Player 2<br />
+          <span class="score">Level2</span><br />
+          <span class="score">2-1</span>
+        </div>
 
         <div id="settingsGUIContainer">
           <div id="monitorFinalContainer"></div>

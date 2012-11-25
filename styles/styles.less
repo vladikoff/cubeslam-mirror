@@ -24,9 +24,9 @@
  * Single player mode is default
  */
 
-.single {
+.singleplayer {
 }
-.multi {
+.multiplayer {
   display: none;
 }
 
@@ -81,15 +81,15 @@ button, a.button {
 
 }
 button:hover, a.button:hover {
-  background: #c2c2a5;
   &.green {
     background: #40a040;
   }
   &.alternative {
     background: #e83028;
     color: #faf9db;
+  }
 }
-}
+
 
 /*
  * DIALOGS
@@ -107,6 +107,10 @@ button:hover, a.button:hover {
          -moz-perspective: 800px;
            -o-perspective: 800px;
               perspective: 800px;
+  &.top {
+    bottom: auto;
+    top: 0;
+  }
 }
 .state .dialog .content {
       width: 100%;
@@ -139,6 +143,18 @@ button:hover, a.button:hover {
       -webkit-filter:brightness(-0.5);
 }
 
+.state.inactive .dialog.top .content {
+
+      -webkit-transform-origin: center center;
+
+      -webkit-transform: rotateX( -85deg ) translateZ(-400px) translateY(200px);
+         -moz-transform: rotateX( -65deg );
+           -o-transform: rotateX( -65deg );
+              transform: rotateX( -65deg );
+
+      -webkit-filter:brightness(-0.5);
+}
+
 .dialog {
 
   text-align: center;
@@ -166,6 +182,75 @@ button:hover, a.button:hover {
 
 
 /*
+ * HEAD BAR
+ */
+
+body.Pause, body.MainMenu, body.WebcamActivation, body.PaddleSetup, body.OpponentLeft {
+  #headBar {
+    top: -40px;
+  }
+}
+
+#headBar {
+
+  top: -40px;
+  -webkit-transition: top 0.5s;
+      -moz-transition: -moz-transform 0.5s;
+        -o-transition: -o-transform 0.5s;
+          transition: transform 0.5s;
+  visibility: visible;
+  &.active {
+    top: 0px;
+  }
+
+  z-index: 50000000;
+  background: #faf9db;
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  text-align: right;
+
+  .headBarContent {
+    display: none;
+    margin: 13px 0px 0px 0px;
+    text-align: center;
+    color: #e83028;
+  }
+
+  .userName {
+    color: #e83028;
+    margin: 0px 19px 0px 0px;
+  }
+
+  .shareLink {
+    .shareUrl {
+      color: #4daf4d;
+    }
+  }
+
+  .friendArrived, .opponentPaddle {
+    margin-top: 5px;
+    span {
+      font-weight: bold;
+      margin-right: 12px;
+    }
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  .opponentReady {
+    a {
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
+      
+}
+
+
+
+/*
  * STRUCTURE
  */
 
@@ -184,63 +269,6 @@ body {
     overflow: hidden;
     width: 100%;
     height: 100%;
-
-    #headBar {
-
-      top: -40px;
-      -webkit-transition: top 0.5s;
-         -moz-transition: -moz-transform 0.5s;
-           -o-transition: -o-transform 0.5s;
-              transition: transform 0.5s;
-      visibility: visible;
-      &.active {
-        top: 0px;
-      }
-
-      z-index: 50000000;
-      background: #faf9db;
-      width: 100%;
-      height: 40px;
-      position: absolute;
-      text-align: right;
-
-      .headBarContent {
-        display: none;
-        margin: 13px 0px 0px 0px;
-        text-align: center;
-        color: #e83028;
-      }
-
-      .userName {
-        color: #e83028;
-        margin: 0px 19px 0px 0px;
-      }
-
-      .shareLink {
-        .shareUrl {
-          color: #4daf4d;
-        }
-      }
-
-      .friendArrived, .opponentPaddle {
-        margin-top: 5px;
-        span {
-          font-weight: bold;
-          margin-right: 12px;
-        }
-        img {
-          vertical-align: middle;
-        }
-      }
-
-      .opponentReady {
-        a {
-          display: inline-block;
-          margin-left: 20px;
-        }
-      }
-          
-    }
 
     #content {
 
@@ -412,6 +440,29 @@ body {
         font-size: 150px;
         color: #00ff00;
         z-index:50000;
+      }
+
+      /*
+       * GAME STUFF
+       */
+
+      #gameScores {
+        color: #f9f9da;
+        position: absolute;
+        z-index: 90000;
+        top: 100px;
+        left: 70px;
+        img {
+          margin-bottom: 6px;
+        }
+        &.inactive {
+          display: none;
+        }
+        .scores {
+          font-family: 'eboyregalpha';
+          font-size: 60px;
+          line-height: 75%;
+        }
       }
 
       /*

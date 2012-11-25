@@ -70,7 +70,11 @@ func init() {
 
     c.Debugf("Disconnecting (channel) from %s",from)
 
-    Leave(c,Message{Room:room,From:client})
+    cn := ChannelName(c, client, room, false)
+    c.Debugf("Current channel is %s", cn)
+    if cn == r.FormValue("from") { // If Channel name still is the same (that is: the user did not reload & got another session)
+      Leave(c,Message{Room:room,From:client})
+    }
   })
 
   http.HandleFunc("/message", func (w http.ResponseWriter, r *http.Request) {
@@ -131,6 +135,27 @@ func init() {
   })
 }
 
+// This must be made different when running on multiple servers:
+// This is a solution on that the onopen even does not fire on dev_appengine.py on reloads.
+// On share AppEngine, we can probably just return clientid + "@" + roomName, but that is untested yet.
+//var ChannelNames = map[string]string{}
+func ChannelName(c appengine.Context, clientId string, roomName string, createNew bool) string {
+  /*
+  if createNew == true {
+    ChannelNames[clientId + "@" + roomName] = Random(12)
+    c.Debugf("Created a new channel: %s", clientId + "@" + roomName + "@" + ChannelNames[clientId + "@" + roomName])
+  } else {
+    if _,ok := ChannelNames[clientId + "@" + roomName]; ok == false {
+      c.Debugf("Channel mapping does not exist: %s", clientId + "@" + roomName);
+      ChannelNames[clientId + "@" + roomName] = Random(12)
+      c.Debugf("Created a new channel: %s", clientId + "@" + roomName + "@" + ChannelNames[clientId + "@" + roomName])
+    }
+  }
+  c.Debugf("%s", ChannelNames);
+  return clientId + "@" + roomName + "@" + ChannelNames[clientId + "@" + roomName];
+  */
+  return clientId + "@" + roomName;
+}
 
 func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   roomName := r.URL.Path
@@ -143,7 +168,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     clientId = clientIdCookie.Value
   }
 
-  token, err := channel.Create(c, clientId+"@"+roomName)
+  token, err := channel.Create(c, ChannelName(c, clientId, roomName, true))
   if err != nil {
     http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
     return
@@ -240,6 +265,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
 }
 
 func Join(c appengine.Context, msg Message) {
+
   item, err := memcache.Get(c, msg.Room)
   if err == memcache.ErrCacheMiss {
     c.Debugf("join, room not found. creating new room")
@@ -352,7 +378,6 @@ func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bo
     }
   }
 
-  list = Filter(list,func(str string) bool { return str != client })
   if found == false {
     list = append(list,client)
   }
@@ -408,7 +433,7 @@ func ParseFrom(s string) (string, string) {
 
 func SendJSON(c appengine.Context, msg Message) {
   c.Debugf("SendJSON %+v",msg)
-  if err := channel.SendJSON(c, msg.To+"@"+msg.Room, msg); err != nil {
+  if err := channel.SendJSON(c, ChannelName(c, msg.To, msg.Room, false), msg); err != nil {
     c.Criticalf("send json error ",err)
   }
 }
