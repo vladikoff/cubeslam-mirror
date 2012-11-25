@@ -11,7 +11,6 @@ import (
   "net/http"
   "text/template"
   "strings"
-  "sort"
   "io/ioutil"
   // "strconv"
   "time"
@@ -235,8 +234,8 @@ func Join(c appengine.Context, msg Message) {
     if err := memcache.Set(c,roomItem); err != nil {
       c.Criticalf("join, set error ",err)  
     }
-    // let the promote the client (= host)
-    SendJSON(c, Message{Room: msg.Room, To: msg.From, Type: "promoted", Data: msg.From})
+
+    SendPromotesDemotes(c, msg.Room, []string { msg.From })
 
   } else if err != nil {
     c.Criticalf("join, get error ",err)
@@ -262,6 +261,7 @@ func Join(c appengine.Context, msg Message) {
         }
       }
     }
+    SendPromotesDemotes(c, msg.Room, list)
   }
 }
 
@@ -295,11 +295,6 @@ func Leave(c appengine.Context, msg Message) {
       if err != nil {
         c.Criticalf("leave, error while deleting room",err)
       }
-
-    // only one left, promote that user
-    } else if len(list) == 1 {
-      host := list[0]
-      SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
     }
 
     // if room is empty, remove it
@@ -308,16 +303,28 @@ func Leave(c appengine.Context, msg Message) {
       if err != nil {
         c.Criticalf("leave, error while deleting room",err)
       }
-
-    // only one left, promote that user
-    } else if len(list) == 1 {
-      host := list[0]
-      SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
+    }
+    SendPromotesDemotes(c, msg.Room, list)
+  }
+}
+  
+func SendPromotesDemotes(c appengine.Context, room string, list []string) {
+  // First item in the array is always the host (the first connected). Rest are slaves (should be maximum one, normally).
+  promoted := false
+  for _, id := range list {
+    if (!promoted) {
+      promoted = true
+      c.Debugf("Promoting %s ",id)
+      SendJSON(c, Message{Room: room, To: id, Type: "promoted", Data: id})
+    } else {
+      c.Debugf("Demoting %s ",id)
+      SendJSON(c, Message{Room: room, To: id, Type: "demoted", Data: id})
     }
   }
 }
 
-func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bool) (sort.StringSlice, bool) {
+
+func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bool) ([]string, bool) {
   list := strings.Split(string(room.Value),"|")
 
   // check if the user was in the room already
@@ -331,12 +338,15 @@ func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bo
   }
 
   list = Filter(list,func(str string) bool { return str != client })
-  if remove == false {
+  if found == false {
     list = append(list,client)
   }
-  sorted := sort.StringSlice(list)
-  sorted.Sort()
-  return sorted, found;
+
+  if remove == true {
+    list = Filter(list,func(str string) bool { return str != client })
+  }
+
+  return list, found;
 }
 
 func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
