@@ -157,6 +157,9 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
         counter = counter + 1;
       } else {
         c.Debugf("This user is already in the room: " + roomParticipant)
+        // This happends when the channel api disconnect fires after for example a reload.
+        // Hence, send the promotes/demotes again, so client does not wait for them:
+        SendPromotesDemotes(c, roomName, list)
       }
     }
 
