@@ -12,19 +12,27 @@
 
     <div id="wrapper">
 
-      <!--
-
-      Login doesn't exist in art direction anymore?
-
-      <div id="headBar" class="active state MainMenu">
-        {{ if .User }}
-          <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
-        {{ else }}
-          <a class="button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
-        {{ end }}
+      <div id="headBar" class="">
+        <div class="headBarContent shareLink">
+          Copy and share this link to play a friend:
+          <span class="shareUrl"></span>
+        </div>
+        <div class="headBarContent friendArrived">
+          <span>Your friend has arrived</span> <img src="/images/arrivalicon.png" />
+        </div>
+        <div class="headBarContent opponentPaddle">
+          <span>Waiting for friend to choose paddle</span> <img src="/images/arrivalicon.png" />
+        </div>
+        <!-- LOGIN STUFF EXCLUDED FROM BETA 1
+        <div class="active state MainMenu">
+          {{ if .User }}
+            <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
+          {{ else }}
+            <a class="button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
+          {{ end }}
+        </div>
+        -->
       </div>
-
-      -->
 
       <div id="content">
 
