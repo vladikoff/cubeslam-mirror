@@ -224,7 +224,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     http.SetCookie(w, &roomFullCookie)
   }
 
-  file, err := os.Open("build/build.css")
+  file, err := os.Open("build/build-less.css")
   defer file.Close()
   stylesBuf := make([]byte, 32768)
   file.Read(stylesBuf)
