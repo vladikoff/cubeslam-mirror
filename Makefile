@@ -5,6 +5,7 @@ GEOMETRY_JS=$(GEOMETRY:.json=.js)
 SHADERS=$(wildcard lib/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
+COMPONENTS=$(shell find components -name "*.js" -type f)
 
 build: build-shaders build-geometry build-styles build-component
 	@:
@@ -34,7 +35,7 @@ lib/geometry/%.js: lib/geometry/%.json
 build/build-less.css: $(STYLES)
 	node_modules/.bin/lessc $(STYLES) > $@
 
-build/build.js: components/ $(COMPONENT) component.json
+build/build.js: components/ $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
 
 clean:
