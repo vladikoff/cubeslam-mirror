@@ -14,7 +14,7 @@ float pixel = 1.0 / resolution.y;
 
 void main( void ) {
     
-    vec2 uPos = vUv;//( gl_FragCoord.xy / resolution.xy );//normalize wrt y axis
+    vec2 uPos = vUv;//( gl_FragCoord.xy / resolution.xy ); //normalize wrt y axis
     
     uPos.x -=  mouse.x;
     
