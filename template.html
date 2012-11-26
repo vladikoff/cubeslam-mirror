@@ -113,7 +113,7 @@
         <!-- COUNTDOWN -->
 
         <div class="state GameStart">
-          <span id="gamestartCountdown"></span>
+          <!-- <span id="gamestartCountdown"></span> -->
         </div>
 
         <!-- INSTRUCTION FOR GAMEPLAY -->
@@ -131,11 +131,11 @@
             <div class="content">
               <h2>Your friend left the game</h2>
               <p>
-                Share this link with a friend: <input type="text" value="" class="shareUrl" />
+              Copy and share this link to play a friend:<br /><span class="shareUrl"></span>
               </p>
-              <button class="play">Play Computer</button>
-              <button class="paddleSetup">Paddle Setup</button>
-              <button>Score Board</button>
+              <button class="paddleSetup alternative">Play Computer</button>
+              <button class="green">Play Computer (Space)</button>
+              <button class="alternative">Score Board</button>
             </div>
           </div>
         </div>
@@ -145,29 +145,34 @@
         <div class="inactive state Pause">
           <div class="dialog top">
             <div class="content">
-              <h2>Pause</h2>
+              <h2>Paused</h2>
               <p>
-                Share this link with a friend: <input type="text" value="" class="shareUrl" />
+                Press <button class="alternative green">space</button> to resume
               </p>
-              <button class="play">Play Computer</button>
-              <button class="paddleSetup">Paddle Setup</button>
-              <button>Score Board</button>
+              <button class="alternative">Paddle Setup</button>
+              <button class="green">Play Friend</button>
+              <button class="alternative">Score Board</button>
             </div>
           </div>
         </div>
 
         <!-- GAME OVER DIALOG -->
 
-        <div class="inactive state GameOver">
+        <div id="bautaGameOver" class="inactive state GameOver">Game Over</div>
+        <div id="gameOverDialog" class="inactive state GameOver">
           <div class="dialog">
             <div class="content">
-              <h2>Game Over</h2>
-              <p>
-                Share this link with a friend: <input type="text" value="" class="shareUrl" />
-              </p>
-              <button class="play">Play Computer</button>
-              <button class="paddleSetup">Paddle Setup</button>
-              <button>Score Board</button>
+              <h2>Your Points</h2>
+
+              <table border="0">
+                <tr><td>Levels Played</td><td>Aces</td><td>Longest ball</td></tr>
+                <tr><td><img src="/images/7.png"></td><td><img src="/images/12.png"></td><td><img src="/images/45.png" /></td></tr>
+                <tr class="records"><td></td><td>New Record</td><td></td></tr>
+              </table>
+
+              <button class="alternative play">Play Computer</button>
+              <button class="green paddleSetup">Paddle Setup</button>
+              <button class="alternative">Score Board</button>
             </div>
           </div>
         </div>

@@ -46,16 +46,16 @@
 
 button, a.button {
   cursor: pointer;
-  font-family: 'eboyregalpha';
-  font-size: 24px;
-  line-height: 24px;
+  font-family: 'Varela', sans-serif;
+  font-size: 14px;
+  line-height: 14px;
   width: auto;
   border-top: 5px solid #f9f9da;
   border-left: 5px solid #f9f9da;
   border-right: 5px solid #a7a793;
   border-bottom: 5px solid #a7a793;
   color: #449744;
-  padding: 1px 45px 6px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
+  padding: 8px 45px 8px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
   text-transform: uppercase;
   text-decoration: none;
   &.green {
@@ -71,12 +71,20 @@ button, a.button {
     font-family: 'Varela', sans-serif;
     font-size: 12px;
     line-height: 12px;
+    background: none;
 
     color: #e83028;
     border: 1px solid #e83028;
     padding: 2px 3px 2px 5px;
     margin: 0px 4px 0px 3px;
     text-decoration: none;
+
+    &.green {
+      background: none;
+      color: #4daf4d;
+      border: 1px solid #4daf4d;
+    }
+
   }
 
 }
@@ -87,6 +95,9 @@ button:hover, a.button:hover {
   &.alternative {
     background: #e83028;
     color: #faf9db;
+    &.green {
+      background: #4daf4d;
+    }
   }
 }
 
@@ -411,6 +422,9 @@ body {
         button {
           margin: 10px 0px 0px 0px;
         }
+        .dialog {
+          height: 270px;
+        }
       }
 
       #game {
@@ -462,6 +476,90 @@ body {
           font-family: 'eboyregalpha';
           font-size: 60px;
           line-height: 75%;
+        }
+      }
+
+      /*
+       * PAUSED
+       */
+
+      .state.Pause {
+
+        .dialog {
+          height: 266px;
+        }
+        h2 {
+          padding-top: 40px;
+          padding-bottom: 20px;
+        }
+        p {
+          padding-bottom: 25px;
+        }
+      }
+
+      /*
+       * GAME OVER
+       */
+
+      #bautaGameOver {
+        font-size: 200px;
+        text-align: center;
+        color: #fdeb3e;
+        position: absolute;
+        width: 100%;
+        top: 200px;
+        font-family: 'eboyregalpha';
+        z-index: 500;
+      }
+
+      #gameOverDialog {
+
+        text-align: center;
+
+        .dialog {
+          height: 266px;
+        }
+        h2 {
+          font-family: 'Varela', sans-serif;
+          font-size: 14px;
+          padding-top: 35px;
+        }
+        table {
+          margin: 0 auto 0 auto;
+          padding-bottom: 20px;
+          tr {
+            &.records {
+              td {
+                color: #4daf4d;
+                width: 170px;
+              }
+            }
+            td {
+              color: #e83028;
+            }
+          }
+        }
+        p {
+          padding-bottom: 25px;
+        }
+      }
+
+      /*
+       * YOUR FRIEND LEFT THE GAME
+       */
+
+      .state.OpponentLeft .dialog {
+        height: 266px;
+        h2 {
+          padding-bottom: 20px;
+        }
+        p {
+          line-height: 150%;
+          span {
+            color: #4daf4d;
+            display: block;
+          }
+          padding-bottom: 25px;
         }
       }
 
