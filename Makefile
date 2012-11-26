@@ -6,7 +6,7 @@ SHADERS=$(wildcard lib/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
 
-build: build-shaders build-geometry build-component build-styles
+build: build-shaders build-geometry build-styles build-component
 	@:
 
 build-min: build build/build.min.js
@@ -17,7 +17,7 @@ build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 
 build-component: build/build.js
 
-build-styles: build/build.css
+build-styles: build/build-less.css
 
 components/:
 	node_modules/.bin/component-install
@@ -31,8 +31,8 @@ lib/geometry/%.js: lib/geometry/%.json
 %.min.js: %.js
 	node_modules/.bin/uglifyjs $< > $@
 
-build/build.css: $(STYLES)
-	node_modules/.bin/lessc $(STYLES) > build/build.css
+build/build-less.css: $(STYLES)
+	node_modules/.bin/lessc $(STYLES) > $@
 
 build/build.js: components/ $(COMPONENT) component.json
 	node_modules/.bin/component-build

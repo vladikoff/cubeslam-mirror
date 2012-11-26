@@ -82,7 +82,7 @@ func init() {
 
     b, err := ioutil.ReadAll(r.Body)
     if err != nil {
-      c.Criticalf("%s",err) 
+      c.Criticalf("%s",err)
       return
     }
     r.Body.Close()
@@ -90,8 +90,8 @@ func init() {
     c.Debugf("received channel data message: %s",b)
 
     var message Message
-    if err := json.Unmarshal(b, &message); err != nil { 
-      c.Criticalf("%s",err) 
+    if err := json.Unmarshal(b, &message); err != nil {
+      c.Criticalf("%s",err)
       return
     }
 
@@ -224,7 +224,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     http.SetCookie(w, &roomFullCookie)
   }
 
-  file, err := os.Open("build/build.css")
+  file, err := os.Open("build/build-less.css")
   defer file.Close()
   stylesBuf := make([]byte, 32768)
   file.Read(stylesBuf)
@@ -273,7 +273,7 @@ func Join(c appengine.Context, msg Message) {
     // create room, with single client in
     roomItem := &memcache.Item{Key: msg.Room, Value: []byte(msg.From)}
     if err := memcache.Set(c,roomItem); err != nil {
-      c.Criticalf("join, set error ",err)  
+      c.Criticalf("join, set error ",err)
     }
 
     SendPromotesDemotes(c, msg.Room, []string { msg.From })
@@ -348,7 +348,7 @@ func Leave(c appengine.Context, msg Message) {
     SendPromotesDemotes(c, msg.Room, list)
   }
 }
-  
+
 func SendPromotesDemotes(c appengine.Context, room string, list []string) {
   // First item in the array is always the host (the first connected). Rest are slaves (should be maximum one, normally).
   promoted := false
@@ -392,7 +392,7 @@ func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bo
 func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
   item := &memcache.Item{Key: room.Key, Value: []byte(strings.Join(list,"|"))}
   if err := memcache.Set(c,item); err != nil {
-    c.Criticalf("UpdateRoom, set error ",err)  
+    c.Criticalf("UpdateRoom, set error ",err)
   }
 }
 
@@ -418,8 +418,8 @@ func Filter(s []string, fn func(string) bool) []string {
 
 func ReadData(c appengine.Context, m Message) (interface{}) {
   var data interface{}
-  if err := json.Unmarshal([]byte(m.Data), &data); err != nil { 
-    c.Criticalf("%s",err) 
+  if err := json.Unmarshal([]byte(m.Data), &data); err != nil {
+    c.Criticalf("%s",err)
     return data
   }
   return data
