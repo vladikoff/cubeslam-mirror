@@ -6,7 +6,6 @@ import (
   "appengine/memcache"
   "appengine/user"
   "encoding/json"
-  "os"
   "math/rand"
   "net/http"
   "text/template"
@@ -35,7 +34,6 @@ type Message struct {
 }
 
 type RoomData struct {
-  Styles string
   Room string
   RoomEmpty bool
   RoomFull bool
@@ -224,11 +222,6 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     http.SetCookie(w, &roomFullCookie)
   }
 
-  file, err := os.Open("build/build-less.css")
-  defer file.Close()
-  stylesBuf := make([]byte, 32768)
-  file.Read(stylesBuf)
-
   currentUser := user.Current(c);
   loginLogoutLink := ""
   userName := ""
@@ -250,7 +243,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   }
 
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf), User: userName, LoginLogoutLink: loginLogoutLink, NotViaSlash: notViaSlash}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, User: userName, LoginLogoutLink: loginLogoutLink, NotViaSlash: notViaSlash}
 
   // clientId cookie:
   cookie := http.Cookie{Name: "clientId", Value: clientId}
