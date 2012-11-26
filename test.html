@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf8'>
+    <title>Verlet Simulator</title>
+    <style>
+      .sim, .hidden {display: none;}
+      .sim.active {display: inline-block;}
+
+      .sim .info {
+        position: absolute;
+        top: 0;
+        left: 350px;
+      }
+
+      .sim .info video {
+        border: 1px dashed red;
+      }
+
+      .renderer-2d canvas {
+        margin-top: 30px;
+      }
+      .renderer-2d ul {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 30px;
+      }
+
+      #colorSelectContainer {
+        z-index:1000;
+        display:none;
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-top:-240px;
+        margin-left:-320px;
+        width: 640px;
+          height:480px;
+      }
+
+      #colorSelectArea {
+        position:absolute;
+        width:100px;
+        height:100px;
+        left: 450px;
+        top:80px;
+        border: 10px solid red;
+        z-index:30;
+      }
+
+      #colorSelectCenter {
+        position:absolute;
+        display: block;
+        left:50%;
+        top:50%;
+        margin-left:-5px;
+        margin-top:-5px;
+        width:10px;
+        height:10px;
+        border: 1px solid black; 
+        border-radius: 5px 5px 5px 5px;
+        z-index:31;
+      }
+
+      #marker {
+        position:absolute;
+        width:20px;
+        height:20px;
+        top:350px;
+        background-color: #ff0000; 
+        border-radius: 10px 10px 10px 10px;
+        z-index:390;
+      }
+
+      #videoInput {
+        /*display:none;
+      */
+
+          left:5px;
+          margin-top: 15px;
+         -webkit-transform: scale(-1,1);
+         width: 640px;
+         height:480px;
+         border-radius: 8px 8px 8px 8px;
+
+      }
+
+      #settingsGUIContainer {
+        position:absolute;
+        left:20px;
+        z-index:4000;
+      }
+
+
+      /* TEMP GRAPHICS */
+      #startButton {
+        font-family: Arial;
+        font-size:20px;
+        color:#000000;
+        background: #e5e4c6;
+        border: 4px solid black;
+        width:200px;
+        height:40px;
+        margin-left: -100px;
+        position: absolute;
+        left:50%;
+        top:50%;
+        line-height: 40px;
+        text-align: center;
+        padding:3px 10px 3px 10px;
+        cursor: pointer;
+        -webkit-transition: background 0.1s;
+      }
+
+      #startButton:hover {
+         background: #000000;
+         color:#e5e4c6;
+         -webkit-transition: background 0.1s;
+      }
+
+      #scanButton {
+        display:none;
+        font-family: Arial;
+        font-size:20px;
+        color:#000000;
+        background: #e5e4c6;
+        border: 4px solid black;
+        width:200px;
+        height:40px;
+        margin-left: -100px;
+        position: absolute;
+        left:50%;
+        top:75%;
+        line-height: 40px;
+        text-align: center;
+        padding:3px 10px 3px 10px;
+        cursor: pointer;
+        -webkit-transition: background 0.1s;
+      }
+
+      #scanButton:hover {
+         background: #000000;
+         color:#e5e4c6;
+         -webkit-transition: background 0.1s;
+      }
+       /* TEMP GRAPHICS END*/
+      
+    </style>
+    
+  </head>
+  <body>
+    <div id="startButton">START GAME</div>
+    <div id="scanButton">SCAN</div>
+    <div id="settingsGUIContainer">
+      <div id="monitorFinalContainer"></div>
+    </div>
+    <div id="colorSelectContainer">
+      <div id="colorSelectArea">
+        <div id="colorSelectCenter"></div> 
+      </div>
+      <div id="marker"></div>
+      <video id="videoInput"></video>
+    </div>
+    <div class='sim' id='lobby'>
+      <h1>Pong Realtime Multiplayer test</h1>
+      <h2><button id='play'>Play</button></h2>
+      <p>The purpose of this is making sure realtime synchronization between two peers is possible.</p>
+      <p>It does this by using a deterministic simulation (in plain english, a simulation that runs the exact same way) on both peers. Then one of the peers (the first one to enter the room at the moment) is a <i>host</i> and the other is a <i>guest</i>. This is important as the host is the one that will solve any conflicts while te guest is simply a "dumb client" telling the host where it's paddle is at the moment.</p>
+      <p>Whenever the simulation changes, like when an <i>attract force</i> has been added (when the host clicks on the canvas), the change is propagated to the guest which will replay from the frame of the change using those changes (and in the future, including any changes the guest has done in between).</p>
+      <p>This has been tested with a latency of 100-250ms (stockholm-new york) without the feeling of any lag. Currently the only "hole" where the lag will be experienced is if the guest expects the ball to hit the paddle but it's paddle position hasn't been reported to the host when the ball would hit the paddle. Then the host would score even though the guest wouldn't agree. This can be worked around if the paddle position will use the same kind of "replay" at these occations so the host will be able to make a more educated guess.</p>
+      <h2>Features</h2>
+      <ul>
+        <li><i>Time synchronization</i> – Whenever two peers are in the room they will attempt to synchronize their clocks so the game will start at the same time.</li>
+        <li><i>Forces</i> – host can add an attraction force (colored green) by clicking on the stage which will curve the ball (it's actually really fun!)</li>
+        <li><i>Verlet based simulation</i> – After playing around with a few different integrators the verlet based one seemed to be the easiest to implement as well as very stable, which is key to keeping the peers in sync.</li>
+        <li><i>2D &amp; 3D</i> – The renderer is separate from the simulation, as such both 2d and 3d is been very simple to implement.</li>
+        <li><i>Very simple scoring</i> – host gets a point if ball hits guests' wall, guest gets a point if the ball hits hosts' wall. both gets points if they keep the ball alive.</li>
+      </ul>
+    </div>
+    
+    <div class='sim' id='game'>
+      <canvas id="canv-2d" width="320" height="480"></canvas>
+      <canvas id="canv-3d" width="320" height="480"></canvas>
+      <div class='info'>
+        <ul>
+          <li>Waiting for player...<span id="hos" class='hidden'>as host</span></li>
+          <li id='ful' class='hidden'>Room full</li>
+          <li id='con' class='hidden'>Player connected <span id='vid' class='hidden'>with video</span></li>
+          <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
+          <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
+          <li id='go' class='hidden'>Go!</li>
+        </ul>
+        <video id="remoteInput" width="160" height="120" autoplay class='hidden'></video>
+      </div>
+    </div>
+
+    <script>
+      var conferenceRoom = "{{.Room}}"
+        , channelToken = "{{.ChannelToken}}"
+        , clientId = "{{.ClientId}}";
+      window.CHANNEL_HOST = 'ec2-176-34-161-202.eu-west-1.compute.amazonaws.com:8000';
+    </script>
+    <script src="/_ah/channel/jsapi"></script>
+    <script src="javascript/libs/jquery-1.8.1.min.js"></script>
+    <script src='javascript/libs/three.js'></script>
+    <script src='javascript/libs/Stats.js'></script>
+    <script src='javascript/libs/Tween.js'></script>
+    <script src='javascript/libs/ImprovedNoise.js'></script>
+    <script src="javascript/libs/dat.gui.min.js"></script>
+    <script src="javascript/libs/datachannel.js"></script>
+    <script src='./build/build.js'></script>
+    <script> require('verlet-sim')() </script>
+  </body>
+</html>
