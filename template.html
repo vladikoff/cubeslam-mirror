@@ -3,30 +3,87 @@
   <head>
     <meta charset='utf8'>
     <title>Boing</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/build/build.css" />
-    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+    <style>
+      {{.Styles}}
+    </style>
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css' />
   </head>
   <body>
 
     <div id="wrapper">
 
+      <div id="headBar" class="">
+        <div class="headBarContent shareLink">
+          Copy and share this link to play a friend:
+          <span class="shareUrl"></span>
+        </div>
+        <div class="headBarContent friendArrived">
+          <span>Your friend has arrived</span> <img src="/images/arrivalicon.png" />
+        </div>
+        <div class="headBarContent opponentPaddle">
+          <span>Waiting for friend to choose paddle</span> <img src="/images/arrivalicon.png" />
+        </div>
+        <div class="headBarContent opponentReady">
+          Your friend is ready <a class="alternative button" id="letOpponentIn">Play Friend</a>
+        </div>
+        <!-- LOGIN STUFF EXCLUDED FROM BETA 1
+        <div class="active state MainMenu">
+          {{ if .User }}
+            <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
+          {{ else }}
+            <a class="button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
+          {{ end }}
+        </div>
+        -->
+      </div>
+
       <div id="content">
+
+        <!-- LOADING -->
+
+        <div class="state Loading">
+        </div>
 
         <!-- THE LOBBY -->
 
-        <div class='state MainMenu'>
-          <h1 class="copy" id="the_title"><span>Pong Realtime Multiplayer test</span></h1>
+        <a class="state MainMenu" id="chromeTechLink" href="http://google.com/" target="_blank">
+          <small>About</small><br />
+          Google Chrong<br />
+          Technology
+        </a>
 
-            {{ if .RoomFull }}
-              <p>This Game Room is full. Click below to go to another room.</p>
-              <button id='otherplay'>Another Room</button>
-            {{ else }}
-              <p class="multi">Your friend is waiting for you to join this Game Room!</p>
-              <p class="single">Start a new Game Room!</p>
+        <a class="state MainMenu" id="chromeExperimentLink" href="http://google.com/" target="_blank">
+          <small>This is a</small>
+          <p>
+            Chrome<br />
+            Experiment
+          </p>
+        </a>
 
-              <button id='play'><span class="single">Play</span><span class="multi">Play friend</span></button>
+        <div id="mainmenu" class='state MainMenu'>
+          <div id="title">
+            <h1 class="copy"><span>Pong Realtime Multiplayer test</span></h1>
+          </div>
 
-            {{ end }}
+          {{ if .RoomFull }}
+            <p>
+              Your friend is playing against someone else right now.<br />
+              Try out the single player game!
+            </p>
+          {{ else }}
+            <p class="multiplayer"><span class="slave">Your friend is waiting for you to join this Game Room!</span></p>
+            <p class="singleplayer">
+              {{ if .NotViaSlash }}
+                Nobody is playing in this room right now.<br />
+                Try out the single player game!
+              {{ end }}
+            </p>
+
+          {{ end }}
+          <div class="buttonWrapper">
+            <button class='play'><span class="singleplayer">Start Game</span><span class="multiplayer">Play friend</span></button>
+          </div>
+
 
         </div>
 
@@ -39,11 +96,25 @@
 
         <!-- CHOOSE PADDLE -->
 
-        <div class="state PaddleSetup" id="paddleSelection">
-          <button id="scanButton">Select paddle color</button>
+        <div class="inactive state PaddleSetup" id="paddleSelection">
+          <div class="dialog">
+            <div class="content">
+              <h2>Choose Paddle</h2>
+              <p>Hold up your hand and press scan.</p>
+              <p>Or even better: Find a <span class="green">colorful item</span> to scan and use as paddle :-)</p>
+              <button id="scanButton" class="green">Start Scan</button>
+              <p>
+                Or use the <a class="alternative button">keyboard</a>for playing
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- COUNTDOWN -->
+
+        <div class="state GameStart">
+          <!-- <span id="gamestartCountdown"></span> -->
+        </div>
 
         <!-- INSTRUCTION FOR GAMEPLAY -->
 
@@ -53,7 +124,58 @@
 
         <!-- LEVEL MSG -->
 
+        <!-- OPPONENT LEFT DIALOG -->
+
+        <div class="inactive state OpponentLeft">
+          <div class="dialog top">
+            <div class="content">
+              <h2>Your friend left the game</h2>
+              <p>
+              Copy and share this link to play a friend:<br /><span class="shareUrl"></span>
+              </p>
+              <button class="paddleSetup alternative">Play Computer</button>
+              <button class="green">Play Computer (Space)</button>
+              <button class="alternative">Score Board</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAUSE DIALOG -->
+
+        <div class="inactive state Pause">
+          <div class="dialog top">
+            <div class="content">
+              <h2>Paused</h2>
+              <p>
+                Press <button class="alternative green">space</button> to resume
+              </p>
+              <button class="alternative">Paddle Setup</button>
+              <button class="green">Play Friend</button>
+              <button class="alternative">Score Board</button>
+            </div>
+          </div>
+        </div>
+
         <!-- GAME OVER DIALOG -->
+
+        <div id="bautaGameOver" class="inactive state GameOver">Game Over</div>
+        <div id="gameOverDialog" class="inactive state GameOver">
+          <div class="dialog">
+            <div class="content">
+              <h2>Your Points</h2>
+
+              <table border="0">
+                <tr><td>Levels Played</td><td>Aces</td><td>Longest ball</td></tr>
+                <tr><td><img src="/images/7.png"></td><td><img src="/images/12.png"></td><td><img src="/images/45.png" /></td></tr>
+                <tr class="records"><td></td><td>New Record</td><td></td></tr>
+              </table>
+
+              <button class="alternative play">Play Computer</button>
+              <button class="green paddleSetup">Paddle Setup</button>
+              <button class="alternative">Score Board</button>
+            </div>
+          </div>
+        </div>
 
         <!-- FRIEND CHOOSING PADDLE PAUSE -->
 
@@ -67,6 +189,14 @@
 
 
         <!-- GAME STUFF -->
+
+        <div id="gameScores" class="inactive state Single">
+          <img src="/images/minipong.png" /><br />
+          Google Chrong<br />
+          Player 1 - Player 2<br />
+          <span class="score">Level2</span><br />
+          <span class="score">2-1</span>
+        </div>
 
         <div id="settingsGUIContainer">
           <div id="monitorFinalContainer"></div>
@@ -118,6 +248,8 @@
     </div>
 
     <!-- SCRIPTING -->
+
+    <div id="#statsDebug" style="display:none"></div>
 
     <script>
       var conferenceRoom = "{{.Room}}"

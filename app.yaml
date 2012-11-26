@@ -20,9 +20,17 @@ handlers:
 - url: /audio
   static_dir: public/audio
   # login: admin
+- url: /fonts
+  static_dir: public/fonts
 - url: /stylesheets
   static_dir: public/stylesheets
   # login: admin
+- url: /favicon.ico
+  static_files: media/img/favicon.ico
+  upload: public/favicon.ico
+- url: /robots.txt
+  static_files: public/robots.txt
+  upload: public/robots.txt
 - url: /(.*\.html)
   static_files: public/\1
   upload: public/(.*\.html)

@@ -24,6 +24,8 @@ While developing I'd recommend using [watch](http://github.com/visionmedia/watch
 * Add friction on the paddles
 * Refactor Rect -> Polygon and make the collision detection more generic
 
+* We do not need promote/demote data from the server. The client should be able to sort out who is who from the order of the room list (first user is host, second is slave).
+
 
 ### 2012-10-23
 

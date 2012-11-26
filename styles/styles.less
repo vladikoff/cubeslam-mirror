@@ -1,50 +1,280 @@
+
+@font-face { 
+  font-family: 'eboyregalpha';
+  src: url('/fonts/eboy-regalpha-webfont.eot');
+  src: url('/fonts/eboy-regalpha-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/eboy-regalpha-webfont.woff') format('woff'),
+  url('/fonts/eboy-regalpha-webfont.ttf') format('truetype'),
+  url('/fonts/eboy-regalpha-webfont.svg#webfont') format('svg');
+}
+
+
 /*
  * All state-spcific elements should be hidden by default:
  */
 
 .state {
-  display: none;
+  visibility: hidden;
+  &.active {
+    visibility: visible;
+  }
 }
 
 /*
  * Single player mode is default
  */
 
-.single {
+.singleplayer {
 }
-.multi {
+.multiplayer {
   display: none;
+}
+
+/*
+ * Slave is default (which is a bit stupid)
+ */
+
+.host {
+ display: none;
+}
+.slave {
 }
 
 /*
  * BUTTONS
  */
 
-button {
-  font-family: Arial;
-  font-size:20px;
-  color:#000000;
-  background: #e5e4c6;
-  border: 4px solid black;
-  width:200px;
-  height:60px;
-  line-height: 40px;
-  text-align: center;
-  padding:3px 10px 3px 10px;
+button, a.button {
   cursor: pointer;
-  -webkit-transition: background 0.1s;
+  font-family: 'Varela', sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+  width: auto;
+  border-top: 5px solid #f9f9da;
+  border-left: 5px solid #f9f9da;
+  border-right: 5px solid #a7a793;
+  border-bottom: 5px solid #a7a793;
+  color: #449744;
+  padding: 8px 45px 8px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
+  text-transform: uppercase;
+  text-decoration: none;
+  &.green {
+    color: #f9f9da;
+    background: #4daf4d;
+    border-top: 5px solid #58c458;
+    border-left: 5px solid  #58c458;
+    border-bottom: 5px solid #398239;
+    border-right: 5px solid  #398239;
+  }
+
+  &.alternative {
+    font-family: 'Varela', sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+    background: none;
+
+    color: #e83028;
+    border: 1px solid #e83028;
+    padding: 2px 3px 2px 5px;
+    margin: 0px 4px 0px 3px;
+    text-decoration: none;
+
+    &.green {
+      background: none;
+      color: #4daf4d;
+      border: 1px solid #4daf4d;
+    }
+
+  }
+
 }
-button:hover {
-  background: #000000;
-  color:#e5e4c6;
-  -webkit-transition: background 0.1s;
+button:hover, a.button:hover {
+  &.green {
+    background: #40a040;
+  }
+  &.alternative {
+    background: #e83028;
+    color: #faf9db;
+    &.green {
+      background: #4daf4d;
+    }
+  }
 }
+
+
+/*
+ * DIALOGS
+ */
+
+.state .dialog {
+  z-index: 500;
+      width: 100%;
+      height: 33%;
+      position: absolute;
+      bottom:40px;
+      margin: 0;
+      padding:0;
+      -webkit-perspective: 2000px;
+         -moz-perspective: 800px;
+           -o-perspective: 800px;
+              perspective: 800px;
+  &.top {
+    bottom: auto;
+    top: 0;
+  }
+}
+.state .dialog .content {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      -webkit-filter:brightness(0);
+      -webkit-transform-origin: center center;
+
+      -webkit-transition: all 1s;
+         -moz-transition: -moz-transform 1s;
+           -o-transition: -o-transform 1s;
+              transition: transform 1s;
+
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+
+      background: #e2e2c6;
+}
+.state.inactive .dialog .content {
+
+      -webkit-transform-origin: center center;
+
+      -webkit-transform: rotateX( 85deg ) translateZ(-400px) translateY(-200px);
+         -moz-transform: rotateX( 65deg );
+           -o-transform: rotateX( 65deg );
+              transform: rotateX( 65deg );
+
+      -webkit-filter:brightness(-0.5);
+}
+
+.state.inactive .dialog.top .content {
+
+      -webkit-transform-origin: center center;
+
+      -webkit-transform: rotateX( -85deg ) translateZ(-400px) translateY(200px);
+         -moz-transform: rotateX( -65deg );
+           -o-transform: rotateX( -65deg );
+              transform: rotateX( -65deg );
+
+      -webkit-filter:brightness(-0.5);
+}
+
+.dialog {
+
+  text-align: center;
+
+  h2 {
+    font-family: 'eboyregalpha';
+    color: #e83028;
+    font-weight: normal;
+    margin: 0;
+    font-size: 48px;
+    line-height: 48px;
+    padding: 35px 0px 10px 0px;
+  }
+  p {
+    color: #e83028;
+    font-family: 'Varela', sans-serif;
+    span {
+      &.green {
+        color: #2aa52a;
+      }
+    }
+  }
+
+}
+
+
+/*
+ * HEAD BAR
+ */
+
+body.Pause, body.MainMenu, body.WebcamActivation, body.PaddleSetup, body.OpponentLeft {
+  #headBar {
+    top: -40px;
+  }
+}
+
+#headBar {
+
+  top: -40px;
+  -webkit-transition: top 0.5s;
+      -moz-transition: -moz-transform 0.5s;
+        -o-transition: -o-transform 0.5s;
+          transition: transform 0.5s;
+  visibility: visible;
+  &.active {
+    top: 0px;
+  }
+
+  z-index: 50000000;
+  background: #faf9db;
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  text-align: right;
+
+  .headBarContent {
+    display: none;
+    margin: 13px 0px 0px 0px;
+    text-align: center;
+    color: #e83028;
+  }
+
+  .userName {
+    color: #e83028;
+    margin: 0px 19px 0px 0px;
+  }
+
+  .shareLink {
+    .shareUrl {
+      color: #4daf4d;
+    }
+  }
+
+  .friendArrived, .opponentPaddle {
+    margin-top: 5px;
+    span {
+      font-weight: bold;
+      margin-right: 12px;
+    }
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  .opponentReady {
+    a {
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
+      
+}
+
+
+
+/*
+ * STRUCTURE
+ */
 
 body {
   overflow: hidden;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   background: #000;
+
+  font-family: 'Varela', sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
 
   #wrapper {
     overflow: hidden;
@@ -53,27 +283,119 @@ body {
 
     #content {
 
-       /*
-        * MAIN MENU:
-        */
+      /*
+       * LOADING
+       */
 
-      .state.MainMenu {
+      .state.Loading {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        position: absolute;
+        z-index: 100000000;
+        display: block;
+        visibility: visible;
+      }
+
+      /*
+       * MAIN MENU:
+       */
+
+      #chromeTechLink {
+        min-height: 44px;
+        color: #ffffff;
+        position: absolute;
+        bottom: 63px;
+        right: 20px;
+        z-index: 200;
+        text-align: right;
+        padding: 0px 80px 0px 0px;
+        background-image: url('/images/minipong.png');
+        background-repeat: no-repeat;
+        background-position: right center;
+        font-size: 11px;
+        text-decoration: none;
+        display: block;
+        small {
+          display: inline-block;
+          padding: 4px 0px 3px 0px;
+          font-size: 9px;
+        }
+      }
+
+      #chromeExperimentLink {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        text-transform: none;
+        min-height: 44px;
+        color: #ffffff;
+        position: absolute;
+        bottom: 63px;
+        left: 30px;
+        z-index: 200;
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+        line-height: 106%;
+        text-decoration: none;
+        display: block;
+        small {
+          display: block;
+          font-size: 11px;
+          line-height: 11px;
+          margin: 0;
+          padding: 0;
+        }
+        p {
+          display: block;
+          margin: 3px 0px 0px 0px;
+          padding: 0;
+        }
+      }
+
+      #mainmenu {
         position: absolute;
         z-index: 100;
         width: 100%;
-        top: 75px;
+        height: 100%;
+        top: 0px;
         text-align: center;
 
-        h1 {
-          padding: 0px 0px 0px 0px;
-          width: 680px;
-          height: 105px;
-          background-image: url('/images/logo.png');
-          margin: 0px auto 50px auto;
-          span {
-            display: none;
+        color: #f8fadb;
+
+        #title {
+
+          padding: 75px 0px 30px 0px;
+
+          h1 {
+            padding: 0px 0px 0px 0px;
+            width: 680px;
+            height: 105px;
+            background-image: url('/images/logo.png');
+            margin: 0px auto 0px auto;
+            span {
+              display: none;
+            }
           }
+
         }
+
+        p {
+          margin: 0;
+          padding: 0;
+          line-height: 145%;
+        }
+        
+        .buttonWrapper {
+          display: block;
+          width: 100%;
+          position: absolute;
+          bottom: 92px;
+          text-align: center;
+        }
+
+        button {
+        }
+
       }
 
       /*
@@ -97,12 +419,12 @@ body {
       }
 
       #paddleSelection {
-        position: absolute;
-        margin: 0px auto 0px auto;
-        bottom: 150px;
-        z-index: 500;
-        width: 100%;
-        text-align: center;
+        button {
+          margin: 10px 0px 0px 0px;
+        }
+        .dialog {
+          height: 270px;
+        }
       }
 
       #game {
@@ -121,6 +443,127 @@ body {
       }
 
       /*
+       * COUNTDOWN
+       */
+
+      #gamestartCountdown {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 150px;
+        color: #00ff00;
+        z-index:50000;
+      }
+
+      /*
+       * GAME STUFF
+       */
+
+      #gameScores {
+        color: #f9f9da;
+        position: absolute;
+        z-index: 90000;
+        top: 100px;
+        left: 70px;
+        img {
+          margin-bottom: 6px;
+        }
+        &.inactive {
+          display: none;
+        }
+        .scores {
+          font-family: 'eboyregalpha';
+          font-size: 60px;
+          line-height: 75%;
+        }
+      }
+
+      /*
+       * PAUSED
+       */
+
+      .state.Pause {
+
+        .dialog {
+          height: 266px;
+        }
+        h2 {
+          padding-top: 40px;
+          padding-bottom: 20px;
+        }
+        p {
+          padding-bottom: 25px;
+        }
+      }
+
+      /*
+       * GAME OVER
+       */
+
+      #bautaGameOver {
+        font-size: 200px;
+        text-align: center;
+        color: #fdeb3e;
+        position: absolute;
+        width: 100%;
+        top: 200px;
+        font-family: 'eboyregalpha';
+        z-index: 500;
+      }
+
+      #gameOverDialog {
+
+        text-align: center;
+
+        .dialog {
+          height: 266px;
+        }
+        h2 {
+          font-family: 'Varela', sans-serif;
+          font-size: 14px;
+          padding-top: 35px;
+        }
+        table {
+          margin: 0 auto 0 auto;
+          padding-bottom: 20px;
+          tr {
+            &.records {
+              td {
+                color: #4daf4d;
+                width: 170px;
+              }
+            }
+            td {
+              color: #e83028;
+            }
+          }
+        }
+        p {
+          padding-bottom: 25px;
+        }
+      }
+
+      /*
+       * YOUR FRIEND LEFT THE GAME
+       */
+
+      .state.OpponentLeft .dialog {
+        height: 266px;
+        h2 {
+          padding-bottom: 20px;
+        }
+        p {
+          line-height: 150%;
+          span {
+            color: #4daf4d;
+            display: block;
+          }
+          padding-bottom: 25px;
+        }
+      }
+
+      /*
        * FOOTER
        */
 
@@ -130,6 +573,7 @@ body {
         height: 40px;
         background: #000;
         position: absolute;
+        z-index: 10000000;
         bottom: 0px;
         left: 0px;
         width: 100%;
@@ -165,7 +609,6 @@ body {
         #footMenu {
           display: block;
           text-align: right;
-          font-family: 'Varela', sans-serif;
           font-size: 9px;
 
           ul {
@@ -203,7 +646,7 @@ body {
 
       .info {
         position: absolute;
-        bottom: 100px;
+        bottom: -100px; /* Hidden, make positive to show. */
         left: 20px;
         background: rgba(127,127,127,0.5);
       }
@@ -224,6 +667,11 @@ body {
 
 }
 
+/* FOR DEBUGGING: */
+
+#settingsGUIContainer {
+  display: none;
+}
 
 .renderer-2d ul {
   display: inline-block;
