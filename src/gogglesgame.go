@@ -11,7 +11,6 @@ import (
   "net/http"
   "text/template"
   "strings"
-  "sort"
   "io/ioutil"
   // "strconv"
   "time"
@@ -40,6 +39,7 @@ type RoomData struct {
   Room string
   RoomEmpty bool
   RoomFull bool
+  NotViaSlash bool
   ChannelToken string
   User string
   LoginLogoutLink string
@@ -70,7 +70,11 @@ func init() {
 
     c.Debugf("Disconnecting (channel) from %s",from)
 
-    Leave(c,Message{Room:room,From:client})
+    cn := ChannelName(c, client, room, false)
+    c.Debugf("Current channel is %s", cn)
+    if cn == r.FormValue("from") { // If Channel name still is the same (that is: the user did not reload & got another session)
+      Leave(c,Message{Room:room,From:client})
+    }
   })
 
   http.HandleFunc("/message", func (w http.ResponseWriter, r *http.Request) {
@@ -119,15 +123,39 @@ func init() {
 
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
+    newRoom := Random(12)
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
     if r.URL.Path == "/" {
-      http.Redirect(w, r, "/"+Random(12), 302);
+      viaSlashCookie := http.Cookie{Name: "viaSlash", Value: newRoom}
+      http.SetCookie(w, &viaSlashCookie)
+      http.Redirect(w, r, "/"+newRoom, 302);
     } else {
       Room(c, w, r);
     }
   })
 }
 
+// This must be made different when running on multiple servers:
+// This is a solution on that the onopen even does not fire on dev_appengine.py on reloads.
+// On share AppEngine, we can probably just return clientid + "@" + roomName, but that is untested yet.
+//var ChannelNames = map[string]string{}
+func ChannelName(c appengine.Context, clientId string, roomName string, createNew bool) string {
+  /*
+  if createNew == true {
+    ChannelNames[clientId + "@" + roomName] = Random(12)
+    c.Debugf("Created a new channel: %s", clientId + "@" + roomName + "@" + ChannelNames[clientId + "@" + roomName])
+  } else {
+    if _,ok := ChannelNames[clientId + "@" + roomName]; ok == false {
+      c.Debugf("Channel mapping does not exist: %s", clientId + "@" + roomName);
+      ChannelNames[clientId + "@" + roomName] = Random(12)
+      c.Debugf("Created a new channel: %s", clientId + "@" + roomName + "@" + ChannelNames[clientId + "@" + roomName])
+    }
+  }
+  c.Debugf("%s", ChannelNames);
+  return clientId + "@" + roomName + "@" + ChannelNames[clientId + "@" + roomName];
+  */
+  return clientId + "@" + roomName;
+}
 
 func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   roomName := r.URL.Path
@@ -140,7 +168,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     clientId = clientIdCookie.Value
   }
 
-  token, err := channel.Create(c, clientId+"@"+roomName)
+  token, err := channel.Create(c, ChannelName(c, clientId, roomName, true))
   if err != nil {
     http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
     return
@@ -158,6 +186,9 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
         counter = counter + 1;
       } else {
         c.Debugf("This user is already in the room: " + roomParticipant)
+        // This happends when the channel api disconnect fires after for example a reload.
+        // Hence, send the promotes/demotes again, so client does not wait for them:
+        SendPromotesDemotes(c, roomName, list)
       }
     }
 
@@ -168,6 +199,29 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     if counter > 1 {
       roomFull = true;
     }
+  }
+
+  // Redirect on full game room.
+  if roomFull == true {
+
+    newRoom := Random(12);
+
+    roomFullCookie := http.Cookie{Name: "roomFullCookie", Value: newRoom}
+    http.SetCookie(w, &roomFullCookie)
+
+    http.Redirect(w, r, "/"+newRoom, 302);
+    return
+  }
+
+  // Set the roomFull variable on wheather we were redirected to here from a full room:
+  fullCookie, _ := r.Cookie("roomFullCookie")
+  if fullCookie != nil {
+    if fullCookie.Value == roomName || "/" + fullCookie.Value == roomName {
+      roomFull = true
+    }
+    // If the room full cookie exists, always delete it!
+    roomFullCookie := http.Cookie{Name: "roomFullCookie", Value: ""}
+    http.SetCookie(w, &roomFullCookie)
   }
 
   file, err := os.Open("build/build.css")
@@ -187,8 +241,16 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   c.Debugf("%s", loginLogoutLink)
   c.Debugf("%s", loginLogoutLink)
 
+  notViaSlash := true
+  viaSlashCookie, _ := r.Cookie("viaSlash")
+  if viaSlashCookie != nil {
+    if viaSlashCookie.Value == roomName || "/" + viaSlashCookie.Value == roomName {
+      notViaSlash = false
+    }
+  }
+
   // Data to be sent to the template:
-  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf), User: userName, LoginLogoutLink: loginLogoutLink}
+  data := RoomData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: token, Styles: string(stylesBuf), User: userName, LoginLogoutLink: loginLogoutLink, NotViaSlash: notViaSlash}
 
   // clientId cookie:
   cookie := http.Cookie{Name: "clientId", Value: clientId}
@@ -203,6 +265,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
 }
 
 func Join(c appengine.Context, msg Message) {
+
   item, err := memcache.Get(c, msg.Room)
   if err == memcache.ErrCacheMiss {
     c.Debugf("join, room not found. creating new room")
@@ -212,8 +275,8 @@ func Join(c appengine.Context, msg Message) {
     if err := memcache.Set(c,roomItem); err != nil {
       c.Criticalf("join, set error ",err)  
     }
-    // let the promote the client (= host)
-    SendJSON(c, Message{Room: msg.Room, To: msg.From, Type: "promoted", Data: msg.From})
+
+    SendPromotesDemotes(c, msg.Room, []string { msg.From })
 
   } else if err != nil {
     c.Criticalf("join, get error ",err)
@@ -239,6 +302,7 @@ func Join(c appengine.Context, msg Message) {
         }
       }
     }
+    SendPromotesDemotes(c, msg.Room, list)
   }
 }
 
@@ -272,11 +336,6 @@ func Leave(c appengine.Context, msg Message) {
       if err != nil {
         c.Criticalf("leave, error while deleting room",err)
       }
-
-    // only one left, promote that user
-    } else if len(list) == 1 {
-      host := list[0]
-      SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
     }
 
     // if room is empty, remove it
@@ -285,16 +344,28 @@ func Leave(c appengine.Context, msg Message) {
       if err != nil {
         c.Criticalf("leave, error while deleting room",err)
       }
-
-    // only one left, promote that user
-    } else if len(list) == 1 {
-      host := list[0]
-      SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
+    }
+    SendPromotesDemotes(c, msg.Room, list)
+  }
+}
+  
+func SendPromotesDemotes(c appengine.Context, room string, list []string) {
+  // First item in the array is always the host (the first connected). Rest are slaves (should be maximum one, normally).
+  promoted := false
+  for _, id := range list {
+    if (!promoted) {
+      promoted = true
+      c.Debugf("Promoting %s ",id)
+      SendJSON(c, Message{Room: room, To: id, Type: "promoted", Data: id})
+    } else {
+      c.Debugf("Demoting %s ",id)
+      SendJSON(c, Message{Room: room, To: id, Type: "demoted", Data: id})
     }
   }
 }
 
-func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bool) (sort.StringSlice, bool) {
+
+func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bool) ([]string, bool) {
   list := strings.Split(string(room.Value),"|")
 
   // check if the user was in the room already
@@ -307,13 +378,15 @@ func ListRoom(c appengine.Context, room *memcache.Item, client string, remove bo
     }
   }
 
-  list = Filter(list,func(str string) bool { return str != client })
-  if remove == false {
+  if found == false {
     list = append(list,client)
   }
-  sorted := sort.StringSlice(list)
-  sorted.Sort()
-  return sorted, found;
+
+  if remove == true {
+    list = Filter(list,func(str string) bool { return str != client })
+  }
+
+  return list, found;
 }
 
 func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
@@ -324,7 +397,7 @@ func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
 }
 
 func Random(length int) string {
-  printables := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"
+  printables := "ABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"
   result := ""
   for i := 0; i < length; i++ {
     pos := rand.Intn(len(printables) - 1)
@@ -360,7 +433,7 @@ func ParseFrom(s string) (string, string) {
 
 func SendJSON(c appengine.Context, msg Message) {
   c.Debugf("SendJSON %+v",msg)
-  if err := channel.SendJSON(c, msg.To+"@"+msg.Room, msg); err != nil {
+  if err := channel.SendJSON(c, ChannelName(c, msg.To, msg.Room, false), msg); err != nil {
     c.Criticalf("send json error ",err)
   }
 }

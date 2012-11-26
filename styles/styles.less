@@ -24,10 +24,20 @@
  * Single player mode is default
  */
 
-.single {
+.singleplayer {
 }
-.multi {
+.multiplayer {
   display: none;
+}
+
+/*
+ * Slave is default (which is a bit stupid)
+ */
+
+.host {
+ display: none;
+}
+.slave {
 }
 
 /*
@@ -35,17 +45,17 @@
  */
 
 button, a.button {
-  font-family: 'eboyregalpha';
-  font-size: 24px;
-  line-height: 24px;
+  cursor: pointer;
+  font-family: 'Varela', sans-serif;
+  font-size: 14px;
+  line-height: 14px;
   width: auto;
-  background: #e2e2c5;
   border-top: 5px solid #f9f9da;
   border-left: 5px solid #f9f9da;
   border-right: 5px solid #a7a793;
   border-bottom: 5px solid #a7a793;
   color: #449744;
-  padding: 1px 45px 6px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
+  padding: 8px 45px 8px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
   text-transform: uppercase;
   text-decoration: none;
   &.green {
@@ -61,25 +71,36 @@ button, a.button {
     font-family: 'Varela', sans-serif;
     font-size: 12px;
     line-height: 12px;
+    background: none;
 
     color: #e83028;
     border: 1px solid #e83028;
-    padding: 2px 3px 2px 5px;
+    padding: 5px 12px 6px 12px;
     margin: 0px 4px 0px 3px;
     text-decoration: none;
+
+    &.green {
+      background: none;
+      color: #4daf4d;
+      border: 1px solid #4daf4d;
+    }
+
   }
 
 }
 button:hover, a.button:hover {
-  background: #c2c2a5;
   &.green {
     background: #40a040;
   }
   &.alternative {
     background: #e83028;
     color: #faf9db;
+    &.green {
+      background: #4daf4d;
+    }
+  }
 }
-}
+
 
 /*
  * DIALOGS
@@ -97,6 +118,10 @@ button:hover, a.button:hover {
          -moz-perspective: 800px;
            -o-perspective: 800px;
               perspective: 800px;
+  &.top {
+    bottom: auto;
+    top: 0;
+  }
 }
 .state .dialog .content {
       width: 100%;
@@ -129,6 +154,18 @@ button:hover, a.button:hover {
       -webkit-filter:brightness(-0.5);
 }
 
+.state.inactive .dialog.top .content {
+
+      -webkit-transform-origin: center center;
+
+      -webkit-transform: rotateX( -85deg ) translateZ(-400px) translateY(200px);
+         -moz-transform: rotateX( -65deg );
+           -o-transform: rotateX( -65deg );
+              transform: rotateX( -65deg );
+
+      -webkit-filter:brightness(-0.5);
+}
+
 .dialog {
 
   text-align: center;
@@ -156,6 +193,75 @@ button:hover, a.button:hover {
 
 
 /*
+ * HEAD BAR
+ */
+
+body.Pause, body.MainMenu, body.WebcamActivation, body.PaddleSetup, body.OpponentLeft {
+  #headBar {
+    top: -40px;
+  }
+}
+
+#headBar {
+
+  top: -40px;
+  -webkit-transition: top 0.5s;
+      -moz-transition: -moz-transform 0.5s;
+        -o-transition: -o-transform 0.5s;
+          transition: transform 0.5s;
+  visibility: visible;
+  &.active {
+    top: 0px;
+  }
+
+  z-index: 50000000;
+  background: #faf9db;
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  text-align: right;
+
+  .headBarContent {
+    display: none;
+    margin: 13px 0px 0px 0px;
+    text-align: center;
+    color: #e83028;
+  }
+
+  .userName {
+    color: #e83028;
+    margin: 0px 19px 0px 0px;
+  }
+
+  .shareLink {
+    .shareUrl {
+      color: #4daf4d;
+    }
+  }
+
+  .friendArrived, .opponentPaddle {
+    margin-top: 5px;
+    span {
+      font-weight: bold;
+      margin-right: 12px;
+    }
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  .opponentReady {
+    a {
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
+      
+}
+
+
+
+/*
  * STRUCTURE
  */
 
@@ -175,37 +281,25 @@ body {
     width: 100%;
     height: 100%;
 
-    #headBar {
-
-      top: -40px;
-      -webkit-transition: top 0.5s;
-         -moz-transition: -moz-transform 0.5s;
-           -o-transition: -o-transform 0.5s;
-              transition: transform 0.5s;
-      visibility: visible;
-      &.active {
-        top: 0px;
-      }
-
-      z-index: 50000000;
-      background: #faf9db;
-      width: 100%;
-      height: 40px;
-      position: absolute;
-      text-align: right;
-
-      .userName {
-        color: #e83028;
-        margin: 0px 19px 0px 0px;
-      }
-
-    }
-
     #content {
 
-       /*
-        * MAIN MENU:
-        */
+      /*
+       * LOADING
+       */
+
+      .state.Loading {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        position: absolute;
+        z-index: 100000000;
+        display: block;
+        visibility: visible;
+      }
+
+      /*
+       * MAIN MENU:
+       */
 
       #chromeTechLink {
         min-height: 44px;
@@ -288,18 +382,18 @@ body {
         p {
           margin: 0;
           padding: 0;
+          line-height: 145%;
         }
         
         .buttonWrapper {
           display: block;
           width: 100%;
-          height: 100%;
           position: absolute;
+          bottom: 92px;
+          text-align: center;
         }
 
         button {
-          bottom: 92px;
-          position: absolute;
         }
 
       }
@@ -327,6 +421,9 @@ body {
       #paddleSelection {
         button {
           margin: 10px 0px 0px 0px;
+        }
+        .dialog {
+          height: 270px;
         }
       }
 
@@ -357,6 +454,113 @@ body {
         font-size: 150px;
         color: #00ff00;
         z-index:50000;
+      }
+
+      /*
+       * GAME STUFF
+       */
+
+      #gameScores {
+        color: #f9f9da;
+        position: absolute;
+        z-index: 90000;
+        top: 100px;
+        left: 70px;
+        img {
+          margin-bottom: 6px;
+        }
+        &.inactive {
+          display: none;
+        }
+        .scores {
+          font-family: 'eboyregalpha';
+          font-size: 60px;
+          line-height: 75%;
+        }
+      }
+
+      /*
+       * PAUSED
+       */
+
+      .state.Pause {
+
+        .dialog {
+          height: 266px;
+        }
+        h2 {
+          padding-top: 40px;
+          padding-bottom: 20px;
+        }
+        p {
+          padding-bottom: 25px;
+        }
+      }
+
+      /*
+       * GAME OVER
+       */
+
+      #bautaGameOver {
+        font-size: 200px;
+        text-align: center;
+        color: #fdeb3e;
+        position: absolute;
+        width: 100%;
+        top: 200px;
+        font-family: 'eboyregalpha';
+        z-index: 500;
+      }
+
+      #gameOverDialog {
+
+        text-align: center;
+
+        .dialog {
+          height: 266px;
+        }
+        h2 {
+          font-family: 'Varela', sans-serif;
+          font-size: 14px;
+          padding-top: 35px;
+        }
+        table {
+          margin: 0 auto 0 auto;
+          padding-bottom: 20px;
+          tr {
+            &.records {
+              td {
+                color: #4daf4d;
+                width: 170px;
+              }
+            }
+            td {
+              color: #e83028;
+            }
+          }
+        }
+        p {
+          padding-bottom: 25px;
+        }
+      }
+
+      /*
+       * YOUR FRIEND LEFT THE GAME
+       */
+
+      .state.OpponentLeft .dialog {
+        height: 266px;
+        h2 {
+          padding-bottom: 20px;
+        }
+        p {
+          line-height: 150%;
+          span {
+            color: #4daf4d;
+            display: block;
+          }
+          padding-bottom: 25px;
+        }
       }
 
       /*
