@@ -7,7 +7,17 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/build/build-less.css" />
   </head>
   <body>
+     
 
+    <div id="settingsGUIContainer">
+      <div id="uiTopContent">
+          <!--<div id="monitorFinalBlobs"></div>-->
+          <div id="monitorFinalContainer" class="ui_video"></div>
+          <div class="videoLabel">Motion tracking</div>
+      </div>
+      <video id="videoInput"></video>
+    </div>
+    
     <div id="wrapper">
 
       <div id="headBar" class="">
@@ -194,18 +204,6 @@
           Player 1 - Player 2<br />
           <span class="score">Level2</span><br />
           <span class="score">2-1</span>
-        </div>
-
-        <div id="settingsGUIContainer">
-          <div id="monitorFinalBlobs"></div>
-          <div id="monitorFinalContainer"></div>
-        </div>
-        <div id="colorSelectContainer">
-          <div id="colorSelectArea">
-            <div id="colorSelectCenter"></div>
-          </div>
-          <div id="marker"></div>
-          <video id="videoInput"></video>
         </div>
 
         <div id="game">

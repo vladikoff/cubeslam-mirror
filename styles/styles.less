@@ -780,7 +780,25 @@ body {
 /* FOR DEBUGGING: */
 
 #settingsGUIContainer {
-  display: none;
+  display: block;
+  z-index:10000;
+}
+
+.ui_video {
+  height:121px !important;
+}
+
+.closed .ui_video {
+  height: 0px !important;
+}
+
+.videoLabel {
+  width:300px;
+  text-align: center;
+  font-family: verdana;
+  font-size:11px;
+  color: #999999;
+  margin: 0px 0 5px 0;
 }
 
 .renderer-2d ul {
@@ -836,8 +854,8 @@ body {
 }
 
 #videoInput {
-  /*display:none;
-*/
+  display:none;
+
 
     left:5px;
     margin-top: 15px;
