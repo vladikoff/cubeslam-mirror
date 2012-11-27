@@ -24,15 +24,13 @@
         <div class="headBarContent opponentReady">
           Your friend is ready <a class="alternative button" id="letOpponentIn">Play Friend</a>
         </div>
-        <!-- LOGIN STUFF EXCLUDED FROM BETA 1
-        <div class="active state MainMenu">
+        <div class="headBarContent loginInfo">
           {{ if .User }}
-            <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
+            <span class="userName">{{.User}}</span> <a class="alternative button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
           {{ else }}
-            <a class="button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
+            <a class="alternative button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
           {{ end }}
         </div>
-        -->
       </div>
 
       <div id="content">
