@@ -7,7 +7,12 @@
   url('/fonts/eboy-regalpha-webfont.svg#webfont') format('svg');
 }
 
+/* After GameStart became potential parent state to PaddleSetup, it's layer might end up on top of PaddleSetup's. This is a fix for that. */
+body.PaddleSetup #wrapper #content .state.GameStart {
+  display: none;
+}
 
+      
 /*
  * All state-spcific elements should be hidden by default:
  */
