@@ -34,15 +34,13 @@
         <div class="headBarContent opponentReady">
           Your friend is ready <a class="alternative button" id="letOpponentIn">Play Friend</a>
         </div>
-        <!-- LOGIN STUFF EXCLUDED FROM BETA 1
-        <div class="active state MainMenu">
+        <div class="headBarContent loginInfo">
           {{ if .User }}
-            <span class="userName">{{.User}}</span> <a class="button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
+            <span class="userName">{{.User}}</span> <a class="alternative button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
           {{ else }}
-            <a class="button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
+            <a class="alternative button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
           {{ end }}
         </div>
-        -->
       </div>
 
       <div id="content">
@@ -225,7 +223,7 @@
               <ul>
                 <li><a href="#">Terms &amp; privacy</a></li>
                 <li><a href="#">EN / GE</a></li>
-                <li><a href="#" class="soundSwitch">Sound off</a></li>
+                <li><a href="#" class="soundSwitch on"><span class="off">Sound on</span><span class="on">Sound off</span></a></li>
               </ul>
            </div>
         </div>
@@ -264,6 +262,7 @@
     </script>
     <script src="/_ah/channel/jsapi"></script>
     <script src="javascript/libs/jquery-1.8.1.min.js"></script>
+    <script src="javascript/libs/jquery.cookie.js"></script>
     <script src='javascript/libs/three.js'></script>
     <script src='javascript/libs/Stats.js'></script>
     <script src='javascript/libs/Tween.js'></script>

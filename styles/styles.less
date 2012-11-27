@@ -197,23 +197,45 @@ button:hover, a.button:hover {
  * HEAD BAR
  */
 
-body.Pause, body.MainMenu, body.WebcamActivation, body.PaddleSetup, body.OpponentLeft {
+body.MainMenu {
   #headBar {
-    top: -40px;
+    &.loginInfo {
+      top: 0px;
+
+      /* Correct content at right time: */
+      &.loginInfo .headBarContent.loginInfo {
+        display: block;
+      }
+
+    }
+  }
+}
+body.Play {
+  #headBar {
+    &.shareLink, &.opponentPaddle, &.opponentReady, &.friendArrived {
+      top: 0px;
+      &.playingmulti { /* No headBar during the game when playing multi-player */
+        top: -40px;
+      }
+
+      /* Correct content at right time: */
+      &.shareLink .headBarContent.shareLink,
+      &.opponentPaddle .headBarContent.opponentPaddle,
+      &.opponentReady .headBarContent.opponentReady,
+      &.friendArrived .headBarContent.friendArrived {
+        display: block;
+      }
+
+    }
   }
 }
 
 #headBar {
-
   top: -40px;
   -webkit-transition: top 0.5s;
       -moz-transition: -moz-transform 0.5s;
         -o-transition: -o-transform 0.5s;
           transition: transform 0.5s;
-  visibility: visible;
-  &.active {
-    top: 0px;
-  }
 
   z-index: 50000000;
   background: #faf9db;
@@ -227,11 +249,6 @@ body.Pause, body.MainMenu, body.WebcamActivation, body.PaddleSetup, body.Opponen
     margin: 13px 0px 0px 0px;
     text-align: center;
     color: #e83028;
-  }
-
-  .userName {
-    color: #e83028;
-    margin: 0px 19px 0px 0px;
   }
 
   .shareLink {
@@ -255,6 +272,14 @@ body.Pause, body.MainMenu, body.WebcamActivation, body.PaddleSetup, body.Opponen
     a {
       display: inline-block;
       margin-left: 20px;
+    }
+  }
+
+  .loginInfo {
+    text-align: right;
+    button, a.button {
+      margin-right: 20px;
+      margin-left: 10px;
     }
   }
 
@@ -704,6 +729,17 @@ body {
               }
             }
           }
+
+          .soundSwitch {
+            .on, .off {
+              display: none;
+            }
+            &.on .on, &.off .off {
+              display: inline;
+            }
+          }
+          
+
 
         }
 
