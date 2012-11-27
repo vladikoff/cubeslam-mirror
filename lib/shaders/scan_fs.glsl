@@ -17,11 +17,8 @@ float rect( vec2 p, vec2 b )
 float f(float x, float y) {
 
     float ny = y - sin(mod(time,7.0));
-
-    float formula = 2.0;
-    float formula_effects = formula/sqrt(ny);
     
-    return formula_effects;
+    return 2.0/sqrt(abs(ny));
 }
 
 float frac(float x) { return mod(x,1.0); }
@@ -38,7 +35,7 @@ void main(void)
     else {
         vec2 pos = vUv;
         pos.x = (1.0-pos.x);
-      //  pos.y -= 0.3;
+        pos.y -= 0.05;
         vec3 color = texture2D(tCamera,pos).rgb; 
 
         float rect1 = rect(pos-vec2(0.5,0.2), vec2(0.2,0.10));
@@ -61,6 +58,7 @@ void main(void)
         vec3 scanLines = vec3(sqrt(a)/10.0,  sqrt(a)/8.0,  sqrt(a)/5.0);
 
         vec3 scanMix = mix(color+scanLines*scanLines,saturatedColor*lines,1.0-rect2);
+        //vec3 scanMix = mix(color+scanLines*scanLines,saturatedColor,1.0-rect2);
 
         gl_FragColor = vec4(scanMix,1.0);
     }
