@@ -28,6 +28,8 @@
     "lib/renderer-3d/materials.js",
     "lib/renderer-3d/player.js",
     "lib/renderer-3d/environment.js",
+    "lib/renderer-3d/effects.js",
+    "lib/renderer-3d/object-pool.js",
 
     "lib/renderer-3d/improved-noise.js",
 
@@ -38,7 +40,6 @@
     "lib/renderer-3d/post/ShaderPass.js",
     "lib/renderer-3d/post/shaders/VignetteShader.js",
     "lib/renderer-3d/post/shaders/CopyShader.js",
-    "lib/renderer-3d/post/shaders/SepiaShader.js",
     "lib/renderer-3d/post/shaders/FXAAShader.js",
     "lib/renderer-3d/post/shaders/FilmShader.js",
 
