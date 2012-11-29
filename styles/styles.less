@@ -787,8 +787,15 @@ body {
   z-index:60000000;
 }
 
+#statsDebug {
+  height:auto;
+  width:auto;
+  float:right;
+}
+
 .ui_video {
   height:121px !important;
+  float:left;
 }
 
 .closed .ui_video {
@@ -802,6 +809,7 @@ body {
   font-size:11px;
   color: #999999;
   margin: 0px 0 5px 0;
+  clear:both;
 }
 
 .renderer-2d ul {
@@ -858,8 +866,7 @@ body {
 
 #videoInput {
   display:none;
-
-
+   
     left:5px;
     margin-top: 15px;
     -webkit-transform: scale(-1,1);
@@ -869,9 +876,13 @@ body {
 
 }
 
+#uiTopContent {
+  position:relative;
+}
 
 #monitorFinalBlobs {
   position:absolute;
+  z-index:3;
 }
 
 
