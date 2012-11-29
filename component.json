@@ -27,6 +27,7 @@
     "lib/sim/collisions.js",
     "lib/support/diff.js",
     "lib/support/inspect.js",
+    "lib/support/draw.js",
     "lib/game.js",
     "lib/inputs.js",
     "lib/renderer-debug.js",
