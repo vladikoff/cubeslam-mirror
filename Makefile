@@ -7,7 +7,7 @@ SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 
-build: build-shaders build-geometry build-styles build-component
+build: build-shaders build-geometry build-component build-styles
 	@:
 
 build-min: build build/build.min.js
