@@ -426,7 +426,20 @@ func ParseFrom(s string) (string, string) {
 
 func SendJSON(c appengine.Context, msg Message) {
   c.Debugf("SendJSON %+v",msg)
-  if err := channel.SendJSON(c, ChannelName(c, msg.To, msg.Room, false), msg); err != nil {
-    c.Criticalf("send json error ",err)
+
+  item, _ := memcache.Get(c, msg.Room)
+  list := strings.Split(string(item.Value),"|")
+  if (msg.To == "") {
+    for _,id := range list {
+      if (msg.From != id) {
+        if err := channel.SendJSON(c, ChannelName(c, id, msg.Room, false), msg); err != nil {
+          c.Criticalf("send json error ",err)
+        }
+      }
+    }
+  } else {
+    if err := channel.SendJSON(c, ChannelName(c, msg.To, msg.Room, false), msg); err != nil {
+      c.Criticalf("send json error ",err)
+    }
   }
 }
