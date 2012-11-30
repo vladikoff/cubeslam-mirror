@@ -3,12 +3,19 @@
   "dependencies": {
     "component/emitter": "*",
     "visionmedia/debug": "*",
-    "publicclass/request-animation-frame": "*"
+    "publicclass/request-animation-frame": "*",
+    "publicclass/geom": "*"
   },
   "scripts": [
     "index.js",
     "lib/settings.js",
     "lib/app.js",
+    "lib/geom-sim/actions.js",
+    "lib/geom-sim/body.js",
+    "lib/geom-sim/force.js",
+    "lib/geom-sim/index.js",
+    "lib/geom-sim/physics.js",
+    "lib/geom-sim/shapes.js",
     "lib/sim/force.js",
     "lib/sim/point.js",
     "lib/sim/point-mass.js",
@@ -20,6 +27,7 @@
     "lib/sim/collisions.js",
     "lib/support/diff.js",
     "lib/support/inspect.js",
+    "lib/support/draw.js",
     "lib/game.js",
     "lib/inputs.js",
     "lib/renderer-debug.js",
@@ -30,9 +38,7 @@
     "lib/renderer-3d/environment.js",
     "lib/renderer-3d/effects.js",
     "lib/renderer-3d/object-pool.js",
-
     "lib/renderer-3d/improved-noise.js",
-
     "lib/renderer-3d/post/EffectComposer.js",
     "lib/renderer-3d/post/RenderPass.js",
     "lib/renderer-3d/post/SavePass.js",
@@ -42,7 +48,6 @@
     "lib/renderer-3d/post/shaders/CopyShader.js",
     "lib/renderer-3d/post/shaders/FXAAShader.js",
     "lib/renderer-3d/post/shaders/FilmShader.js",
-
     "lib/shaders/index.js",
     "lib/shaders/arena_fs.js",
     "lib/shaders/arenaside_fs.js",
