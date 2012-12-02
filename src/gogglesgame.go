@@ -161,6 +161,7 @@ func init() {
 }
 
 func JoinRoom(c appengine.Context, clientId string, roomName string) []string {
+  c.Debugf("JoinRoom")
   roomList := ListRoom(c, roomName)
   for _,id := range roomList {
     if id == clientId {
@@ -173,21 +174,27 @@ func JoinRoom(c appengine.Context, clientId string, roomName string) []string {
 }
 
 func LeaveRoom(c appengine.Context, clientId string, roomName string) []string {
+  c.Debugf("LeaveRoom")
   roomList := ListRoom(c, roomName)
-  roomList = Filter(roomList, func(str string) bool { return str != clientId })
+  roomList = Filter(roomList, func(str string) bool { return str != clientId && str != "" })
   StoreRoom(c, roomName, roomList)
   return roomList
 }
 
 func ListRoom(c appengine.Context, roomName string) []string {
+  c.Debugf("ListRoom")
   roomItem, err := memcache.Get(c, roomName)
   if err == memcache.ErrCacheMiss {
     return []string{}
   }
-  return strings.Split(string(roomItem.Value), "|");
+  c.Debugf("Stored room memcache is: ", roomItem.Value);
+  roomList := strings.Split(string(roomItem.Value), "|");
+  roomList = Filter(roomList, func(str string) bool { return str != "" })
+  return roomList
 }
 
 func StoreRoom(c appengine.Context, roomName string, roomList []string) {
+  c.Debugf("StoreRoom")
   roomItem := &memcache.Item{Key: roomName, Value: []byte(strings.Join(roomList, "|"))}
   if err := memcache.Set(c, roomItem); err != nil {
     c.Criticalf("memcache error ",err)
