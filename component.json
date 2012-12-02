@@ -45,8 +45,6 @@
     "lib/shaders/arenaside_fs.js",
     "lib/shaders/animal_fs.js",
     "lib/shaders/cpu_fs.js",
-    "lib/shaders/extraicon_fs.js",
-    "lib/shaders/extraicon_vs.js",
     "lib/shaders/scan_fs.js",
     "lib/shaders/shield_fs.js",
     "lib/shaders/camera_fs.js",
