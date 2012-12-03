@@ -5,12 +5,12 @@
     // Configuration:
     hostname = window.CHANNEL_HOST || window.location.host || 'localhost:8000',
     websocketServer = "ws://"+hostname+"/",
-  
+
     // For browser compatibility:
-    PeerConnection = window.PeerConnection 
-                  || window.RTCPeerConnection 
-                  || window.mozPeerConnection 
-                  || window.webkitRTCPeerConnection 
+    PeerConnection = window.PeerConnection
+                  || window.RTCPeerConnection
+                  || window.mozPeerConnection
+                  || window.webkitRTCPeerConnection
                   || window.webkitPeerConnection00;
 
   if (typeof(PeerConnection) === 'undefined') {
@@ -44,7 +44,7 @@
     this._webSocket.onclose = function() {
       this.readyState = "closed";
     }.bind(this);
-    
+
     this._webSocket.onopen = function() {
       this.readyState = "open";
       this._identify();
@@ -79,8 +79,8 @@
     }
 
     if (this._peerConnection._localDescription && this._peerConnection._remoteDescription) {
-      this.send('connect:' 
-        + description2id(this._peerConnection._localDescription) + '_' + this.label + ':' 
+      this.send('connect:'
+        + description2id(this._peerConnection._localDescription) + '_' + this.label + ':'
         + description2id(this._peerConnection._remoteDescription) + '_' + this.label);
     }
   };
@@ -114,14 +114,14 @@
     setLocalDescription = PeerConnection.prototype.setLocalDescription,
     setRemoteDescription = PeerConnection.prototype.setRemoteDescription;
 
-  PeerConnection.prototype.setLocalDescription = function(description) {
+  PeerConnection.prototype.setLocalDescription = function(description, successCallback, errorCallback) {
     this._localDescription = description;
     if (typeof(this._allDataChannels) != 'undefined') {
       for (var i in this._allDataChannels) {
         this._allDataChannels[i]._identify();
       }
     }
-    setLocalDescription.call(this, description);
+    setLocalDescription.apply(this, arguments);
   };
 
   PeerConnection.prototype.setRemoteDescription = function(description) {
@@ -131,7 +131,7 @@
         this._allDataChannels[i]._identify();
       }
     };
-    setRemoteDescription.call(this, description);
+    setRemoteDescription.apply(this, arguments);
   };
 
 }());
