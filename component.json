@@ -55,7 +55,6 @@
     "lib/geometry/moose.js",
     "lib/motion-tracker.js",
     "lib/glfx.js",
-    "lib/actions.js",
     "lib/extras.js",
     "lib/rtc.js",
     "lib/time-sync.js",
