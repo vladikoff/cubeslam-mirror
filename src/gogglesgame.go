@@ -185,7 +185,7 @@ func ChannelName(c appengine.Context, clientId string, roomName string, forceNew
 }
 
 func JoinRoom(c appengine.Context, clientId string, roomName string) []string {
-  c.Debugf("JoinRoom")
+  c.Debugf("JoinRoom(*, " + clientId + ", " + roomName + ")")
   roomList := ListRoom(c, roomName)
   for _,id := range roomList {
     if id == clientId {
