@@ -192,7 +192,7 @@ func ChannelName(c appengine.Context, clientId string, roomName string, forceNew
   } else {
     cnRand = string(cnItem.Value)
   }
-  c.Debugf("Channel name: ", clientId + "@" + roomName + "@" + cnRand)
+//  c.Debugf("Channel name: ", clientId + "@" + roomName + "@" + cnRand)
   return clientId + "@" + roomName + "@" + cnRand
 }
 
@@ -275,21 +275,24 @@ func Filter(s []string, fn func(string) bool) []string {
 }
 
 func SendJSON(c appengine.Context, msg Message) {
-  c.Debugf("SendJSON %+v",msg)
-
   item, _ := memcache.Get(c, msg.Room)
   list := strings.Split(string(item.Value),"|")
   if (msg.To == "") {
     for _,id := range list {
       if (msg.From != id) {
+        msg.To = id
         if err := channel.SendJSON(c, ChannelName(c, id, msg.Room, false), msg); err != nil {
           c.Criticalf("send json error ",err)
+        } else {
+          c.Debugf("SendJSON %+v",msg)
         }
       }
     }
   } else {
     if err := channel.SendJSON(c, ChannelName(c, msg.To, msg.Room, false), msg); err != nil {
       c.Criticalf("send json error ",err)
+    } else {
+      c.Debugf("SendJSON %+v",msg)
     }
   }
 }

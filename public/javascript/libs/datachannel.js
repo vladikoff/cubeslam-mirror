@@ -114,14 +114,14 @@
     setLocalDescription = PeerConnection.prototype.setLocalDescription,
     setRemoteDescription = PeerConnection.prototype.setRemoteDescription;
 
-  PeerConnection.prototype.setLocalDescription = function(description) {
+  PeerConnection.prototype.setLocalDescription = function(description, successCallback, errorCallback) {
     this._localDescription = description;
     if (typeof(this._allDataChannels) != 'undefined') {
       for (var i in this._allDataChannels) {
         this._allDataChannels[i]._identify();
       }
     }
-    setLocalDescription.call(this, description);
+    setRemoteDescription.apply(this, arguments);
   };
 
   PeerConnection.prototype.setRemoteDescription = function(description) {
@@ -131,7 +131,7 @@
         this._allDataChannels[i]._identify();
       }
     };
-    setRemoteDescription.call(this, description);
+    setRemoteDescription.apply(this, arguments);
   };
 
 }());
