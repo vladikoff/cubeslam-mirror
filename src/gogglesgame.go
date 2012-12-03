@@ -116,6 +116,8 @@ func init() {
         roomFullCookie := http.Cookie{Name: "roomFullCookie", Value: newRoom}
         http.SetCookie(w, &roomFullCookie)
 
+        LeaveRoom(c, roomName, clientId)
+
         http.Redirect(w, r, "/"+newRoom, 302);
         return
       }
