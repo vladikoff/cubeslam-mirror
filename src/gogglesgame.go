@@ -191,10 +191,13 @@ func JoinRoom(c appengine.Context, clientId string, roomName string) []string {
   roomList := ListRoom(c, roomName)
   for _,id := range roomList {
     if id == clientId {
+      c.Debugf("Already in list, did not join.");
       return roomList
     }
   }
+  c.Debugf("Before append ", roomList)
   roomList = append(roomList, clientId)
+  c.Debugf("Appended new client ", clientId, " into ", roomList)
   StoreRoom(c, roomName, roomList)
   return roomList
 }
