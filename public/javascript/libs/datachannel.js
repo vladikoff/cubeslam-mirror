@@ -5,12 +5,12 @@
     // Configuration:
     hostname = window.CHANNEL_HOST || window.location.host || 'localhost:8000',
     websocketServer = "ws://"+hostname+"/",
-  
+
     // For browser compatibility:
-    PeerConnection = window.PeerConnection 
-                  || window.RTCPeerConnection 
-                  || window.mozPeerConnection 
-                  || window.webkitRTCPeerConnection 
+    PeerConnection = window.PeerConnection
+                  || window.RTCPeerConnection
+                  || window.mozPeerConnection
+                  || window.webkitRTCPeerConnection
                   || window.webkitPeerConnection00;
 
   if (typeof(PeerConnection) === 'undefined') {
@@ -44,7 +44,7 @@
     this._webSocket.onclose = function() {
       this.readyState = "closed";
     }.bind(this);
-    
+
     this._webSocket.onopen = function() {
       this.readyState = "open";
       this._identify();
@@ -79,8 +79,8 @@
     }
 
     if (this._peerConnection._localDescription && this._peerConnection._remoteDescription) {
-      this.send('connect:' 
-        + description2id(this._peerConnection._localDescription) + '_' + this.label + ':' 
+      this.send('connect:'
+        + description2id(this._peerConnection._localDescription) + '_' + this.label + ':'
         + description2id(this._peerConnection._remoteDescription) + '_' + this.label);
     }
   };
