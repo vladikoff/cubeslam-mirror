@@ -93,7 +93,7 @@ func init() {
       http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
       return
     }
-    w.Write([]byte("{token: \"" + channelToken + "\"}"))
+    w.Write([]byte("{\"token\": \"" + channelToken + "\"}"))
   })
 
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
