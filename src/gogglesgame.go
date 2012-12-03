@@ -27,7 +27,6 @@ type TemplateData struct {
   RoomEmpty bool
   RoomFull bool
   NotViaSlash bool
-  ChannelToken string
   User string
   Participants string
   LoginLogoutLink string
@@ -84,9 +83,23 @@ func init() {
     w.Write([]byte("OK"))
   })
 
+  http.HandleFunc("/channeltoken", func (w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
+    w.Header().Set("Content-Type", "application/json; charset=utf-8")
+    roomName := r.FormValue("roomName")
+    clientId := r.FormValue("clientId")
+    channelToken, err := channel.Create(c, ChannelName(c, clientId, roomName, true))
+    if err != nil {
+      http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
+      return
+    }
+    w.Write([]byte("{\"token\": \"" + channelToken + "\"}"))
+  })
+
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
 
     c := appengine.NewContext(r)
+
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
     if r.URL.Path == "/" {
@@ -98,11 +111,7 @@ func init() {
 
       roomName := r.URL.Path
       clientId := ClientId(r)
-      channelToken, err := channel.Create(c, ChannelName(c, clientId, roomName, true))
-      if err != nil {
-        http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
-        return
-      }
+
       roomList := JoinRoom(c, clientId, roomName);
 
       roomEmpty := len(roomList) == 1;
@@ -154,7 +163,7 @@ func init() {
       }
 
       // Data to be sent to the template:
-      data := TemplateData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, ChannelToken: channelToken, User: userName, LoginLogoutLink: loginLogoutLink, NotViaSlash: notViaSlash, Participants: strings.Join(roomList, "|") }
+      data := TemplateData{Room:roomName, RoomEmpty: roomEmpty, RoomFull: roomFull, User: userName, LoginLogoutLink: loginLogoutLink, NotViaSlash: notViaSlash, Participants: strings.Join(roomList, "|") }
 
       // set the clientId cookie:
       cookie := http.Cookie{Name: "clientId", Value: clientId}
@@ -183,6 +192,7 @@ func ChannelName(c appengine.Context, clientId string, roomName string, forceNew
   } else {
     cnRand = string(cnItem.Value)
   }
+  c.Debugf("Channel name: ", clientId + "@" + roomName + "@" + cnRand)
   return clientId + "@" + roomName + "@" + cnRand
 }
 
