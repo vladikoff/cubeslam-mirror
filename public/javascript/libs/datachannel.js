@@ -121,7 +121,7 @@
         this._allDataChannels[i]._identify();
       }
     }
-    setRemoteDescription.apply(this, arguments);
+    setLocalDescription.apply(this, arguments);
   };
 
   PeerConnection.prototype.setRemoteDescription = function(description) {
