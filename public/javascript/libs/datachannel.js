@@ -98,6 +98,7 @@
   };
 
   PeerConnection.prototype.createDataChannel = function(label, dataChannelDict) {
+    console.log('createDataChannel',label,dataChannelDict)
     var channel = new DataChannel(this,label,dataChannelDict);
 
     if (typeof(this._allDataChannels) == 'undefined') {
