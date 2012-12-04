@@ -94,7 +94,7 @@
     if( this.readyState == 'open' )
       this._webSocket.send(data);
     else if( this.reliable ) // queue messages when "reliable"
-      this._queued.push(data);
+      this._queue.push(data);
   };
 
   PeerConnection.prototype.createDataChannel = function(label, dataChannelDict) {
