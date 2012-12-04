@@ -74,22 +74,22 @@
         this.onerror(msg);
       }
     }.bind(this);
+
+    if( typeof this._peerConnection.ondatachannel == 'function' ){
+      var evt = document.createEvent('Event')
+          evt.initEvent('datachannel', true, true)
+          evt.channel = this;
+      this._peerConnection.ondatachannel(evt)
+    }
   };
 
   DataChannel.prototype._identify = function() {
     if (this._peerConnection === null) return false;
 
-    function description2id(description) {
-      var result = description.sdp.replace(/(\r\n|\n|\r)/gm, '\n')
-      var re = new RegExp("o=.+");
-      result = re.exec(result)
-      return result[0]
-    }
-
     if (this._peerConnection._localDescription && this._peerConnection._remoteDescription) {
-      this.send('connect:'
-        + description2id(this._peerConnection._localDescription) + '_' + this.label + ':'
-        + description2id(this._peerConnection._remoteDescription) + '_' + this.label);
+      this._localId = description2id(this._peerConnection._localDescription) + '_' + this.label
+      this._remoteId = description2id(this._peerConnection._remoteDescription) + '_' + this.label
+      this.send('connect:' + this._localId + ':' + this._remoteId );
     }
   };
 
@@ -116,6 +116,13 @@
     this._allDataChannels.push(channel);
 
     return channel;
+  }
+
+  function description2id(description) {
+    var result = description.sdp.replace(/(\r\n|\n|\r)/gm, '\n')
+    var re = new RegExp("o=.+");
+    result = re.exec(result)
+    return result[0]
   }
 
   // Overwrite PeerConnection's description setters, to get ID:s for the websocket connections.

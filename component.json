@@ -19,6 +19,7 @@
     "lib/support/diff.js",
     "lib/support/inspect.js",
     "lib/support/draw.js",
+    "lib/support/info.js",
     "lib/game.js",
     "lib/inputs.js",
     "lib/history.js",

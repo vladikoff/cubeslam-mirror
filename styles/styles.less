@@ -915,3 +915,42 @@ body {
 }
 
 
+#debug-info {
+  position: absolute;
+  z-index: 100000;
+  right: 0;
+  top: 80px;
+  height: 50%;
+  width: 150px;
+  background: rgba(0,0,0,0.2);
+  padding: 10px;
+  margin-right: -150px;
+  list-style: none;
+  overflow-y: scroll;
+
+  /*
+  <li class='data-channel'><span class='label'>{label}</span> {id1} -> {id2}</li>
+  <li class='state-history {source}'>{state}</li>
+  <li class='host-status {status}'>{status}</li>
+  */
+  time {
+    text-indent: -10000px;
+    width: 0;
+    position: absolute;
+    left: -1000px;
+  }
+  .host-status { background: grey; }
+  .host-status.host { color: blue; }
+  .host-status.guest { color: red; }
+  .data-channel { color: green; background: lightgrey;}
+  .state-history { color: white; }
+  .state-history.local { background: darkblue;}
+  .state-history.local-invite { background: lightblue;}
+  .state-history.remote { background: darkred;}
+
+  &:hover {
+    margin-right: 0;
+  }
+}
+
+
