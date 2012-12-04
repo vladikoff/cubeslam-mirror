@@ -949,7 +949,7 @@ body {
   <li class='state-history {source}'>{state}</li>
   <li class='host-status {status}'>{status}</li>
   */
-  time {
+  time, .debug-type {
     text-indent: -10000px;
     width: 0;
     position: absolute;
@@ -963,6 +963,12 @@ body {
   .state-history.local { background: darkblue;}
   .state-history.local-invite { background: lightblue;}
   .state-history.remote { background: darkred;}
+  li {
+    margin-bottom: 1px;
+    width: 150px;
+    overflow: scroll;
+    white-space: pre;
+  }
 
   &:hover {
     margin-right: 0;
