@@ -35,11 +35,11 @@
   function DataChannel(peerConnection,label,dataChannelDict) {
     this.readyState = "connecting";
     this.label = label;
-    this.reliable = dataChannelDict && dataChannelDict.reliable !== false;
-    this._peerConnection = peerConnection;
-    this._queue = [];
+    this.reliable = !dataChannelDict || dataChannelDict.reliable !== false;
 
+    this._peerConnection = peerConnection;
     this._webSocket = new WebSocket(websocketServer);
+    this._queue = [];
 
     this._webSocket.onclose = function() {
       this.readyState = "closed";
