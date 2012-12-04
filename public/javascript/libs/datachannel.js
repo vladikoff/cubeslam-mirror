@@ -35,7 +35,7 @@
   function DataChannel(peerConnection,label,dataChannelDict) {
     this.readyState = "connecting";
     this.label = label;
-    this.reliable = dataChannelDict && dataChannelDict.reliable !== false;
+    this.reliable = (!dataChannelDict || !dataChannelDict.reliable);
     this._peerConnection = peerConnection;
     this._queue = [];
 
@@ -50,8 +50,10 @@
       this._identify();
 
       // empty the queue
-      while(this._queue.length)
-        this.send(this._queue.shift());
+      while(this._queue.length) {
+        data = this._queue.shift();
+        this.send(data);
+      }
     }.bind(this);
 
     this._webSocket.onmessage = function(msg) {
@@ -91,10 +93,11 @@
   };
 
   DataChannel.prototype.send = function(data) {
-    if( this.readyState == 'open' )
+    if( this.readyState == 'open' ) {
       this._webSocket.send(data);
-    else if( this.reliable ) // queue messages when "reliable"
-      this._queued.push(data);
+    } else if( this.reliable ) { // queue messages when "reliable"
+      this._queue.push(data);
+    }
   };
 
   PeerConnection.prototype.createDataChannel = function(label, dataChannelDict) {
