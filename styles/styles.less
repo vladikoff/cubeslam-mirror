@@ -215,7 +215,7 @@ body.MainMenu {
     }
   }
 }
-body.Play {
+body.Play, body.Pause {
   #headBar {
     &.shareLink, &.opponentPaddle, &.opponentReady, &.friendArrived {
       top: 0px;
@@ -434,10 +434,13 @@ body {
        * WEBCAM INFORMATION
        */
 
-      .state.WebcamInformation .dialog {
-        height: 260px;
-        button {
-          margin: 10px 0px 20px 0px;
+      .state.WebcamInformation {
+        .dialog {
+          z-index: 1000;
+          height: 260px;
+          button {
+            margin: 10px 0px 20px 0px;
+          }
         }
       }
 
@@ -651,6 +654,7 @@ body {
         top: 200px;
         font-family: 'eboyregalpha';
         z-index: 500;
+        line-height: 200px;
       }
 
       #gameOverDialog {
@@ -946,7 +950,7 @@ body {
   <li class='state-history {source}'>{state}</li>
   <li class='host-status {status}'>{status}</li>
   */
-  time {
+  time, .debug-type {
     text-indent: -10000px;
     width: 0;
     position: absolute;
@@ -960,6 +964,12 @@ body {
   .state-history.local { background: darkblue;}
   .state-history.local-invite { background: lightblue;}
   .state-history.remote { background: darkred;}
+  li {
+    margin-bottom: 1px;
+    width: 150px;
+    overflow: scroll;
+    white-space: pre;
+  }
 
   &:hover {
     margin-right: 0;
