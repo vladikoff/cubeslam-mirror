@@ -38,7 +38,6 @@
     this.reliable = (!dataChannelDict || !dataChannelDict.reliable);
     this._peerConnection = peerConnection;
     this._queue = [];
-
     this._webSocket = new WebSocket(websocketServer);
 
     this._webSocket.onclose = function() {
