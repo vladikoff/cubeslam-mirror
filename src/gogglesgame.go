@@ -84,7 +84,7 @@ func init() {
     w.Write([]byte("OK"))
   })
 
-  http.HandleFunc("/channeltoken", func (w http.ResponseWriter, r *http.Request) {
+  http.HandleFunc("/channeltoken/", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     w.Header().Set("Content-Type", "application/json; charset=utf-8")
     roomName := r.FormValue("roomName")
