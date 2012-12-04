@@ -38,7 +38,8 @@ func init() {
 
   http.HandleFunc("/_ah/channel/connected/", func (w http.ResponseWriter, r *http.Request){
     c := appengine.NewContext(r)
-    c.Debugf("Connected to Channel API")
+    _ = r.FormValue("hej")
+    c.Debugf("Connected to Channel API: %+v", r)
   })
 
   http.HandleFunc("/_ah/channel/disconnected/", func (w http.ResponseWriter, r *http.Request){
@@ -88,7 +89,7 @@ func init() {
     w.Header().Set("Content-Type", "application/json; charset=utf-8")
     roomName := r.FormValue("roomName")
     clientId := r.FormValue("clientId")
-    channelToken, err := channel.Create(c, ChannelName(c, clientId, roomName, true))
+    channelToken, err := channel.Create(c, ChannelName(c, clientId, roomName, false))
     if err != nil {
       http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
       return
@@ -111,6 +112,10 @@ func init() {
 
       roomName := r.URL.Path
       clientId := ClientId(r)
+
+      // Set this here, as soon as possible, to avoid later race conditions between /channeltoken and /_ah/channel/disconnected
+      // Important @ reloads.
+      _ = ChannelName(c, clientId, roomName, true)
 
       roomList := JoinRoom(c, clientId, roomName);
 
@@ -186,13 +191,14 @@ func ChannelName(c appengine.Context, clientId string, roomName string, forceNew
   if forceNew || err == memcache.ErrCacheMiss {
     cnRand = Random(12)
     cnItem := &memcache.Item{Key: "cn-" + clientId + "@" + roomName, Value: []byte(cnRand)}
+    c.Debugf("Set memcache %+v", cnItem, string(cnItem.Value))
     if err := memcache.Set(c, cnItem); err != nil {
-      c.Criticalf("Failed when storing Channel Name")
+      c.Criticalf("Failed when storing Channel random name value")
     }
   } else {
     cnRand = string(cnItem.Value)
   }
-//  c.Debugf("Channel name: ", clientId + "@" + roomName + "@" + cnRand)
+  c.Debugf("Channel name: ", clientId + "@" + roomName + "@" + cnRand)
   return clientId + "@" + roomName + "@" + cnRand
 }
 
@@ -216,7 +222,12 @@ func LeaveRoom(c appengine.Context, clientId string, roomName string) []string {
   c.Debugf("LeaveRoom")
   roomList := ListRoom(c, roomName)
   roomList = Filter(roomList, func(str string) bool { return str != clientId && str != "" })
-  StoreRoom(c, roomName, roomList)
+  if len(roomList) == 0 {
+    memcache.Delete(c, roomName)
+    c.Debugf("Deleted memcache entry")
+  } else {
+    StoreRoom(c, roomName, roomList)
+  }
   return roomList
 }
 
@@ -226,6 +237,7 @@ func ListRoom(c appengine.Context, roomName string) []string {
   if err == memcache.ErrCacheMiss {
     return []string{}
   }
+  c.Debugf("memcache.Get %+v", roomItem, string(roomItem.Value))
   c.Debugf("Stored room memcache is: ", string(roomItem.Value));
   roomList := strings.Split(string(roomItem.Value), "|");
   roomList = Filter(roomList, func(str string) bool { return str != "" })
@@ -235,6 +247,7 @@ func ListRoom(c appengine.Context, roomName string) []string {
 func StoreRoom(c appengine.Context, roomName string, roomList []string) {
   c.Debugf("StoreRoom")
   roomItem := &memcache.Item{Key: roomName, Value: []byte(strings.Join(roomList, "|"))}
+  c.Debugf("Set memcache %+v", roomItem, string(roomItem.Value))
   if err := memcache.Set(c, roomItem); err != nil {
     c.Criticalf("memcache error ",err)
   }
@@ -275,7 +288,12 @@ func Filter(s []string, fn func(string) bool) []string {
 }
 
 func SendJSON(c appengine.Context, msg Message) {
-  item, _ := memcache.Get(c, msg.Room)
+  item, err := memcache.Get(c, msg.Room)
+  if err != nil {
+    c.Criticalf("memcache error in SendJSON func ", err, msg.Room)
+    return
+  }
+  c.Debugf("memcache.Get %+v", item, string(item.Value))
   list := strings.Split(string(item.Value),"|")
   if (msg.To == "") {
     for _,id := range list {
