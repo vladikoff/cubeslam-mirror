@@ -220,7 +220,7 @@ body.Play {
     &.shareLink, &.opponentPaddle, &.opponentReady, &.friendArrived {
       top: 0px;
       &.playingmulti { /* No headBar during the game when playing multi-player */
-        top: -40px;
+        /*top: -40px;*/
       }
 
       /* Correct content at right time: */
@@ -396,12 +396,12 @@ body {
 
         #title {
 
-          padding: 105px 0px 30px 0px;
+          padding: 100px 0px 30px 0px;
 
           h1 {
             padding: 0px 0px 0px 0px;
-            width: 690px;
-            height: 66px;
+            width: 681px;
+            height: 107px;
             background-image: url('/images/logo.png');
             margin: 0px auto 0px auto;
             span {
@@ -534,9 +534,9 @@ body {
         left: 0;
         z-index: 500;
         -webkit-perspective: 2000px;
-          -moz-perspective: 800px;
-            -o-perspective: 800px;
-                perspective: 800px;
+          -moz-perspective: 2000px;
+            -o-perspective: 2000px;
+                perspective: 2000px;
       }
       #gameInstructions {
         -webkit-filter:brightness(0);
@@ -591,7 +591,7 @@ body {
       #gameScores {
         color: #f9f9da;
         position: absolute;
-        z-index: 90000;
+        z-index: 499;
         top: 100px;
         left: 70px;
         img {
@@ -606,6 +606,19 @@ body {
           line-height: 75%;
         }
       }
+
+      #level {
+        &.inactive {
+          display: none;
+        }
+      }
+
+      #scoresRunning {
+        &.inactive {
+          display: none;
+        }
+      }
+
 
       /*
        * PAUSED
