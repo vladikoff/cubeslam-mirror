@@ -1,4 +1,4 @@
-application: einarsgame
+application: gogglesgame1
 version: 1
 runtime: go
 api_version: go1
@@ -43,3 +43,14 @@ handlers:
 inbound_services:
 - channel_presence
 
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?node_modules/.*$
