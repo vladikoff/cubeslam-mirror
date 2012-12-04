@@ -43,11 +43,18 @@
 
     this._webSocket.onclose = function() {
       this.readyState = "closed";
+      if (typeof this.onclose == 'function'){
+        this.onclose()
+      }
     }.bind(this);
 
     this._webSocket.onopen = function() {
       this.readyState = "open";
       this._identify();
+
+      if (typeof this.onopen == 'function'){
+        this.onopen()
+      }
 
       // empty the queue
       while(this._queue.length)
