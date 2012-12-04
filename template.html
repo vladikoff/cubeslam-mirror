@@ -224,12 +224,15 @@
 
         <!-- GAME STUFF -->
 
-        <div id="gameScores" class="inactive state Single">
+        <div id="gameScores" class="inactive state Play">
           <img src="/images/minipong.png" /><br />
           Google Chrong<br />
           Player 1 - Player 2<br />
-          <span class="score">Level2</span><br />
-          <span class="score">2-1</span>
+          <span class="score inactive" id="level">LV.1</span><br />
+          <div id="scoresRunning">
+            <span class="score" id="scoreRally">0</span><br />
+            <span class="score" id="scoreSet">0-0</span>
+          </div>
         </div>
 
         <div id="game">
