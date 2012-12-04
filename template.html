@@ -146,7 +146,7 @@
         <!-- OPPONENT LEFT DIALOG -->
 
         <div class="inactive state OpponentLeft">
-          <div class="dialog top">
+          <div class="dialog">
             <div class="content">
               <h2>Your friend left the game</h2>
               <p>
@@ -162,7 +162,7 @@
         <!-- PAUSE DIALOG -->
 
         <div class="inactive state Pause">
-          <div class="dialog top">
+          <div class="dialog">
             <div class="content">
               <h2>Paused</h2>
               <p>
@@ -224,12 +224,15 @@
 
         <!-- GAME STUFF -->
 
-        <div id="gameScores" class="inactive state Single">
+        <div id="gameScores" class="inactive state Play">
           <img src="/images/minipong.png" /><br />
           Google Chrong<br />
           Player 1 - Player 2<br />
-          <span class="score">Level2</span><br />
-          <span class="score">2-1</span>
+          <span class="score inactive" id="level">LV.1</span><br />
+          <div id="scoresRunning">
+            <span class="score" id="scoreRally">0</span><br />
+            <span class="score" id="scorePoints">0-0</span>
+          </div>
         </div>
 
         <div id="game">
@@ -255,17 +258,7 @@
         </div>
 
         <!-- DEBUG YADA YADA -->
-
-        <div class='info'>
-          <ul>
-            <li>Waiting for player...<span id="hos" class='hidden'>as host</span></li>
-            <li id='ful' class='hidden'>Room full</li>
-            <li id='con' class='hidden'>Player connected <span id='vid' class='hidden'>with video</span></li>
-            <li id='syn' class='hidden'>Synchronizing <span id='sync'>...</span></li>
-            <li id='sta' class='hidden'>Starting in <span id='countdown'>5</span></li>
-            <li id='go' class='hidden'>Go!</li>
-          </ul>
-        </div>
+        <ul id="debug-info"></ul>
 
       </div>
     </div>
