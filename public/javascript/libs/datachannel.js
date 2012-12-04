@@ -55,6 +55,13 @@
         this.onopen()
       }
 
+      if( typeof this._peerConnection.ondatachannel == 'function' ){
+        var evt = document.createEvent('Event')
+            evt.initEvent('datachannel', true, true)
+            evt.channel = this;
+        this._peerConnection.ondatachannel(evt)
+      }
+
       // empty the queue
       while(this._queue.length) {
         data = this._queue.shift();
@@ -74,13 +81,6 @@
         this.onerror(msg);
       }
     }.bind(this);
-
-    if( typeof this._peerConnection.ondatachannel == 'function' ){
-      var evt = document.createEvent('Event')
-          evt.initEvent('datachannel', true, true)
-          evt.channel = this;
-      this._peerConnection.ondatachannel(evt)
-    }
   };
 
   DataChannel.prototype._identify = function() {
