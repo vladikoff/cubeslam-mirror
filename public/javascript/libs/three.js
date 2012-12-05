@@ -19321,7 +19321,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 		}
 
 		if ( scene.overrideMaterial ) {
-
+			
 			var material = scene.overrideMaterial;
 
 			this.setBlending( material.blending, material.blendEquation, material.blendSrc, material.blendDst );
