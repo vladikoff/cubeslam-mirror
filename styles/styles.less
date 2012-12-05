@@ -943,7 +943,7 @@ body {
   padding: 10px;
   margin-right: -150px;
   list-style: none;
-  overflow-y: scroll;
+  overflow: scroll;
 
   /*
   <li class='data-channel'><span class='label'>{label}</span> {id1} -> {id2}</li>
@@ -959,15 +959,13 @@ body {
   .host-status { background: grey; }
   .host-status.host { color: blue; }
   .host-status.guest { color: red; }
-  .data-channel { color: green; background: lightgrey;}
+  .data-channel { color: green; background: lightgrey; }
   .state-history { color: white; }
-  .state-history.local { background: darkblue;}
-  .state-history.local-invite { background: lightblue;}
-  .state-history.remote { background: darkred;}
+  .state-history.local { background: darkblue; }
+  .state-history.local-invite { background: lightblue; }
+  .state-history.remote { background: darkred; }
   li {
     margin-bottom: 1px;
-    width: 150px;
-    overflow: scroll;
     white-space: pre;
   }
 
