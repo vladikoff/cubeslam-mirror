@@ -231,7 +231,6 @@ func Leave(c appengine.Context, msg Message) {
   } else {
     c.Debugf("leave, found room %s: %s",item.Key,string(item.Value))
     list, found := ListRoom(c, string(item.Value), msg.From, true);
-    UpdateRoom(c, item, list);
 
     // then let the already connected users know
     if( found ){
@@ -253,21 +252,13 @@ func Leave(c appengine.Context, msg Message) {
         c.Criticalf("leave, error while deleting room",err)
       }
 
-    // only one left, promote that user
-    } else if len(list) == 1 {
-      host := list[0]
-      SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
+    // not empty, save the new list
+    } else {
+      UpdateRoom(c, item, list);
     }
 
-    // if room is empty, remove it
-    if len(list) == 0 {
-      err := memcache.Delete(c, msg.Room)
-      if err != nil {
-        c.Criticalf("leave, error while deleting room",err)
-      }
-
     // only one left, promote that user
-    } else if len(list) == 1 {
+    if len(list) == 1 {
       host := list[0]
       SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
     }
@@ -297,6 +288,7 @@ func ListRoom(c appengine.Context, participants string, client string, remove bo
 }
 
 func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
+  c.Debugf("UpdateRoom %s %s %s",room.Key, room.Value, list)
   item := &memcache.Item{Key: room.Key, Value: []byte(strings.Join(list,"|"))}
   if err := memcache.Set(c,item); err != nil {
     c.Criticalf("UpdateRoom, set error ",err)
