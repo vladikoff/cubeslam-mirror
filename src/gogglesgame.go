@@ -185,17 +185,13 @@ func Join(c appengine.Context, msg Message) {
 
     // create room, with single client in
     roomItem := &memcache.Item{Key: msg.Room, Value: []byte(msg.From)}
-    if err := memcache.Set(c,roomItem); err != nil {
-      c.Criticalf("join, set error ",err)
-    }
-    // let the promote the client (= host)
-    SendJSON(c, Message{Room: msg.Room, To: msg.From, Type: "promoted", Data: msg.From})
+    UpdateRoom(c, roomItem, []string{msg.From});
 
   } else if err != nil {
     c.Criticalf("join, get error ",err)
   } else {
     c.Debugf("join, found room %s: %s",item.Key,string(item.Value))
-    list, found := ListRoom(c, string(item.Value), msg.From, false);
+    list, _ := ListRoom(c, string(item.Value), msg.From, false);
 
     if( len(list) > 2 ){
       c.Debugf("Room full:",list)
@@ -213,10 +209,6 @@ func Join(c appengine.Context, msg Message) {
           c.Debugf("connected(%s => %s)",id,msg.From)
           SendJSON(c, Message{Room: msg.Room, To: id, Type: "connected", Data: msg.From})
         }
-      }
-      // and let the new user know it's demoted (not a host)
-      if found == false {
-        SendJSON(c, Message{Room: msg.Room, To: msg.From, Type: "demoted", Data: msg.From})
       }
     }
   }
@@ -256,12 +248,6 @@ func Leave(c appengine.Context, msg Message) {
     } else {
       UpdateRoom(c, item, list);
     }
-
-    // only one left, promote that user
-    if len(list) == 1 {
-      host := list[0]
-      SendJSON(c, Message{Room: msg.Room, To: host, Type: "promoted", Data: host})
-    }
   }
 }
 
@@ -292,6 +278,16 @@ func UpdateRoom(c appengine.Context, room *memcache.Item, list []string) {
   item := &memcache.Item{Key: room.Key, Value: []byte(strings.Join(list,"|"))}
   if err := memcache.Set(c,item); err != nil {
     c.Criticalf("UpdateRoom, set error ",err)
+  }
+
+  if len(list) > 0 {
+    SendJSON(c, Message{Room: room.Key, To: list[0], Type: "promoted", Data: list[0]})
+  }
+  if len(list) > 1 {
+    SendJSON(c, Message{Room: room.Key, To: list[1], Type: "demoted", Data: list[1]})
+  }
+  if len(list) > 2 {
+    c.Criticalf("UpdateRoom, too many in room")
   }
 }
 
