@@ -3,10 +3,10 @@
   "dependencies": {
     "component/emitter": "*",
     "component/mousetrap": "*",
-    "visionmedia/debug": "*",
     "publicclass/request-animation-frame": "*",
     "publicclass/geom": "*",
-    "publicclass/range": "*"
+    "publicclass/range": "*",
+    "visionmedia/debug": "*"
   },
   "scripts": [
     "index.js",
@@ -19,6 +19,7 @@
     "lib/geom-sim/physics.js",
     "lib/geom-sim/shapes.js",
     "lib/puppeteer.js",
+    "lib/levels/level1.js",
     "lib/support/diff.js",
     "lib/support/inspect.js",
     "lib/support/draw.js",
