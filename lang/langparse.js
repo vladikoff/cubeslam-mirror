@@ -19,15 +19,15 @@ jsdom.env({
 
       $ = window.jQuery;
 
-      $('.copy').each(function() {
-        if ($(this).attr('id')) {
-          result[$(this).attr('id')] = $(this).html();
-        }
+      $('*').filter(function() { return $(this).attr('arb:id'); }).each(function() {
+          result[$(this).attr('arb:id')] = $(this).html();
       });
 
     }
 
+    process.stdout.write('arb.register("arb_ref_app", ');
     process.stdout.write(JSON.stringify(result) + "\n");
+    process.stdout.write("});\n");
 
   }
 });
