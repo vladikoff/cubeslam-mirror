@@ -38,5 +38,6 @@ void main(void)
     
 
     gl_FragColor = vec4( (gridColor)*lineColor , step(gridColor.x,0.99) )*0.2 + vec4( centerColor , color2);
+ 
 }
 

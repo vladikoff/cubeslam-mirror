@@ -31,7 +31,7 @@ void main( void ) {
     float glassFactor = vUv.x*(0.7-vUv.y)*0.4;
     vec3 clr = uColor*col;
  
-    gl_FragColor = vec4( clr,clr*.7*(1.0-vUv.y));
+    gl_FragColor = vec4( clr*uBrightness,clr*.7*(1.0-vUv.y)*uBrightness);
     gl_FragColor += vec4( uColor, glassFactor);
     
 
