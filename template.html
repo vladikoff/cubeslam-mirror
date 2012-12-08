@@ -85,9 +85,11 @@
             <span class="slave">Your friend is waiting for you to join this Game Room!</span>
           </p>
           <div class="buttonWrapper">
-            <button class='play'>
-              <span class="singleplayer">Start Game</span>
-              <span class="multiplayer">Play friend</span>
+            <button class='playFriend'>
+              Play friend
+            </button>
+            <button class='playComputer'>
+              Play Computer
             </button>
           </div>
 
@@ -137,9 +139,11 @@
 
         <!-- COUNTDOWN -->
 
-        <div class="state GameStart">
-          <div id="gameInstructions" class="inactive">
-            <span id="gamestartCountdown"></span>
+        <div class="state GameInstructions GameStart">
+          <div id="gameInstructions">
+            <span id="gamestartCountdown" class="inactive"></span>
+            <button class="green play">Start</button>
+
           </div>
         </div>
 
