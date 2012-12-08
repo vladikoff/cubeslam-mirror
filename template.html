@@ -75,7 +75,7 @@
             Your friend is playing against someone else right now.<br />
             Try out the single player game!
           </p>
-          <p class="singleplayer">
+          <p arb:id="title" class="singleplayer">
             Nobody is playing in this room right now.<br />
             Try out the single player game!
           </p>
@@ -249,7 +249,7 @@
            <div id="footMenu">
               <ul>
                 <li><a href="#" class="notimplemented">Terms &amp; privacy</a></li>
-                <li><a id="localizationSwitch" href="#" class="notimplemented">EN / GE</a></li>
+                <li><a id="localizationSwitch" href="#">EN</a></li>
                 <li><a href="#" class="soundSwitch on"><span class="off">Sound on</span><span class="on">Sound off</span></a></li>
               </ul>
            </div>
@@ -282,7 +282,7 @@
     <script src="javascript/libs/dat.gui.min.js"></script>
     <script src="javascript/libs/datachannel.js"></script>
     <script src='./build/build.js'></script>
-    <script> require('verlet-sim')("{{.Room}}") </script>
+    <script> require('verlet-sim')({ room: "{{.Room}}", acceptLanguage: "rö,{{.AcceptLanguage}}" }) </script>
     <script>
       // Crashing in my Chrome Stable:
       /*

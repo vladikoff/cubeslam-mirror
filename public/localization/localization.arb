@@ -139,10 +139,10 @@ arb.register("arb_editor:en", {
 });
 
 
-arb.register("arb_editor:zh-CN", {
+arb.register("arb_editor:rö", {
     "MSG_SAME_LOCALE_NAME": "源和目标具有相同的区域名称。这是没有意义的，对不对？",
     "org_text": "原文在这里",
-    "@@locale": "zh-CN",
+    "@@locale": "ro",
     "@download_btn": {
         "context": "arb_editor"
     },
