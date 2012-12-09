@@ -23,7 +23,7 @@
 
     <div id="wrapper">
 
-      <div id="headBar" class="">
+      <!--<div id="headBar" class="">
         <div class="headBarContent shareLink">
           Copy and share this link to play a friend:
           <span class="shareUrl"></span>
@@ -44,7 +44,7 @@
             <a class="alternative button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
           {{ end }}
         </div>
-      </div>
+      </div>-->
 
       <div id="content">
 
@@ -122,7 +122,7 @@
 
         <!-- CHOOSE PADDLE -->
 
-        <div class="inactive state PaddleSetup" id="paddleSelection">
+        <!--<div class="inactive state PaddleSetup" id="paddleSelection">
           <div class="dialog">
             <div class="content">
               <h2>Scan Paddle</h2>
@@ -136,14 +136,14 @@
             </div>
           </div>
         </div>
+      -->
 
         <!-- COUNTDOWN -->
 
         <div class="state GameInstructions GameStart">
-          <div id="gameInstructions">
+          <div id="gameInstructions" class="inactive">
             <span id="gamestartCountdown" class="inactive"></span>
             <button class="green play">Start</button>
-
           </div>
         </div>
 
@@ -156,9 +156,8 @@
               <p>
               Copy and share this link to play a friend:<br /><span class="shareUrl"></span>
               </p>
-              <button class="paddleSetup alternative">Paddle Setup</button>
               <button class="green play">Play Computer (Space)</button>
-              <button class="alternative notimplemented">Score Board</button>
+              <!--<button class="alternative notimplemented">Score Board</button>-->
             </div>
           </div>
         </div>
@@ -172,10 +171,10 @@
               <p>
                 Press <button class="alternative green play">space</button> to resume
               </p>
-              <button class="alternative paddleSetup">Paddle Setup</button>
+             <!-- <button class="alternative paddleSetup">Paddle Setup</button>-->
               <button class="singleplayer green play">Resume Game</button>
               <button class="multiplayer green quit notimplemented">Quit Friends Play</button>
-              <button class="alternative notimplemented">Score Board</button>
+             <!-- <button class="alternative notimplemented">Score Board</button>-->
             </div>
           </div>
         </div>
@@ -194,9 +193,9 @@
                 <tr class="records"><td></td><td>New Record</td><td></td></tr>
               </table>
 
-              <button class="alternative paddleSetup">Paddle Setup</button>
+              <!--<button class="alternative paddleSetup">Paddle Setup</button>-->
               <button class="green play">Play Again (Space)</button>
-              <button class="alternative notimplemented">Score Board</button>
+              <!--<button class="alternative notimplemented">Score Board</button>-->
             </div>
           </div>
         </div>
