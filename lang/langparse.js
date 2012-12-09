@@ -9,7 +9,10 @@ jsdom.env({
 
     var
       $,
-      result = {};
+      result = {
+        "@@locale": "en",
+        "@@context": "WebRTC Game"
+      };
 
     if (err) {
 

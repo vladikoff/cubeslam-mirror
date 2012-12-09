@@ -4,10 +4,14 @@ var
 var rovarspraketizer = function(obj) {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
-      if (typeof(obj[key]) == 'object') {
-//        obj[key] = rovarspraketizer(obj[key]);
-      } else if (typeof(obj[key]) == 'string' && obj[key].substr(0, 1) != '@') {
-        obj[key] = obj[key].replace(/([bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ])/g, "$1o$1");
+      if (key == '@@locale') {
+        obj[key] = 'rö';
+      } else {
+        if (typeof(obj[key]) == 'object' && obj[key].substr(0,1) != '@') {
+          obj[key] = rovarspraketizer(obj[key]);
+        } else if (typeof(obj[key]) == 'string' && obj[key].substr(0, 1) != '@') {
+          obj[key] = obj[key].replace(/([bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ])/g, "$1o$1");
+        }
       }
     }
   }
