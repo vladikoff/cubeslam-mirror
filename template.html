@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='utf8'>
-    <title>Boing</title>
+    <title arb:id="gameTitle">Boing</title>
     <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" type="text/css" media="screen" href="/build/build-less.css" />
   </head>
@@ -25,23 +25,23 @@
 
       <!--<div id="headBar" class="">
         <div class="headBarContent shareLink">
-          Copy and share this link to play a friend:
+          <span arb:id="copyAndShare" class="Copy and share this link to play a friend:" />
           <span class="shareUrl"></span>
         </div>
         <div class="headBarContent friendArrived">
-          <span>Your friend has arrived</span> <img src="/images/arrivalicon.png" />
+          <span arb:id="friendArrived">Your friend has arrived</span> <img src="/images/arrivalicon.png" />
         </div>
         <div class="headBarContent opponentPaddle">
-          <span>Waiting for friend to choose paddle</span> <img src="/images/arrivalicon.png" />
+          <span arb:id="waitingForPaddle">Waiting for friend to choose paddle</span> <img src="/images/arrivalicon.png" />
         </div>
         <div class="headBarContent opponentReady">
-          Your friend is ready <a class="alternative button" id="letOpponentIn">Play Friend</a>
+          <span arb:id="friendReady">Your friend is ready</span> <a class="alternative button" id="letOpponentIn" arb:id="playFriendButton">Play Friend</a>
         </div>
         <div class="headBarContent loginInfo">
           {{ if .User }}
-            <span class="userName">{{.User}}</span> <a class="alternative button" id="signOutButton" href="{{.LoginLogoutLink}}">Sign out</a>
+            <span class="userName">{{.User}}</span> <a class="alternative button" id="signOutButton" href="{{.LoginLogoutLink}}" arb:id="signOutButton">Sign out</a>
           {{ else }}
-            <a class="alternative button" id="signInButton" href="{{.LoginLogoutLink}}">Sign in</a>
+            <a class="alternative button" id="signInButton" href="{{.LoginLogoutLink}}" arb:id="signInButton">Sign in</a>
           {{ end }}
         </div>
       </div>-->
@@ -74,26 +74,24 @@
             <h1 class="copy"><span>Pong Realtime Multiplayer test</span></h1>
           </div>
           <p class='full'>
-            Your friend is playing against someone else right now.<br />
-            Try out the single player game!
+            <span arb:id="friendPlayingSomeoneElse">Your friend is playing against someone else right now.</span><br />
+            <span arb:id="trySinglePlayer">Try out the single player game!</span>
           </p>
           <p class="singleplayer">
-            Nobody is playing in this room right now.<br />
-            Try out the single player game!
+            <span arb:id="nobodyIsPlaying">Nobody is playing in this room right now.</span><br />
+            <span arb:id="trySinglePlayer">Try out the single player game!</span>
           </p>
           <p class="multiplayer">
-            <span class="slave">Your friend is waiting for you to join this Game Room!</span>
+            <span class="slave" arb:id="friendIsWaiting">Your friend is waiting for you to join this Game Room!</span>
           </p>
           <div class="buttonWrapper">
-            <button class='playFriend'>
+            <button class='playFriend' arb:id="playFriendButton">
               Play friend
             </button>
             <button class='playComputer'>
               Play Computer
             </button>
           </div>
-
-
         </div>
 
         <!-- CAMERA REQUEST ATTENTION -->
@@ -254,7 +252,7 @@
            <div id="footMenu">
               <ul>
                 <li><a href="#" class="notimplemented">Terms &amp; privacy</a></li>
-                <li><a href="#" class="notimplemented">EN / GE</a></li>
+                <li><a id="localizationSwitch" href="#">EN</a></li>
                 <li><a href="#" class="soundSwitch on"><span class="off">Sound on</span><span class="on">Sound off</span></a></li>
               </ul>
            </div>
@@ -287,7 +285,7 @@
     <script src="javascript/libs/dat.gui.js"></script>
     <script src="javascript/libs/datachannel.js"></script>
     <script src='./build/build.js'></script>
-    <script> require('verlet-sim')("{{.Room}}") </script>
+    <script> require('verlet-sim')({ room: "{{.Room}}", acceptLanguage: "rö,{{.AcceptLanguage}}" }) </script>
     <script>
       // Crashing in my Chrome Stable:
       /*

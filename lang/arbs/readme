@@ -1,0 +1,1 @@
+All files with fileending .arb in this directory will be concatenated into build/localization.arb by Makefile

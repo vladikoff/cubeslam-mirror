@@ -40,6 +40,7 @@ type TemplateData struct {
   ClientId string
   User string
   LoginLogoutLink string
+  AcceptLanguage string
 }
 
 func init() {
@@ -167,8 +168,16 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     userName = currentUser.String()
   }
 
+  // Accept-Language:
+  acceptLanguage := "en"
+  var header map[string][]string;
+  header = r.Header
+  if _,ok := header["Accept-Language"]; ok {
+    acceptLanguage = strings.Join(header["Accept-Language"], ",")
+  }
+
   // Data to be sent to the template:
-  data := TemplateData{Room:roomName, User: userName, LoginLogoutLink: loginLogoutLink}
+  data := TemplateData{Room:roomName, User: userName, LoginLogoutLink: loginLogoutLink, AcceptLanguage: acceptLanguage}
 
   // Parse the template and output HTML:
   template, err := template.New("template.html").ParseFiles("template.html")
