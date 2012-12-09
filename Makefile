@@ -21,7 +21,7 @@ build-component: build/build.js
 
 build-styles: build/build-less.css
 
-build-localization: lang/arbs/en.arb build/localization.arb
+build-localization: lang/arbs/en.arb lang/arbs/rö.arb build/localization.arb
 
 components/:
 	node_modules/.bin/component-install
@@ -43,6 +43,9 @@ build/build.js: components/ $(COMPONENTS) $(COMPONENT) component.json
 
 lang/arbs/en.arb: template.html
 	cat template.html | node lang/langparse.js >lang/arbs/en.arb
+
+lang/arbs/rö.arb: lang/arbs/en.arb
+	cat lang/arbs/en.arb | node lang/rovarspraketizer.js > lang/arbs/rö.arb
 
 build/localization.arb: $(LOCALIZATIONS)
 	cat lang/arbs/*.arb > build/localization.arb
