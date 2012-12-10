@@ -56,8 +56,7 @@
     "lib/shaders/camera_fs.js",
     "lib/shaders/simple_vertex.js",
     "lib/geometry/index.js",
-    
-
+ 
     "lib/geometry/extra_deathball.js",
     "lib/geometry/extra_extralife.js",
     "lib/geometry/extra_fog.js",
@@ -65,7 +64,7 @@
     "lib/geometry/extra_mirroredcontrols.js",
     "lib/geometry/extra_multiball.js",
     "lib/geometry/extra_paddleresize.js",
-    "lib/geometry/extra_speed.js",
+    "lib/geometry/extra_fastball.js",
     "lib/geometry/extra_timebomb.js",
 
     "lib/geometry/terrain2.js",
