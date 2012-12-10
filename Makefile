@@ -1,8 +1,9 @@
 
 STYLES=$(wildcard styles/*.less)
 LOCALIZATIONS=$(wildcard lang/arbs/*.arb)
-GEOMETRY=$(wildcard lib/geometry/*.json)
-GEOMETRY_JS=$(GEOMETRY:.json=.js)
+GEOMETRY=$(wildcard lib/geometry/*.obj)
+GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
+GEOMETRY_JS=$(GEOMETRY:.obj=.js)
 SHADERS=$(wildcard lib/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
@@ -15,7 +16,7 @@ build-min: build build/build.min.js
 
 build-shaders: $(SHADERS_JS) lib/shaders/index.js
 
-build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
+build-geometry: $(GEOMETRY_JS) lib/geometry/bear.js lib/geometry/index.js
 
 build-component: build/build.js
 
@@ -23,7 +24,7 @@ build-styles: build/build-less.css
 
 build-localization: lang/arbs/en.arb lang/arbs/rö.arb build/localization.arb
 
-components/:
+components:
 	node_modules/.bin/component-install
 
 lib/shaders/%.js: lib/shaders/%.glsl
@@ -41,7 +42,7 @@ lib/geometry/%.js: lib/geometry/%.json
 build/build-less.css: $(STYLES)
 	node_modules/.bin/lessc $(STYLES) > $@
 
-build/build.js: components/ $(COMPONENTS) $(COMPONENT) component.json
+build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
 
 lang/arbs/en.arb: template.html
@@ -53,8 +54,11 @@ lang/arbs/rö.arb: lang/arbs/en.arb
 build/localization.arb: $(LOCALIZATIONS)
 	cat lang/arbs/*.arb > build/localization.arb
 
-clean:
-	rm -Rf build/ components/ $(GEOMETRY_JS) $(SHADERS_JS)
+clean-geometry:
+	rm -Rf $(GEOMETRY_JS) $(GEOMETRY_JSON)
+
+clean: clean-geometry
+	rm -Rf build/ components/ $(SHADERS_JS)
 
 .SUFFIXES:
-.PHONY: clean build build-min build-shaders build-styles build-geometry build-component
+.PHONY: clean build build-min build-shaders build-styles build-geometry build-component clean-geometry
