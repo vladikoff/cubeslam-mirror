@@ -15,7 +15,7 @@ build-min: build build/build.min.js
 
 build-shaders: $(SHADERS_JS) lib/shaders/index.js
 
-build-geometry: $(GEOMETRY) $(GEOMETRY_JS) lib/geometry/index.js
+build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 
 build-component: build/build.js
 
