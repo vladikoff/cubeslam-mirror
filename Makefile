@@ -15,7 +15,7 @@ build-min: build build/build.min.js
 
 build-shaders: $(SHADERS_JS) lib/shaders/index.js
 
-build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
+build-geometry: $(GEOMETRY) $(GEOMETRY_JS) lib/geometry/index.js
 
 build-component: build/build.js
 
@@ -28,6 +28,9 @@ components/:
 
 lib/shaders/%.js: lib/shaders/%.glsl
 	cat $< | support/str-to-js > $@
+
+lib/geometry/%.json: lib/geometry/%.obj
+	python lib/geometry/convert_obj_three.py -i $< -o $@
 
 lib/geometry/%.js: lib/geometry/%.json
 	cat $< | support/str-to-js > $@
