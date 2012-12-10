@@ -5,7 +5,7 @@ var rovarspraketizer = function(obj) {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (key == '@@locale') {
-        obj[key] = 'rö';
+        obj[key] = 'rv';
       } else {
         if (typeof(obj[key]) == 'object' && obj[key].substr(0,1) != '@') {
           obj[key] = rovarspraketizer(obj[key]);
@@ -22,9 +22,9 @@ var arb = {
   register: function(namespace, obj) {
 
     if (namespace.indexOf(':') != -1) {
-      namespace = namespace.substr(0, namespace.indexOf(':') + 1) + 'rö';
+      namespace = namespace.substr(0, namespace.indexOf(':') + 1) + 'rv';
     } else {
-      namespace = 'rö';
+      namespace = 'rv';
     }
 
     process.stdout.write('arb.register("' + namespace + '", ');
