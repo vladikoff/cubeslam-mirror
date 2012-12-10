@@ -463,6 +463,8 @@ THREE.Color.prototype = {
 
 	setHex: function ( hex ) {
 
+		hex = String(hex).replace('#','0x');
+
 		hex = Math.floor( hex );
 
 		this.r = ( hex >> 16 & 255 ) / 255;

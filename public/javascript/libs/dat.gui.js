@@ -708,7 +708,7 @@ dat.controllers.NumberController = (function (Controller, common) {
 
     } else {
 
-      this.__impliedStep = this.__step;
+    	this.__impliedStep = this.__step;
 
     }
 
@@ -973,7 +973,7 @@ dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, 
       var width = dom.getWidth(_this.__background);
       
       _this.setValue(
-        map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max)
+      	map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max)
       );
 
       return false;
@@ -1023,9 +1023,9 @@ dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, 
 
   );
 
-  function map(v, i1, i2, o1, o2) {
-    return o1 + (o2 - o1) * ((v - i1) / (i2 - i1));
-  }
+	function map(v, i1, i2, o1, o2) {
+		return o1 + (o2 - o1) * ((v - i1) / (i2 - i1));
+	}
 
   return NumberControllerSlider;
   
@@ -1932,16 +1932,16 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
 
     var root = _this.getRoot();
     function resetWidth() {
-        var root = _this.getRoot();
-        root.width += 1;
-        common.defer(function() {
-          root.width -= 1;
-        });
-      }
+	      var root = _this.getRoot();
+	      root.width += 1;
+	      common.defer(function() {
+	        root.width -= 1;
+	      });
+	    }
 
-      if (!params.parent) {
-        resetWidth();
-      }
+	    if (!params.parent) {
+	      resetWidth();
+	    }
 
   };
 
@@ -3070,7 +3070,7 @@ dat.controllers.ColorController = (function (Controller, dom, Color, interpret, 
     linearGradient(value_field, 'top', 'rgba(0,0,0,0)', '#000');
 
     common.extend(this.__hue_field.style, {
-      width: '15px',
+      width: '12px',
       height: '100px',
       display: 'inline-block',
       border: '1px solid #555',
@@ -3115,11 +3115,9 @@ dat.controllers.ColorController = (function (Controller, dom, Color, interpret, 
 
     function onBlur() {
       var i = interpret(this.value);
-
       if (i !== false) {
-       // _this.__color.__state = i;
+        _this.__color.__state = i;
         _this.setValue(_this.__color.toOriginal());
-
       } else {
         this.value = _this.__color.toString();
       }
