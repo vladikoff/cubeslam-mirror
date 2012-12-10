@@ -25,13 +25,13 @@ components:
 	node_modules/.bin/component-install
 
 lib/shaders/%.js: lib/shaders/%.glsl
-	cat $< | support/str-to-js > $@
+	support/str-to-js > $@ < $<
 
 lib/geometry/%.json: lib/geometry/%.obj
 	python lib/geometry/convert_obj_three.py -i $< -o $@
 
 lib/geometry/%.js: lib/geometry/%.json
-	cat $< | support/str-to-js > $@
+	support/str-to-js > $@ < $<
 
 %.min.js: %.js
 	node_modules/.bin/uglifyjs $< > $@
@@ -41,6 +41,7 @@ build/build-less.css: $(STYLES)
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
+	@rm build/build.css # we don't want this
 
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<
@@ -51,15 +52,15 @@ lang/arbs/%.arb: template.html
 build/localization.arb: $(LANGUAGES)
 	cat lang/arbs/*.arb > build/localization.arb
 
+clean: clean-geometry clean-localization
+	rm -Rf build/ components/ $(SHADERS_JS)
+
 clean-localization:
 	rm -Rf $(LANGUAGES)
 
 clean-geometry:
 	rm -Rf $(GEOMETRY_JS) $(GEOMETRY_JSON)
 
-clean: clean-geometry clean-localization
-	rm -Rf build/ components/ $(SHADERS_JS)
-
 .SUFFIXES:
 .PHONY: clean clean-geometry clean-localization \
-				build build-min build-shaders build-styles build-geometry build-component
+				build build-min build-shaders build-styles build-geometry build-component build-localization
