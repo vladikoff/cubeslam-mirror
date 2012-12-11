@@ -1,5 +1,5 @@
 {
-  "name": "verlet-sim",
+  "name": "paddle-battle",
   "dependencies": {
     "component/emitter": "*",
     "component/mousetrap": "*",
