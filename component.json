@@ -73,8 +73,6 @@
     "lib/geometry/terrain.js",
     "lib/geometry/moose.js",
     "lib/geometry/bear.js",
-    "lib/motion-tracker.js",
-    "lib/glfx.js",
     "lib/extras.js",
     "lib/rtc.js",
     "lib/time-sync.js",
