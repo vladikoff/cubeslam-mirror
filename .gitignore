@@ -1,9 +1,10 @@
 .DS_Store
 build/
 components/
+node_modules/
 app.yaml.tmp
 lib/shaders/*.js
 lib/geometry/*.js
 !lib/shaders/index.js
 !lib/geometry/index.js
-node_modules
+lang/arbs/*.arb
