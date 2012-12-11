@@ -396,17 +396,27 @@ body {
 
         #title {
 
+        overflow:hidden;
           padding: 100px 0px 30px 0px;
 
           h1 {
             padding: 0px 0px 0px 0px;
-            width: 681px;
-            height: 107px;
-            background-image: url('/images/logo_large.png');
-            margin: 0px auto 0px auto;
+            /*width: 1533px;
+            height: 155px;
+            background-image: url('/images/logo_large.png');*/
+            /*margin: 0px auto 0px auto;*/
             span {
               display: none;
             }
+
+            /*-webkit-transform: scale(0.8);
+            -webkit-transform-origin: 50% 50%;
+*/
+
+          }
+
+          img {
+            width: 70%;
           }
 
         }
@@ -949,6 +959,7 @@ body {
 
 
 #debug-info {
+  display:none;
   position: absolute;
   z-index: 100000;
   right: 0;
