@@ -41,7 +41,6 @@ build/build-less.css: $(STYLES)
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
-	@rm build/build.css # we don't want this
 
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<

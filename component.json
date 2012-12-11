@@ -3,10 +3,12 @@
   "dependencies": {
     "component/emitter": "*",
     "component/mousetrap": "*",
+    "component/dialog": "*",
     "publicclass/request-animation-frame": "*",
     "publicclass/geom": "*",
     "publicclass/range": "*",
-    "visionmedia/debug": "*"
+    "visionmedia/debug": "*",
+    "component/confirmation": "*"
   },
   "scripts": [
     "index.js",
