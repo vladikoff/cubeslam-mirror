@@ -5,6 +5,8 @@ precision mediump float;
 varying vec2 vUv;
 uniform float uBrightness; 
 uniform vec3 uColor;
+uniform vec3 uHealColor;
+uniform float uHealAmount; 
 uniform float uColumnValues[ 18 ];
 uniform vec2 resolution;
 
@@ -33,6 +35,12 @@ void main( void ) {
  
     gl_FragColor = vec4( clr*uBrightness,clr*.7*(1.0-vUv.y)*uBrightness);
     gl_FragColor += vec4( uColor, glassFactor);
+
+    vec3 fillColor = rect(pos-vec2(0.0,0.0), vec2(1.0,1.0))* uHealColor;
+
+    gl_FragColor *= vec4( mix(vec3(1.0),fillColor,uHealAmount),1.0);
+
+    gl_FragColor += vec4(uHealColor,uHealAmount);
     
 
 }
