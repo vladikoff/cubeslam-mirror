@@ -68,7 +68,7 @@
     "lib/geometry/extra_paddleresize.js",
     "lib/geometry/extra_fastball.js",
     "lib/geometry/extra_timebomb.js",
-    "lib/geometry/terrain2.js",
+    "lib/geometry/terrain.js",
     "lib/geometry/moose.js",
     "lib/geometry/bear.js",
     "lib/motion-tracker.js",
