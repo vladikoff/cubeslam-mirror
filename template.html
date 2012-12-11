@@ -17,29 +17,6 @@
 
     <div id="wrapper">
 
-      <!--<div id="headBar" class="">
-        <div class="headBarContent shareLink">
-          <span arb:id="copyAndShare" class="Copy and share this link to play a friend:" />
-          <span class="shareUrl"></span>
-        </div>
-        <div class="headBarContent friendArrived">
-          <span arb:id="friendArrived">Your friend has arrived</span> <img src="/images/arrivalicon.png" />
-        </div>
-        <div class="headBarContent opponentPaddle">
-          <span arb:id="waitingForPaddle">Waiting for friend to choose paddle</span> <img src="/images/arrivalicon.png" />
-        </div>
-        <div class="headBarContent opponentReady">
-          <span arb:id="friendReady">Your friend is ready</span> <a class="alternative button" id="letOpponentIn" arb:id="playFriendButton">Play Friend</a>
-        </div>
-        <div class="headBarContent loginInfo">
-          {{ if .User }}
-            <span class="userName">{{.User}}</span> <a class="alternative button" id="signOutButton" href="{{.LoginLogoutLink}}" arb:id="signOutButton">Sign out</a>
-          {{ else }}
-            <a class="alternative button" id="signInButton" href="{{.LoginLogoutLink}}" arb:id="signInButton">Sign in</a>
-          {{ end }}
-        </div>
-      </div>-->
-
       <div id="content">
 
         <!-- LOADING -->
@@ -84,6 +61,17 @@
             <button class='playComputer'>
               Play Computer
             </button>
+          </div>
+        </div>
+
+        <!-- WAITING FRIEND -->
+
+        <div class="inactive state WaitingFriend">
+          <div class="dialog">
+            <div class="content">
+              <h2>Your friend is waiting for you in the arena</h2>
+              <button id="playWaitingFriend" class="green">Play Friend</button>
+            </div>
           </div>
         </div>
 
