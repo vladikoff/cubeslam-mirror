@@ -27,6 +27,7 @@
     "lib/support/inspect.js",
     "lib/support/draw.js",
     "lib/support/info.js",
+    "lib/support/select-text.js",
     "lib/game.js",
     "lib/inputs.js",
     "lib/history.js",
