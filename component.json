@@ -3,13 +3,13 @@
   "dependencies": {
     "component/emitter": "*",
     "component/mousetrap": "*",
-    "component/dialog": "*",
+    "component/confirmation": "*",
+    "component/cookie": "*",
+    "component/jquery": "1.8.2",
     "publicclass/request-animation-frame": "*",
     "publicclass/geom": "*",
     "publicclass/range": "*",
-    "visionmedia/debug": "*",
-    "component/confirmation": "*",
-    "component/cookie": "*"
+    "visionmedia/debug": "*"
   },
   "scripts": [
     "index.js",
