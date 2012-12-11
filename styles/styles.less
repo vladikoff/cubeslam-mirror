@@ -7,12 +7,6 @@
   url('/fonts/eboy-regalpha-webfont.svg#webfont') format('svg');
 }
 
-/* After GameStart became potential parent state to PaddleSetup, it's layer might end up on top of PaddleSetup's. This is a fix for that. */
-body.PaddleSetup #wrapper #content .state.GameStart {
-  display: none;
-}
-
-
 /*
  * All state-spcific elements should be hidden by default:
  */
@@ -236,62 +230,6 @@ body.Play, body.Pause {
   }
 }
 
-#headBar {
-  top: -40px;
-  -webkit-transition: top 0.5s;
-      -moz-transition: -moz-transform 0.5s;
-        -o-transition: -o-transform 0.5s;
-          transition: transform 0.5s;
-
-  z-index: 50000000;
-  background: #faf9db;
-  width: 100%;
-  height: 40px;
-  position: absolute;
-  text-align: right;
-
-  .headBarContent {
-    display: none;
-    margin: 13px 0px 0px 0px;
-    text-align: center;
-    color: #e83028;
-  }
-
-  .shareLink {
-    .shareUrl {
-      color: #4daf4d;
-    }
-  }
-
-  .friendArrived, .opponentPaddle {
-    margin-top: 5px;
-    span {
-      font-weight: bold;
-      margin-right: 12px;
-    }
-    img {
-      vertical-align: middle;
-    }
-  }
-
-  .opponentReady {
-    a {
-      display: inline-block;
-      margin-left: 20px;
-    }
-  }
-
-  .loginInfo {
-    text-align: right;
-    button, a.button {
-      margin-right: 20px;
-      margin-left: 10px;
-    }
-  }
-
-}
-
-
 
 /*
  * STRUCTURE
@@ -401,18 +339,9 @@ body {
 
           h1 {
             padding: 0px 0px 0px 0px;
-            /*width: 1533px;
-            height: 155px;
-            background-image: url('/images/logo_large.png');*/
-            /*margin: 0px auto 0px auto;*/
             span {
               display: none;
             }
-
-            /*-webkit-transform: scale(0.8);
-            -webkit-transform-origin: 50% 50%;
-*/
-
           }
 
           img {
@@ -959,7 +888,7 @@ body {
 
 
 #debug-info {
-  display:none;
+  // display:none;
   position: absolute;
   z-index: 100000;
   right: 0;
