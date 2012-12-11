@@ -3,56 +3,25 @@
   <head>
     <meta charset='utf8'>
     <title arb:id="gameTitle">Boing</title>
-    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css' />
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Varela' />
     <link rel="stylesheet" type="text/css" media="screen" href="/build/build-less.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/build/build.css" />
   </head>
   <body>
-
-
     <div id="settingsGUIContainer">
       <div id="settingsDataGUI"></div>
       <div id="settingsLevelsGUI"></div>
-      <div id="uiTopContent">
-          <!--<div id="statsDebug"></div>-->
-          <!--<div id="monitorFinalBlobs"></div>
-          <div id="monitorFinalContainer" class="ui_video"></div>
-          <div class="videoLabel">Motion tracking</div>-->
-      </div>
+      <div id="uiTopContent"></div>
       <video id="videoInput"></video>
     </div>
 
     <div id="wrapper">
 
-      <!--<div id="headBar" class="">
-        <div class="headBarContent shareLink">
-          <span arb:id="copyAndShare" class="Copy and share this link to play a friend:" />
-          <span class="shareUrl"></span>
-        </div>
-        <div class="headBarContent friendArrived">
-          <span arb:id="friendArrived">Your friend has arrived</span> <img src="/images/arrivalicon.png" />
-        </div>
-        <div class="headBarContent opponentPaddle">
-          <span arb:id="waitingForPaddle">Waiting for friend to choose paddle</span> <img src="/images/arrivalicon.png" />
-        </div>
-        <div class="headBarContent opponentReady">
-          <span arb:id="friendReady">Your friend is ready</span> <a class="alternative button" id="letOpponentIn" arb:id="playFriendButton">Play Friend</a>
-        </div>
-        <div class="headBarContent loginInfo">
-          {{ if .User }}
-            <span class="userName">{{.User}}</span> <a class="alternative button" id="signOutButton" href="{{.LoginLogoutLink}}" arb:id="signOutButton">Sign out</a>
-          {{ else }}
-            <a class="alternative button" id="signInButton" href="{{.LoginLogoutLink}}" arb:id="signInButton">Sign in</a>
-          {{ end }}
-        </div>
-      </div>-->
-
       <div id="content">
 
         <!-- LOADING -->
 
-        <div class="state Loading">
-        </div>
+        <div class="state Loading"></div>
 
         <!-- THE LOBBY -->
 
@@ -95,9 +64,45 @@
           </div>
         </div>
 
+        <!-- WAITING FRIEND -->
+
+        <div class="inactive state WaitingFriend">
+          <div class="dialog">
+            <div class="content">
+              <h2>Your friend is waiting for you in the arena</h2>
+              <button id="playWaitingFriend" class="green">Play Friend</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INVITE FRIEND -->
+
+        <div class="inactive state InviteFriend">
+          <div class="dialog">
+            <div class="content">
+              <h2>Invite Friend</h2>
+              <p>Copy and share this link to invite a friend:</p>
+              <span class="shareUrl"></span><button id="copyURL" class="notimplemented">Copy</button>
+              <button id="backToMainMenu" class="green">Back</button>
+              <p>You will be notified when your friend uses the link to enter the game.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FRIEND ARRIVED -->
+
+        <div class="inactive state FriendArrived">
+          <div class="dialog">
+            <div class="content">
+              <h2>Friend Arrived</h2>
+              <button id="playFriend" class="green">Play Friend</button>
+            </div>
+          </div>
+        </div>
+
         <!-- CAMERA REQUEST ATTENTION -->
 
-        <div id="cameraRequestAttention" class="state WebcamActivation">
+        <div class="inactive state WebcamActivation" id="cameraRequestAttention">
           <img src="/images/cameraRequestAttention.png" />
         </div>
 
@@ -107,39 +112,28 @@
           <div class="dialog">
             <div class="content">
               <h2>Connect Camera</h2>
-
               <p>Camera is recommended for<br />playing this game</p>
-
               <button id="activateCamera" class="green">Activate Camera</button>
-              <p>
-                Or use the <a class="alternative button keyboard">keyboard</a>for playing
-              </p>
-
+              <p>Or use the <a class="alternative button keyboard">keyboard</a>for playing</p>
             </div>
           </div>
         </div>
 
-        <!-- CHOOSE PADDLE -->
 
-        <!--<div class="inactive state PaddleSetup" id="paddleSelection">
+        <!-- FRIEND ARRIVED -->
+
+        <div class="inactive state WaitForFriendCamera">
           <div class="dialog">
             <div class="content">
-              <h2>Scan Paddle</h2>
-              <p>Hold up your hand and press scan.</p>
-              <p>Or even better: Find a colorful item to</p>
-              <p>scan and use as paddle :-)</p>
-              <button id="scanButton" class="green">Start Scan</button>
-              <p>
-                Or use the <a class="alternative button keyboard">keyboard</a>for playing
-              </p>
+              <h2>Waiting for friend to allow webcam</h2>
             </div>
           </div>
         </div>
-      -->
+
 
         <!-- COUNTDOWN -->
 
-        <div class="state GameInstructions GameStart">
+        <div class="inactive state GameInstructions GameStart">
           <div id="gameInstructions" class="inactive">
             <span id="gamestartCountdown" class="inactive"></span>
             <button class="green play">Start</button>
@@ -152,11 +146,8 @@
           <div class="dialog">
             <div class="content">
               <h2>Your friend left the game</h2>
-              <p>
-              Copy and share this link to play a friend:<br /><span class="shareUrl"></span>
-              </p>
+              <p>Copy and share this link to play a friend:<br /><span class="shareUrl"></span></p>
               <button class="green play">Play Computer (Space)</button>
-              <!--<button class="alternative notimplemented">Score Board</button>-->
             </div>
           </div>
         </div>
@@ -167,13 +158,9 @@
           <div class="dialog">
             <div class="content">
               <h2>Paused</h2>
-              <p>
-                Press <button class="alternative green play">space</button> to resume
-              </p>
-             <!-- <button class="alternative paddleSetup">Paddle Setup</button>-->
+              <p>Press <button class="alternative green play">space</button> to resume</p>
               <button class="singleplayer green play">Resume Game</button>
               <button class="multiplayer green quit notimplemented">Quit Friends Play</button>
-             <!-- <button class="alternative notimplemented">Score Board</button>-->
             </div>
           </div>
         </div>
@@ -185,16 +172,24 @@
           <div class="dialog">
             <div class="content">
               <h2>Your Points</h2>
-
               <table border="0">
-                <tr><td>Levels Played</td><td>Aces</td><td>Longest ball</td></tr>
-                <tr><td><img src="/images/7.png"></td><td><img src="/images/12.png"></td><td><img src="/images/45.png" /></td></tr>
-                <tr class="records"><td></td><td>New Record</td><td></td></tr>
+                <tr>
+                  <td>Levels Played</td>
+                  <td>Aces</td>
+                  <td>Longest ball</td>
+                </tr>
+                <tr>
+                  <td><img src="/images/7.png"></td>
+                  <td><img src="/images/12.png"></td>
+                  <td><img src="/images/45.png" /></td>
+                </tr>
+                <tr class="records">
+                  <td></td>
+                  <td>New Record</td>
+                  <td></td>
+                </tr>
               </table>
-
-              <!--<button class="alternative paddleSetup">Paddle Setup</button>-->
               <button class="green play">Play Again (Space)</button>
-              <!--<button class="alternative notimplemented">Score Board</button>-->
             </div>
           </div>
         </div>
@@ -278,15 +273,19 @@
       ]);
     </script>
     <script src="/_ah/channel/jsapi"></script>
-    <script src="javascript/libs/jquery-1.8.1.min.js"></script>
-    <script src="javascript/libs/jquery.cookie.js"></script>
-    <script src='javascript/libs/three.js'></script>
-    <script src='javascript/libs/Stats.js'></script>
-    <script src='javascript/libs/Tween.js'></script>
-    <script src="javascript/libs/dat.gui.js"></script>
-    <script src="javascript/libs/datachannel.js"></script>
-    <script src='./build/build.js'></script>
-    <script> require('verlet-sim')({ room: "{{.Room}}", acceptLanguage: "rö,{{.AcceptLanguage}}" }) </script>
+    <script src="/javascript/libs/jquery-1.8.1.min.js"></script>
+    <script src='/javascript/libs/three.js'></script>
+    <script src='/javascript/libs/Stats.js'></script>
+    <script src='/javascript/libs/Tween.js'></script>
+    <script src="/javascript/libs/dat.gui.js"></script>
+    <script src="/javascript/libs/datachannel.js"></script>
+    <script src='/build/build.js'></script>
+    <script>
+      require('paddle-battle')({
+        room: "{{.Room}}",
+        acceptLanguage: "rv,{{.AcceptLanguage}}"
+      })
+    </script>
     <script>
       // Crashing in my Chrome Stable:
       /*
