@@ -8,7 +8,8 @@
     "publicclass/geom": "*",
     "publicclass/range": "*",
     "visionmedia/debug": "*",
-    "component/confirmation": "*"
+    "component/confirmation": "*",
+    "component/cookie": "*"
   },
   "scripts": [
     "index.js",
