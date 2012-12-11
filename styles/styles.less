@@ -7,12 +7,6 @@
   url('/fonts/eboy-regalpha-webfont.svg#webfont') format('svg');
 }
 
-/* After GameStart became potential parent state to PaddleSetup, it's layer might end up on top of PaddleSetup's. This is a fix for that. */
-body.PaddleSetup #wrapper #content .state.GameStart {
-  display: none;
-}
-
-
 /*
  * All state-spcific elements should be hidden by default:
  */
@@ -117,7 +111,7 @@ button:hover, a.button:hover {
       width: 100%;
       height: 33%;
       position: absolute;
-      bottom:40px;
+      bottom: 40px;
       margin: 0;
       padding:0;
       -webkit-perspective: 2000px;
@@ -127,6 +121,9 @@ button:hover, a.button:hover {
   &.top {
     bottom: auto;
     top: 0;
+  }
+  &.middle {
+    bottom: 33%;
   }
 }
 .state .dialog .content {
@@ -236,62 +233,6 @@ body.Play, body.Pause {
   }
 }
 
-#headBar {
-  top: -40px;
-  -webkit-transition: top 0.5s;
-      -moz-transition: -moz-transform 0.5s;
-        -o-transition: -o-transform 0.5s;
-          transition: transform 0.5s;
-
-  z-index: 50000000;
-  background: #faf9db;
-  width: 100%;
-  height: 40px;
-  position: absolute;
-  text-align: right;
-
-  .headBarContent {
-    display: none;
-    margin: 13px 0px 0px 0px;
-    text-align: center;
-    color: #e83028;
-  }
-
-  .shareLink {
-    .shareUrl {
-      color: #4daf4d;
-    }
-  }
-
-  .friendArrived, .opponentPaddle {
-    margin-top: 5px;
-    span {
-      font-weight: bold;
-      margin-right: 12px;
-    }
-    img {
-      vertical-align: middle;
-    }
-  }
-
-  .opponentReady {
-    a {
-      display: inline-block;
-      margin-left: 20px;
-    }
-  }
-
-  .loginInfo {
-    text-align: right;
-    button, a.button {
-      margin-right: 20px;
-      margin-left: 10px;
-    }
-  }
-
-}
-
-
 
 /*
  * STRUCTURE
@@ -396,23 +337,14 @@ body {
 
         #title {
 
-        overflow:hidden;
+          overflow:hidden;
           padding: 100px 0px 30px 0px;
 
           h1 {
             padding: 0px 0px 0px 0px;
-            /*width: 1533px;
-            height: 155px;
-            background-image: url('/images/logo_large.png');*/
-            /*margin: 0px auto 0px auto;*/
             span {
               display: none;
             }
-
-            /*-webkit-transform: scale(0.8);
-            -webkit-transform-origin: 50% 50%;
-*/
-
           }
 
           img {
@@ -434,10 +366,6 @@ body {
           bottom: 92px;
           text-align: center;
         }
-
-        button {
-        }
-
       }
 
       /*
@@ -474,22 +402,6 @@ body {
         }
       }
 
-      #paddleSelection {
-        button {
-          margin: 10px 0px 20px 0px;
-        }
-        .dialog {
-          height: 270px;
-        }
-        h2 {
-          padding-top: 25px;
-          padding-bottom: 20px;
-        }
-        p {
-          margin: 6px 0px 6px 0px;
-        }
-      }
-
       #game {
         display: block;
 
@@ -513,27 +425,11 @@ body {
       }
 
       /*
-       * WAIT FOR HOST
-       */
-
-      #waitingForHostDialog {
-        .dialog {
-          height: 260px;
-        }
-        .buttonsWrapper {
-          padding-top: 50px;
-          button {
-            width: 250px;
-            margin: 10px 10px 10px 10px;
-          }
-        }
-      }
-
-      /*
        * COUNTDOWN
        */
 
-      .state.GameInstructions, .state.GameStart {
+      .state.GameInstructions,
+      .state.GameStart {
         display:-moz-box;
         -moz-box-orient:horizontal;
         -moz-box-pack:center;
@@ -814,26 +710,6 @@ body {
 
       }
 
-      /*
-       * DEBUGING
-       */
-
-      .info {
-        position: absolute;
-        bottom: -100px; /* Hidden, make positive to show. */
-        left: 20px;
-        background: rgba(127,127,127,0.5);
-      }
-
-      .info li {
-        &.hidden {
-          display: none;
-        }
-      }
-
-      .info video {
-        border: 1px dashed red;
-      }
 
     }
 
@@ -959,7 +835,7 @@ body {
 
 
 #debug-info {
-  display:none;
+  // display:none;
   position: absolute;
   z-index: 100000;
   right: 0;
