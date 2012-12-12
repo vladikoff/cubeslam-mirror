@@ -42,6 +42,11 @@ $icons: sprite-map("icons/*.png");
   @include icons-values("cross-fail");
 }
 
+.icon-mouse {
+  @include icons-values("mouse");
+}
+
+
 // DASHES
 // Differents size and colors
 // ==========================================================================
@@ -527,5 +532,34 @@ $xmax: 80px;
       @extend %keyright-fade-out-in-anim;
       opacity: 0;
     }
+  }
+}
+
+
+// Mouse Animation
+// ==========================================================================
+
+@include keyframes(mouse-move) {
+  10% { @include translate(0, 0); }
+  50% { @include translate(20px, 0); }
+  100% { @include translate(0, 0); }
+}
+
+%mouse-move-anim {
+  @extend %infinite-anim;
+  @include animation-name(mouse-move);
+  @include animation-duration(1.6s);
+}
+
+.mouse-anim {
+  &>.dash-big {
+    @extend %mouse-move-anim;
+    @include animation-delay(100ms);
+    margin-left: 5px;
+  }
+
+  &>.icon-mouse {
+    @extend %mouse-move-anim;
+    margin-top: 15px;
   }
 }

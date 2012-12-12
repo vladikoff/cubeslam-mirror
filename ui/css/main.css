@@ -63,9 +63,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/icons\/\*\.png}line{font-family:\0000382}}
-.icons-sprite, .icons-cam, .icons-cam__spinner, .icons-computer, .icons-cross-fail, .icons-key-arrow-left, .icons-key-arrow-right, .icon-webcam, .icon-quarter-circle, .icon-computer, .icon-arrow-left, .icon-arrow-right, .icon-cross {
-  background: url('../images/icons-s7be2993ab3.png') no-repeat;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/icons\/\*\.png}line{font-family:\0000390}}
+.icons-sprite, .icons-cam, .icons-cam__spinner, .icons-computer, .icons-cross-fail, .icons-key-arrow-left, .icons-key-arrow-right, .icons-mouse, .icon-webcam, .icon-quarter-circle, .icon-computer, .icon-arrow-left, .icon-arrow-right, .icon-cross, .icon-mouse {
+  background: url('../images/icons-s4e56167bd4.png') no-repeat;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
@@ -90,16 +90,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
 .icons-key-arrow-left {
-  background-position: 0 -271px;
+  background-position: 0 -321px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
 .icons-key-arrow-right {
+  background-position: 0 -310px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
+.icons-mouse {
   background-position: 0 -260px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000313}}
-.webcam-spinner__quarter, .blinking-eyes-anim-loop, .sad-left-eye-anim-loop, .sad-right-eye-anim-loop, .cpu-conn-failed-anim .dash-anim-line > div, .kb-anim .dash-big, .default-key-anim .key__bg-inner, .default-key-anim .key__label, .kb-anim > div:nth-of-type(3) .key__bg-inner, .kb-anim > div:nth-of-type(3) .key__label {
+.webcam-spinner__quarter, .blinking-eyes-anim-loop, .sad-left-eye-anim-loop, .sad-right-eye-anim-loop, .cpu-conn-failed-anim .dash-anim-line > div, .kb-anim .dash-big, .default-key-anim .key__bg-inner, .default-key-anim .key__label, .kb-anim > div:nth-of-type(3) .key__bg-inner, .kb-anim > div:nth-of-type(3) .key__label, .mouse-anim > .dash-big, .mouse-anim > .icon-mouse {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   -webkit-animation-iteration-count: infinite;
@@ -129,14 +134,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000333}}
 .icon-arrow-left {
-  background-position: 0 -271px;
+  background-position: 0 -321px;
   height: 9px;
   width: 9px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000337}}
 .icon-arrow-right {
-  background-position: 0 -260px;
+  background-position: 0 -310px;
   height: 9px;
   width: 9px;
 }
@@ -148,36 +153,43 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 42px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000345}}
+.icon-mouse {
+  background-position: 0 -260px;
+  height: 48px;
+  width: 39px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000354}}
 .dash-white {
   background: #F9F9DA;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000355}}
 .dash-black {
   background: #000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000352}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000357}}
 .dash-big {
   width: 30px;
   height: 6px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000357}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000362}}
 .dash-medium {
   width: 14px;
   height: 4px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000367}}
 .dash-small {
   width: 14px;
   height: 6px;
 }
 
 @-webkit-keyframes spinner-rotate {
-  /* line 74, ../sass/main.scss */
+  /* line 79, ../sass/main.scss */
   0% {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -186,7 +198,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: rotate(0deg);
   }
 
-  /* line 75, ../sass/main.scss */
+  /* line 80, ../sass/main.scss */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -197,7 +209,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes spinner-rotate {
-  /* line 74, ../sass/main.scss */
+  /* line 79, ../sass/main.scss */
   0% {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -206,7 +218,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: rotate(0deg);
   }
 
-  /* line 75, ../sass/main.scss */
+  /* line 80, ../sass/main.scss */
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -216,7 +228,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000378}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000383}}
 .webcam-spinner__quarter {
   -webkit-animation-name: spinner-rotate;
   animation-name: spinner-rotate;
@@ -224,51 +236,51 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   animation-duration: 1.5s;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000392}}
 .webcam-spinner__bg {
   position: absolute;
   margin: 26.5px 0 0 26.5px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000392}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000397}}
 .webcam-spinner__quarter {
   height: 106px;
   width: 106px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003104}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003109}}
 .cpu-wth-eyes {
   height: 92px;
   width: 67px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003109}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003114}}
 .cpu-wth-eyes__bg {
   position: absolute;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003113}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003118}}
 .cpu-wth-eyes__container {
   position: relative;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003117}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003122}}
 .cpu-wth-eyes__eyes {
   position: absolute;
   top: 24px;
   left: 15px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003122}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003127}}
 .cpu-wth-eyes__eyes > div {
   display: inline-block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003125}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003130}}
 .cpu-wth-eyes__eyes > div:first-of-type {
   margin-right: 5px;
 }
 
 @-webkit-keyframes cpu-blinking {
-  /* line 138, ../sass/main.scss */
+  /* line 143, ../sass/main.scss */
   20% {
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -277,7 +289,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1);
   }
 
-  /* line 139, ../sass/main.scss */
+  /* line 144, ../sass/main.scss */
   30% {
     -webkit-transform: scaleY(0.2);
     -moz-transform: scaleY(0.2);
@@ -286,7 +298,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2);
   }
 
-  /* line 140, ../sass/main.scss */
+  /* line 145, ../sass/main.scss */
   40% {
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -295,7 +307,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1);
   }
 
-  /* line 141, ../sass/main.scss */
+  /* line 146, ../sass/main.scss */
   45% {
     -webkit-transform: scaleY(0.2);
     -moz-transform: scaleY(0.2);
@@ -304,7 +316,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2);
   }
 
-  /* line 142, ../sass/main.scss */
+  /* line 147, ../sass/main.scss */
   50% {
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -315,7 +327,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes cpu-blinking {
-  /* line 138, ../sass/main.scss */
+  /* line 143, ../sass/main.scss */
   20% {
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -324,7 +336,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1);
   }
 
-  /* line 139, ../sass/main.scss */
+  /* line 144, ../sass/main.scss */
   30% {
     -webkit-transform: scaleY(0.2);
     -moz-transform: scaleY(0.2);
@@ -333,7 +345,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2);
   }
 
-  /* line 140, ../sass/main.scss */
+  /* line 145, ../sass/main.scss */
   40% {
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -342,7 +354,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1);
   }
 
-  /* line 141, ../sass/main.scss */
+  /* line 146, ../sass/main.scss */
   45% {
     -webkit-transform: scaleY(0.2);
     -moz-transform: scaleY(0.2);
@@ -351,7 +363,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2);
   }
 
-  /* line 142, ../sass/main.scss */
+  /* line 147, ../sass/main.scss */
   50% {
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);
@@ -361,7 +373,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003145}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003150}}
 .blinking-eyes-anim-loop, .play-anim .cpu-wth-eyes__eyes > div, .reverse-anim .cpu-wth-eyes__eyes > div {
   -webkit-animation-name: cpu-blinking;
   animation-name: cpu-blinking;
@@ -372,7 +384,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes cpu-sad-right-eye {
-  /* line 159, ../sass/main.scss */
+  /* line 164, ../sass/main.scss */
   10% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -381,7 +393,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 160, ../sass/main.scss */
+  /* line 165, ../sass/main.scss */
   20% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -390,7 +402,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 161, ../sass/main.scss */
+  /* line 166, ../sass/main.scss */
   30% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -399,7 +411,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 162, ../sass/main.scss */
+  /* line 167, ../sass/main.scss */
   35% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -408,7 +420,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 163, ../sass/main.scss */
+  /* line 168, ../sass/main.scss */
   40% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -417,7 +429,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 164, ../sass/main.scss */
+  /* line 169, ../sass/main.scss */
   60% {
     -webkit-transform: scaleY(1) rotate(20deg);
     -moz-transform: scaleY(1) rotate(20deg);
@@ -426,7 +438,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(20deg);
   }
 
-  /* line 165, ../sass/main.scss */
+  /* line 170, ../sass/main.scss */
   94% {
     -webkit-transform: scaleY(1) rotate(20deg);
     -moz-transform: scaleY(1) rotate(20deg);
@@ -435,7 +447,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(20deg);
   }
 
-  /* line 166, ../sass/main.scss */
+  /* line 171, ../sass/main.scss */
   100% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -446,7 +458,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes cpu-sad-right-eye {
-  /* line 159, ../sass/main.scss */
+  /* line 164, ../sass/main.scss */
   10% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -455,7 +467,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 160, ../sass/main.scss */
+  /* line 165, ../sass/main.scss */
   20% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -464,7 +476,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 161, ../sass/main.scss */
+  /* line 166, ../sass/main.scss */
   30% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -473,7 +485,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 162, ../sass/main.scss */
+  /* line 167, ../sass/main.scss */
   35% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -482,7 +494,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 163, ../sass/main.scss */
+  /* line 168, ../sass/main.scss */
   40% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -491,7 +503,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 164, ../sass/main.scss */
+  /* line 169, ../sass/main.scss */
   60% {
     -webkit-transform: scaleY(1) rotate(20deg);
     -moz-transform: scaleY(1) rotate(20deg);
@@ -500,7 +512,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(20deg);
   }
 
-  /* line 165, ../sass/main.scss */
+  /* line 170, ../sass/main.scss */
   94% {
     -webkit-transform: scaleY(1) rotate(20deg);
     -moz-transform: scaleY(1) rotate(20deg);
@@ -509,7 +521,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(20deg);
   }
 
-  /* line 166, ../sass/main.scss */
+  /* line 171, ../sass/main.scss */
   100% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -520,7 +532,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes cpu-sad-left-eye {
-  /* line 170, ../sass/main.scss */
+  /* line 175, ../sass/main.scss */
   10% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -529,7 +541,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 171, ../sass/main.scss */
+  /* line 176, ../sass/main.scss */
   20% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -538,7 +550,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 172, ../sass/main.scss */
+  /* line 177, ../sass/main.scss */
   30% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -547,7 +559,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 173, ../sass/main.scss */
+  /* line 178, ../sass/main.scss */
   35% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -556,7 +568,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 174, ../sass/main.scss */
+  /* line 179, ../sass/main.scss */
   40% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -565,7 +577,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 175, ../sass/main.scss */
+  /* line 180, ../sass/main.scss */
   60% {
     -webkit-transform: scaleY(1) rotate(-20deg);
     -moz-transform: scaleY(1) rotate(-20deg);
@@ -574,7 +586,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(-20deg);
   }
 
-  /* line 176, ../sass/main.scss */
+  /* line 181, ../sass/main.scss */
   94% {
     -webkit-transform: scaleY(1) rotate(-20deg);
     -moz-transform: scaleY(1) rotate(-20deg);
@@ -583,7 +595,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(-20deg);
   }
 
-  /* line 177, ../sass/main.scss */
+  /* line 182, ../sass/main.scss */
   100% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -594,7 +606,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes cpu-sad-left-eye {
-  /* line 170, ../sass/main.scss */
+  /* line 175, ../sass/main.scss */
   10% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -603,7 +615,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 171, ../sass/main.scss */
+  /* line 176, ../sass/main.scss */
   20% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -612,7 +624,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 172, ../sass/main.scss */
+  /* line 177, ../sass/main.scss */
   30% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -621,7 +633,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 173, ../sass/main.scss */
+  /* line 178, ../sass/main.scss */
   35% {
     -webkit-transform: scaleY(0.2) rotate(0deg);
     -moz-transform: scaleY(0.2) rotate(0deg);
@@ -630,7 +642,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(0.2) rotate(0deg);
   }
 
-  /* line 174, ../sass/main.scss */
+  /* line 179, ../sass/main.scss */
   40% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -639,7 +651,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(0deg);
   }
 
-  /* line 175, ../sass/main.scss */
+  /* line 180, ../sass/main.scss */
   60% {
     -webkit-transform: scaleY(1) rotate(-20deg);
     -moz-transform: scaleY(1) rotate(-20deg);
@@ -648,7 +660,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(-20deg);
   }
 
-  /* line 176, ../sass/main.scss */
+  /* line 181, ../sass/main.scss */
   94% {
     -webkit-transform: scaleY(1) rotate(-20deg);
     -moz-transform: scaleY(1) rotate(-20deg);
@@ -657,7 +669,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scaleY(1) rotate(-20deg);
   }
 
-  /* line 177, ../sass/main.scss */
+  /* line 182, ../sass/main.scss */
   100% {
     -webkit-transform: scaleY(1) rotate(0deg);
     -moz-transform: scaleY(1) rotate(0deg);
@@ -667,25 +679,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003180}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003185}}
 .sad-left-eye-anim-loop, .sad-right-eye-anim-loop {
   -webkit-animation-duration: 3s;
   animation-duration: 3s;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003185}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003190}}
 .sad-left-eye-anim-loop {
   -webkit-animation-name: cpu-sad-left-eye;
   animation-name: cpu-sad-left-eye;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003190}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003195}}
 .sad-right-eye-anim-loop {
   -webkit-animation-name: cpu-sad-right-eye;
   animation-name: cpu-sad-right-eye;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003195}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003200}}
 .sad-left-eye-anim-loop {
   -webkit-transform-origin: 100% 50%;
   -moz-transform-origin: 100% 50%;
@@ -694,7 +706,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   transform-origin: 100% 50%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003200}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003205}}
 .sad-right-eye-anim-loop {
   -webkit-transform-origin: 0% 50%;
   -moz-transform-origin: 0% 50%;
@@ -704,7 +716,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes up-and-down {
-  /* line 208, ../sass/main.scss */
+  /* line 213, ../sass/main.scss */
   0% {
     -webkit-transform: translate(0, 0px);
     -moz-transform: translate(0, 0px);
@@ -713,7 +725,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0px);
   }
 
-  /* line 209, ../sass/main.scss */
+  /* line 214, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, -20px);
     -moz-transform: translate(0, -20px);
@@ -722,7 +734,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -20px);
   }
 
-  /* line 210, ../sass/main.scss */
+  /* line 215, ../sass/main.scss */
   20% {
     -webkit-transform: translate(0, 0px);
     -moz-transform: translate(0, 0px);
@@ -733,7 +745,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes up-and-down {
-  /* line 208, ../sass/main.scss */
+  /* line 213, ../sass/main.scss */
   0% {
     -webkit-transform: translate(0, 0px);
     -moz-transform: translate(0, 0px);
@@ -742,7 +754,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0px);
   }
 
-  /* line 209, ../sass/main.scss */
+  /* line 214, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, -20px);
     -moz-transform: translate(0, -20px);
@@ -751,7 +763,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -20px);
   }
 
-  /* line 210, ../sass/main.scss */
+  /* line 215, ../sass/main.scss */
   20% {
     -webkit-transform: translate(0, 0px);
     -moz-transform: translate(0, 0px);
@@ -761,7 +773,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003213}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003218}}
 .play-anim .dash-anim-line > div, .reverse-anim .dash-anim-line > div {
   -webkit-animation-name: up-and-down;
   animation-name: up-and-down;
@@ -769,141 +781,141 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   animation-duration: 2s;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003221}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003226}}
 .cpu-conn-anim {
   position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003224}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003229}}
 .cpu-conn-anim > div {
   display: inline-block;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003229}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003234}}
 .dash-anim-line {
   position: relative;
   vertical-align: top;
   top: 34px;
   margin: 0 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003235}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003240}}
 .dash-anim-line > div {
   display: inline-block;
   margin-right: 5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003239}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003244}}
 .dash-anim-line > div:last-of-type {
   margin-right: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003270}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
 .play-anim .cpu-wth-eyes:last-of-type .cpu-wth-eyes__eyes > div {
   -webkit-animation-delay: 1.4s;
   animation-delay: 1.4s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(1) {
   -webkit-animation-delay: 850ms;
   animation-delay: 850ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(2) {
   -webkit-animation-delay: 950ms;
   animation-delay: 950ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(3) {
   -webkit-animation-delay: 1050ms;
   animation-delay: 1050ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(4) {
   -webkit-animation-delay: 1150ms;
   animation-delay: 1150ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(5) {
   -webkit-animation-delay: 1250ms;
   animation-delay: 1250ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(6) {
   -webkit-animation-delay: 1350ms;
   animation-delay: 1350ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(7) {
   -webkit-animation-delay: 1450ms;
   animation-delay: 1450ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(8) {
   -webkit-animation-delay: 1550ms;
   animation-delay: 1550ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003280}}
 .play-anim .dash-anim-line > div:nth-of-type(9) {
   -webkit-animation-delay: 1650ms;
   animation-delay: 1650ms;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003282}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003287}}
 .reverse-anim .cpu-wth-eyes:first-of-type .cpu-wth-eyes__eyes > div {
   -webkit-animation-delay: 1.4s;
   animation-delay: 1.4s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(10) {
   -webkit-animation-delay: 750ms;
   animation-delay: 750ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(9) {
   -webkit-animation-delay: 850ms;
   animation-delay: 850ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(8) {
   -webkit-animation-delay: 950ms;
   animation-delay: 950ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(7) {
   -webkit-animation-delay: 1050ms;
   animation-delay: 1050ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(6) {
   -webkit-animation-delay: 1150ms;
   animation-delay: 1150ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(5) {
   -webkit-animation-delay: 1250ms;
   animation-delay: 1250ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(4) {
   -webkit-animation-delay: 1350ms;
   animation-delay: 1350ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(3) {
   -webkit-animation-delay: 1450ms;
   animation-delay: 1450ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(2) {
   -webkit-animation-delay: 1550ms;
   animation-delay: 1550ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003293}}
 .reverse-anim .dash-anim-line > div:nth-of-type(1) {
   -webkit-animation-delay: 1650ms;
   animation-delay: 1650ms;
 }
 
 @-webkit-keyframes cpu-failed-cross {
-  /* line 301, ../sass/main.scss */
+  /* line 306, ../sass/main.scss */
   0% {
     -webkit-transform: scale(0);
     -moz-transform: scale(0);
@@ -912,7 +924,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scale(0);
   }
 
-  /* line 302, ../sass/main.scss */
+  /* line 307, ../sass/main.scss */
   100% {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
@@ -923,7 +935,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes cpu-failed-cross {
-  /* line 301, ../sass/main.scss */
+  /* line 306, ../sass/main.scss */
   0% {
     -webkit-transform: scale(0);
     -moz-transform: scale(0);
@@ -932,7 +944,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: scale(0);
   }
 
-  /* line 302, ../sass/main.scss */
+  /* line 307, ../sass/main.scss */
   100% {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
@@ -942,7 +954,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003305}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003310}}
 .cross-fail-anim {
   -webkit-animation-name: cpu-failed-cross;
   animation-name: cpu-failed-cross;
@@ -950,59 +962,59 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   animation-duration: 500ms;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003315}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003320}}
 .cpu-conn-failed-anim > div {
   display: inline-block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003319}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003324}}
 .cpu-conn-failed-anim .cross-fail-anim {
   vertical-align: top;
   margin-top: 24px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003324}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003329}}
 .cpu-conn-failed-anim .dash-anim-line > div {
   -webkit-animation-name: up-and-down;
   animation-name: up-and-down;
   -webkit-animation-duration: 4s;
   animation-duration: 4s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003336}}
 .cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(1) {
   -webkit-animation-delay: 300ms;
   animation-delay: 300ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003336}}
 .cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(2) {
   -webkit-animation-delay: 400ms;
   animation-delay: 400ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003336}}
 .cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(3) {
   -webkit-animation-delay: 500ms;
   animation-delay: 500ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003343}}
 .cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(3) {
   -webkit-animation-delay: 320ms;
   animation-delay: 320ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003343}}
 .cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(2) {
   -webkit-animation-delay: 420ms;
   animation-delay: 420ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003343}}
 .cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(1) {
   -webkit-animation-delay: 520ms;
   animation-delay: 520ms;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003355}}
 .key {
   position: relative;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003354}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003359}}
 .key__label {
   position: absolute;
   font-size: 11px;
@@ -1010,7 +1022,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-align: center;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003361}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003366}}
 .key__bg-inner {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -1024,7 +1036,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-top: -1px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003370}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003375}}
 .key__bg-outer {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -1034,35 +1046,35 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border: 3px solid #000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003376}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003381}}
 .key--small .key__bg-inner {
   width: 44px;
   height: 43px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003381}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003386}}
 .key--small .key__bg-outer {
   width: 52px;
   height: 48px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003386}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003391}}
 .key--small .icon-arrow-left {
   margin: 21px 0 0 24px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003390}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003395}}
 .key--small .icon-arrow-right {
   margin: 21px 0 0 24px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003396}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003401}}
 .key--big .key__label {
   margin-top: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003400}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003405}}
 .key--big .key__bg-inner {
   width: 128px;
   height: 43px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003406}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003411}}
 .key--big .key__label,
 .key--big .key__bg-outer {
   width: 135px;
@@ -1070,7 +1082,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes dash-right-to-left-to-right {
-  /* line 420, ../sass/main.scss */
+  /* line 425, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1079,7 +1091,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 421, ../sass/main.scss */
+  /* line 426, ../sass/main.scss */
   47% {
     -webkit-transform: translate(80px, 0);
     -moz-transform: translate(80px, 0);
@@ -1088,7 +1100,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(80px, 0);
   }
 
-  /* line 422, ../sass/main.scss */
+  /* line 427, ../sass/main.scss */
   53% {
     -webkit-transform: translate(80px, 0);
     -moz-transform: translate(80px, 0);
@@ -1097,7 +1109,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(80px, 0);
   }
 
-  /* line 423, ../sass/main.scss */
+  /* line 428, ../sass/main.scss */
   100% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1108,7 +1120,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes dash-right-to-left-to-right {
-  /* line 420, ../sass/main.scss */
+  /* line 425, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1117,7 +1129,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 421, ../sass/main.scss */
+  /* line 426, ../sass/main.scss */
   47% {
     -webkit-transform: translate(80px, 0);
     -moz-transform: translate(80px, 0);
@@ -1126,7 +1138,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(80px, 0);
   }
 
-  /* line 422, ../sass/main.scss */
+  /* line 427, ../sass/main.scss */
   53% {
     -webkit-transform: translate(80px, 0);
     -moz-transform: translate(80px, 0);
@@ -1135,7 +1147,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(80px, 0);
   }
 
-  /* line 423, ../sass/main.scss */
+  /* line 428, ../sass/main.scss */
   100% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1145,7 +1157,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003426}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003431}}
 .kb-anim .dash-big {
   -webkit-animation-name: dash-right-to-left-to-right;
   animation-name: dash-right-to-left-to-right;
@@ -1154,60 +1166,60 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes keyleft-fade-in-out {
-  /* line 436, ../sass/main.scss */
+  /* line 441, ../sass/main.scss */
   10% {
     opacity: 1;
   }
 
-  /* line 437, ../sass/main.scss */
+  /* line 442, ../sass/main.scss */
   35% {
     opacity: 1;
   }
 
-  /* line 438, ../sass/main.scss */
+  /* line 443, ../sass/main.scss */
   47% {
     opacity: 0;
   }
 
-  /* line 439, ../sass/main.scss */
+  /* line 444, ../sass/main.scss */
   87% {
     opacity: 0;
   }
 
-  /* line 440, ../sass/main.scss */
+  /* line 445, ../sass/main.scss */
   100% {
     opacity: 1;
   }
 }
 
 @keyframes keyleft-fade-in-out {
-  /* line 436, ../sass/main.scss */
+  /* line 441, ../sass/main.scss */
   10% {
     opacity: 1;
   }
 
-  /* line 437, ../sass/main.scss */
+  /* line 442, ../sass/main.scss */
   35% {
     opacity: 1;
   }
 
-  /* line 438, ../sass/main.scss */
+  /* line 443, ../sass/main.scss */
   47% {
     opacity: 0;
   }
 
-  /* line 439, ../sass/main.scss */
+  /* line 444, ../sass/main.scss */
   87% {
     opacity: 0;
   }
 
-  /* line 440, ../sass/main.scss */
+  /* line 445, ../sass/main.scss */
   100% {
     opacity: 1;
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003443}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003448}}
 .default-key-anim .key__bg-inner {
   -webkit-animation-name: keyleft-fade-in-out;
   animation-name: keyleft-fade-in-out;
@@ -1216,7 +1228,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes keyleft-arrow-up-down {
-  /* line 450, ../sass/main.scss */
+  /* line 455, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1225,7 +1237,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 451, ../sass/main.scss */
+  /* line 456, ../sass/main.scss */
   35% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1234,7 +1246,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 452, ../sass/main.scss */
+  /* line 457, ../sass/main.scss */
   47% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1243,7 +1255,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 453, ../sass/main.scss */
+  /* line 458, ../sass/main.scss */
   87% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1252,7 +1264,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 454, ../sass/main.scss */
+  /* line 459, ../sass/main.scss */
   95% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1263,7 +1275,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes keyleft-arrow-up-down {
-  /* line 450, ../sass/main.scss */
+  /* line 455, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1272,7 +1284,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 451, ../sass/main.scss */
+  /* line 456, ../sass/main.scss */
   35% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1281,7 +1293,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 452, ../sass/main.scss */
+  /* line 457, ../sass/main.scss */
   47% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1290,7 +1302,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 453, ../sass/main.scss */
+  /* line 458, ../sass/main.scss */
   87% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1299,7 +1311,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 454, ../sass/main.scss */
+  /* line 459, ../sass/main.scss */
   95% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1309,7 +1321,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003457}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003462}}
 .default-key-anim .key__label {
   -webkit-transform: translate(0, -2px);
   -moz-transform: translate(0, -2px);
@@ -1323,60 +1335,60 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes keyright-fade-out-in {
-  /* line 468, ../sass/main.scss */
+  /* line 473, ../sass/main.scss */
   10% {
     opacity: 0;
   }
 
-  /* line 469, ../sass/main.scss */
+  /* line 474, ../sass/main.scss */
   35% {
     opacity: 0;
   }
 
-  /* line 470, ../sass/main.scss */
+  /* line 475, ../sass/main.scss */
   47% {
     opacity: 1;
   }
 
-  /* line 471, ../sass/main.scss */
+  /* line 476, ../sass/main.scss */
   87% {
     opacity: 1;
   }
 
-  /* line 472, ../sass/main.scss */
+  /* line 477, ../sass/main.scss */
   100% {
     opacity: 0;
   }
 }
 
 @keyframes keyright-fade-out-in {
-  /* line 468, ../sass/main.scss */
+  /* line 473, ../sass/main.scss */
   10% {
     opacity: 0;
   }
 
-  /* line 469, ../sass/main.scss */
+  /* line 474, ../sass/main.scss */
   35% {
     opacity: 0;
   }
 
-  /* line 470, ../sass/main.scss */
+  /* line 475, ../sass/main.scss */
   47% {
     opacity: 1;
   }
 
-  /* line 471, ../sass/main.scss */
+  /* line 476, ../sass/main.scss */
   87% {
     opacity: 1;
   }
 
-  /* line 472, ../sass/main.scss */
+  /* line 477, ../sass/main.scss */
   100% {
     opacity: 0;
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003475}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003480}}
 .kb-anim > div:nth-of-type(3) .key__bg-inner {
   -webkit-animation-name: keyright-fade-out-in;
   animation-name: keyright-fade-out-in;
@@ -1385,7 +1397,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @-webkit-keyframes keyright-arrow-down-up {
-  /* line 482, ../sass/main.scss */
+  /* line 487, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1394,7 +1406,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 483, ../sass/main.scss */
+  /* line 488, ../sass/main.scss */
   35% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1403,7 +1415,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 484, ../sass/main.scss */
+  /* line 489, ../sass/main.scss */
   47% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1412,7 +1424,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 485, ../sass/main.scss */
+  /* line 490, ../sass/main.scss */
   92% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1421,7 +1433,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 486, ../sass/main.scss */
+  /* line 491, ../sass/main.scss */
   98% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1432,7 +1444,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 @keyframes keyright-arrow-down-up {
-  /* line 482, ../sass/main.scss */
+  /* line 487, ../sass/main.scss */
   10% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1441,7 +1453,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 483, ../sass/main.scss */
+  /* line 488, ../sass/main.scss */
   35% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1450,7 +1462,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, 0);
   }
 
-  /* line 484, ../sass/main.scss */
+  /* line 489, ../sass/main.scss */
   47% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1459,7 +1471,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 485, ../sass/main.scss */
+  /* line 490, ../sass/main.scss */
   92% {
     -webkit-transform: translate(0, -2px);
     -moz-transform: translate(0, -2px);
@@ -1468,7 +1480,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: translate(0, -2px);
   }
 
-  /* line 486, ../sass/main.scss */
+  /* line 491, ../sass/main.scss */
   98% {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
@@ -1478,7 +1490,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003489}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003494}}
 .kb-anim > div:nth-of-type(3) .key__label {
   -webkit-animation-name: keyright-arrow-down-up;
   animation-name: keyright-arrow-down-up;
@@ -1486,20 +1498,97 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   animation-duration: 3s;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003507}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003512}}
 .kb-anim {
   position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003510}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003515}}
 .kb-anim .dash-big {
   margin-left: 14px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003515}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003520}}
 .kb-anim .key {
   display: inline-block;
   margin: 15px 20px 0 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003526}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003531}}
 .kb-anim > div:nth-of-type(3) .key__bg-inner {
   opacity: 0;
+}
+
+@-webkit-keyframes mouse-move {
+  /* line 543, ../sass/main.scss */
+  10% {
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  /* line 544, ../sass/main.scss */
+  50% {
+    -webkit-transform: translate(20px, 0);
+    -moz-transform: translate(20px, 0);
+    -ms-transform: translate(20px, 0);
+    -o-transform: translate(20px, 0);
+    transform: translate(20px, 0);
+  }
+
+  /* line 545, ../sass/main.scss */
+  100% {
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes mouse-move {
+  /* line 543, ../sass/main.scss */
+  10% {
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  /* line 544, ../sass/main.scss */
+  50% {
+    -webkit-transform: translate(20px, 0);
+    -moz-transform: translate(20px, 0);
+    -ms-transform: translate(20px, 0);
+    -o-transform: translate(20px, 0);
+    transform: translate(20px, 0);
+  }
+
+  /* line 545, ../sass/main.scss */
+  100% {
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003548}}
+.mouse-anim > .dash-big, .mouse-anim > .icon-mouse {
+  -webkit-animation-name: mouse-move;
+  animation-name: mouse-move;
+  -webkit-animation-duration: 1.6s;
+  animation-duration: 1.6s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003555}}
+.mouse-anim > .dash-big {
+  -webkit-animation-delay: 100ms;
+  animation-delay: 100ms;
+  margin-left: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003561}}
+.mouse-anim > .icon-mouse {
+  margin-top: 15px;
 }
