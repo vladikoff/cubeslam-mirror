@@ -144,6 +144,11 @@ $icons: sprite-map("icons/*.png");
   @include animation-fill-mode(both);
 }
 
+.blinking-eyes-anim-loop {
+  @extend %infinite-anim;
+  @extend %cpu-blinking-eyes-anim;
+}
+
 // Dashes animation for the wave effect.
 //
 @include keyframes(up-and-down) {
