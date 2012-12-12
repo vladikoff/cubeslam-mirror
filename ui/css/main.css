@@ -772,7 +772,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .dash-anim-line {
   position: relative;
   vertical-align: top;
-  top: 70px;
+  top: 34px;
   margin: 0 10px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003232}}
