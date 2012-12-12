@@ -146,11 +146,11 @@
         <!-- COUNTDOWN -->
 
         <div class="state Play inactive">
-          <div class="dialog middle">
-            <div class="content">
-              <span id="gamestartCountdown"></span>
+          <!--<div class="dialog middle">-->
+            <div class="centerContent">
+              <span id="gamestartCountdown">3</span>
             </div>
-          </div>
+         <!--/div>-->
         </div>
 
         <!-- OPPONENT LEFT DIALOG -->
@@ -275,7 +275,7 @@
     <script>
       require('paddle-battle')({
         room: "{{.Room}}",
-        acceptLanguage: "rv,{{.AcceptLanguage}}"
+        acceptLanguage: "en,{{.AcceptLanguage}}"
       })
     </script>
     <script>
