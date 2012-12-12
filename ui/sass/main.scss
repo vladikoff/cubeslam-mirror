@@ -2,91 +2,13 @@
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
 
+@import "mixins";
+
 $icons-spacing: 2px;
 @import "icons/*.png";
 @include all-icons-sprites;
 $icons: sprite-map("icons/*.png");
 
-// MIXINS
-// ==========================================================================
-
-@mixin icons-values($name) {
-  @include icons-sprite($name);
-  height: icons-sprite-height($name);
-  width: icons-sprite-width($name);
-}
-
-// keyframes mixin
-@mixin keyframes($name) {
-  @-webkit-keyframes #{$name} {
-    @content;
-  }
-  // @-moz-keyframes #{$name} {
-  //   @content;
-  // }
-  // @-ms-keyframes #{$name} {
-  //   @content;
-  // }
-  @keyframes #{$name} {
-    @content;
-  }
-}
-
-@mixin animation-name($name) {
-  -webkit-animation-name: $name;
-  // -moz-animation-name: $name;
-  // -ms-animation-name: $name;
-  // -o-animation-name: $name;
-  animation-name: $name;
-}
-
-@mixin animation-iteration-count($value) {
-  -webkit-animation-iteration-count: $value;
-  // -moz-animation-iteration-count: $value;
-  // -ms-animation-iteration-count: $value;
-  // -o-animation-iteration-count: $value;
-  animation-iteration-count: $value;
-}
-
-@mixin animation-duration($value) {
-  -webkit-animation-duration: $value;
-  // -moz-animation-duration: $value;
-  // -ms-animation-duration: $value;
-  // -o-animation-duration: $value;
-  animation-duration: $value;
-}
-
-@mixin animation-fill-mode($value) {
-  -webkit-animation-fill-mode: $value;
-  // -moz-animation-fill-mode: $value;
-  // -ms-animation-fill-mode: $value;
-  // -o-animation-fill-mode: $value;
-  animation-fill-mode: $value;
-}
-
-@mixin animation-delay($value) {
-  -webkit-animation-delay: $value;
-  // -moz-animation-delay: $value;
-  // -ms-animation-delay: $value;
-  // -o-animation-delay: $value;
-  animation-delay: $value;
-}
-
-@mixin transition-timing-function($value) {
-  -webkit-transition-timing-function: $value;
-  // -moz-transition-timing-function: $value;
-  // -ms-transition-timing-function: $value;
-  // -o-transition-timing-function: $value;
-  transition-timing-function: $value;
-}
-
-@mixin animation-direction($value) {
-  -webkit-animation-direction: $value;
-  // -moz-animation-direction: $value;
-  // -ms-animation-direction: $value;
-  // -o-animation-direction: $value;
-  animation-direction: $value;
-}
 
 %infinite-anim {
   @include animation-fill-mode(both);
