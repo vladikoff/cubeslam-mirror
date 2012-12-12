@@ -194,6 +194,30 @@ button:hover, a.button:hover {
 
 }
 
+.centerContent {
+
+  display:-moz-box;
+  -moz-box-orient:horizontal;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+  display:-webkit-box;
+  -webkit-box-orient:horizontal;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+  
+  display:box;
+  box-orient:horizontal;
+  box-pack:center;
+  box-align:center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 500;
+
+}
+
 
 /*
  * HEAD BAR
@@ -493,11 +517,14 @@ body {
           opacity: 0;
         }
       }
+
       #gamestartCountdown {
         font-family: 'eboyregalpha';
-        font-size: 220px;
-        line-height: 220px;
+        font-size: 320px;
+        line-height: 320px;
         color: #4daf4d;
+        margin:-40px auto 0px auto;
+
       }
 
       /*

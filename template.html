@@ -146,11 +146,11 @@
         <!-- COUNTDOWN -->
 
         <div class="state Play inactive">
-          <div class="dialog middle">
-            <div class="content">
-              <span id="gamestartCountdown"></span>
+          <!--<div class="dialog middle">-->
+            <div class="centerContent">
+              <span id="gamestartCountdown">3</span>
             </div>
-          </div>
+         <!--/div>-->
         </div>
 
         <!-- OPPONENT LEFT DIALOG -->
@@ -211,7 +211,7 @@
 
         <div id="gameScores" class="state Play inactive">
           <img src="/images/minipong.png" /><br />
-          Google Chrong<br />
+          Paddle Battle<br />
           Player 1 - Player 2<br />
           <span class="score inactive" id="level">LV.1</span><br />
           <div id="scoresRunning">
@@ -275,7 +275,7 @@
     <script>
       require('paddle-battle')({
         room: "{{.Room}}",
-        acceptLanguage: "rv,{{.AcceptLanguage}}"
+        acceptLanguage: "en,{{.AcceptLanguage}}"
       })
     </script>
     <script>

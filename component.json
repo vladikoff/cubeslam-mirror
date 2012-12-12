@@ -24,6 +24,7 @@
     "lib/puppeteer.js",
     "lib/levels/level1.js",
     "lib/levels/level2.js",
+    "lib/levels/level3.js",
     "lib/support/diff.js",
     "lib/support/inspect.js",
     "lib/support/draw.js",
