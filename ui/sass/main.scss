@@ -32,6 +32,7 @@ $icons: sprite-map("icons/*.png");
 
 
 // DASHES
+// Differents size and colors
 // ==========================================================================
 
 .dash-white { background: #fff; }
@@ -56,16 +57,16 @@ $icons: sprite-map("icons/*.png");
 // WEBCAM SPINNER
 // ==========================================================================
 
-@include keyframes(rotate) {
+// Spiner animation
+//
+@include keyframes(spinner-rotate) {
   0% { @include rotate(0deg); }
-  // 50% { @include rotate(180deg); }
-  // 55% { @include rotate(180deg); }
   100% { @include rotate(360deg); }
 }
 
-%rotate-loop-anim {
+%spinner-rotate-loop-anim {
   @extend %infinite-anim;
-  @include animation-name(rotate);
+  @include animation-name(spinner-rotate);
   @include animation-duration(1.5s);
 }
 
@@ -78,7 +79,7 @@ $icons: sprite-map("icons/*.png");
 }
 
 .webcam-spinner__quarter {
-  @extend %rotate-loop-anim;
+  @extend %spinner-rotate-loop-anim;
   height: icons-sprite-height("cam__spinner") * 2;
   width: icons-sprite-width("cam__spinner") * 2;
 }
@@ -87,6 +88,8 @@ $icons: sprite-map("icons/*.png");
 // COMPUTER WITH EYES
 // ==========================================================================
 
+// Just a computer with eyes whithout any anim.
+//
 .cpu-wth-eyes {
   height: icons-sprite-height("computer");
   width: icons-sprite-width("computer");
@@ -118,7 +121,9 @@ $icons: sprite-map("icons/*.png");
 // COMPUTER CONNECTION LOOP ANIMATION
 // ==========================================================================
 
-@include keyframes(blinking) {
+// Eyes blinking animations.
+//
+@include keyframes(cpu-blinking) {
   20% { @include scaleY(1); }
   30% { @include scaleY(0); }
   40% { @include scaleY(1); }
@@ -126,12 +131,14 @@ $icons: sprite-map("icons/*.png");
   50% { @include scaleY(1); }
 }
 
-%blinking-eyes-anim {
-  @include animation-name(blinking);
+%cpu-blinking-eyes-anim {
+  @include animation-name(cpu-blinking);
   @include animation-duration(2s);
   @include animation-fill-mode(both);
 }
 
+// Dashes animation for the wave effect.
+//
 @include keyframes(up-and-down) {
   0% { @include translate(0, 0px); }
   50% { @include translate(0, -20px); }
@@ -144,6 +151,9 @@ $icons: sprite-map("icons/*.png");
   @include animation-fill-mode(both);
 }
 
+// Computers connection animation.
+// Linked by a dash lines which have a wave effect.
+//
 .cpu-conn-anim {
   position: relative;
 
@@ -168,9 +178,23 @@ $icons: sprite-map("icons/*.png");
   }
 }
 
+// Two states managed from a js script:
+// - play:
+//  > the computer on the left blink eyes
+//  > wave on dashes from left to right
+//  > the computer on the right blink eyes
+//
+// - reverse:
+//  > the computer on the right blink eyes
+//  > wave on dashes from right to left
+//  > the computer on the left blink eyes
+//
+// It was to tricky to have a perfect sync without using
+// a JS script.
+//
 .play-anim, .reverse-anim {
   .cpu-wth-eyes__eyes > div {
-    @extend %blinking-eyes-anim;
+    @extend %cpu-blinking-eyes-anim;
   }
 
   .dash-anim-line > div {
@@ -212,23 +236,23 @@ $icons: sprite-map("icons/*.png");
 
 // Dash animation. Move from right to left.
 //
-@include keyframes(right-and-left) {
+@include keyframes(dash-right-to-left-to-right) {
   10% { @include translate(0, 0); }
   47% { @include translate(110px, 0); }
   53% { @include translate(110px, 0); }
   100% { @include translate(0, 0); }
 }
 
-%right-and-left-anim {
+%dash-right-to-left-to-right-anim {
   @extend %infinite-anim;
-  @include animation-name(right-and-left);
+  @include animation-name(dash-right-to-left-to-right);
   @include animation-duration(3s);
 }
 
 // Key left animation.
 // Fade on the inner border + move the arrow
 //
-@include keyframes(fade-in-out) {
+@include keyframes(keyleft-fade-in-out) {
   10% { opacity: 1; }
   35% { opacity: 1; }
   47% { opacity: 0; }
@@ -236,13 +260,13 @@ $icons: sprite-map("icons/*.png");
   100% { opacity: 1; }
 }
 
-%fade-in-out-anim {
+%keyleft-fade-in-out-anim {
   @extend %infinite-anim;
-  @include animation-name(fade-in-out);
+  @include animation-name(keyleft-fade-in-out);
   @include animation-duration(3s);
 }
 
-@include keyframes(arrow-up-down) {
+@include keyframes(keyleft-arrow-up-down) {
   10% { @include translate(0, -2px); }
   35% { @include translate(0, -2px); }
   47% { @include translate(0, 0); }
@@ -250,17 +274,17 @@ $icons: sprite-map("icons/*.png");
   95% { @include translate(0, -2px); }
 }
 
-%arrow-up-down-anim {
+%keyleft-arrow-up-down-anim {
   @extend %infinite-anim;
   @include translate(0, -2px);
-  @include animation-name(arrow-up-down);
+  @include animation-name(keyleft-arrow-up-down);
   @include animation-duration(3s);
 }
 
 // Key right animation.
 // Fade on the inner border + move the arrow
 //
-@include keyframes(fade-out-in) {
+@include keyframes(keyright-fade-out-in) {
   10% { opacity: 0; }
   35% { opacity: 0; }
   47% { opacity: 1; }
@@ -268,13 +292,13 @@ $icons: sprite-map("icons/*.png");
   100% { opacity: 0; }
 }
 
-%fade-out-in-anim {
+%keyright-fade-out-in-anim {
   @extend %infinite-anim;
-  @include animation-name(fade-out-in);
+  @include animation-name(keyright-fade-out-in);
   @include animation-duration(3s);
 }
 
-@include keyframes(arrow-down-up) {
+@include keyframes(keyright-arrow-down-up) {
   10% { @include translate(0, 0); }
   35% { @include translate(0, 0); }
   47% { @include translate(0, -2px); }
@@ -282,9 +306,9 @@ $icons: sprite-map("icons/*.png");
   98% { @include translate(0, 0); }
 }
 
-%arrow-down-up-anim {
+%keyright-arrow-down-up-anim {
   @extend %infinite-anim;
-  @include animation-name(arrow-down-up);
+  @include animation-name(keyright-arrow-down-up);
   @include animation-duration(3s);
 }
 
@@ -294,7 +318,7 @@ $icons: sprite-map("icons/*.png");
   position: relative;
 
   .dash-big {
-    @extend %right-and-left-anim;
+    @extend %dash-right-to-left-to-right-anim;
     margin-left: 20px;
   }
 
@@ -305,22 +329,22 @@ $icons: sprite-map("icons/*.png");
   // key left
   &>div:nth-of-type(2) {
     .arrow-left {
-      @extend %arrow-up-down-anim;
+      @extend %keyleft-arrow-up-down-anim;
     }
 
     .key__bg-inner {
-      @extend %fade-in-out-anim;
+      @extend %keyleft-fade-in-out-anim;
     }
   }
 
   // key right
   &>div:nth-of-type(3) {
     .arrow-right {
-      @extend %arrow-down-up-anim;
+      @extend %keyright-arrow-down-up-anim;
     }
 
     .key__bg-inner {
-      @extend %fade-out-in-anim;
+      @extend %keyright-fade-out-in-anim;
       opacity: 0;
     }
   }
