@@ -30,6 +30,13 @@ $icons: sprite-map("icons/*.png");
   @include icons-values("computer");
 }
 
+.icon-arrow-left {
+  @include icons-values("key-arrow-left");
+}
+
+.icon-arrow-right {
+  @include icons-values("key-arrow-right");
+}
 
 // DASHES
 // Differents size and colors
@@ -39,8 +46,8 @@ $icons: sprite-map("icons/*.png");
 .dash-black { background: #000; }
 
 .dash-big {
-  width: 40px;
-  height: 10px;
+  width: 30px;
+  height: 6px;
 }
 
 .dash-medium {
@@ -231,15 +238,82 @@ $icons: sprite-map("icons/*.png");
 }
 
 
+// KEY
+// ==========================================================================
+
+.key {
+  position: relative;
+}
+
+.key__label {
+  position: absolute;
+  font-size: 11px;
+  font-family: "Arial"; // TODO: put the right font
+  text-align: center;
+}
+
+.key__bg-inner {
+  @include border-radius(6px);
+  position: absolute;
+  border: 2px solid #000;
+  border-top: 0;
+  margin-left: 2px;
+  margin-top: -1px;
+}
+
+.key__bg-outer {
+  @include border-radius(8px);
+  border: 3px solid #000;
+}
+
+.key--small {
+  .key__bg-inner {
+    width: 44px;
+    height: 43px;
+  }
+
+  .key__bg-outer {
+    width: 52px;
+    height: 48px;
+  }
+
+  .icon-arrow-left {
+    margin: 21px 0 0 24px;
+  }
+
+  .icon-arrow-right {
+    margin: 21px 0 0 24px;
+  }
+}
+
+.key--big {
+  .key__label {
+    margin-top: 20px;
+  }
+
+  .key__bg-inner {
+    width: 128px;
+    height: 43px;
+  }
+
+  .key__label,
+  .key__bg-outer {
+    width: 135px;
+    height: 46px;
+  }
+}
+
+
 // Keyboard animation
 // ==========================================================================
 
 // Dash animation. Move from right to left.
 //
+$xmax: 80px;
 @include keyframes(dash-right-to-left-to-right) {
   10% { @include translate(0, 0); }
-  47% { @include translate(110px, 0); }
-  53% { @include translate(110px, 0); }
+  47% { @include translate($xmax, 0); }
+  53% { @include translate($xmax, 0); }
   100% { @include translate(0, 0); }
 }
 
@@ -256,7 +330,7 @@ $icons: sprite-map("icons/*.png");
   10% { opacity: 1; }
   35% { opacity: 1; }
   47% { opacity: 0; }
-  90% { opacity: 0; }
+  87% { opacity: 0; }
   100% { opacity: 1; }
 }
 
@@ -270,7 +344,7 @@ $icons: sprite-map("icons/*.png");
   10% { @include translate(0, -2px); }
   35% { @include translate(0, -2px); }
   47% { @include translate(0, 0); }
-  90% { @include translate(0, 0); }
+  87% { @include translate(0, 0); }
   95% { @include translate(0, -2px); }
 }
 
@@ -288,7 +362,7 @@ $icons: sprite-map("icons/*.png");
   10% { opacity: 0; }
   35% { opacity: 0; }
   47% { opacity: 1; }
-  90% { opacity: 1; }
+  87% { opacity: 1; }
   100% { opacity: 0; }
 }
 
@@ -302,7 +376,7 @@ $icons: sprite-map("icons/*.png");
   10% { @include translate(0, 0); }
   35% { @include translate(0, 0); }
   47% { @include translate(0, -2px); }
-  94% { @include translate(0, -2px); }
+  92% { @include translate(0, -2px); }
   98% { @include translate(0, 0); }
 }
 
@@ -314,32 +388,32 @@ $icons: sprite-map("icons/*.png");
 
 // Key animations
 //
+.default-key-anim {
+  .key__label {
+    @extend %keyleft-arrow-up-down-anim;
+  }
+
+  .key__bg-inner {
+    @extend %keyleft-fade-in-out-anim;
+  }
+}
+
 .kb-anim {
   position: relative;
 
   .dash-big {
     @extend %dash-right-to-left-to-right-anim;
-    margin-left: 20px;
+    margin-left: 14px;
   }
 
   .key {
-    margin-right: 20px;
-  }
-
-  // key left
-  &>div:nth-of-type(2) {
-    .arrow-left {
-      @extend %keyleft-arrow-up-down-anim;
-    }
-
-    .key__bg-inner {
-      @extend %keyleft-fade-in-out-anim;
-    }
+    display: inline-block;
+    margin: 15px 20px 0 0;
   }
 
   // key right
   &>div:nth-of-type(3) {
-    .arrow-right {
+    .key__label {
       @extend %keyright-arrow-down-up-anim;
     }
 
@@ -348,43 +422,4 @@ $icons: sprite-map("icons/*.png");
       opacity: 0;
     }
   }
-}
-
-// ARROWS
-//
-.arrow-left {
-  @include icons-values("key-arrow-left");
-  position: absolute;
-  margin: 30px 0 0 30px;
-}
-
-.arrow-right {
-  @include icons-values("key-arrow-right");
-  position: absolute;
-  margin: 30px 0 0 34px;
-}
-
-// KEYS
-//
-.key {
-  position: relative;
-  display: inline-block;
-  margin-top: 15px;
-}
-
-.key__bg-inner {
-  @include border-radius(10px);
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border: 2px solid #000;
-  border-top: 0;
-  margin-left: 2px;
-}
-
-.key__bg-outer {
-  @include border-radius(14px);
-  width: 80px;
-  height: 80px;
-  border: 4px solid #000;
 }
