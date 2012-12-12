@@ -16,7 +16,7 @@
   <!-- Livereload app -->
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </head>
-<body>
+<body style="background:#F9F9DA">
 
   <!--
     Animated component with a webcam and a quarter circle spinning around it.
@@ -64,7 +64,6 @@
     Animated component with 2 computers linked by a dash line.
     -->
   <div class="cpu-conn-anim play-anim">
-    <!-- Computer with eyes blinking -->
     <div class="cpu-wth-eyes">
       <div class="cpu-wth-eyes__bg icon-computer"></div>
       <div class="cpu-wth-eyes__container">
@@ -75,7 +74,6 @@
       </div>
     </div>
 
-    <!-- Animated dash line -->
     <div class="dash-anim-line">
       <div class="dash-small dash-black"></div>
       <div class="dash-small dash-black"></div>
@@ -86,10 +84,8 @@
       <div class="dash-small dash-black"></div>
       <div class="dash-small dash-black"></div>
       <div class="dash-small dash-black"></div>
-      <div class="dash-small dash-black"></div>
     </div>
 
-    <!-- Computer with eyes blinking -->
     <div class="cpu-wth-eyes">
       <div class="cpu-wth-eyes__bg icon-computer"></div>
       <div class="cpu-wth-eyes__container">
@@ -100,6 +96,49 @@
       </div>
     </div>
 
+  </div>
+
+  <br/><br/><br/><br/>
+
+  <!--
+    Connection failed animation
+    -->
+  <div class="cpu-conn-failed-anim">
+    <div class="cpu-wth-eyes">
+      <div class="cpu-wth-eyes__bg icon-computer"></div>
+      <div class="cpu-wth-eyes__container">
+        <div class="cpu-wth-eyes__eyes">
+          <div class="dash-medium dash-white sad-left-eye-anim-loop"></div>
+          <div class="dash-medium dash-white sad-right-eye-anim-loop"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-anim-line">
+      <div class="dash-small dash-black"></div>
+      <div class="dash-small dash-black"></div>
+      <div class="dash-small dash-black"></div>
+    </div>
+
+    <div class="cross-fail-anim">
+      <div class="icon-cross"></div>
+    </div>
+
+    <div class="dash-anim-line">
+      <div class="dash-small dash-black"></div>
+      <div class="dash-small dash-black"></div>
+      <div class="dash-small dash-black"></div>
+    </div>
+
+    <div class="cpu-wth-eyes">
+      <div class="cpu-wth-eyes__bg icon-computer"></div>
+      <div class="cpu-wth-eyes__container">
+        <div class="cpu-wth-eyes__eyes">
+          <div class="dash-medium dash-white sad-left-eye-anim-loop"></div>
+          <div class="dash-medium dash-white sad-right-eye-anim-loop"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <br/><br/><br/><br/>

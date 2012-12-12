@@ -38,11 +38,15 @@ $icons: sprite-map("icons/*.png");
   @include icons-values("key-arrow-right");
 }
 
+.icon-cross {
+  @include icons-values("cross-fail");
+}
+
 // DASHES
 // Differents size and colors
 // ==========================================================================
 
-.dash-white { background: #fff; }
+.dash-white { background: #F9F9DA; }
 .dash-black { background: #000; }
 
 .dash-big {
@@ -202,19 +206,18 @@ $icons: sprite-map("icons/*.png");
 //
 @include keyframes(up-and-down) {
   0% { @include translate(0, 0px); }
-  50% { @include translate(0, -20px); }
-  100% { @include translate(0, 0px); }
+  10% { @include translate(0, -20px); }
+  20% { @include translate(0, 0px); }
 }
 
 %up-and-down-anim {
   @include animation-name(up-and-down);
-  @include animation-duration(400ms);
-  @include animation-fill-mode(both);
+  @include animation-duration(2s);
 }
 
 // Computers connection animation.
 // Linked by a dash lines which have a wave effect.
-//
+// ==========================================================================
 .cpu-conn-anim {
   position: relative;
 
@@ -231,7 +234,7 @@ $icons: sprite-map("icons/*.png");
 
   &>div {
     display: inline-block;
-    margin-right: 7px;
+    margin-right: 5px;
 
     &:last-of-type {
       margin-right: 0;
@@ -268,7 +271,7 @@ $icons: sprite-map("icons/*.png");
     @include animation-delay(1.4s);
   }
 
-  @for $i from 0 through 10 {
+  @for $i from 1 through 9 {
     .dash-anim-line > div:nth-of-type(#{$i}) {
       @include animation-delay(750ms + 100 * $i)
     }
@@ -280,11 +283,60 @@ $icons: sprite-map("icons/*.png");
     @include animation-delay(1.4s);
   }
 
-  $i: 10;
-  $j: 0;
+  $i: 10; $j: 0;
   @while $i > 0 {
     .dash-anim-line > div:nth-of-type(#{$i}) {
       @include animation-delay(750ms + 100 * $j);
+    }
+    $i: $i - 1;
+    $j: $j + 1;
+  }
+}
+
+
+// Computer connection failed animaiton
+// ==========================================================================
+
+@include keyframes(cpu-failed-cross) {
+  0% { @include transform(scale(0)); }
+  100% { @include transform(scale(1)); }
+}
+
+%cpu-failed-cross-anim {
+  @include animation-name(cpu-failed-cross);
+  @include animation-duration(500ms);
+}
+
+.cross-fail-anim {
+  @extend %cpu-failed-cross-anim;
+}
+
+.cpu-conn-failed-anim {
+  &>div {
+    display: inline-block;
+  }
+
+  .cross-fail-anim {
+    vertical-align: top;
+    margin-top: 24px;
+  }
+
+  .dash-anim-line > div {
+    @extend %infinite-anim;
+    @include animation-name(up-and-down);
+    @include animation-duration(4s);
+  }
+
+  @for $i from 1 through 3 {
+    div:nth-child(2) > div:nth-of-type(#{$i}) {
+      @include animation-delay(200ms + 100 * $i)
+    }
+  }
+
+  $i: 3; $j: 0;
+  @while $i > 0 {
+    div:nth-child(4) > div:nth-of-type(#{$i}) {
+      @include animation-delay(320ms + 100 * $j);
     }
     $i: $i - 1;
     $j: $j + 1;
