@@ -136,15 +136,15 @@ $icons: sprite-map("icons/*.png");
 
 @include keyframes(rotate) {
   0% { @include rotate(0deg); }
-  50% { @include rotate(180deg); }
-  55% { @include rotate(180deg); }
+  // 50% { @include rotate(180deg); }
+  // 55% { @include rotate(180deg); }
   100% { @include rotate(360deg); }
 }
 
 %rotate-loop-anim {
   @extend %infinite-anim;
   @include animation-name(rotate);
-  @include animation-duration(2s);
+  @include animation-duration(1.5s);
 }
 
 .webcam-spinner {

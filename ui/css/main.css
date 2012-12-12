@@ -65,7 +65,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/icons\/\*\.png}line{font-family:\0000374}}
 .icons-sprite, .icons-cam, .icons-cam__spinner, .icons-computer, .icons-key-arrow-left, .icons-key-arrow-right, .icon-webcam, .icon-quarter-circle, .icon-computer, .arrow-left, .arrow-right {
-  background: url('../images/icons-sf80fb93e78.png') no-repeat;
+  background: url('../images/icons-sde7604cd33.png') no-repeat;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
@@ -75,22 +75,22 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
 .icons-cam__spinner {
-  background-position: 0 -249px;
+  background-position: 0 -67px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
 .icons-computer {
-  background-position: 0 -453px;
+  background-position: 0 -122px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
 .icons-key-arrow-left {
-  background-position: 0 -623px;
+  background-position: 0 -292px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/sprites\/_base\.scss}line{font-family:\0000360}}
 .icons-key-arrow-right {
-  background-position: 0 -647px;
+  background-position: 0 -316px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000391}}
@@ -104,20 +104,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\0000399}}
 .icon-webcam {
   background-position: 0 0;
-  height: 247px;
-  width: 191px;
+  height: 65px;
+  width: 51px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003103}}
 .icon-quarter-circle {
-  background-position: 0 -249px;
-  height: 202px;
-  width: 201px;
+  background-position: 0 -67px;
+  height: 53px;
+  width: 53px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003107}}
 .icon-computer {
-  background-position: 0 -453px;
+  background-position: 0 -122px;
   height: 168px;
   width: 129px;
 }
@@ -160,24 +160,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: rotate(0deg);
   }
 
-  /* line 139, ../sass/main.scss */
-  50% {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-
-  /* line 140, ../sass/main.scss */
-  55% {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-
   /* line 141, ../sass/main.scss */
   100% {
     -webkit-transform: rotate(360deg);
@@ -198,24 +180,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     transform: rotate(0deg);
   }
 
-  /* line 139, ../sass/main.scss */
-  50% {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-
-  /* line 140, ../sass/main.scss */
-  55% {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-
   /* line 141, ../sass/main.scss */
   100% {
     -webkit-transform: rotate(360deg);
@@ -230,20 +194,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .webcam-spinner__quarter {
   -webkit-animation-name: rotate;
   animation-name: rotate;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003153}}
 .webcam-spinner__bg {
   position: absolute;
-  margin: 101px 0 0 100.5px;
+  margin: 26.5px 0 0 26.5px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003158}}
 .webcam-spinner__quarter {
-  height: 404px;
-  width: 402px;
+  height: 106px;
+  width: 106px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003168}}
@@ -1028,7 +992,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003409}}
 .arrow-left {
-  background-position: 0 -623px;
+  background-position: 0 -292px;
   height: 22px;
   width: 21px;
   position: absolute;
@@ -1037,7 +1001,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Antoine\/Sites\/Works\/NK\/Chrome-Pong\/ui\/sass\/main\.scss}line{font-family:\00003415}}
 .arrow-right {
-  background-position: 0 -647px;
+  background-position: 0 -316px;
   height: 22px;
   width: 21px;
   position: absolute;
