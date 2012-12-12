@@ -87,3 +87,85 @@ $icons: sprite-map("icons/*.png");
   -o-animation-direction: $value;
   animation-direction: $value;
 }
+
+
+// KEYFRAMES
+// ==========================================================================
+
+@include keyframes(rotate) {
+  0% {
+    @include rotate(0deg);
+  }
+  50% {
+   @include rotate(180deg);
+  }
+  55% {
+    @include rotate(180deg);
+  }
+  100% {
+    @include rotate(360deg);
+  }
+}
+
+// ICONS
+// ==========================================================================
+
+.icon-webcam {
+  @include icons-values("cam");
+}
+
+.icon-quarter-circle {
+  @include icons-values("cam__spinner");
+}
+
+.icon-computer {
+  @include icons-values("computer");
+}
+
+
+// DASHES
+// ==========================================================================
+
+.dash-white { background: #fff; }
+.dash-black { background: #000; }
+
+.dash-big {
+  width: 40px;
+  height: 10px;
+}
+
+.dash-medium {
+  width: 20px;
+  height: 8px;
+}
+
+.dash-small {
+  width: 12px;
+  height: 10px;
+}
+
+
+// WEBCAM SPINNER
+// ==========================================================================
+
+%rotate-loop-anim {
+  @include animation-name(rotate);
+  @include animation-duration(2s);
+  @include animation-fill-mode(both);
+  @include animation-iteration-count(infinite);
+}
+
+.webcam-spinner {
+}
+
+.webcam-spinner__bg {
+  position: absolute;
+  margin: (icons-sprite-height("cam__spinner") / 2) 0 0 (icons-sprite-width("cam__spinner") / 2);
+}
+
+.webcam-spinner__quarter {
+  @extend %rotate-loop-anim;
+  height: icons-sprite-height("cam__spinner") * 2;
+  width: icons-sprite-width("cam__spinner") * 2;
+}
+
