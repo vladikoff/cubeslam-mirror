@@ -1,3 +1,17 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
+
+$icons-spacing: 2px;
+@import "icons/*.png";
+@include all-icons-sprites;
+$icons: sprite-map("icons/*.png");
+
+// MIXINS
+// ==========================================================================
+
+@mixin icons-values($name) {
+  @include icons-sprite($name);
+  height: icons-sprite-height($name);
+  width: icons-sprite-width($name);
+}
