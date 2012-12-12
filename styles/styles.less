@@ -42,6 +42,8 @@
  * BUTTONS
  */
 
+
+
 button, a.button {
   cursor: pointer;
   font-family: 'Varela', sans-serif;
@@ -57,6 +59,9 @@ button, a.button {
   padding: 8px 45px 8px 45px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
   text-transform: uppercase;
   text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: bold;
+
   &.green {
     color: #f9f9da;
     background: #4daf4d;
@@ -64,6 +69,7 @@ button, a.button {
     border-left: 5px solid  #58c458;
     border-bottom: 5px solid #398239;
     border-right: 5px solid  #398239;
+    outline: solid 3px #4daf4d;
   }
 
   &.alternative {
@@ -102,6 +108,7 @@ button:hover, a.button:hover {
 }
 
 
+
 /*
  * DIALOGS
  */
@@ -133,10 +140,10 @@ button:hover, a.button:hover {
       -webkit-filter:brightness(0);
       -webkit-transform-origin: center center;
 
-      -webkit-transition: all 1s;
-         -moz-transition: -moz-transform 1s;
-           -o-transition: -o-transform 1s;
-              transition: transform 1s;
+      -webkit-transition: all 0.6s ;
+         -moz-transition: -moz-transform 0.6s;
+           -o-transition: -o-transform 0.6s;
+              transition: transform 0.6s;
 
       -webkit-transform-style: preserve-3d;
          -moz-transform-style: preserve-3d;
@@ -145,9 +152,7 @@ button:hover, a.button:hover {
 
       background: #f9f9db;
 
-      &.middle {
-        bottom: 33%;
-      }
+
 }
 .state.inactive .dialog .content {
 
@@ -159,6 +164,7 @@ button:hover, a.button:hover {
               transform: rotateX( 65deg );
 
       -webkit-filter:brightness(-0.5);
+ 
 }
 
 .state.inactive .dialog.top .content {
@@ -171,6 +177,19 @@ button:hover, a.button:hover {
               transform: rotateX( -65deg );
 
       -webkit-filter:brightness(-0.5);
+}
+
+.state.inactive .dialog.middle .content {
+
+    -webkit-transform-origin: center center;
+
+    -webkit-transform: rotateX( -90deg );
+       -moz-transform: rotateX( -90deg );
+         -o-transform: rotateX( -90deg );
+            transform: rotateX( -90deg );
+
+    -webkit-filter:brightness(-0.5);
+
 }
 
 .dialog {
@@ -275,6 +294,8 @@ body {
   font-family: 'Varela', sans-serif;
   font-size: 12px;
   line-height: 12px;
+  letter-spacing: 2px;
+  font-weight:bold;
   text-transform: uppercase;
 
   #wrapper {
@@ -314,31 +335,41 @@ body {
         background-image: url('/images/minipong.png');
         background-repeat: no-repeat;
         background-position: right center;
-        font-size: 11px;
+        font-size: 12px;
+        font-weight:bold;
         text-decoration: none;
+        line-height:15px;
+        letter-spacing:2px;
         display: block;
         small {
-          display: inline-block;
-          padding: 4px 0px 3px 0px;
-          font-size: 9px;
+          margin-top:-13px;
+          padding: 0px 0px 4px 0px;
+          font-size: 8px;
+          line-height:14px;
         }
       }
 
       #chromeExperimentLink {
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         text-transform: none;
-        min-height: 44px;
+        font-size: 24px;
+        line-height: 106%;
+        text-decoration: none;
+
+        width:107px;
+        height:56px;
         color: #ffffff;
         position: absolute;
         bottom: 63px;
         left: 30px;
         z-index: 200;
-        font-size: 24px;
+        
         margin: 0;
         padding: 0;
-        line-height: 106%;
-        text-decoration: none;
+       
         display: block;
+        background-image:url("/images/chrome-experiment.png");
+
         small {
           display: block;
           font-size: 11px;
@@ -375,6 +406,11 @@ body {
             }
           }
 
+          h2 {
+            font-size: 15px;
+            margin-bottom:30px;
+          }
+
           img {
             width: 70%;
           }
@@ -387,12 +423,32 @@ body {
           line-height: 145%;
         }
 
+
         .buttonWrapper {
           display: block;
-          width: 100%;
-          position: absolute;
-          bottom: 92px;
+          position:absolute;
           text-align: center;
+          
+          bottom:100px;
+          width:100%;
+
+        }
+
+        button.playComputer {
+          margin-left:20px;
+        }
+
+        .bubble {
+          display:block;
+          position:absolute;
+          width: 56px;
+          height: 56px;
+          background-image: url("/images/bubbles.png");
+          background-repeat: no-repeat;
+
+          &.red {
+            background-position: 0px 0px;
+          }
         }
       }
 
@@ -483,6 +539,8 @@ body {
       }
 
       #gameInstructions {
+     
+
         -webkit-filter:brightness(0);
         -webkit-transform-origin: center center;
 
@@ -595,10 +653,10 @@ body {
         color: #fdeb3e;
         position: absolute;
         width: 100%;
-        top: 200px;
+        top: 21%;
         font-family: 'eboyregalpha';
         z-index: 500;
-        line-height: 200px;
+        line-height: 80px;
       }
 
       #gameOverDialog {

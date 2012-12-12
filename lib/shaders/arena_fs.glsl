@@ -15,7 +15,7 @@ float pixel = 1.0 / resolution.y;
 
 void main(void) 
 {
-    vec3 lineColor = vec3(0.89453125,0.89453125,0.7734375);
+    vec3 lineColor = vec3(237.0/255.0,236.0/255.0,214.0/255.0);
 
     vec2 position = vWorldPosition.xz/resolution.y+.5;//vUv;
     float color = texture2D( tGrid, vUv*scale ).x*.5;
