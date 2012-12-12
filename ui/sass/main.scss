@@ -107,6 +107,24 @@ $icons: sprite-map("icons/*.png");
   }
 }
 
+@include keyframes(blinking) {
+  20% {
+    @include scaleY(1);
+  }
+  30% {
+   @include scaleY(0);
+  }
+  40% {
+    @include scaleY(1);
+  }
+  45% {
+   @include scaleY(0);
+  }
+  50% {
+    @include scaleY(1);
+  }
+}
+
 // ICONS
 // ==========================================================================
 
@@ -167,5 +185,114 @@ $icons: sprite-map("icons/*.png");
   @extend %rotate-loop-anim;
   height: icons-sprite-height("cam__spinner") * 2;
   width: icons-sprite-width("cam__spinner") * 2;
+}
+
+
+// COMPUTER WITH EYES
+// ==========================================================================
+
+.cpu-wth-eyes {
+  height: icons-sprite-height("computer");
+  width: icons-sprite-width("computer");
+}
+
+.cpu-wth-eyes__bg {
+  position: absolute;
+}
+
+.cpu-wth-eyes__container {
+  position: relative;
+}
+
+.cpu-wth-eyes__eyes {
+  position: absolute;
+  top: 50px;
+  left: 38px;
+
+  &>div {
+    display: inline-block;
+
+    &:first-of-type {
+      margin-right: 12px;
+    }
+  }
+}
+
+
+// COMPUTER CONNECTION LOOP ANIMATION
+// ==========================================================================
+
+%blinking-eyes-anim {
+  @include animation-name(blinking);
+  @include animation-duration(2s);
+  @include animation-fill-mode(both);
+}
+
+%up-and-down-anim {
+  @include animation-name(up-and-down);
+  @include animation-duration(400ms);
+  @include animation-fill-mode(both);
+}
+
+.cpu-conn-anim {
+  position: relative;
+
+  &>div {
+    display: inline-block;
+  }
+}
+
+.dash-anim-line {
+  position: relative;
+  vertical-align: top;
+  top: 70px;
+  margin: 0 10px;
+
+  &>div {
+    display: inline-block;
+    margin-right: 7px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.play-anim, .reverse-anim {
+  .cpu-wth-eyes__eyes > div {
+    @extend %blinking-eyes-anim;
+  }
+
+  .dash-anim-line > div {
+    @extend %up-and-down-anim;
+  }
+}
+
+.play-anim {
+  .cpu-wth-eyes:last-of-type .cpu-wth-eyes__eyes > div {
+    @include animation-delay(1.4s);
+  }
+
+  @for $i from 0 through 10 {
+    .dash-anim-line > div:nth-of-type(#{$i}) {
+      @include animation-delay(750ms + 100 * $i)
+    }
+  }
+}
+
+.reverse-anim {
+  .cpu-wth-eyes:first-of-type .cpu-wth-eyes__eyes > div {
+    @include animation-delay(1.4s);
+  }
+
+  $i: 10;
+  $j: 0;
+  @while $i > 0 {
+    .dash-anim-line > div:nth-of-type(#{$i}) {
+      @include animation-delay(750ms + 100 * $j)
+    }
+    $i: $i - 1;
+    $j: $j + 1;
+  }
 }
 
