@@ -56,7 +56,7 @@ button, a.button {
   border-bottom: 5px solid #a7a793;
   color: #449744;
   background: #e2e2c5;
-  padding: 13px 50px 13px 50px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
+  padding: 10px 50px 10px 50px; /* Det ska vara 8px uppe och nere med typsnittet är lite fucked. */
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 2px;
@@ -69,7 +69,7 @@ button, a.button {
     border-left: 5px solid  #58c458;
     border-bottom: 5px solid #398239;
     border-right: 5px solid  #398239;
-    outline: solid 3px #4daf4d;
+    outline: solid 2px #4daf4d;
   }
 
   &.alternative {
@@ -131,6 +131,7 @@ button:hover, a.button:hover {
   }
   &.middle {
     bottom: 33%;
+    min-height:266px;
   }
 }
 .state .dialog .content {
@@ -197,12 +198,12 @@ button:hover, a.button:hover {
   text-align: center;
 
   h2 {
-    font-family: 'eboyregalpha';
+    font-family: 'Varela', sans-serif;
     color: #e83028;
     font-weight: normal;
     margin: 0;
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 14x;
+    line-height: 14px;
     padding: 35px 0px 10px 0px;
   }
   p {
@@ -581,11 +582,26 @@ body {
       }
 
       #gamestartCountdown {
-        font-family: 'eboyregalpha';
-        font-size: 320px;
-        line-height: 320px;
-        color: #4daf4d;
-        margin:-40px auto 0px auto;
+         display:block;
+         width:300px;
+         height:220px;
+         background-image:url("/images/countdown.png");
+         background-position:0px -440px;
+         /*-webkit-animation-iteration-count: 3;
+         -webkit-animation: scaleIn 1s; */
+      }
+
+
+      #controlsInstructions {
+
+        width: 100%;
+        margin-top:25px;
+        margin-bottom:28px;
+
+        img {
+          padding:0 10px 0 10px;
+          vertical-align:middle;
+        }
 
       }
 
@@ -963,5 +979,22 @@ body {
 
   &:hover {
     margin-right: 0;
+  }
+}
+
+@-webkit-keyframes scaleIn {
+           
+  from {
+    -webkit-transform: scale( 0.3 );
+    -moz-transform: scale( 0.3 );
+      -o-transform: scale( 0.3 );
+          transform: scale( 0.3 );
+  }
+
+  to {
+    -webkit-transform: scale( 1 );
+    -moz-transform: scale( 1 );
+      -o-transform: scale( 1 );
+          transform: scale( 1 );
   }
 }
