@@ -51,13 +51,13 @@ $icons: sprite-map("icons/*.png");
 }
 
 .dash-medium {
-  width: 20px;
-  height: 8px;
+  width: 14px;
+  height: 4px;
 }
 
 .dash-small {
-  width: 12px;
-  height: 10px;
+  width: 14px;
+  height: 6px;
 }
 
 
@@ -112,14 +112,14 @@ $icons: sprite-map("icons/*.png");
 
 .cpu-wth-eyes__eyes {
   position: absolute;
-  top: 50px;
-  left: 38px;
+  top: 24px;
+  left: 15px;
 
   &>div {
     display: inline-block;
 
     &:first-of-type {
-      margin-right: 12px;
+      margin-right: 5px;
     }
   }
 }
@@ -128,13 +128,13 @@ $icons: sprite-map("icons/*.png");
 // COMPUTER CONNECTION LOOP ANIMATION
 // ==========================================================================
 
-// Eyes blinking animations.
+// Eyes blinking animation.
 //
 @include keyframes(cpu-blinking) {
   20% { @include scaleY(1); }
-  30% { @include scaleY(0); }
+  30% { @include scaleY(0.2); }
   40% { @include scaleY(1); }
-  45% { @include scaleY(0); }
+  45% { @include scaleY(0.2); }
   50% { @include scaleY(1); }
 }
 
@@ -147,6 +147,55 @@ $icons: sprite-map("icons/*.png");
 .blinking-eyes-anim-loop {
   @extend %infinite-anim;
   @extend %cpu-blinking-eyes-anim;
+}
+
+// Sad eyes animation.
+//
+@include keyframes(cpu-sad-right-eye) {
+  10% { @include transform(scaleY(1) rotate(0deg)); }
+  20% { @include transform(scaleY(0.2) rotate(0deg)); }
+  30% { @include transform(scaleY(1) rotate(0deg)); }
+  35% { @include transform(scaleY(0.2) rotate(0deg)); }
+  40% { @include transform(scaleY(1) rotate(0deg)); }
+  60% { @include transform(scaleY(1) rotate(20deg)); }
+  94% { @include transform(scaleY(1) rotate(20deg)); }
+  100% { @include transform(scaleY(1) rotate(0deg)); }
+}
+
+@include keyframes(cpu-sad-left-eye) {
+  10% { @include transform(scaleY(1) rotate(0deg)); }
+  20% { @include transform(scaleY(0.2) rotate(0deg)); }
+  30% { @include transform(scaleY(1) rotate(0deg)); }
+  35% { @include transform(scaleY(0.2) rotate(0deg)); }
+  40% { @include transform(scaleY(1) rotate(0deg)); }
+  60% { @include transform(scaleY(1) rotate(-20deg)); }
+  94% { @include transform(scaleY(1) rotate(-20deg)); }
+  100% { @include transform(scaleY(1) rotate(0deg)); }
+}
+
+%cpu-sad-eyes {
+  @extend %infinite-anim;
+  @include animation-duration(3s);
+}
+
+%cpu-sad-left-eye-anim {
+  @extend %cpu-sad-eyes;
+  @include animation-name(cpu-sad-left-eye);
+}
+
+%cpu-sad-right-eye-anim {
+  @extend %cpu-sad-eyes;
+  @include animation-name(cpu-sad-right-eye);
+}
+
+.sad-left-eye-anim-loop {
+  @extend %cpu-sad-left-eye-anim;
+  @include transform-origin(100%, 50%);
+}
+
+.sad-right-eye-anim-loop {
+  @extend %cpu-sad-right-eye-anim;
+  @include transform-origin(0%, 50%);
 }
 
 // Dashes animation for the wave effect.
