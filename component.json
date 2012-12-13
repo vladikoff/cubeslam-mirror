@@ -9,6 +9,7 @@
     "publicclass/request-animation-frame": "*",
     "publicclass/geom": "*",
     "publicclass/range": "*",
+    "publicclass/stash": "*",
     "visionmedia/debug": "*"
   },
   "scripts": [
