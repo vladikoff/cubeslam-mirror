@@ -305,6 +305,9 @@ body.Play, body.Pause {
 /*
  * STRUCTURE
  */
+html {
+  overflow: hidden;
+}
 
 body {
   overflow: hidden;
@@ -834,6 +837,8 @@ body {
           font-size: 9px;
 
           ul {
+            right: 0px;
+            position: absolute;
             list-style: none;
             margin: 0 0 0 0;
             padding: 14px 0 0 0;
@@ -843,7 +848,7 @@ body {
               margin: 0 0 0 0;
               padding: 0 0 0 0;
               display: inline-block;
-              margin-left: 20px;
+              margin-right: 20px;
               a {
                 color: #e8e8ca;
                 text-decoration:none;
@@ -852,7 +857,7 @@ body {
                 }
 
                 &.soundSwitch {
-                  margin-right: 30px;
+                 
                 }
               }
             }
