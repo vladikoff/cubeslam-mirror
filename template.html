@@ -75,9 +75,11 @@
         <div class="state WaitingFriend inactive">
           <div class="dialog middle">
             <div class="content">
-               <img src="/images/opponent_computer.gif" class="dialogIllustration"/>
-              <h2>Your friend is waiting for you in the arena</h2>
-              <button id="playWaitingFriend" class="blue">Play Friend</button>
+              <div class="verticalCenter">
+                 <img src="/images/opponent_computer.gif"/>
+                <h2>Your friend is waiting for you in the arena</h2>
+                <button id="playWaitingFriend" class="blue">Play Friend</button>
+              </div>
             </div>
           </div>
         </div>
@@ -85,13 +87,15 @@
         <!-- INVITE FRIEND -->
 
         <div class="state InviteFriend inactive">
-          <div class="dialog">
+          <div class="dialog middle">
             <div class="content">
-              <h2>Invite Friend</h2>
-              <p>Copy and share this link to invite a friend:</p>
-              <span class="shareUrl"></span><button id="copyURL" class="notimplemented">Copy</button>
-              <button id="backToMainMenu" class="green">Back</button>
-              <p>You will be notified when your friend uses the link to enter the game.</p>
+              <div class="verticalCenter">
+                <h2>Invite Friend</h2>
+                <p>Copy and share this link to invite a friend:</p>
+                <span class="shareUrl"></span><button id="copyURL" class="notimplemented">Copy</button>
+                <button id="backToMainMenu" class="green">Back</button>
+                <p>You will be notified when your friend uses the link to enter the game.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -101,9 +105,11 @@
         <div class="state FriendArrived inactive">
           <div class="dialog middle">
             <div class="content">
-              <img src="/images/opponent_computer.gif" class="dialogIllustration"/>
-              <h2>Your friend has arrived</h2>
-              <button id="playFriend" class="blue">Play Friend</button>
+              <div class="verticalCenter">
+                <img src="/images/opponent_computer.gif"/>
+                <h2>Your friend has arrived</h2>
+                <button id="playFriend" class="blue">Play Friend</button>
+              </div>
             </div>
           </div>
         </div>
@@ -133,8 +139,10 @@
         <div class="state WaitForFriendCamera inactive">
           <div class="dialog middle">
             <div class="content">
-              <img src="/images/cam.gif" class="dialogIllustration"/>
-              <h2>Waiting for friend<br/>to allow webcam</h2>
+              <div class="verticalCenter">
+                <img src="/images/cam.gif"/>
+                <h2>Waiting for friend<br/>to allow webcam</h2>
+              </div>
             </div>
           </div>
         </div>
@@ -145,11 +153,13 @@
         <div class="state GameInstructions inactive">
           <div class="dialog middle">
             <div class="content">
-              <h2>Game controls</h2>
-              <div id="controlsInstructions">
-                  <span>Play using</span><img src="images/instr_ill_1.gif" /><span>or</span><img src="images/instr_ill_2.gif" /><span>press</span><img src="images/instr_ill_3.gif" />
+              <div class="verticalCenter">
+                <h2>Game controls</h2>
+                <div id="controlsInstructions">
+                    <span>Play using</span><img src="images/instr_ill_1.gif" /><span>or</span><img src="images/instr_ill_2.gif" /><span>press</span><img src="images/instr_ill_3.gif" />
+                </div>
+                <button class="green play">Start</button>
               </div>
-              <button class="green play">Start</button>
             </div>
           </div>
         </div>
@@ -170,9 +180,11 @@
         <div class="state OpponentLeft inactive">
           <div class="dialog">
             <div class="content">
-              <h2>Your friend left the game</h2>
-              <p>Copy and share this link to play a friend:<br /><span class="shareUrl"></span></p>
-              <button class="green play">Play Computer (Space)</button>
+              <div class="verticalCenter">
+                <h2>Your friend left the game</h2>
+                <p>Copy and share this link to play a friend:<br /><span class="shareUrl"></span></p>
+                <button class="green play">Play Computer (Space)</button>
+              </div>
             </div>
           </div>
         </div>

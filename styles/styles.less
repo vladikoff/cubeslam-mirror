@@ -148,26 +148,33 @@ button:hover, a.button:hover {
   }
 }
 .state .dialog .content {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      -webkit-filter:brightness(0);
-      -webkit-transform-origin: center center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-filter:brightness(0);
+    -webkit-transform-origin: center center;
 
-      -webkit-transition: all 0.6s ;
-         -moz-transition: -moz-transform 0.6s;
-           -o-transition: -o-transform 0.6s;
-              transition: transform 0.6s;
+    -webkit-transition: all 0.6s ;
+       -moz-transition: -moz-transform 0.6s;
+         -o-transition: -o-transform 0.6s;
+            transition: transform 0.6s;
 
-      -webkit-transform-style: preserve-3d;
-         -moz-transform-style: preserve-3d;
-           -o-transform-style: preserve-3d;
-              transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+         -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
 
-      background: #f9f9db;
+    background: #f9f9db;
 
+    display:table;
 
 }
+
+.state .dialog .content .verticalCenter {
+  display:table-cell;
+  vertical-align:middle;
+}
+
 .state.inactive .dialog .content {
 
       -webkit-transform-origin: center center;
@@ -217,7 +224,7 @@ button:hover, a.button:hover {
     margin: 0;
     font-size: 14x;
     line-height: 25px;
-    padding: 35px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
   }
   p {
     color: #e83028;
@@ -227,10 +234,6 @@ button:hover, a.button:hover {
         color: #2aa52a;
       }
     }
-  }
-
-  .dialogIllustration {
-    margin-top: 30px;
   }
 
 }
@@ -666,7 +669,7 @@ body {
         top: 100px;
         left: 70px;
         line-height:15px;
-        
+
         img {
           margin-bottom: 6px;
         }
