@@ -75,20 +75,16 @@ $icons: sprite-map("icons/*.png");
   to { @include rotate(360deg); }
 }
 
-%spinner-rotate-loop-anim {
-  @include animation(spinner-rotate 1.5s infinite);
-}
-
 .webcam-spinner {
 }
 
 .webcam-spinner__bg {
   position: absolute;
-  margin: (icons-sprite-height("cam__spinner") / 2) 0 0 (icons-sprite-width("cam__spinner") / 2);
+  margin: 19px 0 0 27px;
 }
 
 .webcam-spinner__quarter {
-  @extend %spinner-rotate-loop-anim;
+  @include animation(spinner-rotate 1.5s infinite);
   height: icons-sprite-height("cam__spinner") * 2;
   width: icons-sprite-width("cam__spinner") * 2;
 }
