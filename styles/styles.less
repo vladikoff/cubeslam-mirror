@@ -746,24 +746,61 @@ body {
           font-size: 14px;
           padding-top: 15px;
         }
-        table {
-          margin: 0 auto 0 auto;
-          padding-bottom: 20px;
-          tr {
-            &.records {
-              td {
-                color: #4daf4d;
-                width: 170px;
-              }
-            }
-            td {
-              color: #e83028;
-              padding: 5px;
-            }
-          }
+        
+        h3 {
+          font-family: 'Varela', sans-serif;
+          font-size: 12px;
         }
+
         p {
           padding-bottom: 25px;
+        }
+
+        .scoreboard {
+          color: #e83129;
+           display:-moz-box;
+          -moz-box-orient:horizontal;
+          -moz-box-pack:center;
+          -moz-box-align:center;
+          display:-webkit-box;
+          -webkit-box-orient:horizontal;
+          -webkit-box-pack:center;
+          -webkit-box-align:center;
+          display:box;
+          box-orient:horizontal;
+          box-pack:center;
+          box-align:center;
+
+          padding: 20px 0px 40px 0px;
+
+          &.multiplayer {
+            padding: 0px 0px 20px 0px;
+          }
+
+          div {
+            margin-right:20px;
+          }
+
+          div:last-child {
+            margin-right:0px;
+          }
+
+          div.highscoreDigit {
+
+            color: #f9f9da;
+            font-size:24px;
+            background: #e83129;
+
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            overflow: hidden;
+            padding: 0;
+            border-radius: 25px;
+            -webkit-border-radius: 25px;
+            -o-border-radius: 25px;
+          }
         }
       }
 

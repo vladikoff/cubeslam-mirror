@@ -194,10 +194,12 @@
         <div class="state Pause inactive">
           <div class="dialog">
             <div class="content">
-              <h2>Paused</h2>
-              <p>Press <button class="alternative green play">space</button> to resume</p>
-              <button class="singleplayer green play">Resume Game</button>
-              <button class="multiplayer green quit notimplemented">Quit Friends Play</button>
+              <div class="verticalCenter">
+                <h2>Paused</h2>
+                <p>Press <button class="alternative green play">space</button> to resume</p>
+                <button class="singleplayer green play">Resume Game</button>
+                <button class="multiplayer green quit notimplemented">Quit Friends Play</button>
+              </div>
             </div>
           </div>
         </div>
@@ -208,25 +210,39 @@
         <div id="gameOverDialog" class="state GameOver inactive">
           <div class="dialog">
             <div class="content">
-              <h2>Your Points</h2>
-              <table border="0">
-                <tr>
-                  <td>Levels Played</td>
-                  <td>Aces</td>
-                  <td>Longest ball</td>
-                </tr>
-                <tr>
-                  <td><img src="/images/7.png"></td>
-                  <td><img src="/images/12.png"></td>
-                  <td><img src="/images/45.png" /></td>
-                </tr>
-                <tr class="records">
-                  <td></td>
-                  <td>New Record</td>
-                  <td></td>
-                </tr>
-              </table>
-              <button class="green play">Play Again (Space)</button>
+              <div id="scoreboardSingle" class="verticalCenter">
+                <h2>Your Points</h2>
+                <div class="scoreboard single">
+                    <div>Levels Played</div>
+                    <div id="highscoreLevels" class="highscoreDigit">X</div>
+                    <div id="shareScore"><h3>Share</h3><img src="images/share_score.gif"/></div>
+                    <div id="highscoreRally" class="highscoreDigit">X</div>
+                    <div>Longest Rallies</div>
+                </div>
+                
+                <button class="blue playFriend">Play Friend</button>
+                <button class="green play">Play Again (Space)</button>
+              </div>
+
+              <div id="scoreboardMulti" class="verticalCenter">
+                <h2>Your Points</h2>
+                <div class="scoreboard multiplayer">
+                    <img src="images/temp_scoreboard_multi.gif" />
+                    <!--<div>
+                      Levels Played
+                      <div id="highscoreTotalA" class="highscoreDigit">X</div>
+                      <div id="highscoreTotalB" class="highscoreDigit">X</div>
+                    </div>
+                    <div id="shareScore">Share</div>
+                    <div>
+                      Longest Rallies
+                      <div id="highscoreTotalA" class="highscoreDigit">X</div>
+                      <div id="highscoreTotalB" class="highscoreDigit">X</div>
+                    </div>-->
+                </div>
+                <button class="green play">Play Again (Space)</button>
+              </div>
+
             </div>
           </div>
         </div>
