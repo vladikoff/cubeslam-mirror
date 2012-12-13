@@ -6,7 +6,7 @@ javascripts_dir = "js"
 
 if environment == :production
   relative_assets = true
-  output_style = :compressed
+  output_style = :expanded
   line_comments = false
   color_output = false
 else
