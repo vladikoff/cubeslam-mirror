@@ -224,11 +224,15 @@
         <div id="gameScores" class="state Play inactive">
           <img src="/images/minipong.png" /><br />
           Paddle Battle<br />
-          Player 1 - Player 2<br />
-          <span class="score inactive" id="level">LV.1</span><br />
-          <div id="scoresRunning">
-            <span class="score" id="scoreRally">0</span><br />
-            <span class="score" id="scorePoints">0-0</span>
+          
+          <div id="scoresMultiplayer">
+            Player 1 - Player 2<br />
+            <div class="score" id="scoreRally">0</div>
+          </div>
+          <div id="scoresSingleplayer">
+            Player 1 - CPU<br />
+            <div class="score"><span id="arb-id?">LV.</span><span id="level"></span></div>
+            <div class="score" id="scorePoints">0-0</div>
           </div>
         </div>
 
