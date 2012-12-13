@@ -20,6 +20,12 @@
   }
 }
 
+// Formal value: <single-animation-name> || <time> || <timing-function> || <time> || <single-animation-iteration-count> || <single-animation-direction> || <single-animation-fill-mode>
+@mixin animation($value) {
+  -webkit-animation: $value;
+  animation: $value;
+}
+
 @mixin animation-name($name) {
   -webkit-animation-name: $name;
   // -moz-animation-name: $name;

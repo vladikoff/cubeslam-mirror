@@ -10,11 +10,6 @@ $icons-spacing: 2px;
 $icons: sprite-map("icons/*.png");
 
 
-%infinite-anim {
-  @include animation-fill-mode(both);
-  @include animation-iteration-count(infinite);
-}
-
 // ICONS
 // ==========================================================================
 
@@ -76,14 +71,12 @@ $icons: sprite-map("icons/*.png");
 // Spiner animation
 //
 @include keyframes(spinner-rotate) {
-  0% { @include rotate(0deg); }
-  100% { @include rotate(360deg); }
+  from { @include rotate(0deg); }
+  to { @include rotate(360deg); }
 }
 
 %spinner-rotate-loop-anim {
-  @extend %infinite-anim;
-  @include animation-name(spinner-rotate);
-  @include animation-duration(1.5s);
+  @include animation(spinner-rotate 1.5s infinite);
 }
 
 .webcam-spinner {
@@ -140,84 +133,51 @@ $icons: sprite-map("icons/*.png");
 // Eyes blinking animation.
 //
 @include keyframes(cpu-blinking) {
-  20% { @include scaleY(1); }
-  30% { @include scaleY(0.2); }
-  40% { @include scaleY(1); }
-  45% { @include scaleY(0.2); }
-  50% { @include scaleY(1); }
+  20%, 40%, 50% { @include scaleY(1); }
+  30%, 45% { @include scaleY(0.2); }
 }
 
 %cpu-blinking-eyes-anim {
-  @include animation-name(cpu-blinking);
-  @include animation-duration(2s);
-  @include animation-fill-mode(both);
+  @include animation(cpu-blinking 2s);
 }
 
 .blinking-eyes-anim-loop {
-  @extend %infinite-anim;
-  @extend %cpu-blinking-eyes-anim;
+  @include animation(cpu-blinking 2s infinite);
 }
 
 // Sad eyes animation.
 //
 @include keyframes(cpu-sad-right-eye) {
-  10% { @include transform(scaleY(1) rotate(0deg)); }
-  20% { @include transform(scaleY(0.2) rotate(0deg)); }
-  30% { @include transform(scaleY(1) rotate(0deg)); }
-  35% { @include transform(scaleY(0.2) rotate(0deg)); }
-  40% { @include transform(scaleY(1) rotate(0deg)); }
-  60% { @include transform(scaleY(1) rotate(20deg)); }
-  94% { @include transform(scaleY(1) rotate(20deg)); }
-  100% { @include transform(scaleY(1) rotate(0deg)); }
+  10%, 30%, 40%, 100% { @include transform(scaleY(1) rotate(0deg)); }
+  20%, 35% { @include transform(scaleY(0.2) rotate(0deg)); }
+  60%, 94% { @include transform(scaleY(1) rotate(20deg)); }
 }
 
 @include keyframes(cpu-sad-left-eye) {
-  10% { @include transform(scaleY(1) rotate(0deg)); }
-  20% { @include transform(scaleY(0.2) rotate(0deg)); }
-  30% { @include transform(scaleY(1) rotate(0deg)); }
-  35% { @include transform(scaleY(0.2) rotate(0deg)); }
-  40% { @include transform(scaleY(1) rotate(0deg)); }
-  60% { @include transform(scaleY(1) rotate(-20deg)); }
-  94% { @include transform(scaleY(1) rotate(-20deg)); }
-  100% { @include transform(scaleY(1) rotate(0deg)); }
-}
-
-%cpu-sad-eyes {
-  @extend %infinite-anim;
-  @include animation-duration(3s);
-}
-
-%cpu-sad-left-eye-anim {
-  @extend %cpu-sad-eyes;
-  @include animation-name(cpu-sad-left-eye);
-}
-
-%cpu-sad-right-eye-anim {
-  @extend %cpu-sad-eyes;
-  @include animation-name(cpu-sad-right-eye);
+  10%, 30%, 40%, 100% { @include transform(scaleY(1) rotate(0deg)); }
+  20%, 35% { @include transform(scaleY(0.2) rotate(0deg)); }
+  60%, 94% { @include transform(scaleY(1) rotate(-20deg)); }
 }
 
 .sad-left-eye-anim-loop {
-  @extend %cpu-sad-left-eye-anim;
+  @include animation(cpu-sad-left-eye 3s infinite);
   @include transform-origin(100%, 50%);
 }
 
 .sad-right-eye-anim-loop {
-  @extend %cpu-sad-right-eye-anim;
+  @include animation(cpu-sad-right-eye 3s infinite);
   @include transform-origin(0%, 50%);
 }
 
 // Dashes animation for the wave effect.
 //
 @include keyframes(up-and-down) {
-  0% { @include translate(0, 0px); }
+  0%, 20% { @include translate(0, 0px); }
   10% { @include translate(0, -20px); }
-  20% { @include translate(0, 0px); }
 }
 
 %up-and-down-anim {
-  @include animation-name(up-and-down);
-  @include animation-duration(2s);
+  @include animation(up-and-down 2s);
 }
 
 // Computers connection animation.
@@ -303,17 +263,12 @@ $icons: sprite-map("icons/*.png");
 // ==========================================================================
 
 @include keyframes(cpu-failed-cross) {
-  0% { @include transform(scale(0)); }
-  100% { @include transform(scale(1)); }
-}
-
-%cpu-failed-cross-anim {
-  @include animation-name(cpu-failed-cross);
-  @include animation-duration(500ms);
+  from { @include transform(scale(0)); }
+  to { @include transform(scale(1)); }
 }
 
 .cross-fail-anim {
-  @extend %cpu-failed-cross-anim;
+  @include animation(cpu-failed-cross 500ms);
 }
 
 .cpu-conn-failed-anim {
@@ -327,9 +282,7 @@ $icons: sprite-map("icons/*.png");
   }
 
   .dash-anim-line > div {
-    @extend %infinite-anim;
-    @include animation-name(up-and-down);
-    @include animation-duration(4s);
+    @include animation(up-and-down 4s infinite);
   }
 
   @for $i from 1 through 3 {
@@ -422,90 +375,46 @@ $icons: sprite-map("icons/*.png");
 //
 $xmax: 80px;
 @include keyframes(dash-right-to-left-to-right) {
-  10% { @include translate(0, 0); }
-  47% { @include translate($xmax, 0); }
-  53% { @include translate($xmax, 0); }
-  100% { @include translate(0, 0); }
-}
-
-%dash-right-to-left-to-right-anim {
-  @extend %infinite-anim;
-  @include animation-name(dash-right-to-left-to-right);
-  @include animation-duration(3s);
+  10%, 100% { @include translate(0, 0); }
+  47%, 53% { @include translate($xmax, 0); }
 }
 
 // Key left animation.
 // Fade on the inner border + move the arrow
 //
 @include keyframes(keyleft-fade-in-out) {
-  10% { opacity: 1; }
-  35% { opacity: 1; }
-  47% { opacity: 0; }
-  87% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-%keyleft-fade-in-out-anim {
-  @extend %infinite-anim;
-  @include animation-name(keyleft-fade-in-out);
-  @include animation-duration(3s);
+  10%, 35%, 100% { opacity: 1; }
+  47%, 87% { opacity: 0; }
 }
 
 @include keyframes(keyleft-arrow-up-down) {
-  10% { @include translate(0, -2px); }
-  35% { @include translate(0, -2px); }
-  47% { @include translate(0, 0); }
-  87% { @include translate(0, 0); }
-  95% { @include translate(0, -2px); }
-}
-
-%keyleft-arrow-up-down-anim {
-  @extend %infinite-anim;
-  @include translate(0, -2px);
-  @include animation-name(keyleft-arrow-up-down);
-  @include animation-duration(3s);
+  10%, 35%, 95% { @include translate(0, -2px); }
+  47%, 87% { @include translate(0, 0); }
 }
 
 // Key right animation.
 // Fade on the inner border + move the arrow
 //
 @include keyframes(keyright-fade-out-in) {
-  10% { opacity: 0; }
-  35% { opacity: 0; }
-  47% { opacity: 1; }
-  87% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-%keyright-fade-out-in-anim {
-  @extend %infinite-anim;
-  @include animation-name(keyright-fade-out-in);
-  @include animation-duration(3s);
+  10%, 35%, 100% { opacity: 0; }
+  47%, 87% { opacity: 1; }
 }
 
 @include keyframes(keyright-arrow-down-up) {
-  10% { @include translate(0, 0); }
-  35% { @include translate(0, 0); }
-  47% { @include translate(0, -2px); }
-  92% { @include translate(0, -2px); }
-  98% { @include translate(0, 0); }
-}
-
-%keyright-arrow-down-up-anim {
-  @extend %infinite-anim;
-  @include animation-name(keyright-arrow-down-up);
-  @include animation-duration(3s);
+  10%, 35%, 98% { @include translate(0, 0); }
+  47%, 92% { @include translate(0, -2px); }
 }
 
 // Key animations
 //
 .default-key-anim {
   .key__label {
-    @extend %keyleft-arrow-up-down-anim;
+    @include animation(keyleft-arrow-up-down 3s infinite);
+    @include translate(0, -2px);
   }
 
   .key__bg-inner {
-    @extend %keyleft-fade-in-out-anim;
+    @include animation(keyleft-fade-in-out 3s infinite);
   }
 }
 
@@ -513,7 +422,7 @@ $xmax: 80px;
   position: relative;
 
   .dash-big {
-    @extend %dash-right-to-left-to-right-anim;
+    @include animation(dash-right-to-left-to-right 3s infinite);
     margin-left: 14px;
   }
 
@@ -525,11 +434,11 @@ $xmax: 80px;
   // key right
   &>div:nth-of-type(3) {
     .key__label {
-      @extend %keyright-arrow-down-up-anim;
+      @include animation(keyright-arrow-down-up 3s infinite);
     }
 
     .key__bg-inner {
-      @extend %keyright-fade-out-in-anim;
+      @include animation(keyright-fade-out-in 3s infinite);
       opacity: 0;
     }
   }
@@ -540,15 +449,12 @@ $xmax: 80px;
 // ==========================================================================
 
 @include keyframes(mouse-move) {
-  10% { @include translate(0, 0); }
+  10%, 100% { @include translate(0, 0); }
   50% { @include translate(20px, 0); }
-  100% { @include translate(0, 0); }
 }
 
 %mouse-move-anim {
-  @extend %infinite-anim;
-  @include animation-name(mouse-move);
-  @include animation-duration(1.6s);
+  @include animation(mouse-move 1.6s infinite);
 }
 
 .mouse-anim {
