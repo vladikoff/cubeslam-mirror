@@ -1,9 +1,3 @@
-@mixin icons-values($name) {
-  @include icons-sprite($name);
-  height: icons-sprite-height($name);
-  width: icons-sprite-width($name);
-}
-
 // keyframes mixin
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {

@@ -4,6 +4,11 @@ $icons-spacing: 2px;
 @include all-icons-sprites;
 $icons: sprite-map("icons/*.png");
 
+@mixin icons-values($name) {
+  @include icons-sprite($name);
+  height: icons-sprite-height($name);
+  width: icons-sprite-width($name);
+}
 
 // ICONS
 // ==========================================================================
