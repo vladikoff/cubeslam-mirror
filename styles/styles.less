@@ -62,15 +62,6 @@ button, a.button {
   letter-spacing: 2px;
   font-weight: bold;
 
-  &:disabled,
-  &.disabled,
-  &:disabled:hover {
-    color: #577da3;
-    background: #31669a;
-    border: 5px solid #2c5f91;
-    outline: solid 2px #3e7dbc;
-  }
-
   &.green {
     color: #f9f9da;
     background: #4daf4d;
@@ -109,6 +100,15 @@ button, a.button {
       border: 1px solid #4daf4d;
     }
 
+  }
+
+  &:disabled,
+  &.disabled,
+  &:disabled:hover {
+    color: #577da3;
+    background: #31669a !important;
+    border: 5px solid #2c5f91;
+    outline: solid 2px #3e7dbc;
   }
 
 }

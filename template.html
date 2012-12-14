@@ -60,7 +60,7 @@
               <span class="slave" arb:id="friendIsWaiting">Your friend is waiting for you to join this Game Room!</span>
             </p>
             <br/><br/>
-            <button class='playFriend green' arb:id="playFriendButton">
+            <button class='playFriend green' arb:id="playFriendButton" disabled>
               Play friend
             </button>
             <button class='playComputer green' >
@@ -71,7 +71,6 @@
         </div>
 
         <!-- WAITING FRIEND -->
-
         <div class="state WaitingFriend inactive">
           <div class="dialog middle">
             <div class="content">
@@ -79,6 +78,19 @@
                  <img src="/images/opponent_computer.gif"/>
                 <h2>Your friend is waiting for you in the arena</h2>
                 <button id="playWaitingFriend" class="blue">Play Friend</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WAITING FRIEND ACCEPT -->
+        <div class="state WaitingFriendAccept inactive">
+          <div class="dialog middle">
+            <div class="content">
+              <div class="verticalCenter">
+                 <img src="/images/opponent_computer.gif"/>
+                <h2>Waiting for you friend to accept</h2>
+                <button id="backToMainMenu" class="green">Back</button>
               </div>
             </div>
           </div>
@@ -134,20 +146,7 @@
         </div>
 
 
-        <!-- FRIEND ARRIVED -->
-
-        <div class="state WaitForFriendStart inactive">
-          <div class="dialog middle">
-            <div class="content">
-              <div class="verticalCenter">
-                <img src="/images/cam.gif"/>
-                <h2>Waiting for friend<br/>to hit start</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
+       
         <!-- GAME INSTRUCTIONS -->
 
         <div class="state GameInstructions inactive">
@@ -163,6 +162,21 @@
             </div>
           </div>
         </div>
+
+        
+        <!-- WAITING FRIEND CAMERA -->
+
+        <div class="state WaitForFriendCamera inactive">
+          <div class="dialog middle">
+            <div class="content">
+              <div class="verticalCenter">
+                <img src="/images/cam.gif"/>
+                <h2>Waiting for friend<br/>to activate camera</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
         <!-- COUNTDOWN -->
