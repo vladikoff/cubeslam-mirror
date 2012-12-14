@@ -669,6 +669,17 @@ body {
         }
       }
 
+      .state.WaitingFriendAccept .dialog {
+
+        h2 {
+          font-size:14px;
+          padding-top: 10px;
+        }
+        p {
+         font-size:11px;
+        }
+      }
+
       .state.FriendArrived .dialog {
 
         h2 {
@@ -1262,6 +1273,12 @@ body {
   }
 }
 
+.webcam-spinner {
+  position: relative;
+  left: 50%;
+  margin-left: -50px;
+}
+
 .webcam-spinner__bg {
   position: absolute;
   margin: 19px 0 0 27px;
@@ -1281,8 +1298,12 @@ body {
 Just a computer with eyes whithout any anim.
 */
 .cpu-wth-eyes {
+  position: relative;
+  left: 50%;
+  margin-left: -34px;
   height: 92px;
   width: 67px;
+  margin-bottom: 20px;
 }
 
 .cpu-wth-eyes__bg {
