@@ -8,3 +8,4 @@ lib/geometry/*.js
 !lib/shaders/index.js
 !lib/geometry/index.js
 lang/arbs/*.arb
+.sass-cache
