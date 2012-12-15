@@ -118,11 +118,13 @@
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
-                <h2>Invite Friend</h2>
-                <p>Copy and share this link to invite a friend:</p>
-                <span class="shareUrl"></span><button id="copyURL" class="notimplemented">Copy</button>
-                <button class="backToMainMenu" class="green">Back</button>
-                <p>You will be notified when your friend uses the link to enter the game.</p>
+                <h2>share this link to Invite a Friend</h2>
+                <span id="inviteBox">
+                  <input type="text" id="shareTextArea" class="shareUrl" value="" /><input type="button" id="shareUrlButton" value="Copy" class="notimplemented"/>
+                </span>
+
+                <p>We'll let you know when your friend arrives. <a class="backFromInvite">Back</a></p>
+                
               </div>
             </div>
           </div>
@@ -239,7 +241,12 @@
         <div class="state Play inactive">
           <!--<div class="dialog middle">-->
             <div class="centerContent">
-              <span id="gamestartCountdown"></span>
+              <!--<span id="gamestartCountdown"></span>-->
+              <div class="countdown">
+                <div class="countdown__num" data-number="1"></div>
+                <div class="countdown__num" data-number="2"></div>
+                <div class="countdown__num" data-number="3"></div>
+              </div>
             </div>
          <!--/div>-->
         </div>
