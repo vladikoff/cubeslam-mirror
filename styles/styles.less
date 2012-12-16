@@ -39,6 +39,29 @@
 }
 
 /*
+* Alert
+*/
+
+.alert-icon {
+  border-radius: 14px;
+  width:28px;
+  height:28px;
+  display:block;
+  margin: 7px 15px 7px 30px;
+  float:left;
+}
+
+.red {
+  background: #f52c1f;
+}
+
+.alert-info {
+  float:left;
+  color: #f52c1f;
+  line-height:45px;
+}
+
+/*
  * BUTTONS
  */
 
@@ -497,29 +520,12 @@ body {
        * WEBCAM ACTIVATION
        */
 
+      
+
       .state.WebcamActivation {
         .dialog {
-         
         }
-
-        .alert-icon {
-          border-radius: 14px;
-          width:28px;
-          height:28px;
-          display:block;
-          margin: 7px 15px 7px 30px;
-          float:left;
-        }
-
-        .red {
-          background: #f52c1f;
-        }
-
-        .alert-info {
-          float:left;
-          color: #f52c1f;
-          line-height:45px;
-        }
+        
       }
       /*
        * WEBCAM INFORMATION
@@ -527,12 +533,20 @@ body {
 
       .state.WebcamInformation {
         .dialog {
-          z-index: 1000;
-          height: 260px;
           button {
             margin: 10px 0px 20px 0px;
           }
         }
+        
+        #activateCamera {
+          color: #40a040;
+          text-decoration: underline;
+          text-transform: uppercase;
+          float:left;
+            
+          line-height:45px;
+        }
+
       }
 
       /*
