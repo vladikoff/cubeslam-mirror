@@ -43,6 +43,7 @@
           <div id="title">
              <h2>Welcome to</h2>
             <h1 class="copy"><img src="images/logo_large.png" width="1533" height="155"/></h1>
+            <h2>a chrome experiment</h2>
           </div>
           <p class='full'>
             <span arb:id="friendPlayingSomeoneElse">Your friend is playing against someone else right now.</span><br />
@@ -154,8 +155,15 @@
 
         <!-- CAMERA REQUEST ATTENTION -->
 
-        <div class="state WebcamActivation inactive" id="cameraRequestAttention">
+        <!--<div class="state WebcamActivation inactive" id="cameraRequestAttention">
           <img src="/images/cameraRequestAttention.png" />
+        </div>-->
+        <div class="state WebcamActivation inactive">
+          <div class="dialog top">
+            <div class="content">
+              <span class="alert-icon red"></span><span class="alert-info">PLEASE CHOOSE ALLOW TO CONNECT YOUR WEBCAM AND START FRIENDS PLAY</span>
+            </div>
+          </div>
         </div>
 
         <!-- CAMERA INFORMATION -->
