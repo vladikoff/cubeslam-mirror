@@ -18,7 +18,7 @@
     return;
   }
 
-  var pc = new PeerConnection(null);
+  var pc = new PeerConnection(null, { optional:[ { RtpDataChannels: true } ]});
 
   if (typeof(pc.createDataChannel) !== 'undefined') {
     try {
@@ -28,6 +28,19 @@
       // If we get this far you already have DataChannel support.
       return console.log('REAL DATACHANNELS!');
     } catch(e){
+      console.log('default (reliable) datachannels not supported')
+      // TODO verify the Error
+    }
+
+    try {
+      // This will throw when data channels is not implemented properly yet
+      pc.createDataChannel('polyfill',{reliable:false})
+      pc.createDataChannel('polyfill2',{reliable:false})
+
+      // If we get this far you already have DataChannel support.
+      return console.log('REAL UNRELIABLE DATACHANNELS!');
+    } catch(e){
+      console.log('unreliable datachannels not supported')
       // TODO verify the Error
     }
   }
