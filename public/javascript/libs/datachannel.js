@@ -28,8 +28,9 @@
       // If we get this far you already have DataChannel support.
       return console.log('REAL DATACHANNELS!');
     } catch(e){
-      console.log('default (reliable) datachannels not supported')
-      // TODO verify the Error
+      if( e.name == 'NotSupportedError' )
+        console.log('default (reliable) datachannels not supported')
+      else throw e;
     }
 
     try {
@@ -40,15 +41,20 @@
       // If we get this far you already have DataChannel support.
       return console.log('REAL UNRELIABLE DATACHANNELS!');
     } catch(e){
-      console.log('unreliable datachannels not supported')
-      // TODO verify the Error
+      if( e.name == 'NotSupportedError' )
+        console.log('unreliable datachannels not supported')
+      else throw e;
     }
   }
 
   function DataChannel(peerConnection,label,dataChannelDict) {
     this.readyState = "connecting";
     this.label = label;
-    this.reliable = (!dataChannelDict || !dataChannelDict.reliable);
+    this.reliable = !dataChannelDict || !!dataChannelDict.reliable;
+
+    if( !label )
+      throw new Error('"label" is not defined');
+
     this._peerConnection = peerConnection;
     this._queue = [];
     this._webSocket = new WebSocket(websocketServer);
@@ -68,11 +74,16 @@
         this.onopen()
       }
 
+
+      // TODO this should be called when a connection has been established
+      //      i.e. when the identify is completed
       if( typeof this._peerConnection.ondatachannel == 'function' ){
         var evt = document.createEvent('Event')
-            evt.initEvent('datachannel', true, true)
-            evt.channel = this;
+        evt.initEvent('datachannel', true, true)
+        evt.channel = this;
         this._peerConnection.ondatachannel(evt)
+      } else {
+        console.log('ignoring ondatachannel because PeerConnection has no listener')
       }
 
       // empty the queue
