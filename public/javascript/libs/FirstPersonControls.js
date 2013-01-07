@@ -203,9 +203,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 				this.autoSpeedFactor = delta * ( heightDelta * this.heightCoef );
 
 			} else {
-
 				this.autoSpeedFactor = 0.0;
-
 			}
 
 			actualMoveSpeed = delta * this.movementSpeed;
