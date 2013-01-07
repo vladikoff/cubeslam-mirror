@@ -60,6 +60,7 @@
     "lib/renderer-3d/post/shaders/FilmShader.js",
     "lib/shaders/index.js",
     "lib/shaders/arena_fs.js",
+    "lib/shaders/obstacle_fs.js",
     "lib/shaders/arenaside_fs.js",
     "lib/shaders/animal_fs.js",
     "lib/shaders/cpu_fs.js",

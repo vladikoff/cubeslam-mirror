@@ -17,7 +17,7 @@ void main(void)
 {
     vec3 lineColor = vec3(237.0/255.0,236.0/255.0,214.0/255.0);
 
-    vec2 position = vWorldPosition.xz/resolution.y+.5;//vUv;
+    vec2 position = vWorldPosition.xz/resolution.y+.5;;
     float color = texture2D( tGrid, vUv*scale ).x*.5;
 
     float color2 = smoothstep( vUv.y,vUv.y+0.007,0.508);
@@ -37,7 +37,7 @@ void main(void)
         float rows = floor(points.y/4.0);
         float offset = points.y-rows*4.0;
 
-        color2 = texture2D(tDigits,vec2((1.0-vUv.x)/4.0 + offset*0.25,   1.0-invY/2.0 - rows*0.19  )).x;
+        color2 += texture2D(tDigits,vec2((1.0-vUv.x)/4.0 + offset*0.25,   1.0-invY/2.0 - rows*0.19  )).x;
     }
 
     vec3 gridColor = vec3(color, color, color);
