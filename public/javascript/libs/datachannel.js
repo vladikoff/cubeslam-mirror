@@ -18,7 +18,7 @@
     return;
   }
 
-  var pc = new PeerConnection(null, { optional:[ { RtpDataChannels: true } ]});
+  var pc = new PeerConnection(null);
 
   if (typeof(pc.createDataChannel) !== 'undefined') {
     try {
@@ -28,33 +28,14 @@
       // If we get this far you already have DataChannel support.
       return console.log('REAL DATACHANNELS!');
     } catch(e){
-      if( e.name == 'NotSupportedError' )
-        console.log('default (reliable) datachannels not supported')
-      else throw e;
-    }
-
-    try {
-      // This will throw when data channels is not implemented properly yet
-      pc.createDataChannel('polyfill',{reliable:false})
-      pc.createDataChannel('polyfill2',{reliable:false})
-
-      // If we get this far you already have DataChannel support.
-      return console.log('REAL UNRELIABLE DATACHANNELS!');
-    } catch(e){
-      if( e.name == 'NotSupportedError' )
-        console.log('unreliable datachannels not supported')
-      else throw e;
+      // TODO verify the Error
     }
   }
 
   function DataChannel(peerConnection,label,dataChannelDict) {
     this.readyState = "connecting";
     this.label = label;
-    this.reliable = !dataChannelDict || !!dataChannelDict.reliable;
-
-    if( !label )
-      throw new Error('"label" is not defined');
-
+    this.reliable = (!dataChannelDict || !dataChannelDict.reliable);
     this._peerConnection = peerConnection;
     this._queue = [];
     this._webSocket = new WebSocket(websocketServer);
@@ -74,16 +55,11 @@
         this.onopen()
       }
 
-
-      // TODO this should be called when a connection has been established
-      //      i.e. when the identify is completed
       if( typeof this._peerConnection.ondatachannel == 'function' ){
         var evt = document.createEvent('Event')
-        evt.initEvent('datachannel', true, true)
-        evt.channel = this;
+            evt.initEvent('datachannel', true, true)
+            evt.channel = this;
         this._peerConnection.ondatachannel(evt)
-      } else {
-        console.log('ignoring ondatachannel because PeerConnection has no listener')
       }
 
       // empty the queue
