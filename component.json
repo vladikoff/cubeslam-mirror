@@ -10,7 +10,8 @@
     "publicclass/geom": "*",
     "publicclass/range": "*",
     "publicclass/stash": "0.2.0",
-    "visionmedia/debug": "*"
+    "visionmedia/debug": "*",
+    "timoxley/next-tick": "*"
   },
   "scripts": [
     "index.js",
