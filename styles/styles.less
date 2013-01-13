@@ -176,7 +176,7 @@ a.button:hover {
     height:45px;
     text-align:left;
 
-    
+
 
   }
   &.middle {
@@ -306,7 +306,7 @@ a.button:hover {
  * HEAD BAR
  */
 
-body.MainMenu {
+body.main-menu {
   #headBar {
     &.loginInfo {
       top: 0px;
@@ -319,7 +319,7 @@ body.MainMenu {
     }
   }
 }
-body.Play, body.Pause {
+body.game-play, body.game-pause {
   #headBar {
     &.shareLink, &.opponentPaddle, &.opponentReady, &.friendArrived {
       top: 0px;
@@ -372,7 +372,7 @@ body {
        * LOADING
        */
 
-      .state.Loading {
+      .state.loading {
         width: 100%;
         height: 100%;
         background: #fff;
@@ -520,30 +520,30 @@ body {
        * WEBCAM ACTIVATION
        */
 
-      
 
-      .state.WebcamActivation {
+
+      .state.webcam-activation {
         .dialog {
         }
-        
+
       }
       /*
        * WEBCAM INFORMATION
        */
 
-      .state.WebcamInformation {
+      .state.webcam-information {
         .dialog {
           button {
             margin: 10px 0px 20px 0px;
           }
         }
-        
+
         #activateCamera {
           color: #40a040;
           text-decoration: underline;
           text-transform: uppercase;
           float:left;
-            
+
           line-height:45px;
         }
 
@@ -606,8 +606,8 @@ body {
        * COUNTDOWN
        */
 
-       state.GameInstructions,
-      .state.GameStart {
+      .state.game-instructions,
+      .state.game-start {
         display:-moz-box;
         -moz-box-orient:horizontal;
         -moz-box-pack:center;
@@ -705,7 +705,7 @@ body {
         // }
       }
 
-      .state.WaitForFriend .dialog {
+      .state.friend-waiting .dialog {
 
         h2 {
           font-size:14px;
@@ -716,7 +716,7 @@ body {
         }
       }
 
-      .state.WaitingFriend .dialog {
+      .state.friend-waiting .dialog {
 
         h2 {
           font-size:14px;
@@ -727,7 +727,7 @@ body {
         }
       }
 
-      .state.WaitingFriendAccept .dialog {
+      .state.friend-waiting-accept .dialog {
 
         h2 {
           font-size:14px;
@@ -738,7 +738,7 @@ body {
         }
       }
 
-      .state.FriendArrived .dialog {
+      .state.friend-arrived .dialog {
 
         h2 {
           font-size:14px;
@@ -749,8 +749,8 @@ body {
         }
       }
 
-      .state.InviteFriend {
-        
+      .state.friend-invite {
+
         h2 {
           font-size:14px;
           padding-top: 20px;
@@ -798,7 +798,7 @@ body {
           outline: none;
         }
 
-        
+
 
         a.backFromInvite {
           color:#501f8f;
@@ -806,7 +806,7 @@ body {
           text-decoration: underline;
           cursor: pointer;
         }
-        
+
       }
 
       /*
@@ -852,7 +852,7 @@ body {
        * PAUSED
        */
 
-      .state.Pause {
+      .state.game-pause {
 
         .dialog {
           height: 33%;
@@ -963,10 +963,10 @@ body {
        * YOUR FRIEND LEFT THE GAME
        */
 
-      .state.OpponentLeft .dialog {
+      .state.friend-left .dialog {
         height: 33%;
         min-height:266px;
-        
+
         h2 {
           padding-bottom: 20px;
         }

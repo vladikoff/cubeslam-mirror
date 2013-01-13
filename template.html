@@ -21,17 +21,17 @@
 
         <!-- LOADING -->
 
-        <div class="state Loading"></div>
+        <div class="state loading"></div>
 
         <!-- THE LOBBY -->
 
-        <a class="state MainMenu" id="chromeTechLink" href="http://google.com/" target="_blank">
+        <a class="state main-menu" id="chromeTechLink" href="http://google.com/" target="_blank">
           <small>About</small><br />
           Paddle Battle<br />
           Technology
         </a>
 
-        <a class="state MainMenu" id="chromeExperimentLink" href="http://google.com/" target="_blank">
+        <a class="state main-menu" id="chromeExperimentLink" href="http://google.com/" target="_blank">
           <!--<small>This is a</small>
           <p>
             Chrome<br />
@@ -39,7 +39,7 @@
           </p>-->
         </a>
 
-        <div id="mainmenu" class='state MainMenu'>
+        <div id="mainmenu" class='state main-menu'>
           <div id="title">
              <h2>Welcome to</h2>
             <h1 class="copy"><img src="images/logo_large.png" width="1533" height="155"/></h1>
@@ -49,7 +49,7 @@
             <span arb:id="friendPlayingSomeoneElse">Your friend is playing against someone else right now.</span><br />
             <span arb:id="trySinglePlayer"><!--Try out the single player game!--></span>
           </p>
-          
+
           <div class="buttonWrapper">
 
             <p class="singleplayer">
@@ -68,11 +68,11 @@
               Play Computer
             </button>
           </div>
-          
+
         </div>
 
         <!-- WAITING FRIEND -->
-        <div class="state WaitingFriend inactive">
+        <div class="state friend-waiting inactive">
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
@@ -93,7 +93,7 @@
         </div>
 
         <!-- WAITING FRIEND ACCEPT -->
-        <div class="state WaitingFriendAccept inactive">
+        <div class="state friend-waiting-accept inactive">
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
@@ -115,7 +115,7 @@
 
         <!-- INVITE FRIEND -->
 
-        <div class="state InviteFriend inactive">
+        <div class="state friend-invite inactive">
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
@@ -125,7 +125,7 @@
                 </span>
 
                 <p>We'll let you know when your friend arrives. <a class="backFromInvite">Back</a></p>
-                
+
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@
 
         <!-- FRIEND ARRIVED -->
 
-        <div class="state FriendArrived inactive">
+        <div class="state friend-arrive inactive">
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
@@ -158,7 +158,7 @@
         <!--<div class="state WebcamActivation inactive" id="cameraRequestAttention">
           <img src="/images/cameraRequestAttention.png" />
         </div>-->
-        <div class="state WebcamActivation inactive">
+        <div class="state webcam-activate inactive">
           <div class="dialog top">
             <div class="content">
               <span class="alert-icon red"></span><span class="alert-info">PLEASE CHOOSE ALLOW TO CONNECT YOUR WEBCAM AND START FRIENDS PLAY</span>
@@ -166,7 +166,7 @@
           </div>
         </div>
 
-        <div class="state WebcamInformation inactive">
+        <div class="state webcam-information inactive">
           <div class="dialog top">
             <div class="content">
               <span class="alert-icon red"></span><span class="alert-info">ARE YOU SURE? FRIENDS PLAY Is NOT POSSIBLE WITHOUT ALLOWING WEBCAM.</span><span> <a id="activateCamera">Activate Camera</a></span>
@@ -176,7 +176,7 @@
 
         <!-- CAMERA INFORMATION -->
 
-        <!--<div class="state WebcamInformation inactive">
+        <!--<div class="state webcam-information inactive">
           <div class="dialog">
             <div class="content">
               <h2>Connect Camera</h2>
@@ -188,10 +188,10 @@
         </div>
         -->
 
-       
+
         <!-- GAME INSTRUCTIONS -->
 
-        <div class="state GameInstructions inactive">
+        <div class="state game-info inactive">
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
@@ -233,10 +233,10 @@
           </div>
         </div>
 
-        
+
         <!-- WAITING FRIEND CAMERA -->
 
-        <div class="state WaitForFriendCamera inactive">
+        <div class="state webcam-waiting inactive">
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
@@ -255,7 +255,7 @@
 
         <!-- COUNTDOWN -->
 
-        <div class="state Play inactive">
+        <div class="state game-play inactive">
           <!--<div class="dialog middle">-->
             <div class="centerContent">
               <!--<span id="gamestartCountdown"></span>-->
@@ -270,7 +270,7 @@
 
         <!-- OPPONENT LEFT DIALOG -->
 
-        <div class="state OpponentLeft inactive">
+        <div class="state friend-left inactive">
           <div class="dialog">
             <div class="content">
               <div class="verticalCenter">
@@ -285,7 +285,7 @@
 
         <!-- PAUSE DIALOG -->
 
-        <div class="state Pause inactive">
+        <div class="state game-pause inactive">
           <div class="dialog">
             <div class="content">
               <div class="verticalCenter">
@@ -301,8 +301,8 @@
 
         <!-- GAME OVER DIALOG -->
 
-        <div id="bautaGameOver" class="state GameOver inactive"><img src="images/game_over.png" id="gameOverTitle"/></div>
-        <div id="gameOverDialog" class="state GameOver inactive">
+        <div id="bautaGameOver" class="state game-over inactive"><img src="images/game_over.png" id="gameOverTitle" /></div>
+        <div id="gameOverDialog" class="state game-over inactive">
           <div class="dialog">
             <div class="content">
               <div id="scoreboardSingle" class="verticalCenter">
@@ -314,7 +314,7 @@
                     <div id="highscoreRally" class="highscoreDigit">X</div>
                     <div>Longest Rallies</div>
                 </div>
-                
+
                 <button class="blue playFriend">Play Friend</button>
                 <button class="green play">Play Again (Space)</button>
               </div>
@@ -344,7 +344,7 @@
 
         <!-- WAITING FOR RESTART -->
 
-        <div class="state WaitForGameStart inactive">
+        <div class="state game-wait inactive">
           <div class="dialog middle">
             <div class="content">
               <div class="verticalCenter">
@@ -352,8 +352,8 @@
                   <div class="cpu-wth-eyes__bg icon-computer"></div>
                   <div class="cpu-wth-eyes__container">
                     <div class="cpu-wth-eyes__eyes">
-                      
-                      
+
+
                       <div class="dash-medium dash-white blinking-eyes-anim-loop"></div>
                       <div class="dash-medium dash-white blinking-eyes-anim-loop"></div>
                       <!--<div class="dash-medium dash-white"></div>
@@ -369,10 +369,10 @@
 
         <!-- GAME STUFF -->
 
-        <div id="gameScores" class="state Play inactive">
+        <div id="gameScores" class="state game-play inactive">
           <img src="/images/minipong.png" /><br />
           Paddle Battle<br />
-          
+
           <div id="scoresMultiplayer">
             Player 1 - Player 2<br />
             <div class="score" id="scoreRally">0</div>
