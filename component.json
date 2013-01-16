@@ -64,7 +64,7 @@
     "lib/shaders/obstacle_fs.js",
     "lib/shaders/arenaside_fs.js",
     "lib/shaders/animal_fs.js",
-    "lib/shaders/cpu_fs.js",
+    "lib/shaders/video_fs.js",
     "lib/shaders/static_fs.js",
     "lib/shaders/shield_fs.js",
     "lib/shaders/camera_fs.js",
