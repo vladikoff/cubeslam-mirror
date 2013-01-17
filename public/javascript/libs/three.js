@@ -1541,7 +1541,6 @@ THREE.Matrix3.prototype = {
 		if ( det === 0 ) {
 
 			console.warn( "Matrix3.getInverse(): determinant == 0" );
-
 		}
 
 		var idet = 1.0 / det;
