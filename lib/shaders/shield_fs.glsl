@@ -17,5 +17,4 @@ void main( void ) {
 
     gl_FragColor = vec4( vec3(1.0), mix(glassFactor+.2,2.0,texture2D(tDecal,vUv).r));
 
-
 }

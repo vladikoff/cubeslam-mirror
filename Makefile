@@ -9,7 +9,7 @@ COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 
 # adding special cased geometry
-GEOMETRY_JS += lib/geometry/bear.js lib/geometry/terrain.js
+GEOMETRY_JS += lib/geometry/bear.js lib/geometry/rabbit.js lib/geometry/bird1.js lib/geometry/bird2.js lib/geometry/moose.js lib/geometry/terrain.js
 
 build: build-shaders build-geometry build-component build-styles build-localization
 	@:
