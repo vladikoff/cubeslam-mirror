@@ -10,3 +10,4 @@ lib/geometry/*.js
 lang/arbs/*.arb
 .sass-cache
 .jshintrc
+report/
