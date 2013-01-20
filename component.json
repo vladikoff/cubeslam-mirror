@@ -10,7 +10,9 @@
     "publicclass/geom": "*",
     "publicclass/range": "*",
     "publicclass/stash": "*",
-    "visionmedia/debug": "*"
+    "publicclass/netchan": "*",
+    "publicclass/base64-arraybuffer": "*"
+    "visionmedia/debug": "*",
   },
   "scripts": [
     "index.js",
