@@ -11,8 +11,8 @@
     "publicclass/range": "*",
     "publicclass/stash": "*",
     "publicclass/netchan": "*",
-    "publicclass/base64-arraybuffer": "*"
-    "visionmedia/debug": "*",
+    "publicclass/base64-arraybuffer": "*",
+    "visionmedia/debug": "*"
   },
   "scripts": [
     "index.js",
