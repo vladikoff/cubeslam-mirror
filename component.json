@@ -35,6 +35,7 @@
     "lib/support/see.js",
     "lib/support/mouse.js",
     "lib/support/pointer-lock.js",
+    "lib/support/buffer.js",
     "lib/states/index.js",
     "lib/states/setup.js",
     "lib/states/loading.js",
