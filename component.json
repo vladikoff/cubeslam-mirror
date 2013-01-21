@@ -105,7 +105,6 @@
     "lib/geometry/moose.js",
     "lib/extras.js",
     "lib/rtc.js",
-    "lib/time-sync.js",
     "lib/audio.js",
     "lib/camera.js",
     "lib/camera-attention.js",
