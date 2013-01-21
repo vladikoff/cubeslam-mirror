@@ -146,7 +146,7 @@ func init() {
 
 
 func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
-  roomName := r.URL.Path
+  roomName := strings.TrimLeft(r.URL.Path,"/")
 
   clientId := ""
   if cookie, _ := r.Cookie("clientId"); cookie != nil {
