@@ -196,11 +196,6 @@ a.button:hover {
          -o-transition: -o-transform 0.6s;
             transition: transform 0.6s;
 
-    -webkit-transform-style: preserve-3d;
-       -moz-transform-style: preserve-3d;
-         -o-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-
     background: #f9f9db;
 
     display:table;
@@ -607,16 +602,9 @@ body {
        */
 
       .state.game-instructions,
+      .state.game-info,
       .state.game-start {
-        display:-moz-box;
-        -moz-box-orient:horizontal;
-        -moz-box-pack:center;
-        -moz-box-align:center;
-        display:-webkit-box;
-        -webkit-box-orient:horizontal;
-        -webkit-box-pack:center;
-        -webkit-box-align:center;
-        display:box;
+        
         box-orient:horizontal;
         box-pack:center;
         box-align:center;
@@ -632,47 +620,6 @@ body {
                 perspective: 2000px;
       }
 
-      #gameInstructions {
-
-
-        -webkit-filter:brightness(0);
-        -webkit-transform-origin: center center;
-
-        -webkit-transition: all 0.5s;
-          -moz-transition: -moz-transform 0.5s;
-            -o-transition: -o-transform 0.5s;
-                transition: transform 0.5s;
-
-        -webkit-transform-style: preserve-3d;
-          -moz-transform-style: preserve-3d;
-            -o-transform-style: preserve-3d;
-                transform-style: preserve-3d;
-
-        background: #e2e2c6;
-        width: 100%;
-        height: 300px;
-        text-align: center;
-          -webkit-transform: rotateX( 0deg );
-            -moz-transform: rotateX( 0deg );
-              -o-transform: rotateX( 0deg );
-                  transform: rotateX( 0deg );
-
-          -webkit-filter:brightness(-0);
-         opacity: 1;
-        &.inactive {
-          visibility: hidden;
-
-          -webkit-transform-origin: center center;
-
-          -webkit-transform: rotateX( -90deg ) translateZ(0px);
-            -moz-transform: rotateX( -90deg );
-              -o-transform: rotateX( -90deg );
-                  transform: rotateX( -90deg );
-
-          -webkit-filter:brightness(-0.5);
-          opacity: 0;
-        }
-      }
 
       #gamestartCountdown {
          display:block;
@@ -1805,6 +1752,7 @@ a JS script.
 // ========================================================================== */
 .key {
   position: relative;
+
 }
 
 .key__label {
@@ -1988,9 +1936,11 @@ a JS script.
   }
 }
 
+
 // Key animations
 //
 .default-key-anim .key__label {
+
   -webkit-animation: keyleft-arrow-up-down 3s infinite;
   animation: keyleft-arrow-up-down 3s infinite;
   -webkit-transform: translate(0, -2px);
