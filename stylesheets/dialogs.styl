@@ -1,0 +1,44 @@
+.dialog
+  z-index 50000
+  width 100%
+  height 33%
+  position absolute
+  bottom 40px
+  margin 0
+  padding 0
+  perspective 2000px
+
+  &.top
+    top 0
+    heigh 45px
+    text-align left
+
+  &.middle
+    bottom 33%
+    min-height 266px
+
+  .content
+    width 100%
+    height 100%
+    position absolute
+    //filter brightness(0)
+    transform-origin center center
+    transition all 0.6s
+    background #f9f9db
+    display table
+
+    .verticalCenter
+      display table-cell
+      vertical-align middle
+
+  &.inactive
+    .content
+      transform-origin center center
+      transform rotateX( 85deg ) translateZ(-400px) translateY(-200px)
+      // filter:brightness(-0.5)
+
+    .dialog.top .content
+      text-align left
+      transform-origin center center
+      transform: rotateX( -85deg ) translateZ(-400px) translateY(50px)
+      // filter:brightness(-0.5);
