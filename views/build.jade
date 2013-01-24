@@ -5,7 +5,20 @@ html(lang='en')
 
   body
 
-    div(id="settingsGUIContainer")
+    header#mainmenu.state.main-menu
+      hgroup
+        h2 Welcome to
+        h1.copy
+          img(src="/images/logo_large.png", width="1533", height="155")
+        h3 a chrome experiment
+
+      nav
+        p.multiplayer
+          span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
+        button.playFriend.green(arb:id="playFriendButton") Play friend
+        button.playComputer.green Play Computer
+
+    div#settingsGUIContainer
       div(id="settingsDataGUI")
       div(id="settingsLevelsGUI")
       div(id="uiTopContent")
@@ -13,10 +26,10 @@ html(lang='en')
 
     #canv-css
       .background
-      .gameboard
-        #arena
+      .game-board
+        .arena
+          .paddle
           #center
-          .puck.p1_0002(id='puck-1')
 
   script(src="/_ah/channel/jsapi")
   script(src='/javascript/libs/three.js')

@@ -6,7 +6,13 @@ global-reset()
 reset-html5()
 
 html
+  width 100%
+  height 100%
   overflow hidden
+
+body
+  width 100%
+  height 100%
 
 body
   overflow: hidden
@@ -29,8 +35,9 @@ body
   visibility hidden
   &.active
     visibility visible
-
 @import 'header'
 @import 'dialogs'
 @import 'elements'
 @import 'animations'
+
+@import 'mobile'

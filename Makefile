@@ -1,6 +1,6 @@
 JADE = $(shell find views/*.jade)
 STYLES=$(wildcard styles/*.less)
-STYLUS=stylesheets/screen.styl
+STYLUS=$(wildcard stylesheets/*.styl)
 GEOMETRY=$(wildcard lib/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
@@ -47,7 +47,7 @@ build/build-less.css: $(STYLES)
 	node_modules/.bin/lessc $(STYLES) > $@
 
 build/build-stylus.css: $(STYLUS)
-	stylus --use nib < $(STYLUS) --include-css -I stylesheets > $@
+	stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
