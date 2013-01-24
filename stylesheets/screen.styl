@@ -1,0 +1,36 @@
+@import 'nib'
+
+@import 'vars'
+
+global-reset()
+reset-html5()
+
+html
+  overflow hidden
+
+body
+  overflow: hidden
+  padding: 0px 0px 0px 0px
+  margin: 0px 0px 0px 0px
+  background: #000
+  font-family: 'Varela', sans-serif
+  font-size: 12px
+  line-height: 12px
+  letter-spacing: 2px
+  font-weight:bold
+  text-transform: uppercase
+
+#wrapper
+  overflow hidden
+  width 100%
+  height 100%
+
+.state
+  visibility hidden
+  &.active
+    visibility visible
+
+@import 'header'
+@import 'dialogs'
+@import 'elements'
+@import 'animations'
