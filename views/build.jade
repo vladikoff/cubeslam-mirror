@@ -1,0 +1,26 @@
+!!! 5
+html(lang='en')
+  head
+    link(rel='stylesheet', href='/build/build-stylus.css')
+
+  body
+
+    #mobile
+      #background
+      #game
+        #arena
+          #center
+          .puck.p1_0002(id='puck-1')
+
+  script(src="/_ah/channel/jsapi")
+  script(src='/javascript/libs/three.js')
+  script(src='/javascript/libs/Stats.js')
+  script(src='/javascript/libs/Tween.js')
+  script(src='/javascript/libs/TweenMax.min.js')
+  script(src="/javascript/libs/dat.gui.js")
+  script(src='/build/build.js')
+  script
+    require('paddle-battle')({
+      room: "{{.Room}}",
+      acceptLanguage: "en,{{.AcceptLanguage}}"
+    })

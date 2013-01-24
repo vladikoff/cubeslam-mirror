@@ -67,6 +67,7 @@
     "lib/actions/player.js",
     "lib/renderer-debug.js",
     "lib/renderer-2d.js",
+    "lib/renderer-css.js",
     "lib/renderer-3d/index.js",
     "lib/renderer-3d/materials.js",
     "lib/renderer-3d/player.js",

@@ -1,3 +1,4 @@
+JADE = $(shell find views/*.jade)
 STYLES=$(wildcard styles/*.less)
 GEOMETRY=$(wildcard lib/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
@@ -11,12 +12,13 @@ LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 # adding special cased geometry
 GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js lib/geometry/rabbit.js lib/geometry/bird1.js lib/geometry/bird2.js lib/geometry/bird3.js lib/geometry/bird4.js lib/geometry/moose.js lib/geometry/terrain.js
 
-build: build-shaders build-geometry build-component build-styles build-localization
+build: build-shaders build-geometry build-component build-jade build-styles build-localization
 	@:
 
 build-min: build build/build.min.js
 build-shaders: $(SHADERS_JS) lib/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
+build-jade: build/build.html
 build-component: build/build.js
 build-styles: build/build-less.css
 build-localization: build/localization.arb
@@ -35,6 +37,9 @@ lib/geometry/%.js: lib/geometry/%.json
 
 %.min.js: %.js
 	node_modules/.bin/uglifyjs $< > $@
+
+build/%.html: views/%.jade
+	node_modules/.bin/jade < $< --path $< > $@ -P
 
 build/build-less.css: $(STYLES)
 	node_modules/.bin/lessc $(STYLES) > $@
