@@ -47,6 +47,7 @@
     "lib/support/pointer-lock.js",
     "lib/support/buffer.js",
     "lib/support/pool.js",
+    "lib/support/CSSAnimation.js",
     "lib/states/index.js",
     "lib/states/setup.js",
     "lib/states/loading.js",
