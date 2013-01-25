@@ -1,4 +1,5 @@
 STYLES=$(wildcard styles/*.less)
+STYLUS=stylesheets/screen.styl
 GEOMETRY=$(wildcard lib/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
@@ -18,10 +19,13 @@ build-min: build build/build.min.js
 build-shaders: $(SHADERS_JS) lib/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 build-component: build/build.js
-build-styles: build/build-less.css
+build-styles: build/build-less.css build/build-stylus.css
 build-localization: build/localization.arb
 
-components:
+node_modules:
+	npm install
+
+components/: node_modules
 	node_modules/.bin/component-install
 
 lib/shaders/%.js: lib/shaders/%.glsl
@@ -38,6 +42,9 @@ lib/geometry/%.js: lib/geometry/%.json
 
 build/build-less.css: $(STYLES)
 	node_modules/.bin/lessc $(STYLES) > $@
+
+build/build-stylus.css: $(STYLUS)
+	node_modules/.bin/stylus --use nib < $(STYLUS) --include-css -I stylesheets > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
@@ -59,6 +66,7 @@ clean-localization:
 
 clean-geometry:
 	rm -Rf $(GEOMETRY_JS) $(GEOMETRY_JSON)
+
 
 .SUFFIXES:
 .PHONY: clean clean-geometry clean-localization \
