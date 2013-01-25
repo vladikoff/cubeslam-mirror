@@ -12,17 +12,13 @@ html(lang='en')
           img(src="/images/logo_large.png", width="1533", height="155")
         h3 a chrome experiment
 
-      nav
+      .nav
         p.multiplayer
           span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
-        button.playFriend.green(arb:id="playFriendButton") Play friend
-        button.playComputer.green Play Computer
+        button.play-friend.green(arb:id="playFriendButton") Play friend
+        button.play-computer.green Play Computer
 
-    #settingsGUIContainer
-      #settingsDataGUI
-      #settingsLevelsGUI
-      #uiTopContent
-      #videoInput
+    .state.loading
 
     //GAME INSTRUCTIONS
     .state.game-info.inactive
@@ -92,6 +88,13 @@ html(lang='en')
             a.soundSwitch.on(href="#")
               span.off Sound on
               span.onSound off
+
+
+    #settingsGUIContainer
+      #settingsDataGUI
+      #settingsLevelsGUI
+      #uiTopContent
+      #videoInput
 
   script(src="/_ah/channel/jsapi")
   script(src='/javascript/libs/three.js')
