@@ -1,40 +1,31 @@
-Verlet Simulation
-=================
-
-A port to javascript from: http://gamedev.tutsplus.com/tutorials/implementation/simulate-fabric-and-ragdolls-with-simple-verlet-integration/
-
-## Build
-
-To build the app we use [component](http://github.com/component). It should either be installed using a global npm (recommended) like this: `npm i -g component` or locally using `npm i`.
-
-Then to build you simply call:
-
-```
-$ component install
-$ component build
-```
-
-While developing I'd recommend using [watch](http://github.com/visionmedia/watch) so you don't have to keep running that command manually.
-
-## TODO
-
-* Use linked lists to avoid using Array#splice? Something is fishy with the GC
-* Add a third dimension! 
-* It would be great to test a WebGL renderer vs the Canvas one.
-* Add friction on the paddles
-* Refactor Rect -> Polygon and make the collision detection more generic
-
-//einar
-* Change to one geometry in effects->trail 
-
-* We do not need promote/demote data from the server. The client should be able to sort out who is who from the order of the room list (first user is host, second is slave).
+Chrome Pong (working title)
+===========================
 
 
-### 2012-10-23
+## Building
 
-* Singleplayer -> Multiplayer
-  - RTC "negotationneeded" thingie
-  - Set host from beginning (from go app)
-* Effects list
-* Room full-bug
-* 
+  **Requirements:**
+
+  * python (2.7.2 tested)
+  * node (0.8.x tested)
+  * make (GNU Make 3.81 tested, should come with xcode dev tools on mac)
+
+  Building is done using a `Makefile` which in turn uses `npm` and `component` for packages and `jade` and `stylus` for templating.
+
+  But to get started all you have to do it make sure `python` and `node` is installed and then:
+
+    $ make
+
+  While developing I'd recommend using [watch](http://github.com/visionmedia/watch) so you don't have to keep running that command manually. The Makefile is set up to only run whenever something changes.
+
+
+## Testing
+
+  **Requirements:**
+
+  * Go App Engine (`brew install go-app-engine-64`)
+
+  To get it up and running on a local machine the app engine dev server must be up and running. Start it with:
+
+    $ dev_appserver.py .
+
