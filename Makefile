@@ -23,9 +23,9 @@ build-styles: build/build-less.css build/build-stylus.css
 build-localization: build/localization.arb
 
 node_modules:
-	npm install --dev
+	npm install
 
-components: node_modules
+components/: node_modules
 	node_modules/.bin/component-install
 
 lib/shaders/%.js: lib/shaders/%.glsl
