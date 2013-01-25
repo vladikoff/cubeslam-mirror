@@ -8,6 +8,7 @@ Chrome Pong (working title)
 
   * python (2.7.2 tested)
   * node (0.8.x tested)
+  * make (GNU Make 3.81 tested, should come with xcode dev tools on mac)
 
   Building is done using a `Makefile` which in turn uses `npm` and `component` for packages and `jade` and `stylus` for templating.
 
