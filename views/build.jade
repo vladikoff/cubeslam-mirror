@@ -18,11 +18,48 @@ html(lang='en')
         button.playFriend.green(arb:id="playFriendButton") Play friend
         button.playComputer.green Play Computer
 
-    div#settingsGUIContainer
-      div(id="settingsDataGUI")
-      div(id="settingsLevelsGUI")
-      div(id="uiTopContent")
-      video(id="videoInput")
+    #settingsGUIContainer
+      #settingsDataGUI
+      #settingsLevelsGUI
+      #uiTopContent
+      #videoInput
+
+    //GAME INSTRUCTIONS
+    .state.game-info.inactive
+      .dialog.middle
+        .content
+          .verticalCenter
+            h2 Game controls
+              #controlsInstructions
+              p Play using
+              .kb-anim
+                .dash-big.dash-black
+                .key.key--small.default-key-anim
+                  .key__label.icon-arrow-left
+                  .key__bg-outer
+                    .key__bg-inner
+                div.key.key--small
+                  .key__label.icon-arrow-right
+                  .key__bg-outer
+                    div.key__bg-inner
+              p or
+              .mouse-anim
+                .dash-big.dash-black
+                .icon-mouse
+              p or press
+              .key.key--big.default-key-anim
+                p.key__label SPACE
+                .key__bg-outer
+                  div.key__bg-inner
+              p to pause
+            button.green.play Start
+
+    .state.game-play.inactive
+      .centerContent
+        .countdown
+          .countdown__num(data-number="1")
+          .countdown__num(data-number="2")
+          .countdown__num(data-number="3")
 
     #canv-css
       .background
@@ -30,6 +67,29 @@ html(lang='en')
         .arena
           .paddle
           #center
+
+
+
+    footer#footer
+      #socials
+        .googleplus.notimplemented
+          span Google Plus
+        .facebook.notimplemented
+          span Facebook
+        .twitter.notimplemented
+          span Twitter
+        .something.notimplemented
+          span Something
+      #footMenu
+        ul
+          li
+            a.notimplemented Terms &amp; privacy
+          li
+            a#localizationSwitch(href="#") EN
+          li
+            a.soundSwitch.on(href="#")
+              span.off Sound on
+              span.onSound off
 
   script(src="/_ah/channel/jsapi")
   script(src='/javascript/libs/three.js')
