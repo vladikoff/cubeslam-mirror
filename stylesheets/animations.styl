@@ -1,0 +1,26 @@
+@keyframes countdown-transition
+  100%
+    opacity 1
+
+  100%
+    opacity 0
+
+.countdown__num
+  animation countdown-transition 1s ease-out normal
+  position absolute
+  width 988px
+  height 716px
+  transform scale(0.5) translate(0, 90px)
+  opacity 0
+
+.countdown__num[data-number="3"]
+  background-position 0 -718px
+  animation-delay 0s
+
+.countdown__num[data-number="2"]
+  background-position 0 0
+  animation-delay 0.9s
+
+.countdown__num[data-number="1"]
+  background-position 0 -1436px
+  animation-delay 1.8s

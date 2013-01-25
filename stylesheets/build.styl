@@ -1,0 +1,1408 @@
+undefined.state
+  visibility: hidden
+
+.state.active
+  visibility: visible
+
+.multiplayer,
+.full
+  display: none
+
+.host
+  display: none
+
+.alert-icon
+  border-radius: 14px
+  width: 28px
+  height: 28px
+  display: block
+  margin: 7px 15px 7px 30px
+  float: left
+
+.red
+  background: #f52c1f
+
+.alert-info
+  float: left
+  color: #f52c1f
+  line-height: 45px
+
+button,
+a.button
+  cursor: pointer
+  font-family: 'Varela', sans-serif
+  font-size: 14px
+  line-height: 14px
+  width: auto
+  border-top: 5px solid #f9f9da
+  border-left: 5px solid #f9f9da
+  border-right: 5px solid #a7a793
+  border-bottom: 5px solid #a7a793
+  color: #449744
+  background: #e2e2c5
+  padding: 10px 50px 10px 50px
+  text-transform: uppercase
+  text-decoration: none
+  letter-spacing: 2px
+  font-weight: bold
+
+button.green,
+a.button.green
+  color: #f9f9da
+  background: #4daf4d
+  border-top: 5px solid #58c458
+  border-left: 5px solid  #58c458
+  border-bottom: 5px solid #398239
+  border-right: 5px solid  #398239
+  outline: solid 2px #4daf4d
+
+button.blue,
+a.button.blue
+  color: #f9f9da
+  background: #5194d6
+  border-top: 5px solid #62a5e7
+  border-left: 5px solid  #62a5e7
+  border-bottom: 5px solid #2e71b3
+  border-right: 5px solid  #2e71b3
+  outline: solid 2px #5194d6
+
+button.alternative,
+a.button.alternative
+  font-family: 'Varela', sans-serif
+  font-size: 12px
+  line-height: 12px
+  background: none
+  color: #e83028
+  border: 1px solid #e83028
+  padding: 5px 12px 6px 12px
+  margin: 0px 4px 0px 3px
+  text-decoration: none
+
+button.alternative.green,
+a.button.alternative.green
+  background: none
+  color: #4daf4d
+  border: 1px solid #4daf4d
+
+button:disabled,
+a.button:disabled,
+button.disabled,
+a.button.disabled,
+button:disabled:hover,
+a.button:disabled:hover
+  color: #577da3
+  background: #31669a !important
+  border: 5px solid #2c5f91
+  outline: solid 2px #3e7dbc
+
+button:hover,
+a.button:hover
+  background: #d2d2b5
+
+button:hover.green,
+a.button:hover.green
+  background: #40a040
+
+button:hover.blue,
+a.button:hover.blue
+  background: #4376a7
+
+button:hover.alternative,
+a.button:hover.alternative
+  background: #e83028
+  color: #faf9db
+
+button:hover.alternative.green,
+a.button:hover.alternative.green
+  background: #4daf4d
+
+.state .dialog
+  z-index: 50000
+  width: 100%
+  height: 33%
+  position: absolute
+  bottom: 40px
+  margin: 0
+  padding: 0
+  -webkit-perspective: 2000px
+  -moz-perspective: 800px
+  -o-perspective: 800px
+  perspective: 800px
+
+.state .dialog.top
+  top: 0
+  height: 45px
+  text-align: left
+
+.state .dialog.middle
+  bottom: 33%
+  min-height: 266px
+
+.state .dialog .content
+  width: 100%
+  height: 100%
+  position: absolute
+  -webkit-transform-origin: center center
+  -webkit-transition: all 0.6s
+  -moz-transition: -moz-transform 0.6s
+  -o-transition: -o-transform 0.6s
+  transition: transform 0.6s
+  -webkit-transform-style: preserve-3d
+  -moz-transform-style: preserve-3d
+  -o-transform-style: preserve-3d
+  transform-style: preserve-3d
+  background: #f9f9db
+  display: table
+
+.state .dialog .content .verticalCenter
+  display: table-cell
+  vertical-align: middle
+
+.state.inactive .dialog .content
+  -webkit-transform-origin: center center
+  -webkit-transform: rotateX(85deg) translateZ(-400px) translateY(-200px)
+  -moz-transform: rotateX(65deg)
+  -o-transform: rotateX(65deg)
+  transform: rotateX(65deg)
+
+.state.inactive .dialog.top .content
+  text-align: left
+  -webkit-transform-origin: center center
+  -webkit-transform: rotateX(-85deg) translateZ(-400px) translateY(50px)
+  -moz-transform: rotateX(-65deg)
+  -o-transform: rotateX(-65deg)
+  transform: rotateX(-65deg)
+
+.state.inactive .dialog.middle .content
+  -webkit-transform-origin: center center
+  -webkit-transform: rotateX(-90deg)
+  -moz-transform: rotateX(-90deg)
+  -o-transform: rotateX(-90deg)
+  transform: rotateX(-90deg)
+
+.dialog
+  text-align: center
+
+.dialog h2
+  font-family: 'Varela', sans-serif
+  color: #e83028
+  font-weight: normal
+  margin: 0
+  font-size: 14x
+  line-height: 25px
+  padding: 0px 0px 10px 0px
+
+.dialog p
+  color: #e83028
+  font-family: 'Varela', sans-serif
+
+.dialog p span.green
+  color: #2aa52a
+
+.centerContent
+  display: box
+  -moz-box-orient: horizontal
+  -moz-box-pack: center
+  -moz-box-align: center
+  -webkit-box-orient: horizontal
+  -webkit-box-pack: center
+  -webkit-box-align: center
+  box-orient: horizontal
+  box-pack: center
+  box-align: center
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 500
+
+body.main-menu #headBar.loginInfo
+  top: 0px
+
+body.main-menu #headBar.loginInfo.loginInfo .headBarContent.loginInfo
+  display: block
+
+body.game-play #headBar.shareLink,
+body.game-pause #headBar.shareLink,
+body.game-play #headBar.opponentPaddle,
+body.game-pause #headBar.opponentPaddle,
+body.game-play #headBar.opponentReady,
+body.game-pause #headBar.opponentReady,
+body.game-play #headBar.friendArrived,
+body.game-pause #headBar.friendArrived
+  top: 0px
+
+body.game-play #headBar.shareLink.playingmulti,
+body.game-pause #headBar.shareLink.playingmulti,
+body.game-play #headBar.opponentPaddle.playingmulti,
+body.game-pause #headBar.opponentPaddle.playingmulti,
+body.game-play #headBar.opponentReady.playingmulti,
+body.game-pause #headBar.opponentReady.playingmulti,
+body.game-play #headBar.friendArrived.playingmulti,
+body.game-pause #headBar.friendArrived.playingmulti
+
+body.game-play #headBar.shareLink.shareLink .headBarContent.shareLink,
+body.game-pause #headBar.shareLink.shareLink .headBarContent.shareLink,
+body.game-play #headBar.opponentPaddle.shareLink .headBarContent.shareLink,
+body.game-pause #headBar.opponentPaddle.shareLink .headBarContent.shareLink,
+body.game-play #headBar.opponentReady.shareLink .headBarContent.shareLink,
+body.game-pause #headBar.opponentReady.shareLink .headBarContent.shareLink,
+body.game-play #headBar.friendArrived.shareLink .headBarContent.shareLink,
+body.game-pause #headBar.friendArrived.shareLink .headBarContent.shareLink,
+body.game-play #headBar.shareLink.opponentPaddle .headBarContent.opponentPaddle,
+body.game-pause #headBar.shareLink.opponentPaddle .headBarContent.opponentPaddle,
+body.game-play #headBar.opponentPaddle.opponentPaddle .headBarContent.opponentPaddle,
+body.game-pause #headBar.opponentPaddle.opponentPaddle .headBarContent.opponentPaddle,
+body.game-play #headBar.opponentReady.opponentPaddle .headBarContent.opponentPaddle,
+body.game-pause #headBar.opponentReady.opponentPaddle .headBarContent.opponentPaddle,
+body.game-play #headBar.friendArrived.opponentPaddle .headBarContent.opponentPaddle,
+body.game-pause #headBar.friendArrived.opponentPaddle .headBarContent.opponentPaddle,
+body.game-play #headBar.shareLink.opponentReady .headBarContent.opponentReady,
+body.game-pause #headBar.shareLink.opponentReady .headBarContent.opponentReady,
+body.game-play #headBar.opponentPaddle.opponentReady .headBarContent.opponentReady,
+body.game-pause #headBar.opponentPaddle.opponentReady .headBarContent.opponentReady,
+body.game-play #headBar.opponentReady.opponentReady .headBarContent.opponentReady,
+body.game-pause #headBar.opponentReady.opponentReady .headBarContent.opponentReady,
+body.game-play #headBar.friendArrived.opponentReady .headBarContent.opponentReady,
+body.game-pause #headBar.friendArrived.opponentReady .headBarContent.opponentReady,
+body.game-play #headBar.shareLink.friendArrived .headBarContent.friendArrived,
+body.game-pause #headBar.shareLink.friendArrived .headBarContent.friendArrived,
+body.game-play #headBar.opponentPaddle.friendArrived .headBarContent.friendArrived,
+body.game-pause #headBar.opponentPaddle.friendArrived .headBarContent.friendArrived,
+body.game-play #headBar.opponentReady.friendArrived .headBarContent.friendArrived,
+body.game-pause #headBar.opponentReady.friendArrived .headBarContent.friendArrived,
+body.game-play #headBar.friendArrived.friendArrived .headBarContent.friendArrived,
+body.game-pause #headBar.friendArrived.friendArrived .headBarContent.friendArrived
+  display: block
+
+html
+  overflow: hidden
+
+body
+  overflow: hidden
+  padding: 0px 0px 0px 0px
+  margin: 0px 0px 0px 0px
+  background: #000
+  font-family: 'Varela', sans-serif
+  font-size: 12px
+  line-height: 12px
+  letter-spacing: 2px
+  font-weight: bold
+  text-transform: uppercase
+
+body #wrapper
+  overflow: hidden
+  width: 100%
+  height: 100%
+
+body #wrapper #content
+
+body #wrapper #content .state.loading
+  width: 100%
+  height: 100%
+  background: #fff
+  position: absolute
+  z-index: 100000000
+  display: block
+  visibility: visible
+
+body #wrapper #content #chromeTechLink
+  min-height: 44px
+  color: #ffffff
+  position: absolute
+  bottom: 63px
+  right: 30px
+  z-index: 200
+  text-align: right
+  padding: 0px 80px 0px 0px
+  background-image: url('/images/minipong.png')
+  background-repeat: no-repeat
+  background-position: right center
+  font-size: 12px
+  font-weight: bold
+  text-decoration: none
+  line-height: 15px
+  letter-spacing: 2px
+  display: block
+
+body #wrapper #content #chromeTechLink small
+  margin-top: -13px
+  padding: 0px 0px 4px 0px
+  font-size: 8px
+  line-height: 14px
+
+body #wrapper #content #chromeExperimentLink
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+  text-transform: none
+  font-size: 24px
+  line-height: 106%
+  text-decoration: none
+  width: 107px
+  height: 56px
+  color: #ffffff
+  position: absolute
+  bottom: 63px
+  left: 30px
+  z-index: 200
+  margin: 0
+  padding: 0
+  display: block
+  background-image: url("/images/chrome-experiment.png")
+
+body #wrapper #content #chromeExperimentLink small
+  display: block
+  font-size: 11px
+  line-height: 11px
+  margin: 0
+  padding: 0
+
+body #wrapper #content #chromeExperimentLink p
+  display: block
+  margin: 3px 0px 0px 0px
+  padding: 0
+
+body #wrapper #content #mainmenu
+  position: absolute
+  z-index: 100
+  width: 100%
+  height: 100%
+  top: 0px
+  text-align: center
+  color: #f8fadb
+
+body #wrapper #content #mainmenu #title
+  overflow: hidden
+  padding: 50px 0px 0px 0px
+
+body #wrapper #content #mainmenu #title h1
+  padding: 0px 0px 0px 0px
+
+body #wrapper #content #mainmenu #title h1 span
+  display: none
+
+body #wrapper #content #mainmenu #title h2
+  font-size: 12px
+
+body #wrapper #content #mainmenu #title img
+  width: 70%
+  height: auto
+  margin-bottom: 0
+
+body #wrapper #content #mainmenu p
+  margin: 0
+  padding: 0
+  line-height: 145%
+
+body #wrapper #content #mainmenu .buttonWrapper
+  display: block
+  position: absolute
+  text-align: center
+  bottom: 100px
+  width: 100%
+
+body #wrapper #content #mainmenu button.playComputer
+  margin-left: 20px
+
+body #wrapper #content #mainmenu .bubble
+  display: block
+  position: absolute
+  width: 56px
+  height: 56px
+  background-image: url("/images/bubbles.png")
+  background-repeat: no-repeat
+
+body #wrapper #content #mainmenu .bubble.red
+  background-position: 0px 0px
+
+body #wrapper #content .state.webcam-information .dialog button
+  margin: 10px 0px 20px 0px
+
+body #wrapper #content .state.webcam-information #activateCamera
+  color: #40a040
+  text-decoration: underline
+  text-transform: uppercase
+  float: left
+  line-height: 45px
+
+body #wrapper #content #cameraRequestAttention
+  border-top: 10px solid #e83028
+  width: 100%
+  height: 200px
+  position: absolute
+  top: 0px
+  left: 0px
+  display: none
+  text-align: center
+  z-index: 100
+
+body #wrapper #content #cameraRequestAttention img
+  margin: -170px auto 0px auto
+
+body #wrapper #content #game
+  display: block
+
+body #wrapper #content #game canvas
+  position: absolute
+  top: 0
+
+body #wrapper #content #game #canv-2d
+  background: rgba(255, 255, 255, 0.3)
+  top: 50px
+  display: none
+
+body #wrapper #content #game #remoteInput
+  display: none
+  position: absolute
+  z-index: 10000
+  background: red
+
+body #wrapper #content #game #countdown-cover
+  display: none
+  opacity: 0
+  position: fixed
+  z-index: 100
+  width: 100%
+  height: 100%
+  background: #000
+
+body #wrapper #content .state.game-instructions,
+body #wrapper #content .state.game-start
+  display: box
+  -moz-box-orient: horizontal
+  -moz-box-pack: center
+  -moz-box-align: center
+  -webkit-box-orient: horizontal
+  -webkit-box-pack: center
+  -webkit-box-align: center
+  box-orient: horizontal
+  box-pack: center
+  box-align: center
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 500
+  -webkit-perspective: 2000px
+  -moz-perspective: 2000px
+  -o-perspective: 2000px
+  perspective: 2000px
+
+body #wrapper #content #gameInstructions
+  -webkit-transform-origin: center center
+  -webkit-transition: all 0.5s
+  -moz-transition: -moz-transform 0.5s
+  -o-transition: -o-transform 0.5s
+  transition: transform 0.5s
+  -webkit-transform-style: preserve-3d
+  -moz-transform-style: preserve-3d
+  -o-transform-style: preserve-3d
+  transform-style: preserve-3d
+  background: #e2e2c6
+  width: 100%
+  height: 300px
+  text-align: center
+  -webkit-transform: rotateX(0deg)
+  -moz-transform: rotateX(0deg)
+  -o-transform: rotateX(0deg)
+  transform: rotateX(0deg)
+  -webkit-filter: brightness(0)
+  opacity: 1
+
+body #wrapper #content #gameInstructions.inactive
+  visibility: hidden
+  -webkit-transform-origin: center center
+  -webkit-transform: rotateX(-90deg) translateZ(0px)
+  -moz-transform: rotateX(-90deg)
+  -o-transform: rotateX(-90deg)
+  transform: rotateX(-90deg)
+  -webkit-filter: brightness(-0.5)
+  opacity: 0
+
+body #wrapper #content #gamestartCountdown
+  display: block
+  width: 300px
+  height: 220px
+  background-image: url("/images/countdown.png")
+  background-position: 0px -440px
+
+body #wrapper #content #controlsInstructions
+  width: 100%
+  margin: 25px 0 28px
+
+body #wrapper #content #controlsInstructions > p,
+body #wrapper #content #controlsInstructions > div
+  display: inline-block
+
+body #wrapper #content #controlsInstructions > p
+  vertical-align: top
+  margin: 42px 7px 0
+
+body #wrapper #content .state.friend-waiting .dialog h2
+  font-size: 14px
+  padding-top: 10px
+
+body #wrapper #content .state.friend-waiting .dialog p
+  font-size: 11px
+
+body #wrapper #content .state.friend-waiting .dialog h2
+  font-size: 14px
+  padding-top: 10px
+
+body #wrapper #content .state.friend-waiting .dialog p
+  font-size: 11px
+
+body #wrapper #content .state.friend-waiting-accept .dialog h2
+  font-size: 14px
+  padding-top: 10px
+
+body #wrapper #content .state.friend-waiting-accept .dialog p
+  font-size: 11px
+
+body #wrapper #content .state.friend-arrived .dialog h2
+  font-size: 14px
+  padding-top: 10px
+
+body #wrapper #content .state.friend-arrived .dialog p
+  font-size: 11px
+
+body #wrapper #content .state.friend-invite h2
+  font-size: 14px
+  padding-top: 20px
+
+body #wrapper #content .state.friend-invite p
+  margin-top: 20px
+  font-size: 11px
+
+body #wrapper #content .state.friend-invite #inviteBox
+  border: #2aa52a 1px solid
+  display: inline-block
+  font-family: 'Varela', sans-serif
+  font-size: 11px
+  cursor: pointer
+
+body #wrapper #content .state.friend-invite input[type="button"]
+  display: inline
+  background: #2aa52a
+  padding-left: 20px
+  padding-right: 20px
+  line-height: 21px
+  margin: 0
+  border: none
+  color: #f9f9da
+  text-transform: uppercase
+
+body #wrapper #content .state.friend-invite input[type="button"]:hover
+  background: #207f20
+
+body #wrapper #content .state.friend-invite input[type="text"]
+  background: #f9f9da
+  color: #2aa52a
+  width: 303px
+  height: 22px
+  border: 2px #f9f9da solid
+  padding: 0 5px 0 5px
+
+body #wrapper #content .state.friend-invite input[type="text"]:focus
+  outline: none
+
+body #wrapper #content .state.friend-invite a.backFromInvite
+  color: #501f8f
+  text-transform: uppercase
+  text-decoration: underline
+  cursor: pointer
+
+body #wrapper #content #gameScores
+  color: #f9f9da
+  position: absolute
+  z-index: 499
+  top: 100px
+  left: 70px
+  line-height: 15px
+
+body #wrapper #content #gameScores img
+  margin-bottom: 6px
+
+body #wrapper #content #gameScores.inactive
+  display: none
+
+body #wrapper #content #gameScores .score
+  font-family: 'eboyregalpha'
+  font-size: 60px
+  font-weight: normal
+  line-height: 51px
+
+body #wrapper #content #level.inactive
+  display: none
+
+body #wrapper #content #scoresRunning.inactive
+  display: none
+
+body #wrapper #content .state.game-pause .dialog
+  height: 33%
+  min-height: 266px
+
+body #wrapper #content .state.game-pause h2
+  padding-top: 40px
+  padding-bottom: 20px
+
+body #wrapper #content .state.game-pause p
+  padding-bottom: 25px
+
+body #wrapper #content #bautaGameOver
+  font-size: 200px
+  text-align: center
+  color: #fdeb3e
+  position: absolute
+  width: 100%
+  top: 21%
+  font-family: 'eboyregalpha'
+  z-index: 500
+  line-height: 80px
+
+body #wrapper #content #bautaGameOver img
+  width: 60%
+  height: auto
+
+body #wrapper #content #gameOverDialog
+  text-align: center
+
+body #wrapper #content #gameOverDialog .dialog
+  height: 33%
+  min-height: 266px
+
+body #wrapper #content #gameOverDialog h2
+  font-family: 'Varela', sans-serif
+  font-size: 14px
+  padding-top: 15px
+
+body #wrapper #content #gameOverDialog h3
+  font-family: 'Varela', sans-serif
+  font-size: 12px
+
+body #wrapper #content #gameOverDialog p
+  padding-bottom: 25px
+
+body #wrapper #content #gameOverDialog .scoreboard
+  color: #e83129
+  display: box
+  -moz-box-orient: horizontal
+  -moz-box-pack: center
+  -moz-box-align: center
+  -webkit-box-orient: horizontal
+  -webkit-box-pack: center
+  -webkit-box-align: center
+  box-orient: horizontal
+  box-pack: center
+  box-align: center
+  padding: 20px 0px 40px 0px
+
+body #wrapper #content #gameOverDialog .scoreboard.multiplayer
+  padding: 0px 0px 20px 0px
+
+body #wrapper #content #gameOverDialog .scoreboard div
+  margin-right: 20px
+
+body #wrapper #content #gameOverDialog .scoreboard div:last-child
+  margin-right: 0px
+
+body #wrapper #content #gameOverDialog .scoreboard div.highscoreDigit
+  color: #f9f9da
+  font-size: 24px
+  background: #e83129
+  width: 50px
+  height: 50px
+  line-height: 50px
+  text-align: center
+  overflow: hidden
+  padding: 0
+  border-radius: 25px
+  -webkit-border-radius: 25px
+  -o-border-radius: 25px
+
+body #wrapper #content .state.friend-left .dialog
+  height: 33%
+  min-height: 266px
+
+body #wrapper #content .state.friend-left .dialog h2
+  padding-bottom: 20px
+
+body #wrapper #content .state.friend-left .dialog p
+  line-height: 150%
+  padding-bottom: 25px
+
+body #wrapper #content .state.friend-left .dialog p span
+  color: #4daf4d
+  display: block
+
+body #wrapper #content #footer
+  display: block
+  overflow: hidden
+  height: 40px
+  background: #000
+  position: absolute
+  z-index: 10000000
+  bottom: 0px
+  left: 0px
+  width: 100%
+
+body #wrapper #content #footer #socials
+  position: absolute
+  display: inline-block
+  width: 150px
+  margin-left: 30px
+
+body #wrapper #content #footer #socials div
+  width: 20px
+  height: 20px
+  margin-top: 9px
+  margin-right: 5px
+  display: inline-block
+
+body #wrapper #content #footer #socials div.googleplus
+  background-image: url('/images/socials_googleplus.png')
+
+body #wrapper #content #footer #socials div.facebook
+  background-image: url('/images/socials_facebook.png')
+
+body #wrapper #content #footer #socials div.twitter
+  background-image: url('/images/socials_twitter.png')
+
+body #wrapper #content #footer #socials div.something
+  background-image: url('/images/socials_something.png')
+
+body #wrapper #content #footer #socials div span
+  display: none
+
+body #wrapper #content #footer #footMenu
+  display: block
+  text-align: right
+  font-size: 9px
+
+body #wrapper #content #footer #footMenu ul
+  right: 0px
+  position: absolute
+  list-style: none
+  margin: 0 0 0 0
+  padding: 14px 0 0 0
+
+body #wrapper #content #footer #footMenu ul li
+  text-transform: uppercase
+  list-style: none
+  margin: 0 0 0 0
+  padding: 0 0 0 0
+  display: inline-block
+  margin-right: 20px
+
+body #wrapper #content #footer #footMenu ul li a
+  color: #e8e8ca
+  text-decoration: none
+
+body #wrapper #content #footer #footMenu ul li a:hover
+  text-decoration: underline
+
+body #wrapper #content #footer #footMenu .soundSwitch .on,
+body #wrapper #content #footer #footMenu .soundSwitch .off
+  display: none
+
+body #wrapper #content #footer #footMenu .soundSwitch.on .on,
+body #wrapper #content #footer #footMenu .soundSwitch.off .off
+  display: inline
+
+#settingsGUIContainer
+  display: block
+  position: absolute
+  left: 20px
+  z-index: 60000000
+
+#settingsDataGUI
+  position: absolute
+
+#settingsLevelsGUI
+  left: 400px
+  position: absolute
+
+#statsDebug
+  height: auto
+  width: auto
+  float: right
+
+.ui_video
+  height: 121px !important
+  float: left
+
+.closed .ui_video
+  height: 0px !important
+
+.videoLabel
+  width: 300px
+  text-align: center
+  font-family: verdana
+  font-size: 11px
+  color: #999999
+  margin: 0px 0 5px 0
+  clear: both
+
+.renderer-2d ul
+  display: inline-block
+  vertical-align: top
+  margin-top: 30px
+
+#colorSelectContainer
+  z-index: 1000
+  display: none
+  position: absolute
+  top: 50%
+  left: 50%
+  margin-top: -240px
+  margin-left: -320px
+  width: 640px
+  height: 480px
+
+#colorSelectArea
+  position: absolute
+  width: 100px
+  height: 100px
+  left: 450px
+  top: 80px
+  border: 10px solid red
+  z-index: 30
+
+#colorSelectCenter
+  position: absolute
+  display: block
+  left: 50%
+  top: 50%
+  margin-left: -5px
+  margin-top: -5px
+  width: 10px
+  height: 10px
+  border: 1px solid black
+  border-radius: 5px 5px 5px 5px
+  z-index: 31
+
+#marker
+  position: absolute
+  width: 20px
+  height: 20px
+  top: 350px
+  background-color: #ff0000
+  border-radius: 10px 10px 10px 10px
+  z-index: 390
+
+#videoInput
+  display: none
+  left: 5px
+  margin-top: 15px
+  -webkit-transform: scale(-1, 1)
+  width: 640px
+  height: 480px
+  border-radius: 8px 8px 8px 8px
+
+#uiTopContent
+  position: relative
+
+#monitorFinalBlobs
+  position: absolute
+  z-index: 3
+
+#debug-info
+  position: absolute
+  z-index: 100000
+  right: 0
+  top: 80px
+  height: 50%
+  width: 150px
+  background: rgba(0, 0, 0, 0.2)
+  padding: 10px
+  margin-right: -150px
+  list-style: none
+  overflow: scroll
+  letter-spacing: 0
+
+#debug-info time,
+#debug-info .debug-type
+  text-indent: -10000px
+  width: 0
+  position: absolute
+  left: -1000px
+
+#debug-info .host-status
+  background: grey
+
+#debug-info .host-status.host
+  color: blue
+
+#debug-info .host-status.guest
+  color: red
+
+#debug-info .data-channel
+  color: green
+  background: lightgrey
+
+#debug-info .state-history
+  color: white
+
+#debug-info .state-history.local
+  background: darkblue
+
+#debug-info .state-history.local-invite
+  background: lightblue
+
+#debug-info .state-history.remote
+  background: darkred
+
+#debug-info li
+  margin-bottom: 1px
+  white-space: pre
+
+#debug-info:hover
+  margin-right: 0
+
+undefined.icons-sprite,
+.icons-cam,
+.icons-cam__spinner,
+.icons-computer,
+.icons-cross-fail,
+.icons-key-arrow-left,
+.icons-key-arrow-right,
+.icons-mouse,
+.icon-webcam,
+.icon-quarter-circle,
+.icon-computer,
+.icon-arrow-left,
+.icon-arrow-right,
+.icon-cross,
+.icon-mouse
+  background: url('../images/icons-s4e56167bd4.png') no-repeat
+
+.icons-cam
+  background-position: 0 0
+
+.icons-cam__spinner
+  background-position: 0 -205px
+
+.icons-computer
+  background-position: 0 -67px
+
+.icons-cross-fail
+  background-position: 0 -161px
+
+.icons-key-arrow-left
+  background-position: 0 -321px
+
+.icons-key-arrow-right
+  background-position: 0 -310px
+
+.icons-mouse
+  background-position: 0 -260px
+
+.icon-webcam
+  background-position: 0 0
+  height: 65px
+  width: 51px
+
+.icon-quarter-circle
+  background-position: 0 -205px
+  height: 53px
+  width: 53px
+
+.icon-computer
+  background-position: 0 -67px
+  height: 92px
+  width: 67px
+
+.icon-arrow-left
+  background-position: 0 -321px
+  height: 9px
+  width: 9px
+
+.icon-arrow-right
+  background-position: 0 -310px
+  height: 9px
+  width: 9px
+
+.icon-cross
+  background-position: 0 -161px
+  height: 42px
+  width: 42px
+
+.icon-mouse
+  background-position: 0 -260px
+  height: 48px
+  width: 39px
+
+.dash-white
+  background: #F9F9DA
+
+.dash-black
+  background: #000
+
+.dash-big
+  width: 30px
+  height: 6px
+
+.dash-medium
+  width: 14px
+  height: 4px
+
+.dash-small
+  width: 14px
+  height: 6px
+
+undefinedundefined.webcam-spinner
+  position: relative
+  left: 50%
+  margin-left: -50px
+
+.webcam-spinner__bg
+  position: absolute
+  margin: 19px 0 0 27px
+
+.webcam-spinner__quarter
+  -webkit-animation: spinner-rotate 1.5s infinite
+  animation: spinner-rotate 1.5s infinite
+  height: 106px
+  width: 106px
+
+.cpu-wth-eyes
+  position: relative
+  left: 50%
+  margin-left: -34px
+  height: 92px
+  width: 67px
+  margin-bottom: 20px
+
+.cpu-wth-eyes__bg
+  position: absolute
+
+.cpu-wth-eyes__container
+  position: relative
+
+.cpu-wth-eyes__eyes
+  position: absolute
+  top: 24px
+  left: 15px
+
+.cpu-wth-eyes__eyes div:first-of-type
+  margin-right: 5px
+
+.cpu-wth-eyes__eyes div
+  display: inline-block
+
+undefinedundefined.play-anim .cpu-wth-eyes__eyes > div,
+.reverse-anim .cpu-wth-eyes__eyes > div
+  -webkit-animation: cpu-blinking 2s
+  animation: cpu-blinking 2s
+
+.blinking-eyes-anim-loop
+  -webkit-animation: cpu-blinking 2s infinite
+  animation: cpu-blinking 2s infinite
+
+undefinedundefinedundefinedundefined.sad-left-eye-anim-loop
+  -webkit-animation: cpu-sad-left-eye 3s infinite
+  animation: cpu-sad-left-eye 3s infinite
+  -webkit-transform-origin: 100% 50%
+  transform-origin: 100% 50%
+
+.sad-right-eye-anim-loop
+  -webkit-animation: cpu-sad-right-eye 3s infinite
+  animation: cpu-sad-right-eye 3s infinite
+  -webkit-transform-origin: 0% 50%
+  transform-origin: 0% 50%
+
+undefinedundefined.play-anim .dash-anim-line > div,
+.reverse-anim .dash-anim-line > div
+  -webkit-animation: up-and-down 2s
+  animation: up-and-down 2s
+
+.cpu-conn-anim
+  position: relative
+
+.cpu-conn-anim > div
+  display: inline-block
+
+.dash-anim-line
+  position: relative
+  vertical-align: top
+  top: 34px
+  margin: 0 10px
+
+.dash-anim-line > div:last-of-type
+  margin-right: 0
+
+.dash-anim-line > div
+  display: inline-block
+  margin-right: 5px
+
+.play-anim .cpu-wth-eyes:last-of-type .cpu-wth-eyes__eyes > div
+  -webkit-animation-delay: 1.4s
+  animation-delay: 1.4s
+
+.play-anim .dash-anim-line > div:nth-of-type(1)
+  -webkit-animation-delay: 850ms
+  animation-delay: 850ms
+
+.play-anim .dash-anim-line > div:nth-of-type(2)
+  -webkit-animation-delay: 950ms
+  animation-delay: 950ms
+
+.play-anim .dash-anim-line > div:nth-of-type(3)
+  -webkit-animation-delay: 1050ms
+  animation-delay: 1050ms
+
+.play-anim .dash-anim-line > div:nth-of-type(4)
+  -webkit-animation-delay: 1150ms
+  animation-delay: 1150ms
+
+.play-anim .dash-anim-line > div:nth-of-type(5)
+  -webkit-animation-delay: 1250ms
+  animation-delay: 1250ms
+
+.play-anim .dash-anim-line > div:nth-of-type(6)
+  -webkit-animation-delay: 1350ms
+  animation-delay: 1350ms
+
+.play-anim .dash-anim-line > div:nth-of-type(7)
+  -webkit-animation-delay: 1450ms
+  animation-delay: 1450ms
+
+.play-anim .dash-anim-line > div:nth-of-type(8)
+  -webkit-animation-delay: 1550ms
+  animation-delay: 1550ms
+
+.play-anim .dash-anim-line > div:nth-of-type(9)
+  -webkit-animation-delay: 1650ms
+  animation-delay: 1650ms
+
+.reverse-anim .cpu-wth-eyes:first-of-type .cpu-wth-eyes__eyes > div
+  -webkit-animation-delay: 1.4s
+  animation-delay: 1.4s
+
+.reverse-anim .dash-anim-line > div:nth-of-type(10)
+  -webkit-animation-delay: 750ms
+  animation-delay: 750ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(9)
+  -webkit-animation-delay: 850ms
+  animation-delay: 850ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(8)
+  -webkit-animation-delay: 950ms
+  animation-delay: 950ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(7)
+  -webkit-animation-delay: 1050ms
+  animation-delay: 1050ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(6)
+  -webkit-animation-delay: 1150ms
+  animation-delay: 1150ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(5)
+  -webkit-animation-delay: 1250ms
+  animation-delay: 1250ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(4)
+  -webkit-animation-delay: 1350ms
+  animation-delay: 1350ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(3)
+  -webkit-animation-delay: 1450ms
+  animation-delay: 1450ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(2)
+  -webkit-animation-delay: 1550ms
+  animation-delay: 1550ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(1)
+  -webkit-animation-delay: 1650ms
+  animation-delay: 1650ms
+
+undefinedundefined.cross-fail-anim
+  -webkit-animation: cpu-failed-cross 500ms
+  animation: cpu-failed-cross 500ms
+
+.cpu-conn-failed-anim > div
+  display: inline-block
+
+.cpu-conn-failed-anim .cross-fail-anim
+  vertical-align: top
+  margin-top: 24px
+
+.cpu-conn-failed-anim .dash-anim-line > div
+  -webkit-animation: up-and-down 4s infinite
+  animation: up-and-down 4s infinite
+
+.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(1)
+  -webkit-animation-delay: 300ms
+  animation-delay: 300ms
+
+.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(2)
+  -webkit-animation-delay: 400ms
+  animation-delay: 400ms
+
+.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(3)
+  -webkit-animation-delay: 500ms
+  animation-delay: 500ms
+
+.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(3)
+  -webkit-animation-delay: 320ms
+  animation-delay: 320ms
+
+.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(2)
+  -webkit-animation-delay: 420ms
+  animation-delay: 420ms
+
+.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(1)
+  -webkit-animation-delay: 520ms
+  animation-delay: 520ms
+
+.key
+  position: relative
+
+.key__label
+  position: absolute
+  font-size: 11px
+  text-align: center
+
+.key__bg-inner
+  -webkit-border-radius: 6px
+  border-radius: 6px
+  position: absolute
+  border: 1px solid #000
+  border-top: 0
+  margin-left: 3px
+  margin-top: -1px
+
+.key__bg-outer
+  -webkit-border-radius: 8px
+  border-radius: 8px
+  border: 2px solid #000
+
+.key--small .icon-arrow-right
+  margin: 21px 0 0 24px
+
+.key--small .key__bg-inner
+  width: 44px
+  height: 43px
+
+.key--small .key__bg-outer
+  width: 52px
+  height: 48px
+
+.key--small .icon-arrow-left
+  margin: 21px 0 0 24px
+
+.key--big .key__label,
+.key--big .key__bg-outer
+  width: 135px
+  height: 46px
+
+.key--big .key__bg-inner
+  width: 128px
+  height: 43px
+
+.key--big .key__label
+  margin-top: 20px
+
+undefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefined.default-key-anim .key__label
+  -webkit-animation: keyleft-arrow-up-down 3s infinite
+  animation: keyleft-arrow-up-down 3s infinite
+  -webkit-transform: translate(0, -2px)
+  transform: translate(0, -2px)
+
+.default-key-anim .key__bg-inner
+  -webkit-animation: keyleft-fade-in-out 3s infinite
+  animation: keyleft-fade-in-out 3s infinite
+
+.kb-anim
+  position: relative
+
+.kb-anim .key
+  display: inline-block
+  margin: 15px 7px 0 0
+
+.kb-anim .dash-big
+  -webkit-animation: dash-right-to-left-to-right 3s infinite
+  animation: dash-right-to-left-to-right 3s infinite
+  margin-left: 14px
+
+.kb-anim > div:nth-of-type(3) .key__label
+  -webkit-animation: keyright-arrow-down-up 3s infinite
+  animation: keyright-arrow-down-up 3s infinite
+
+.kb-anim > div:nth-of-type(3) .key__bg-inner
+  -webkit-animation: keyright-fade-out-in 3s infinite
+  animation: keyright-fade-out-in 3s infinite
+  opacity: 0
+
+undefinedundefined.mouse-anim
+  width: 60px
+
+.mouse-anim > .dash-big,
+.mouse-anim > .icon-mouse
+  -webkit-animation: mouse-move 1.6s infinite
+  animation: mouse-move 1.6s infinite
+
+.mouse-anim > .dash-big
+  -webkit-animation-delay: 100ms
+  animation-delay: 100ms
+  margin-left: 5px
+
+.mouse-anim > .icon-mouse
+  margin-top: 15px
+
+.countdown-sprite,
+.countdown-countdown_1,
+.countdown-countdown_2,
+.countdown-countdown_3,
+.countdown__num[data-number="3"],
+.countdown__num[data-number="2"],
+.countdown__num[data-number="1"]
+  background: url('/images/countdown-s9fee64d48a.png') no-repeat
+
+.countdown-countdown_1
+  background-position: 0 -1436px
+
+.countdown-countdown_2
+  background-position: 0 0
+
+.countdown-countdown_3
+  background-position: 0 -718px
+
+undefinedundefined.countdown
+  display: block
+  position: relative
+  width: 988px
+  height: 716px
+
+.countdown__num
+  -webkit-animation: countdown-transition 1s ease-out normal
+  animation: countdown-transition 1s ease-out normal
+  position: absolute
+  width: 988px
+  height: 716px
+  -webkit-transform: scale(0.5) translate(0, 90px)
+  -moz-transform: scale(0.5) translate(0, 90px)
+  -ms-transform: scale(0.5) translate(0, 90px)
+  -o-transform: scale(0.5) translate(0, 90px)
+  transform: scale(0.5) translate(0, 90px)
+  opacity: 0
+
+.countdown__num[data-number="3"]
+  background-position: 0 -718px
+  -webkit-animation-delay: 0s
+  animation-delay: 0s
+
+.countdown__num[data-number="2"]
+  background-position: 0 0
+  -webkit-animation-delay: 0.9s
+  animation-delay: 0.9s
+
+.countdown__num[data-number="1"]
+  background-position: 0 -1436px
+  -webkit-animation-delay: 1.8s
+  animation-delay: 1.8s
+

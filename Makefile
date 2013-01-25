@@ -1,4 +1,5 @@
 STYLES=$(wildcard styles/*.less)
+STYLUS=stylesheets/screen.styl
 GEOMETRY=$(wildcard lib/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
@@ -11,7 +12,7 @@ LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 # adding special cased geometry
 GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js lib/geometry/rabbit.js lib/geometry/bird1.js lib/geometry/bird2.js lib/geometry/bird3.js lib/geometry/bird4.js lib/geometry/moose.js lib/geometry/terrain.js lib/geometry/cpu.js 
 
-build: build-shaders build-geometry build-component build-styles build-localization
+build: build-shaders build-geometry build-component build-stylus build-localization
 	@:
 
 build-min: build build/build.min.js
@@ -19,6 +20,7 @@ build-shaders: $(SHADERS_JS) lib/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 build-component: build/build.js
 build-styles: build/build-less.css
+build-stylus: build/build-stylus.css
 build-localization: build/localization.arb
 
 components:
@@ -38,6 +40,9 @@ lib/geometry/%.js: lib/geometry/%.json
 
 build/build-less.css: $(STYLES)
 	node_modules/.bin/lessc $(STYLES) > $@
+
+build/build-stylus.css: $(STYLUS)
+	stylus --use nib < $(STYLUS) --include-css -I stylesheets > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
