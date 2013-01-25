@@ -110,6 +110,7 @@
     "lib/geometry/extra_timebomb.js",
     "lib/geometry/terrain3.js",
     "lib/geometry/bear.js",
+    "lib/geometry/paw.js",
     "lib/geometry/rabbit.js",
     "lib/geometry/bird1.js",
     "lib/geometry/bird2.js",
