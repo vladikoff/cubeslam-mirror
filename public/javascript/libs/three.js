@@ -1488,7 +1488,7 @@ THREE.Vector4.prototype = {
 						 + ( m13 - m31 ) * ( m13 - m31 )
 						 + ( m21 - m12 ) * ( m21 - m12 ) ); // used to normalize
 
-		if ( Math.abs( s ) < 0.001 ) s = 1; 
+		if ( Math.abs( s ) < 0.001 ) s = 1;
 
 		// prevent divide by zero, should not happen if matrix is orthogonal and should be
 		// caught by singularity test above, but I've left it in just in case
@@ -1523,7 +1523,7 @@ THREE.Matrix3.prototype = {
 		// ( based on http://code.google.com/p/webgl-mjs/ )
 
         var me = matrix.elements;
-        
+
 		var a11 =   me[10] * me[5] - me[6] * me[9];
 		var a21 = - me[10] * me[1] + me[2] * me[9];
 		var a31 =   me[6] * me[1] - me[2] * me[5];
@@ -1555,7 +1555,7 @@ THREE.Matrix3.prototype = {
 
 	},
 
-	
+
 	transpose: function () {
 
 		var tmp, m = this.elements;
@@ -1567,7 +1567,7 @@ THREE.Matrix3.prototype = {
 		return this;
 
 	},
-	
+
 
 	transposeIntoArray: function ( r ) {
 
@@ -4375,7 +4375,7 @@ THREE.Quaternion.prototype = {
 		// http://www.mathworks.com/matlabcentral/fileexchange/
 		// 	20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
 		//	content/SpinCalc.m
-	
+
 		var c1 = Math.cos( v.x / 2 );
 		var c2 = Math.cos( v.y / 2 );
 		var c3 = Math.cos( v.z / 2 );
@@ -4391,42 +4391,42 @@ THREE.Quaternion.prototype = {
 			this.w = c1 * c2 * c3 - s1 * s2 * s3;
 
 		} else if ( order === 'YXZ' ) {
-	
+
 			this.x = s1 * c2 * c3 + c1 * s2 * s3;
 			this.y = c1 * s2 * c3 - s1 * c2 * s3;
 			this.z = c1 * c2 * s3 - s1 * s2 * c3;
 			this.w = c1 * c2 * c3 + s1 * s2 * s3;
-				
+
 		} else if ( order === 'ZXY' ) {
-	
+
 			this.x = s1 * c2 * c3 - c1 * s2 * s3;
 			this.y = c1 * s2 * c3 + s1 * c2 * s3;
 			this.z = c1 * c2 * s3 + s1 * s2 * c3;
 			this.w = c1 * c2 * c3 - s1 * s2 * s3;
-				
+
 		} else if ( order === 'ZYX' ) {
-	
+
 			this.x = s1 * c2 * c3 - c1 * s2 * s3;
 			this.y = c1 * s2 * c3 + s1 * c2 * s3;
 			this.z = c1 * c2 * s3 - s1 * s2 * c3;
 			this.w = c1 * c2 * c3 + s1 * s2 * s3;
-				
+
 		} else if ( order === 'YZX' ) {
-			
+
 			this.x = s1 * c2 * c3 + c1 * s2 * s3;
 			this.y = c1 * s2 * c3 + s1 * c2 * s3;
 			this.z = c1 * c2 * s3 - s1 * s2 * c3;
 			this.w = c1 * c2 * c3 - s1 * s2 * s3;
-				
+
 		} else if ( order === 'XZY' ) {
-			
+
 			this.x = s1 * c2 * c3 - c1 * s2 * s3;
 			this.y = c1 * s2 * c3 - s1 * c2 * s3;
 			this.z = c1 * c2 * s3 + s1 * s2 * c3;
 			this.w = c1 * c2 * c3 + s1 * s2 * s3;
-				
+
 		}
-		
+
 		return this;
 
 	},
@@ -4451,56 +4451,56 @@ THREE.Quaternion.prototype = {
 	setFromRotationMatrix: function ( m ) {
 
 		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
-		
+
 		// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
-		
+
 		var te = m.elements,
-			
+
 			m11 = te[0], m12 = te[4], m13 = te[8],
 			m21 = te[1], m22 = te[5], m23 = te[9],
 			m31 = te[2], m32 = te[6], m33 = te[10],
-			
+
 			trace = m11 + m22 + m33,
 			s;
-		
+
 		if( trace > 0 ) {
-		
+
 			s = 0.5 / Math.sqrt( trace + 1.0 );
-			
+
 			this.w = 0.25 / s;
 			this.x = ( m32 - m23 ) * s;
 			this.y = ( m13 - m31 ) * s;
 			this.z = ( m21 - m12 ) * s;
-		
+
 		} else if ( m11 > m22 && m11 > m33 ) {
-		
+
 			s = 2.0 * Math.sqrt( 1.0 + m11 - m22 - m33 );
-			
+
 			this.w = (m32 - m23 ) / s;
 			this.x = 0.25 * s;
 			this.y = (m12 + m21 ) / s;
 			this.z = (m13 + m31 ) / s;
-		
+
 		} else if (m22 > m33) {
-		
+
 			s = 2.0 * Math.sqrt( 1.0 + m22 - m11 - m33 );
-			
+
 			this.w = (m13 - m31 ) / s;
 			this.x = (m12 + m21 ) / s;
 			this.y = 0.25 * s;
 			this.z = (m23 + m32 ) / s;
-		
+
 		} else {
-		
+
 			s = 2.0 * Math.sqrt( 1.0 + m33 - m11 - m22 );
-			
+
 			this.w = ( m21 - m12 ) / s;
 			this.x = ( m13 + m31 ) / s;
 			this.y = ( m23 + m32 ) / s;
 			this.z = 0.25 * s;
-		
+
 		}
-	
+
 		return this;
 
 	},
@@ -6415,7 +6415,7 @@ THREE.PerspectiveCamera.prototype.updateProjectionMatrix = function () {
  * @author mrdoob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
  */
- 
+
 THREE.Light = function ( hex ) {
 
 	THREE.Object3D.call( this );
@@ -10502,13 +10502,13 @@ THREE.MeshPhongMaterial.prototype.clone = function () {
  *
  * parameters = {
  *  opacity: <float>,
- 
+
  *  blending: THREE.NormalBlending,
  *  depthTest: <bool>,
- 
+
  *  wireframe: <boolean>,
  *  wireframeLinewidth: <float>
- * } 
+ * }
  */
 
 THREE.MeshDepthMaterial = function ( parameters ) {
@@ -10541,11 +10541,11 @@ THREE.MeshDepthMaterial.prototype.clone = function () {
  *
  * parameters = {
  *  opacity: <float>,
- 
+
  *  shading: THREE.FlatShading,
  *  blending: THREE.NormalBlending,
  *  depthTest: <bool>,
- 
+
  *  wireframe: <boolean>,
  *  wireframeLinewidth: <float>
  * }
@@ -19322,7 +19322,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 		}
 
 		if ( scene.overrideMaterial ) {
-			
+
 			var material = scene.overrideMaterial;
 
 			this.setBlending( material.blending, material.blendEquation, material.blendSrc, material.blendDst );
@@ -20735,7 +20735,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 	function getTextureUnit() {
 
 		var textureUnit = _usedTextureUnits;
-		
+
 		if ( textureUnit >= _maxTextures ) {
 
 			console.warn( "Trying to use " + textureUnit + " texture units while this GPU supports only " + _maxTextures );
@@ -25376,7 +25376,7 @@ THREE.FontUtils = {
 
 THREE.FontUtils.generateShapes = function( text, parameters ) {
 
-	// Parameters 
+	// Parameters
 
 	parameters = parameters || {};
 
@@ -25623,7 +25623,7 @@ THREE.FontUtils.generateShapes = function( text, parameters ) {
 self._typeface_js = { faces: THREE.FontUtils.faces, loadFace: THREE.FontUtils.loadFace };/**
  * @author zz85 / http://www.lab4games.net/zz85/blog
  * Extensible curve object
- * 
+ *
  * Some common of Curve methods
  * .getPoint(t), getTangent(t)
  * .getPointAt(u), getTagentAt(u)
@@ -25732,8 +25732,8 @@ THREE.Curve.prototype.getLengths = function ( divisions ) {
 
 	if ( !divisions ) divisions = (this.__arcLengthDivisions) ? (this.__arcLengthDivisions): 200;
 
-	if ( this.cacheArcLengths 
-		&& ( this.cacheArcLengths.length == divisions + 1 ) 
+	if ( this.cacheArcLengths
+		&& ( this.cacheArcLengths.length == divisions + 1 )
 		&& !this.needsUpdate) {
 
 		//console.log( "cached", this.cacheArcLengths );
@@ -25883,7 +25883,7 @@ THREE.Curve.prototype.getTangent = function( t ) {
 
 	var pt1 = this.getPoint( t1 );
 	var pt2 = this.getPoint( t2 );
-	
+
 	var vec = pt2.clone().subSelf(pt1);
 	return vec.normalize();
 
@@ -26337,7 +26337,7 @@ THREE.SplineCurve3 = THREE.Curve.create(
 // 	v.z = THREE.Curve.Utils.tangentSpline( t, pt0.z, pt1.z, pt2.z, pt3.z );
 
 // 	return v;
-		
+
 // }
 
 /**************************************************************
@@ -26363,7 +26363,7 @@ THREE.ClosedSplineCurve3 = THREE.Curve.create(
 
         intPoint = Math.floor( point );
         weight = point - intPoint;
-            
+
         intPoint += intPoint > 0 ? 0 : ( Math.floor( Math.abs( intPoint ) / points.length ) + 1 ) * points.length;
         c[ 0 ] = ( intPoint - 1 ) % points.length;
         c[ 1 ] = ( intPoint ) % points.length;
@@ -26373,7 +26373,7 @@ THREE.ClosedSplineCurve3 = THREE.Curve.create(
         v.x = THREE.Curve.Utils.interpolate( points[ c[ 0 ] ].x, points[ c[ 1 ] ].x, points[ c[ 2 ] ].x, points[ c[ 3 ] ].x, weight );
         v.y = THREE.Curve.Utils.interpolate( points[ c[ 0 ] ].y, points[ c[ 1 ] ].y, points[ c[ 2 ] ].y, points[ c[ 3 ] ].y, weight );
         v.z = THREE.Curve.Utils.interpolate( points[ c[ 0 ] ].z, points[ c[ 1 ] ].z, points[ c[ 2 ] ].z, points[ c[ 3 ] ].z, weight );
-        
+
         return v;
 
     }
@@ -26393,7 +26393,7 @@ THREE.CurvePath = function () {
 
 	this.curves = [];
 	this.bends = [];
-	
+
 	this.autoClose = false; // Automatically closes the path
 };
 
@@ -26417,11 +26417,11 @@ THREE.CurvePath.prototype.closePath = function() {
 	// Add a line curve if start and end of lines are not connected
 	var startPoint = this.curves[0].getPoint(0);
 	var endPoint = this.curves[this.curves.length-1].getPoint(1);
-	
+
 	if (!startPoint.equals(endPoint)) {
 		this.curves.push( new THREE.LineCurve(endPoint, startPoint) );
 	}
-	
+
 };
 
 // To get accurate point with reference to
@@ -26561,14 +26561,14 @@ THREE.CurvePath.prototype.getBoundingBox = function () {
 		maxX: maxX,
 		maxY: maxY,
 		centroid: sum.divideScalar( il )
-	
+
 	};
 
 	if (v3) {
 
 		ret.maxZ = maxZ;
 		ret.minZ = minZ;
-	
+
 	}
 
 	return ret;
@@ -26907,14 +26907,14 @@ THREE.Path.prototype.arc = function ( aX, aY, aRadius,
 
 	this.absarc(aX + x0, aY + y0, aRadius,
 		aStartAngle, aEndAngle, aClockwise );
-	
+
  };
 
  THREE.Path.prototype.absarc = function ( aX, aY, aRadius,
 									  aStartAngle, aEndAngle, aClockwise ) {
 	this.absellipse(aX, aY, aRadius, aRadius, aStartAngle, aEndAngle, aClockwise);
  };
- 
+
 THREE.Path.prototype.ellipse = function ( aX, aY, xRadius, yRadius,
 									  aStartAngle, aEndAngle, aClockwise ) {
 
@@ -26926,7 +26926,7 @@ THREE.Path.prototype.ellipse = function ( aX, aY, xRadius, yRadius,
 		aStartAngle, aEndAngle, aClockwise );
 
  };
- 
+
 
 THREE.Path.prototype.absellipse = function ( aX, aY, xRadius, yRadius,
 									  aStartAngle, aEndAngle, aClockwise ) {
@@ -27141,7 +27141,7 @@ THREE.Path.prototype.getPoints = function( divisions, closedPath ) {
 			//console.log(points);
 
 		  break;
-		  
+
 		case THREE.PathActions.ELLIPSE:
 
 			var aX = args[ 0 ], aY = args[ 1 ],
@@ -28639,7 +28639,7 @@ THREE.KeyFrameAnimation.prototype.stop = function() {
 	// reset JIT matrix and remove cache
 
 	for ( var h = 0; h < this.data.hierarchy.length; h++ ) {
-        
+
         var obj = this.hierarchy[ h ];
 		var node = this.data.hierarchy[ h ];
 
@@ -30502,7 +30502,7 @@ THREE.LatheGeometry = function ( points, steps, angle ) {
 				new THREE.UV( 1 - ( i + 1 ) / _steps, k / kl ),
 				new THREE.UV( 1 - ( i + 1 ) / _steps, ( k + 1 ) / kl ),
 				new THREE.UV( 1 - i / _steps, ( k + 1 ) / kl )
-				
+
 			] );
 
 		}
@@ -31053,7 +31053,7 @@ THREE.TubeGeometry.prototype = Object.create( THREE.Geometry.prototype );
 // For computing of Frenet frames, exposing the tangents, normals and binormals the spline
 THREE.TubeGeometry.FrenetFrames = function(path, segments, closed) {
 
-	var 
+	var
 		tangent = new THREE.Vector3(),
 		normal = new THREE.Vector3(),
 		binormal = new THREE.Vector3(),
@@ -31493,11 +31493,11 @@ THREE.ParametricGeometry = function ( func, slices, stacks, useTris ) {
 THREE.ParametricGeometry.prototype = Object.create( THREE.Geometry.prototype );
 /**
  * @author qiao / https://github.com/qiao
- * @fileoverview This is a convex hull generator using the incremental method. 
+ * @fileoverview This is a convex hull generator using the incremental method.
  * The complexity is O(n^2) where n is the number of vertices.
  * O(nlogn) algorithms do exist, but they are much more complicated.
  *
- * Benchmark: 
+ * Benchmark:
  *
  *  Platform: CPU: P7350 @2.00GHz Engine: V8
  *
@@ -31514,7 +31514,7 @@ THREE.ConvexGeometry = function( vertices ) {
 
 	THREE.Geometry.call( this );
 
-	var faces = [ [ 0, 1, 2 ], [ 0, 2, 1 ] ]; 
+	var faces = [ [ 0, 1, 2 ], [ 0, 2, 1 ] ];
 
 	for ( var i = 3; i < vertices.length; i++ ) {
 
@@ -31583,7 +31583,7 @@ THREE.ConvexGeometry = function( vertices ) {
 		// construct the new faces formed by the edges of the hole and the vertex
 		for ( var h = 0; h < hole.length; h++ ) {
 
-			faces.push( [ 
+			faces.push( [
 				hole[ h ][ 0 ],
 				hole[ h ][ 1 ],
 				vertexId
@@ -31606,7 +31606,7 @@ THREE.ConvexGeometry = function( vertices ) {
 		// distance from face to origin
 		var dist = n.dot( va );
 
-		return n.dot( vertex ) >= dist; 
+		return n.dot( vertex ) >= dist;
 
 	}
 
@@ -31624,7 +31624,7 @@ THREE.ConvexGeometry = function( vertices ) {
 
 		if ( !cb.isZero() ) {
 
-			cb.normalize(); 
+			cb.normalize();
 
 		}
 
@@ -31639,7 +31639,7 @@ THREE.ConvexGeometry = function( vertices ) {
 	 */
 	function equalEdge( ea, eb ) {
 
-		return ea[ 0 ] === eb[ 1 ] && ea[ 1 ] === eb[ 0 ]; 
+		return ea[ 0 ] === eb[ 1 ] && ea[ 1 ] === eb[ 0 ];
 
 	}
 
@@ -31689,7 +31689,7 @@ THREE.ConvexGeometry = function( vertices ) {
 	// Convert faces into instances of THREE.Face3
 	for ( var i = 0; i < faces.length; i++ ) {
 
-		this.faces.push( new THREE.Face3( 
+		this.faces.push( new THREE.Face3(
 				faces[ i ][ 0 ],
 				faces[ i ][ 1 ],
 				faces[ i ][ 2 ]
@@ -31993,16 +31993,16 @@ THREE.CameraHelper.__v = new THREE.Vector3();
 THREE.CameraHelper.__c = new THREE.Camera();
 
 /*
- *	@author zz85 / http://twitter.com/blurspline / http://www.lab4games.net/zz85/blog 
- * 
- *	Subdivision Geometry Modifier 
+ *	@author zz85 / http://twitter.com/blurspline / http://www.lab4games.net/zz85/blog
+ *
+ *	Subdivision Geometry Modifier
  *		using Catmull-Clark Subdivision Surfaces
  *		for creating smooth geometry meshes
  *
  *	Note: a modifier modifies vertices and faces of geometry,
  *		so use THREE.GeometryUtils.clone() if orignal geoemtry needs to be retained
- * 
- *	Readings: 
+ *
+ *	Readings:
  *		http://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface
  *		http://www.rorydriscoll.com/2008/08/01/catmull-clark-subdivision-the-basics/
  *		http://xrt.wikidot.com/blog:31
@@ -32015,32 +32015,32 @@ THREE.CameraHelper.__c = new THREE.Camera();
  *	Supports:
  *		Closed and Open geometries.
  *
- *	TODO: 
+ *	TODO:
  *		crease vertex and "semi-sharp" features
  *		selective subdivision
  */
 
 
 THREE.SubdivisionModifier = function( subdivisions ) {
-	
+
 	this.subdivisions = (subdivisions === undefined ) ? 1 : subdivisions;
-	
+
 	// Settings
 	this.useOldVertexColors = false;
 	this.supportUVs = true;
 	this.debug = false;
-	
+
 };
 
 // Applies the "modify" pattern
 THREE.SubdivisionModifier.prototype.modify = function ( geometry ) {
-	
+
 	var repeats = this.subdivisions;
-	
+
 	while ( repeats-- > 0 ) {
 		this.smooth( geometry );
 	}
-	
+
 };
 
 /// REFACTORING THIS OUT
@@ -32064,13 +32064,13 @@ THREE.GeometryUtils.computeEdgeFaces = function ( geometry ) {
 	var orderedKey = THREE.GeometryUtils.orderedKey;
 
 	function mapEdgeHash( hash, i ) {
-		
+
 		if ( edgeFaceMap[ hash ] === undefined ) {
 
 			edgeFaceMap[ hash ] = [];
-			
+
 		}
-		
+
 		edgeFaceMap[ hash ].push( i );
 	}
 
@@ -32102,7 +32102,7 @@ THREE.GeometryUtils.computeEdgeFaces = function ( geometry ) {
 
 			hash = orderedKey( face.c, face.d );
 			mapEdgeHash( hash, i );
-			
+
 			hash = orderedKey( face.d, face.a );
 			mapEdgeHash( hash, i );
 
@@ -32111,18 +32111,18 @@ THREE.GeometryUtils.computeEdgeFaces = function ( geometry ) {
 	}
 
 	// extract faces
-	
+
 	// var edges = [];
-	// 
+	//
 	// var numOfEdges = 0;
 	// for (i in edgeFaceMap) {
 	// 	numOfEdges++;
-	// 	
+	//
 	// 	edge = edgeFaceMap[i];
 	// 	edges.push(edge);
-	// 	
+	//
 	// }
-	
+
 	//debug('edgeFaceMap', edgeFaceMap, 'geometry.edges',geometry.edges, 'numOfEdges', numOfEdges);
 
 	return edgeFaceMap;
@@ -32133,16 +32133,16 @@ THREE.GeometryUtils.computeEdgeFaces = function ( geometry ) {
 
 // Performs an iteration of Catmull-Clark Subdivision
 THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
-	
+
 	//debug( 'running smooth' );
-	
+
 	// New set of vertices, faces and uvs
 	var newVertices = [], newFaces = [], newUVs = [];
-	
+
 	function v( x, y, z ) {
 		newVertices.push( new THREE.Vector3( x, y, z ) );
 	}
-	
+
 	var scope = this;
 	var orderedKey = THREE.GeometryUtils.orderedKey;
 	var computeEdgeFaces = THREE.GeometryUtils.computeEdgeFaces;
@@ -32161,39 +32161,39 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 	}
 
 	function f4( a, b, c, d, oldFace, orders, facei ) {
-		
+
 		// TODO move vertex selection over here!
-		
+
 		var newFace = new THREE.Face4( a, b, c, d, null, oldFace.color, oldFace.materialIndex );
-		
+
 		if (scope.useOldVertexColors) {
-			
-			newFace.vertexColors = []; 
-			
+
+			newFace.vertexColors = [];
+
 			var color, tmpColor, order;
 			for (var i=0;i<4;i++) {
 				order = orders[i];
-				
+
 				color = new THREE.Color(),
 				color.setRGB(0,0,0);
-				
+
 				for (var j=0, jl=0; j<order.length;j++) {
 					tmpColor = oldFace.vertexColors[order[j]-1];
 					color.r += tmpColor.r;
 					color.g += tmpColor.g;
 					color.b += tmpColor.b;
 				}
-				
+
 				color.r /= order.length;
 				color.g /= order.length;
 				color.b /= order.length;
-				
+
 				newFace.vertexColors[i] = color;
-				
+
 			}
-			
+
 		}
-		
+
 		newFaces.push( newFace );
 
 		if (scope.supportUVs) {
@@ -32204,36 +32204,36 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 				getUV(c, facei),
 				getUV(d, facei)
 			];
-			
+
 			if (!aUv[0]) debug('a :( ', a+':'+facei);
 			else if (!aUv[1]) debug('b :( ', b+':'+facei);
 			else if (!aUv[2]) debug('c :( ', c+':'+facei);
 			else if (!aUv[3]) debug('d :( ', d+':'+facei);
-			else 
+			else
 				newUVs.push( aUv );
 
 		}
 	}
-	
+
 	var originalPoints = oldGeometry.vertices;
 	var originalFaces = oldGeometry.faces;
 	var originalVerticesLength = originalPoints.length;
-	
+
 	var newPoints = originalPoints.concat(); // New set of vertices to work on
-		
+
 	var facePoints = [], // these are new points on exisiting faces
 		edgePoints = {}; // these are new points on exisiting edges
-	
+
 	var sharpEdges = {}, sharpVertices = []; // Mark edges and vertices to prevent smoothening on them
 	// TODO: handle this correctly.
-	
+
 	var uvForVertices = {}; // Stored in {vertex}:{old face} format
 
 
 	function debugCoreStuff() {
 		console.log('facePoints', facePoints, 'edgePoints', edgePoints);
 		console.log('edgeFaceMap', edgeFaceMap, 'vertexEdgeMap', vertexEdgeMap);
-		
+
 	}
 
 	function getUV(vertexNo, oldFaceNo) {
@@ -32255,8 +32255,8 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 		}
 
 		return theUV;
- 
-		// Original faces -> Vertex Nos. 
+
+		// Original faces -> Vertex Nos.
 		// new Facepoint -> Vertex Nos.
 		// edge Points
 
@@ -32271,13 +32271,13 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 			warn('dup vertexNo', vertexNo, 'oldFaceNo', oldFaceNo, 'value', value, 'key', key, uvForVertices[key]);
 		}
 	}
-	
+
 	// Step 1
 	//	For each face, add a face point
 	//	Set each face point to be the centroid of all original points for the respective face.
 	// debug(oldGeometry);
 	var i, il, j, jl, face;
-	
+
 	// For Uvs
 	var uvs = oldGeometry.faceVertexUvs[0];
 	var abcd = 'abcd', vertice;
@@ -32287,15 +32287,15 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 	for (i=0, il = uvs.length; i<il; i++ ) {
 		for (j=0,jl=uvs[i].length;j<jl;j++) {
 			vertice = originalFaces[i][abcd.charAt(j)];
-			
+
 			addUV(vertice, i, uvs[i][j]);
-			
+
 		}
 	}
 
 	if (uvs.length == 0) scope.supportUVs = false;
 
-	// Additional UVs check, if we index original 
+	// Additional UVs check, if we index original
 	var uvCount = 0;
 	for (var u in uvForVertices) {
 		uvCount++;
@@ -32310,20 +32310,20 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 		face = originalFaces[ i ];
 		facePoints.push( face.centroid );
 		newPoints.push( face.centroid );
-		
-		
+
+
 		if (!scope.supportUVs) continue;
-		
+
 		// Prepare subdivided uv
-		
+
 		avgUv = new THREE.UV();
-		
+
 		if ( face instanceof THREE.Face3 ) {
 			avgUv.u = getUV( face.a, i ).u + getUV( face.b, i ).u + getUV( face.c, i ).u;
 			avgUv.v = getUV( face.a, i ).v + getUV( face.b, i ).v + getUV( face.c, i ).v;
 			avgUv.u /= 3;
 			avgUv.v /= 3;
-			
+
 		} else if ( face instanceof THREE.Face4 ) {
 			avgUv.u = getUV( face.a, i ).u + getUV( face.b, i ).u + getUV( face.c, i ).u + getUV( face.d, i ).u;
 			avgUv.v = getUV( face.a, i ).v + getUV( face.b, i ).v + getUV( face.c, i ).v + getUV( face.d, i ).v;
@@ -32338,122 +32338,122 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 	// Step 2
 	//	For each edge, add an edge point.
 	//	Set each edge point to be the average of the two neighbouring face points and its two original endpoints.
-	
+
 	var edgeFaceMap = computeEdgeFaces ( oldGeometry ); // Edge Hash -> Faces Index  eg { edge_key: [face_index, face_index2 ]}
 	var edge, faceIndexA, faceIndexB, avg;
-	
+
 	// debug('edgeFaceMap', edgeFaceMap);
 
 	var edgeCount = 0;
 
 	var edgeVertex, edgeVertexA, edgeVertexB;
-	
+
 	////
-	
+
 	var vertexEdgeMap = {}; // Gives edges connecting from each vertex
 	var vertexFaceMap = {}; // Gives faces connecting from each vertex
-	
+
 	function addVertexEdgeMap(vertex, edge) {
 		if (vertexEdgeMap[vertex]===undefined) {
 			vertexEdgeMap[vertex] = [];
 		}
-		
+
 		vertexEdgeMap[vertex].push(edge);
 	}
-	
+
 	function addVertexFaceMap(vertex, face, edge) {
 		if (vertexFaceMap[vertex]===undefined) {
 			vertexFaceMap[vertex] = {};
 		}
-		
+
 		vertexFaceMap[vertex][face] = edge;
 		// vertexFaceMap[vertex][face] = null;
 	}
-	
+
 	// Prepares vertexEdgeMap and vertexFaceMap
 	for (i in edgeFaceMap) { // This is for every edge
 		edge = edgeFaceMap[i];
-		
+
 		edgeVertex = i.split('_');
 		edgeVertexA = edgeVertex[0];
 		edgeVertexB = edgeVertex[1];
-		
+
 		// Maps an edgeVertex to connecting edges
 		addVertexEdgeMap(edgeVertexA, [edgeVertexA, edgeVertexB] );
 		addVertexEdgeMap(edgeVertexB, [edgeVertexA, edgeVertexB] );
-		
-		
+
+
 		for (j=0,jl=edge.length;j<jl;j++) {
 			face = edge[j];
-			
+
 			addVertexFaceMap(edgeVertexA, face, i);
 			addVertexFaceMap(edgeVertexB, face, i);
 		}
 
 		// {edge vertex: { face1: edge_key, face2: edge_key.. } }
-		
+
 		// this thing is fishy right now.
 		if (edge.length < 2) {
 			// edge is "sharp";
 			sharpEdges[i] = true;
 			sharpVertices[edgeVertexA] = true;
 			sharpVertices[edgeVertexB] = true;
-			
+
 		}
-		
+
 	}
-	
+
 	for (i in edgeFaceMap) {
 		edge = edgeFaceMap[i];
-		
+
 		faceIndexA = edge[0]; // face index a
 		faceIndexB = edge[1]; // face index b
-		
+
 		edgeVertex = i.split('_');
 		edgeVertexA = edgeVertex[0];
 		edgeVertexB = edgeVertex[1];
-		
-		
+
+
 		avg = new THREE.Vector3();
-		
+
 		//debug(i, faceIndexB,facePoints[faceIndexB]);
 
 		assert(edge.length > 0, 'an edge without faces?!');
-		
+
 		if (edge.length==1) {
 
 			avg.addSelf(originalPoints[edgeVertexA]);
-			avg.addSelf(originalPoints[edgeVertexB]);			
+			avg.addSelf(originalPoints[edgeVertexB]);
 			avg.multiplyScalar(0.5);
-			
+
 			sharpVertices[newPoints.length] = true;
-			
+
 		} else {
-		
+
 			avg.addSelf(facePoints[faceIndexA]);
 			avg.addSelf(facePoints[faceIndexB]);
-		
+
 			avg.addSelf(originalPoints[edgeVertexA]);
 			avg.addSelf(originalPoints[edgeVertexB]);
-		
+
 			avg.multiplyScalar(0.25);
-		
+
 		}
-		
+
 		edgePoints[i] = originalVerticesLength + originalFaces.length + edgeCount;
-		
+
 		newPoints.push( avg );
-	
+
 		edgeCount ++;
-		
+
 		if (!scope.supportUVs) {
 			continue;
 		}
 
 		// Prepare subdivided uv
-		
+
 		avgUv = new THREE.UV();
-		
+
 		avgUv.u = getUV(edgeVertexA, faceIndexA).u + getUV(edgeVertexB, faceIndexA).u;
 		avgUv.v = getUV(edgeVertexA, faceIndexA).v + getUV(edgeVertexB, faceIndexA).v;
 		avgUv.u /= 2;
@@ -32464,27 +32464,27 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 		if (edge.length>=2) {
 		assert(edge.length == 2, 'did we plan for more than 2 edges?');
 		avgUv = new THREE.UV();
-		
+
 		avgUv.u = getUV(edgeVertexA, faceIndexB).u + getUV(edgeVertexB, faceIndexB).u;
 		avgUv.v = getUV(edgeVertexA, faceIndexB).v + getUV(edgeVertexB, faceIndexB).v;
 		avgUv.u /= 2;
 		avgUv.v /= 2;
-		
+
 		addUV(edgePoints[i], faceIndexB, avgUv);
 		}
-		
+
 	}
 
 	debug('-- Step 2 done');
 
 	// Step 3
-	//	For each face point, add an edge for every edge of the face, 
+	//	For each face point, add an edge for every edge of the face,
 	//	connecting the face point to each edge point for the face.
-	
+
 	var facePt, currentVerticeIndex;
-	
+
 	var hashAB, hashBC, hashCD, hashDA, hashCA;
-	
+
 	var abc123 = ['123', '12', '2', '23'];
 	var bca123 = ['123', '23', '3', '31'];
 	var cab123 = ['123', '31', '1', '12'];
@@ -32492,76 +32492,76 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 	var bcd1234 = ['1234', '23', '3', '34'];
 	var cda1234 = ['1234', '34', '4', '41'];
 	var dab1234 = ['1234', '41', '1', '12'];
-	
-	
+
+
 	for (i=0, il = facePoints.length; i<il ;i++) { // for every face
 		facePt = facePoints[i];
 		face = originalFaces[i];
 		currentVerticeIndex = originalVerticesLength+ i;
-		
+
 		if ( face instanceof THREE.Face3 ) {
-			
+
 			// create 3 face4s
-			
+
 			hashAB = orderedKey( face.a, face.b );
 			hashBC = orderedKey( face.b, face.c );
 			hashCA = orderedKey( face.c, face.a );
-			
+
 			f4( currentVerticeIndex, edgePoints[hashAB], face.b, edgePoints[hashBC], face, abc123, i );
 			f4( currentVerticeIndex, edgePoints[hashBC], face.c, edgePoints[hashCA], face, bca123, i );
 			f4( currentVerticeIndex, edgePoints[hashCA], face.a, edgePoints[hashAB], face, cab123, i );
-			
+
 		} else if ( face instanceof THREE.Face4 ) {
 			// create 4 face4s
-			
+
 			hashAB = orderedKey( face.a, face.b );
 			hashBC = orderedKey( face.b, face.c );
 			hashCD = orderedKey( face.c, face.d );
 			hashDA = orderedKey( face.d, face.a );
-			
+
 			f4( currentVerticeIndex, edgePoints[hashAB], face.b, edgePoints[hashBC], face, abc1234, i );
 			f4( currentVerticeIndex, edgePoints[hashBC], face.c, edgePoints[hashCD], face, bcd1234, i );
 			f4( currentVerticeIndex, edgePoints[hashCD], face.d, edgePoints[hashDA], face, cda1234, i );
 			f4( currentVerticeIndex, edgePoints[hashDA], face.a, edgePoints[hashAB], face, dab1234, i );
 
-				
+
 		} else {
 			debug('face should be a face!', face);
 		}
 	}
-	
+
 	newVertices = newPoints;
-	
+
 	// Step 4
-	
-	//	For each original point P, 
-	//		take the average F of all n face points for faces touching P, 
-	//		and take the average R of all n edge midpoints for edges touching P, 
-	//		where each edge midpoint is the average of its two endpoint vertices. 
+
+	//	For each original point P,
+	//		take the average F of all n face points for faces touching P,
+	//		and take the average R of all n edge midpoints for edges touching P,
+	//		where each edge midpoint is the average of its two endpoint vertices.
 	//	Move each original point to the point
 
-	
+
 	var F = new THREE.Vector3();
 	var R = new THREE.Vector3();
 
 	var n;
 	for (i=0, il = originalPoints.length; i<il; i++) {
 		// (F + 2R + (n-3)P) / n
-		
+
 		if (vertexEdgeMap[i]===undefined) continue;
-		
+
 		F.set(0,0,0);
 		R.set(0,0,0);
 		var newPos =  new THREE.Vector3(0,0,0);
-		
+
 		var f = 0; // this counts number of faces, original vertex is connected to (also known as valance?)
 		for (j in vertexFaceMap[i]) {
 			F.addSelf(facePoints[j]);
 			f++;
 		}
-		
+
 		var sharpEdgeCount = 0;
-		
+
 		n = vertexEdgeMap[i].length; // given a vertex, return its connecting edges
 
 		// Are we on the border?
@@ -32570,8 +32570,8 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 		// if (boundary_case) {
 		// 	console.error('moo', 'o', i, 'faces touched', f, 'edges',  n, n == 2);
 		// }
-		
-		
+
+
 		for (j=0;j<n;j++) {
 			if (
 				sharpEdges[
@@ -32580,7 +32580,7 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 					sharpEdgeCount++;
 				}
 		}
-		
+
 		// if ( sharpEdgeCount==2 ) {
 		// 	continue;
 		// 	// Do not move vertex if there's 2 connecting sharp edges.
@@ -32593,11 +32593,11 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 		*/
 
 		F.divideScalar(f);
-		
-		
+
+
 		var boundary_edges = 0;
 
-		
+
 
 		if (boundary_case) {
 
@@ -32631,37 +32631,37 @@ THREE.SubdivisionModifier.prototype.smooth = function ( oldGeometry ) {
 
 
 		if (boundary_case) {
-			
+
 			newPos.divideScalar(2);
 			newPos.addSelf(R);
 
 		} else {
-	
+
 			newPos.multiplyScalar(n - 3);
-			
+
 			newPos.addSelf(F);
 			newPos.addSelf(R.multiplyScalar(2));
 			newPos.divideScalar(n);
 
 		}
-		
+
 		newVertices[i] = newPos;
-		
-		
+
+
 	}
-	
+
 	var newGeometry = oldGeometry; // Let's pretend the old geometry is now new :P
-	
+
 	newGeometry.vertices = newVertices;
 	newGeometry.faces = newFaces;
 	newGeometry.faceVertexUvs[ 0 ] = newUVs;
-	
+
 	delete newGeometry.__tmpVertices; // makes __tmpVertices undefined :P
-	
+
 	newGeometry.computeCentroids();
 	newGeometry.computeFaceNormals();
 	newGeometry.computeVertexNormals();
-	
+
 };/**
  * @author alteredq / http://alteredqualia.com/
  */
@@ -34510,7 +34510,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 			this.lon += this.mouseX * actualLookSpeed;
 			if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
-		}	
+		}
 
 		this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
 		this.phi = ( 90 - this.lat ) * Math.PI / 180;
