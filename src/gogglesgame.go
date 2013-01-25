@@ -180,7 +180,7 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
   data := TemplateData{Room:roomName, User: userName, LoginLogoutLink: loginLogoutLink, AcceptLanguage: acceptLanguage}
 
   // Parse the template and output HTML:
-  template, err := template.New("template.html").ParseFiles("template.html")
+  template, err := template.ParseFiles("build/build.html")
   if err != nil { c.Criticalf("execution failed: %s", err) }
   err = template.Execute(w, data)
   if err != nil { c.Criticalf("execution failed: %s", err) }
