@@ -47,7 +47,7 @@ build/build-less.css: $(STYLES)
 	node_modules/.bin/lessc $(STYLES) > $@
 
 build/build-stylus.css: $(STYLUS)
-	stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
+	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build
