@@ -572,10 +572,14 @@ body {
           top: 0;
         }
 
-        #canv-2d {
+        #canv-2d,
+        #canv-debug {
           background: rgba(255,255,255,.3);
           top: 50px;
           display: none;
+        }
+        #canv-debug {
+          right: 0;
         }
 
         #remoteInput {
@@ -604,7 +608,7 @@ body {
       .state.game-instructions,
       .state.game-info,
       .state.game-start {
-        
+
         box-orient:horizontal;
         box-pack:center;
         box-align:center;
