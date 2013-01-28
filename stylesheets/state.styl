@@ -1,0 +1,96 @@
+.state
+  &.game-instructions,
+  &.state.game-info,
+  &.state.game-start
+    
+    box-orient horizontal
+    box-pack center
+    box-align center
+    width 100%
+    height 100%
+    position: absolute
+    top 0
+    left 0
+    z-index 500
+    perspective 2000px
+    transform rotateX( 0 )
+
+  &.inactive .dialog.middle .content
+    transform-origin center center
+    transform rotateX( -90deg )
+
+  &.friend-invite
+    input
+      font-family: 'Varela' sans-serif
+      font-size 11px
+      cursor pointer
+    input[type='button']
+      display inline
+      background #2aa52a
+      padding 4px 20px 3px
+      margin 0 0 20px -7px  
+      line-height 21px
+      color #f9f9da
+      text-transform uppercase
+      border none
+      &:hover
+        background #207f20
+
+    input[type='text']
+      background #f9f9da
+      color #2aa52a
+      width 303px
+      height 22px
+      //text-transform: lowercase;
+      padding 2px 5px 2px 5px
+      border 1px solid #2aa52a
+      &:focus
+        outline none
+      &::selection
+        background #2aa52a
+        color #f9f9da
+
+  &.game-play
+    .content.center
+      display box
+      display -moz-box
+      display -webkit-box
+
+      box-orient horizontal
+      box-pack center
+      box-align center
+      width 100%
+      height 100%
+      absolute top 0 left 0
+      z-index 500
+
+    .countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown-number
+      background: url('/images/countdown-s9fee64d48a.png') no-repeat
+
+    .countdown-number
+      position absolute
+      width 988px
+      height 716px
+      opacity 0
+      transform scale(0.5) translate(0, 90px)
+      transition opacity .3s ease-out
+
+      &[data-number="3"]
+        background-position 0 -718px
+      &[data-number="2"]
+        background-position 0 0
+      &[data-number="1"]
+        background-position 0 -1436px
+      &.visible
+        opacity 1
+
+#game-controls
+  width 100%
+  margin 25px 0 28px
+
+  > p, > div 
+    display inline-block
+
+  > p
+    vertical-align top
+    margin 42px 7px 0

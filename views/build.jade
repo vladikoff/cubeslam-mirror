@@ -1,6 +1,7 @@
 !!! 5
 html(lang='en')
   head
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/build/build-stylus.css')
 
   body
@@ -9,7 +10,7 @@ html(lang='en')
       hgroup
         h2 Welcome to
         h1.copy
-          img(src="/images/logo_large.png", width="1533", height="155")
+          img(src='/images/logo_large.png', width='1533', height='155', alt='Paddle Battle')
         h3 a chrome experiment
 
       .nav
@@ -24,45 +25,52 @@ html(lang='en')
     .state.game-info.inactive
       .dialog.middle
         .content
-          .verticalCenter
+          .vertical-center
             h2 Game controls
-              #controlsInstructions
-              p Play using
-              .kb-anim
-                .dash-big.dash-black
-                .key.key--small.default-key-anim
-                  .key__label.icon-arrow-left
-                  .key__bg-outer
-                    .key__bg-inner
-                div.key.key--small
-                  .key__label.icon-arrow-right
+              #game-controls
+                p Play using
+                .kb-anim
+                  .dash-big.dash-black
+                  .key.key--small.default-key-anim
+                    .key__label.icon-arrow-left
+                    .key__bg-outer
+                      .key__bg-inner
+                  div.key.key--small
+                    .key__label.icon-arrow-right
+                    .key__bg-outer
+                      div.key__bg-inner
+                p or
+                .mouse-anim
+                  .dash-big.dash-black
+                  .icon-mouse
+                p or press
+                .key.key--big.default-key-anim
+                  p.key__label SPACE
                   .key__bg-outer
                     div.key__bg-inner
-              p or
-              .mouse-anim
-                .dash-big.dash-black
-                .icon-mouse
-              p or press
-              .key.key--big.default-key-anim
-                p.key__label SPACE
-                .key__bg-outer
-                  div.key__bg-inner
-              p to pause
+                p to pause
             button.green.play Start
+    
 
+    //INVITE FRIEND
+    .state.friend-invite.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            h2 share this link to Invite a Friend
+            input.share-url(type='text', value='')
+            input#shareUrlButton.notimplemented(type='button', value='Copy')
+            p We'll let you know when your friend arrives. 
+              a.backToMainMenu Back
+
+    // COUNTDOWN
     .state.game-play.inactive
-      .centerContent
+      .content.center
         .countdown
-          .countdown__num(data-number="1")
-          .countdown__num(data-number="2")
-          .countdown__num(data-number="3")
+          .countdown-number(data-number='1')
+          .countdown-number(data-number='2')
+          .countdown-number(data-number='3')
 
-    #canv-css
-      .background
-      .game-board
-        .arena
-          .paddle
-          #center
     #game
       canvas#canv-3d(width='320', height='480')
       canvas#canv-2d(width='320',height='480')
@@ -96,15 +104,15 @@ html(lang='en')
       #uiTopContent
       #videoInput
 
-  script(src="/_ah/channel/jsapi")
-  script(src='/javascript/libs/three.js')
-  script(src='/javascript/libs/Stats.js')
-  script(src='/javascript/libs/Tween.js')
-  script(src='/javascript/libs/TweenMax.min.js')
-  script(src="/javascript/libs/dat.gui.js")
-  script(src='/build/build.js')
-  script
-    require('paddle-battle')({
-      room: "{{.Room}}",
-      acceptLanguage: "en,{{.AcceptLanguage}}"
-    })
+    script(src="/_ah/channel/jsapi")
+    script(src='/javascript/libs/three.js')
+    script(src='/javascript/libs/Stats.js')
+    script(src='/javascript/libs/Tween.js')
+    script(src='/javascript/libs/TweenMax.min.js')
+    script(src="/javascript/libs/dat.gui.js")
+    script(src='/build/build.js')
+    script
+      require('paddle-battle')({
+        room: "{{.Room}}",
+        acceptLanguage: "en,{{.AcceptLanguage}}"
+      })
