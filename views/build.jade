@@ -63,13 +63,70 @@ html(lang='en')
             p We'll let you know when your friend arrives. 
               a.backToMainMenu Back
 
-    // COUNTDOWN
+    //COUNTDOWN 
     .state.game-play.inactive
       .content.center
         .countdown
           .countdown-number(data-number='1')
           .countdown-number(data-number='2')
           .countdown-number(data-number='3')
+
+    //PAUSE DIALOG
+    .state.game-pause.inactive
+      .dialog
+        .content
+          .vertical-center
+            h2 Paused
+            button.blue.play-friend Play Friend
+            button.singleplayer.green.play Resume (space)
+
+    //WAITING FOR FRIEND CAMERA
+    .state.webcam-waiting.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .webcam-spinner
+              .webcam-spinner__bg.icon-webcam
+              .webcam-spinner__quarter
+                .icon-quarter-circle
+            h2 Waiting for friend<br/>to activate camera
+
+    //OPPONENT LEFT DIALOG
+    .state.friend-left.inactive
+      .dialog
+        .content
+          .vertical-center
+            h2 Your friend left the game
+            button.blue.play-friend Play Friend
+            button.green.play Play Computer (Space)
+
+
+    #bautaGameOver.state.game-over.inactive
+      img#gameOverTitle(src='/images/game_over.png')
+      #gameOverDialog.state.game-over.inactive
+        .dialog
+          .content
+            #scoreboardSingle.vertical-center
+              h2 Your Points
+              .scoreboard.single
+                  div Levels Played
+                  #highscoreLevels.highscoreDigit X
+                  #shareScore
+                    h3 Share
+                    img(src='images/share_score.gif')
+                  #highscoreRally.highscoreDigit X
+                  div Longest Rallies
+
+              button.blue.play-friend Play Friend
+              button.green.play Play Again (Space)
+
+            #scoreboardMulti.vertical-center
+              h2 Your Points
+              .scoreboard.multiplayer
+                  img(src='images/temp_scoreboard_multi.gif')
+              button.green.play Play Again (Space)
+
+
 
     #game
       canvas#canv-3d(width='320', height='480')
