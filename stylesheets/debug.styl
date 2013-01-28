@@ -1,0 +1,157 @@
+#settingsGUIContainer {
+  display block
+  absolute left 20px top 0
+  z-index 60000000
+}
+
+#settingsDataGUI {
+    position:absolute;
+}
+
+#settingsLevelsGUI {
+  left:400px;
+  position:absolute;
+}
+
+#statsDebug {
+  height:auto;
+  width:auto;
+  float:right;
+}
+
+.ui_video {
+  height:121px !important;
+  float:left;
+}
+
+.closed .ui_video {
+  height: 0px !important;
+}
+
+.videoLabel {
+  width:300px;
+  text-align: center;
+  font-family: verdana;
+  font-size:11px;
+  color: #999999;
+  margin: 0px 0 5px 0;
+  clear:both;
+}
+
+.renderer-2d ul {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 30px;
+}
+
+#colorSelectContainer {
+  z-index:1000;
+  display:none;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-240px;
+  margin-left:-320px;
+  width: 640px;
+    height:480px;
+}
+
+#colorSelectArea {
+  position:absolute;
+  width:100px;
+  height:100px;
+  left: 450px;
+  top:80px;
+  border: 10px solid red;
+  z-index:30;
+}
+
+#colorSelectCenter {
+  position:absolute;
+  display: block;
+  left:50%;
+  top:50%;
+  margin-left:-5px;
+  margin-top:-5px;
+  width:10px;
+  height:10px;
+  border: 1px solid black;
+  border-radius: 5px 5px 5px 5px;
+  z-index:31;
+}
+
+#marker {
+  position:absolute;
+  width:20px;
+  height:20px;
+  top:350px;
+  background-color: #ff0000;
+  border-radius: 10px 10px 10px 10px;
+  z-index:390;
+}
+
+#videoInput {
+  display:none;
+
+    left:5px;
+    margin-top: 15px;
+    -webkit-transform: scale(-1,1);
+    width: 640px;
+    height:480px;
+    border-radius: 8px 8px 8px 8px;
+
+}
+
+#uiTopContent {
+  position:relative;
+}
+
+#monitorFinalBlobs {
+  position:absolute;
+  z-index:3;
+}
+
+
+#debug-info {
+  // display:none;
+  position: absolute;
+  z-index: 100000;
+  right: 0;
+  top: 80px;
+  height: 50%;
+  width: 150px;
+  background: rgba(0,0,0,0.2);
+  padding: 10px;
+  margin-right: -150px;
+  list-style: none;
+  overflow: scroll;
+  letter-spacing: 0;
+
+  /*
+  <li class='data-channel'><span class='label'>{label}</span> {id1} -> {id2}</li>
+  <li class='state-history {source}'>{state}</li>
+  <li class='host-status {status}'>{status}</li>
+  */
+  time, .debug-type {
+    text-indent: -10000px;
+    width: 0;
+    position: absolute;
+    left: -1000px;
+  }
+  .host-status { background: grey; }
+  .host-status.host { color: blue; }
+  .host-status.guest { color: red; }
+  .data-channel { color: green; background: lightgrey; }
+  .state-history { color: white; }
+  .state-history.local { background: darkblue; }
+  .state-history.local-invite { background: lightblue; }
+  .state-history.remote { background: darkred; }
+  li {
+    margin-bottom: 1px;
+    white-space: pre;
+  }
+
+  &:hover {
+    margin-right: 0;
+  }
+}

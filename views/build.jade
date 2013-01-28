@@ -1,34 +1,31 @@
 !!! 5
 html(lang='en')
   head
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/build/build-stylus.css')
 
   body
 
-    header#mainmenu.state.main-menu
+    header.state.main-menu
       hgroup
         h2 Welcome to
         h1.copy
-          img(src="/images/logo_large.png", width="1533", height="155")
+          img(src='/images/logo_large.png', width='1533', height='155', alt='Paddle Battle')
         h3 a chrome experiment
 
-      nav
+      .nav
         p.multiplayer
           span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
-        button.playFriend.green(arb:id="playFriendButton") Play friend
-        button.playComputer.green Play Computer
+        button.play-friend.green(arb:id="playFriendButton") Play friend
+        button.play-computer.green Play Computer
 
-    #settingsGUIContainer
-      #settingsDataGUI
-      #settingsLevelsGUI
-      #uiTopContent
-      #videoInput
+    .state.loading
 
     //GAME INSTRUCTIONS
     .state.game-info.inactive
       .dialog.middle
         .content
-          .verticalCenter
+          .vertical-center
             h2 Game controls
               #controlsInstructions
               p Play using
@@ -60,6 +57,81 @@ html(lang='en')
           .countdown__num(data-number="1")
           .countdown__num(data-number="2")
           .countdown__num(data-number="3")
+    
+
+    //INVITE FRIEND
+    .state.friend-invite.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            h2 share this link to Invite a Friend
+            input.share-url(type='text', value='')
+            input#shareUrlButton.notimplemented(type='button', value='Copy')
+            p We'll let you know when your friend arrives. 
+              a.backToMainMenu Back
+
+    //COUNTDOWN 
+    .state.game-play.inactive
+      .content.center
+        .countdown
+          .countdown-number(data-number='1')
+          .countdown-number(data-number='2')
+          .countdown-number(data-number='3')
+
+    //PAUSE DIALOG
+    .state.game-pause.inactive
+      .dialog
+        .content
+          .vertical-center
+            h2 Paused
+            button.blue.play-friend Play Friend
+            button.singleplayer.green.play Resume (space)
+
+    //WAITING FOR FRIEND CAMERA
+    .state.webcam-waiting.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .webcam-spinner
+              .webcam-spinner__bg.icon-webcam
+              .webcam-spinner__quarter
+                .icon-quarter-circle
+            h2 Waiting for friend<br/>to activate camera
+
+    //OPPONENT LEFT DIALOG
+    .state.friend-left.inactive
+      .dialog
+        .content
+          .vertical-center
+            h2 Your friend left the game
+            button.blue.play-friend Play Friend
+            button.green.play Play Computer (Space)
+
+
+    #bautaGameOver.state.game-over.inactive
+      img#gameOverTitle(src='/images/game_over.png')
+      #gameOverDialog.state.game-over.inactive
+        .dialog
+          .content
+            #scoreboardSingle.vertical-center
+              h2 Your Points
+              .scoreboard.single
+                  div Levels Played
+                  #highscoreLevels.highscoreDigit X
+                  #shareScore
+                    h3 Share
+                    img(src='images/share_score.gif')
+                  #highscoreRally.highscoreDigit X
+                  div Longest Rallies
+
+              button.blue.play-friend Play Friend
+              button.green.play Play Again (Space)
+
+            #scoreboardMulti.vertical-center
+              h2 Your Points
+              .scoreboard.multiplayer
+                  img(src='images/temp_scoreboard_multi.gif')
+              button.green.play Play Again (Space)
 
     #canv-css
       .background
@@ -68,7 +140,10 @@ html(lang='en')
           .paddle
           #center
 
-
+    #game
+      canvas#canv-3d(width='320', height='480')
+      canvas#canv-2d(width='320',height='480')
+      video#remoteInput.hidden(width='160',height='120', autoplay)
 
     footer#footer
       #socials
@@ -91,15 +166,22 @@ html(lang='en')
               span.off Sound on
               span.onSound off
 
-  script(src="/_ah/channel/jsapi")
-  script(src='/javascript/libs/three.js')
-  script(src='/javascript/libs/Stats.js')
-  script(src='/javascript/libs/Tween.js')
-  script(src='/javascript/libs/TweenMax.min.js')
-  script(src="/javascript/libs/dat.gui.js")
-  script(src='/build/build.js')
-  script
-    require('paddle-battle')({
-      room: "{{.Room}}",
-      acceptLanguage: "en,{{.AcceptLanguage}}"
-    })
+
+    #settingsGUIContainer
+      #settingsDataGUI
+      #settingsLevelsGUI
+      #uiTopContent
+      #videoInput
+
+    script(src="/_ah/channel/jsapi")
+    script(src='/javascript/libs/three.js')
+    script(src='/javascript/libs/Stats.js')
+    script(src='/javascript/libs/Tween.js')
+    script(src='/javascript/libs/TweenMax.min.js')
+    script(src="/javascript/libs/dat.gui.js")
+    script(src='/build/build.js')
+    script
+      require('paddle-battle')({
+        room: "{{.Room}}",
+        acceptLanguage: "en,{{.AcceptLanguage}}"
+      })
