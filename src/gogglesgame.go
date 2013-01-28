@@ -5,6 +5,8 @@ import (
   "appengine/channel"
   "appengine/memcache"
   "appengine/user"
+  "bytes"
+  "encoding/binary"
   "encoding/json"
   "math/rand"
   "net/http"
@@ -41,6 +43,20 @@ type TemplateData struct {
   User string
   LoginLogoutLink string
   AcceptLanguage string
+}
+
+var turnservers = map[string][]string{
+  "North America": []string{
+    "1.1.1.1",
+	"1.1.1.2",
+  },
+  "Europe": []string{
+	"2.2.2.2",
+	"2.2.2.3",
+  },
+  "Unknown": []string{
+	"3.3.3.3",
+  },
 }
 
 func init() {
@@ -114,6 +130,22 @@ func init() {
       return
     }
     w.Write([]byte("{\"token\": \"" + channelToken + "\"}"))
+
+    // We set the turn server here, since we have got the r *http.Request at this point.
+    // The turn server info will be sent to clients when there are two clients in one room.
+
+    item, err := memcache.Get(c, "turnserver " + roomName)
+    if err == memcache.ErrCacheMiss {
+      // No turn server stored for this room.
+      turnServer := GetTurnServer(c, r)
+      item = &memcache.Item{Key: "turnserver " + roomName, Value: []byte(turnServer)}
+      if err := memcache.Set(c,item); err != nil {
+        c.Criticalf("Error storing turn server info, set error ",err)
+      }
+    }
+
+	c.Debugf("TURN server for room " + roomName + " is " + string(item.Value));
+
   })
 
   /*
@@ -132,6 +164,51 @@ func init() {
     Leave(c, Message{Room:room,From:client})
   })
 
+  http.HandleFunc("/turnreport/", func (w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
+
+    server := r.FormValue("server")
+    load := r.FormValue("load") // Current # of users.
+
+    // Store the new load.
+    item := &memcache.Item{Key: "turnserver load " + server, Value: []byte(load)}
+    if err := memcache.Set(c,item); err != nil {
+      c.Criticalf("Error storing turn server info, set error ",err)
+    }
+
+    // Recalculate which server has the least load in each region.
+    // Store it in memcache
+
+    for region,_ := range turnservers {
+
+      bestServer := ""
+      var minLoad int64 = 9999999;
+
+      for _,server := range turnservers[region] {
+        loaditem, err := memcache.Get(c, "turnserver load " + server)
+        if err == memcache.ErrCacheMiss {
+          if minLoad == 9999999 {
+            bestServer = server
+          }
+        } else {
+          buf := bytes.NewBuffer(loaditem.Value)
+          loaditemValue, err := binary.ReadVarint(buf)
+
+          if err == nil {
+            if loaditemValue < minLoad {
+              minLoad = loaditemValue
+              bestServer = server
+            }
+          }
+        }
+        item = &memcache.Item{Key: "turnserver " + region, Value: []byte(bestServer)}
+        if err := memcache.Set(c,item); err != nil {
+          c.Criticalf("Error storing turn server info, set error ",err)
+        }
+      }
+    }
+  })
+
 
   http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
@@ -144,9 +221,64 @@ func init() {
   })
 }
 
+func Region(r *http.Request) string {
+  country := strings.Join(r.Header["X-Appengine-Country"], "")
+  if country == "" {
+    country = "US"
+  }
+
+  if (country == "SE") {
+    return "Europe"
+  }
+  if (country == "US") {
+    return "North America"
+  }
+
+  return "Unknown"
+}
+
+func GetTurnServer(c appengine.Context, r *http.Request) string {
+  region := Region(r)
+
+  item, err := memcache.Get(c, "turnserver " + region)
+  if err == memcache.ErrCacheMiss {
+    // No turn server stored for this region.
+
+    bestServer := ""
+    var minLoad int64 = 9999999;
+
+    for _,server := range turnservers[region] {
+      loaditem, err := memcache.Get(c, "turnserver load " + server)
+      if err == memcache.ErrCacheMiss {
+        if minLoad == 9999999 {
+          bestServer = server
+        }
+      } else {
+        buf := bytes.NewBuffer(loaditem.Value)
+        loaditemValue, err := binary.ReadVarint(buf)
+
+        if err == nil {
+          if loaditemValue < minLoad {
+            minLoad = loaditemValue
+            bestServer = server
+          }
+        }
+      }
+    }
+    item = &memcache.Item{Key: "turnserver " + region, Value: []byte(bestServer)}
+    if err := memcache.Set(c,item); err != nil {
+      c.Criticalf("Error storing turn server info, set error ",err)
+    }
+
+  }
+
+  c.Debugf("TURN server for " + region + " is %s", string(item.Value));
+
+  return string(item.Value);
+}
 
 func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
-  roomName := r.URL.Path
+  roomName := strings.TrimLeft(r.URL.Path,"/")
 
   clientId := ""
   if cookie, _ := r.Cookie("clientId"); cookie != nil {
