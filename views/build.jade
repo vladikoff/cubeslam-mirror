@@ -133,17 +133,17 @@ html(lang='en')
                   img(src='images/temp_scoreboard_multi.gif')
               button.green.play Play Again (Space)
 
-    #canv-css
-      .background
-      .game-board
-        .arena
-          .paddle
-          #center
-
     #game
       canvas#canv-3d(width='320', height='480')
       canvas#canv-2d(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120', autoplay)
+      
+      #canv-css
+        .background
+        .game-board
+          .arena
+            .paddle
+            #center
 
     footer#footer
       #socials
