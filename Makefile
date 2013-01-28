@@ -10,7 +10,12 @@ COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 
 # adding special cased geometry
-GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js lib/geometry/paw.js lib/geometry/rabbit.js lib/geometry/bird1.js lib/geometry/bird2.js lib/geometry/bird3.js lib/geometry/bird4.js lib/geometry/moose.js lib/geometry/terrain.js lib/geometry/cpu.js
+GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js \
+							 lib/geometry/paw.js lib/geometry/rabbit.js \
+							 lib/geometry/bird1.js lib/geometry/bird2.js \
+							 lib/geometry/bird3.js lib/geometry/bird4.js \
+							 lib/geometry/moose.js lib/geometry/terrain.js \
+							 lib/geometry/cpu.js
 
 build: build-shaders build-geometry build-component build-styles build-localization
 	@:
@@ -22,7 +27,7 @@ build-component: build/build.js
 build-styles: build/build-less.css build/build-stylus.css
 build-localization: build/localization.arb
 
-node_modules:
+node_modules/:
 	npm install
 
 components/: node_modules
@@ -70,4 +75,5 @@ clean-geometry:
 
 .SUFFIXES:
 .PHONY: clean clean-geometry clean-localization \
-				build build-min build-shaders build-styles build-geometry build-component build-localization
+				build build-min build-shaders build-styles \
+				build-geometry build-component build-localization
