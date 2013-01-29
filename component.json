@@ -67,6 +67,7 @@
     "lib/actions/score.js",
     "lib/actions/debug.js",
     "lib/actions/player.js",
+    "lib/actions/shields.js",
     "lib/renderer-debug.js",
     "lib/renderer-2d.js",
     "lib/renderer-3d/index.js",
