@@ -13,7 +13,8 @@
     "publicclass/stash": "*",
     "publicclass/netchan": "*",
     "publicclass/base64-arraybuffer": "*",
-    "visionmedia/debug": "*"
+    "visionmedia/debug": "*",
+    "ForbesLindesay/seed-random": "*"
   },
   "scripts": [
     "index.js",
