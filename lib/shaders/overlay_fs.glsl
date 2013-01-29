@@ -16,7 +16,7 @@ void main(void) {
     vec3 vignetteColor = vec3(vignette);
 
     // add scanlines
-    vignetteColor += vec3(0.1) * cos( p.y * resolution.y*3.14 );
+    vignetteColor += vec3(0.1) * sin( p.y * resolution.y*3.14 );
 
    /* float grid_height = (resolution.y+resolution.y*0.15)*0.33;
 
