@@ -19,6 +19,15 @@ html(lang='en')
         button.play-friend.green(arb:id="playFriendButton") Play friend
         button.play-computer.green Play Computer
 
+      .links
+        a.tech(href="http://google.com/", target="_blank")
+          small About
+          br 
+          |  Paddle Battle
+          br
+          | Technology
+        a.experiment(href='http://google.com/', target='_blank')
+
     .state.loading
 
     //GAME INSTRUCTIONS
@@ -80,6 +89,21 @@ html(lang='en')
             button.blue.play-friend Play Friend
             button.singleplayer.green.play Resume (space)
 
+    //CAMERA REQUEST ATTENTION
+    .state.webcam-activate.inactive
+      .dialog.top
+        .content
+          span.alert-icon.red
+          .alert-info Please choose allow to connect your webcam and start friends play
+
+    .state.webcam-information.inactive
+      .dialog.top
+        .content
+          span.alert-icon.red
+          span.alert-info Are you sure? Friends play is not possible without allowing webcam.
+          span
+            a#activateCamera Activate Camera
+
     //WAITING FOR FRIEND CAMERA
     .state.webcam-waiting.inactive
       .dialog.middle
@@ -90,6 +114,20 @@ html(lang='en')
               .webcam-spinner__quarter
                 .icon-quarter-circle
             h2 Waiting for friend<br/>to activate camera
+
+    //WAITING FRIEND ACCEPT
+    .state.friend-accept.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+             .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Waiting for you friend to accept
+            button.backToMainMenu.blue Back
 
     //OPPONENT LEFT DIALOG
     .state.friend-left.inactive
@@ -126,7 +164,20 @@ html(lang='en')
                   img(src='images/temp_scoreboard_multi.gif')
               button.green.play Play Again (Space)
 
+    #gameScores.state.game.inactive
+      p 
+        img(src="/images/minipong.png")
+        | Paddle Battle
 
+        #scoresMultiplayer
+          Player 1 - Player 2
+          #scoreRally.score 0
+        #scoresSingleplayer
+          | Player 1 - CPU
+          .score
+            span#arb-id LV.
+            span#level
+          #scorePoints.score 0-0
 
     #game
       canvas#canv-3d(width='320', height='480')
