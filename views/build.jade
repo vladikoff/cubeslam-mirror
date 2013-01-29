@@ -13,6 +13,9 @@ html(lang='en')
           img(src='/images/logo_large.png', width='1533', height='155', alt='Paddle Battle')
         h3 a chrome experiment
 
+      p.full
+        span(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
+
       .nav
         p.multiplayer
           span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
@@ -68,9 +71,9 @@ html(lang='en')
           .vertical-center
             h2 share this link to Invite a Friend
             input.share-url(type='text', value='')
-            input#shareUrlButton.notimplemented(type='button', value='Copy')
+            input#share-url.notimplemented(type='button', value='Copy')
             p We'll let you know when your friend arrives. 
-              a.backToMainMenu Back
+              a.return-mainmenu Back
 
     //COUNTDOWN 
     .state.game-play.inactive
@@ -102,7 +105,7 @@ html(lang='en')
           span.alert-icon.red
           span.alert-info Are you sure? Friends play is not possible without allowing webcam.
           span
-            a#activateCamera Activate Camera
+            a#activate-camera Activate Camera
 
     //WAITING FOR FRIEND CAMERA
     .state.webcam-waiting.inactive
@@ -114,6 +117,20 @@ html(lang='en')
               .webcam-spinner__quarter
                 .icon-quarter-circle
             h2 Waiting for friend<br/>to activate camera
+
+    //WAITING FRIEND
+    .state.friend-waiting.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Your friend is waiting for you in the arena
+            button#playWaitingFriend.blue Play Friend
 
     //WAITING FRIEND ACCEPT
     .state.friend-accept.inactive
@@ -127,7 +144,21 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Waiting for you friend to accept
-            button.backToMainMenu.blue Back
+            button.return-mainmenu.blue Back
+
+    //FRIEND ARRIVED
+    .state.friend-arrived.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Your friend has arrived
+            button#play-friend.blue Play Friend
 
     //OPPONENT LEFT DIALOG
     .state.friend-left.inactive
@@ -138,10 +169,10 @@ html(lang='en')
             button.blue.play-friend Play Friend
             button.green.play Play Computer (Space)
 
-
-    #bautaGameOver.state.game-over.inactive
-      img#gameOverTitle(src='/images/game_over.png')
-      #gameOverDialog.state.game-over.inactive
+    //GAME OVER
+    .state.game-over.inactive
+      img.key(src='/images/game_over.png')
+      #game-over
         .dialog
           .content
             #scoreboardSingle.vertical-center
@@ -201,7 +232,7 @@ html(lang='en')
           li
             a#localizationSwitch(href="#") EN
           li
-            a.soundSwitch.on(href="#")
+            a.sound-switch.on(href="#")
               span.off Sound on
               span.onSound off
 
