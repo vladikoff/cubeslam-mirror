@@ -117,6 +117,7 @@
     "lib/geometry/bird4.js",
     "lib/geometry/moose.js",
     "lib/levels/index.js",
+    "lib/levels/next.js",
     "lib/levels/level1.js",
     "lib/levels/level2.js",
     "lib/levels/level3.js",
