@@ -19,11 +19,11 @@ html(lang='en')
       .nav
         p.multiplayer
           span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
-        button.play-friend.green(arb:id="playFriendButton") Play friend
+        button.play-friend.green(arb:id='playFriendButton') Play friend
         button.play-computer.green Play Computer
 
       .links
-        a.tech(href="http://google.com/", target="_blank")
+        a.tech(href='http://google.com/', target='_blank')
           small About
           br 
           |  Paddle Battle
@@ -195,20 +195,46 @@ html(lang='en')
                   img(src='images/temp_scoreboard_multi.gif')
               button.green.play Play Again (Space)
 
-    #gameScores.state.game.inactive
-      p 
+    #scores.state.game.inactive
+      .logo
         img(src="/images/minipong.png")
-        | Paddle Battle
+        p Google Chrong
+        p.level Level 1
 
-        #scoresMultiplayer
-          Player 1 - Player 2
-          #scoreRally.score 0
-        #scoresSingleplayer
-          | Player 1 - CPU
-          .score
-            span#arb-id LV.
-            span#level
-          #scorePoints.score 0-0
+      .multiplayer
+        .player
+          p You
+          ol
+            li
+            li
+            li
+
+        .opponent
+          p Friend
+          ol
+            li
+            li
+            li
+
+      .singleplayer
+        .player
+          p You
+          ol
+            li.active
+            li.active
+            li.active
+
+        .opponent
+          p CPU
+          ol
+            li
+            li
+            li
+        // | Player 1 - CPU
+        //.score
+        //  span#arb-id LV.
+        //  span#level
+        //#scorePoints.score 0-0
 
     #game
       canvas#canv-3d(width='320', height='480')
@@ -230,9 +256,9 @@ html(lang='en')
           li
             a.notimplemented Terms &amp; privacy
           li
-            a#localizationSwitch(href="#") EN
+            a#localizationSwitch(href='#') EN
           li
-            a.sound-switch.on(href="#")
+            a.sound-switch.on(href='#')
               span.off Sound on
               span.onSound off
 
@@ -243,7 +269,7 @@ html(lang='en')
       #uiTopContent
       #videoInput
 
-    script(src="/_ah/channel/jsapi")
+    script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/three.js')
     script(src='/javascript/libs/Stats.js')
     script(src='/javascript/libs/Tween.js')
@@ -252,6 +278,6 @@ html(lang='en')
     script(src='/build/build.js')
     script
       require('paddle-battle')({
-        room: "{{.Room}}",
-        acceptLanguage: "en,{{.AcceptLanguage}}"
+        room: '{{.Room}}',
+        acceptLanguage: 'en,{{.AcceptLanguage}}'
       })

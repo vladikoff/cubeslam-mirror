@@ -171,3 +171,62 @@
   > p
     vertical-align top
     margin 42px 7px 0
+
+#scores
+  color #f9f9da
+  position absolute
+  z-index 499
+  top 100px
+  left 70px
+  line-height 15px
+
+  img
+    margin-bottom 14px
+
+  &.inactive
+    display none
+
+  .score
+    font-family 'eboyregalpha'
+    font-size 60px
+    font-weight normal
+    line-height 51px
+
+  .player, .opponent
+    margin-top 10px
+    p
+      font-size 11px
+
+  .player
+    margin-top 20px
+
+  // .multiplayer
+  // display block
+  // .single
+
+
+  ol
+    li
+      width 26px
+      height 26px
+      border 2px solid #FFF
+      display inline-block
+      margin-left 7px
+      position relative
+      &:first-child 
+        margin-left 0
+      &.active:before
+        content ''
+        display block
+        absolute top -2px left -6px
+        width 34px
+        height 33px
+        background transparent url('/images/score-rect.png') no-repeat
+
+#level
+  &.inactive
+    display none
+
+#scoresRunning
+  &.inactive
+    display none
