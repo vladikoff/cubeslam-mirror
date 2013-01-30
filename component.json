@@ -66,6 +66,8 @@
     "lib/camera-attention.js",
     "lib/world.js",
     "lib/pool.js",
+    "lib/arb.js",
+    "lib/localization.js",
     "lib/ai.js"
   ]
 }
