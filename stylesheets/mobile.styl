@@ -3,9 +3,11 @@ html.mobile
   width 100%
   height 100%
   body
+    background #0088ff
     width 100%
     height 100%
     overflow hidden
+    position absolute
 
   footer#footer
   , #settingsGUIContainer
@@ -22,19 +24,18 @@ html.mobile
     position absolute
     z-index 3
 
+  .state.game-play 
+    .countdown
+      width 100%
+    .countdown-number
+      position relative
+      width 100%
+
   #game
-    // display: flex;
-    // flex-direction: row;
-    // flex-wrap: nowrap;
-    // justify-content: center;
-    // align-content: stretch;
-    // align-items: center;
     height 0
     width 0
     left 50%
     top 50%
-    position absolute
-    // overflow hidden
     > canvas, > video
       display none
 
@@ -56,6 +57,7 @@ html.mobile
       height 800px
       perspective 638px
       perspective-origin 50% 0%
+      transform translateZ(0)
       // transform-style preserve-3d
       backface-visibility hidden
 
@@ -83,7 +85,7 @@ html.mobile
 
   .puck
     position absolute
-    transform translateX(200px) translateZ(5px) translateY(260px)
+    transform translateX(200px) translateZ(5px) translateY(-50%) rotateX(-90deg)
     backface-visibility hidden
     transform-style preserve-3d
     transform-origin 50% 50% 0
