@@ -29,3 +29,7 @@ Chrome Pong (working title)
 
     $ dev_appserver.py .
 
+
+## Deploying
+
+  ...

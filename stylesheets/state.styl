@@ -1,0 +1,232 @@
+.state
+  &.game-instructions,
+  &.state.game-info,
+  &.state.game-start
+
+    box-orient horizontal
+    box-pack center
+    box-align center
+    width 100%
+    height 100%
+    position: absolute
+    top 0
+    left 0
+    z-index 500
+    perspective 2000px
+    transform rotateX( 0 )
+
+  &.inactive .dialog.middle .content
+    transform-origin center center
+    transform rotateX( -90deg )
+
+  &.friend-invite
+    input
+      font-family: 'Varela' sans-serif
+      font-size 11px
+      cursor pointer
+    input[type='button']
+      display inline
+      background #2aa52a
+      padding 4px 20px 3px
+      margin 0 0 20px -7px
+      line-height 21px
+      color #f9f9da
+      text-transform uppercase
+      border none
+      &:hover
+        background #207f20
+
+    input[type='text']
+      background #f9f9da
+      color #2aa52a
+      width 303px
+      height 22px
+      //text-transform: lowercase;
+      padding 2px 5px 2px 5px
+      border 1px solid #2aa52a
+      &:focus
+        outline none
+      &::selection
+        background #2aa52a
+        color #f9f9da
+
+  &.game-play
+    .content.center
+      display box
+      display -moz-box
+      display -webkit-box
+
+      box-orient horizontal
+      box-pack center
+      box-align center
+      width 100%
+      height 100%
+      absolute top 0 left 0
+      z-index 500
+
+    .countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown-number
+      background: url('/images/countdown-s9fee64d48a.png') no-repeat
+
+    .countdown-number
+      position absolute
+      width 988px
+      height 716px
+      opacity 0
+      transform scale(0.5) translate(0, 90px)
+      transition opacity .3s ease-out
+
+      &[data-number="3"]
+        background-position 0 -718px
+      &[data-number="2"]
+        background-position 0 0
+      &[data-number="1"]
+        background-position 0 -1436px
+      &.visible
+        opacity 1
+
+  &.game-pause
+    h2
+      padding-top: 40px
+      padding-bottom: 20px
+    p
+      padding-bottom: 25px
+
+  &.webcam-information
+    .dialog
+      button
+        margin 10px 0px 20px 0px
+
+    #activate-camera
+      color #40a040
+      text-decoratio: underline
+      text-transform uppercase
+      float left
+      line-height 45px
+
+  &.game-over
+    text-align center
+    height 100%
+
+    img.key
+      width 60%
+      height auto
+      margin-top 21%
+      z-index 500
+
+    .dialog
+      height 33%
+      min-height 266px
+
+    h2
+      font-family 'Varela', sans-serif
+      font-size 14px
+      padding-top 15px
+
+    h3
+      font-family 'Varela', sans-serif
+      font-size 12px
+
+    p
+      padding-bottom 25px
+
+    .scoreboard
+      color #e83129
+      display -moz-box
+      display -webkit-box
+      display -ms-box
+      display box
+      box-orient horizontal
+      box-pack center
+      box-align center
+      padding 20px 0px 40px 0px
+
+      &.multiplayer
+        padding 0px 0px 20px 0px
+
+      div
+        margin-right 20px
+        &:last-child
+          margin-right 0px
+
+        &.highscoreDigit
+          color #f9f9da
+          font-size 24px
+          background #e83129
+
+          width 50px
+          height 50px
+          line-height 50px
+          text-align center
+          overflow hidden
+          padding 0
+          border-radius 25px
+
+#game-controls
+  width 100%
+  margin 25px 0 28px
+
+  > p, > div
+    display inline-block
+
+  > p
+    vertical-align top
+    margin 42px 7px 0
+
+#scores
+  color #f9f9da
+  position absolute
+  z-index 499
+  top 100px
+  left 70px
+  line-height 15px
+
+  img
+    margin-bottom 14px
+
+  &.inactive
+    display none
+
+  .score
+    font-family 'eboyregalpha'
+    font-size 60px
+    font-weight normal
+    line-height 51px
+
+  .player, .opponent
+    margin-top 10px
+    p
+      font-size 11px
+
+  .player
+    margin-top 20px
+
+  // .multiplayer
+  // display block
+  // .single
+
+
+  ol
+    li
+      width 26px
+      height 26px
+      border 2px solid #FFF
+      display inline-block
+      margin-left 7px
+      position relative
+      &:first-child
+        margin-left 0
+      &.active:before
+        content ''
+        display block
+        absolute top -2px left -6px
+        width 34px
+        height 33px
+        background transparent url('/images/score-rect.png') no-repeat
+
+#level
+  &.inactive
+    display none
+
+#scoresRunning
+  &.inactive
+    display none
