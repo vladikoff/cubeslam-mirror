@@ -3948,7 +3948,7 @@ THREE.Matrix4.prototype = {
 
 			} else {
 
-				console.warn( msg );
+				//console.warn( msg );
 
 			}
 
@@ -18011,7 +18011,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 		if ( geometryGroup.numMorphTargets ) {
 
 			geometryGroup.__webglMorphTargetsBuffers = [];
-			console.log(geometryGroup.numMorphTargets)
+			
 			for ( m = 0, ml = geometryGroup.numMorphTargets; m < ml; m ++ ) {
 
 				geometryGroup.__webglMorphTargetsBuffers.push( _gl.createBuffer() );
@@ -36105,8 +36105,6 @@ THREE.OBJExporter.prototype = {
 	constructor: THREE.OBJExporter,
 
 	parse: function ( geometry ) {
-
-		console.log( geometry );
 
 		var output = '';
 
