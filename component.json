@@ -49,6 +49,7 @@
     "lib/support/pool.js",
     "lib/states/index.js",
     "lib/states/setup.js",
+    "lib/states/mobile.js",
     "lib/states/loading.js",
     "lib/states/main-menu.js",
     "lib/states/game.js",

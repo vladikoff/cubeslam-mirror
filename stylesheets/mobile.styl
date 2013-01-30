@@ -1,55 +1,91 @@
-#canv-css
-  width 1280px
-  height 800px
-  absolute top 0
-  .background
-    background url('/images/css/background.png') no-repeat
+html.mobile
+  overflow hidden
+  width 100%
+  height 100%
+  body
     width 100%
     height 100%
-    z=index 0
-    absolute top 0 left 0
+    overflow hidden
 
-  .game-board
+  footer#footer,
+  #settingsGUIContainer
+    display none
+
+  #canv-pixel
+    width 1px
+    height 1px
+    border 5px solid pink
+    background blue
+    position absolute
+    z-index 3
+  #game-pixel
+    width 1px
+    height 1px
+    border 5px solid pink
+    background green
+    position absolute
+    z-index 3
+
+  #game
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: nowrap;
+    // justify-content: center;
+    // align-content: stretch;
+    // align-items: center;
+    height 0
+    width 0
+    left 50%
+    top 50%
+    position absolute
+    // overflow hidden
+    > canvas, > video
+      display none
+
+  #canv-css
     width 1280px
     height 800px
-    perspective 638px
-    perspective-origin 50% 0%
-    // transform-style preserve-3d
-    backface-visibility hidden
+    relative top -400px left -640px
+    .background
+      background url('/images/css/background-crosshair.png') no-repeat
+      width 100%
+      height 100%
+      z=index 0
+      absolute top 0 left 0
 
-  .arena
-    width 1280px
-    height 1600px
-    transform rotateX(101deg) translateX(0%) translateZ(-40px) translateY(-56%)
-    transform-style preserve-3d
-    backface-visibility hidden
-    // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
+    .game-board
+      width 1280px
+      height 800px
+      perspective 638px
+      perspective-origin 50% 0%
+      // transform-style preserve-3d
+      backface-visibility hidden
+
+    .arena
+      width 1280px
+      height 1600px
+      transform rotateX(101deg) translateX(0%) translateZ(-40px) translateY(-56%)
+      transform-style preserve-3d
+      backface-visibility hidden
+      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
+      position absolute
+      z=index 1
+
+  .paddle
     position absolute
-    z=index 1
+    transform-style preserve-3d
+    transform rotateX(90deg) translateX(200px) translateZ(5px) translateY(-50%)
+    backface-visibility hidden
+    transform-style preserve-3d
+    transform-origin 50% 50% 0
 
-#center
-  absolute top 50%
-  width 100% 
-  // height 20px
-  background blue
-  transform-style preserve-3d
+  .shadow
+    background black !important
+    box-shadow 0 0 5px black
 
-
-.paddle
-  position absolute
-  transform-style preserve-3d
-  transform rotateX(90deg) translateX(200px) translateZ(5px) translateY(-50%)
-  backface-visibility hidden
-  transform-style preserve-3d
-  transform-origin 50% 50% 0
-
-.shadow
-  background black !important
-  box-shadow 0 0 5px black
-
-.puck
-  position absolute
-  transform translateX(200px) translateZ(5px) translateY(260px)
-  backface-visibility hidden
-  transform-style preserve-3d
-  transform-origin 50% 50% 0
+  .puck
+    position absolute
+    transform translateX(200px) translateZ(5px) translateY(260px)
+    backface-visibility hidden
+    transform-style preserve-3d
+    transform-origin 50% 50% 0

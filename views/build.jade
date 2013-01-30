@@ -1,8 +1,10 @@
 !!! 5
 html(lang='en')
   head
+    meta(name='viewport',content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/build/build-stylus.css')
+
 
   body
 
@@ -39,7 +41,7 @@ html(lang='en')
         .content
           .vertical-center
             h2 Game controls
-              #controlsInstructions
+            #controlsInstructions
               p Play using
               .kb-anim
                 .dash-big.dash-black
@@ -242,6 +244,7 @@ html(lang='en')
       canvas#canv-3d(width='320', height='480')
       canvas#canv-2d(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120', autoplay)
+      #game-pixel
       
       #canv-css
         .background
@@ -249,6 +252,7 @@ html(lang='en')
           .arena
             .paddle
             #center
+        #canv-pixel
 
     footer#footer
       #socials
