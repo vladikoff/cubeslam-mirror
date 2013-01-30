@@ -13,11 +13,23 @@ html(lang='en')
           img(src='/images/logo_large.png', width='1533', height='155', alt='Paddle Battle')
         h3 a chrome experiment
 
+      p.full
+        span(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
+
       .nav
         p.multiplayer
           span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
-        button.play-friend.green(arb:id="playFriendButton") Play friend
+        button.play-friend.green(arb:id='playFriendButton') Play friend
         button.play-computer.green Play Computer
+
+      .links
+        a.tech(href='http://google.com/', target='_blank')
+          small About
+          br 
+          |  Paddle Battle
+          br
+          | Technology
+        a.experiment(href='http://google.com/', target='_blank')
 
     .state.loading
 
@@ -66,9 +78,9 @@ html(lang='en')
           .vertical-center
             h2 share this link to Invite a Friend
             input.share-url(type='text', value='')
-            input#shareUrlButton.notimplemented(type='button', value='Copy')
+            input#share-url.notimplemented(type='button', value='Copy')
             p We'll let you know when your friend arrives. 
-              a.backToMainMenu Back
+              a.return-mainmenu Back
 
     //COUNTDOWN 
     .state.game-play.inactive
@@ -87,6 +99,21 @@ html(lang='en')
             button.blue.play-friend Play Friend
             button.singleplayer.green.play Resume (space)
 
+    //CAMERA REQUEST ATTENTION
+    .state.webcam-activate.inactive
+      .dialog.top
+        .content
+          span.alert-icon.red
+          .alert-info Please choose allow to connect your webcam and start friends play
+
+    .state.webcam-information.inactive
+      .dialog.top
+        .content
+          span.alert-icon.red
+          span.alert-info Are you sure? Friends play is not possible without allowing webcam.
+          span
+            a#activate-camera Activate Camera
+
     //WAITING FOR FRIEND CAMERA
     .state.webcam-waiting.inactive
       .dialog.middle
@@ -98,6 +125,48 @@ html(lang='en')
                 .icon-quarter-circle
             h2 Waiting for friend<br/>to activate camera
 
+    //WAITING FRIEND
+    .state.friend-waiting.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Your friend is waiting for you in the arena
+            button#playWaitingFriend.blue Play Friend
+
+    //WAITING FRIEND ACCEPT
+    .state.friend-accept.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Waiting for you friend to accept
+            button.return-mainmenu.blue Back
+
+    //FRIEND ARRIVED
+    .state.friend-arrived.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Your friend has arrived
+            button#play-friend.blue Play Friend
+
     //OPPONENT LEFT DIALOG
     .state.friend-left.inactive
       .dialog
@@ -107,10 +176,10 @@ html(lang='en')
             button.blue.play-friend Play Friend
             button.green.play Play Computer (Space)
 
-
-    #bautaGameOver.state.game-over.inactive
-      img#gameOverTitle(src='/images/game_over.png')
-      #gameOverDialog.state.game-over.inactive
+    //GAME OVER
+    .state.game-over.inactive
+      img.key(src='/images/game_over.png')
+      #game-over
         .dialog
           .content
             #scoreboardSingle.vertical-center
@@ -132,6 +201,42 @@ html(lang='en')
               .scoreboard.multiplayer
                   img(src='images/temp_scoreboard_multi.gif')
               button.green.play Play Again (Space)
+
+    #scores.state.game.inactive
+      .logo
+        img(src="/images/minipong.png")
+        p Google Chrong
+        p.level Level 1
+
+      .multiplayer
+        .player
+          p You
+          ol
+            li
+            li
+            li
+
+        .opponent
+          p Friend
+          ol
+            li
+            li
+            li
+
+      .singleplayer
+        .player
+          p You
+          ol
+            li.active
+            li.active
+            li.active
+
+        .opponent
+          p CPU
+          ol
+            li
+            li
+            li
 
     #game
       canvas#canv-3d(width='320', height='480')
@@ -160,9 +265,9 @@ html(lang='en')
           li
             a.notimplemented Terms &amp; privacy
           li
-            a#localizationSwitch(href="#") EN
+            a#localizationSwitch(href='#') EN
           li
-            a.soundSwitch.on(href="#")
+            a.sound-switch.on(href='#')
               span.off Sound on
               span.onSound off
 
@@ -173,7 +278,7 @@ html(lang='en')
       #uiTopContent
       #videoInput
 
-    script(src="/_ah/channel/jsapi")
+    script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/three.js')
     script(src='/javascript/libs/Stats.js')
     script(src='/javascript/libs/Tween.js')
@@ -182,6 +287,6 @@ html(lang='en')
     script(src='/build/build.js')
     script
       require('paddle-battle')({
-        room: "{{.Room}}",
-        acceptLanguage: "en,{{.AcceptLanguage}}"
+        room: '{{.Room}}',
+        acceptLanguage: 'en,{{.AcceptLanguage}}'
       })
