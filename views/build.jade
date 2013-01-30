@@ -1,16 +1,18 @@
+- var name = "Paddle Battle";
+
 !!! 5
 html(lang='en')
   head
+    title #{name}
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/build/build-stylus.css')
 
   body
-
     header.state.main-menu
       hgroup
         h2 Welcome to
         h1.copy
-          img(src='/images/logo_large.png', width='1533', height='155', alt='Paddle Battle')
+          img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
         h3 a chrome experiment
 
       p.full
@@ -26,7 +28,7 @@ html(lang='en')
         a.tech(href='http://google.com/', target='_blank')
           small About
           br
-          |  Paddle Battle
+          |  #{name}
           br
           | Technology
         a.experiment(href='http://google.com/', target='_blank')
@@ -198,7 +200,7 @@ html(lang='en')
     #scores.state.game.inactive
       .logo
         img(src="/images/minipong.png")
-        p Google Chrong
+        p #{name}
         p.level Level 1
 
       .multiplayer
