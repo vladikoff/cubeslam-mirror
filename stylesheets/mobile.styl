@@ -81,12 +81,29 @@ html.mobile
     transform-style preserve-3d
     transform rotateX(90deg) translateX(200px) translateZ(5px) translateY(-50%)
     backface-visibility hidden
-    transform-style preserve-3d
     transform-origin 50% 50% 0
 
   .shadow
     background black !important
     box-shadow 0 0 5px black
+
+  .extra
+    width:128px
+    height:128px; 
+    display inline-block
+    overflow hidden
+    background-color yellow
+    background-repeat no-repeat
+    transform-style preserve-3d
+    backface-visibility hidden
+    transform-origin 50% 50% 0
+    &.multiball
+      background-color transparent
+      background-image url('/images/css/multiball.png')
+    &.fog
+      background-color transparent
+      background-image url('/images/css/fog.png')
+
 
   .puck
     position absolute
