@@ -1,6 +1,7 @@
 !!! 5
 html(lang='en')
   head
+    meta(name='apple-mobile-web-app-capable',content='yes')
     meta(name='viewport',content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/build/build-stylus.css')
@@ -201,7 +202,7 @@ html(lang='en')
             #scoreboardMulti.vertical-center
               h2 Your Points
               .scoreboard.multiplayer
-                  img(src='images/temp_scoreboard_multi.gif')
+                  img(src='/images/temp_scoreboard_multi.gif')
               button.green.play Play Again (Space)
 
     #scores.state.game.inactive
@@ -248,7 +249,7 @@ html(lang='en')
       
       #canv-css
         .background
-          img(data-src='/images/css/background-bleed.png')
+          img(data-src='/images/css/background-bleed-small.png')
         .game-board
           .arena
             .paddle
