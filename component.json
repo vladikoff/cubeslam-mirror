@@ -93,6 +93,7 @@
     "lib/shaders/arenaside_fs.js",
     "lib/shaders/animal_fs.js",
     "lib/shaders/video_fs.js",
+    "lib/shaders/localvideo_fs.js",
     "lib/shaders/static_fs.js",
     "lib/shaders/shield_fs.js",
     "lib/shaders/camera_fs.js",

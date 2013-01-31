@@ -38,7 +38,7 @@ void main(void)
     vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
 
     //scanlines
-    finalColor += vec3(0.05) * cos( (vUv.y+0.5) * 640.0 );
+    //finalColor += vec3(0.05) * sin( (vUv.y) * 360.0 );
 
     gl_FragColor=vec4(finalColor,1.0);
     
