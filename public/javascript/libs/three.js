@@ -25700,6 +25700,24 @@ THREE.GeometryUtils = {
 
 	},
 
+	flipUVs: function ( geometry ) {
+
+		var uvSet = geometry.faceVertexUvs[ 0 ];
+
+		for ( var i = 0, il = uvSet.length; i < il; i ++ ) {
+
+			var uvs = uvSet[ i ];
+
+			for ( var j = 0, jl = uvs.length; j < jl; j ++ ) {
+
+				uvs[ j ].y = 1 - uvs[ j ].y;
+
+			}
+
+		}
+
+	},
+
 	triangulateQuads: function ( geometry ) {
 
 		var i, il, j, jl;
