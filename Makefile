@@ -1,5 +1,4 @@
 JADE = $(shell find views/*.jade)
-STYLES=$(wildcard styles/*.less)
 STYLUS=$(wildcard stylesheets/*.styl)
 GEOMETRY=$(wildcard lib/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
@@ -26,7 +25,7 @@ build-shaders: $(SHADERS_JS) lib/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 build-jade: build/build.html
 build-component: build/build.js
-build-styles: build/build-less.css build/build-stylus.css
+build-styles: build/build-stylus.css
 build-localization: build/localization.arb
 
 node_modules/:
@@ -49,9 +48,6 @@ lib/geometry/%.js: lib/geometry/%.json
 
 build/%.html: views/%.jade
 	node_modules/.bin/jade < $< --path $< > $@ -P
-
-build/build-less.css: $(STYLES)
-	node_modules/.bin/lessc $(STYLES) > $@
 
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
