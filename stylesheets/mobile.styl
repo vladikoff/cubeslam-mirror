@@ -24,6 +24,31 @@ html.mobile
     position absolute
     z-index 3
 
+
+  #gamepad
+    display none
+    position absolute
+    top 15%
+    width 100%
+    z-index 100
+
+    .button
+      background transparent url('/images/css/buttons.png') no-repeat top left
+      width 91px
+      height 91px
+
+      position absolute
+      left 5%
+
+
+      &:active 
+        background-position top right
+
+      &:last-child
+        left auto
+        right 5%
+
+
   .state
     visibility hidden
     display none
@@ -117,3 +142,10 @@ html.mobile
     backface-visibility hidden
     transform-style preserve-3d
     transform-origin 50% 50% 0
+
+@media (orientation: portrait)
+  #gamepad
+    display none
+@media (orientation: landscape)
+  #gamepad
+    display block!important

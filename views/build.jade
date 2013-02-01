@@ -248,13 +248,16 @@ html(lang='en')
       canvas#canv-3d(width='320', height='480')
       canvas#canv-2d(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120', autoplay)
-      #game-pixel
       
       #canv-css
         .background
-          img(data-src='/images/css/background-bleed-small.png')
+          img(data-src-mobile='/images/css/background-bleed-small.png', data-src-tablet='/images/css/background-bleed.png')
         .game-board
           .arena
+
+    #gamepad.state.game-play
+      .button.left
+      .button.right
 
     footer#footer
       #socials
