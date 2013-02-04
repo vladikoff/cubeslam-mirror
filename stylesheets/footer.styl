@@ -11,22 +11,40 @@ footer#footer
 
 #socials
   position absolute
-  display inline-block
-  width 150px
+  display table
+  border-collapse separate
+  border-spacing 5px
+  // width 150px
 
   margin-left 30px
 
-  div
-    width: 20px
-    height: 20px
-    margin-top: 9px
-    margin-right: 5px
-    display: inline-block
+  .icon
+    background #e8e8ca
+    width 20px
+    height 20px
+    margin-top 9px
+    font-size 16px
+    border-radius 3px
+    display table-cell
+    vertical-align middle
 
-    &.googleplus { background-image: url('/images/socials_googleplus.png'); }
-    &.facebook { background-image: url('/images/socials_facebook.png'); }
-    &.twitter { background-image: url('/images/socials_twitter.png'); }
-    &.something { background-image: url('/images/socials_something.png'); }
+    &:before
+      display inline-block
+      text-align center
+      width 100%
+      vertical-align middle
+
+    &:after
+      content ' '
+      height 100%
+      display inline-block
+      position absolute
+      width 1pxs
+
+    &:hover
+      background #000
+      color #e8e8ca
+
 
     span
       display: none;
