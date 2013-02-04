@@ -65,7 +65,6 @@
     "lib/actions/game.js",
     "lib/actions/extra.js",
     "lib/actions/obstacle.js",
-    "lib/actions/score.js",
     "lib/actions/debug.js",
     "lib/actions/player.js",
     "lib/actions/shields.js",
