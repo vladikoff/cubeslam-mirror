@@ -6,6 +6,28 @@
   url('/fonts/eboy-regalpha-webfont.ttf') format('truetype'),
   url('/fonts/eboy-regalpha-webfont.svg#webfont') format('svg')
 
+/*
+ * Share icons
+ */
+
+@font-face
+  font-family 'icomoon'
+  src url('/fonts/icomoon.eot')
+  src url('/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon.woff') format('woff'),
+    url('/fonts/icomoon.ttf') format('truetype'),
+    url('/fonts/icomoon.svg#icomoon') format('svg')
+  font-weight normal
+  font-style normal
+
+[data-icon]:before
+  font-family 'icomoon'
+  content attr(data-icon)
+  speak none
+  font-weight normal
+  line-height 1
+  font-smoothing antialiased
+
 
 /*
  * Puck background positions
