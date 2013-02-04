@@ -1,21 +1,20 @@
-#ifdef GL_ES
+ #ifdef GL_ES
 precision mediump float;
 #endif
 
+uniform sampler2D map;
+uniform vec3 ambient;
+uniform vec3 diffuse;
 varying vec2 vUv;
-
-uniform sampler2D tDiffuse;
-
-uniform vec3 topColor;
-uniform vec3 bottomColor;
-uniform float offset;
-uniform float exponent;
-
-varying vec3 vWorldPosition;
-
+      
 void main() {
 
-    vec3 diffuse = texture2D(tDiffuse,vUv).rgb;
-    float h = normalize( vWorldPosition + offset ).y;
-    gl_FragColor = vec4( vec3(mix( bottomColor, topColor, max( pow( h, exponent ), 0.0 ) ))*diffuse, 1.0 );
+    gl_FragColor = vec4(1.0);
+
+    vec4 texelColor = texture2D( map, vUv );
+    vec3 bodyColor = (diffuse*texelColor.r*0.3+(texelColor.g*ambient*0.6));
+    gl_FragColor = vec4( bodyColor + vec3(step(0.9,texelColor.b))*bodyColor*8.0,1.0);
+                
+    gl_FragColor.xyz = sqrt( gl_FragColor.xyz );
+
 }

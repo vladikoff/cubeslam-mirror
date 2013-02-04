@@ -15678,8 +15678,8 @@ THREE.ShaderChunk = {
 			"vec3 morphed = vec3( 0.0 );",
 			"morphed += ( morphTarget0 - position ) * morphTargetInfluences[ 0 ];",
 			"morphed += ( morphTarget1 - position ) * morphTargetInfluences[ 1 ];",
-			"morphed += ( morphTarget2 - position ) * morphTargetInfluences[ 2 ];",
-			"morphed += ( morphTarget3 - position ) * morphTargetInfluences[ 3 ];",
+			//"morphed += ( morphTarget2 - position ) * morphTargetInfluences[ 2 ];",
+			//"morphed += ( morphTarget3 - position ) * morphTargetInfluences[ 3 ];",
 
 			"#ifndef USE_MORPHNORMALS",
 
@@ -35229,6 +35229,7 @@ THREE.SpritePlugin = function ( ) {
 		_gl.useProgram( _sprite.program );
 
 		_gl.enableVertexAttribArray( attributes.position );
+
 		_gl.enableVertexAttribArray( attributes.uv );
 
 		_gl.disable( _gl.CULL_FACE );
