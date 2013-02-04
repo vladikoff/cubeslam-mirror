@@ -7,6 +7,7 @@ uniform float time;
 uniform float noiseAmount;
 uniform sampler2D tVideo;
 uniform sampler2D tBroken;
+uniform vec2 resolution;
 
 float rand(vec2 co){ return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453); }
 
@@ -34,13 +35,19 @@ void main(void)
 
 
     float brokenColor = texture2D(tBroken,vUv).r;
-    vec3 color = mix( videoOrg, videoDistort,noiseAmount);
+    vec3 color = mix( videoOrg, videoDistort,noiseAmount+0.09);
     vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
+
+    vec2 p = vUv;
+    float darkness = 1.7;
+    vec2 textureCoords = p - 0.5;
+    float vignette = 1.0 - (dot(textureCoords, textureCoords) * darkness);
+    vec3 vignetteColor = vec3(vignette);
 
     //scanlines
     //finalColor += vec3(0.05) * sin( (vUv.y) * 360.0 );
 
-    gl_FragColor=vec4(finalColor,1.0);
+    gl_FragColor=vec4(finalColor*vignetteColor,1.0);
     
 }
 
