@@ -17,15 +17,29 @@ void main(void)
     float ys = floor(gl_FragCoord.y / 4.0);
 
     float noise = rand(vec2(xs * time,ys * time))-0.5;
-    //float c=noise(vUv,time);
-
-    vec2 tempUv = vUv;
-    tempUv.x += sin((vUv.y-0.5)*14.5*time)*0.01 + noise*noiseAmount*0.1;
     
-    vec3 videoColor = texture2D(tVideo,vUv).rgb;
+    vec2 tempUv = vUv;
+    tempUv.x += sin(vUv.y*10.0)*0.01+cos(vUv.y*40.0)*0.005;
+    tempUv.y = mix(vUv.y,fract(vUv.y-time*0.3),noiseAmount);
+    
+    vec3 videoOrg = texture2D(tVideo, vUv).rgb;
+
+    vec2 offset = vec2(0.05*noiseAmount,0.0);
+    float cr = texture2D(tVideo, tempUv + offset).r;
+    float cga = texture2D(tVideo, tempUv).g;
+    float cb = texture2D(tVideo, tempUv - offset).b;
+    vec3 videoDistort = vec3(cr, cga, cb) + noise*.4;
+
+    //rbg offset
+
+
     float brokenColor = texture2D(tBroken,vUv).r;
-    vec3 color = mix( videoColor, texture2D(tVideo,tempUv).rgb*1.5+noise,noiseAmount);
+    vec3 color = mix( videoOrg, videoDistort,noiseAmount);
     vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
+
+    //scanlines
+    //finalColor += vec3(0.05) * sin( (vUv.y) * 360.0 );
+
     gl_FragColor=vec4(finalColor,1.0);
     
 }

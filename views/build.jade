@@ -4,8 +4,8 @@
 html(lang='en')
   head
     title #{name}
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Varela')
-    link(rel='stylesheet', href='/build/build-stylus.css')
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
+    link(rel='stylesheet', href='/stylesheets/pong.css')
 
   body
     header.state.main-menu
@@ -132,14 +132,14 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Your friend is waiting for you in the arena
-            button#playWaitingFriend.blue Play Friend
+            button.play-friend.blue Play Friend
 
     //WAITING FRIEND ACCEPT
     .state.friend-accept.inactive
       .dialog.middle
         .content
           .vertical-center
-             .cpu-wth-eyes
+            .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
@@ -160,7 +160,7 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Your friend has arrived
-            button#play-friend.blue Play Friend
+            button.play-friend.blue Play Friend
 
     //OPPONENT LEFT DIALOG
     .state.friend-left.inactive
@@ -243,6 +243,7 @@ html(lang='en')
       canvas#canv-3d(width='320',height='480')
       canvas#canv-2d(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120',autoplay)
+      video#localInput.hidden(width='160',height='120',autoplay)
 
     footer#footer
       #socials
@@ -257,6 +258,8 @@ html(lang='en')
       #footMenu
         ul
           li
+            a#pointer-lock Mouse lock on
+          li
             a.notimplemented Terms &amp; privacy
           li
             a#localizationSwitch(href='#') EN
@@ -270,7 +273,7 @@ html(lang='en')
       #settingsDataGUI
       #settingsLevelsGUI
       #uiTopContent
-      #videoInput
+
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/three.js')
@@ -278,7 +281,7 @@ html(lang='en')
     script(src='/javascript/libs/Tween.js')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src="/javascript/libs/dat.gui.js")
-    script(src='/build/build.js')
+    script(src='/javascript/pong.js')
     script
       require('paddle-battle')({
         room: '{{.Room}}',

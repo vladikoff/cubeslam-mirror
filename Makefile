@@ -1,5 +1,4 @@
 JADE = $(shell find views/*.jade)
-STYLES=$(wildcard styles/*.less)
 STYLUS=$(wildcard stylesheets/*.styl)
 GEOMETRY=$(wildcard lib/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
@@ -11,7 +10,12 @@ COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 
 # adding special cased geometry
-GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js lib/geometry/rabbit.js lib/geometry/bird1.js lib/geometry/bird2.js lib/geometry/bird3.js lib/geometry/bird4.js lib/geometry/moose.js lib/geometry/terrain.js
+GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js \
+							 lib/geometry/paw.js lib/geometry/rabbit.js \
+							 lib/geometry/bird1.js lib/geometry/bird2.js \
+							 lib/geometry/bird3.js lib/geometry/bird4.js \
+							 lib/geometry/moose.js lib/geometry/terrain.js \
+							 lib/geometry/cpu.js
 
 build: build-shaders build-geometry build-component build-styles build-jade build-localization
 	@:
@@ -21,10 +25,10 @@ build-shaders: $(SHADERS_JS) lib/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
 build-jade: build/build.html
 build-component: build/build.js
-build-styles: build/build-less.css build/build-stylus.css
+build-styles: build/build-stylus.css
 build-localization: build/localization.arb
 
-node_modules:
+node_modules/:
 	npm install
 
 components/: node_modules
@@ -44,9 +48,6 @@ lib/geometry/%.js: lib/geometry/%.json
 
 build/%.html: views/%.jade
 	node_modules/.bin/jade < $< --path $< > $@ -P
-
-build/build-less.css: $(STYLES)
-	node_modules/.bin/lessc $(STYLES) > $@
 
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
@@ -75,4 +76,5 @@ clean-geometry:
 
 .SUFFIXES:
 .PHONY: clean clean-geometry clean-localization \
-				build build-min build-shaders build-styles build-geometry build-component build-localization
+				build build-min build-shaders build-styles \
+				build-geometry build-component build-localization
