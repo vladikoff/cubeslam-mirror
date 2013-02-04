@@ -3,7 +3,11 @@
 !!! 5
 html(lang='en')
   head
+    meta(name='apple-mobile-web-app-capable',content='yes')
+    meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
     title #{name}
+    link(rel='apple-touch-icon', href='/images/minipong.png')
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/pong.css')
 
@@ -41,30 +45,29 @@ html(lang='en')
         .content
           .vertical-center
             h2 Game controls
-              #game-controls
-                p Play using
-                .kb-anim
-                  .dash-big.dash-black
-                  .key.key--small.default-key-anim
-                    .key__label.icon-arrow-left
-                    .key__bg-outer
-                      .key__bg-inner
-                  div.key.key--small
-                    .key__label.icon-arrow-right
-                    .key__bg-outer
-                      div.key__bg-inner
-                p or
-                .mouse-anim
-                  .dash-big.dash-black
-                  .icon-mouse
-                p or press
-                .key.key--big.default-key-anim
-                  p.key__label SPACE
+            #game-controls
+              p Play using
+              .kb-anim
+                .dash-big.dash-black
+                .key.key--small.default-key-anim
+                  .key__label.icon-arrow-left
+                  .key__bg-outer
+                    .key__bg-inner
+                div.key.key--small
+                  .key__label.icon-arrow-right
                   .key__bg-outer
                     div.key__bg-inner
-                p to pause
+              p or
+              .mouse-anim
+                .dash-big.dash-black
+                .icon-mouse
+              p or press
+              .key.key--big.default-key-anim
+                p.key__label SPACE
+                .key__bg-outer
+                  div.key__bg-inner
+              p to pause
             button.green.play Start
-
 
     //INVITE FRIEND
     .state.friend-invite.inactive
@@ -194,7 +197,7 @@ html(lang='en')
             #scoreboardMulti.vertical-center
               h2 Your Points
               .scoreboard.multiplayer
-                  img(src='images/temp_scoreboard_multi.gif')
+                  img(src='/images/temp_scoreboard_multi.gif')
               button.green.play Play Again (Space)
 
     #scores.state.game.inactive
@@ -233,17 +236,22 @@ html(lang='en')
             li
             li
             li
-        // | Player 1 - CPU
-        //.score
-        //  span#arb-id LV.
-        //  span#level
-        //#scorePoints.score 0-0
 
     #game
       canvas#canv-3d(width='320',height='480')
       canvas#canv-2d(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120',autoplay)
       video#localInput.hidden(width='160',height='120',autoplay)
+
+      #canv-css
+        .background
+          img(data-src-mobile='/images/css/background-bleed-small.png', data-src-tablet='/images/css/background-bleed.png')
+        .game-board
+          .arena
+
+    #gamepad.state.game-play
+      .button.left
+      .button.right
 
     footer#footer
       #socials
