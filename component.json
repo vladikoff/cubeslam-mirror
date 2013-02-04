@@ -77,6 +77,7 @@
     "lib/renderer-3d/player.js",
     "lib/renderer-3d/environment.js",
     "lib/renderer-3d/effects.js",
+    "lib/renderer-3d/effect-skins.js",
     "lib/renderer-3d/cpu.js",
     "lib/renderer-3d/camera-controller.js",
     "lib/renderer-3d/animals.js",

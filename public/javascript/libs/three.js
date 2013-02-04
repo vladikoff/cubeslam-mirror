@@ -36337,4 +36337,3 @@ THREE.OBJExporter.prototype = {
 	}
 
 }
-
