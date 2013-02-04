@@ -36,14 +36,14 @@
       padding 4px 20px 3px
       margin 0 0 20px -7px
       line-height 21px
-      color #f9f9da
+      color $color-beige
       text-transform uppercase
       border none
       &:hover
         background #207f20
 
     input[type='text']
-      background #f9f9da
+      background $color-beige
       color #2aa52a
       width 303px
       height 22px
@@ -54,7 +54,7 @@
         outline none
       &::selection
         background #2aa52a
-        color #f9f9da
+        color $color-beige
 
   &.game-play
     .content.center
@@ -63,12 +63,12 @@
       // box-pack center
       // box-align center
       // 
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-content: stretch;
-      align-items: center;
+      display flex
+      flex-direction row
+      flex-wrap nowrap
+      justify-content center
+      align-content stretch
+      align-items center
 
       width 100%
       height 100%
@@ -164,7 +164,7 @@
           margin-right 0px
 
         &.highscoreDigit
-          color #f9f9da
+          color $color-beige
           font-size 24px
           background #e83129
           width 50px
@@ -176,6 +176,10 @@
           border-radius 25px
           box-sizing border-box
           padding-left 2px
+
+  &.loading
+    background #FFF
+
 
 #game-controls
   width 100%
@@ -189,7 +193,7 @@
     margin 42px 7px 0
 
 #scores
-  color #f9f9da
+  color $color-beige
   position absolute
   z-index 2
   top 100px
