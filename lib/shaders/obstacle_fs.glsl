@@ -2,7 +2,6 @@
 precision mediump float;
 #endif
 
-varying vec2 vUv;
 uniform sampler2D tGrid;
 uniform vec2 scale; 
 uniform vec3 diffuse;

@@ -1,4 +1,10 @@
 .state
+  visibility hidden
+  display none
+  &.active
+    visibility visible
+    display block
+
   &.game-instructions,
   &.state.game-info,
   &.state.game-start
@@ -52,28 +58,39 @@
 
   &.game-play
     .content.center
-      display box
-      display -moz-box
-      display -webkit-box
+      // display flex
+      // box-orient horizontal
+      // box-pack center
+      // box-align center
+      // 
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-content: stretch;
+      align-items: center;
 
-      box-orient horizontal
-      box-pack center
-      box-align center
       width 100%
       height 100%
       absolute top 0 left 0
       z-index 500
 
-    .countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown-number
-      background: url('/images/countdown-s9fee64d48a.png') no-repeat
+    // .countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown-number
+
+    .countdown
+      align-self center
+      flex 0 1 auto
+
 
     .countdown-number
       position absolute
       width 988px
-      height 716px
+      height 800px
       opacity 0
-      transform scale(0.5) translate(0, 90px)
       transition opacity .3s ease-out
+      transform scale(0.5)
+      // translate(0, 90px)
+      background url('/images/countdown-s9fee64d48a.png') no-repeat
 
       &[data-number="3"]
         background-position 0 -718px
@@ -132,10 +149,7 @@
 
     .scoreboard
       color #e83129
-      display -moz-box
-      display -webkit-box
-      display -ms-box
-      display box
+      display flex
       box-orient horizontal
       box-pack center
       box-align center
