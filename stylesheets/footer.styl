@@ -9,20 +9,15 @@ footer#footer
   left 0px
   width 100%
 
-#socials
-  position absolute
-  display table
-  border-collapse separate
-  border-spacing 5px
-  // width 150px
-
-  margin-left 30px
-
+.social
+  li
+    list-style none
+    display inline-block
+    margin 0 0 0 5px
   .icon
     background #e8e8ca
     width 20px
     height 20px
-    margin-top 9px
     font-size 16px
     border-radius 3px
     display table-cell
@@ -45,9 +40,15 @@ footer#footer
       background #000
       color #e8e8ca
 
-
     span
       display: none;
+
+
+#socials
+  position absolute
+  display inline-block
+
+  margin 10px 0 0 15px
 
 #footMenu
   display block

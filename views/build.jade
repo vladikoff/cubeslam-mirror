@@ -267,7 +267,7 @@ html(lang='en')
 
       #canv-css
         .background
-          img(data-src-mobile='/images/css/mobile_fullbg.jpg', data-src-tablet='/images/css/mobile_fullbg.jpg')
+          img(data-src-mobile='/images/css/mobile_fullbg-small.jpg', data-src-tablet='/images/css/mobile_fullbg.jpg')
         .game-board
           .arena
 
@@ -276,15 +276,19 @@ html(lang='en')
       .button.right
 
     footer#footer
-      #socials
-        .icon.notimplemented(data-icon='g')
-          span Google plus
-        .icon.notimplemented(data-icon='f')
-          span Facebook
-        .icon.notimplemented(data-icon='t')
-          span Twitter
-        .icon.notimplemented(data-icon='p')
-          span Pininterest
+      ul#socials.social
+        li
+          a.icon.notimplemented(data-icon='g')
+            span Google plus
+        li
+          a.icon.notimplemented(data-icon='f')
+            span Facebook
+        li
+          a.icon.notimplemented(data-icon='t')
+            span Twitter
+        li
+          a.icon.notimplemented(data-icon='p')
+            span Pininterest
       #footMenu
         ul
           li
