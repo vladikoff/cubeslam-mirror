@@ -1,0 +1,157 @@
+@keyframes shield-label-1 
+  10%, 40% 
+    opacity 1
+  
+  47%, 100% 
+    opacity 0
+  
+
+
+@keyframes shield-label-2 
+  48% 
+    opacity 0
+  
+  55%, 90% 
+    opacity 1
+  
+
+@keyframes shield-weapon-translation 
+  31% 
+    transform translate(-86px, -28px)
+    opacity 1
+  
+  25%, 39%, 65%, 100% 
+    transform translate(0, 0)
+  
+  70% 
+    transform translate(-94px, -28px)
+    opacity 1
+  
+  71%, 100% 
+    opacity 0
+  
+
+@keyframes shield-blink 
+  34%, 39% 
+    opacity 0
+  
+  31%, 36%, 42% 
+    opacity 1
+  
+  45%, 100% 
+    transform scaleY(1)
+  
+  51%, 90% 
+    transform scaleY(0)
+  
+
+
+@keyframes shield-wall 
+  71%, 79% 
+    background transparent
+  
+  75% 
+    background rgba(0, 0, 0, 0.8)
+  
+
+@keyframes shield-left-eye 
+  10%, 14%, 38%, 42%, 74%, 100% 
+    transform scaleY(1) rotate(0deg)
+  
+  12%, 40% 
+    transform scaleY(0.2) rotate(0deg)
+  
+  84%, 94% 
+    transform scaleY(1) rotate(20deg)
+  
+
+
+@keyframes shield-right-eye 
+  10%, 14%, 38%, 42%, 74%, 100% 
+    transform scaleY(1) rotate(0deg)
+  
+  12%, 40% 
+    transform scaleY(0.2) rotate(0deg)
+  
+  84%, 94% 
+    transform scaleY(1) rotate(-20deg)
+  
+
+
+.destroy-shield__label > p, .destroy-shield__wall, .destroy-shield__shields > div:nth-child(1), .destroy-shield__weapon
+  animation 5s cubic-bezier(0.42, 0.8, 1, 1) infinite
+
+.destroy-shield 
+  perspective 800
+  position relative
+
+.destroy-shield__label 
+  position relative
+  height 40px
+  text-transform uppercase
+  color #e44d44
+
+.destroy-shield__label > p 
+  position absolute
+  opacity 0
+
+.destroy-shield__label > p:nth-child(1) 
+  animation-name shield-label-1
+
+.destroy-shield__label > p:nth-child(2) 
+  animation-name shield-label-2
+
+.destroy-shield__anim-container 
+  position relative
+  top 30px
+  left 30px
+
+.destroy-shield__wall 
+  animation-name shield-wall
+  transform skewY(-20.6deg)
+  position relative
+  border 3px solid black
+  width 104px
+  height 63px
+
+.destroy-shield__eyes 
+  position absolute
+  top 18px
+  left 26px
+
+.destroy-shield__eyes > div 
+  display inline-block
+  width 18px
+  height 6px
+
+.destroy-shield__eyes > div:nth-child(1) 
+  animation shield-right-eye 5s infinite
+  transform-origin 100% 50%
+  margin-right 12px
+
+.destroy-shield__eyes > div:nth-child(2) 
+  animation shield-left-eye 5s infinite
+  transform-origin 0% 50%
+
+.destroy-shield__shields 
+  transform translate(2px, 10px)
+  overflow hidden
+  position absolute
+  left 4px
+  bottom 0
+
+.destroy-shield__shields > div 
+  float left
+
+.destroy-shield__shields > div:nth-child(2) 
+  margin 0 3px
+
+.destroy-shield__shields > div:nth-child(1) 
+  animation-name shield-blink
+  transform-origin left bottom
+
+.destroy-shield__weapon 
+  animation-name shield-weapon-translation
+  position relative
+  top 30px
+  left 100px

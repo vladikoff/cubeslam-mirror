@@ -187,8 +187,24 @@
           box-sizing border-box
           padding-left 2px
 
+  &.game-info
+    .info-animation
+      display none
+      width 200px
+
   &.loading
-    background #FFF
+    .center
+      display flex
+      box-orient horizontal
+      box-pack center
+      box-align center
+      justify-content center
+      align-content stretch
+      align-items center
+      height 100%
+      width 100%
+      background $color-beige url('/images/minipong.png') no-repeat center center
+
 
 
 #game-controls

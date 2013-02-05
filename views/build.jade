@@ -38,6 +38,9 @@ html(lang='en')
         a.experiment(href='http://google.com/', target='_blank')
 
     .state.loading
+      .center
+        .webcam-spinner__quarter
+          .icon-quarter-circle
 
     //GAME INSTRUCTIONS
     .state.game-info.inactive
@@ -68,6 +71,25 @@ html(lang='en')
                   div.key__bg-inner
               p to pause
             button.green.play Start
+
+
+            //GAME INFO ANIMATION
+            .destroy-shield.info-animation
+              .destroy-shield__label
+                p Destroy the shield
+                p Hit'em in the face !
+
+              .destroy-shield__anim-container
+                .destroy-shield__wall
+                  .destroy-shield__eyes
+                    .dash-black
+                    .dash-black
+                  .destroy-shield__shields
+                    .dash-tall.dash-black
+                    .dash-tall.dash-black
+                    .dash-tall.dash-black
+
+                .destroy-shield__weapon.icon-destroy-shield-weapon
 
     //INVITE FRIEND
     .state.friend-invite.inactive
@@ -177,24 +199,24 @@ html(lang='en')
     //GAME OVER
     .state.game-over.inactive
       img.key(src='/images/game_over.png')
-      #game-over
+      div
         .dialog
           .content
-            #scoreboardSingle.vertical-center
+            #scoreboard-single.vertical-center
               h2 Your Points
               .scoreboard.single
                   div Levels Played
-                  #highscoreLevels.highscoreDigit X
+                  #highscore-levels.highscoreDigit X
                   #shareScore
                     h3 Share
                     img(src='images/share_score.gif')
-                  #highscoreRally.highscoreDigit X
+                  #highscore-rally.highscoreDigit X
                   div Longest Rallies
 
               button.blue.play-friend Play Friend
               button.green.play Play Again (Space)
 
-            #scoreboardMulti.vertical-center
+            #scoreboard-multi.vertical-center
               h2 Your Points
               .scoreboard.multiplayer
                   img(src='/images/temp_scoreboard_multi.gif')
