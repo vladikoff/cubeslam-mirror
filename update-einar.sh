@@ -1,6 +1,6 @@
 #!/bin/sh
-sed -i.tmp 's/application: .*/application: einarsgame/' app.yaml
-
-# use python instead of the python-2.5 that is hard coded in appcfg.
-# or ssl won't work on osx.
-python `which appcfg.py` update .
+echo "Deprecated!"
+echo "deployment moved to makefile and deploy script"
+echo " $ make deploy-einar"
+echo
+make deploy-einar
