@@ -14,7 +14,8 @@
     "publicclass/netchan": "*",
     "publicclass/base64-arraybuffer": "*",
     "visionmedia/debug": "*",
-    "ForbesLindesay/seed-random": "*"
+    "ForbesLindesay/seed-random": "*",
+    "ecarter/css-emitter": "*"
   },
   "scripts": [
     "index.js",
