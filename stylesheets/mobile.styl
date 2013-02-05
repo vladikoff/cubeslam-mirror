@@ -100,18 +100,18 @@ html.mobile
     .arena
       width 1280px
       height 1600px
-      transform rotateX(78.15deg) translateX(0%) translateZ(-263.4px) translateY(-74.4%)
-      
+      transform rotateX(77.7deg) translateX(0%) translateZ(-273px) translateY(-75%)
+
       transform-style preserve-3d
       backface-visibility hidden
-      background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
+      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
       position absolute
       z=index 1
 
-  .paddle
+  .paddle, .p1
     position absolute
     transform-style preserve-3d
-    transform rotateX(90deg) translateX(200px) translateZ(5px) translateY(-50%)
+    transform rotateX(90deg) translateX(200px) translateZ(1567px) translateY(-50%)
     backface-visibility hidden
     transform-origin 50% 50% 0
 
@@ -140,12 +140,13 @@ html.mobile
       background-image url('/images/css/fog.png')
 
 
-  .puck
-    position absolute
-    transform rotateX(-90deg) translateX(580px) translateY(-50%) translateZ(888px)
-    backface-visibility hidden
-    transform-style preserve-3d
-    transform-origin 50% 50% 0
+.puck
+  position absolute
+  transform rotateX(-90deg) translateX(559px) translateY(-50%) translateZ(898.441234605886px)
+  backface-visibility hidden
+  transform-style preserve-3d
+  transform-origin 50% 50% 0
+  background-position -1431px -221px
 
 @media (orientation: portrait)
   #gamepad
