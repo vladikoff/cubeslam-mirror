@@ -58,11 +58,15 @@ html.mobile
       visibility visible
       display block
 
+
+  .state.game-info .content
+    min-width 585px
+
   .state.game-play
     .countdown
       width 100%
     .countdown-number
-      position relative
+      position absolute
       width 100%
 
   #game
@@ -78,7 +82,7 @@ html.mobile
     display block
     width 1280px
     height 800px
-    relative top -400px left -640px
+    relative top -380px left -640px
     .background
       width 2560px
       height 2000px
@@ -149,8 +153,10 @@ html.mobile
   background-position -1431px -221px
 
 @media (orientation: portrait)
-  #gamepad
-    display none
+  .mobile
+    #gamepad
+      display none
 @media (orientation: landscape)
-  #gamepad
-    display block!important
+  .mobile
+    #gamepad
+      display block!important
