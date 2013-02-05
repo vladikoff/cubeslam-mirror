@@ -5,6 +5,16 @@
     visibility visible
     display block
 
+  &.loading
+    display block
+    position absolute
+    background-color white
+    z-index 10
+    width 100%
+    height 100%
+    overflow hidden
+    visibility visible
+
   &.game-instructions,
   &.state.game-info,
   &.state.game-start
@@ -62,10 +72,10 @@
       // box-orient horizontal
       // box-pack center
       // box-align center
-      // 
       display flex
-      flex-direction row
-      flex-wrap nowrap
+      box-orient horizontal
+      box-direction row
+      box-wrap nowrap
       justify-content center
       align-content stretch
       align-items center
