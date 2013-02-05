@@ -13,7 +13,8 @@ html.mobile
   , #scores
   , .play-friend
   , .links
-    display none
+  , .multiplayer
+    display none!important
 
   .dialog
     bottom 0
@@ -59,15 +60,9 @@ html.mobile
       display block
 
 
-  .state.game-info .content
-    min-width 585px
-
-  .state.game-play
-    .countdown
-      width 100%
-    .countdown-number
-      position absolute
-      width 100%
+  .state.game-info
+    #game-controls
+      display none
 
   #game
     opacity 1
@@ -112,7 +107,7 @@ html.mobile
       position absolute
       z=index 1
 
-  .paddle, .p1
+  .paddle, .p1, .p2
     position absolute
     transform-style preserve-3d
     transform rotateX(90deg) translateX(200px) translateZ(1567px) translateY(-50%)
@@ -146,17 +141,17 @@ html.mobile
 
 .puck
   position absolute
-  transform rotateX(-90deg) translateX(559px) translateY(-50%) translateZ(898.441234605886px)
+  transform rotateX(-90deg) translateX(585px) translateY(-50%) translateZ(880px)
   backface-visibility hidden
   transform-style preserve-3d
   transform-origin 50% 50% 0
-  background-position -1431px -221px
 
 @media (orientation: portrait)
-  .mobile
+  html.mobile 
     #gamepad
       display none
+
 @media (orientation: landscape)
-  .mobile
+  html.mobile
     #gamepad
       display block!important
