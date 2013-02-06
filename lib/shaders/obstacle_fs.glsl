@@ -7,6 +7,7 @@ uniform vec2 scale;
 uniform vec3 diffuse;
 varying vec3 vWorldPosition;
 uniform vec2 resolution;
+uniform float gridBrightness;
 
 float pixel = 1.0 / resolution.y;
 
@@ -16,19 +17,17 @@ void main(void)
 
     vec2 position = vWorldPosition.xz/vec2(resolution.x,resolution.y)+0.5;
     
-    float color = texture2D( tGrid, position*scale ).x*0.5;
+    float color = texture2D( tGrid, position*scale ).x;
 
     float color2 = smoothstep( position.y,position.y+0.007,0.506);
     color2 -= smoothstep(position.y,position.y+0.007,0.499);
     
-    vec3 gridColor = vec3(color, color, color);
+    vec4 gridColor = vec4(vec3(gridBrightness),color);
 
     vec3 centerColor = vec3(color2)*lineColor;
     
     float ambientOcc = 1.0-min(1.0,abs(vWorldPosition.y+200.0)/40.0);
 
-    gl_FragColor = vec4( diffuse*0.8-ambientOcc*0.1+centerColor+gridColor*lineColor*0.2 , 1.0);
-    //gl_FragColor = vec4(vec3(ambientOcc),1.0);
-
+    gl_FragColor = vec4(diffuse*0.9-ambientOcc*0.1,1.0) + vec4( lineColor , step(gridColor.x,0.99) )*0.2*color + vec4( centerColor , color2)*0.8;
+    
 }
-
