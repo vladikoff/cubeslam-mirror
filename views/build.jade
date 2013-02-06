@@ -3,7 +3,11 @@
 !!! 5
 html(lang='en')
   head
+    meta(name='apple-mobile-web-app-capable',content='yes')
+    meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
     title #{name}
+    link(rel='apple-touch-icon', href='/images/minipong.png')
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/pong.css')
 
@@ -34,6 +38,9 @@ html(lang='en')
         a.experiment(href='http://google.com/', target='_blank')
 
     .state.loading
+      .center
+        .webcam-spinner__quarter
+          .icon-quarter-circle
 
     //GAME INSTRUCTIONS
     .state.game-info.inactive
@@ -41,30 +48,48 @@ html(lang='en')
         .content
           .vertical-center
             h2 Game controls
-              #game-controls
-                p Play using
-                .kb-anim
-                  .dash-big.dash-black
-                  .key.key--small.default-key-anim
-                    .key__label.icon-arrow-left
-                    .key__bg-outer
-                      .key__bg-inner
-                  div.key.key--small
-                    .key__label.icon-arrow-right
-                    .key__bg-outer
-                      div.key__bg-inner
-                p or
-                .mouse-anim
-                  .dash-big.dash-black
-                  .icon-mouse
-                p or press
-                .key.key--big.default-key-anim
-                  p.key__label SPACE
+            #game-controls
+              p Play using
+              .kb-anim
+                .dash-big.dash-black
+                .key.key--small.default-key-anim
+                  .key__label.icon-arrow-left
+                  .key__bg-outer
+                    .key__bg-inner
+                div.key.key--small
+                  .key__label.icon-arrow-right
                   .key__bg-outer
                     div.key__bg-inner
-                p to pause
+              p or
+              .mouse-anim
+                .dash-big.dash-black
+                .icon-mouse
+              p or press
+              .key.key--big.default-key-anim
+                p.key__label SPACE
+                .key__bg-outer
+                  div.key__bg-inner
+              p to pause
             button.green.play Start
 
+
+            //GAME INFO ANIMATION
+            .destroy-shield.info-animation
+              .destroy-shield__label
+                p Destroy the shield
+                p Hit'em in the face !
+
+              .destroy-shield__anim-container
+                .destroy-shield__wall
+                  .destroy-shield__eyes
+                    .dash-black
+                    .dash-black
+                  .destroy-shield__shields
+                    .dash-tall.dash-black
+                    .dash-tall.dash-black
+                    .dash-tall.dash-black
+
+                .destroy-shield__weapon.icon-destroy-shield-weapon
 
     //INVITE FRIEND
     .state.friend-invite.inactive
@@ -174,27 +199,36 @@ html(lang='en')
     //GAME OVER
     .state.game-over.inactive
       img.key(src='/images/game_over.png')
-      #game-over
+      div
         .dialog
           .content
-            #scoreboardSingle.vertical-center
+            #scoreboard-single.vertical-center
               h2 Your Points
               .scoreboard.single
                   div Levels Played
-                  #highscoreLevels.highscoreDigit X
-                  #shareScore
+                  #highscore-levels.highscoreDigit X
+                  #share-score
                     h3 Share
-                    img(src='images/share_score.gif')
-                  #highscoreRally.highscoreDigit X
+                    ul.social
+                      li
+                        a.icon.notimplemented(data-icon='g')
+                          span Google plus
+                      li
+                        a.icon.notimplemented(data-icon='f')
+                          span Facebook
+                      li
+                        a.icon.notimplemented(data-icon='t')
+                          span Twitter
+                  #highscore-rally.highscoreDigit X
                   div Longest Rallies
 
               button.blue.play-friend Play Friend
               button.green.play Play Again (Space)
 
-            #scoreboardMulti.vertical-center
+            #scoreboard-multi.vertical-center
               h2 Your Points
               .scoreboard.multiplayer
-                  img(src='images/temp_scoreboard_multi.gif')
+                  img(src='/images/temp_scoreboard_multi.gif')
               button.green.play Play Again (Space)
 
     #scores.state.game.inactive
@@ -202,6 +236,7 @@ html(lang='en')
         img(src="/images/minipong.png")
         p #{name}
         p.level Level 1
+        p.frame 0
 
       .multiplayer
         .player
@@ -232,11 +267,6 @@ html(lang='en')
             li
             li
             li
-        // | Player 1 - CPU
-        //.score
-        //  span#arb-id LV.
-        //  span#level
-        //#scorePoints.score 0-0
 
     #game
       canvas#canv-3d(width='320',height='480')
@@ -244,16 +274,30 @@ html(lang='en')
       video#remoteInput.hidden(width='160',height='120',autoplay)
       video#localInput.hidden(width='160',height='120',autoplay)
 
+      #canv-css
+        .background
+          img(data-src-mobile='/images/css/mobile_fullbg-small.jpg', data-src-tablet='/images/css/mobile_fullbg.jpg')
+        .game-board
+          .arena
+
+    #gamepad.state.game
+      .button.left
+      .button.right
+
     footer#footer
-      #socials
-        .googleplus.notimplemented
-          span Google Plus
-        .facebook.notimplemented
-          span Facebook
-        .twitter.notimplemented
-          span Twitter
-        .something.notimplemented
-          span Something
+      ul#socials.social
+        li
+          a.icon.notimplemented(data-icon='g')
+            span Google plus
+        li
+          a.icon.notimplemented(data-icon='f')
+            span Facebook
+        li
+          a.icon.notimplemented(data-icon='t')
+            span Twitter
+        li
+          a.icon.notimplemented(data-icon='p')
+            span Pininterest
       #footMenu
         ul
           li

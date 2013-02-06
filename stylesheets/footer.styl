@@ -4,32 +4,51 @@ footer#footer
   height 40px
   background #000
   position absolute
-  z-index 10000000
+  z-index 4
   bottom 0px
   left 0px
   width 100%
 
-#socials
-  position absolute
-  display inline-block
-  width 150px
+.social
+  li
+    list-style none
+    display inline-block
+    margin 0 0 0 5px
+  .icon
+    background #e8e8ca
+    width 20px
+    height 20px
+    font-size 16px
+    border-radius 3px
+    display table-cell
+    vertical-align middle
 
-  margin-left 30px
+    &:before
+      display inline-block
+      text-align center
+      width 100%
+      vertical-align middle
 
-  div
-    width: 20px
-    height: 20px
-    margin-top: 9px
-    margin-right: 5px
-    display: inline-block
+    &:after
+      content ' '
+      height 100%
+      display inline-block
+      position absolute
+      width 1pxs
 
-    &.googleplus { background-image: url('/images/socials_googleplus.png'); }
-    &.facebook { background-image: url('/images/socials_facebook.png'); }
-    &.twitter { background-image: url('/images/socials_twitter.png'); }
-    &.something { background-image: url('/images/socials_something.png'); }
+    &:hover
+      background #000
+      color #e8e8ca
 
     span
       display: none;
+
+
+#socials
+  position absolute
+  display inline-block
+
+  margin 10px 0 0 15px
 
 #footMenu
   display block

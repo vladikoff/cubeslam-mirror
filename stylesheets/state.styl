@@ -1,9 +1,21 @@
 .state
   visibility hidden
   display none
+  h2, h3, h4, h5, p
+    text-transform uppercase
   &.active
     visibility visible
     display block
+
+  &.loading
+    display block
+    position absolute
+    background-color white
+    z-index 5
+    width 100%
+    height 100%
+    overflow hidden
+    visibility visible
 
   &.game-instructions,
   &.state.game-info,
@@ -17,7 +29,7 @@
     position: absolute
     top 0
     left 0
-    z-index 500
+    z-index 3
     perspective 2000px
     transform rotateX( 0 )
 
@@ -36,14 +48,14 @@
       padding 4px 20px 3px
       margin 0 0 20px -7px
       line-height 21px
-      color #f9f9da
+      color $color-beige
       text-transform uppercase
       border none
       &:hover
         background #207f20
 
     input[type='text']
-      background #f9f9da
+      background $color-beige
       color #2aa52a
       width 303px
       height 22px
@@ -54,7 +66,7 @@
         outline none
       &::selection
         background #2aa52a
-        color #f9f9da
+        color $color-beige
 
   &.game-play
     .content.center
@@ -62,20 +74,18 @@
       // box-orient horizontal
       // box-pack center
       // box-align center
-      // 
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-content: stretch;
-      align-items: center;
+      display flex
+      box-orient horizontal
+      box-direction row
+      box-wrap nowrap
+      justify-content center
+      align-content stretch
+      align-items center
 
       width 100%
       height 100%
       absolute top 0 left 0
-      z-index 500
-
-    // .countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown-number
+      z-index 3
 
     .countdown
       align-self center
@@ -85,7 +95,7 @@
     .countdown-number
       position absolute
       width 988px
-      height 800px
+      height 718px
       opacity 0
       transition opacity .3s ease-out
       transform scale(0.5)
@@ -128,7 +138,7 @@
       width 60%
       height auto
       margin-top 21%
-      z-index 500
+      z-index 3
 
     .dialog
       height 33%
@@ -164,7 +174,7 @@
           margin-right 0px
 
         &.highscoreDigit
-          color #f9f9da
+          color $color-beige
           font-size 24px
           background #e83129
           width 50px
@@ -176,6 +186,31 @@
           border-radius 25px
           box-sizing border-box
           padding-left 2px
+
+    ul.social
+      .icon
+        background $color-green
+        color $color-beige
+
+  &.game-info
+    .info-animation
+      display none
+      width 200px
+
+  &.loading
+    .center
+      display flex
+      box-orient horizontal
+      box-pack center
+      box-align center
+      justify-content center
+      align-content stretch
+      align-items center
+      height 100%
+      width 100%
+      background $color-beige url('/images/minipong.png') no-repeat center center
+
+
 
 #game-controls
   width 100%
@@ -189,9 +224,9 @@
     margin 42px 7px 0
 
 #scores
-  color #f9f9da
+  color $color-beige
   position absolute
-  z-index 499
+  z-index 2
   top 100px
   left 70px
   line-height 15px
