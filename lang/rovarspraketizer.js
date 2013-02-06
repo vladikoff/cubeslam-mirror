@@ -1,5 +1,4 @@
-var
-  fs = require("fs");
+var fs = require("fs");
 
 var rovarspraketizer = function(obj) {
   for (var key in obj) {
