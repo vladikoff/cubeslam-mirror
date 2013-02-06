@@ -194,8 +194,14 @@
 
   &.game-info
     .info-animation
-      display none
-      width 200px
+      display inline-block
+      width 210px
+      transform translateY(-20px)
+      p
+        font-size 14px
+        white-space nowrap
+      &.hidden
+        display none
 
   &.loading
     .center
@@ -208,20 +214,23 @@
       align-items center
       height 100%
       width 100%
-      background $color-beige url('/images/minipong.png') no-repeat center center
+      background $color-beige url('/images/opponent_computer.gif') no-repeat center center
 
 
 
-#game-controls
+.game-controls
   width 100%
-  margin 25px 0 28px
 
-  > p, > div
-    display inline-block
+  .animation
+    margin 25px 0 28px
 
-  > p
-    vertical-align top
-    margin 42px 7px 0
+    > div
+      display inline-block
+
+    > p
+      display inline-block
+      vertical-align top
+      margin 42px 7px 0
 
 #scores
   color $color-beige

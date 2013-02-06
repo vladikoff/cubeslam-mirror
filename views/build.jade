@@ -46,10 +46,10 @@ html(lang='en')
     .state.game-info.inactive
       .dialog.middle
         .content
-          .vertical-center
+          .game-controls.vertical-center
             h2 Game controls
-            #game-controls
-              p Play using
+            p Play using
+            div.animation
               .kb-anim
                 .dash-big.dash-black
                 .key.key--small.default-key-anim
@@ -72,24 +72,24 @@ html(lang='en')
               p to pause
             button.green.play Start
 
-
-            //GAME INFO ANIMATION
-            .destroy-shield.info-animation
+          .vertical-center
+            .info-animation.hidden
+              //GAME INFO ANIMATION
               .destroy-shield__label
-                p Destroy the shield
-                p Hit'em in the face !
+                  p Destroy the shield
+                  p Hit'em in the face !
+              .destroy-shield
+                .destroy-shield__anim-container
+                  .destroy-shield__wall
+                    .destroy-shield__eyes
+                      .dash-black
+                      .dash-black
+                    .destroy-shield__shields
+                      .dash-tall.dash-black
+                      .dash-tall.dash-black
+                      .dash-tall.dash-black
 
-              .destroy-shield__anim-container
-                .destroy-shield__wall
-                  .destroy-shield__eyes
-                    .dash-black
-                    .dash-black
-                  .destroy-shield__shields
-                    .dash-tall.dash-black
-                    .dash-tall.dash-black
-                    .dash-tall.dash-black
-
-                .destroy-shield__weapon.icon-destroy-shield-weapon
+                  .destroy-shield__weapon.icon-destroy-shield-weapon
 
     //INVITE FRIEND
     .state.friend-invite.inactive
