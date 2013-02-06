@@ -19,12 +19,15 @@ html(lang='en')
           img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
         h3 a chrome experiment
 
-      p.full
-        span.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
-
       .nav
-        p.multiplayer
-          span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
+        .notifications 
+          p.notification.full
+            span.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
+          p.notification.multiplayer
+            span.bubble.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
+          p.notification.error.webcam
+            span.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
+
         button.play-friend.green(arb:id='playFriendButton') Play friend
         button.play-computer.green Play Computer
 
@@ -38,9 +41,6 @@ html(lang='en')
         a.experiment(href='http://google.com/', target='_blank')
 
     .state.loading
-      .center
-        .webcam-spinner__quarter
-          .icon-quarter-circle
 
     //GAME INSTRUCTIONS
     .state.game-info.inactive

@@ -14,9 +14,8 @@
 .icon-arrow-left, 
 .icon-arrow-right, 
 .icon-cross, 
-.icon-mouse {
-  background: url('../images/icons-s4e56167bd4.png') no-repeat;
-}
+.icon-mouse 
+  background url('../images/icons-s4e56167bd4.png') no-repeat
 
 .icons-sprite, 
 .icon-webcam, 
@@ -26,123 +25,96 @@
 .icon-arrow-right,
 .icon-cross,
 .icon-mouse, 
-.icon-destroy-shield-weapon {
-  background: url('../images/icons-s2edcc2712a.png') no-repeat;
-}
+.icon-destroy-shield-weapon
+  background url('../images/icons-s2edcc2712a.png') no-repeat
 
-.icons-cam {
-  background-position: 0 0;
-}
+.icons-cam 
+  background-position 0 0
 
-.icons-cam__spinner {
-  background-position: 0 -205px;
-}
+.icons-cam__spinner 
+  background-position 0 -205px
 
-.icons-computer {
-  background-position: 0 -67px;
-}
+.icons-computer 
+  background-position 0 -67px
 
-.icons-cross-fail {
-  background-position: 0 -161px;
-}
+.icons-cross-fail 
+  background-position 0 -161px
 
-.icons-key-arrow-left {
-  background-position: 0 -321px;
-}
+.icons-key-arrow-left 
+  background-position 0 -321px
 
-.icons-key-arrow-right {
-  background-position: 0 -310px;
-}
+.icons-key-arrow-right 
+  background-position 0 -310px
 
-.icons-mouse {
-  background-position: 0 -260px;
-}
+.icons-mouse 
+  background-position 0 -260px
 
-.icon-webcam {
-  background-position: 0 0;
-  height: 65px;
-  width: 51px;
-}
+.icon-webcam 
+  background-position 0 0
+  height 65px
+  width 51px
 
-.icon-destroy-shield-weapon {
-  background-position: 0 -332px;
-  height: 24px;
-  width: 24px;
-}
 
-.icon-quarter-circle {
-  background-position: 0 -205px;
-  height: 53px;
-  width: 53px;
-}
+.icon-destroy-shield-weapon 
+  background-position 0 -332px
+  height 24px
+  width 24px
 
-.icon-computer {
-  background-position: 0 -67px;
-  height: 92px;
-  width: 67px;
-}
+.icon-quarter-circle 
+  background-position 0 -205px
+  height 53px
+  width 53px
 
-.icon-arrow-left {
-  background-position: 0 -321px;
-  height: 9px;
-  width: 9px;
-}
+.icon-computer 
+  background-position 0 -67px
+  height 92px
+  width 67px
 
-.icon-arrow-right {
-  background-position: 0 -310px;
-  height: 9px;
-  width: 9px;
-}
+.icon-arrow-left 
+  background-position 0 -321px
+  height 9px
+  width 9px
 
-.icon-cross {
-  background-position: 0 -161px;
-  height: 42px;
-  width: 42px;
-}
+.icon-arrow-right 
+  background-position 0 -310px
+  height 9px
+  width 9px
 
-.icon-mouse {
-  background-position: 0 -260px;
-  height: 48px;
-  width: 39px;
-}
+.icon-cross 
+  background-position 0 -161px
+  height 42px
+  width 42px
+
+.icon-mouse 
+  background-position 0 -260px
+  height 48px
+  width 39px
 
 
 // DASHES
 // Differents size and colors
 // ==========================================================================
+.dash-white 
+  background #F9F9DA
 
-.dash-white {
-  background: #F9F9DA;
-}
+.dash-black 
+  background #000
 
+.dash-tall 
+  width 30px
+  height 20px
 
-.dash-black {
-  background: #000;
-}
+.dash-big 
+  width 30px
+  height 6px
 
+.dash-medium 
+  width 14px
+  height 4px
 
-.dash-tall {
-  width: 30px;
-  height: 20px;
-}
-
-
-.dash-big {
-  width: 30px;
-  height: 6px;
-}
-
-
-.dash-medium {
-  width: 14px;
-  height: 4px;
-}
-
-
-.dash-small {
-  width: 14px;
-  height: 6px;
-}
+.dash-small 
+  width 14px
+  height 6px
 
 
 
@@ -151,185 +123,154 @@
 
 // Spiner animation
 //
-@keyframes spinner-rotate {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes spinner-rotate 
+  from 
+    transform rotate(0deg)
+  
+  to 
+    transform rotate(360deg)
+  
 
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-.webcam-spinner {
-  position: relative;
-  left: 50%;
-  margin-left: -50px;
-}
+.webcam-spinner 
+  position relative
+  left 50%
+  margin-left -50px
 
-.webcam-spinner__bg {
-  position: absolute;
-  margin: 19px 0 0 27px;
-}
+.webcam-spinner__bg 
+  position absolute
+  margin 19px 0 0 27px
 
-.webcam-spinner__quarter {
-  animation: spinner-rotate 1.5s infinite;
-  height: 106px;
-  width: 106px;
-}
+.webcam-spinner__quarter 
+  animation spinner-rotate 1.5s infinite
+  height 106px
+  width 106px
+
 
 /* COMPUTER WITH EYES
 // ========================================================================== */
 
-/*
-Just a computer with eyes whithout any anim.
-*/
-.cpu-wth-eyes {
-  position: relative;
-  left: 50%;
-  margin-left: -34px;
-  height: 92px;
-  width: 67px;
-  margin-bottom: 20px;
-}
+//
+// Just a computer with eyes whithout any anim.
+//
+.cpu-wth-eyes 
+  position relative
+  left 50%
+  margin-left -34px
+  height 92px
+  width 67px
+  margin-bottom 20px
 
-.cpu-wth-eyes__bg {
-  position: absolute;
-}
+.cpu-wth-eyes__bg 
+  position absolute
 
-.cpu-wth-eyes__container {
-  position: relative;
-}
+.cpu-wth-eyes__container 
+  position relative
 
-.cpu-wth-eyes__eyes {
-  position: absolute;
-  top: 24px;
-  left: 15px;
-
-  &> {
-    div:first-of-type {
-      margin-right: 5px;
-    }
-    div {
-      display: inline-block;
-    }
-  }
-}
+.cpu-wth-eyes__eyes 
+  position absolute
+  top 24px
+  left 15px
+  &> 
+    divfirst-of-type 
+      margin-right 5px
+    
+    div 
+      display inline-block
+    
+  
 
 // COMPUTER CONNECTION LOOP ANIMATION
 // ==========================================================================
 
 // Eyes blinking animation.
 //
-@keyframes cpu-blinking {
-  20%, 40%, 50% {
-    transform: scaleY(1);
-  }
+@keyframes cpu-blinking 
+  20%, 40%, 50% 
+    transform scaleY(1)
+  30%, 45% 
+    transform scaleY(0.2)
+  
 
-  30%, 45% {
-    transform: scaleY(0.2);
-  }
-}
 
 .play-anim .cpu-wth-eyes__eyes > div,
-.reverse-anim .cpu-wth-eyes__eyes > div {
-  animation: cpu-blinking 2s;
-}
+.reverse-anim .cpu-wth-eyes__eyes > div
+  animation cpu-blinking 2s
 
-.blinking-eyes-anim-loop {
-  animation: cpu-blinking 2s infinite;
-}
+
+.blinking-eyes-anim-loop 
+  animation cpu-blinking 2s infinite
+
 
 // Sad eyes animation.
 //
-@keyframes cpu-sad-right-eye {
-  10%, 30%, 40%, 100% {
-    transform: scaleY(1) rotate(0deg);
-  }
+@keyframes cpu-sad-right-eye 
+  10%, 30%, 40%, 100% 
+    transform scaleY(1) rotate(0deg)
+  20%, 35% 
+    transform scaleY(0.2) rotate(0deg)
+  60%, 94% 
+    transform scaleY(1) rotate(20deg)
+  
 
-  20%, 35% {
-    transform: scaleY(0.2) rotate(0deg);
-  }
+@keyframes cpu-sad-left-eye
+  10%, 30%, 40%, 100% 
+    transform scaleY(1) rotate(0deg)
+  20%, 35% 
+    transform scaleY(0.2) rotate(0deg)
+  60%, 94% 
+    transform scaleY(1) rotate(-20deg)
+  
+.sad-left-eye-anim-loop
+  animation cpu-sad-left-eye 3s infinite
+  transform-origin 100% 50%
 
-  60%, 94% {
-    transform: scaleY(1) rotate(20deg);
-  }
-}
-
-@keyframes cpu-sad-left-eye {
-  10%, 30%, 40%, 100% {
-    transform: scaleY(1) rotate(0deg);
-  }
-
-  20%, 35% {
-    transform: scaleY(0.2) rotate(0deg);
-  }
-
-  60%, 94% {
-    transform: scaleY(1) rotate(-20deg);
-  }
-}
-
-.sad-left-eye-anim-loop {
-  animation: cpu-sad-left-eye 3s infinite;
-  transform-origin: 100% 50%;
-}
-
-.sad-right-eye-anim-loop {
-  animation: cpu-sad-right-eye 3s infinite;
-  transform-origin: 0% 50%;
-}
+.sad-right-eye-anim-loop 
+  animation cpu-sad-right-eye 3s infinite
+  transform-origin 0% 50%
 
 // Dashes animation for the wave effect.
 //
-@keyframes up-and-down {
-  0%, 20% {
-    transform: translate(0, 0px);
-  }
+@keyframes up-and-down 
+  0%, 20% 
+    transform translate(0, 0px)
+  10% 
+    transform translate(0, -20px)
 
-  10% {
-    transform: translate(0, -20px);
-  }
-}
 
 .play-anim .dash-anim-line > div,
-.reverse-anim .dash-anim-line > div {
-  animation: up-and-down 2s;
-}
+.reverse-anim .dash-anim-line > div 
+  animation up-and-down 2s
 
 // Computers connection animation.
 // Linked by a dash lines which have a wave effect.
 // ==========================================================================
-.cpu-conn-anim {
-  position: relative;
-}
-.cpu-conn-anim > div {
-  display: inline-block;
-}
+.cpu-conn-anim 
+  position relative
 
-.dash-anim-line {
-  position: relative;
-  vertical-align: top;
-  top: 34px;
-  margin: 0 10px;
+.cpu-conn-anim > div 
+  display inline-block
 
-  &>div:last-of-type {
-    margin-right: 0;
-  }
-
-  &>div {
-    display: inline-block;
-    margin-right: 5px;
-  }
-}
+.dash-anim-line 
+  position relative
+  vertical-align top
+  top 34px
+  margin 0 10px
+  &>divlast-of-type 
+    margin-right 0
+  
+  &>div 
+    display inline-block
+    margin-right 5px
+  
 
 /*
-Two states managed from a js script:
-- play:
+Two states managed from a js script
+- play
  > the computer on the left blink eyes
  > wave on dashes from left to right
  > the computer on the right blink eyes
-- reverse:
+- reverse
  > the computer on the right blink eyes
  > wave on dashes from right to left
  > the computer on the left blink eyes
@@ -337,360 +278,320 @@ Two states managed from a js script:
 It was too tricky to have a perfect sync without using
 a JS script.
 */
-.play-anim .cpu-wth-eyes:last-of-type .cpu-wth-eyes__eyes > div {
-  animation-delay: 1.4s;
-}
-.play-anim .dash-anim-line > div:nth-of-type(1) {
-  animation-delay: 850ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(2) {
-  animation-delay: 950ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(3) {
-  animation-delay: 1050ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(4) {
-  animation-delay: 1150ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(5) {
-  animation-delay: 1250ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(6) {
-  animation-delay: 1350ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(7) {
-  animation-delay: 1450ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(8) {
-  animation-delay: 1550ms;
-}
-.play-anim .dash-anim-line > div:nth-of-type(9) {
-  animation-delay: 1650ms;
-}
+.play-anim .cpu-wth-eyeslast-of-type .cpu-wth-eyes__eyes > div 
+  animation-delay 1.4s
 
-.reverse-anim .cpu-wth-eyes:first-of-type .cpu-wth-eyes__eyes > div {
-  animation-delay: 1.4s;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(10) {
-  animation-delay: 750ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(9) {
-  animation-delay: 850ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(8) {
-  animation-delay: 950ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(7) {
-  animation-delay: 1050ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(6) {
-  animation-delay: 1150ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(5) {
-  animation-delay: 1250ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(4) {
-  animation-delay: 1350ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(3) {
-  animation-delay: 1450ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(2) {
-  animation-delay: 1550ms;
-}
-.reverse-anim .dash-anim-line > div:nth-of-type(1) {
-  animation-delay: 1650ms;
-}
+.play-anim .dash-anim-line > div:nth-of-type(1) 
+  animation-delay 850ms
+
+.play-anim .dash-anim-line > div:nth-of-type(2) 
+  animation-delay 950ms
+
+.play-anim .dash-anim-line > div:nth-of-type(3) 
+  animation-delay 1050ms
+
+.play-anim .dash-anim-line > div:nth-of-type(4) 
+  animation-delay 1150ms
+
+.play-anim .dash-anim-line > div:nth-of-type(5) 
+  animation-delay 1250ms
+
+.play-anim .dash-anim-line > div:nth-of-type(6) 
+  animation-delay 1350ms
+
+.play-anim .dash-anim-line > div:nth-of-type(7) 
+  animation-delay 1450ms
+
+.play-anim .dash-anim-line > div:nth-of-type(8) 
+  animation-delay 1550ms
+
+.play-anim .dash-anim-line > div:nth-of-type(9) 
+  animation-delay 1650ms
+
+.reverse-anim .cpu-wth-eyesfirst-of-type .cpu-wth-eyes__eyes > div 
+  animation-delay 1.4s
+
+.reverse-anim .dash-anim-line > div:nth-of-type(10) 
+  animation-delay 750ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(9) 
+  animation-delay 850ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(8) 
+  animation-delay 950ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(7) 
+  animation-delay 1050ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(6) 
+  animation-delay 1150ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(5) 
+  animation-delay 1250ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(4) 
+  animation-delay 1350ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(3) 
+  animation-delay 1450ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(2) 
+  animation-delay 1550ms
+
+.reverse-anim .dash-anim-line > div:nth-of-type(1) 
+  animation-delay 1650ms
+
 
 /* Computer connection failed animaiton
 // ========================================================================== */
-@keyframes cpu-failed-cross {
-  from {
-    transform: scale(0);
-  }
+@keyframes cpu-failed-cross 
+  from 
+    transform scale(0)
+  
+  to 
+    transform scale(1)
+  
 
-  to {
-    transform: scale(1);
-  }
-}
 
-.cross-fail-anim {
-  animation: cpu-failed-cross 500ms;
-}
+.cross-fail-anim
+  animation cpu-failed-cross 500ms
 
-.cpu-conn-failed-anim > div {
-  display: inline-block;
-}
-.cpu-conn-failed-anim .cross-fail-anim {
-  vertical-align: top;
-  margin-top: 24px;
-}
-.cpu-conn-failed-anim .dash-anim-line > div {
-  animation: up-and-down 4s infinite;
-}
-.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(1) {
-  animation-delay: 300ms;
-}
-.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(2) {
-  animation-delay: 400ms;
-}
-.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(3) {
-  animation-delay: 500ms;
-}
-.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(3) {
-  animation-delay: 320ms;
-}
-.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(2) {
-  animation-delay: 420ms;
-}
-.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(1) {
-  animation-delay: 520ms;
-}
+.cpu-conn-failed-anim > div 
+  display inline-block
+
+.cpu-conn-failed-anim .cross-fail-anim 
+  vertical-align top
+  margin-top 24px
+
+.cpu-conn-failed-anim .dash-anim-line > div 
+  animation up-and-down 4s infinite
+
+.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(1) 
+  animation-delay 300ms
+
+.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(2) 
+  animation-delay 400ms
+
+.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(3) 
+  animation-delay 500ms
+
+.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(3) 
+  animation-delay 320ms
+
+.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(2) 
+  animation-delay 420ms
+
+.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(1) 
+  animation-delay 520ms
+
 
 /* KEY
 // ========================================================================== */
-.key {
-  position: relative;
+.key 
+  position relative
 
-}
+.key__label 
+  position absolute
+  font-size 11px
+  text-align center
 
-.key__label {
-  position: absolute;
-  font-size: 11px;
-  text-align: center;
-}
+.key__bg-inner 
+  border-radius 6px
+  position absolute
+  border 1px solid #000
+  border-top 0
+  margin-left 3px
+  margin-top -1px
 
-.key__bg-inner {
-  border-radius: 6px;
-  position: absolute;
-  border: 1px solid #000;
-  border-top: 0;
-  margin-left: 3px;
-  margin-top: -1px;
-}
+.key__bg-outer 
+  border-radius 8px
+  border 2px solid #000
 
-.key__bg-outer {
-  border-radius: 8px;
-  border: 2px solid #000;
-}
+.key--small 
+  .icon-arrow-right 
+    margin 21px 0 0 24px
+  
+  .key__bg-inner 
+    width 44px
+    height 43px
+  
+  .key__bg-outer 
+    width 52px
+    height 48px
+  
+  .icon-arrow-left 
+    margin 21px 0 0 24px
+  
+.key--big 
+  .key__label
+  .key__bg-outer 
+    width 135px
+    height 46px
+  
+  .key__bg-inner 
+    width 128px
+    height 43px
+  
+  .key__label 
+    margin-top 20px
+  
 
-.key--small {
-  .icon-arrow-right {
-    margin: 21px 0 0 24px;
-  }
-  .key__bg-inner {
-    width: 44px;
-    height: 43px;
-  }
-  .key__bg-outer {
-    width: 52px;
-    height: 48px;
-  }
-  .icon-arrow-left {
-    margin: 21px 0 0 24px;
-  }
-}
-
-.key--big {
-  .key__label,
-  .key__bg-outer {
-    width: 135px;
-    height: 46px;
-  }
-
-  .key__bg-inner {
-    width: 128px;
-    height: 43px;
-  }
-  .key__label {
-    margin-top: 20px;
-  }
-}
 
 // Keyboard animation
 // ==========================================================================
-@keyframes dash-right-to-left-to-right {
-  10%, 100% {
-    transform: translate(0, 0);
-  }
+@keyframes dash-right-to-left-to-right 
+  10%, 100% 
+    transform translate(0, 0)
+  47%, 53% 
+    transform translate(80px, 0)
 
-  47%, 53% {
-    transform: translate(80px, 0);
-  }
-}
+@keyframes keyleft-fade-in-out 
+  10%, 35%, 100% 
+    opacity 1
+  47%, 87% 
+    opacity 0
+  
 
-@keyframes keyleft-fade-in-out {
-  10%, 35%, 100% {
-    opacity: 1;
-  }
-
-  47%, 87% {
-    opacity: 0;
-  }
-}
 
 // Key left animation.
 // Fade on the inner border + move the arrow
 //
-@keyframes keyleft-arrow-up-down {
-  10%, 35%, 95% {
-    transform: translate(0, -2px);
-  }
+@keyframes keyleft-arrow-up-down 
+  10%, 35%, 95% 
+    transform translate(0, -2px)
+  
+  47%, 87% 
+    transform translate(0, 0)
+  
 
-  47%, 87% {
-    transform: translate(0, 0);
-  }
-}
 
 // Key right animation.
 // Fade on the inner border + move the arrow
 //
-@keyframes keyright-fade-out-in {
-  10%, 35%, 100% {
-    opacity: 0;
-  }
+@keyframes keyright-fade-out-in
+  10%, 35%, 100% 
+    opacity 0
+  47%, 87% 
+    opacity 1
+  
 
-  47%, 87% {
-    opacity: 1;
-  }
-}
 
-@keyframes keyright-arrow-down-up {
-  10%, 35%, 98% {
-    transform: translate(0, 0);
-  }
-
-  47%, 92% {
-    transform: translate(0, -2px);
-  }
-}
-
+@keyframes keyright-arrow-down-up 
+  10%, 35%, 98% 
+    transform translate(0, 0)
+  47%, 92% 
+    transform translate(0, -2px)  
 
 // Key animations
 //
-.default-key-anim .key__label {
-  animation: keyleft-arrow-up-down 3s infinite;
-  transform: translate(0, -2px);
-}
-.default-key-anim .key__bg-inner {
-  animation: keyleft-fade-in-out 3s infinite;
-}
+.default-key-anim .key__label 
+  animation keyleft-arrow-up-down 3s infinite
+  transform translate(0, -2px)
 
-.kb-anim {
-  position: relative;
+.default-key-anim .key__bg-inner 
+  animation keyleft-fade-in-out 3s infinite
 
-  .key {
-    display: inline-block;
-    margin: 15px 7px 0 0;
-  }
-
-  .dash-big {
-    animation: dash-right-to-left-to-right 3s infinite;
-    margin-left: 14px;
-  }
-}
+.kb-anim 
+  position relative
+  .key 
+    display inline-block
+    margin 15px 7px 0 0
+  
+  .dash-big 
+    animation dash-right-to-left-to-right 3s infinite
+    margin-left 14px
+  
 
 // right key
-.kb-anim > div:nth-of-type(3) {
-  .key__label {
-    animation: keyright-arrow-down-up 3s infinite;
-  }
+.kb-anim > div:nth-of-type(3) 
+  .key__label 
+    animation keyright-arrow-down-up 3s infinite
+  
+  .key__bg-inner 
+    animation keyright-fade-out-in 3s infinite
+    opacity 0
+  
 
-  .key__bg-inner {
-    animation: keyright-fade-out-in 3s infinite;
-    opacity: 0;
-  }
-}
 
 
 // Mouse Animation
 // ==========================================================================
-@keyframes mouse-move {
-  10%, 100% {
-    transform: translate(0, 0);
-  }
+@keyframes mouse-move 
+  10%, 100% 
+    transform translate(0, 0)
+  50% 
+    transform translate(20px, 0)
+  
 
-  50% {
-    transform: translate(20px, 0);
-  }
-}
+.mouse-anim 
+  width 60px
 
-.mouse-anim {
-  width: 60px;
-}
+.mouse-anim > .dash-big
+.mouse-anim > .icon-mouse 
+  animation mouse-move 1.6s infinite
 
-.mouse-anim > .dash-big,
-.mouse-anim > .icon-mouse {
-  animation: mouse-move 1.6s infinite;
-}
+.mouse-anim > .dash-big 
+  animation-delay 100ms
+  margin-left 5px
 
-.mouse-anim > .dash-big {
-  animation-delay: 100ms;
-  margin-left: 5px;
-}
+.mouse-anim > .icon-mouse 
+  margin-top 15px
 
-.mouse-anim > .icon-mouse {
-  margin-top: 15px;
-}
 
 // Countdown
 // ==========================================================================
+.countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown__num[data-number="3"], .countdown__num[data-number="2"], .countdown__num[data-number="1"]
+  background url('/images/countdown-s9fee64d48a.png') no-repeat
+
+.countdown-countdown_1 
+  background-position 0 -1436px
+
+.countdown-countdown_2 
+  background-position 0 0
+
+.countdown-countdown_3 
+  background-position 0 -718px
+
+@keyframes countdown-transition 
+  100% 
+    opacity 1
+  100% 
+    opacity 0
+
+.countdown 
+  display block
+  position relative
+  width 988px
+  height 716px
 
 
-.countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown__num[data-number="3"], .countdown__num[data-number="2"], .countdown__num[data-number="1"] {
-  background: url('/images/countdown-s9fee64d48a.png') no-repeat;
-}
+.bubble
+  position relative
+  &.error
+    &:before
+      color $color-red
+  &:after
+    absolute right -32px top -35px
+    display inline-block
+    content '!'
+    font-size 33px
+    width 55px
+    height 55px
+    text-align center
 
-.countdown-countdown_1 {
-  background-position: 0 -1436px;
-}
+
+  &:before
+    absolute right -30px top -50px
+    display inline-block
+    width 55px
+    height 55px
+    font-family 'icomoon'
+    font-size 55px
+    color #000
+    speak none
+    font-weight normal
+    line-height 1
+    font-smoothing antialiased
+    content '!'
 
 
-.countdown-countdown_2 {
-  background-position: 0 0;
-}
-
-.countdown-countdown_3 {
-  background-position: 0 -718px;
-}
-
-@keyframes countdown-transition {
-  100% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-.countdown {
-  display:block;
-  position:relative;
-  width: 988px;
-  height: 716px;
-}
-
-.countdown__num {
-  animation: countdown-transition 1s ease-out normal;
-  position: absolute;
-  width: 988px;
-  height: 716px;
-  transform: scale(0.5) translate(0, 90px);
-  opacity: 0;
-}
-
-.countdown__num[data-number="3"] {
-  background-position: 0 -718px;
-  animation-delay: 0s;
-}
-
-.countdown__num[data-number="2"] {
-  background-position: 0 0;
-  animation-delay: 0.9s;
-}
-
-.countdown__num[data-number="1"] {
-  background-position: 0 -1436px;
-  animation-delay: 1.8s;
-}
