@@ -1762,7 +1762,7 @@ THREE.Vector3.prototype = {
 		return this;
 
 	},
-
+	
 	cross: function ( v, w ) {
 
 		if ( w !== undefined ) {
