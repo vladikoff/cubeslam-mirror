@@ -69,7 +69,7 @@ build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<
 
-lang/arbs/%.arb: template.html
+lang/arbs/%.arb: build/build.html
 	node lang/langparse.js > $@ < $<
 
 build/localization.arb: $(LANGUAGES)

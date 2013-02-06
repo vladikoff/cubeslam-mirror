@@ -32,4 +32,8 @@ Chrome Pong (working title)
 
 ## Deploying
 
-  ...
+  To deploy you must first be added to the app engine user list. Then it's simply a matter of using `make`:
+
+    $ make deploy-webrtcgame
+
+  Where the `webrtcgame` part depends on the app you want to deploy to. See the Makefile for available options.
