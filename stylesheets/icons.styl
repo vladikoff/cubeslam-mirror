@@ -1,10 +1,32 @@
 // ICONS
 // ==========================================================================
-.icons-sprite, .icons-cam, .icons-cam__spinner, .icons-computer, .icons-cross-fail, .icons-key-arrow-left, .icons-key-arrow-right, .icons-mouse, .icon-webcam, .icon-quarter-circle, .icon-computer, .icon-arrow-left, .icon-arrow-right, .icon-cross, .icon-mouse {
+.icons-sprite, 
+.icons-cam,
+.icons-cam__spinner,
+.icons-computer,
+.icons-cross-fail,
+.icons-key-arrow-left,
+.icons-key-arrow-right,
+.icons-mouse,
+.icon-webcam,
+.icon-quarter-circle, 
+.icon-computer, 
+.icon-arrow-left, 
+.icon-arrow-right, 
+.icon-cross, 
+.icon-mouse {
   background: url('../images/icons-s4e56167bd4.png') no-repeat;
 }
 
-.icons-sprite, .icon-webcam, .icon-quarter-circle, .icon-computer, .icon-arrow-left, .icon-arrow-right, .icon-cross, .icon-mouse, .icon-destroy-shield-weapon {
+.icons-sprite, 
+.icon-webcam, 
+.icon-quarter-circle, 
+.icon-computer, 
+.icon-arrow-left, 
+.icon-arrow-right,
+.icon-cross,
+.icon-mouse, 
+.icon-destroy-shield-weapon {
   background: url('../images/icons-s2edcc2712a.png') no-repeat;
 }
 
@@ -129,26 +151,12 @@
 
 // Spiner animation
 //
-@-webkit-keyframes spinner-rotate {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes spinner-rotate {
   from {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   to {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -165,7 +173,6 @@
 }
 
 .webcam-spinner__quarter {
-  -webkit-animation: spinner-rotate 1.5s infinite;
   animation: spinner-rotate 1.5s infinite;
   height: 106px;
   width: 106px;
@@ -214,154 +221,79 @@ Just a computer with eyes whithout any anim.
 
 // Eyes blinking animation.
 //
-@-webkit-keyframes cpu-blinking {
-  20%, 40%, 50% {
-    -webkit-transform: scaleY(1);
-    transform: scaleY(1);
-  }
-
-  30%, 45% {
-    -webkit-transform: scaleY(0.2);
-    transform: scaleY(0.2);
-  }
-}
-
 @keyframes cpu-blinking {
   20%, 40%, 50% {
-    -webkit-transform: scaleY(1);
     transform: scaleY(1);
   }
 
   30%, 45% {
-    -webkit-transform: scaleY(0.2);
     transform: scaleY(0.2);
   }
 }
 
 .play-anim .cpu-wth-eyes__eyes > div,
 .reverse-anim .cpu-wth-eyes__eyes > div {
-  -webkit-animation: cpu-blinking 2s;
   animation: cpu-blinking 2s;
 }
 
 .blinking-eyes-anim-loop {
-  -webkit-animation: cpu-blinking 2s infinite;
   animation: cpu-blinking 2s infinite;
 }
 
 // Sad eyes animation.
 //
-@-webkit-keyframes cpu-sad-right-eye {
-  10%, 30%, 40%, 100% {
-    -webkit-transform: scaleY(1) rotate(0deg);
-    transform: scaleY(1) rotate(0deg);
-  }
-
-  20%, 35% {
-    -webkit-transform: scaleY(0.2) rotate(0deg);
-    transform: scaleY(0.2) rotate(0deg);
-  }
-
-  60%, 94% {
-    -webkit-transform: scaleY(1) rotate(20deg);
-    transform: scaleY(1) rotate(20deg);
-  }
-}
-
 @keyframes cpu-sad-right-eye {
   10%, 30%, 40%, 100% {
-    -webkit-transform: scaleY(1) rotate(0deg);
     transform: scaleY(1) rotate(0deg);
   }
 
   20%, 35% {
-    -webkit-transform: scaleY(0.2) rotate(0deg);
     transform: scaleY(0.2) rotate(0deg);
   }
 
   60%, 94% {
-    -webkit-transform: scaleY(1) rotate(20deg);
     transform: scaleY(1) rotate(20deg);
-  }
-}
-
-@-webkit-keyframes cpu-sad-left-eye {
-  10%, 30%, 40%, 100% {
-    -webkit-transform: scaleY(1) rotate(0deg);
-    transform: scaleY(1) rotate(0deg);
-  }
-
-  20%, 35% {
-    -webkit-transform: scaleY(0.2) rotate(0deg);
-    transform: scaleY(0.2) rotate(0deg);
-  }
-
-  60%, 94% {
-    -webkit-transform: scaleY(1) rotate(-20deg);
-    transform: scaleY(1) rotate(-20deg);
   }
 }
 
 @keyframes cpu-sad-left-eye {
   10%, 30%, 40%, 100% {
-    -webkit-transform: scaleY(1) rotate(0deg);
     transform: scaleY(1) rotate(0deg);
   }
 
   20%, 35% {
-    -webkit-transform: scaleY(0.2) rotate(0deg);
     transform: scaleY(0.2) rotate(0deg);
   }
 
   60%, 94% {
-    -webkit-transform: scaleY(1) rotate(-20deg);
     transform: scaleY(1) rotate(-20deg);
   }
 }
 
 .sad-left-eye-anim-loop {
-  -webkit-animation: cpu-sad-left-eye 3s infinite;
   animation: cpu-sad-left-eye 3s infinite;
-  -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
 }
 
 .sad-right-eye-anim-loop {
-  -webkit-animation: cpu-sad-right-eye 3s infinite;
   animation: cpu-sad-right-eye 3s infinite;
-  -webkit-transform-origin: 0% 50%;
   transform-origin: 0% 50%;
 }
 
 // Dashes animation for the wave effect.
 //
-@-webkit-keyframes up-and-down {
-  0%, 20% {
-    -webkit-transform: translate(0, 0px);
-    transform: translate(0, 0px);
-  }
-
-  10% {
-    -webkit-transform: translate(0, -20px);
-    transform: translate(0, -20px);
-  }
-}
-
 @keyframes up-and-down {
   0%, 20% {
-    -webkit-transform: translate(0, 0px);
     transform: translate(0, 0px);
   }
 
   10% {
-    -webkit-transform: translate(0, -20px);
     transform: translate(0, -20px);
   }
 }
 
 .play-anim .dash-anim-line > div,
 .reverse-anim .dash-anim-line > div {
-  -webkit-animation: up-and-down 2s;
   animation: up-and-down 2s;
 }
 
@@ -406,119 +338,83 @@ It was too tricky to have a perfect sync without using
 a JS script.
 */
 .play-anim .cpu-wth-eyes:last-of-type .cpu-wth-eyes__eyes > div {
-  -webkit-animation-delay: 1.4s;
   animation-delay: 1.4s;
 }
 .play-anim .dash-anim-line > div:nth-of-type(1) {
-  -webkit-animation-delay: 850ms;
   animation-delay: 850ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(2) {
-  -webkit-animation-delay: 950ms;
   animation-delay: 950ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(3) {
-  -webkit-animation-delay: 1050ms;
   animation-delay: 1050ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(4) {
-  -webkit-animation-delay: 1150ms;
   animation-delay: 1150ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(5) {
-  -webkit-animation-delay: 1250ms;
   animation-delay: 1250ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(6) {
-  -webkit-animation-delay: 1350ms;
   animation-delay: 1350ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(7) {
-  -webkit-animation-delay: 1450ms;
   animation-delay: 1450ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(8) {
-  -webkit-animation-delay: 1550ms;
   animation-delay: 1550ms;
 }
 .play-anim .dash-anim-line > div:nth-of-type(9) {
-  -webkit-animation-delay: 1650ms;
   animation-delay: 1650ms;
 }
 
 .reverse-anim .cpu-wth-eyes:first-of-type .cpu-wth-eyes__eyes > div {
-  -webkit-animation-delay: 1.4s;
   animation-delay: 1.4s;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(10) {
-  -webkit-animation-delay: 750ms;
   animation-delay: 750ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(9) {
-  -webkit-animation-delay: 850ms;
   animation-delay: 850ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(8) {
-  -webkit-animation-delay: 950ms;
   animation-delay: 950ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(7) {
-  -webkit-animation-delay: 1050ms;
   animation-delay: 1050ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(6) {
-  -webkit-animation-delay: 1150ms;
   animation-delay: 1150ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(5) {
-  -webkit-animation-delay: 1250ms;
   animation-delay: 1250ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(4) {
-  -webkit-animation-delay: 1350ms;
   animation-delay: 1350ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(3) {
-  -webkit-animation-delay: 1450ms;
   animation-delay: 1450ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(2) {
-  -webkit-animation-delay: 1550ms;
   animation-delay: 1550ms;
 }
 .reverse-anim .dash-anim-line > div:nth-of-type(1) {
-  -webkit-animation-delay: 1650ms;
   animation-delay: 1650ms;
 }
 
 /* Computer connection failed animaiton
 // ========================================================================== */
-@-webkit-keyframes cpu-failed-cross {
-  from {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-
-  to {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-
 @keyframes cpu-failed-cross {
   from {
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
 
   to {
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
 
 .cross-fail-anim {
-  -webkit-animation: cpu-failed-cross 500ms;
   animation: cpu-failed-cross 500ms;
 }
 
@@ -530,31 +426,24 @@ a JS script.
   margin-top: 24px;
 }
 .cpu-conn-failed-anim .dash-anim-line > div {
-  -webkit-animation: up-and-down 4s infinite;
   animation: up-and-down 4s infinite;
 }
 .cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(1) {
-  -webkit-animation-delay: 300ms;
   animation-delay: 300ms;
 }
 .cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(2) {
-  -webkit-animation-delay: 400ms;
   animation-delay: 400ms;
 }
 .cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(3) {
-  -webkit-animation-delay: 500ms;
   animation-delay: 500ms;
 }
 .cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(3) {
-  -webkit-animation-delay: 320ms;
   animation-delay: 320ms;
 }
 .cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(2) {
-  -webkit-animation-delay: 420ms;
   animation-delay: 420ms;
 }
 .cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(1) {
-  -webkit-animation-delay: 520ms;
   animation-delay: 520ms;
 }
 
@@ -572,7 +461,6 @@ a JS script.
 }
 
 .key__bg-inner {
-  -webkit-border-radius: 6px;
   border-radius: 6px;
   position: absolute;
   border: 1px solid #000;
@@ -582,7 +470,6 @@ a JS script.
 }
 
 .key__bg-outer {
-  -webkit-border-radius: 8px;
   border-radius: 8px;
   border: 2px solid #000;
 }
@@ -622,43 +509,13 @@ a JS script.
 
 // Keyboard animation
 // ==========================================================================
-
-// Dash animation. Move from right to left.
-//
-@-webkit-keyframes dash-right-to-left-to-right {
-  10%, 100% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-
-  47%, 53% {
-    -webkit-transform: translate(70px, 0);
-    transform: translate(70px, 0);
-  }
-}
-
 @keyframes dash-right-to-left-to-right {
   10%, 100% {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
 
   47%, 53% {
-    -webkit-transform: translate(80px, 0);
     transform: translate(80px, 0);
-  }
-}
-
-// Key left animation.
-// Fade on the inner border + move the arrow
-//
-@-webkit-keyframes keyleft-fade-in-out {
-  10%, 35%, 100% {
-    opacity: 1;
-  }
-
-  47%, 87% {
-    opacity: 0;
   }
 }
 
@@ -675,26 +532,12 @@ a JS script.
 // Key left animation.
 // Fade on the inner border + move the arrow
 //
-@-webkit-keyframes keyleft-arrow-up-down {
-  10%, 35%, 95% {
-    -webkit-transform: translate(0, -2px);
-    transform: translate(0, -2px);
-  }
-
-  47%, 87% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-}
-
 @keyframes keyleft-arrow-up-down {
   10%, 35%, 95% {
-    -webkit-transform: translate(0, -2px);
     transform: translate(0, -2px);
   }
 
   47%, 87% {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
 }
@@ -702,16 +545,6 @@ a JS script.
 // Key right animation.
 // Fade on the inner border + move the arrow
 //
-@-webkit-keyframes keyright-fade-out-in {
-  10%, 35%, 100% {
-    opacity: 0;
-  }
-
-  47%, 87% {
-    opacity: 1;
-  }
-}
-
 @keyframes keyright-fade-out-in {
   10%, 35%, 100% {
     opacity: 0;
@@ -722,26 +555,12 @@ a JS script.
   }
 }
 
-@-webkit-keyframes keyright-arrow-down-up {
-  10%, 35%, 98% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-
-  47%, 92% {
-    -webkit-transform: translate(0, -2px);
-    transform: translate(0, -2px);
-  }
-}
-
 @keyframes keyright-arrow-down-up {
   10%, 35%, 98% {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
 
   47%, 92% {
-    -webkit-transform: translate(0, -2px);
     transform: translate(0, -2px);
   }
 }
@@ -750,14 +569,10 @@ a JS script.
 // Key animations
 //
 .default-key-anim .key__label {
-
-  -webkit-animation: keyleft-arrow-up-down 3s infinite;
   animation: keyleft-arrow-up-down 3s infinite;
-  -webkit-transform: translate(0, -2px);
   transform: translate(0, -2px);
 }
 .default-key-anim .key__bg-inner {
-  -webkit-animation: keyleft-fade-in-out 3s infinite;
   animation: keyleft-fade-in-out 3s infinite;
 }
 
@@ -770,7 +585,6 @@ a JS script.
   }
 
   .dash-big {
-    -webkit-animation: dash-right-to-left-to-right 3s infinite;
     animation: dash-right-to-left-to-right 3s infinite;
     margin-left: 14px;
   }
@@ -779,12 +593,10 @@ a JS script.
 // right key
 .kb-anim > div:nth-of-type(3) {
   .key__label {
-    -webkit-animation: keyright-arrow-down-up 3s infinite;
     animation: keyright-arrow-down-up 3s infinite;
   }
 
   .key__bg-inner {
-    -webkit-animation: keyright-fade-out-in 3s infinite;
     animation: keyright-fade-out-in 3s infinite;
     opacity: 0;
   }
@@ -793,26 +605,12 @@ a JS script.
 
 // Mouse Animation
 // ==========================================================================
-@-webkit-keyframes mouse-move {
-  10%, 100% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-
-  50% {
-    -webkit-transform: translate(20px, 0);
-    transform: translate(20px, 0);
-  }
-}
-
 @keyframes mouse-move {
   10%, 100% {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
 
   50% {
-    -webkit-transform: translate(20px, 0);
     transform: translate(20px, 0);
   }
 }
@@ -823,12 +621,10 @@ a JS script.
 
 .mouse-anim > .dash-big,
 .mouse-anim > .icon-mouse {
-  -webkit-animation: mouse-move 1.6s infinite;
   animation: mouse-move 1.6s infinite;
 }
 
 .mouse-anim > .dash-big {
-  -webkit-animation-delay: 100ms;
   animation-delay: 100ms;
   margin-left: 5px;
 }
@@ -858,42 +654,12 @@ a JS script.
   background-position: 0 -718px;
 }
 
-@-webkit-keyframes countdown-transition {
-  92% {
-   /* -webkit-transform: scale(0.5) translate(0, 0);
-    -moz-transform: scale(0.5) translate(0, 0);
-    -ms-transform: scale(0.5) translate(0, 0);
-    -o-transform: scale(0.5) translate(0, 0);
-    transform: scale(0.5) translate(0, 0);*/
-    opacity: 1;
-  }
-
-  100% {
- /* -webkit-transform: scale(0.5) translate(0, 0);
-    -moz-transform: scale(0.5) translate(0, 0);
-    -ms-transform: scale(0.5) translate(0, 0);
-    -o-transform: scale(0.5) translate(0, 0);
-    transform: scale(0.5) translate(0, 0);*/
-    opacity: 0;
-  }
-}
-
 @keyframes countdown-transition {
   100% {
-    /*-webkit-transform: scale(0.5) translate(0, 0);
-    -moz-transform: scale(0.5) translate(0, 0);
-    -ms-transform: scale(0.5) translate(0, 0);
-    -o-transform: scale(0.5) translate(0, 0);
-    transform: scale(0.5) translate(0, 0);*/
     opacity: 1;
   }
 
   100% {
-    /*-webkit-transform: scale(0.5) translate(0, 0);
-    -moz-transform: scale(0.5) translate(0, 0);
-    -ms-transform: scale(0.5) translate(0, 0);
-    -o-transform: scale(0.5) translate(0, 0);
-    transform: scale(0.5) translate(0, 0);*/
     opacity: 0;
   }
 }
@@ -906,33 +672,25 @@ a JS script.
 }
 
 .countdown__num {
-  -webkit-animation: countdown-transition 1s ease-out normal;
   animation: countdown-transition 1s ease-out normal;
   position: absolute;
   width: 988px;
   height: 716px;
-  -webkit-transform: scale(0.5) translate(0, 90px);
-  -moz-transform: scale(0.5) translate(0, 90px);
-  -ms-transform: scale(0.5) translate(0, 90px);
-  -o-transform: scale(0.5) translate(0, 90px);
   transform: scale(0.5) translate(0, 90px);
   opacity: 0;
 }
 
 .countdown__num[data-number="3"] {
   background-position: 0 -718px;
-  -webkit-animation-delay: 0s;
   animation-delay: 0s;
 }
 
 .countdown__num[data-number="2"] {
   background-position: 0 0;
-  -webkit-animation-delay: 0.9s;
   animation-delay: 0.9s;
 }
 
 .countdown__num[data-number="1"] {
   background-position: 0 -1436px;
-  -webkit-animation-delay: 1.8s;
   animation-delay: 1.8s;
 }
