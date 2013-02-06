@@ -19,12 +19,15 @@ html(lang='en')
           img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
         h3 a chrome experiment
 
-      p.full
-        span(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
-
       .nav
-        p.multiplayer
-          span.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
+        .notifications 
+          p.notification.full
+            span.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
+          p.notification.multiplayer
+            span.bubble.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
+          p.notification.error.webcam
+            span.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
+
         button.play-friend.green(arb:id='playFriendButton') Play friend
         button.play-computer.green Play Computer
 
@@ -38,18 +41,15 @@ html(lang='en')
         a.experiment(href='http://google.com/', target='_blank')
 
     .state.loading
-      .center
-        .webcam-spinner__quarter
-          .icon-quarter-circle
 
     //GAME INSTRUCTIONS
     .state.game-info.inactive
       .dialog.middle
         .content
-          .vertical-center
+          .game-controls.vertical-center
             h2 Game controls
-            #game-controls
-              p Play using
+            p Play using
+            div.animation
               .kb-anim
                 .dash-big.dash-black
                 .key.key--small.default-key-anim
@@ -72,35 +72,35 @@ html(lang='en')
               p to pause
             button.green.play Start
 
-
-            //GAME INFO ANIMATION
-            .destroy-shield.info-animation
+          .vertical-center
+            .info-animation.hidden
+              //GAME INFO ANIMATION
               .destroy-shield__label
-                p Destroy the shield
-                p Hit'em in the face !
+                  p Destroy the shield
+                  p Hit'em in the face !
+              .destroy-shield
+                .destroy-shield__anim-container
+                  .destroy-shield__wall
+                    .destroy-shield__eyes
+                      .dash-black
+                      .dash-black
+                    .destroy-shield__shields
+                      .dash-tall.dash-black
+                      .dash-tall.dash-black
+                      .dash-tall.dash-black
 
-              .destroy-shield__anim-container
-                .destroy-shield__wall
-                  .destroy-shield__eyes
-                    .dash-black
-                    .dash-black
-                  .destroy-shield__shields
-                    .dash-tall.dash-black
-                    .dash-tall.dash-black
-                    .dash-tall.dash-black
-
-                .destroy-shield__weapon.icon-destroy-shield-weapon
+                  .destroy-shield__weapon.icon-destroy-shield-weapon
 
     //INVITE FRIEND
     .state.friend-invite.inactive
-      .dialog.middle
+      .dialog
         .content
           .vertical-center
             h2 share this link to Invite a Friend
             input.share-url(type='text', value='')
             input#share-url.notimplemented(type='button', value='Copy')
-            p We'll let you know when your friend arrives.
-              a.return-mainmenu Back
+            p You will be notified when your friend enter the game
+            button.red.return-mainmenu Back
 
     //COUNTDOWN
     .state.game-play.inactive
