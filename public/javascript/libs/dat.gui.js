@@ -3115,6 +3115,7 @@ dat.controllers.ColorController = (function (Controller, dom, Color, interpret, 
 
     function onBlur() {
       var i = interpret(this.value);
+      
       if (i !== false) {
         _this.__color.__state = i;
         _this.setValue(_this.__color.toOriginal());
