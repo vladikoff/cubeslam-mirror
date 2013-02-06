@@ -93,14 +93,14 @@ html(lang='en')
 
     //INVITE FRIEND
     .state.friend-invite.inactive
-      .dialog.middle
+      .dialog
         .content
           .vertical-center
             h2 share this link to Invite a Friend
             input.share-url(type='text', value='')
             input#share-url.notimplemented(type='button', value='Copy')
-            p We'll let you know when your friend arrives.
-              a.return-mainmenu Back
+            p You will be notified when your friend enter the game
+            button.red.return-mainmenu Back
 
     //COUNTDOWN
     .state.game-play.inactive
