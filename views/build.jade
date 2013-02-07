@@ -21,15 +21,19 @@ html(lang='en')
 
       .nav
         .notifications 
+          p.notification.empty
+            span.bubble(arb:id="") No one is currently playing in this room, invite a friend.
           p.notification.full
             span.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
+          p.notification.connection-error
+            span.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
           p.notification.multiplayer
             span.bubble.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
           p.notification.error.webcam
             span.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
 
         button.play-friend.green(arb:id='playFriendButton') Play friend
-        button.play-computer.green Play Computer
+        button.play-computer.green(arb:id='playCPUButton') Play Computer
 
       .links
         a.tech(href='http://google.com/', target='_blank')
@@ -95,12 +99,12 @@ html(lang='en')
                   .destroy-shield__weapon.icon-destroy-shield-weapon
 
     //INVITE FRIEND
-    .state.friend-invite.inactive
+    .state.friend-invite.game-invite.inactive
       .dialog
         .content
           .vertical-center
             h2 share this link to Invite a Friend
-            input.share-url(type='text', value='')
+            .share-url(contenteditable, disabled)
             input#share-url.notimplemented(type='button', value='Copy')
             p You will be notified when your friend enter the game
             button.red.return-mainmenu Back
@@ -162,11 +166,57 @@ html(lang='en')
             h2 Your friend is waiting for you in the arena
             button.play-friend.blue Play Friend
 
-    .state.error.inactive
+    //ERROR STATES
+    .state.error.active
+      .state.error.connection-error.inactive
+        .dialog.middle
+          .content
+            .vertical-center
+              h2 Connection Error!
+              .cpu-conn-failed-anim
+                .cpu-wth-eyes
+                  .cpu-wth-eyes__bg.icon-computer
+                  .cpu-wth-eyes__container
+                    .cpu-wth-eyes__eyes
+                      .dash-medium.dash-white.sad-left-eye-anim-loop
+                      .dash-medium.dash-white.sad-right-eye-anim-loop
+
+                .dash-anim-line
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+
+                .cross-fail-anim
+                  .icon-cross
+
+                .dash-anim-line
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+
+                .cpu-wth-eyes
+                  .cpu-wth-eyes__bg.icon-computer
+                  .cpu-wth-eyes__container
+                    .cpu-wth-eyes__eyes
+                      .dash-medium.dash-white.sad-left-eye-anim-loop
+                      .dash-medium.dash-white.sad-right-eye-anim-loop
+
+              p You can try reloading the page
+              p or try the single player game
+
+      .state.error.datachannels.inactive
+        .dialog.middle
+          .content
+            .vertical-center
+              h2 Error
+              p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
+              button.return-mainmenu.red Back
+
       .state.error.network-missing
-        button Back
+        button.return-mainmenu Back
+
       .state.error.game-full
-        a.button.green(href="/")
+        a.button.return-mainmenu.red(href="/")
 
 
     //WAITING FRIEND ACCEPT
