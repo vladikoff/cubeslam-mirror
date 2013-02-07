@@ -13,10 +13,10 @@
     "publicclass/stash": "*",
     "publicclass/netchan": "*",
     "publicclass/base64-arraybuffer": "*",
+    "publicclass/log-worker": "*",
     "visionmedia/debug": "*",
     "ForbesLindesay/seed-random": "*",
-    "ecarter/css-emitter": "*",
-    "publicclass/log-worker": "*"
+    "ecarter/css-emitter": "*"
   },
   "scripts": [
     "index.js",
@@ -26,6 +26,7 @@
     "lib/inputs.js",
     "lib/collisions.js",
     "lib/network.js",
+    "lib/network-inputs.js",
     "lib/audio.js",
     "lib/camera.js",
     "lib/camera-attention.js",
