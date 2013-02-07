@@ -55,6 +55,7 @@
     "lib/support/buffer.js",
     "lib/support/pool.js",
     "lib/support/tick.js",
+    "lib/support/logger.js",
     "lib/states/index.js",
     "lib/states/setup.js",
     "lib/states/mobile.js",
