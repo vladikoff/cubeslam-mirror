@@ -20,7 +20,7 @@ html(lang='en')
         h3 a chrome experiment
 
       .nav
-        .notifications 
+        .notifications
           p.notification.full
             span.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
           p.notification.multiplayer
@@ -323,6 +323,7 @@ html(lang='en')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src="/javascript/libs/dat.gui.js")
     script(src='/javascript/pong.js')
+    script(src='/javascript/dmaf.js')
     script
       require('paddle-battle')({
         room: '{{.Room}}',
