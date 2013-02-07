@@ -1,6 +1,7 @@
 package webrtcing
 
 import (
+  "src/faker"
   "appengine"
   "appengine/channel"
   "appengine/memcache"
@@ -137,7 +138,12 @@ func init() {
     c := appengine.NewContext(r)
     w.Header().Set("Content-Type", "text/html; charset=utf-8")
     if r.URL.Path == "/" {
-      http.Redirect(w, r, "/"+Random(12), 302);
+      if fake, err := faker.New("en"); err == nil {
+        // TODO make sure the room doesn't exist...
+        http.Redirect(w, r, "/"+fake.DomainWord(), 302);
+      } else {
+        c.Criticalf("execution failed: %s", err)
+      }
     } else {
       Room(c, w, r);
     }
