@@ -34,11 +34,14 @@ html(lang='en')
       .links
         a.tech(href='http://google.com/', target='_blank')
           small About
-          br
-          |  #{name}
+          | #{name}
           br
           | Technology
         a.experiment(href='http://google.com/', target='_blank')
+          small This is a
+          | Chrome
+          br
+          | Experiment
 
     .state.loading
 
@@ -158,6 +161,13 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Your friend is waiting for you in the arena
             button.play-friend.blue Play Friend
+
+    .state.error.inactive
+      .state.error.network-missing
+        button Back
+      .state.error.game-full
+        a.button.green(href="/")
+
 
     //WAITING FRIEND ACCEPT
     .state.friend-accept.inactive
