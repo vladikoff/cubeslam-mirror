@@ -20,7 +20,6 @@
   &.game-instructions,
   &.state.game-info,
   &.state.game-start
-
     box-orient horizontal
     box-pack center
     box-align center
@@ -68,12 +67,13 @@
         background #2aa52a
         color $color-beige
 
+    p
+      max-width 350px
+      margin 0 auto 20px
+      line-height 1.4em
+
   &.game-play
     .content.center
-      // display flex
-      // box-orient horizontal
-      // box-pack center
-      // box-align center
       display flex
       box-orient horizontal
       box-direction row
@@ -112,11 +112,16 @@
         opacity 1
 
   &.game-pause
+    button
+      display block
+      min-width 275px
+      margin 0 auto
+      &:last-child
+        margin-top 20px
     h2
-      padding-top: 40px
-      padding-bottom: 20px
+      padding-bottom 20px
     p
-      padding-bottom: 25px
+      padding-bottom 25px
 
   &.webcam-information
     .dialog
@@ -194,34 +199,35 @@
 
   &.game-info
     .info-animation
-      display none
-      width 200px
+      display inline-block
+      width 210px
+      transform translateY(-20px)
+      p
+        font-size 14px
+        white-space nowrap
+      &.hidden
+        display none
 
   &.loading
-    .center
-      display flex
-      box-orient horizontal
-      box-pack center
-      box-align center
-      justify-content center
-      align-content stretch
-      align-items center
-      height 100%
-      width 100%
-      background $color-beige url('/images/minipong.png') no-repeat center center
+    height 100%
+    width 100%
+    background $color-beige url('/images/opponent_computer.gif') no-repeat center center
 
 
 
-#game-controls
+.game-controls
   width 100%
-  margin 25px 0 28px
 
-  > p, > div
-    display inline-block
+  .animation
+    margin 25px 0 28px
 
-  > p
-    vertical-align top
-    margin 42px 7px 0
+    > div
+      display inline-block
+
+    > p
+      display inline-block
+      vertical-align top
+      margin 42px 7px 0
 
 #scores
   color $color-beige

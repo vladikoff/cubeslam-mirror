@@ -120,6 +120,7 @@
     "lib/geometry/extra_fastball.js",
     "lib/geometry/extra_timebomb.js",
     "lib/geometry/terrain3.js",
+    "lib/geometry/mountains.js",
     "lib/geometry/bear.js",
     "lib/geometry/paw.js",
     "lib/geometry/rabbit.js",
