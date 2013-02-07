@@ -15,7 +15,8 @@
     "publicclass/base64-arraybuffer": "*",
     "visionmedia/debug": "*",
     "ForbesLindesay/seed-random": "*",
-    "ecarter/css-emitter": "*"
+    "ecarter/css-emitter": "*",
+    "publicclass/log-worker": "*"
   },
   "scripts": [
     "index.js",
