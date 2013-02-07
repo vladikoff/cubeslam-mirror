@@ -31,9 +31,17 @@ body
 #game
   position absolute
   top 0
+  height 100%
+  //padding 0 0 40px
+  box-sizing border-box
 
   canvas
-    absolute top 0px left
+    relative top 0px left
+    //height 100%!important
+
+  > *
+    &.hidden
+      display none
 
 .icon
   background red
