@@ -132,6 +132,7 @@
     "lib/geometry/cpu.js",
     "lib/levels/index.js",
     "lib/levels/next.js",
+    "lib/levels/next2.js",
     "lib/levels/level1.js",
     "lib/levels/level2.js",
     "lib/levels/level3.js",
