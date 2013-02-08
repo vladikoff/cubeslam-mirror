@@ -41,9 +41,10 @@
       display inline
       font-family: 'Varela' sans-serif
       background #2aa52a
-      padding 7px 20px 7px
+      padding 7px 0 7px
       margin 0 0 20px -7px
       font-size 11px
+      width 85px
       color $color-beige
       text-transform uppercase
       border none
@@ -249,7 +250,7 @@
 #scores
   color $color-beige
   position absolute
-  z-index 2
+  z-index 6
   top 100px
   left 70px
   line-height 15px
@@ -270,32 +271,43 @@
     margin-top 10px
     p
       font-size 11px
+      margin-bottom 3px
 
   .player
     margin-top 20px
 
-  // .multiplayer
-  // display block
-  // .single
-
 
   ol
     li
+      perspective 20
       width 26px
       height 26px
       border 2px solid #FFF
       display inline-block
       margin-left 7px
       position relative
-      &:first-child
-        margin-left 0
-      &.active:before
+      transition transform 300ms ease-out
+      // transform-origin center center
+      transform-style preserve-3d
+      backface-visibility hidden
+
+      &:before
         content ''
         display block
         absolute top -2px left -6px
         width 34px
         height 33px
+
+        transform rotateY(-180deg)
+        backface-visibility hidden
+        // transform-style preserve-3d
+
         background transparent url('/images/score-rect.png') no-repeat
+
+      &:first-child
+        margin-left 0
+      &.active
+        transform rotateY(180deg)
 
 #level
   &.inactive
