@@ -209,7 +209,6 @@ func (f *Faker) combine(keys ...string) string {
 }
 
 func (f *Faker) parse(key string) string {
-	log.Print(key)
 	baseKeyIndex := strings.Index(key, ".")
 	baseKey := key[0:baseKeyIndex]
 
