@@ -37,20 +37,18 @@
     transform rotateX( -90deg )
 
   &.friend-invite
-    input
-      font-family: 'Varela' sans-serif
-      font-size 11px
-      cursor pointer
-    input[type='button']
+    #share-url
       display inline
+      font-family: 'Varela' sans-serif
       background #2aa52a
-      padding 4px 20px 3px
+      padding 7px 20px 7px
       margin 0 0 20px -7px
-      line-height 21px
+      font-size 11px
       color $color-beige
       text-transform uppercase
       border none
-      &:hover
+      cursor pointer
+      &:hover, &.hover
         background #207f20
 
     .share-url
@@ -60,6 +58,8 @@
       padding 8px 5px 7px 5px
       border 1px solid #2aa52a
       display inline-block
+      overflow hidden
+      white-space nowrap
       &:focus
         outline none
       &::selection
