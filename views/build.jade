@@ -106,7 +106,9 @@ html(lang='en')
           .vertical-center
             h2 share this link to Invite a Friend
             .share-url(contenteditable, disabled)= url
-            button#share-url(type='button') Copy
+            button#share-url(type='button') 
+              span.ready Copy
+              span.complete Copied!
             p You will be notified when your friend enter the game
             button.red.return-mainmenu(type='button') Back
 
