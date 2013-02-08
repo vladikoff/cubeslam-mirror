@@ -229,14 +229,6 @@
   animation cpu-sad-right-eye 3s infinite
   transform-origin 0% 50%
 
-// Dashes animation for the wave effect.
-//
-@keyframes up-and-down 
-  0%, 20% 
-    transform translate(0, 0px)
-  10% 
-    transform translate(0, -20px)
-
 
 .play-anim .dash-anim-line > div,
 .reverse-anim .dash-anim-line > div 
@@ -340,49 +332,6 @@ a JS script.
 
 .reverse-anim .dash-anim-line > div:nth-of-type(1) 
   animation-delay 1650ms
-
-
-/* Computer connection failed animaiton
-// ========================================================================== */
-@keyframes cpu-failed-cross 
-  from 
-    transform scale(0)
-  
-  to 
-    transform scale(1)
-  
-
-
-.cross-fail-anim
-  animation cpu-failed-cross 500ms
-
-.cpu-conn-failed-anim > div 
-  display inline-block
-
-.cpu-conn-failed-anim .cross-fail-anim 
-  vertical-align top
-  margin-top 24px
-
-.cpu-conn-failed-anim .dash-anim-line > div 
-  animation up-and-down 4s infinite
-
-.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(1) 
-  animation-delay 300ms
-
-.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(2) 
-  animation-delay 400ms
-
-.cpu-conn-failed-anim div:nth-child(2) > div:nth-of-type(3) 
-  animation-delay 500ms
-
-.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(3) 
-  animation-delay 320ms
-
-.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(2) 
-  animation-delay 420ms
-
-.cpu-conn-failed-anim div:nth-child(4) > div:nth-of-type(1) 
-  animation-delay 520ms
 
 
 /* KEY
@@ -571,7 +520,7 @@ a JS script.
     &:before
       color $color-red
   &:after
-    absolute right -32px top -35px
+    absolute right -37px top -35px
     display inline-block
     content '!'
     font-size 33px
@@ -581,7 +530,7 @@ a JS script.
 
 
   &:before
-    absolute right -30px top -50px
+    absolute right -35px top -50px
     display inline-block
     width 55px
     height 55px
