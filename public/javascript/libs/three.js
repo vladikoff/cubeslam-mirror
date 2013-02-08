@@ -1762,7 +1762,7 @@ THREE.Vector3.prototype = {
 		return this;
 
 	},
-	
+
 	cross: function ( v, w ) {
 
 		if ( w !== undefined ) {
@@ -18011,7 +18011,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 		if ( geometryGroup.numMorphTargets ) {
 
 			geometryGroup.__webglMorphTargetsBuffers = [];
-			
+
 			for ( m = 0, ml = geometryGroup.numMorphTargets; m < ml; m ++ ) {
 
 				geometryGroup.__webglMorphTargetsBuffers.push( _gl.createBuffer() );
@@ -30728,7 +30728,7 @@ THREE.BoxGeometry = function ( width, height, depth, segmentsWidth, segmentsHeig
 	width_half = width / 2,
 	height_half = height / 2,
 	depth_half = depth / 2;
-	
+
 	this.sides = { px: true, nx: true, py: true, ny: true, pz: true, nz: true };
 
 	if ( sides != undefined ) {
@@ -30743,7 +30743,7 @@ THREE.BoxGeometry = function ( width, height, depth, segmentsWidth, segmentsHeig
 
 		}
 
-	}	
+	}
 
 
 	this.sides.px && buildPlane( 'z', 'y', - 1, - 1, depth, height, width_half, 0 ); // px
