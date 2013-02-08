@@ -12,7 +12,6 @@ import (
 	"time"
 	"unicode"
 	"unicode/utf8"
-	"log"
 )
 
 var (
@@ -39,9 +38,6 @@ func New(lang string) (*Faker, error) {
 	if !ok {
 		return nil, errors.New(fmt.Sprintf("No such language: %q", lang))
 	}
-
-	log.Print(Dict)
-	log.Print(subDict)
 
 	source := rand.NewSource(time.Now().Unix())
 	return &Faker{
