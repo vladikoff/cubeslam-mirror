@@ -33,8 +33,8 @@ html(lang='en')
           p.notification.error.webcam
             span.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
 
-        button.play-friend.green(arb:id='playFriendButton') Play friend
-        button.play-computer.green(arb:id='playCPUButton') Play Computer
+        button.play-friend.green(arb:id='playFriendButton', type='button') Play friend
+        button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
 
       .links
         a.tech(href='http://google.com/', target='_blank')
@@ -78,7 +78,7 @@ html(lang='en')
                 .key__bg-outer
                   div.key__bg-inner
               p to pause
-            button.green.play Start
+            button.green.play(type='button') Start
 
           .vertical-center
             .info-animation.hidden
@@ -106,9 +106,9 @@ html(lang='en')
           .vertical-center
             h2 share this link to Invite a Friend
             .share-url(contenteditable, disabled)= url
-            button#share-url Copy
+            button#share-url(type='button') Copy
             p You will be notified when your friend enter the game
-            button.red.return-mainmenu Back
+            button.red.return-mainmenu(type='button') Back
 
     //COUNTDOWN
     .state.game-play.inactive
@@ -124,8 +124,8 @@ html(lang='en')
         .content
           .vertical-center
             h2 Paused
-            button.blue.play-friend Play Friend
-            button.singleplayer.green.play Resume (space)
+            button.blue.play-friend(type='button') Play Friend
+            button.singleplayer.green.play(type='button') Resume (space)
 
     //CAMERA REQUEST ATTENTION
     .state.webcam-activate.inactive
@@ -165,7 +165,7 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Your friend is waiting for you in the arena
-            button.play-friend.blue Play Friend
+            button.play-friend.blue(type='button') Play Friend
 
     //ERROR STATES
     .state.error.active
@@ -211,13 +211,13 @@ html(lang='en')
             .vertical-center
               h2 Error
               p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
-              button.return-mainmenu.red Back
+              button.return-mainmenu.red(type='button') Back
 
       .state.error.network-missing
-        button.return-mainmenu Back
+        button.return-mainmenu(type='button') Back
 
       .state.error.game-full
-        a.button.return-mainmenu.red(href="/")
+        a.button.return-mainmenu.red(href="/", type='button')
 
 
     //WAITING FRIEND ACCEPT
@@ -232,7 +232,7 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Waiting for you friend to accept
-            button.return-mainmenu.blue Back
+            button.return-mainmenu.blue(type='button') Back
 
     //FRIEND ARRIVED
     .state.friend-arrived.inactive
@@ -246,7 +246,7 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Your friend has arrived
-            button.play-friend.blue Play Friend
+            button.play-friend.blue(type='button') Play Friend
 
     //OPPONENT LEFT DIALOG
     .state.friend-left.inactive
@@ -254,8 +254,8 @@ html(lang='en')
         .content
           .vertical-center
             h2 Your friend left the game
-            button.blue.play-friend Play Friend
-            button.green.play Play Computer (Space)
+            button.blue.play-friend(type='button') Play Friend
+            button.green.play(type='button') Play Computer (Space)
 
     //GAME OVER
     .state.game-over.inactive
@@ -283,14 +283,14 @@ html(lang='en')
                   #highscore-rally.highscoreDigit X
                   div Longest Rallies
 
-              button.blue.play-friend Play Friend
-              button.green.play Play Again (Space)
+              button.blue.play-friend(type='button') Play Friend
+              button.green.play(type='button') Play Again (Space)
 
             #scoreboard-multi.vertical-center
               h2 Your Points
               .scoreboard.multiplayer
                   img(src='/images/temp_scoreboard_multi.gif')
-              button.green.play Play Again (Space)
+              button.green.play(type='button') Play Again (Space)
 
     #scores.state.game.inactive
       .logo
@@ -342,8 +342,8 @@ html(lang='en')
           .arena
 
     #gamepad.state.game
-      .button.left
-      .button.right
+      .button.left(type='button')
+      .button.right(type='button')
 
     footer#footer
       ul#socials.social
