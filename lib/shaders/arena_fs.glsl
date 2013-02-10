@@ -27,8 +27,7 @@ void main(void)
     vec3 gridColor = vec3(color)*gridBrightness;
     vec3 centerColor = vec3(color2)*lineColor;
 
-    gl_FragColor = vec4( gridColor + arenaColor , step(gridColor.x,0.99) )*0.7 + vec4( centerColor , color2);
-    //gl_FragColor = gridColor*0.4 + vec4( lineColor , step(gridColor.x,0.99) )*0.2*color + vec4( centerColor , color2)*0.8;
+    gl_FragColor = vec4( gridColor + arenaColor , step(gridColor.x,0.99) )*0.8 + vec4( centerColor , color2);
 
 }
 
