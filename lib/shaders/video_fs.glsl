@@ -2,7 +2,9 @@
 precision mediump float;
 #endif
 
+varying vec3 vWorldPosition;
 varying vec2 vUv;
+uniform vec3 arenaColor;
 uniform float time;
 uniform float noiseAmount;
 uniform sampler2D tVideo;
@@ -38,16 +40,20 @@ void main(void)
     vec3 color = mix( videoOrg, videoDistort,noiseAmount+0.04);
     vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
 
+
     vec2 p = vUv;
     float darkness = 1.7;
     vec2 textureCoords = p - 0.5;
     float vignette = 1.0 - (dot(textureCoords, textureCoords) * darkness);
     vec3 vignetteColor = vec3(vignette);
 
+    finalColor = mix( finalColor*vignetteColor, arenaColor, clamp((vWorldPosition.y+50.0)/-resolution.y,0.0,1.0));
+
+
     //scanlines
     //finalColor += vec3(0.05) * sin( (vUv.y) * 360.0 );
 
-    gl_FragColor=vec4(finalColor*vignetteColor,1.0);
+    gl_FragColor=vec4(finalColor,1.0);
 
 }
 
