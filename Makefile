@@ -58,7 +58,7 @@ lib/geometry/%.js: lib/geometry/%.json
 	support/str-to-js > $@ < $<
 
 %.min.js: %.js
-	node_modules/.bin/uglifyjs $< > $@
+	node_modules/.bin/uglifyjs $< --source-map $@.map -o $@ -c -m --lint
 
 build/%.html: views/%.jade
 	node_modules/.bin/jade < $< --path $< > $@ -P
