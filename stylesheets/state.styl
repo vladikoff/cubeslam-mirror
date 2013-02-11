@@ -37,40 +37,27 @@
     transform rotateX( -90deg )
 
   &.friend-invite
-    #share-url
-      display inline
-      font-family: 'Varela' sans-serif
-      background #2aa52a
-      padding 7px 0 7px
-      margin 0 0 20px -7px
-      font-size 11px
-      width 85px
-      color $color-beige
-      text-transform uppercase
-      border none
-      cursor pointer
-
-      .complete
-        display none
-        
-      &:hover, &.hover
-        background #207f20
-
     .share-url
       background $color-beige
       color #2aa52a
-      width 303px
+      width 350px
       padding 8px 5px 7px 5px
       border 1px solid #2aa52a
       display inline-block
       overflow hidden
       white-space nowrap
+      position relative
+      text-transform none
       &:focus
         outline none
-      &::selection
-        background #2aa52a
-        color $color-beige
+      span
+        z-index 2
+        &::selection
+          background #2aa52a
+          color $color-beige
 
+      span 
+        position relative
     p
       max-width 350px
       margin 0 auto 20px
