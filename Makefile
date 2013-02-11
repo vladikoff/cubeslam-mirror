@@ -91,6 +91,8 @@ server.conf: server.conf.sample
 	@echo
 	@echo 'You need to `cp $< $@` and modify the server name and root.'
 	@echo
+	@echo '  SERVER_ROOT: ${PWD}'
+	@echo
 	@exit 1
 
 proxy: server.conf
