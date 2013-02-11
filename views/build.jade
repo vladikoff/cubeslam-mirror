@@ -56,7 +56,6 @@ html(lang='en')
         .content
           .game-controls.vertical-center
             h2 Game controls
-            p Play using
             div.animation
               .kb-anim
                 .dash-big.dash-black
@@ -264,33 +263,41 @@ html(lang='en')
         .dialog
           .content
             #scoreboard-single.vertical-center
-              h2 Your Points
               .scoreboard.single
-                  div Levels Played
-                  #highscore-levels.highscoreDigit X
-                  #share-score
-                    h3 Share
-                    ul.social
-                      li
-                        a.icon.notimplemented(data-icon='g')
-                          span Google plus
-                      li
-                        a.icon.notimplemented(data-icon='f')
-                          span Facebook
-                      li
-                        a.icon.notimplemented(data-icon='t')
-                          span Twitter
-                  #highscore-rally.highscoreDigit X
-                  div Longest Rallies
+                  div
+                    p#single-levels.levels X
+                    h3 Levels Cleared
+                  ul.social
+                    li
+                      a.icon.notimplemented(data-icon='g')
+                        span Google plus
+                    li
+                      a.icon.notimplemented(data-icon='f')
+                        span Facebook
+                    li
+                      a.icon.notimplemented(data-icon='t')
+                        span Twitter
 
               button.blue.play-friend(type='button') Play Friend
               button.green.play(type='button') Play Again (Space)
 
             #scoreboard-multi.vertical-center
-              h2 Your Points
               .scoreboard.multiplayer
-                  img(src='/images/temp_scoreboard_multi.gif')
-              button.green.play(type='button') Play Again (Space)
+                h3 Total wins
+                div
+                    p#me-levels.levels X
+                    p#opponent-levels.levels X
+                ul.social
+                  li
+                    a.icon.notimplemented(data-icon='g')
+                      span Google plus
+                  li
+                    a.icon.notimplemented(data-icon='f')
+                      span Facebook
+                  li
+                    a.icon.notimplemented(data-icon='t')
+                      span Twitter
+                button.green.play(type='button') Play Again (Space)
 
     #scores.state.game.inactive
       .logo
