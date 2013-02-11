@@ -37,7 +37,7 @@ void main(void)
 
 
     float brokenColor = texture2D(tBroken,vUv).r;
-    vec3 color = mix( videoOrg, videoDistort,noiseAmount+0.04);
+    vec3 color = mix( videoOrg, videoDistort,noiseAmount+0.1);
     vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
 
 
