@@ -8,6 +8,8 @@
   padding 0
   perspective 2000px
   text-align center
+  transform-style preserve-3d
+  backface-visibility hidden
 
   &.top
     top 0
@@ -48,7 +50,8 @@
 
 .state.inactive .dialog
   .content
-    transform rotateX( 85deg ) translateZ(-400px) translateY(-200px)
+    //transform rotateX( 85deg ) translateZ(-400px) translateY(-200px)
+    transform rotateX(88deg) translateZ(-400px) translateY(-70px)
 
   &.top .content
     text-align left

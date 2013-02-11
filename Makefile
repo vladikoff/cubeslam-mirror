@@ -28,15 +28,18 @@ build-component: build/build.js
 build-styles: build/build-stylus.css
 build-localization: build/localization.arb
 
-deploy-alfred:
+prepare-deploy: build/build.min.js
+	@:
+
+deploy-alfred: prepare-deploy
 	support/deploy alfredsgame
-deploy-einar:
+deploy-einar: prepare-deploy
 	support/deploy einarsgame
-deploy-goggles:
+deploy-goggles: prepare-deploy
 	support/deploy gogglesgame
-deploy-goggles1:
+deploy-goggles1: prepare-deploy
 	support/deploy gogglesgame1
-deploy-webrtc:
+deploy-webrtc: prepare-deploy
 	support/deploy webrtcgame
 
 node_modules/:
@@ -55,7 +58,7 @@ lib/geometry/%.js: lib/geometry/%.json
 	support/str-to-js > $@ < $<
 
 %.min.js: %.js
-	node_modules/.bin/uglifyjs $< > $@
+	node_modules/.bin/uglifyjs $< -p 1 --source-map public/javascript/pong.min.js.map -c -m --lint > $@
 
 build/%.html: views/%.jade
 	node_modules/.bin/jade < $< --path $< > $@ -P
@@ -84,9 +87,23 @@ clean-localization:
 clean-geometry:
 	rm -Rf $(GEOMETRY_JS) $(GEOMETRY_JSON)
 
+server.conf: server.conf.sample
+	@echo
+	@echo 'You need to `cp $< $@` and modify the server name and root.'
+	@echo
+	@echo '  SERVER_ROOT: ${PWD}'
+	@echo
+	@exit 1
+
+proxy: server.conf
+	mkdir -p /tmp/nginx/pong
+	ln -sf "${PWD}/server.conf" /tmp/nginx/pong/server.conf
+	nginx -s reload || nginx
+	dev_appserver.py -a 0.0.0.0 -c -p 8081 .
+
 
 .SUFFIXES:
 .PHONY: clean clean-geometry clean-localization \
 				build build-min build-shaders build-styles \
 				build-geometry build-component build-localization \
-				deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred
+				prepare-deploy deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred

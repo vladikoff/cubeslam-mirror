@@ -15,6 +15,7 @@ import (
   "io/ioutil"
   // "strconv"
   "time"
+  "os"
 )
 
 /*
@@ -42,6 +43,7 @@ type TemplateData struct {
   User string
   LoginLogoutLink string
   AcceptLanguage string
+  Minified string
 }
 
 func init() {
@@ -182,8 +184,20 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     acceptLanguage = strings.Join(header["Accept-Language"], ",")
   }
 
+  // Is minified js newer?
+  // TODO there must be a better way?!
+  minified := ""
+  if mi, err := os.Stat("build/build.min.js"); err == nil {
+    if bi, err := os.Stat("build/build.js"); err == nil {
+      if mi.ModTime().Unix() > bi.ModTime().Unix() {
+        minified = "min."
+      }
+    }
+  }
+
+
   // Data to be sent to the template:
-  data := TemplateData{Room:roomName, User: userName, LoginLogoutLink: loginLogoutLink, AcceptLanguage: acceptLanguage}
+  data := TemplateData{Room:roomName, User: userName, LoginLogoutLink: loginLogoutLink, AcceptLanguage: acceptLanguage, Minified: minified}
 
   // Parse the template and output HTML:
   template, err := template.ParseFiles("build/build.html")

@@ -17,11 +17,10 @@ body
   margin 0px 0px 0px 0px
   background #000
   font-family 'Varela', sans-serif
-  font-size 12px
-  line-height 12px
+  font-size 11px
+  line-height 1em
   letter-spacing 2px
   font-weight bold
-  // text-transform uppercase
 
 #wrapper
   overflow hidden
@@ -31,9 +30,27 @@ body
 #game
   position absolute
   top 0
+  height 100%
+  //padding 0 0 40px
+  box-sizing border-box
+  overflow hidden
 
   canvas
-    absolute top 0px left
+    relative top 0px left
+    //height 100%!important
+
+  > *
+    &.hidden
+      display none
+
+#fpsCameraCapture
+  position absolute
+  height 100%
+  width 100%
+  top 0
+
+#canv-2d
+  absolute top 20px left
 
 .icon
   background red
