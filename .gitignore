@@ -10,4 +10,6 @@ lib/geometry/*.js
 lang/arbs/*.arb
 .sass-cache
 .jshintrc
-report/
+report
+public/javascript/pong.min.js.map
+server.conf
