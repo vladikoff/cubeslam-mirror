@@ -12,3 +12,4 @@ lang/arbs/*.arb
 .jshintrc
 report
 public/javascript/pong.min.js.map
+server.conf

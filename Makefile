@@ -58,7 +58,7 @@ lib/geometry/%.js: lib/geometry/%.json
 	support/str-to-js > $@ < $<
 
 %.min.js: %.js
-	node_modules/.bin/uglifyjs $< --source-map $@.map -o $@ -c -m --lint
+	node_modules/.bin/uglifyjs $< -p 1 --source-map public/javascript/pong.min.js.map -c -m --lint > $@
 
 build/%.html: views/%.jade
 	node_modules/.bin/jade < $< --path $< > $@ -P
@@ -86,6 +86,18 @@ clean-localization:
 
 clean-geometry:
 	rm -Rf $(GEOMETRY_JS) $(GEOMETRY_JSON)
+
+server.conf: server.conf.sample
+	@echo
+	@echo 'You need to `cp $< $@` and modify the server name and root.'
+	@echo
+	@exit 1
+
+proxy: server.conf
+	mkdir -p /tmp/nginx/pong
+	ln -sf "${PWD}/server.conf" /tmp/nginx/pong/server.conf
+	nginx -s reload || nginx
+	dev_appserver.py -a 0.0.0.0 -c -p 8081 .
 
 
 .SUFFIXES:
