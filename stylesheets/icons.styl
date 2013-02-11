@@ -161,10 +161,10 @@
   width 67px
   margin-bottom 20px
 
-.cpu-wth-eyes__bg 
-  position absolute
+  .cpu-wth-eyes__bg 
+    position absolute
 
-.cpu-wth-eyes__container 
+.cpu-wth-eyes__container
   position relative
 
 .cpu-wth-eyes__eyes 
@@ -519,6 +519,12 @@ a JS script.
   &.error
     &:before
       color $color-red
+  &.p1
+    &:before
+      color #000
+    &:after
+      color #FFF
+      content 'p1'
   &:after
     absolute right -37px top -35px
     display inline-block
