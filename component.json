@@ -29,7 +29,6 @@
     "lib/network-inputs.js",
     "lib/audio.js",
     "lib/camera.js",
-    "lib/camera-attention.js",
     "lib/world.js",
     "lib/arb.js",
     "lib/localization.js",
