@@ -105,10 +105,8 @@ html(lang='en')
         .content
           .vertical-center
             h2 share this link to Invite a Friend
-            .share-url(contenteditable, disabled)= url
-            button#share-url(type='button')
-              span.ready Copy
-              span.complete Copied!
+            p.share-url
+              span.url= url
             p You will be notified when your friend enter the game
             button.red.return-mainmenu(type='button') Back
 
@@ -386,7 +384,6 @@ html(lang='en')
     script(src='/javascript/libs/three.js')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src="/javascript/libs/dat.gui.js")
-    script(src="/javascript/libs/ZeroClipboard.min.js")
     script(src='/javascript/pong.{{.Minified}}js')
     script
       require('paddle-battle')({
