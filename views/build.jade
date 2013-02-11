@@ -387,7 +387,7 @@ html(lang='en')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src="/javascript/libs/dat.gui.js")
     script(src="/javascript/libs/ZeroClipboard.min.js")
-    script(src='/javascript/pong.js')
+    script(src='/javascript/pong.{{.Minified}}js')
     script
       require('paddle-battle')({
         room: '{{.Room}}',
