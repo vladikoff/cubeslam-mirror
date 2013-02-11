@@ -28,15 +28,18 @@ build-component: build/build.js
 build-styles: build/build-stylus.css
 build-localization: build/localization.arb
 
-deploy-alfred:
+prepare-deploy: build/build.min.js
+	@:
+
+deploy-alfred: prepare-deploy
 	support/deploy alfredsgame
-deploy-einar:
+deploy-einar: prepare-deploy
 	support/deploy einarsgame
-deploy-goggles:
+deploy-goggles: prepare-deploy
 	support/deploy gogglesgame
-deploy-goggles1:
+deploy-goggles1: prepare-deploy
 	support/deploy gogglesgame1
-deploy-webrtc:
+deploy-webrtc: prepare-deploy
 	support/deploy webrtcgame
 
 node_modules/:
@@ -89,4 +92,4 @@ clean-geometry:
 .PHONY: clean clean-geometry clean-localization \
 				build build-min build-shaders build-styles \
 				build-geometry build-component build-localization \
-				deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred
+				prepare-deploy deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred
