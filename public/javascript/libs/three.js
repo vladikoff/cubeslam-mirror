@@ -36027,6 +36027,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		}*/
 
+		if( this.viewHalfY == 0 ) this.handleResize();
+
 		this.mouseDragOn = true;
 
 	};
