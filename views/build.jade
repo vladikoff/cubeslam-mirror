@@ -51,7 +51,7 @@ html(lang='en')
     .state.loading
 
     //GAME INSTRUCTIONS
-    .state.game-info.inactive
+    section.state.game-info.inactive
       .dialog.middle
         .content
           .game-controls.vertical-center
@@ -99,7 +99,7 @@ html(lang='en')
                   .destroy-shield__weapon.icon-destroy-shield-weapon
 
     //INVITE FRIEND
-    .state.friend-invite.game-invite.inactive
+    section.state.friend-invite.game-invite.inactive
       .dialog
         .content
           .vertical-center
@@ -110,15 +110,19 @@ html(lang='en')
             button.red.return-mainmenu(type='button') Back
 
     //COUNTDOWN
-    .state.game-play.inactive
+    section.state.game-play.inactive
       .content.center
-        .countdown
-          .countdown-number(data-number='1')
-          .countdown-number(data-number='2')
-          .countdown-number(data-number='3')
+        #start
+          h1.bitmap Start!
+        #round
+          h2.bitmap Round
+            span 2
+        #level
+          h2.bitmap Level
+            span 2
 
     //PAUSE DIALOG
-    .state.game-pause.inactive
+    section.state.game-pause.inactive
       .dialog
         .content
           .vertical-center
@@ -127,13 +131,13 @@ html(lang='en')
             button.singleplayer.green.play(type='button') Resume (space)
 
     //CAMERA REQUEST ATTENTION
-    .state.webcam-activate.inactive
+    section.state.webcam-activate.inactive
       .dialog.top
         .content
           span.alert-icon.red
           .alert-info Please choose allow to connect your webcam and start friends play
 
-    .state.webcam-information.inactive
+    section.state.webcam-information.inactive
       .dialog.top
         .content
           span.alert-icon.red
@@ -142,7 +146,7 @@ html(lang='en')
             a#activate-camera Activate Camera
 
     //WAITING FOR FRIEND CAMERA
-    .state.webcam-waiting.inactive
+    section.state.webcam-waiting.inactive
       .dialog.middle
         .content
           .vertical-center
@@ -153,7 +157,7 @@ html(lang='en')
             h2 Waiting for friend<br/>to activate camera
 
     //WAITING FRIEND
-    .state.friend-waiting.inactive
+    section.state.friend-waiting.inactive
       .dialog.middle
         .content
           .vertical-center
@@ -167,7 +171,7 @@ html(lang='en')
             button.play-friend.blue(type='button') Play Friend
 
     //ERROR STATES
-    .state.error.active
+    section.state.error.inactive
       .state.error.connection-error.inactive
         .dialog.middle
           .content
@@ -204,7 +208,7 @@ html(lang='en')
               p You can try reloading the page
               p or try the single player game
 
-      .state.error.datachannels.inactive
+      section.state.error.datachannels.inactive
         .dialog.middle
           .content
             .vertical-center
@@ -212,15 +216,15 @@ html(lang='en')
               p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
               button.return-mainmenu.red(type='button') Back
 
-      .state.error.network-missing
+      section.state.error.network-missing
         button.return-mainmenu(type='button') Back
 
-      .state.error.game-full
+     section.state.error.game-full
         a.button.return-mainmenu.red(href="/", type='button')
 
 
     //WAITING FRIEND ACCEPT
-    .state.friend-accept.inactive
+    section.state.friend-accept.inactive
       .dialog.middle
         .content
           .vertical-center
@@ -234,7 +238,7 @@ html(lang='en')
             button.return-mainmenu.blue(type='button') Back
 
     //FRIEND ARRIVED
-    .state.friend-arrived.inactive
+    section.state.friend-arrived.inactive
       .dialog.middle
         .content
           .vertical-center
@@ -248,7 +252,7 @@ html(lang='en')
             button.play-friend.blue(type='button') Play Friend
 
     //OPPONENT LEFT DIALOG
-    .state.friend-left.inactive
+    section.state.friend-left.inactive
       .dialog
         .content
           .vertical-center
@@ -257,8 +261,9 @@ html(lang='en')
             button.green.play(type='button') Play Computer (Space)
 
     //GAME OVER
-    .state.game-over.inactive
-      img.key(src='/images/game_over.png')
+    section.state.game-over.inactive
+      h1.bitmap Game Over
+
       div
         .dialog
           .content
@@ -285,8 +290,10 @@ html(lang='en')
               .scoreboard.multiplayer
                 h3 Total wins
                 div
-                    p#me-levels.levels X
-                    p#opponent-levels.levels X
+                      p#me-levels.levels X
+                        span You
+                      p#opponent-levels.levels X
+                       span p2
                 ul.social
                   li
                     a.icon.notimplemented(data-icon='g')
@@ -299,7 +306,7 @@ html(lang='en')
                       span Twitter
                 button.green.play(type='button') Play Again (Space)
 
-    #scores.state.game.inactive
+    section#scores.state.game.inactive
       .logo
         img(src="/images/minipong.png")
         p #{name}

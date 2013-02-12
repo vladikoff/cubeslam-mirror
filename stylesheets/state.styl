@@ -83,29 +83,15 @@
       absolute top 0 left 0
       z-index 3
 
-    .countdown
+    #start, #round, #level
       align-self center
       flex 0 1 auto
 
+    h1, h2
+      font-size 120px
 
-    .countdown-number
-      position absolute
-      width 988px
-      height 718px
-      opacity 0
-      transition opacity .3s ease-out
-      transform scale(0.5)
-      // translate(0, 90px)
-      background url('/images/countdown-s9fee64d48a.png') no-repeat
-
-      &[data-number="3"]
-        background-position 0 -718px
-      &[data-number="2"]
-        background-position 0 0
-      &[data-number="1"]
-        background-position 0 -1436px
-      &.visible
-        opacity 1
+    #round, #level
+      display none
 
   &.game-pause
     button
@@ -135,11 +121,16 @@
     text-align center
     height 100%
 
-    img.key
-      width 60%
+    #opponent-levels
+      background $color-blue
+
+    h1
       height auto
       margin-top 21%
       z-index 3
+      font-size 120px
+      text-align center
+      padding 0 40px
 
     .dialog
       height 33%
@@ -152,7 +143,9 @@
         .levels:last-child
           margin-left 8px
         .social
-          margin 20px 0
+          margin 42px 0 20px
+        h3 
+          padding 10px 0 19px
 
 
       div
@@ -191,6 +184,12 @@
       box-sizing border-box
       padding 19px 0 0 3px
       color $color-beige
+
+      span 
+        display block
+        font-size 11px
+        margin-top 31px
+        color $color-blue
 
   &.game-info
     .info-animation
