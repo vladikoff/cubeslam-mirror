@@ -26,7 +26,7 @@
     <beatPatternPlayer triggers="init_routing" delay="0">
         <properties instanceId="main" />
         <flowItems>
-            <start delay="0" beatsPerBar="16" tempo="120" />
+            <start delay="0" beatsPerBar="16" tempo="126" />
         </flowItems>
     </beatPatternPlayer>
 
@@ -248,7 +248,7 @@
     <Name>_activate = "Item_Down_E3"
      -->
 
-    <makeNote triggers="user_paddle_hit,opponent_paddle_hit,wall_hit,obstacle_hit,user_shield_hit,opponent_shield_hit,opponent_score_hit">
+    <makeNote triggers="user_paddle_hit,opponent_paddle_hit,wall_hit,obstacle_hit,user_shield_hit,opponent_shield_hit,opponent_score_hit,fog_spawn,fog_activate">
         <properties instanceId="makeFx" />
         <noteMaps>
             <noteMap triggerIn="user_paddle_hit" triggerOut="paddle_fx" note="E1" velocity="127" />
@@ -258,6 +258,8 @@
             <noteMap triggerIn="opponent_shield_hit" triggerOut="shield_hit" note="E3" velocity="127" />
             <noteMap triggerIn="user_shield_hit" triggerOut="shield_hit" note="E3" velocity="127" />
             <noteMap triggerIn="opponent_score_hit" triggerOut="winloose_tone" note="E0" velocity="127" />
+            <noteMap triggerIn="fog_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="fog_activate" triggerOut="item_down" note="E3" velocity="127" />
         </noteMaps>
     </makeNote>
 
@@ -331,6 +333,32 @@
             </sampleMapGroup>
         </sampleMapGroups>
     </sampler>
+    <sampler triggers="Item_Up">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="Item_Up" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="Item_Down">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="Item_Down" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
 
     <!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
     <transform triggers="bass_filter_mute,lead_a_mute,lead_b_mute,strings_mute,synth_funk_mute,synth_plucked_mute,synth_sharp_mute,synth_warm_mute,dm_kraftwerk_mute,bass_mute,bass_comp_mute,stab_mute,synth_comp_mute,synth_perc_mute,synth_pop_mute">
@@ -353,7 +381,9 @@
         <sampleMapGroups>
             <sampleMapGroup name="map1">
                 <sampleMaps>
-                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                    <sampleMap name="bass_filter_low" velocityLow="0" velocityHigh="50" />
+                    <sampleMap name="bass_filter_mid" velocityLow="51" velocityHigh="100" />
+                    <sampleMap name="bass_filter_hi" velocityLow="101" velocityHigh="127" />
                 </sampleMaps>
             </sampleMapGroup>
         </sampleMapGroups>
