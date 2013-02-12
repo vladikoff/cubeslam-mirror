@@ -8,7 +8,7 @@ SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
-MINIFY=public/javascript/pong.min.js public/javascript/libs/three.min.js
+MINIFY=build/build.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js
 
 # adding special cased geometry
 GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js \
