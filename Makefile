@@ -8,6 +8,7 @@ SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
+MINIFY=build/build.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js
 
 # adding special cased geometry
 GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js \
@@ -28,7 +29,7 @@ build-component: build/build.js
 build-styles: build/build-stylus.css
 build-localization: build/localization.arb
 
-prepare-deploy: build/build.min.js
+prepare-deploy: $(MINIFY)
 	@:
 
 deploy-alfred: prepare-deploy
@@ -57,8 +58,14 @@ lib/geometry/%.json: lib/geometry/%.obj
 lib/geometry/%.js: lib/geometry/%.json
 	support/str-to-js > $@ < $<
 
+public/javascript/libs/%.min.js: public/javascript/libs/%.js
+	node_modules/.bin/uglifyjs $< -p 3 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -o $@
+
+public/javascript/%.min.js: public/javascript/%.js
+	node_modules/.bin/uglifyjs $< -p 2 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint > $@
+
 %.min.js: %.js
-	node_modules/.bin/uglifyjs $< -p 1 --source-map public/javascript/pong.min.js.map -c -m --lint > $@
+	node_modules/.bin/uglifyjs $< -p 1 --source-map $@.map -c -m --lint > $@
 
 build/%.html: views/%.jade
 	node_modules/.bin/jade < $< --path $< > $@ -P

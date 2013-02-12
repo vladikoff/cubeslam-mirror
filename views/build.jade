@@ -356,7 +356,7 @@ html(lang='en')
       ul#socials.social
         li
           a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
-            span Google plus
+            span Google+
         li
           a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
             span Facebook
@@ -365,7 +365,7 @@ html(lang='en')
             span Twitter
         //li
           a.icon.notimplemented(data-icon='p')
-            span Pininterest
+            span Pinterest
       #about
         ul
           li
@@ -388,7 +388,7 @@ html(lang='en')
 
 
     script(src='/_ah/channel/jsapi')
-    script(src='/javascript/libs/three.js')
+    script(src='/javascript/libs/three.{{.Minified}}js')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src="/javascript/libs/dat.gui.js")
     script(src='/javascript/pong.{{.Minified}}js')

@@ -12,10 +12,9 @@
     "publicclass/range": "*",
     "publicclass/stash": "*",
     "publicclass/netchan": "*",
-    "publicclass/base64-arraybuffer": "*",
     "publicclass/log-worker": "*",
+    "publicclass/base64-arraybuffer": "*",
     "visionmedia/debug": "*",
-    "ForbesLindesay/seed-random": "*",
     "ecarter/css-emitter": "*"
   },
   "scripts": [
