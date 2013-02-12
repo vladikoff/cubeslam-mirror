@@ -11,5 +11,6 @@ lang/arbs/*.arb
 .sass-cache
 .jshintrc
 report
-public/**.min.*
+public/*/*.min.*
+public/*/*/*.min.*
 server.conf
