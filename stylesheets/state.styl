@@ -62,17 +62,23 @@
       max-width 350px
       margin 0 auto 20px
       line-height 1.4em
-
-  &.game-game
+  &.game
     z-index 2
     .content.center
       z-index 2
+  &.game-play
+    z-index 3
+    .content
+      z-index 3
+
   &.game-play, &.game
+    pointer-events none
     .content
       opacity 1
     &.inactive 
       .content
         opacity 0
+
 
     .content.center
       display flex
