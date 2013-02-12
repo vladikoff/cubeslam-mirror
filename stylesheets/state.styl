@@ -63,7 +63,10 @@
       margin 0 auto 20px
       line-height 1.4em
 
-  &.game-play
+  &.game-play, &.game
+    z-index 2
+    .content
+      opacity 1
     &.inactive 
       .content
         opacity 0
@@ -83,15 +86,13 @@
       absolute top 0 left 0
       z-index 3
 
-    #start, #round, #level
+    #start-prompt, #round-prompt, #level-prompt
+      display none
       align-self center
       flex 0 1 auto
 
     h1, h2
       font-size 120px
-
-    #round, #level
-      display none
 
   &.game-pause
     button
