@@ -6,7 +6,7 @@
     "to-dmaf-root": "./javascript/dmaf/",
     "deploy-to": "../verlet/public/javascript/",
     "config": {
-        "read": "../verlet/views/config.xml",
+        "read": "../verlet/public/xml/config.xml",
         "write": "../verlet/public/javascript/dmaf.js"
     },
     "immediate": true,

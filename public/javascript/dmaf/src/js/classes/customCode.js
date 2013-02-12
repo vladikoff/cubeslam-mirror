@@ -17,9 +17,9 @@ dmaf.once("load_customCode", function load_Actions (DMAF) {
     UserObject.prototype = Object.create(Super, {
         onAction: {
             value: function (trigger, actionTime, eventProperties, actionProperties) {
-                var instance = DMAF.pendingObjects[this.instanceId];
+                var obj = DMAF.pendingObjects[this.instanceId];
                 if (instance) {
-                    this.instance = instance;
+                    this.obj = obj;
                 }
             }
         }

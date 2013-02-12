@@ -10,6 +10,10 @@ handlers:
   static_dir: public/images
 - url: /audio
   static_dir: public/audio
+- url: /xml
+  static_dir: public/xml
+- url: /midi
+  static_dir: public/midi
 - url: /lang
   static_dir: public/lang
 - url: /fonts

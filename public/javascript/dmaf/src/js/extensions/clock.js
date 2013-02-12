@@ -11,7 +11,7 @@ dmaf.once("load_core", function (DMAF) {
         context = DMAF.context;
     window.timeoutEvents = timeoutEvents;
     window.frameEvents = frameEvents;
-    DMAF.preListen = 40;
+    DMAF.preListen = 60;
     DMAF.lastTime = 0;
     DMAF.currentTime = -1;
 

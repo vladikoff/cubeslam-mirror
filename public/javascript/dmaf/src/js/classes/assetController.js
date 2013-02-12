@@ -16,18 +16,23 @@ dmaf.once("load_assetController", function (DMAF) {
             },
             onstep: {
                 value: function () {
-                    Assets.loadsInProgress--;
-                    DMAF.dispatch("load_event", Assets.loadsInProgress, this.fileNames[this.loadCount] + this.format);
+                    var percent = 100 - Math.floor((--Assets.loadsInProgress / Assets.loadTotals[this.task]) * 100);
+                    if (percent !== Assets.loadPercents[this.task]) {
+                        DMAF.dispatch("progress_event", percent, this.fileNames[this.loadCount] + this.format);
+                        Assets.loadPercents[this.task] = percent;
+                    }
                     if (++this.loadCount === this.fileNames.length) {
                         this.onload();
                     }
                 }
             },
             onAction: {
-                value: function () {
+                value: function (trigger) {
                     if (this.inProgress) {
                         return; //Prevent loader from firing more than once.
                     }
+                    Assets.listenForLoads(trigger);
+                    this.task = trigger;
                     this.fileNames = this.files.map(fixFilesArray);
                     Assets.loadsInProgress += this.fileNames.length;
                     this.inProgress = true;
@@ -42,7 +47,22 @@ dmaf.once("load_assetController", function (DMAF) {
             sampleMap: {},
             buffer: {},
             timePattern: {},
-            loadsInProgress: 0
+            loadsInProgress: 0,
+            loadTotals: {},
+            loadPercents: {},
+            listenForLoads: function (trigger) {
+                if (this.loadTotals[trigger] !== undefined) return;
+                var loads = DMAF.ActionManager.triggers[trigger];
+                if (!loads.length) return;
+                loads = loads.slice(0).filter(function (el) {
+                    return el.type = type;
+                });
+                this.loadTotals[trigger] = 0;
+                this.loadPercents[trigger] = 0;
+                for (i = 0, ii = loads.length; i < ii; i++) {
+                    this.loadTotals[trigger] += loads[i].actionProperties.files.length;
+                }
+            }
         };
     if (dmaf.dev) window.Assets = Assets;
     DMAF.getAsset = function (type, id) {

@@ -1,5 +1,6 @@
 dmaf.once("load_framework", function DMAFInit(DMAF) {
-    var audiocontext = window["AudioContext"] || window["webkitAudioContext"];
+    var audiocontext = window.AudioContext || window.webkitAudioContext,
+        preloads;
     try {
         DMAF.context = new audiocontext();
     } catch (e) {
@@ -21,30 +22,21 @@ dmaf.once("load_framework", function DMAFInit(DMAF) {
     for (i = 0, ii = DMAF.Settings.actions.length; i < ii; i++) {
         DMAF.ActionManager.createAction(DMAF.Settings.actions[i]);
     }
-    checkPreloads();
-
-    function checkPreloads () {
-        var preloads = DMAF.ActionManager.triggers.preload_assets;
-        checkPreloads.total = 0;
-        if (preloads && preloads.length) {
-            for (var i = 0, ii = preloads.length; i < ii; i++) {
-                checkPreloads.total += preloads[i].actionProperties.files.length;
-            }
-            dmaf.addEventListener("load_event", readyCheck);
-            DMAF.ActionManager.onEvent("preload_assets");
-        } else {
-            readyCheck(0);
-        }
+    preloads = DMAF.ActionManager.triggers.preload_assets;
+    if (preloads && preloads.length) {
+        dmaf.addEventListener("progress_event", readyCheck);
+        DMAF.ActionManager.onEvent("preload_assets");
+    } else {
+        readyCheck(100);
     }
-    function readyCheck (leftToLoad, fileName) {
-        if (leftToLoad === 0){
+    function readyCheck (percent) {
+        if (percent === 100) {
             DMAF.ActionManager.onEvent("init_routing");
             DMAF.dispatch("dmaf_ready");
+            DMAF.ActionManager.onEvent("dmaf_ready");
             console.log("dmaf_ready");
             dmaf.active = true;
-            dmaf.removeEventListener("load_event", readyCheck);
+            dmaf.removeEventListener("progress_event", readyCheck);
         }
-        var percent = 100 - Math.floor((leftToLoad / checkPreloads.total) * 100);
-        DMAF.dispatch("progress_event", percent, fileName);
     }
 });

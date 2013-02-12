@@ -5,7 +5,6 @@ dmaf.once("load_synth", function (DMAF) {
         dbToWAV = DMAF.Utils.dbToWAVolume,
         Super = DMAF.InstancePrototype;
 
-    //Move getSampleMap method to DMAF.getAsset
     function Sampler(properties) {
         this.input = DMAF.context.createGainNode();
         this.output = DMAF.context.createGainNode();
@@ -23,9 +22,12 @@ dmaf.once("load_synth", function (DMAF) {
                     active: Object.create(null),
                     sustained: []
                 };
+                var name;
                 for (var i = 0, ii = properties.sampleMapGroups[0].sampleMaps.length; i < ii; i++) {
                     //Need to fix this
-                    this.samples.meta[properties.sampleMapGroups[0].sampleMaps[i].name] = properties.sampleMapGroups[0].sampleMaps[i];
+                    name = properties.sampleMapGroups[0].sampleMaps[i].name.toLowerCase();
+                    name = name === "multi" ? this.instanceId.toLowerCase() : name.toLowerCase();
+                    this.samples.meta[name] = properties.sampleMapGroups[0].sampleMaps[i];
                 }
                 for (var mapName in this.samples.meta) {
                     this.samples.maps[mapName] = DMAF.getAsset("sampleMap", mapName);
@@ -255,7 +257,7 @@ dmaf.once("load_synth", function (DMAF) {
             defaultDuration = this._loop ? Infinity : note.bufferLength * 1000 - note.ampRelease,
             adjustedDuration = this.ignoreNoteOff ? defaultDuration : duration ? duration : defaultDuration,
             noteOffTime = actionTime + (unknownDuration ? Infinity : adjustedDuration);
-        
+
         if (isFinite(noteOffTime)) {
             note._noteOff(noteOffTime);
         }
@@ -308,7 +310,7 @@ dmaf.once("load_synth", function (DMAF) {
                 ampDecayTime = ampAttackTime + this.ampDecay,
                 ampPeak = 1 - this.ampVelocityRatio + this.velocity * this.ampVelocityRatio,
                 ampSustain = Math.pow((this.ampSustain * ampPeak), 2);
-    
+
             this.noteOnTime = noteOnTime;
             this.ampPeakValue = ampPeak;
             this.ampSustainValue = ampSustain;

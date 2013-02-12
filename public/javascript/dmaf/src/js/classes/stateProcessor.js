@@ -1,7 +1,7 @@
 dmaf.once("load_stateProcessor", function (DMAF) {
     var type = "stateProcessor",
         IN = "in",
-        PREVIOUS = "PREVIOUS";
+        PREVIOUS = /PREVIOUS/;
 
     function State (properties) {
         this.value = undefined;
@@ -15,15 +15,17 @@ dmaf.once("load_stateProcessor", function (DMAF) {
                     for (j = 0, jj = this.stateMaps[i][IN].length; j < jj; j++) {
                         if (this.stateMaps[i][IN][j] === trigger) {
                             value = this.stateMaps[i].state;
+                            if (this.stateMaps[i]._dynamicValues) {
+                                value = DMAF.getInstanceProperty(this.stateMaps[i]._dynamicValues[0].string);
+                            }
                             i = ii; j = jj;
                         }
                     }
                 }
                 if (!value) {
-                    console.log(this.stateMaps);
                     return console.log("StateProcesor: No state found for", trigger);
                 }
-                if (value === PREVIOUS) {
+                if (PREVIOUS.test(value)) {
                     value = this.previous;
                 }
                 switch (this.update) {

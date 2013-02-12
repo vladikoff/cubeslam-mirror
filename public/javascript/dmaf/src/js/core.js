@@ -53,6 +53,7 @@
         if (!eventTime) {
             eventTime = parseInt(DMAF.context.currentTime * 1000, 10);
         }
+        console.log("dmaf.tell: " + eventName);
         switch(eventName) {
             case "ping":
             case "latency":
@@ -128,19 +129,16 @@
         this.tellServer = callback;
     };
     //register an external object
-    dmaf.registerObject = function (obj) {
-        if (!obj) {
+    dmaf.registerObject = function (id, obj) {
+        if (!id || typeof id !== "string") {
+            console.log("DMAF: You must provide a valid id for the object you wish to register.");
             return;
         }
-        if (typeof obj !== "object") {
-            console.log("DMAF: You've tried to register an object not of type object");
+        if (!obj || !(obj instanceof Object)) {
+            console.log("DMAF: You've tried to register an object not of type 'object'");
             return;
         }
-        var id = obj.instanceId || obj.id || false;
         id = DMAF.Utils.removeWhiteSpace(id);
-        if (!id) {
-            console.log("DMAF: You must specify an instanceId for object: ", obj);
-        }
         if (!obj.instanceId) {
             obj.instanceId = id;
         }
@@ -239,8 +237,8 @@
     }
 
     if (!dmaf.dev) {
-        window.addEventListener("DOMContentLoaded", function () {
-            if (dmaf.immediate) DMAF.dispatch("load_framework", DMAF);
+        window.addEventListener("load", function () {
+            DMAF.dispatch("load_framework", DMAF);
         });
     } else {
         window.DMAF = DMAF;

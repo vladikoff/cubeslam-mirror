@@ -1,7 +1,7 @@
 dmaf.once("load_eventProcessor", function (DMAF) {
     var type = "eventProcessor",
         Super = DMAF.InstancePrototype;
-    
+
     function EventMapper () {}
     EventMapper.prototype = Object.create(Super, {
         onAction: {
@@ -46,7 +46,7 @@ dmaf.once("load_eventProcessor", function (DMAF) {
                             DMAF.ActionManager.onEvent(this.eventMaps[i].out, actionTime, eventProperties);
                         }
                     }
-                    
+
                 }
             }
         }

@@ -19,7 +19,6 @@ dmaf.once("load_core", function load_Actions (DMAF) {
                 actionTime = eventTime || DMAF.context.currentTime * 1000,
                 delay;
             stop = false;
-
             if (!actions || !actions.length) return;
             for (var i = 0, ii = actions.length; i < ii; i++) {
                 delay = actions[i].delay ? actions[i].delay : 0;
@@ -29,7 +28,7 @@ dmaf.once("load_core", function load_Actions (DMAF) {
         },
         createAction: function (data) {
             if (!DMAF[data.type] || !DMAF[data.type][data.id]) {
-                console.log("DMAF Could not find module of type", type, "with id", id,
+                console.log("DMAF Could not find module of type", data.type, "with id", data.id,
                     "check the config.xml to make sure you've included this module.");
                 return;
             }

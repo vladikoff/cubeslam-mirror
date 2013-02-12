@@ -1,19 +1,10 @@
 dmaf.once("load_midiProcessor", function (DMAF) {
     var type = "midiProcessor",
         scales = {
-            OFF: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            major: [0, -1, 0, -1, 0, 0, -1, 0, -1, 0, -1, 0],
-            harmonicMinor: [0, 1, 0, 0, -1, 0, 1, 0, 0, -1, 1, 0],
-            naturalMinor: [0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, -1],
-            majorPentatonic: [0, 1, 0, 1, 0, -1, 1, 0, 1, 0, -1, 1],
-            minorPentatonic: [0, -1, 1, 0, -1, 0, 1, 0, -1, 1, 0, -1],
-            dorian: [0, 1, 0, 0, -1, 0, 1, 0, 1, 0, 0, -1],
-            phrygian: [0, 0, -1, 0, -1, 0, 1, 0, 0, -1, 0, -1],
-            lydian: [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-            mixolydian: [0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, -1],
-            locrian: [0, 0, -1, 0, -1, 0, 0, -1, 0, -1, 0, -1],
-            doubleHarmonic: [0, 0, -1, 1, 0, 0, 1, 0, 0, -1, 1, 0],
-            halfDim: [0, 1, 0, 0, -1, 0, 0, -1, 0, -1, 0, -1]
+            OFF: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            major: [0, -1, 0, -1, 0, 0, -1, 0, -1, 0, -1],
+            harmonicMinor: [0, 1, 0, 0, -1, 0, 1, 0, 0, -1, 1, 0],
+            naturalMinor: [0, -1, 0, 0, -1, 0, -1, 0, 0, -1, 0, -1]
         },
         roots = {
             "C": 0,
@@ -89,4 +80,32 @@ dmaf.once("load_midiProcessor", function (DMAF) {
         }
     });
     DMAF.registerInstance(type, "MidiProcessor", MidiProcessor);
+
+    function MakeNote () {}
+    MakeNote.prototype = Object.create(DMAF.InstancePrototype, {
+        init: {
+            value: function () {
+                for (var i = 0, ii = this.noteMaps.length; i < ii; i++) {
+                    this.noteMaps[i].midiNote = DMAF.Utils.toMIDINote(this.noteMaps[i].note);
+                }
+            }
+        },
+        onAction: {
+            value: function (trigger, actionTime, eventProperties, actionProperties) {
+                var note;
+                for (var i = 0, ii = this.noteMaps.length; i < ii; i++) {
+                    if (trigger === this.noteMaps[i].triggerIn) {
+                        note = {
+                            type: "noteOn",
+                            midiNote: this.noteMaps[i].midiNote,
+                            velocity: this.noteMaps[i].velocity,
+                            duraiton: this.noteMaps[i].duration
+                        };
+                        DMAF.ActionManager.onEvent(this.noteMaps[i].triggerOut, actionTime, note);
+                    }
+                }
+            }
+        }
+    });
+    DMAF.registerInstance(type, "MakeNote", MakeNote);
 });
