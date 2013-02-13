@@ -11,7 +11,10 @@ uniform sampler2D tVideo;
 uniform sampler2D tBroken;
 uniform vec2 resolution;
 
-float rand(vec2 co){ return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453); }
+float frac(float x) { return mod(x,1.0); }
+float noise(vec2 x,float t) { return frac(sin(dot(x,vec2(1.38984*sin(t),1.13233*cos(t))))*653758.5453); }
+
+//float rand(vec2 co){ return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453); }
 
 void main(void)
 {
@@ -19,7 +22,7 @@ void main(void)
     float xs = floor(gl_FragCoord.x / 4.0);
     float ys = floor(gl_FragCoord.y / 4.0);
 
-    float noise = rand(vec2(xs * time,ys * time))-0.5;
+    float noise = noise(vec2(xs,ys),time)-0.5;//rand(vec2(xs * time,ys * time))-0.5;
 
     vec2 tempUv = vUv;
     tempUv.x += sin(vUv.y*10.0)*0.01+cos(vUv.y*40.0)*0.005;
