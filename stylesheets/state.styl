@@ -25,6 +25,19 @@
     height 100%
     width 100%
 
+    .spinner
+      position absolute
+      width 30px
+      height 30px
+      font-size 30px
+      left 50%
+      top 50%
+      margin -24px 0 0 -15px
+      color $color-beige
+      animation spinner-rotate 1.5s linear infinite
+
+
+
   &.game-instructions,
   &.state.game-info,
   &.state.game-start
@@ -70,16 +83,34 @@
       max-width 350px
       margin 0 auto 20px
       line-height 1.4em
-  &.game
+  &.game-level, &.game-round
     z-index 2
+    .content
+      transform scale(0) 
+      transition-duration 300ms
+      transition-property opacity, tranform
+
+    &.active
+      .content
+        transition-duration 400ms
+        transition-timing-function ease-out
+        transform scale(1)
+
+    &.inactive
+      .content
+        transition-delay 1000ms
+        opacity 0
+        transform scale(2)
+
     .content.center
       z-index 2
+
   &.game-play
     z-index 3
     .content
       z-index 3
 
-  &.game-play, &.game
+  &.game-play, &.game-level, &.game-round
     pointer-events none
     .content
       opacity 1
@@ -96,7 +127,6 @@
       justify-content center
       align-content stretch
       align-items center
-      transition opacity .1s
 
       width 100%
       height 100%
@@ -145,6 +175,7 @@
       height auto
       margin-top 21%
       z-index 3
+      position relative
       font-size 120px
       text-align center
       padding 0 40px
