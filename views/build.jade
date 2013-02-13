@@ -50,6 +50,7 @@ html(lang='en')
 
     .state.loading
       div(data-icon='')
+      div.spinner(data-icon='*')
 
     //GAME INSTRUCTIONS
     section.state.game-info.inactive
@@ -108,7 +109,7 @@ html(lang='en')
             p.share-url
               span.url= url
             p You will be notified when your friend enter the game
-            button.red.return-roundmainmenu(type='button') Back
+            button.red.return-mainmenu(type='button') Back
 
     //COUNTDOWN
     section.state.game-play.inactive
@@ -116,13 +117,16 @@ html(lang='en')
         #start-prompt
           h1.bitmap Start!
 
-    section.state.game.inactive
+    section.state.game-level.inactive
+      .content.center
+        #level-prompt
+          h2.bitmap Level 
+            span 1
+
+    section.state.game-round.inactive
       .content.center
         #round-prompt
           h2.bitmap Round 
-            span 1
-        #level-prompt
-          h2.bitmap Level 
             span 1
 
     //PAUSE DIALOG
