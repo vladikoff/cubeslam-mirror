@@ -53,7 +53,7 @@ lib/shaders/%.js: lib/shaders/%.glsl
 	support/str-to-js > $@ < $<
 
 lib/geometry/%.json: lib/geometry/%.obj
-	python lib/geometry/convert_obj_three.py -i $< -o $@
+	python lib/geometry/convert_obj_three.py -i $< -o $@ -x 100.0
 
 lib/geometry/%.js: lib/geometry/%.json
 	support/str-to-js > $@ < $<
