@@ -40,7 +40,7 @@ void main(void)
     vec3 color = mix( videoOrg, videoDistort,noiseAmount+0.1);
     vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
 
-
+/*
     vec2 p = vUv;
     float darkness = 1.7;
     vec2 textureCoords = p - 0.5;
@@ -48,10 +48,12 @@ void main(void)
     vec3 vignetteColor = vec3(vignette);
 
     finalColor = mix( finalColor*vignetteColor, arenaColor, clamp((vWorldPosition.y+50.0)/-resolution.y,0.0,1.0));
+*/
 
+    finalColor = mix( finalColor, arenaColor, clamp((vWorldPosition.y+50.0)/-resolution.y,0.0,1.0));
 
     //scanlines
-    //finalColor += vec3(0.05) * sin( (vUv.y) * 360.0 );
+    finalColor += vec3(0.01) * sin( (vUv.y) * 360.0 );
 
     gl_FragColor=vec4(finalColor,1.0);
 
