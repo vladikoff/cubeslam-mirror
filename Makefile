@@ -15,7 +15,7 @@ GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js \
 							 lib/geometry/paw.js lib/geometry/rabbit.js \
 							 lib/geometry/bird1.js lib/geometry/bird2.js \
 							 lib/geometry/bird3.js lib/geometry/bird4.js \
-							 lib/geometry/moose.js lib/geometry/terrain.js \
+							 lib/geometry/moose.js lib/geometry/terrain3.js \
 							 lib/geometry/cpu.js
 
 build: build-shaders build-geometry build-component build-styles build-jade build-localization
