@@ -58,6 +58,12 @@ lib/geometry/%.json: lib/geometry/%.obj
 lib/geometry/%.js: lib/geometry/%.json
 	support/str-to-js > $@ < $<
 
+# we don't really use build.min.js so
+# this is a trick to make the prepare-deploy
+# task much faster
+build/build.min.js: build/build.js
+	touch $@
+
 public/javascript/libs/%.min.js: public/javascript/libs/%.js
 	node_modules/.bin/uglifyjs $< -p 3 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -o $@
 
