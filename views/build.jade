@@ -37,16 +37,10 @@ html(lang='en')
         button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
 
       .links
-        a.tech(href='http://google.com/', target='_blank')
-          small About
-          | #{name}
-          br
-          | Technology
-        a.experiment(href='http://google.com/', target='_blank')
-          small This is a
-          | Chrome
-          br
-          | Experiment
+        a.experiment(href='http://google.com/', target='_blank', data-icon='⬢')
+          span Chrome Experiment
+        a.from(href='http://google.com/', target='_blank', data-icon='☃')
+          span Made with some friends from Google
 
     .state.loading
       div(data-icon='')
@@ -385,6 +379,8 @@ html(lang='en')
       #about
         ul
           li
+            a Technology
+          //li
             a#pointer-lock Mouse lock on
           li
             a.notimplemented Terms &amp; privacy
