@@ -37,26 +37,21 @@ html(lang='en')
         button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
 
       .links
-        a.tech(href='http://google.com/', target='_blank')
-          small About
-          | #{name}
-          br
-          | Technology
-        a.experiment(href='http://google.com/', target='_blank')
-          small This is a
-          | Chrome
-          br
-          | Experiment
+        a.experiment(href='http://google.com/', target='_blank', data-icon='⬢')
+          span Chrome Experiment
+        a.from(href='http://google.com/', target='_blank', data-icon='☃')
+          span Made with some friends from Google
 
     .state.loading
+      div(data-icon='')
+      div.spinner(data-icon='*')
 
     //GAME INSTRUCTIONS
-    .state.game-info.inactive
+    section.state.game-instructions.inactive
       .dialog.middle
         .content
           .game-controls.vertical-center
             h2 Game controls
-            p Play using
             div.animation
               .kb-anim
                 .dash-big.dash-black
@@ -100,7 +95,7 @@ html(lang='en')
                   .destroy-shield__weapon.icon-destroy-shield-weapon
 
     //INVITE FRIEND
-    .state.friend-invite.game-invite.inactive
+    section.state.friend-invite.game-invite.inactive
       .dialog
         .content
           .vertical-center
@@ -111,15 +106,25 @@ html(lang='en')
             button.red.return-mainmenu(type='button') Back
 
     //COUNTDOWN
-    .state.game-play.inactive
+    section.state.game-play.inactive
       .content.center
-        .countdown
-          .countdown-number(data-number='1')
-          .countdown-number(data-number='2')
-          .countdown-number(data-number='3')
+        #start-prompt
+          h1.bitmap Start!
+
+    section.state.game-level.inactive
+      .content.center
+        #level-prompt
+          h2.bitmap Level 
+            span 1
+
+    section.state.game-round.inactive
+      .content.center
+        #round-prompt
+          h2.bitmap Round 
+            span 1
 
     //PAUSE DIALOG
-    .state.game-pause.inactive
+    section.state.game-pause.inactive
       .dialog
         .content
           .vertical-center
@@ -128,22 +133,21 @@ html(lang='en')
             button.singleplayer.green.play(type='button') Resume (space)
 
     //CAMERA REQUEST ATTENTION
-    .state.webcam-activate.inactive
+    section.state.webcam-activate.inactive
       .dialog.top
         .content
-          span.alert-icon.red
           .alert-info Please choose allow to connect your webcam and start friends play
 
-    .state.webcam-information.inactive
+    section.state.webcam-information.inactive
       .dialog.top
         .content
-          span.alert-icon.red
-          span.alert-info Are you sure? Friends play is not possible without allowing webcam.
-          span
-            a#activate-camera Activate Camera
+          .alert-info Are you sure? Friends play is not possible without allowing webcam.
+          .buttons
+            button#activate-camera.red(arb:id='playFriendButton', type='button') Activate Camera
+            button.play-computer.red(arb:id='playCPUButton', type='button') Play Computer
 
     //WAITING FOR FRIEND CAMERA
-    .state.webcam-waiting.inactive
+    section.state.webcam-waiting.inactive
       .dialog.middle
         .content
           .vertical-center
@@ -154,12 +158,12 @@ html(lang='en')
             h2 Waiting for friend<br/>to activate camera
 
     //WAITING FRIEND
-    .state.friend-waiting.inactive
+    section.state.friend-waiting.inactive
       .dialog.middle
         .content
           .vertical-center
             .cpu-wth-eyes
-              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__bg.icon-computer(data-icon='')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
@@ -168,7 +172,7 @@ html(lang='en')
             button.play-friend.blue(type='button') Play Friend
 
     //ERROR STATES
-    .state.error.active
+    section.state.error.inactive
       .state.error.connection-error.inactive
         .dialog.middle
           .content
@@ -176,7 +180,7 @@ html(lang='en')
               h2 Connection Error!
               .cpu-conn-failed-anim
                 .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer
+                  .cpu-wth-eyes__bg.icon-computer(data-icon='')
                   .cpu-wth-eyes__container
                     .cpu-wth-eyes__eyes
                       .dash-medium.dash-white.sad-left-eye-anim-loop
@@ -196,7 +200,7 @@ html(lang='en')
                   .dash-small.dash-black
 
                 .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer
+                  .cpu-wth-eyes__bg.icon-computer(data-icon='')
                   .cpu-wth-eyes__container
                     .cpu-wth-eyes__eyes
                       .dash-medium.dash-white.sad-left-eye-anim-loop
@@ -205,7 +209,7 @@ html(lang='en')
               p You can try reloading the page
               p or try the single player game
 
-      .state.error.datachannels.inactive
+      section.state.error.datachannels.inactive
         .dialog.middle
           .content
             .vertical-center
@@ -213,20 +217,20 @@ html(lang='en')
               p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
               button.return-mainmenu.red(type='button') Back
 
-      .state.error.network-missing
+      section.state.error.network-missing
         button.return-mainmenu(type='button') Back
 
-      .state.error.game-full
+     section.state.error.game-full
         a.button.return-mainmenu.red(href="/", type='button')
 
 
     //WAITING FRIEND ACCEPT
-    .state.friend-accept.inactive
+    section.state.friend-accept.inactive
       .dialog.middle
         .content
           .vertical-center
             .cpu-wth-eyes
-              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__bg.icon-computer(data-icon='')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
@@ -235,12 +239,12 @@ html(lang='en')
             button.return-mainmenu.blue(type='button') Back
 
     //FRIEND ARRIVED
-    .state.friend-arrived.inactive
+    section.state.friend-arrived.inactive
       .dialog.middle
         .content
           .vertical-center
             .cpu-wth-eyes
-              .cpu-wth-eyes__bg.icon-computer
+              .cpu-wth-eyes__bg.icon-computer(data-icon='')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
@@ -249,54 +253,72 @@ html(lang='en')
             button.play-friend.blue(type='button') Play Friend
 
     //OPPONENT LEFT DIALOG
-    .state.friend-left.inactive
-      .dialog
+    section.state.friend-left.inactive
+      .dialog.middle
         .content
           .vertical-center
+            .cpu-wth-eyes
+                .cpu-wth-eyes__bg.icon-computer(data-icon='')
+                .cpu-wth-eyes__container
+                  .cpu-wth-eyes__eyes
+                    .dash-medium.dash-white.sad-left-eye-anim-loop
+                    .dash-medium.dash-white.sad-right-eye-anim-loop
             h2 Your friend left the game
-            button.blue.play-friend(type='button') Play Friend
+            button.blue.play-friend(type='button') Play another Friend
             button.green.play(type='button') Play Computer (Space)
 
     //GAME OVER
-    .state.game-over.inactive
-      img.key(src='/images/game_over.png')
+    section.state.game-over.inactive
+      h1.bitmap Game Over
+
       div
         .dialog
           .content
             #scoreboard-single.vertical-center
-              h2 Your Points
               .scoreboard.single
-                  div Levels Played
-                  #highscore-levels.highscoreDigit X
-                  #share-score
-                    h3 Share
-                    ul.social
-                      li
-                        a.icon.notimplemented(data-icon='g')
-                          span Google plus
-                      li
-                        a.icon.notimplemented(data-icon='f')
-                          span Facebook
-                      li
-                        a.icon.notimplemented(data-icon='t')
-                          span Twitter
-                  #highscore-rally.highscoreDigit X
-                  div Longest Rallies
+                  div
+                    p#single-levels.levels X
+                    h3 Levels Cleared
+                  ul.social
+                    li
+                      a.icon.notimplemented(data-icon='g')
+                        span Google plus
+                    li
+                      a.icon.notimplemented(data-icon='f')
+                        span Facebook
+                    li
+                      a.icon.notimplemented(data-icon='t')
+                        span Twitter
 
               button.blue.play-friend(type='button') Play Friend
               button.green.play(type='button') Play Again (Space)
 
             #scoreboard-multi.vertical-center
-              h2 Your Points
               .scoreboard.multiplayer
-                  img(src='/images/temp_scoreboard_multi.gif')
-              button.green.play(type='button') Play Again (Space)
+                h3 Total wins
+                div
+                      p#me-levels.levels X
+                        span You
+                      p#opponent-levels.levels X
+                       span p2
+                ul.social
+                  li
+                    a.icon.notimplemented(data-icon='g')
+                      span Google plus
+                  li
+                    a.icon.notimplemented(data-icon='f')
+                      span Facebook
+                  li
+                    a.icon.notimplemented(data-icon='t')
+                      span Twitter
+                button.green.play(type='button') Play Again (Space)
 
-    #scores.state.game.inactive
+    section#scores.state.game.inactive
       .logo
-        img(src="/images/minipong.png")
+        img(src="/images/minipong.png", alt='logo')
         p #{name}
-        p.level Level 1
+        p.level Level 
+          span#level 1
         p.frame 0
 
       .multiplayer
@@ -349,7 +371,7 @@ html(lang='en')
       ul#socials.social
         li
           a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
-            span Google plus
+            span Google+
         li
           a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
             span Facebook
@@ -358,10 +380,12 @@ html(lang='en')
             span Twitter
         //li
           a.icon.notimplemented(data-icon='p')
-            span Pininterest
+            span Pinterest
       #about
         ul
           li
+            a Technology
+          //li
             a#pointer-lock Mouse lock on
           li
             a.notimplemented Terms &amp; privacy
@@ -381,7 +405,7 @@ html(lang='en')
 
 
     script(src='/_ah/channel/jsapi')
-    script(src='/javascript/libs/three.js')
+    script(src='/javascript/libs/three.{{.Minified}}js')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src="/javascript/libs/dat.gui.js")
     script(src='/javascript/pong.{{.Minified}}js')

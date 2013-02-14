@@ -3,14 +3,12 @@
 .icons-sprite, 
 .icons-cam,
 .icons-cam__spinner,
-.icons-computer,
 .icons-cross-fail,
 .icons-key-arrow-left,
 .icons-key-arrow-right,
 .icons-mouse,
 .icon-webcam,
 .icon-quarter-circle, 
-.icon-computer, 
 .icon-arrow-left, 
 .icon-arrow-right, 
 .icon-cross, 
@@ -20,7 +18,6 @@
 .icons-sprite, 
 .icon-webcam, 
 .icon-quarter-circle, 
-.icon-computer, 
 .icon-arrow-left, 
 .icon-arrow-right,
 .icon-cross,
@@ -33,9 +30,6 @@
 
 .icons-cam__spinner 
   background-position 0 -205px
-
-.icons-computer 
-  background-position 0 -67px
 
 .icons-cross-fail 
   background-position 0 -161px
@@ -65,8 +59,7 @@
   height 53px
   width 53px
 
-.icon-computer 
-  background-position 0 -67px
+.icon-computer
   height 92px
   width 67px
 
@@ -161,10 +154,10 @@
   width 67px
   margin-bottom 20px
 
-.cpu-wth-eyes__bg 
-  position absolute
+  .cpu-wth-eyes__bg 
+    position absolute
 
-.cpu-wth-eyes__container 
+.cpu-wth-eyes__container
   position relative
 
 .cpu-wth-eyes__eyes 
@@ -519,6 +512,12 @@ a JS script.
   &.error
     &:before
       color $color-red
+  &.p1
+    &:before
+      color #000
+    &:after
+      color #FFF
+      content 'p1'
   &:after
     absolute right -37px top -35px
     display inline-block
@@ -541,6 +540,6 @@ a JS script.
     font-weight normal
     line-height 1
     font-smoothing antialiased
-    content '!'
+    content '"'
 
 

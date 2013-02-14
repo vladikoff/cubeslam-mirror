@@ -191,10 +191,15 @@ func Room(c appengine.Context, w http.ResponseWriter, r *http.Request) {
     if bi, err := os.Stat("build/build.js"); err == nil {
       if mi.ModTime().Unix() > bi.ModTime().Unix() {
         minified = "min."
+      } else {
+        c.Debugf("Time of build.js is newer",mi,bi)
       }
+    } else {
+      c.Debugf("Stat of build.js failed",err)
     }
+  } else {
+    c.Debugf("Stat of build.min.js failed",err)
   }
-
 
   // Data to be sent to the template:
   data := TemplateData{Room:roomName, User: userName, LoginLogoutLink: loginLogoutLink, AcceptLanguage: acceptLanguage, Minified: minified}

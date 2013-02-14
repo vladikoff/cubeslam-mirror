@@ -8,17 +8,35 @@
     display block
 
   &.loading
-    display block
     position absolute
-    background-color white
+    background-color $color-beige
     z-index 5
     width 100%
     height 100%
     overflow hidden
     visibility visible
+    display flex
+    box-orient horizontal
+    box-direction row
+    box-wrap nowrap
+    justify-content center
+    align-content stretch
+    align-items center
+    height 100%
+    width 100%
 
-  &.game-instructions,
-  &.state.game-info,
+    .spinner
+      position absolute
+      width 30px
+      height 30px
+      font-size 30px
+      left 50%
+      top 50%
+      margin -24px 0 0 -15px
+      color $color-beige
+      animation spinner-rotate 1.5s linear infinite
+
+  &.state.game-instructions,
   &.state.game-start
     box-orient horizontal
     box-pack center
@@ -63,10 +81,45 @@
       margin 0 auto 20px
       line-height 1.4em
 
+  &.friend-left
+    .cpu-wth-eyes
+      margin-bottom 0
+
+  &.game-level, &.game-round
+    z-index 2
+    .content
+      transform scale(0) 
+      transition-duration 300ms
+      transition-property opacity, tranform
+
+    &.active
+      .content
+        transition-duration 400ms
+        transition-timing-function ease-out
+        transform scale(1)
+
+    &.inactive
+      .content
+        transition-delay 1000ms
+        opacity 0
+        transform scale(2)
+
+    .content.center
+      z-index 2
+
   &.game-play
+    z-index 3
+    .content
+      z-index 3
+
+  &.game-play, &.game-level, &.game-round
+    pointer-events none
+    .content
+      opacity 1
     &.inactive 
       .content
         opacity 0
+
 
     .content.center
       display flex
@@ -76,36 +129,18 @@
       justify-content center
       align-content stretch
       align-items center
-      transition opacity .1s
 
       width 100%
       height 100%
       absolute top 0 left 0
-      z-index 3
 
-    .countdown
+    #start-prompt, #round-prompt, #level-prompt
+      display none
       align-self center
       flex 0 1 auto
 
-
-    .countdown-number
-      position absolute
-      width 988px
-      height 718px
-      opacity 0
-      transition opacity .3s ease-out
-      transform scale(0.5)
-      // translate(0, 90px)
-      background url('/images/countdown-s9fee64d48a.png') no-repeat
-
-      &[data-number="3"]
-        background-position 0 -718px
-      &[data-number="2"]
-        background-position 0 0
-      &[data-number="1"]
-        background-position 0 -1436px
-      &.visible
-        opacity 1
+    h1, h2
+      font-size 120px
 
   &.game-pause
     button
@@ -123,78 +158,92 @@
     .dialog
       button
         margin 10px 0px 20px 0px
-
-    #activate-camera
-      color #40a040
-      text-decoratio: underline
-      text-transform uppercase
-      float left
-      line-height 45px
-
+      .buttons
+        absolute top 50% right 30px
+        margin-top -17px
+        button 
+          margin 0
+          font-size 11px
+          padding 10px
+      .alert-info
+        padding-right 330px
   &.game-over
     text-align center
     height 100%
 
-    img.key
-      width 60%
+    #opponent-levels
+      background $color-blue
+
+    h1
       height auto
       margin-top 21%
       z-index 3
+      position relative
+      font-size 120px
+      text-align center
+      padding 0 40px
 
     .dialog
       height 33%
       min-height 266px
 
-    h2
-      font-family 'Varela', sans-serif
-      font-size 14px
-      padding-top 15px
-
-    h3
-      font-family 'Varela', sans-serif
-      font-size 11px
-      margin-bottom 13px
-
-    p
-      padding-bottom 25px
-
     .scoreboard
       color #e83129
-      // display flex
-      // box-orient horizontal
-      // box-pack center
-      // box-align center
-      padding 20px 0px 40px 0px
-
+      padding 20px 0px 30px 0px
       &.multiplayer
-        padding 0px 0px 20px 0px
+        .levels:last-child
+          margin-left 8px
+        .social
+          margin 42px 0 20px
+        h3 
+          padding 10px 0 19px
+
 
       div
-        margin-right 20px
-        display inline-block
+        display block
         &:last-child
           margin-right 0px
 
-        &.highscoreDigit
-          color $color-beige
-          font-size 24px
-          background #e83129
-          width 50px
-          height 50px
-          line-height 50px
-          text-align center
-          overflow hidden
-          padding 0
-          border-radius 25px
-          box-sizing border-box
-          padding-left 2px
+    button
+      width 289px
+      padding-left 0
+      padding-right 0
+
+      &:last-child
+        margin-left 17px 
 
     ul.social
       .icon
         background $color-green
         color $color-beige
 
-  &.game-info
+        &:hover
+          color $color-green
+          background $color-beige
+          border-color $color-green
+
+    h3
+      padding 10px 0 23px
+
+    .levels
+      font-size 24px
+      width 50px
+      height 50px
+      border-radius 25px
+      background $color-red
+      display inline-block
+      box-sizing border-box
+      padding 19px 0 0 3px
+      color $color-beige
+
+      span 
+        display block
+        font-size 11px
+        margin-top 31px
+        color $color-blue
+
+  &.game-instructions
+    z-index 3
     .info-animation
       display inline-block
       width 210px
@@ -218,18 +267,11 @@
     button, .button
       margin-top 24px
 
-  &.loading
-    height 100%
-    width 100%
-    background $color-beige url('/images/opponent_computer.gif') no-repeat center center
-
-
-
 .game-controls
   width 100%
 
   .animation
-    margin 25px 0 28px
+    margin 3px 0 38px
 
     > div
       display inline-block
@@ -253,12 +295,6 @@
   &.inactive
     display none
 
-  .score
-    font-family 'eboyregalpha'
-    font-size 60px
-    font-weight normal
-    line-height 51px
-
   .player, .opponent
     margin-top 10px
     p
@@ -267,7 +303,6 @@
 
   .player
     margin-top 20px
-
 
   ol
     li
@@ -278,9 +313,10 @@
       display inline-block
       margin-left 7px
       position relative
-      transition transform 300ms ease-out
-      // transform-origin center center
+      transition transform 300ms ease-in-out
       transform-style preserve-3d
+      transform-origin center center
+      perspective 2000px
       backface-visibility hidden
 
       &:before
@@ -290,21 +326,20 @@
         width 34px
         height 33px
 
-        transform rotateY(-180deg)
+        transform rotateY(180deg)
         backface-visibility hidden
-        // transform-style preserve-3d
-
         background transparent url('/images/score-rect.png') no-repeat
 
       &:first-child
         margin-left 0
       &.active
-        transform rotateY(180deg)
+        transition-delay 200ms
+        transform rotateY(-180deg)
+
+  .opponent
+    li.active
+      transition-delay 1500ms
 
 #level
-  &.inactive
-    display none
-
-#scoresRunning
   &.inactive
     display none

@@ -11,5 +11,6 @@ lang/arbs/*.arb
 .sass-cache
 .jshintrc
 report
-public/javascript/pong.min.js.map
+public/*/*.min.*
+public/*/*/*.min.*
 server.conf

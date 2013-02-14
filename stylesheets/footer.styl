@@ -24,6 +24,7 @@ footer#footer
     border-radius 3px
     display table-cell
     vertical-align middle
+    border 1px solid transparent
 
     &:before
       display inline-block
@@ -36,21 +37,22 @@ footer#footer
       height 100%
       display inline-block
       position absolute
-      width 1pxs
+      width 1px
 
     &:hover
       background #000
       color #e8e8ca
-
+      border-color #e8e8ca
+      
     span
-      display: none;
+      display none
 
 
 #socials
   position absolute
   display inline-block
 
-  margin 10px 0 0 15px
+  margin 9px 0 0 15px
 
 #about
   display block
@@ -62,7 +64,7 @@ footer#footer
     position absolute
     list-style none
     margin 0 0 0 0
-    padding 14px 0 0 0
+    padding 15px 0 0 0
     li
       text-transform uppercase
       list-style none
@@ -74,7 +76,7 @@ footer#footer
         color: #e8e8ca
         text-decoration none
         &:hover
-          text-decoration: underline
+          text-decoration underline
 
   .sound-switch
     .on, .off
