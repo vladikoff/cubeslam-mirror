@@ -36,10 +36,7 @@
       color $color-beige
       animation spinner-rotate 1.5s linear infinite
 
-
-
-  &.game-instructions,
-  &.state.game-info,
+  &.state.game-instructions,
   &.state.game-start
     box-orient horizontal
     box-pack center
@@ -83,6 +80,11 @@
       max-width 350px
       margin 0 auto 20px
       line-height 1.4em
+
+  &.friend-left
+    .cpu-wth-eyes
+      margin-bottom 0
+
   &.game-level, &.game-round
     z-index 2
     .content
@@ -156,14 +158,15 @@
     .dialog
       button
         margin 10px 0px 20px 0px
-
-    #activate-camera
-      color #40a040
-      text-decoratio: underline
-      text-transform uppercase
-      float left
-      line-height 45px
-
+      .buttons
+        absolute top 50% right 30px
+        margin-top -17px
+        button 
+          margin 0
+          font-size 11px
+          padding 10px
+      .alert-info
+        padding-right 330px
   &.game-over
     text-align center
     height 100%
@@ -239,7 +242,7 @@
         margin-top 31px
         color $color-blue
 
-  &.game-info
+  &.game-instructions
     z-index 3
     .info-animation
       display inline-block
@@ -301,7 +304,6 @@
   .player
     margin-top 20px
 
-
   ol
     li
       perspective 20
@@ -336,7 +338,7 @@
 
   .opponent
     li.active
-      transition-delay 600ms
+      transition-delay 1500ms
 
 #level
   &.inactive

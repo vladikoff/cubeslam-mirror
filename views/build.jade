@@ -47,7 +47,7 @@ html(lang='en')
       div.spinner(data-icon='*')
 
     //GAME INSTRUCTIONS
-    section.state.game-info.inactive
+    section.state.game-instructions.inactive
       .dialog.middle
         .content
           .game-controls.vertical-center
@@ -136,16 +136,15 @@ html(lang='en')
     section.state.webcam-activate.inactive
       .dialog.top
         .content
-          span.alert-icon.red
           .alert-info Please choose allow to connect your webcam and start friends play
 
     section.state.webcam-information.inactive
       .dialog.top
         .content
-          span.alert-icon.red
-          span.alert-info Are you sure? Friends play is not possible without allowing webcam.
-          span
-            a#activate-camera Activate Camera
+          .alert-info Are you sure? Friends play is not possible without allowing webcam.
+          .buttons
+            button#activate-camera.red(arb:id='playFriendButton', type='button') Activate Camera
+            button.play-computer.red(arb:id='playCPUButton', type='button') Play Computer
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -255,11 +254,17 @@ html(lang='en')
 
     //OPPONENT LEFT DIALOG
     section.state.friend-left.inactive
-      .dialog
+      .dialog.middle
         .content
           .vertical-center
+            .cpu-wth-eyes
+                .cpu-wth-eyes__bg.icon-computer(data-icon='')
+                .cpu-wth-eyes__container
+                  .cpu-wth-eyes__eyes
+                    .dash-medium.dash-white.sad-left-eye-anim-loop
+                    .dash-medium.dash-white.sad-right-eye-anim-loop
             h2 Your friend left the game
-            button.blue.play-friend(type='button') Play Friend
+            button.blue.play-friend(type='button') Play another Friend
             button.green.play(type='button') Play Computer (Space)
 
     //GAME OVER
@@ -310,7 +315,7 @@ html(lang='en')
 
     section#scores.state.game.inactive
       .logo
-        img(src="/images/minipong.png")
+        img(src="/images/minipong.png", alt='logo')
         p #{name}
         p.level Level 
           span#level 1
