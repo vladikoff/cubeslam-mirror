@@ -270,7 +270,6 @@ html(lang='en')
     //GAME OVER
     section.state.game-over.inactive
       h1.bitmap Game Over
-
       div
         .dialog
           .content
@@ -358,14 +357,17 @@ html(lang='en')
       video#localInput.hidden(width='160',height='120',autoplay)
 
       #canv-css
-        .background
+        .background.state.game
           img(data-src-mobile='/images/css/mobile_fullbg-small.jpg', data-src-tablet='/images/css/mobile_fullbg.jpg')
         .game-board
           .arena
 
-    #gamepad.state.game
-      .button.left(type='button')
-      .button.right(type='button')
+    section.mobile
+      section.state.main-menu
+        img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg')
+      #gamepad.state.game
+        .button.left(type='button')
+        .button.right(type='button')
 
     footer#footer
       ul#socials.social

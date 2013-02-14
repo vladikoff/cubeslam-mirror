@@ -8,8 +8,7 @@ html.mobile
     height 100%
     position absolute
 
-  footer#footer
-  , #settingsGUIContainer
+  #settingsGUIContainer
   , #scores
   , .play-friend
   , .links
@@ -18,6 +17,22 @@ html.mobile
 
   .dialog
     bottom 0
+
+  header
+    background no-repeat center center
+    background-size cover
+
+    h2, h3
+      display none
+
+    .nav
+      bottom 110px
+
+  footer#footer
+    height 47px
+
+  #about
+    display none
 
   #canv-pixel
     width 1px
@@ -59,7 +74,11 @@ html.mobile
       visibility visible
       display block
 
-
+  .mobile
+    .main-menu 
+      width 100%
+      height 100%
+      position absolute
   .state.game-instructions
     #game-controls
       display none
@@ -70,6 +89,7 @@ html.mobile
     width 0
     left 50%
     top 50%
+    overflow visible
     > canvas, > video
       display none
 
