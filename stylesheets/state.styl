@@ -311,9 +311,10 @@
       display inline-block
       margin-left 7px
       position relative
-      transition transform 300ms ease-out
-      // transform-origin center center
+      transition transform 300ms ease-in-out
       transform-style preserve-3d
+      transform-origin center center
+      perspective 2000px
       backface-visibility hidden
 
       &:before
@@ -323,21 +324,20 @@
         width 34px
         height 33px
 
-        transform rotateY(-180deg)
+        transform rotateY(180deg)
         backface-visibility hidden
-        // transform-style preserve-3d
-
         background transparent url('/images/score-rect.png') no-repeat
 
       &:first-child
         margin-left 0
       &.active
-        transform rotateY(180deg)
+        transition-delay 200ms
+        transform rotateY(-180deg)
+
+  .opponent
+    li.active
+      transition-delay 600ms
 
 #level
-  &.inactive
-    display none
-
-#scoresRunning
   &.inactive
     display none
