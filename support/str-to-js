@@ -3,12 +3,22 @@
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
+var buf = '';
 process.stdout.write("module.exports = '")
-process.stdin.on('data', function (chunk) {
-  process.stdout.write(chunk
+process.stdin.on('data',function(chunk){
+  buf += chunk;
+});
+process.stdin.on('end',function(){
+  // see if it's JSON
+  // then store it more compact
+  try {
+    buf = JSON.stringify(JSON.parse(buf))
+
+  // or it's just a string or regular js
+  } catch(e){}
+
+  process.stdout.write(buf
     .replace(/'/g, "\\'")
     .replace(/\r\n|\r|\n/g, "\\n"));
-});
-process.stdin.on('end', function () {
   process.stdout.write("';");
 });
