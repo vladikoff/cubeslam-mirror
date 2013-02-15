@@ -108,18 +108,18 @@ html(lang='en')
     //COUNTDOWN
     section.state.game-play.inactive
       .content.center
-        #start-prompt
+        #start-prompt.prompt
           h1.bitmap Start!
 
     section.state.game-level.inactive
       .content.center
-        #level-prompt
+        #level-prompt.prompt
           h2.bitmap Level 
             span 1
 
     section.state.game-round.inactive
       .content.center
-        #round-prompt
+        #round-prompt.prompt
           h2.bitmap Round 
             span 1
 
@@ -315,7 +315,7 @@ html(lang='en')
     section#scores.state.game.inactive
       .logo
         img(src="/images/minipong.png", alt='logo')
-        p #{name}
+        h1 #{name}
         p.level Level 
           span#level 1
         p.frame 0
@@ -363,11 +363,17 @@ html(lang='en')
           .arena
 
     section.mobile
-      section.state.main-menu
+      section.state.main-menu.inactive
         img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg')
-      #gamepad.state.game
+      #gamepad.state.game.inactive
         .button.left(type='button')
         .button.right(type='button')
+      nav#mobile-menu.state.game.inactive
+        button.pause(href='#', data-icon='▹', type='button')
+        .state.game-pause.inactive
+          button.play(href='#', data-icon='▶', type='button')
+          button.sound(href='#', data-icon='♫', data-icon-off='♩', type='button')
+          button.info(href='#', data-icon='☢', type='button')
 
     footer#footer
       ul#socials.social
