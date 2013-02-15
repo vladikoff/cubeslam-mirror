@@ -117,7 +117,7 @@ html(lang='en')
           h2.bitmap Level 
             span 1
 
-    section.state.game-round.inactive
+    section.state.game-round.active
       .content.center
         #round-prompt.prompt
           h2.bitmap Round 
@@ -339,16 +339,16 @@ html(lang='en')
         .player
           p You
           ol
-            li
-            li
-            li
+            li.active
+            li.active
+            li.active
 
         .opponent
           p CPU
           ol
-            li
-            li
-            li
+            li.active
+            li.active
+            li.active
 
     #game
       canvas#canv-3d(width='320',height='480')
@@ -362,6 +362,8 @@ html(lang='en')
         .game-board
           .arena
 
+
+    //MOBILE
     section.mobile
       section.state.main-menu.inactive
         img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg')

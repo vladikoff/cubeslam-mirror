@@ -4,6 +4,9 @@ $footer-height = 47px
   display none
 html.mobile
   width 100%
+  .mobile
+    display block
+
   body
     background linear-gradient(top, 0% #e4e4e4, 50% #e4e4e4, 51% #0088ff, 100% #0088ff)
     width 100%
@@ -27,8 +30,20 @@ html.mobile
     h2, h3
       display none
 
+    hgroup
+      padding 0
+
     .nav
-      bottom 110px
+      bottom 70px
+      width 100%
+      padding 0
+
+      button 
+        width auto
+        min-width 0
+        padding-left 15px
+        padding-right 15px
+
 
   #mobile-menu
     absolute top 0 right 0
@@ -52,13 +67,31 @@ html.mobile
         color #b58d33
       &.pause
         absolute right 0
+        z-index 1
+
+    .game-pause
+      transform translateY(0)
+      transition transform 300ms
+      position relative
+      z-index 2
+
+      .inactive
+        transform translateY(100%)
+
 
   .prompt
     h1, h2
       font-size 30px
+      text-align center
 
   footer#footer
+    display none
     height $footer-height
+
+  body.main-menu
+    #footer
+      display block
+
 
   #about
     display none
@@ -72,7 +105,6 @@ html.mobile
     z-index 3
 
   #scores
-    display block!important
     absolute top 10px left 10px  
     margin 0
     .logo
@@ -133,6 +165,8 @@ html.mobile
       display block
 
   .state.game-instructions
+    .animation
+      display none
     .dialog
       bottom $footer-height
       top 0
@@ -232,11 +266,25 @@ html.mobile
   transform-origin 50% 50% 0
 
 @media (orientation: portrait)
-  html.mobile 
+  html.mobile
     #gamepad
-      display none
+      display none!important
 
 @media (orientation: landscape)
   html.mobile
-    #gamepad
-      display block!important
+    .state.active
+      #gamepad
+        display block!important
+
+    .dialog
+      bottom 0
+
+    header .nav
+      bottom 10px
+
+
+    body.main-menu
+      #footer
+        display inline-block
+        background-color transparent
+

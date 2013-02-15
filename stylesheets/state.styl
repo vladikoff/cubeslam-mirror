@@ -35,6 +35,8 @@
       margin -24px 0 0 -15px
       color $color-beige
       animation spinner-rotate 1.5s linear infinite
+      line-height 0
+      letter-spacing 0
 
   &.state.game-instructions,
   &.state.game-start
@@ -318,6 +320,10 @@
       transform-origin center center
       perspective 2000px
       backface-visibility hidden
+
+      for row in 1 2 3
+        &:nth-child({row})
+          transition-delay 200ms * (3 - row)
 
       &:before
         content ''
