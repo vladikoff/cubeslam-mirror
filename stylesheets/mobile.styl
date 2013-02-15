@@ -1,3 +1,5 @@
+$footer-height = 47px
+
 #canv-css
   display none
 html.mobile
@@ -8,16 +10,58 @@ html.mobile
     height 100%
     position absolute
 
-  footer#footer
-  , #settingsGUIContainer
-  , #scores
+  #settingsGUIContainer
   , .play-friend
   , .links
   , .multiplayer
+  , section.state.game-pause
     display none!important
 
   .dialog
-    bottom 0
+    bottom $footer-height
+
+  header
+    background no-repeat center center
+    background-size cover
+
+    h2, h3
+      display none
+
+    .nav
+      bottom 110px
+
+  #mobile-menu
+    absolute top 0 right 0
+    button
+      width 46px
+      min-width 0
+      height 46px
+      margin 0
+      padding 0
+      border none
+      display block
+
+      &.play, &.pause
+        background $color-blue
+        color #205688
+      &.sound
+        background $color-green
+        color #306e2b
+      &.info
+        background $color-yellow
+        color #b58d33
+      &.pause
+        absolute right 0
+
+  .prompt
+    h1, h2
+      font-size 30px
+
+  footer#footer
+    height $footer-height
+
+  #about
+    display none
 
   #canv-pixel
     width 1px
@@ -27,6 +71,26 @@ html.mobile
     position absolute
     z-index 3
 
+  #scores
+    display block!important
+    absolute top 10px left 10px  
+    margin 0
+    .logo
+      h1, img
+        display none
+
+    .logo, .multiplayer, .singleplayer
+      display inline-block
+      vertical-align top
+    .multiplayer, .singleplayer
+      .player, .opponent
+        display inline-block
+        margin 0
+        margin-left 20px
+
+        li
+          width 15px
+          height 15px
 
   #gamepad
     display none
@@ -36,12 +100,21 @@ html.mobile
     z-index 100
 
     .button
-      background transparent url('/images/css/buttons.png') no-repeat top left
-      width 91px
-      height 91px
+      background-color #6bba6b
+      width 56px
+      height 56px
+      border-radius 28px
+      box-shadow 0 3px 5px rgba(0,0,0,.3) 
+      absolute left 5%
 
-      position absolute
-      left 5%
+      &:before
+        content ' '
+        absolute bottom 1px left 2px 
+        width 52px
+        height 52px
+        border-radius 26px
+        background-color #4daf4d
+
 
 
       &:active
@@ -59,7 +132,17 @@ html.mobile
       visibility visible
       display block
 
+  .state.game-instructions
+    .dialog
+      bottom $footer-height
+      top 0
+      height 100%
 
+  .mobile
+    .main-menu 
+      width 100%
+      height 100%
+      position absolute
   .state.game-instructions
     #game-controls
       display none
@@ -70,6 +153,7 @@ html.mobile
     width 0
     left 50%
     top 50%
+    overflow visible
     > canvas, > video
       display none
 
