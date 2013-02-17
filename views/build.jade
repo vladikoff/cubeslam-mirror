@@ -117,7 +117,7 @@ html(lang='en')
           h2.bitmap Level 
             span 1
 
-    section.state.game-round.active
+    section.state.game-round.inactive
       .content.center
         #round-prompt.prompt
           h2.bitmap Round 
@@ -296,10 +296,10 @@ html(lang='en')
               .scoreboard.multiplayer
                 h3 Total wins
                 div
-                      p#me-levels.levels X
-                        span You
-                      p#opponent-levels.levels X
-                       span p2
+                  p#me-levels.levels X
+                    span You
+                  p#opponent-levels.levels X
+                   span p2
                 ul.social
                   li
                     a.icon.notimplemented(data-icon='g')
@@ -388,9 +388,6 @@ html(lang='en')
         li
           a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
             span Twitter
-        //li
-          a.icon.notimplemented(data-icon='p')
-            span Pinterest
       #about
         ul
           li
