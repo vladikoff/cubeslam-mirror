@@ -117,7 +117,7 @@ html(lang='en')
           h2.bitmap Level 
             span 1
 
-    section.state.game-round.active
+    section.state.game-round.inactive
       .content.center
         #round-prompt.prompt
           h2.bitmap Round 
@@ -129,8 +129,9 @@ html(lang='en')
         .content
           .vertical-center
             h2 Paused
-            button.blue.play-friend.notimplemented(type='button') Play Friend
-            button.singleplayer.green.play(type='button') Resume (space)
+            .buttons
+              button.blue.play-friend.notimplemented(type='button') Play Friend
+              button.singleplayer.green.play(type='button') Resume (space)
 
     //CAMERA REQUEST ATTENTION
     section.state.webcam-activate.inactive
@@ -264,8 +265,9 @@ html(lang='en')
                     .dash-medium.dash-white.sad-left-eye-anim-loop
                     .dash-medium.dash-white.sad-right-eye-anim-loop
             h2 Your friend left the game
-            button.blue.play-friend(type='button') Play another Friend
-            button.green.play(type='button') Play Computer (Space)
+            .buttons 
+              button.blue.play-friend(type='button') Play another Friend
+              button.green.play(type='button') Play Computer (Space)
 
     //GAME OVER
     section.state.game-over.inactive
