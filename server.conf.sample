@@ -20,7 +20,7 @@ server {
     gzip_min_length     1100;
     gzip_buffers        16 8k;
     gzip_proxied        expired no-cache no-store private auth;
-    gzip_types          text/plain text/html text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_types          text/plain text/html text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml application/x-font-woff font/woff;
 
     # Disable for IE < 6 because there are some known problems
     gzip_disable        "MSIE [1-6].(?!.*SV1)";
