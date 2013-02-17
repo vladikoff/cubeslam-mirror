@@ -106,6 +106,10 @@
         opacity 0
         transform scale(2)
 
+    &.start
+      .content
+        transition-delay  800ms
+
     .content.center
       z-index 2
 
@@ -137,7 +141,6 @@
       absolute top 0 left 0
 
     #start-prompt, #round-prompt, #level-prompt
-      display none
       align-self center
       flex 0 1 auto
 
