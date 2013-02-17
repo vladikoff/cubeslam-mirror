@@ -13,6 +13,11 @@ server {
     server_name     SERVER_NAME;
     root            "SERVER_ROOT";
 
+    # http://wiki.nginx.org/HttpSslModule
+    #ssl                 on;
+    #ssl_certificate      /usr/local/etc/nginx/server.crt;
+    #ssl_certificate_key  /usr/local/etc/nginx/server.key;
+
     gzip                on;
     gzip_comp_level     2;
     gzip_http_version   1.0;
