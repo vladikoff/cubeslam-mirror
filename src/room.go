@@ -22,6 +22,16 @@ func (r *Room) OtherUser(user string) string {
   return ""
 }
 
+func (r *Room) HasUser(user string) bool {
+  if user == r.User2 {
+    return true
+  }
+  if user == r.User1 {
+    return true
+  }
+  return false
+}
+
 func (r *Room) AddUser(user string) {
   if r.User1 == "" {
     r.User1 = user

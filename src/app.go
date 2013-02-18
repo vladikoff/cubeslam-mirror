@@ -18,6 +18,7 @@ type Template struct {
   Room string
   User string
   Token string
+  State string
   AcceptLanguage string
   Minified string
 }
@@ -39,6 +40,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
   roomName := strings.TrimLeft(r.URL.Path,"/")
   userName := Random(10)
+  fullRoom := false;
 
   room, err := GetRoom(c, roomName)
 
@@ -64,9 +66,8 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
   // Full room
   } else if room.Occupants() == 2 {
-    c.Debugf("Room: %v",room)
-    c.Criticalf("Room full %s",roomName)
-    return;
+    c.Debugf("Full room %s",roomName)
+    fullRoom = true;
 
   // DataStore error
   } else if err != nil {
@@ -93,22 +94,29 @@ func Main(w http.ResponseWriter, r *http.Request) {
     }
   }
 
-  // Create a Channel token
-  token, err := channel.Create(c, MakeClientId(roomName, userName))
-  if err != nil {
-    http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
-    return
-  }
-
   // Data to be sent to the template:
-  data := Template{Room:roomName, User: userName, Token: token, AcceptLanguage: acceptLanguage, Minified: minified}
+  data := Template{Room:roomName, User: userName, AcceptLanguage: acceptLanguage, Minified: minified}
+
+  // Full room, skip token
+  if fullRoom {
+    c.Criticalf("Room full %s",roomName)
+    data.State = "error full"
+
+  // Create a channel token
+  } else {
+    token, err := channel.Create(c, MakeClientId(roomName, userName))
+    if err != nil {
+      http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
+      return
+    }
+    data.Token = token
+  }
 
   // Parse the template and output HTML:
   template, err := template.ParseFiles("build/build.html")
   if err != nil { c.Criticalf("execution failed: %s", err) }
   err = template.Execute(w, data)
   if err != nil { c.Criticalf("execution failed: %s", err) }
-
 }
 
 
@@ -116,6 +124,12 @@ func Connected(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
+
+    if room.HasUser(userName) == false {
+      c.Debugf("User %s not found in room %s",userName,roomName)
+      return;
+    }
+
     room.ConnectUser(userName)
     c.Debugf("Connected user %s to room %s",userName,roomName)
 
@@ -141,6 +155,12 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
+
+    if room.HasUser(userName) == false {
+      c.Debugf("User %s not found in room %s",userName,roomName)
+      return;
+    }
+
     empty := room.RemoveUser(userName)
     c.Debugf("Removed user %s from room %s",userName,roomName)
 
@@ -150,7 +170,7 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
       if err != nil {
         c.Criticalf("Could not del room %s: ",roomName,err)
       } else {
-        // respond with success
+        c.Debugf("Removed empty room %s",roomName)
       }
 
     // save room if not empty
