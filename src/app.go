@@ -135,13 +135,17 @@ func Connected(w http.ResponseWriter, r *http.Request) {
 
     err := PutRoom(c, roomName, room)
     if err == nil {
-      // let the other user know
-      otherUser := room.OtherUser(userName)
-      if err := channel.Send(c, MakeClientId(roomName, otherUser), "connected"); err != nil {
-        c.Criticalf("Error while sending connected:",err)
-      }
-      if err := channel.Send(c, MakeClientId(roomName, userName), "connected"); err != nil {
-        c.Criticalf("Error while sending connected:",err)
+      // send connected to both when room is complete
+      if room.Occupants() == 2 {
+        otherUser := room.OtherUser(userName)
+        if err := channel.Send(c, MakeClientId(roomName, otherUser), "connected"); err != nil {
+          c.Criticalf("Error while sending connected:",err)
+        }
+        if err := channel.Send(c, MakeClientId(roomName, userName), "connected"); err != nil {
+          c.Criticalf("Error while sending connected:",err)
+        }
+      } else {
+        c.Debugf("Waiting for another user before sending 'connected'")
       }
     } else {
       c.Criticalf("Could not put room %s: ",roomName,err)
