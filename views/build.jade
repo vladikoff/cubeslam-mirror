@@ -212,7 +212,7 @@ html(lang='en')
                     .dash-medium.dash-white.sad-left-eye-anim-loop
                     .dash-medium.dash-white.sad-right-eye-anim-loop
             h2 Your friend left the game
-            .buttons 
+            .buttons
               button.blue.play-friend(type='button') Play another Friend
               button.green.play(type='button') Play Computer (Space)
 
@@ -431,5 +431,7 @@ html(lang='en')
     script
       require('paddle-battle')({
         room: '{{.Room}}',
+        user: '{{.User}}',
+        token: '{{.Token}}',
         acceptLanguage: 'en,{{.AcceptLanguage}}'
       })
