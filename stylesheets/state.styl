@@ -3,6 +3,9 @@
   display block
   h2, h3, h4, h5, p
     text-transform uppercase
+
+  .buttons
+    line-height 55px
   &.active
     visibility visible
     display block
@@ -354,3 +357,29 @@
 #level
   &.inactive
     display none
+#extras
+  position absolute
+  right 60px
+  font-size 12px
+  text-transform uppercase
+  li
+    color #FFF
+    margin-bottom 5px
+    padding 15px 0 0 0
+    text-align right
+    box-sizing border-box
+    height 36px
+    position relative
+    font-size .8em
+    &:before
+      background #FFF
+      font-size 2.1em
+      line-height 1em
+      letter-spacing 0
+      padding .5em .5em
+      text-align center
+      box-sizing border-box
+      border-radius 1em
+      color $color-blue
+      absolute right -42px top 2px
+

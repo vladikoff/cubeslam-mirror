@@ -12,7 +12,7 @@ html(lang='en')
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/pong.css')
 
-  body
+  body(class="{{.State}}")
     header.state.main-menu
       hgroup
         h2 Welcome to
@@ -33,6 +33,7 @@ html(lang='en')
           p.notification.error.webcam
             span.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
 
+        a.button.full.green(arb:id='newRoom', href='/') Start new room
         button.play-friend.green(arb:id='playFriendButton', type='button') Play friend
         button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
 
@@ -172,6 +173,49 @@ html(lang='en')
             h2 Your friend is waiting for you in the arena
             button.play-friend.blue(type='button') Play Friend
 
+    //FRIEND ARRIVED
+    section.state.friend-arrived.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer(data-icon='')
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Your friend has arrived
+            button.play-friend.blue(type='button') Play Friend
+
+    //WAITING FRIEND ACCEPT
+    section.state.friend-accept.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer(data-icon='')
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Waiting for you friend to accept
+
+    //OPPONENT LEFT DIALOG
+    section.state.friend-left.inactive
+      .dialog.middle
+        .content
+          .vertical-center
+            .cpu-wth-eyes
+                .cpu-wth-eyes__bg.icon-computer(data-icon='')
+                .cpu-wth-eyes__container
+                  .cpu-wth-eyes__eyes
+                    .dash-medium.dash-white.sad-left-eye-anim-loop
+                    .dash-medium.dash-white.sad-right-eye-anim-loop
+            h2 Your friend left the game
+            .buttons
+              button.blue.play-friend(type='button') Play another Friend
+              button.green.play(type='button') Play Computer (Space)
+
     //ERROR STATES
     section.state.error.inactive
       .state.error.connection-error.inactive
@@ -224,51 +268,6 @@ html(lang='en')
      section.state.error.game-full
         a.button.return-mainmenu.red(href="/", type='button')
 
-
-    //WAITING FRIEND ACCEPT
-    section.state.friend-accept.inactive
-      .dialog.middle
-        .content
-          .vertical-center
-            .cpu-wth-eyes
-              .cpu-wth-eyes__bg.icon-computer(data-icon='')
-              .cpu-wth-eyes__container
-                .cpu-wth-eyes__eyes
-                  .dash-medium.dash-white.blinking-eyes-anim-loop
-                  .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2 Waiting for you friend to accept
-            button.return-mainmenu.blue(type='button') Back
-
-    //FRIEND ARRIVED
-    section.state.friend-arrived.inactive
-      .dialog.middle
-        .content
-          .vertical-center
-            .cpu-wth-eyes
-              .cpu-wth-eyes__bg.icon-computer(data-icon='')
-              .cpu-wth-eyes__container
-                .cpu-wth-eyes__eyes
-                  .dash-medium.dash-white.blinking-eyes-anim-loop
-                  .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2 Your friend has arrived
-            button.play-friend.blue(type='button') Play Friend
-
-    //OPPONENT LEFT DIALOG
-    section.state.friend-left.inactive
-      .dialog.middle
-        .content
-          .vertical-center
-            .cpu-wth-eyes
-                .cpu-wth-eyes__bg.icon-computer(data-icon='')
-                .cpu-wth-eyes__container
-                  .cpu-wth-eyes__eyes
-                    .dash-medium.dash-white.sad-left-eye-anim-loop
-                    .dash-medium.dash-white.sad-right-eye-anim-loop
-            h2 Your friend left the game
-            .buttons 
-              button.blue.play-friend(type='button') Play another Friend
-              button.green.play(type='button') Play Computer (Space)
-
     //GAME OVER
     section.state.game-over.inactive
       h1.bitmap Game Over
@@ -298,10 +297,10 @@ html(lang='en')
               .scoreboard.multiplayer
                 h3 Total wins
                 div
-                      p#me-levels.levels X
-                        span You
-                      p#opponent-levels.levels X
-                       span p2
+                  p#me-levels.levels X
+                    span You
+                  p#opponent-levels.levels X
+                   span p2
                 ul.social
                   li
                     a.icon.notimplemented(data-icon='g')
@@ -364,6 +363,17 @@ html(lang='en')
         .game-board
           .arena
 
+    #extras.state.game.inactive
+      ul
+        li.icon-death-ball(data-icon='*') Death ball
+        li.icon-ghost-ball(data-icon='*') Ghost ball
+        li.icon-magnetic-ball(data-icon='*') Magnetic ball
+        li.icon-paddle-expand(data-icon='*') Expanded Paddle
+        li.icon-fog(data-icon='*') Fog
+        li.icon-disco-floor(data-icon='*') Disco Floor
+        li.icon-time-bomb(data-icon='*') Time Bomb
+        li.icon-track-ball(data-icon='*') Track ball
+
 
     //MOBILE
     section.mobile
@@ -390,9 +400,6 @@ html(lang='en')
         li
           a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
             span Twitter
-        //li
-          a.icon.notimplemented(data-icon='p')
-            span Pinterest
       #about
         ul
           li
@@ -424,5 +431,7 @@ html(lang='en')
     script
       require('paddle-battle')({
         room: '{{.Room}}',
+        user: '{{.User}}',
+        token: '{{.Token}}',
         acceptLanguage: 'en,{{.AcceptLanguage}}'
       })
