@@ -37,6 +37,7 @@
     "lib/level-editor.js",
     "lib/rtc/index.js",
     "lib/rtc/web-socket-signal.js",
+    "lib/rtc/app-channel-signal.js",
     "lib/geom-sim/body.js",
     "lib/geom-sim/body-flags.js",
     "lib/geom-sim/force.js",
