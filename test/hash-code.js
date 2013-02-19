@@ -1,5 +1,11 @@
 var hashCode = require('../lib/support/hash-code');
 
+console.assert(hashCode(123)===hashCode(123),"numbers should work")
+console.assert(hashCode(321)!==hashCode(123),"numbers should fail")
+console.assert(hashCode(-123)===hashCode(-123),"negative numbers should work")
+console.assert(hashCode(-123)!==hashCode(-321),"negative numbers should fail")
+console.assert(hashCode('abc')===hashCode('abc'),"strings should work")
+console.assert(hashCode('abc')!==hashCode('cba'),"strings should fail")
 console.assert(hashCode({})===hashCode({}),"empty objects should give same code")
 console.assert(hashCode({b:2,a:1})===hashCode({a:1,b:2}),"key order shouldn't matter")
 console.assert(hashCode([1,2,3])!==hashCode([3,2,1]),"index order should matter")
