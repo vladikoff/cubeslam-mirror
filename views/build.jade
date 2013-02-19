@@ -39,8 +39,13 @@ html(lang='en')
           span Made with some friends from Google
 
     .state.loading.active
-      div.computer(data-icon='')
-      div.spinner(data-icon='*')
+      .computer(data-icon='')
+      // .spinner(data-icon='*')
+      .loading__anim
+        .pad
+        .ball
+        .pad
+      .loading__label Loading
 
     //GAME INSTRUCTIONS
     section.state.game-instructions.inactive
