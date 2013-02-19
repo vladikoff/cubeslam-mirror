@@ -39,8 +39,13 @@ html(lang='en')
           span Made with some friends from Google
 
     .state.loading.active
-      div.computer(data-icon='')
-      div.spinner(data-icon='*')
+      .computer(data-icon='')
+      // .spinner(data-icon='*')
+      .loading__anim
+        .pad
+        .ball
+        .pad
+      .loading__label Loading
 
     //GAME INSTRUCTIONS
     section.state.game-instructions.inactive
@@ -211,58 +216,6 @@ html(lang='en')
               button.blue.play-friend(type='button') Play another Friend
               button.green.play(type='button') Play Computer (Space)
 
-    //ERROR STATES
-    section.state.error.inactive
-      .state.error.connection-error.inactive
-        .dialog.middle
-          .content.animate
-            .vertical-center
-              h2 Connection Error!
-              .cpu-conn-failed-anim
-                .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer(data-icon='')
-                  .cpu-wth-eyes__container
-                    .cpu-wth-eyes__eyes
-                      .dash-medium.dash-white.sad-left-eye-anim-loop
-                      .dash-medium.dash-white.sad-right-eye-anim-loop
-
-                .dash-anim-line
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-
-                .cross-fail-anim
-                  .icon-cross
-
-                .dash-anim-line
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-
-                .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer(data-icon='')
-                  .cpu-wth-eyes__container
-                    .cpu-wth-eyes__eyes
-                      .dash-medium.dash-white.sad-left-eye-anim-loop
-                      .dash-medium.dash-white.sad-right-eye-anim-loop
-
-              p You can try reloading the page
-              p or try the single player game
-
-      section.state.error.datachannels.inactive
-        .dialog.middle
-          .content.animate
-            .vertical-center
-              h2 Error
-              p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
-              button.return-mainmenu.red(type='button') Back
-
-      section.state.error.network-missing
-        button.return-mainmenu(type='button') Back
-
-     section.state.error.game-full
-        a.button.return-mainmenu.red(href="/", type='button')
-
     //GAME OVER
     section.state.game-over.inactive
       h1.bitmap Game Over
@@ -383,6 +336,60 @@ html(lang='en')
           button.play(href='#', data-icon='▶', type='button')
           button.sound(href='#', data-icon='♫', data-icon-off='♩', type='button')
           button.info(href='#', data-icon='☢', type='button')
+
+    //ERROR STATES
+    section#error
+      .error.connection-error
+        .dialog.middle
+          .content.animate
+            .vertical-center
+              h2 Connection Error!
+              .cpu-conn-failed-anim
+                .cpu-wth-eyes
+                  .cpu-wth-eyes__bg.icon-computer(data-icon='')
+                  .cpu-wth-eyes__container
+                    .cpu-wth-eyes__eyes
+                      .dash-medium.dash-white.sad-left-eye-anim-loop
+                      .dash-medium.dash-white.sad-right-eye-anim-loop
+
+                .dash-anim-line
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+
+                .cross-fail-anim
+                  .icon-cross
+
+                .dash-anim-line
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+
+                .cpu-wth-eyes
+                  .cpu-wth-eyes__bg.icon-computer(data-icon='')
+                  .cpu-wth-eyes__container
+                    .cpu-wth-eyes__eyes
+                      .dash-medium.dash-white.sad-left-eye-anim-loop
+                      .dash-medium.dash-white.sad-right-eye-anim-loop
+
+              p You can try reloading the page
+              p or try the single player game
+              .buttons
+                a.button.red(href='') Reload
+
+      .error.datachannels
+        .dialog.middle
+          .content.animate
+            .vertical-center
+              h2 Error
+              p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
+              button.return-mainmenu.red(type='button') Back
+
+      section.state.error.network-missing
+        .dialog.middle
+          .content.animate
+            .vertical-center
+              button.return-mainmenu(type='button') Back
 
     footer#footer
       ul#socials.social
