@@ -11,18 +11,17 @@ uniform sampler2D tVideo;
 uniform sampler2D tBroken;
 uniform vec2 resolution;
 
-float frac(float x) { return mod(x,1.0); }
-float noise(vec2 x,float t) { return frac(sin(dot(x,vec2(1.38984*sin(t),1.13233*cos(t))))*653758.5453); }
-
-//float rand(vec2 co){ return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453); }
+float rand( vec2 co ) {
+    return fract(sin((co.x+co.y*1e3)*1e-3)*1.e5);
+}
 
 void main(void)
 {
 
     float xs = floor(gl_FragCoord.x / 4.0);
     float ys = floor(gl_FragCoord.y / 4.0);
-
-    float noise = noise(vec2(xs,ys),time)-0.5;//rand(vec2(xs * time,ys * time))-0.5;
+    float ofs = fract(time);
+    float noise = rand(vec2(xs,ys)+vec2(0.0,0.9*ofs)); 
 
     vec2 tempUv = vUv;
     tempUv.x += sin(vUv.y*10.0)*0.01+cos(vUv.y*40.0)*0.005;
@@ -38,22 +37,11 @@ void main(void)
 
     //rbg offset
 
-
     float brokenColor = texture2D(tBroken,vUv).r;
     vec3 color = mix( videoOrg, videoDistort,noiseAmount+0.1);
     vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
 
-/*
-    vec2 p = vUv;
-    float darkness = 1.7;
-    vec2 textureCoords = p - 0.5;
-    float vignette = 1.0 - (dot(textureCoords, textureCoords) * darkness);
-    vec3 vignetteColor = vec3(vignette);
-
-    finalColor = mix( finalColor*vignetteColor, arenaColor, clamp((vWorldPosition.y+50.0)/-resolution.y,0.0,1.0));
-*/
-
-    finalColor = mix( finalColor, arenaColor, clamp((vWorldPosition.y+50.0)/-resolution.y,0.0,1.0));
+    finalColor = mix( finalColor, arenaColor, clamp((vWorldPosition.y+100.0)/-resolution.y,0.0,1.0));
 
     //scanlines
     finalColor += vec3(0.01) * sin( (vUv.y) * 360.0 );

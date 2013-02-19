@@ -6,6 +6,12 @@ header.main-menu
   top 0px
   text-align center
   color #f8fadb
+  transition opacity 400ms ease-out
+
+  &.active
+    opacity 1
+  &.inactive
+    opacity 0
 
   p
     margin 0
@@ -20,16 +26,21 @@ header.main-menu
     box-sizing border-box
     padding 0 15%
     line-height 20px
+    letter-spacing 17px
     clearfix()
-    button
+    button, a.button
       min-width 275px
       margin-top 10px
+
+    .full
+      display none
 
   .notifications
     max-width 550px
     margin 0 auto 15px
     font-size 11px
     line-height 1.5em
+    letter-spacing 2px
 
     .notification
       display none
@@ -46,6 +57,11 @@ header.main-menu
 
     h2
       font-size 12px
+
+    h2, h3
+      display none
+    h2
+      display block
 
     img
       width 70%
