@@ -48,6 +48,7 @@
     position absolute
     transform-origin center center
     transition all 0.4s ease-out
+    transition-delay .3s
     background $color-beige
     display table
 
@@ -57,6 +58,7 @@
 
 .state.inactive .dialog
   .content
+    transition-delay 0
     //transform rotateX( 85deg ) translateZ(-400px) translateY(-200px)
     transform rotateX(88deg) translateZ(-400px) translateY(-70px)
 

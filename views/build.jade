@@ -13,7 +13,7 @@ html(lang='en')
     link(rel='stylesheet', href='/stylesheets/pong.css')
 
   body(class="{{.State}}")
-    header.state.main-menu
+    header.state.main-menu.animate
       hgroup
         h2 Welcome to
         h1.copy
@@ -22,16 +22,11 @@ html(lang='en')
 
       .nav
         .notifications
-          p.notification.empty
-            span.bubble(arb:id="") No one is currently playing in this room, invite a friend.
-          p.notification.full
-            span.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
-          p.notification.connection-error
-            span.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
-          p.notification.multiplayer
-            span.bubble.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
-          p.notification.error.webcam
-            span.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
+          p.notification.empty.bubble No one is currently playing in this room, invite a friend.
+          p.notification.full.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
+          p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
+          p.notification.multiplayer.bubble.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
+          p.notification.error.webcam.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
 
         a.button.full.green(arb:id='newRoom', href='/') Start new room
         button.play-friend.green(arb:id='playFriendButton', type='button') Play friend
@@ -43,14 +38,14 @@ html(lang='en')
         a.from(href='http://google.com/', target='_blank', data-icon='☃')
           span Made with some friends from Google
 
-    .state.loading
-      div(data-icon='')
+    .state.loading.active
+      div.computer(data-icon='')
       div.spinner(data-icon='*')
 
     //GAME INSTRUCTIONS
     section.state.game-instructions.inactive
       .dialog.middle
-        .content
+        .content.animate
           .game-controls.vertical-center
             h2 Game controls
             div.animation
@@ -98,7 +93,7 @@ html(lang='en')
     //INVITE FRIEND
     section.state.friend-invite.game-invite.inactive
       .dialog
-        .content
+        .content.animate
           .vertical-center
             h2 share this link to Invite a Friend
             p.share-url
@@ -108,18 +103,18 @@ html(lang='en')
 
     //COUNTDOWN
     section.state.game-play.inactive
-      .content.center
+      .content.animate.center
         #start-prompt.prompt
           h1.bitmap Start!
 
     section.state.game-level.inactive
-      .content.center
+      .content.animate.center
         #level-prompt.prompt
           h2.bitmap Level 
             span 1
 
     section.state.game-round.inactive
-      .content.center
+      .content.animate.center
         #round-prompt.prompt
           h2.bitmap Round 
             span 1
@@ -127,7 +122,7 @@ html(lang='en')
     //PAUSE DIALOG
     section.state.game-pause.inactive
       .dialog
-        .content
+        .content.animate
           .vertical-center
             h2 Paused
             .buttons
@@ -137,12 +132,12 @@ html(lang='en')
     //CAMERA REQUEST ATTENTION
     section.state.webcam-activate.inactive
       .dialog.top
-        .content
+        .content.animate
           h1.alert-info Please choose allow to connect your webcam and start friends play
 
     section.state.webcam-information.inactive
       .dialog.top
-        .content
+        .content.animate
           h1.alert-info Are you sure? Friends play is not possible without allowing webcam.
           .buttons
             button#activate-camera.red(arb:id='playFriendButton', type='button') Activate Camera
@@ -151,7 +146,7 @@ html(lang='en')
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
       .dialog.middle
-        .content
+        .content.animate
           .vertical-center
             .webcam-spinner
               .webcam-spinner__bg.icon-webcam
@@ -162,7 +157,7 @@ html(lang='en')
     //WAITING FRIEND
     section.state.friend-waiting.inactive
       .dialog.middle
-        .content
+        .content.animate
           .vertical-center
             .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer(data-icon='')
@@ -176,7 +171,7 @@ html(lang='en')
     //FRIEND ARRIVED
     section.state.friend-arrived.inactive
       .dialog.middle
-        .content
+        .content.animate
           .vertical-center
             .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer(data-icon='')
@@ -190,7 +185,7 @@ html(lang='en')
     //WAITING FRIEND ACCEPT
     section.state.friend-accept.inactive
       .dialog.middle
-        .content
+        .content.animate
           .vertical-center
             .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer(data-icon='')
@@ -203,7 +198,7 @@ html(lang='en')
     //OPPONENT LEFT DIALOG
     section.state.friend-left.inactive
       .dialog.middle
-        .content
+        .content.animate
           .vertical-center
             .cpu-wth-eyes
                 .cpu-wth-eyes__bg.icon-computer(data-icon='')
@@ -220,7 +215,7 @@ html(lang='en')
     section.state.error.inactive
       .state.error.connection-error.inactive
         .dialog.middle
-          .content
+          .content.animate
             .vertical-center
               h2 Connection Error!
               .cpu-conn-failed-anim
@@ -256,7 +251,7 @@ html(lang='en')
 
       section.state.error.datachannels.inactive
         .dialog.middle
-          .content
+          .content.animate
             .vertical-center
               h2 Error
               p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
@@ -273,7 +268,7 @@ html(lang='en')
       h1.bitmap Game Over
       div
         .dialog
-          .content
+          .content.animate
             #scoreboard-single.vertical-center
               .scoreboard.single
                   div
@@ -281,13 +276,13 @@ html(lang='en')
                     h3 Levels Cleared
                   ul.social
                     li
-                      a.icon.notimplemented(data-icon='g')
-                        span Google plus
+                      a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
+                        span Google+
                     li
-                      a.icon.notimplemented(data-icon='f')
+                      a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
                         span Facebook
                     li
-                      a.icon.notimplemented(data-icon='t')
+                      a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
                         span Twitter
 
               button.blue.play-friend(type='button') Play Friend
@@ -303,14 +298,14 @@ html(lang='en')
                    span p2
                 ul.social
                   li
-                    a.icon.notimplemented(data-icon='g')
-                      span Google plus
-                  li
-                    a.icon.notimplemented(data-icon='f')
-                      span Facebook
-                  li
-                    a.icon.notimplemented(data-icon='t')
-                      span Twitter
+                    a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
+                      span Google+
+                    li
+                      a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
+                        span Facebook
+                    li
+                      a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
+                        span Twitter
                 button.green.play(type='button') Play Again (Space)
 
     section#scores.state.game.inactive

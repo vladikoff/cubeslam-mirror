@@ -118,9 +118,9 @@
 //
 @keyframes spinner-rotate 
   from 
-    transform rotate(0deg)
+    transform rotate(0deg) scaleZ(0)
   to 
-    transform rotate(360deg)
+    transform rotate(360deg) scaleZ(0)
   
 
 
@@ -518,7 +518,7 @@ a JS script.
       color #FFF
       content 'p1'
   &:after
-    absolute right -37px top -35px
+    absolute right 10px top -45px
     display inline-block
     content '!'
     font-size 33px
@@ -528,7 +528,7 @@ a JS script.
 
 
   &:before
-    absolute right -35px top -50px
+    absolute right 12px top -60px
     display inline-block
     width 55px
     height 55px
