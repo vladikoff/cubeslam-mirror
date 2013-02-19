@@ -57,6 +57,7 @@
     "lib/support/rand.js",
     "lib/support/logger.js",
     "lib/support/time-sync.js",
+    "lib/support/hash-code.js",
     "lib/states/index.js",
     "lib/states/setup.js",
     "lib/states/mobile.js",
