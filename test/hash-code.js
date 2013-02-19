@@ -25,6 +25,11 @@ console.assert(hashCode([{b:[Obj(),132.32 * 10],a:[1,2]}])===hashCode([{a:[1,2],
 function noop(){}
 function Obj(){this.a=1;this.b=2;}
 
+// make sure hashCode doesn't modify the object
+var obj = {one:1,two:{three:3}};
+hashCode(obj)
+console.assert(typeof obj.two == 'object',"should not modify the source object")
+
 // JSON stringified copy of a World object:
 var world0 = {"frame":0,"index":0,"name":"game","rand":{"state":14904},"bodies":{"values":[],"lookup":{},"reverse":{},"length":0},"pucks":{"values":[],"lookup":{},"reverse":{},"length":0},"extras":{"values":[],"lookup":{},"reverse":{},"length":0},"obstacles":{"values":[],"lookup":{},"reverse":{},"length":0},"forces":{"values":[],"lookup":{},"reverse":{},"length":0},"bullets":{"values":[],"lookup":{},"reverse":{},"length":0},"paddles":{"values":[],"lookup":{},"reverse":{},"length":0},"shields":{"values":[],"lookup":{},"reverse":{},"length":0},"lastHitPucks":{},"puckBounces":{},"alive":0,"maxAlive":0,"state":"init","multiplayer":false,"winner":null,"level":null,"me":null,"opponent":null,"collisions":0,"players":{"a":{"name":"HAL (A)","shields":[],"score":0,"paddle":-1},"b":{"name":"EVE (B)","shields":[],"score":0,"paddle":-1}}};
 var world1 = {"frame":0,"index":0,"name":"game","rand":{"state":14904},"bodies":{"values":[],"lookup":{},"reverse":{},"length":0},"pucks":{"values":[],"lookup":{},"reverse":{},"length":0},"extras":{"values":[],"lookup":{},"reverse":{},"length":0},"obstacles":{"values":[],"lookup":{},"reverse":{},"length":0},"forces":{"values":[],"lookup":{},"reverse":{},"length":0},"bullets":{"values":[],"lookup":{},"reverse":{},"length":0},"paddles":{"values":[],"lookup":{},"reverse":{},"length":0},"shields":{"values":[],"lookup":{},"reverse":{},"length":0},"lastHitPucks":{},"puckBounces":{},"alive":0,"maxAlive":0,"state":"init","multiplayer":false,"winner":null,"level":null,"me":null,"opponent":null,"collisions":0,"players":{"a":{"name":"HAL (A)","shields":[],"score":0,"paddle":-1},"b":{"name":"EVE (B)","shields":[],"score":0,"paddle":-1}}};
