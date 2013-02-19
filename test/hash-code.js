@@ -1,20 +1,28 @@
 var hashCode = require('../lib/support/hash-code');
 
 console.assert(hashCode(123)===hashCode(123),"numbers should work")
+console.assert(hashCode(NaN)===hashCode(NaN),"nan should work")
+console.assert(hashCode(undefined)===hashCode(undefined),"undefined should work")
+console.assert(hashCode(null)===hashCode(null),"null should work")
 console.assert(hashCode(321)!==hashCode(123),"numbers should fail")
 console.assert(hashCode(-123)===hashCode(-123),"negative numbers should work")
 console.assert(hashCode(-123)!==hashCode(-321),"negative numbers should fail")
 console.assert(hashCode('abc')===hashCode('abc'),"strings should work")
 console.assert(hashCode('abc')!==hashCode('cba'),"strings should fail")
 console.assert(hashCode({})===hashCode({}),"empty objects should give same code")
+console.assert(hashCode([])===hashCode([]),"empty arrays should give same code")
+console.assert(hashCode(new Obj())===hashCode(new Obj()),"empty instance should give same code")
+console.assert(hashCode(Obj)===hashCode(Obj),"same functions should give same code")
+console.assert(hashCode(noop)!==hashCode(Obj),"different functions should give same code")
 console.assert(hashCode({b:2,a:1})===hashCode({a:1,b:2}),"key order shouldn't matter")
 console.assert(hashCode([1,2,3])!==hashCode([3,2,1]),"index order should matter")
 console.assert(hashCode([{}])===hashCode([{}]),"simple nesting")
 console.assert(hashCode([{b:2,a:1}])===hashCode([{a:1,b:2}]),"simple nesting key ordering")
 console.assert(hashCode([{b:[2,1],a:[1,2]}])===hashCode([{a:[1,2],b:[2,1]}]),"simple nesting key and index ordering")
-console.assert(hashCode([{b:[Obj(),1],a:[1,2]}])===hashCode([{a:[1,2],b:[Obj(),1]}]),"complex nesting key and index ordering")
+console.assert(hashCode([{b:[new Obj(),1],a:[1,2]}])===hashCode([{a:[1,2],b:[new Obj(),1]}]),"complex nesting key and index ordering")
 console.assert(hashCode([{b:[Obj(),132.32 * 10],a:[1,2]}])===hashCode([{a:[1,2],b:[Obj(),1323.2]}]),"complex nesting key and index ordering float rounding")
 
+function noop(){}
 function Obj(){this.a=1;this.b=2;}
 
 // JSON stringified copy of a World object:
