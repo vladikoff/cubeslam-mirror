@@ -90,6 +90,56 @@
     transform scale(1)
   
 
+@keyframes loading-ball
+  0%, 100%
+    transform translate(4px, 55px)
+
+  22%
+    transform: translate(58px, 77px)
+
+  30%
+    transform translate(40px, 84px)
+
+  44%
+    transform translate(4px, 72px)
+
+  64%
+    transform translate(58px, 36px)
+
+  70%
+    transform translate(50px, 28px)
+  
+  89%
+    transform: translate(28px, 84px)
+
+@keyframes loading-pad-left
+  0%, 100%
+    transform translateY(50px)
+
+  22%
+    transform translateY(60px)
+
+  30%, 70%
+    transform translateY(70px)
+
+  89%
+    transform translateY(58px)
+
+@keyframes loading-pad-right
+  0%, 100%
+    transform translateY(60px)
+
+  22%, 30%
+    transform translateY(70px)
+
+  44%
+    transform translateY(64px)
+
+  64%, 70%
+    transform translateY(32px)
+
+  89%
+    transform translateY(54px)
 
 .destroy-shield__label > p, .destroy-shield__wall, .destroy-shield__shields > div:nth-child(1), .destroy-shield__weapon
   animation 5s cubic-bezier(0.42, 0.8, 1, 1) infinite
@@ -205,3 +255,39 @@
 
 .cross-fail-anim
   animation cpu-failed-cross 500ms
+
+.loading__anim .ball, .loading__anim .pad 
+  position absolute
+  width 3px
+  background $color-beige
+
+.loading__anim
+  width 62px
+  position absolute
+  left 50%
+  top 50%
+  margin -70px 0 0 -32px
+
+.loading__label 
+  display none
+  margin-top 20px
+  color #e44d44
+  font-size 14px
+  text-align center
+  text-transform uppercase
+  letter-spacing 3px
+
+.loading__anim .ball 
+  animation loading-ball 2.8s linear infinite both
+  height 3px
+
+.loading__anim .pad 
+  height 13px
+
+.loading__anim .pad:nth-child(1) 
+  animation loading-pad-left 2.8s linear infinite both
+  left 0
+
+.loading__anim .pad:nth-child(3) 
+  animation loading-pad-right 2.8s linear infinite both
+  right 0
