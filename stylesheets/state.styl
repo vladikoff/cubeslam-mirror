@@ -1,11 +1,10 @@
 .state
   visibility hidden
   display block
+
   h2, h3, h4, h5, p
     text-transform uppercase
 
-  .buttons
-    line-height 55px
   &.active
     visibility visible
     display block
@@ -267,19 +266,6 @@
         white-space nowrap
       &.hidden
         display none
-
-  &.error
-    .connection-error
-      .cpu-conn-failed-anim
-        margin-bottom 10px
-
-    p
-      max-width 460px
-      margin 0 auto
-      line-height 1.8em
-
-    button, .button
-      margin-top 24px
 
 .game-controls
   width 100%

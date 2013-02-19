@@ -55,9 +55,14 @@ button, a.button
     outline: solid 2px #5194d6
 
   &.red
-    border 0
+    border 1px solid transparent
     background $color-red
     color $color-beige
+    &:hover
+      background $color-beige
+      border-color $color-red
+      color $color-red
+
   
 
   &.alternative
