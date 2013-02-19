@@ -276,13 +276,13 @@ html(lang='en')
                     h3 Levels Cleared
                   ul.social
                     li
-                      a.icon.notimplemented(data-icon='g')
-                        span Google plus
+                      a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
+                        span Google+
                     li
-                      a.icon.notimplemented(data-icon='f')
+                      a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
                         span Facebook
                     li
-                      a.icon.notimplemented(data-icon='t')
+                      a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
                         span Twitter
 
               button.blue.play-friend(type='button') Play Friend
@@ -298,14 +298,14 @@ html(lang='en')
                    span p2
                 ul.social
                   li
-                    a.icon.notimplemented(data-icon='g')
-                      span Google plus
-                  li
-                    a.icon.notimplemented(data-icon='f')
-                      span Facebook
-                  li
-                    a.icon.notimplemented(data-icon='t')
-                      span Twitter
+                    a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
+                      span Google+
+                    li
+                      a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
+                        span Facebook
+                    li
+                      a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
+                        span Twitter
                 button.green.play(type='button') Play Again (Space)
 
     section#scores.state.game.inactive
