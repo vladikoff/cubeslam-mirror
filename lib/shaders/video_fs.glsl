@@ -21,7 +21,7 @@ void main(void)
     float xs = floor(gl_FragCoord.x / 4.0);
     float ys = floor(gl_FragCoord.y / 4.0);
     float ofs = fract(time);
-    float noise = rand(vec2(xs,ys)+vec2(0.0,0.9*ofs)); 
+    float noise = rand(vec2(xs,ys)+vec2(0.0,0.9*ofs));
 
     vec2 tempUv = vUv;
     tempUv.x += sin(vUv.y*10.0)*0.01+cos(vUv.y*40.0)*0.005;
@@ -29,17 +29,17 @@ void main(void)
 
     vec3 videoOrg = texture2D(tVideo, vUv).rgb;
 
-    vec2 offset = vec2(0.05*noiseAmount,0.0);
+    vec2 offset = vec2(0.01*noiseAmount,0.0);
     float cr = texture2D(tVideo, tempUv + offset).r;
     float cga = texture2D(tVideo, tempUv).g;
     float cb = texture2D(tVideo, tempUv - offset).b;
-    vec3 videoDistort = vec3(cr, cga, cb) + noise*.4;
+    vec3 videoDistort = vec3(cr, cga, cb) + noise*.2;
 
     //rbg offset
 
     float brokenColor = texture2D(tBroken,vUv).r;
     vec3 color = mix( videoOrg, videoDistort,noiseAmount+0.1);
-    vec3 finalColor = mix(color,vec3(noise*0.2),brokenColor);
+    vec3 finalColor = mix(color,vec3(noise*0.1),brokenColor);
 
     finalColor = mix( finalColor, arenaColor, clamp((vWorldPosition.y+100.0)/-resolution.y,0.0,1.0));
 
