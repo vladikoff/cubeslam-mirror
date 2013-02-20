@@ -62,6 +62,7 @@
     "lib/states/mobile.js",
     "lib/states/loading.js",
     "lib/states/main-menu.js",
+    "lib/states/prompt.js",
     "lib/states/game.js",
     "lib/states/webcam.js",
     "lib/states/friend.js",
