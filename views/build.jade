@@ -64,10 +64,6 @@ html(lang='en')
                   .key__label.icon-arrow-right
                   .key__bg-outer
                     div.key__bg-inner
-              p or
-              .mouse-anim
-                .dash-big.dash-black
-                .icon-mouse
               p or press
               .key.key--big.default-key-anim
                 p.key__label SPACE
@@ -107,22 +103,24 @@ html(lang='en')
             button.red.return-mainmenu(type='button') Back
 
     //COUNTDOWN
-    section.state.game-play.inactive
-      .content.animate.center
-        #start-prompt.prompt
-          h1.bitmap Start!
+    section.state.game-prompt.inactive
+      .background.animate
+      .state.game-prompt-start.inactive
+        .content.center.animate
+          #start-prompt.prompt
+            h1.bitmap Start
 
-    section.state.game-level.inactive
-      .content.animate.center
-        #level-prompt.prompt
-          h2.bitmap Level 
-            span 1
+      .state.game-prompt-level.inactive
+        .content.center.animate
+          #level-prompt.prompt
+            h2.bitmap Level 
+              span 1
 
-    section.state.game-round.inactive
-      .content.animate.center
-        #round-prompt.prompt
-          h2.bitmap Round 
-            span 1
+      .state.game-prompt-round.inactive
+        .content.center.animate
+          #round-prompt.prompt
+            h2.bitmap Round 
+              span 1
 
     //PAUSE DIALOG
     section.state.game-pause.inactive
