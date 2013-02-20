@@ -33,14 +33,22 @@ body
   position absolute
   top 0
   height 100%
+  width 100% // only while debugging with canv-db
   //padding 0 0 40px
   box-sizing border-box
   overflow hidden
 
-
   canvas
     relative top 0px left
     //height 100%!important
+
+  #canv-2d
+    absolute top 20px left
+
+  #canv-db
+    border solid 2px blue
+    absolute top 20px right
+    left auto
 
   > *
     &.hidden
@@ -57,9 +65,6 @@ html
   width 100%
   top 0
   display none
-
-#canv-2d
-  absolute top 20px left
 
 .icon
   background red
