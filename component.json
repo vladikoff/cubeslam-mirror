@@ -134,8 +134,6 @@
     "lib/geometry/moose.js",
     "lib/geometry/cpu.js",
     "lib/levels/index.js",
-    "lib/levels/next.js",
-    "lib/levels/next2.js",
     "lib/levels/level1.js",
     "lib/levels/level2.js",
     "lib/levels/level3.js",
@@ -143,6 +141,8 @@
     "lib/levels/level5.js",
     "lib/levels/level6.js",
     "lib/levels/level7.js",
-    "lib/levels/level8.js"
+    "lib/levels/level8.js",
+    "lib/levels/level9.js",
+    "lib/levels/level10.js"
   ]
 }
