@@ -102,9 +102,11 @@ clean-geometry:
 
 server.conf: server.conf.sample
 	@echo
-	@echo 'You need to `cp $< $@` and modify the server name and root.'
+	@echo 'You need to create a `./server.conf`. Run this command to get started:'
 	@echo
-	@echo '  SERVER_ROOT: ${PWD}'
+	@echo '  sed "s|SERVER_ROOT|$$(PWD)|g" server.conf.sample > server.conf'
+	@echo
+	@echo 'Then run `make proxy` again to start the server.'
 	@echo
 	@exit 1
 
@@ -116,7 +118,7 @@ proxy: server.conf
 
 
 .SUFFIXES:
-.PHONY: clean clean-geometry clean-localization \
+.PHONY: proxy clean clean-geometry clean-localization \
 				build build-min build-shaders build-styles \
 				build-geometry build-component build-localization \
 				prepare-deploy deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred
