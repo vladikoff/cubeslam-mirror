@@ -1,0 +1,106 @@
+h1, h2, h3
+  font-weight normal
+
+button, a.button
+  cursor pointer
+  font-family 'Varela', sans-serif
+  font-size 14px
+  line-height 14px
+  width: auto
+  border-top 5px solid #f9f9da
+  border-left 5px solid #f9f9da
+  border-right 5px solid #a7a793
+  border-bottom 5px solid #a7a793
+  color #449744
+  background #e2e2c5
+  padding 10px 50px
+  text-transform uppercase
+  text-decoration none
+  letter-spacing 2px
+  font-weight bold
+
+  transition background-color .3s ease-out
+
+  &:hover
+    background #d2d2b5
+    &.green
+      background $color-green
+
+    
+    &.blue
+      background #4376a7
+
+    &.alternative
+      background #e83028
+      color #faf9db
+      &.green
+        background #4daf4d
+
+  &.green
+    color #f9f9da
+    background #4daf4d
+    border-top-color #58c458
+    border-left-color #58c458
+    border-bottom-color #398239
+    border-right-color #398239
+    outline solid 2px #4daf4d
+
+  &.blue
+    color #f9f9da
+    background #5194d6
+    border-top-color #62a5e7
+    border-left-color #62a5e7
+    border-bottom-color #2e71b3
+    border-right-color #2e71b3
+    outline: solid 2px #5194d6
+
+  &.red
+    border 0
+    background $color-red
+    color $color-beige
+  
+
+  &.alternative
+    font-family 'Varela', sans-serif
+    font-size 12px
+    line-height 12px
+    background none
+
+    color #e83028
+    border 1px solid #e83028
+    padding 5px 12px 6px 12px
+    margin 0px 4px 0px 3px
+    text-decoration none
+
+    &.green
+      background none
+      color #4daf4d
+      border 1px solid #4daf4d
+
+  &:disabled,
+  &.disabled,
+  &:disabled:hover
+    color #577da3
+    background: #31669a !important
+    border-color #2c5f91
+    outline solid 2px #3e7dbc
+
+a.button
+  padding 8px 50px
+.alert-info
+  color #f52c1f
+  line-height 1.5em
+  text-transform uppercase
+  padding 3px 44px 3px 44px
+  position relative
+
+  &:before
+    border-radius 14px
+    width 28px
+    height 28px
+    display block
+    background-color #f52c1f
+    content ' '
+    absolute left 0
+    top 50%
+    margin-top -14px

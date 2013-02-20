@@ -7,11 +7,12 @@
     websocketServer = "ws://"+hostname+"/",
 
     // For browser compatibility:
-    PeerConnection = window.PeerConnection
-                  || window.RTCPeerConnection
-                  || window.mozPeerConnection
+    PeerConnection = window.RTCPeerConnection
+                  || window.mozRTCPeerConnection
                   || window.webkitRTCPeerConnection
-                  || window.webkitPeerConnection00;
+                  || window.mozPeerConnection
+                  || window.webkitPeerConnection00
+                  || window.PeerConnection;
 
   if (typeof(PeerConnection) === 'undefined') {
     console.error('Your browser does not support PeerConnection.');

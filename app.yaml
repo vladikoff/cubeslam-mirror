@@ -1,32 +1,25 @@
-application: webrtcgame
+application: gogglesgame1
 version: 1
 runtime: go
 api_version: go1
 
 handlers:
-- url: /build
-  static_dir: build
-  # login: admin
 - url: /javascript
   static_dir: public/javascript
-- url: /models
-  static_dir: lib/geometry
-- url: /shaders
-  static_dir: lib/shaders
-  # login: admin
 - url: /images
   static_dir: public/images
-  # login: admin
 - url: /audio
   static_dir: public/audio
-  # login: admin
+- url: /lang
+  static_dir: public/lang
 - url: /fonts
   static_dir: public/fonts
 - url: /stylesheets
   static_dir: public/stylesheets
-  # login: admin
+- url: /swf
+  static_dir: public/swf
 - url: /favicon.ico
-  static_files: media/img/favicon.ico
+  static_files: public/images/favicon.ico
   upload: public/favicon.ico
 - url: /robots.txt
   static_files: public/robots.txt
@@ -34,11 +27,11 @@ handlers:
 - url: /(.*\.html)
   static_files: public/\1
   upload: public/(.*\.html)
-  # login: admin
 
 - url: /.*
   script: _go_app
-  # login: admin # TODO required login on /xyz but not /_ah/*
+  # TODO require login on /xyz but not /_ah/*
+  # login: admin
 
 inbound_services:
 - channel_presence

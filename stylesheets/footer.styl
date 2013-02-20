@@ -1,0 +1,86 @@
+footer#footer
+  display block
+  overflow hidden
+  height 40px
+  background #000
+  position absolute
+  z-index 6
+  bottom 0px
+  left 0px
+  width 100%
+
+.social
+  li
+    list-style none
+    display inline-block
+    margin 0 0 0 5px
+  a
+    color #000
+  .icon
+    background #e8e8ca
+    width 20px
+    height 20px
+    font-size 16px
+    border-radius 3px
+    display table-cell
+    vertical-align middle
+    border 1px solid transparent
+
+    &:before
+      display inline-block
+      text-align center
+      width 100%
+      vertical-align middle
+
+    &:after
+      content ' '
+      height 100%
+      display inline-block
+      position absolute
+      width 1px
+
+    &:hover
+      background #000
+      color #e8e8ca
+      border-color #e8e8ca
+      
+    span
+      display none
+
+
+#socials
+  position absolute
+  display inline-block
+
+  margin 9px 0 0 15px
+
+#about
+  display block
+  text-align right
+  font-size 9px
+
+  ul
+    right 0px
+    position absolute
+    list-style none
+    margin 0 0 0 0
+    padding 15px 0 0 0
+    li
+      text-transform uppercase
+      list-style none
+      margin 0 0 0 0
+      padding 0 0 0 0
+      display inline-block
+      margin-right 20px
+      a
+        color: #e8e8ca
+        text-decoration none
+        &:hover
+          text-decoration underline
+
+  .sound-switch
+    .on, .off
+      display none
+    &.on .on,
+    &.off .off
+      display inline

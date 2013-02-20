@@ -1,0 +1,43 @@
+# To use in an osx home brew installed nginx
+# for testing using the dev server without
+# going insane because the server sucks and
+# cannot handle more than one connection.
+#
+#   mkdir -p /tmp/nginx/pong
+#   ln -sf "$PWD/server.conf" /tmp/nginx/pong/server.conf
+#   nginx || nginx -s reload
+#   dev_appserver.py -a 0.0.0.0 -c -p 8081 .
+#
+server {
+    listen          8080;
+    server_name     SERVER_NAME;
+    root            "SERVER_ROOT";
+
+    # http://wiki.nginx.org/HttpSslModule
+    #ssl                 on;
+    #ssl_certificate      /usr/local/etc/nginx/server.crt;
+    #ssl_certificate_key  /usr/local/etc/nginx/server.key;
+
+    gzip                on;
+    gzip_comp_level     2;
+    gzip_http_version   1.0;
+    gzip_proxied        any;
+    gzip_min_length     1100;
+    gzip_buffers        16 8k;
+    gzip_proxied        expired no-cache no-store private auth;
+    gzip_types          text/plain text/html text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml application/x-font-woff font/woff;
+
+    # Disable for IE < 6 because there are some known problems
+    gzip_disable        "MSIE [1-6].(?!.*SV1)";
+
+    # Add a vary header for downstream proxies to avoid sending cached gzipped files to IE6
+    gzip_vary           on;
+
+    location / {
+        try_files   $uri   @proxy;
+    }
+
+    location @proxy {
+        proxy_pass   http://127.0.0.1:8081;
+    }
+}

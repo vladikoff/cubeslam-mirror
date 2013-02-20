@@ -1,0 +1,385 @@
+.state
+  visibility hidden
+  display block
+  h2, h3, h4, h5, p
+    text-transform uppercase
+
+  .buttons
+    line-height 55px
+  &.active
+    visibility visible
+    display block
+
+  &.loading
+    position absolute
+    background-color $color-beige
+    z-index 5
+    width 100%
+    height 100%
+    overflow hidden
+    visibility visible
+    display flex
+    box-orient horizontal
+    box-direction row
+    box-wrap nowrap
+    justify-content center
+    align-content stretch
+    align-items center
+    height 100%
+    width 100%
+
+    .spinner
+      position absolute
+      width 30px
+      height 30px
+      font-size 30px
+      left 50%
+      top 50%
+      margin -24px 0 0 -15px
+      color $color-beige
+      animation spinner-rotate 1.5s linear infinite
+      line-height 0
+      letter-spacing 0
+
+  &.state.game-instructions,
+  &.state.game-start
+    box-orient horizontal
+    box-pack center
+    box-align center
+    width 100%
+    height 100%
+    position: absolute
+    top 0
+    left 0
+    z-index 3
+    perspective 2000px
+    transform rotateX( 0 )
+
+  &.inactive .dialog.middle .content
+    transform-origin center center
+    transform rotateX( -90deg )
+
+  &.friend-invite
+    .share-url
+      background $color-beige
+      color #2aa52a
+      width 350px
+      padding 8px 5px 7px 5px
+      border 1px solid #2aa52a
+      display inline-block
+      overflow hidden
+      white-space nowrap
+      position relative
+      text-transform none
+      &:focus
+        outline none
+      span
+        z-index 2
+        &::selection
+          background #2aa52a
+          color $color-beige
+
+      span 
+        position relative
+    p
+      max-width 350px
+      margin 0 auto 20px
+      line-height 1.4em
+
+  &.friend-left
+    .cpu-wth-eyes
+      margin-bottom 0
+
+  &.game-level, &.game-round
+    z-index 2
+    .content
+      transform scale(0) 
+      transition-duration 300ms
+      transition-property opacity, tranform
+
+    &.active
+      .content
+        transition-duration 400ms
+        transition-timing-function ease-out
+        transform scale(1)
+
+    &.inactive
+      .content
+        transition-delay 1000ms
+        opacity 0
+        transform scale(2)
+
+    &.start
+      .content
+        transition-delay  800ms
+
+    .content.center
+      z-index 2
+
+  &.game-play
+    z-index 3
+    .content
+      z-index 3
+
+  &.game-play, &.game-level, &.game-round
+    pointer-events none
+    .content
+      opacity 1
+    &.inactive 
+      .content
+        opacity 0
+
+
+    .content.center
+      display flex
+      box-orient horizontal
+      box-direction row
+      box-wrap nowrap
+      justify-content center
+      align-content stretch
+      align-items center
+
+      width 100%
+      height 100%
+      absolute top 0 left 0
+
+    #start-prompt, #round-prompt, #level-prompt
+      align-self center
+      flex 0 1 auto
+
+    h1, h2
+      font-size 120px
+
+  &.game-pause
+    button
+      display block
+      min-width 275px
+      margin 0 auto
+      &:last-child
+        margin-top 20px
+    h2
+      padding-bottom 20px
+    p
+      padding-bottom 25px
+
+  &.webcam-information
+    .dialog
+      button
+        margin 10px 0px 20px 0px
+      .buttons
+        absolute top 50% right 30px
+        margin-top -17px
+        button 
+          margin 0
+          font-size 11px
+          padding 10px
+      .alert-info
+        padding-right 330px
+  &.game-over
+    text-align center
+    height 100%
+
+    #opponent-levels
+      background $color-blue
+
+    h1
+      height auto
+      margin-top 21%
+      z-index 3
+      position relative
+      font-size 120px
+      text-align center
+      padding 0 40px
+
+    .dialog
+      height 33%
+      min-height 266px
+
+    .scoreboard
+      color #e83129
+      padding 20px 0px 30px 0px
+      &.multiplayer
+        .levels:last-child
+          margin-left 8px
+        .social
+          margin 42px 0 20px
+        h3 
+          padding 10px 0 19px
+
+
+      div
+        display block
+        &:last-child
+          margin-right 0px
+
+    button
+      width 289px
+      padding-left 0
+      padding-right 0
+
+      &:last-child
+        margin-left 17px 
+
+    ul.social
+      .icon
+        background $color-green
+        color $color-beige
+
+        &:hover
+          color $color-green
+          background $color-beige
+          border-color $color-green
+
+    h3
+      padding 10px 0 23px
+
+    .levels
+      font-size 24px
+      width 50px
+      height 50px
+      border-radius 25px
+      background $color-red
+      display inline-block
+      box-sizing border-box
+      padding 19px 0 0 3px
+      color $color-beige
+
+      span 
+        display block
+        font-size 11px
+        margin-top 31px
+        color $color-blue
+
+  &.game-instructions
+    z-index 3
+    .info-animation
+      display inline-block
+      width 210px
+      transform translateY(-20px)
+      p
+        font-size 14px
+        white-space nowrap
+      &.hidden
+        display none
+
+  &.error
+    .connection-error
+      .cpu-conn-failed-anim
+        margin-bottom 10px
+
+    p
+      max-width 460px
+      margin 0 auto
+      line-height 1.8em
+
+    button, .button
+      margin-top 24px
+
+.game-controls
+  width 100%
+
+  .animation
+    margin 3px 0 38px
+
+    > div
+      display inline-block
+
+    > p
+      display inline-block
+      vertical-align top
+      margin 42px 7px 0
+
+#scores
+  color $color-beige
+  position absolute
+  z-index 6
+  top 100px
+  left 70px
+  line-height 15px
+
+  img
+    margin-bottom 14px
+
+  &.inactive
+    display none
+
+  .player, .opponent
+    margin-top 10px
+    p
+      font-size 11px
+      margin-bottom 3px
+
+  .player
+    margin-top 20px
+
+  ol
+    li
+      perspective 20
+      width 26px
+      height 26px
+      border 2px solid #FFF
+      display inline-block
+      margin-left 7px
+      position relative
+      transition transform 300ms ease-in-out
+      transform-style preserve-3d
+      transform-origin center center
+      perspective 2000px
+      backface-visibility hidden
+
+      for row in 1 2 3
+        &:nth-child({row})
+          transition-delay 200ms * (3 - row)
+
+      &:before
+        content ''
+        display block
+        absolute top -7.1% left -23.1%
+        width 131%
+        height 127%
+
+        transform rotateY(180deg)
+        backface-visibility hidden
+        background transparent url('/images/score-rect.png') no-repeat center center
+        background-size cover
+
+
+      &:first-child
+        margin-left 0
+      &.active
+        transition-delay 200ms
+        transform rotateY(-180deg)
+
+  .opponent
+    li.active
+      transition-delay 1500ms
+
+#level
+  &.inactive
+    display none
+#extras
+  position absolute
+  right 60px
+  font-size 12px
+  text-transform uppercase
+  li
+    color #FFF
+    margin-bottom 5px
+    padding 15px 0 0 0
+    text-align right
+    box-sizing border-box
+    height 36px
+    position relative
+    font-size .8em
+    &:before
+      background #FFF
+      font-size 2.1em
+      line-height 1em
+      letter-spacing 0
+      padding .5em .5em
+      text-align center
+      box-sizing border-box
+      border-radius 1em
+      color $color-blue
+      absolute right -42px top 2px
+

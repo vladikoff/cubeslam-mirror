@@ -1,0 +1,83 @@
+@import 'nib'
+@import 'vars'
+
+global-reset()
+reset-html5()
+
+html
+  width 100%
+  height 100%
+  overflow hidden
+  font-size 100%
+
+body
+  width 100%
+  height 100%
+  overflow hidden
+  padding 0px 0px 0px 0px
+  margin 0px 0px 0px 0px
+  background #000
+  font-family 'Varela', sans-serif
+  //Resets 1em to 10px
+  font-size: 62.5%;
+  line-height 1em
+  letter-spacing 2px
+  font-weight bold
+
+#wrapper
+  overflow hidden
+  width 100%
+  height 100%
+
+#game
+  position absolute
+  top 0
+  height 100%
+  //padding 0 0 40px
+  box-sizing border-box
+  overflow hidden
+
+
+  canvas
+    relative top 0px left
+    //height 100%!important
+
+  > *
+    &.hidden
+      display none
+
+html
+  .mobile
+    display none
+
+#fpsCameraCapture
+  position absolute
+  display none
+  height 100%
+  width 100%
+  top 0
+  display none
+
+#canv-2d
+  absolute top 20px left
+
+.icon
+  background red
+
+//.multiplayer
+//.full
+//  display none
+
+.mirror
+  transform scaleX(-1)
+
+@import 'header'
+@import 'footer'
+@import 'dialogs'
+@import 'state'
+@import 'elements'
+@import 'icons'
+@import 'animations'
+@import 'debug'
+@import 'mobile'
+@import 'error'

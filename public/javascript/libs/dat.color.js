@@ -751,5 +751,5 @@ dat.color.math = (function () {
   }
 
 })(),
-dat.color.toString,
+dat.color.toOriginal,
 dat.utils.common);

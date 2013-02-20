@@ -1,0 +1,66 @@
+.dialog
+  z-index 5
+  width 100%
+  height 33%
+  position absolute
+  bottom 40px
+  margin 0
+  padding 0
+  perspective 2000px
+  text-align center
+  transform-style preserve-3d
+  backface-visibility hidden
+
+  &.top
+    top 0
+    bottom inherit
+    height auto
+    text-align left
+
+    .content 
+      padding 15px 30px
+      box-sizing border-box
+      display block
+      height auto
+
+  &.middle
+    bottom 33%
+    min-height 266px
+
+  h2
+    font-family 'Varela', sans-serif
+    color #e83028
+    font-weight normal
+    margin 0
+    font-size 14px
+    line-height 25px
+    padding 10px 0px 10px 0px
+  p
+    color #e83028
+    font-family 'Varela', sans-serif
+    span
+      &.green
+        color: $color-dark-green
+
+  .content
+    width 100%
+    height 100%
+    position absolute
+    transform-origin center center
+    transition all 0.4s ease-out
+    background $color-beige
+    display table
+
+    .vertical-center
+      display table-cell
+      vertical-align middle
+
+.state.inactive .dialog
+  .content
+    //transform rotateX( 85deg ) translateZ(-400px) translateY(-200px)
+    transform rotateX(88deg) translateZ(-400px) translateY(-70px)
+
+  &.top .content
+    text-align left
+    transform-origin center center
+    transform rotateX( -85deg ) translateZ(-400px) translateY(50px)
