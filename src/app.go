@@ -42,12 +42,17 @@ func Main(w http.ResponseWriter, r *http.Request) {
   userName := Random(10)
   fullRoom := false;
 
+  turnclient := new(TurnClient)
+  turnclient.SetProperties(c, r)
+  PutTurnClient(c, userName, roomName, turnclient)
+
   room, err := GetRoom(c, roomName)
 
   // Empty room
   if err != nil {
     c.Debugf("%v",err)
     room := new(Room)
+	c.Debugf("%v", r)
     room.AddUser(userName)
     c.Debugf("Created room %s",roomName)
     if err := PutRoom(c, roomName, room); err != nil {
@@ -125,6 +130,14 @@ func Connected(w http.ResponseWriter, r *http.Request) {
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
 
+    if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
+		if err := channel.Send(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
+			c.Criticalf("Error while sending turn credentials:",err)
+		}
+	}
+
+	c.Debugf("%v", r)
+
     if room.HasUser(userName) == false {
       c.Debugf("User %s not found in room %s",userName,roomName)
       return;
@@ -198,6 +211,24 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
   }
 }
 
+func TurnServerAnnouncement(w http.ResponseWriter, r *http.Request) {
+
+  // How to validate the origin of those requests? (And is it necessary to validate that?)
+
+  c := appengine.NewContext(r)
+
+  euTurnServer := new(TurnServer)
+  euTurnServer.SetIP(r.FormValue("europe-west"))
+  euTurnServer.SetSharedKey(r.FormValue("europe-west_data"))
+
+  usTurnServer := new(TurnServer)
+  usTurnServer.SetIP(r.FormValue("us-central"))
+  usTurnServer.SetSharedKey(r.FormValue("us-central_data"))
+
+  PutTurnServer(c, "eu", euTurnServer)
+  PutTurnServer(c, "us", usTurnServer)
+}
+
 func OnMessage(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
 
@@ -266,6 +297,7 @@ func init() {
   http.HandleFunc("/", Main)
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/disconnect", Disconnected)
+  http.HandleFunc("/gce_announce", TurnServerAnnouncement)
   http.HandleFunc("/_ah/channel/connected/", Connected)
   http.HandleFunc("/_ah/channel/disconnected/", Disconnected)
 }
