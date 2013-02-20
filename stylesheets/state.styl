@@ -95,47 +95,15 @@
     .cpu-wth-eyes
       margin-bottom 0
 
-  &.game-level, &.game-round
-    z-index 2
-    .content
-      transform scale(0) 
-      transition-duration 300ms
-      transition-property opacity, tranform
-
-    &.active
-      .content
-        transition-duration 400ms
-        transition-timing-function ease-out
-        transform scale(1)
-
-    &.inactive
-      .content
-        transition-delay 1000ms
-        opacity 0
-        transform scale(2)
-
-    &.start
-      .content
-        transition-delay  800ms
-
-    .content.center
-      z-index 2
-
   &.game-play
-    z-index 3
-    .content
+    .content.center
       z-index 3
+
 
   &.game-play, &.game-level, &.game-round
     pointer-events none
-    .content
-      opacity 1
-    &.inactive 
-      .content
-        opacity 0
-
-
     .content.center
+      z-index 3
       display flex
       box-orient horizontal
       box-direction row
@@ -148,9 +116,13 @@
       height 100%
       absolute top 0 left 0
 
-    .prompt
-      align-self center
-      flex 0 1 auto
+  .prompt
+    align-self center
+    flex 0 1 auto
+    width 100%
+    text-align center
+    background rgba($color-blue,.9)
+    padding 40px 0
 
     h1, h2
       font-size 100px
@@ -284,7 +256,7 @@
 #scores
   color $color-beige
   position absolute
-  z-index 6
+  z-index 3
   top 100px
   left 70px
   line-height 15px
