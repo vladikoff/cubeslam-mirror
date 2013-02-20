@@ -95,47 +95,28 @@
     .cpu-wth-eyes
       margin-bottom 0
 
-  &.game-level, &.game-round
-    z-index 2
-    .content
-      transform scale(0) 
-      transition-duration 300ms
-      transition-property opacity, tranform
 
-    &.active
-      .content
-        transition-duration 400ms
-        transition-timing-function ease-out
-        transform scale(1)
-
-    &.inactive
-      .content
-        transition-delay 1000ms
-        opacity 0
-        transform scale(2)
-
-    &.start
-      .content
-        transition-delay  800ms
-
-    .content.center
-      z-index 2
-
-  &.game-play
-    z-index 3
-    .content
-      z-index 3
-
-  &.game-play, &.game-level, &.game-round
+  &.game-prompt
     pointer-events none
+    .state
+      height 100%
+      width 100%
+      absolute top 0 left 0
+      z-index 4
+
+      &.active
+        .content
+          opacity 1
+          transition-delay .3s
+          transition-duration .5s
+      &.inactive
+        .content
+          transition-delay 0s
+          transition-duration .3s
+          opacity 0
+
     .content
-      opacity 1
-    &.inactive 
-      .content
-        opacity 0
-
-
-    .content.center
+      // z-index 3
       display flex
       box-orient horizontal
       box-direction row
@@ -147,13 +128,34 @@
       width 100%
       height 100%
       absolute top 0 left 0
+      opacity 0
+      transition opacity .4s ease-out
 
     .prompt
       align-self center
       flex 0 1 auto
+      width 100%
+      text-align center
+      padding 40px 0
 
-    h1, h2
-      font-size 100px
+      h1, h2
+        font-size 100px
+
+    .background
+      height 180px
+      width 100%
+      background rgba($color-red,.9)
+      absolute top 50%
+      margin-top -90px
+      z-index 3
+      transition all .5s
+
+    &.active
+      .background
+        opacity 1
+    &.inactive
+      .background
+        opacity 0
 
   &.game-pause
     button
@@ -284,7 +286,7 @@
 #scores
   color $color-beige
   position absolute
-  z-index 6
+  z-index 2
   top 100px
   left 70px
   line-height 15px
