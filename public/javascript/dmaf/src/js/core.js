@@ -53,6 +53,23 @@
         if (!eventTime) {
             eventTime = parseInt(DMAF.context.currentTime * 1000, 10);
         }
+        /*console.clear();
+        switch (eventName) {
+            case "shields_reset_up": break;
+            case "shields_reset_down": break;
+            case "shield_reset_up": break;
+            case "shield_reset_down": break;
+            case "wall_hit": break;
+            case "opponent_paddle_hit": break;
+            case "user_paddle_hit": break;
+            default:
+                ourStuff.push(eventName);
+                if (ourStuff.length > 20) ourStuff = ourStuff.slice(10);
+        }
+        var i = ourStuff.length;
+        while (i--) {
+            console.group("DMAF.TELL: " + ourStuff[i]);console.groupEnd();
+        }*/
         switch(eventName) {
             case "ping":
             case "latency":
