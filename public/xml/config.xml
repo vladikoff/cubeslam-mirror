@@ -2,7 +2,6 @@
 <actions>
 <!-- NOTES:
     EINAR:
-        FOG OVER event sent when there is no fog?
         Puck can sometimes get stuck in side to side motion.
         Missing sound_on sound_off
         Missing button_over buton_down
@@ -84,7 +83,6 @@
             <add patternId="bass_filter__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
             <add patternId="stab__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
             <add patternId="synth_pop__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <stop songPosition="NEXT_BAR+1.-1" />
         </flowItems>
     </beatPatternPlayer>
     <beatPatternPlayer triggers="fog_over,multiball_over,deathball_over,mirrored_controls_over,timebomb_over,ghostball_over" >
@@ -102,19 +100,24 @@
     </beatPatternPlayer>
 
     <!-- COUNTDOWNS -->
-
     <!-- 3 BEAT COUNTDOWN -->
     <eventMapper triggers="countdown_init">
         <properties instanceId="handle_long" />
         <eventMaps>
-            <eventMap in="countdown_init" out="countdown_long_start" delay="500"/>
+            <eventMap in="countdown_init" out="countdown_long_start" delay="500" />
+            <eventMap in="countdown_init" out="stop_immediate" delay="0" />
         </eventMaps>
     </eventMapper>
-
+    <beatPatternPlayer triggers="stop_immediate">
+        <properties instanceId="main" />
+        <flowItems>
+            <stop songPosition="ASAP" />
+        </flowItems>
+    </beatPatternPlayer>
     <beatPatternPlayer triggers="countdown_long_start">
         <properties instanceId="main" />
         <flowItems>
-            <start beatsPerBar="16" tempo="126"  />
+            <start beatsPerBar="16" tempo="126" delay="0" />
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
             <add patternId="bass_comp__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
             <add patternId="stab__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
@@ -257,29 +260,6 @@
 
 <!-- LEVEL TRANSPOSE -->
     <!-- SET TRANSPOSE LEVEL FOR MIDI PROCESSOR -->
-    <!-- <state triggers="init_routing,P1_intro,P2_gameover,level_1,level_2,level_3,level_4,level_5,level_6,level_7,level_8,level_9,level_10">
-        <properties instanceId="level_state" update="onChange" />
-        <stateMaps>
-            <stateMap in="init_routing,P1_intro,P2_gameover,level_0" state="0" />
-            <stateMap in="level_1" state="1"/>
-            <stateMap in="level_2" state="2"/>
-            <stateMap in="level_3" state="3"/>
-            <stateMap in="level_4" state="4"/>
-            <stateMap in="level_5" state="5"/>
-            <stateMap in="level_6" state="6"/>
-            <stateMap in="level_7" state="7"/>
-            <stateMap in="level_8" state="8"/>
-            <stateMap in="level_9" state="9"/>
-        </stateMaps>
-    </state> -->
-
-    <!-- ONLY UPDATE TRANSPOSE STATE ON GAMEPLAY EVENT -->
-    <!-- <state triggers="init_routing,gameplay_init,new_round">
-        <properties instanceId="transpose_state" update="always" />
-        <stateMaps>
-            <stateMap in="init_routing,gameplay_init" state="stateProcessor:level_state:value" />
-        </stateMaps>
-    </state> -->
     <customCode triggers="init_routing,user_won_round,user_lost_round,user_won_match,user_lost_match">
         <properties instanceId="LevelTransposer" />
     </customCode>

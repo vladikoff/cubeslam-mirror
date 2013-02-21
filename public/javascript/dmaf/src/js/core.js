@@ -58,7 +58,8 @@
             case "wall_hit": break;
             case "opponent_paddle_hit": break;
             case "user_paddle_hit": break;
-            default: console.group("DMAF.TELL: " + eventName, ~~(DMAF.context.currentTime*1000));console.groupEnd();
+            default:
+                console.group("DMAF.TELL: " + eventName, ~~(DMAF.context.currentTime*1000));console.groupEnd();
         }
         switch(eventName) {
             case "ping":

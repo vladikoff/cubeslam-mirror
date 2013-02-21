@@ -64,8 +64,12 @@ dmaf.once("load_player", function(DMAF) {
                                     console.log("BeatPatternPlayer is already running. Ignoring start.");
                                     break;
                                 }
-                                var startTime = flowItem.delay ? actionTime + flowItem.delay : actionTime;
-                                DMAF.Clock.checkFunctionTime(startTime, this.start, [], this, flowItem, startTime);
+                                if (flowItem.delay) {
+                                    var startTime = flowItem.delay ? actionTime + flowItem.delay : actionTime;
+                                    DMAF.Clock.checkFunctionTime(startTime, this.start, [], this, flowItem, startTime);
+                                } else {
+                                    this.start(flowItem, actionTime);
+                                }
                                 break;
                             case "add":
                                 DMAF.Clock.checkFunctionTime(actionTime, this.addPattern, [], this, flowItem);
