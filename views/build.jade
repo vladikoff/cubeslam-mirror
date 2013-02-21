@@ -305,13 +305,14 @@ html(lang='en')
 
       #canv-css
         .background.state.game
-          img(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg')
-        .game-board
-          .arena
+          img.bg(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg')
+          .bear
+            img.bear(src='/images/mobile/Bear_Animation_0059.png')
         .shields
           .shields-a
           .shields-b
-
+        .game-board
+          .arena
     #extras.state.game.inactive
       ul
         li.icon-death-ball(data-icon='*') Death ball
