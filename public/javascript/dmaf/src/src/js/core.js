@@ -42,6 +42,7 @@
             return result.length ? result : null;
         }
     };
+
     //PUBLIC INTERFACE
     window.dmaf = window.dmaf || {};
     dmaf.init = function () {
@@ -52,14 +53,7 @@
         if (!eventTime) {
             eventTime = parseInt(DMAF.context.currentTime * 1000, 10);
         }
-        switch (eventName) {
-            case "shield_reset_up": break;
-            case "shield_reset_down": break;
-            case "wall_hit": break;
-            case "opponent_paddle_hit": break;
-            case "user_paddle_hit": break;
-            default: console.group("DMAF.TELL: " + eventName, ~~(DMAF.context.currentTime*1000));console.groupEnd();
-        }
+        console.log("dmaf.tell: " + eventName, eventProperties);
         switch(eventName) {
             case "ping":
             case "latency":

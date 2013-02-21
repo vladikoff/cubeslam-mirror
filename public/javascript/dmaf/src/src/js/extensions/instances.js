@@ -1,5 +1,13 @@
 dmaf.addEventListener("load_core", function (DMAF) {
     var colon = /[:]/;
+    DMAF.log = function (f) {
+        return function () {
+            var args = [].slice.call(arguments),
+                ct = "currentTime: ";
+            args.push(ct + Math.floor(DMAF.context.currentTime * 1000));
+            f.apply(console, args);
+        };
+    }(console.log);
     DMAF.registerInstance = function (type, id, constructor, doNotManage) {
         DMAF[type] = DMAF[type] || Object.create(null);
         DMAF[type].ids = DMAF[type].ids || [];

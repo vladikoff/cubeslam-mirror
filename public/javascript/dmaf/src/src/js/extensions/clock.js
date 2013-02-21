@@ -15,20 +15,21 @@ dmaf.once("load_core", function (DMAF) {
     DMAF.currentTime = -1;
 
     function run () {
-        var i = 0;
+        var f = frameEvents.length;
+        var t = timeoutEvents.length;
         currentTime = context.currentTime * 1000;
-        if (!frameEvents.length && !timeoutEvents.length) {
+        if (!f && !t) {
             running = false;
             return;
         }
-        for (;i < frameEvents.length; i++) {
-            frameEvents[i].callback.call(frameEvents[i].context);
+        while(f--) {
+            frameEvents[f].callback.call(frameEvents[f].context);
         }
-        for (i = 0; i < timeoutEvents.length; i++){
-            if(timeoutEvents[i] && currentTime > timeoutEvents[i].actionTime - DMAF.preListen) {
-                timeoutEvents[i].callback.apply(timeoutEvents[i].context, timeoutEvents[i].args);
-                timeoutEvents[i].pending.splice(timeoutEvents[i].pendingId, 1);
-                timeoutEvents.splice(i--, 1);
+        while (t--){
+            if(timeoutEvents[t] && currentTime > timeoutEvents[t].actionTime - DMAF.preListen) {
+                timeoutEvents[t].callback.apply(timeoutEvents[t].context, timeoutEvents[t].args);
+                timeoutEvents[t].pending.splice(timeoutEvents[t].pendingId, 1);
+                timeoutEvents.splice(t, 1);
             }
         }
         running = true;

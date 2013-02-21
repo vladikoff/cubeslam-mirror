@@ -31,7 +31,7 @@ dmaf.once("load_audioRouter", function (DMAF) {
                 return this.output.gain;
             },
             set: function (value) {
-                this.output.gain.value = value;
+                this.output.gain.value = DMAF.Utils.dbToWAVolume(value);
             }
         },
         getAutomatableProperties: {

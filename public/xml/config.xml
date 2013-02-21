@@ -1,37 +1,52 @@
 <?xml version="1.0"?>
 <actions>
+<!-- NOTES:
+    EINAR:
+        FOG OVER event sent when there is no fog?
+        Puck can sometimes get stuck in side to side motion.
+        Missing sound_on sound_off
+        Missing button_over buton_down
 
+    CHRIS:
+        Short Countdown
+        Remove stop player on user_won_match.
+        Transpose with ball
+        User win/lose tone
+        Obstacle hit?
+
+ -->
 <!-- AUDIO MIXING -->
     <!-- MAIN BUS -->
+
     <audioBus triggers="init_routing">
-        <properties instanceId="master_bus" pan="0" volume="1" output="master"/>
+        <properties instanceId="master_bus" pan="0" volume="0.75" outputBus="master"/>
         <audioNodes></audioNodes>
     </audioBus>
 
     <!-- MAIN BUS MUTE/UNMUTE -->
     <transform triggers="sound_off">
-        <properties instanceId="master_mute" delay="0"
+        <properties instanceId="master_mute"
             targetType="audioRouter" targets="master_bus" targetParameter="volume"
             value="0" duration="100" />
     </transform>
     <transform triggers="sound_on">
-        <properties instanceId="master_unmute" delay="0"
+        <properties instanceId="master_unmute"
             targetType="audioRouter" targets="master_bus" targetParameter="volume"
-            value="1" duration="100" />
+            value="0.9" duration="100" />
     </transform>
 <!-- /AUDIO MIXING -->
 
 <!-- BEAT PATTERN PLAYER -->
     <!-- INITIALIZE BEAT PATTERN PLAYER -->
-    <beatPatternPlayer triggers="init_routing" delay="0">
+    <beatPatternPlayer triggers="init_routing" >
         <properties instanceId="main" />
         <flowItems>
-            <start delay="0" beatsPerBar="16" tempo="126" />
+            <start beatsPerBar="16" tempo="126"  />
         </flowItems>
     </beatPatternPlayer>
 
-    <!-- CHANGE PATTERNS IN BEAT PATTERN PLAYER -->
-    <beatPatternPlayer triggers="splash_screen" delay="0">
+    <!-- MAIN SCREENS -->
+    <beatPatternPlayer triggers="splash_screen" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BAR" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -44,9 +59,10 @@
             <add patternId="synth_pop__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="gameover_screen" delay="0">
+    <beatPatternPlayer triggers="gameover_music" >
         <properties instanceId="main" />
         <flowItems>
+            <start tempo="126" delay="0" beatsPerBar="16" />
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BAR" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
             <add patternId="bass__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
             <add patternId="bass_comp__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
@@ -61,7 +77,92 @@
             <add patternId="synth_pop__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="fog_activate" delay="0">
+    <beatPatternPlayer triggers="info_screen" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass_filter__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <stop songPosition="NEXT_BAR+1.-1" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="fog_over,multiball_over,deathball_over,mirrored_controls_over,timebomb_over,ghostball_over" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <!-- COUNTDOWNS -->
+
+    <!-- 3 BEAT COUNTDOWN -->
+    <eventMapper triggers="countdown_init">
+        <properties instanceId="handle_long" />
+        <eventMaps>
+            <eventMap in="countdown_init" out="countdown_long_start" delay="500"/>
+        </eventMaps>
+    </eventMapper>
+
+    <beatPatternPlayer triggers="countdown_long_start">
+        <properties instanceId="main" />
+        <flowItems>
+            <start beatsPerBar="16" tempo="126"  />
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass_comp__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_plucked__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_sharp__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <beatEvent songPosition="NEXT_BEAT+1.6" returnEvent="gameplay_init" output="onEvent" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <beatPatternPlayer triggers="gameplay_init" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <!-- 2 BEAT COUNTDOWN -->
+    <eventMapper triggers="countdown_short">
+        <properties instanceId="handle_short" />
+        <eventMaps>
+            <eventMap in="countdown_short" out="countdown_short_start" delay="3500"/>
+            <eventMap in="countdown_short" out="gameplay_init" delay="3500"/>
+        </eventMaps>
+    </eventMapper>
+    <beatPatternPlayer triggers="user_won_round,user_lost_round" >
+        <properties instanceId="main" />
+        <flowItems>
+            <stop songPosition="ASAP" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <beatPatternPlayer triggers="countdown_short_start">
+        <properties instanceId="main" />
+        <flowItems>
+            <start beatsPerBar="16" tempo="126" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <!-- SPECIALS -->
+    <beatPatternPlayer triggers="fog_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -76,31 +177,7 @@
             <add patternId="synth_warm__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="gameplay,fog_over,multiball_over,deathball_over,mirrored_controls_over,timebomb_over,ghostball_over" delay="0">
-        <properties instanceId="main" />
-        <flowItems>
-            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
-            <add patternId="bass__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="bass_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="bass_filter__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="dm_kraftwerk__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_perc__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_pop__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-        </flowItems>
-    </beatPatternPlayer>
-    <beatPatternPlayer triggers="countdown_init" delay="0">
-        <properties instanceId="main" />
-        <flowItems>
-            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
-            <add patternId="bass_comp__5" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="true" loop="true" loopLength="128" />
-            <add patternId="stab__5" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_perc__5" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_plucked__5" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_sharp__5" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-        </flowItems>
-    </beatPatternPlayer>
-    <beatPatternPlayer triggers="mirrored_controls_activate" delay="0">
+    <beatPatternPlayer triggers="mirrored_controls_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -117,7 +194,7 @@
             <add patternId="synth_warm__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="multiball_activate" delay="0">
+    <beatPatternPlayer triggers="multiball_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -134,7 +211,7 @@
             <add patternId="synth_sharp__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="ghostball_activate" delay="0">
+    <beatPatternPlayer triggers="ghostball_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -149,7 +226,7 @@
             <add patternId="synth_warm__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="timebomb_activate" delay="0">
+    <beatPatternPlayer triggers="timebomb_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -165,7 +242,7 @@
             <add patternId="synth_warm__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="deathball_activate" delay="0">
+    <beatPatternPlayer triggers="deathball_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -176,60 +253,40 @@
             <add patternId="synth_pop__11" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="info_screen,user_won_round" delay="0">
-        <properties instanceId="main" />
-        <flowItems>
-            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
-            <add patternId="bass_filter__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="stab__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_pop__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-        </flowItems>
-    </beatPatternPlayer>
-
-    <!--  SEND TICKS FOR COUNTDOWN -->
-    <beatPatternPlayer triggers="countdown_init" delay="0">
-        <properties instanceId="main" />
-        <flowItems>
-            <beatEvent songPosition="NEXT_BAR"  returnEvent="countdown_tick" output="dispatch" />
-            <beatEvent songPosition="NEXT_BAR+0.8" returnEvent="countdown_tick" output="dispatch" />
-            <beatEvent songPosition="NEXT_BAR+1" returnEvent="countdown_tick" output="dispatch" />
-            <beatEvent songPosition="NEXT_BAR+1.8" returnEvent="countdown_tick" output="dispatch" />
-            <beatEvent songPosition="NEXT_BAR+1.15" returnEvent="gameplay" output="onEvent" />
-            <beatEvent songPosition="NEXT_BAR+2" returnEvent="countdown_complete" output="dispatch" />
-        </flowItems>
-    </beatPatternPlayer>
-<!-- /BEAT PATTERN PLAYER  -->
+<!-- /BEAT PATTERN PLAYER -->
 
 <!-- LEVEL TRANSPOSE -->
     <!-- SET TRANSPOSE LEVEL FOR MIDI PROCESSOR -->
-    <state triggers="init_routing,P1_intro,P2_gameover,level_1,level_2,level_3,level_4,level_5,level_6,level_7,level_8,level_9,level_10">
+    <!-- <state triggers="init_routing,P1_intro,P2_gameover,level_1,level_2,level_3,level_4,level_5,level_6,level_7,level_8,level_9,level_10">
         <properties instanceId="level_state" update="onChange" />
         <stateMaps>
-            <stateMap in="init_routing,P1_intro,P2_gameover,level_1" state="0" />
-            <stateMap in="level_2" state="1"/>
-            <stateMap in="level_3" state="2"/>
-            <stateMap in="level_4" state="3"/>
-            <stateMap in="level_5" state="4"/>
-            <stateMap in="level_6" state="5"/>
-            <stateMap in="level_7" state="6"/>
-            <stateMap in="level_8" state="7"/>
-            <stateMap in="level_9" state="8"/>
-            <stateMap in="level_10" state="9"/>
+            <stateMap in="init_routing,P1_intro,P2_gameover,level_0" state="0" />
+            <stateMap in="level_1" state="1"/>
+            <stateMap in="level_2" state="2"/>
+            <stateMap in="level_3" state="3"/>
+            <stateMap in="level_4" state="4"/>
+            <stateMap in="level_5" state="5"/>
+            <stateMap in="level_6" state="6"/>
+            <stateMap in="level_7" state="7"/>
+            <stateMap in="level_8" state="8"/>
+            <stateMap in="level_9" state="9"/>
         </stateMaps>
-    </state>
+    </state> -->
 
     <!-- ONLY UPDATE TRANSPOSE STATE ON GAMEPLAY EVENT -->
-    <state triggers="init_routing,gameplay">
+    <!-- <state triggers="init_routing,gameplay_init,new_round">
         <properties instanceId="transpose_state" update="always" />
         <stateMaps>
-            <stateMap in="init_routing,gameplay" state="stateProcessor:level_state:value" />
+            <stateMap in="init_routing,gameplay_init" state="stateProcessor:level_state:value" />
         </stateMaps>
-    </state>
-
+    </state> -->
+    <customCode triggers="init_routing,user_won_round,user_lost_round,user_won_match,user_lost_match">
+        <properties instanceId="LevelTransposer" />
+    </customCode>
     <!-- TRANSPOSE INCOMING MIDI DATA BEFORE SAMPLERS -->
-    <midiProcessor triggers="paddle_fx,extra_life,winloose_tone,shield_hit,bass_filter,lead_a,lead_b,strings,synth_funk,synth_plucked,synth_sharp,synth_warm,bass,bass_comp,stab,synth_comp,synth_perc,synth_pop" delay="0">
+    <midiProcessor triggers="paddle_fx,extra_life,winloose_tone,shield_hit,bass_filter,lead_a,lead_b,strings,synth_funk,synth_plucked,synth_sharp,synth_warm,bass,bass_comp,stab,synth_comp,synth_perc,synth_pop" >
         <properties instanceId="midi_transposer" />
-        <properties transpose="stateProcessor:transpose_state:value" quantize="" dynamic="0" scale="" root="" />
+        <properties transpose="customCode:LevelTransposer:transposeValue" quantize="" dynamic="0" scale="" root="" />
         <properties customScale="" />
     </midiProcessor>
 <!-- /LEVEL TRANSPOSE -->
@@ -237,17 +294,46 @@
 
     <!-- FX SOUNDS -->
     <!--
-    user_paddle_hit = "PaddleFX_E1"
-    opponent_paddle_hit = "PaddleFX_E2"
-    wall_hit = "PaddleFX_B2"
-    obstacle_hit = "PaddleFX_E3"
-    opponent_shield_hit = "Shield_Hit_E3"
-    user_shield_hit = "Shield_Hit_E3"
-    opponent_score_hit = "Loose_E0"
-    <NAME>_spawn = "Item_Up_E3"
-    <Name>_activate = "Item_Down_E3"
+        user_paddle_hit = "PaddleFX_E1"
+        opponent_paddle_hit = "PaddleFX_E2"
+        wall_hit = "PaddleFX_B2"
+        obstacle_hit = "PaddleFX_E3"
+        opponent_shield_hit = "Shield_Hit_E3"
+        user_shield_hit = "Shield_Hit_E3"
+        opponent_score_hit = "Loose_E0"
+        <NAME>_spawn = "Item_Up_E3"
+        <Name>_activate = "Item_Down_E3"
      -->
 
+<!-- MAKE EFFECTS SOUNDS -->
+    <genericPlay triggers="user_won_round">
+        <properties delay="0" instanceId="win_round_buzz" soundFile="win_round_buzz" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="user_lost_round">
+        <properties delay="0" instanceId="loose_round_buzz" soundFile="loose_round_buzz" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="user_lost_match">
+        <properties delay="0" instanceId="loose_fanfare" soundFile="loose_fanfare" volume="0" loop="-1"
+            reTrig="-1" returnEvent="gameover_music" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="user_won_match">
+        <properties delay="0" instanceId="win_fanfare" soundFile="win_fanfare" volume="0" loop="-1"
+            reTrig="-1" returnEvent="screen_break" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="screen_break">
+        <properties delay="0" instanceId="opponent_screen_break_between_levels" soundFile="opponent_screen_break_between_levels" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+<!-- /MAKE EFFECTS SOUNDS -->
+
+<!-- /MAKE EFFECTS NOTES -->
     <makeNote triggers="user_paddle_hit,opponent_paddle_hit,wall_hit,obstacle_hit,user_shield_hit,opponent_shield_hit,opponent_score_hit,fog_spawn,fog_activate">
         <properties instanceId="makeFx" />
         <noteMaps>
@@ -262,25 +348,9 @@
             <noteMap triggerIn="fog_activate" triggerOut="item_down" note="E3" velocity="127" />
         </noteMaps>
     </makeNote>
+<!-- /MAKE EFFECTS NOTES -->
 
-    <!-- POSSIBLE OCTAVE DOWN TRANSPOSE FOR PADDLE. -->
-
-    <!--
-    <state triggers="init_routing,big_paddle_activate,big_paddle_over">
-        <properties instanceId="big_paddle_transpose" update="always" />
-        <stateMaps>
-            <stateMap in="init_routing,big_paddle_over" state="0" />
-            <stateMap in="init_routing,big_paddle_activate" state="-12" />
-        </stateMaps>
-    </state>
-    <midiProcessor triggers="paddle_fx" delay="0">
-        <properties instanceId="midi_transposer" />
-        <properties transpose="stateProcessor:big_paddle_transpose:value" quantize="" dynamic="0" scale="" root="" />
-        <properties customScale="" />
-    </midiProcessor>
-    -->
-
-    <!-- FX SAMPLERS -->
+<!-- FX SAMPLERS -->
     <sampler triggers="paddle_fx">
         <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
@@ -359,20 +429,22 @@
             </sampleMapGroup>
         </sampleMapGroups>
     </sampler>
+<!-- /FX SAMPLERS -->
 
-    <!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
+<!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
     <transform triggers="bass_filter_mute,lead_a_mute,lead_b_mute,strings_mute,synth_funk_mute,synth_plucked_mute,synth_sharp_mute,synth_warm_mute,dm_kraftwerk_mute,bass_mute,bass_comp_mute,stab_mute,synth_comp_mute,synth_perc_mute,synth_pop_mute">
-        <properties instanceId="muteInst" delay="0"
+        <properties instanceId="muteInst"
             targetType="synth" targets="multi" multiSuffix="_mute" targetParameter="volume"
             value="-80" duration="100" />
     </transform>
     <transform triggers="bass_filter_unmute,lead_a_unmute,lead_b_unmute,strings_unmute,synth_funk_unmute,synth_plucked_unmute,synth_sharp_unmute,synth_warm_unmute,dm_kraftwerk_unmute,bass_unmute,bass_comp_unmute,stab_unmute,synth_comp_unmute,synth_perc_unmute,synth_pop_unmute">
-        <properties instanceId="unmuteInst" delay="0"
+        <properties instanceId="unmuteInst"
             targetType="synth" targets="multi" multiSuffix="_unmute" targetParameter="volume"
             value="-5" duration="100" />
     </transform>
+<!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
 
-    <!-- INSTRUMENT SAMPLERS -->
+<!-- INSTRUMENT SAMPLERS -->
     <sampler triggers="bass_filter">
         <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
@@ -570,8 +642,15 @@
             </sampleMapGroup>
         </sampleMapGroups>
     </sampler>
+<!-- /INSTRUMENT SAMPLERS -->
 
-    <!-- LOAD ASSETS -->
+<!-- LOAD ASSETS -->
+    <loadCustomCode triggers="preload_assets">
+        <properties instanceId="transpose_loader" baseURL="javascript/" returnEvent=""/>
+        <files>
+            <file name="transposer" />
+        </files>
+    </loadCustomCode>
     <loadMIDI triggers="preload_assets">
         <properties instanceId="midiLoader" baseURL="midi/" returnEvent="" />
         <files>
@@ -590,6 +669,7 @@
             <file name="synth_pop" type="beatPattern" />
             <file name="synth_sharp" type="beatPattern" />
             <file name="synth_warm" type="beatPattern" />
+            <file name="winloose_tone" type="beatPattern" />
         </files>
     </loadMIDI>
     <loadSampleMap triggers="preload_assets">
@@ -636,6 +716,11 @@
             <file name="Shield_Hit_B3" />
             <file name="Shield_Hit_E4" />
             <file name="Shield_Hit_B4" />
+            <file name="loose_fanfare" />
+            <file name="loose_round_buzz" />
+            <file name="opponent_screen_break_between_levels" />
+            <file name="win_fanfare" />
+            <file name="win_round_buzz" />
         </files>
     </loadSound>
     <!-- INSTRUMENTS -->
@@ -923,4 +1008,5 @@
             <file name="Bass_Filter_Hi_As7" />
         </files>
     </loadSound>
+<!-- /LOAD ASSETS -->
 </actions>

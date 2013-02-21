@@ -19,7 +19,6 @@ dmaf.once("load_core", function load_Actions (DMAF) {
                 actionTime = eventTime || DMAF.context.currentTime * 1000,
                 delay;
             stop = false;
-            //console.log(trigger, ~~(DMAF.context.currentTime * 1000));
             if (!actions || !actions.length) return;
             for (var i = 0, ii = actions.length; i < ii; i++) {
                 delay = actions[i].delay ? actions[i].delay : 0;
@@ -39,7 +38,7 @@ dmaf.once("load_core", function load_Actions (DMAF) {
     function Action (data) {
         this.actionProperties = data.actionProperties;
         this.triggers = data.triggers;
-        this.delay = data.delay || 0;
+        this.delay = data.actionProperties.delay || 0;
         this.type = data.type;
         this.id = data.id;
         this.multi = this.actionProperties.instanceId === "multi";

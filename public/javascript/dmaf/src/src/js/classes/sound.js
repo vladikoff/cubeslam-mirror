@@ -122,7 +122,6 @@ dmaf.once("load_sound", function (DMAF) {
             },
             stop: {
                 value: function (actionTime) {
-                    ctm.dropPendingArray(this.pendingEvents);
                     ctm.dropPendingArray(this.pendingPlays);
                     ctm.checkFunctionTime(actionTime, this.proceedStop, this.pendingStops, this);
                 }

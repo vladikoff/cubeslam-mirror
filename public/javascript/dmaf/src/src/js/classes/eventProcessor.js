@@ -14,26 +14,10 @@ dmaf.once("load_eventProcessor", function (DMAF) {
                             continue;
                         }
                         delay = this.eventMaps[i].delay || 0;
-                        DMAF.Clock.checkFunctionTime(
-                            actionTime + delay + DMAF.preListen,
-                            DMAF.ActionManager.onEvent,
-                            [],
-                            DMAF.ActionManager,
-                            this.eventMaps[i].out,
-                            actionTime + delay + DMAF.preListen,
-                            eventProperties
-                        );
+                        DMAF.ActionManager.onEvent(this.eventMaps[i].out, actionTime + delay, eventProperties);
                     } else if (this.eventMaps[i]["in"][0] === "multi") {
                         delay = this.eventMaps[i].delay || 0;
-                        DMAF.Clock.checkFunctionTime(
-                            actionTime + delay + DMAF.preListen,
-                            DMAF.ActionManager.onEvent,
-                            [],
-                            DMAF.ActionManager,
-                            this.eventMaps[i].out,
-                            actionTime + delay + DMAF.preListen,
-                            eventProperties
-                        );
+                        DMAF.ActionManager.onEvent(this.eventMaps[i].out, actionTime + delay, eventProperties);
                     }
                 }
                 //DMAF.ActionManager.stop();

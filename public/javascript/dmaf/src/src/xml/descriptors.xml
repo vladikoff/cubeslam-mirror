@@ -170,7 +170,7 @@ If min or max is not defined, then the values are set based on type
     <descriptor class="action" type="audioRouter" id="audioBus">
         <property name="instanceId" type="string" default="undefined"  />
         <property name="outputBus" type="string" default="master"  />
-        <property name="volume" type="float" default="1" min="0" max="1" />
+        <property name="volume" type="float" default="0" min="-80" max="40" />
         <property name="pan" type="int" default="0" min="-100" max="100" />
         <property name="audioNodes" type="array" valueType="audioNode" />
     </descriptor>

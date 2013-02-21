@@ -23,7 +23,7 @@ dmaf.once("load_player", function(DMAF) {
             clearPosition: new DMAF.Processor.BeatPosition(1, 1, 16)
         });
     }
-
+    var a = true;
     BeatPatternPlayer.prototype = Object.create(Super, {
         STOPPED: {
             value: 0
@@ -44,9 +44,11 @@ dmaf.once("load_player", function(DMAF) {
         },
         onAction: {
             value: function(trigger, actionTime, eventProperties, actionProperties) {
+                console.log("BeatPatternPlayer<<<<<<<<<<<<<<<<<<<<", trigger);
                 if(actionProperties.flowItems) {
                     var flow = actionProperties.flowItems,
                         flowItem, dyn;
+
                     for(var i = 0, ii = flow.length; i < ii; i++) {
                         flowItem = Object.create(flow[i]);
                         if(flowItem.patternId === "trigger") {
@@ -59,26 +61,18 @@ dmaf.once("load_player", function(DMAF) {
                             }
                         }
                         switch(flowItem.id) {
-                            case "start":
-                                if(this.state === this.RUNNING) {
-                                    console.log("BeatPatternPlayer is already running. Ignoring start.");
-                                    break;
-                                }
-                                var startTime = flowItem.delay ? actionTime + flowItem.delay : actionTime;
-                                DMAF.Clock.checkFunctionTime(startTime, this.start, [], this, flowItem, startTime);
-                                break;
-                            case "add":
-                                DMAF.Clock.checkFunctionTime(actionTime, this.addPattern, [], this, flowItem);
-                                break;
-                            case "stop":
-                                if (this.state === this.STOPPED) {
-                                    console.log("BeatPatternPlayer is already stopped. Ignoring stop.");
-                                    break;
-                                }
-                                DMAF.Clock.checkFunctionTime(actionTime, this.stop, [], this, flowItem);
-                                break;
-                            case "beatEvent":
-                                DMAF.Clock.checkFunctionTime(actionTime, this.beatEvent, [], this, flowItem);
+                        case "start":
+                            DMAF.Clock.checkFunctionTime(actionTime, this.start, [], this, flowItem, actionTime);
+                            //this.start(flowItem, actionTime, eventProperties);
+                            break;
+                        case "add":
+                            DMAF.Clock.checkFunctionTime(actionTime, this.addPattern, [], this, flowItem);
+                            break;
+                        case "stop":
+                            this.stop(flowItem);
+                            break;
+                        case "beatEvent":
+                            this.beatEvent(flowItem);
                         }
                     }
                 }
@@ -86,7 +80,6 @@ dmaf.once("load_player", function(DMAF) {
         },
         addPattern: {
             value: function(properties) {
-                //console.log("adding pattern", properties.patternId);
                 if(this.state === this.RUNNING) {
                     properties.beatPattern = DMAF.getAsset("beatPattern", properties.patternId);
                     properties.addAtSongPosition = this.getSongPosition(properties.songPosition);
@@ -142,10 +135,6 @@ dmaf.once("load_player", function(DMAF) {
                 for(var i = 0, ii = this.activePatterns.length; i < ii; i++) {
                     this.activePatterns[i].gotoNextBeat();
                 }
-                var BEAT = this.songPosition.beat;
-                /*if (this.songPosition.beat === 1) console.clear();
-                if ((this.songPosition.beat - 1) % 4 === 0) BEAT += " BEAT";
-                console.log(BEAT);*/
                 this.updateActivePatterns();
                 for(i = 0, ii = this.activePatterns.length; i < ii; i++) {
                     this.activePatterns[i].executeEvents(eventTime, this.beatLength);
@@ -173,24 +162,46 @@ dmaf.once("load_player", function(DMAF) {
                         this.activePatterns.push(instanceToActivate);
                     }
                 }
-                for (i = 0; i < this.activePatterns.length; i++) {
+                i = this.activePatterns.length;
+                while(i--) {
                     removePosition = this.activePatterns[i].removeAtSongPosition;
                     if(removePosition.bar === this.songPosition.bar && removePosition.beat === this.songPosition.beat) {
-                        this.activePatterns.splice(i--, 1);
+                        this.activePatterns.splice(i, 1);
                     } else if(removePosition.bar < this.songPosition.bar) {
-                        this.activePatterns.splice(i--, 1);
+                        this.activePatterns.splice(i, 1);
                     }
                 }
             }
         },
         start: {
-            value: function(flowItem, actionTime) {
-                console.log("Starting beatPatternPlayer", ~~(DMAF.context.currentTime*1000));
-                this.tempo = flowItem.tempo || 120;
+            value: function(flowItem, actionTime, eventProperties) {
+                console.log("STARTING PLAYER!!!");
+                if(this.state === this.RUNNING) {
+                    console.log("ALREADY RUNNING!");
+                    return;
+                }
+                var tempo, songPosition;
+                if(eventProperties) {
+                    tempo = eventProperties.tempo;
+                    songPosition = eventProperties.songPosition || eventProperties.position;
+                }
+                tempo = tempo ? tempo : flowItem.tempo;
+                songPosition = songPosition ? songPosition : {
+                    bar: 0,
+                    beat: 16,
+                    beatsPerBar: 16
+                };
+                if(actionTime < DMAF.context.currentTime * 1000) {
+                    actionTime = DMAF.context.currentTime * 1000;
+                }
+                actionTime = actionTime || DMAF.context.currentTime * 1000;
+
+                this.tempo = tempo;
                 this.nextBeatTime = actionTime;
-                this.beatsPerBar = flowItem.beatsPerBar;
-                this.state = this.RUNNING;
+                this.beatsPerBar = songPosition.beatsPerBar;
+                this.songPosition = new DMAF.Processor.BeatPosition(songPosition.bar, songPosition.beat, songPosition.beatsPerBar);
                 DMAF.Clock.addFrameListener("checkBeat", this.checkBeat, this);
+                this.state = this.RUNNING;
             }
         },
         stop: {
@@ -199,17 +210,17 @@ dmaf.once("load_player", function(DMAF) {
                     current = this.songPosition.getInBeats(),
                     time = (position - current) * this.beatLength;
                 time += DMAF.context.currentTime * 1000;
-                time = Math.max(DMAF.context.currentTime * 1000, time);
+                if(time < 0) {
+                    time = 0;
+                }
                 DMAF.Clock.checkFunctionTime(time, this.proceedStop, [], this, flowItem);
             }
         },
         proceedStop: {
             value: function(flowItem) {
-                console.log("Stopping beatPatternPlayer", ~~(DMAF.context.currentTime*1000));
                 this.state = this.STOPPED;
                 this.pendingPatterns.length = 0;
                 this.activePatterns.length = 0;
-                DMAF.Clock.removeFrameListener("checkBeat");
                 this.songPosition = new DMAF.Processor.BeatPosition(0, this.beatsPerBar, this.beatsPerBar);
                 this.currentPattern = new DMAF.Processor.BeatPatternInstance(this, {
                     beatPattern: new DMAF.Processor.BeatPattern("MASTER", 1),
@@ -223,6 +234,10 @@ dmaf.once("load_player", function(DMAF) {
                     loopLength: 16,
                     clearPosition: new DMAF.Processor.BeatPosition(1, 1, 16)
                 });
+                DMAF.Clock.removeFrameListener("checkBeat");
+                if(flowItem.returnEvent) {
+                    DMAF.ActionManager.onEvent(flowItem.returnEvent);
+                }
             }
         },
         beatEvent: {
@@ -281,19 +296,9 @@ dmaf.once("load_player", function(DMAF) {
         getStartAtBeat: {
             value: function(string) {
                 var mode = string,
-                    offsetBeat = 0,
-                    offsetBar = 0,
-                    chain,
-                    beat = this.currentPattern && this.currentPattern.currentBeat || 1;
+                    beat = this.currentPattern.currentBeat || 1;
                 if(!mode) {
-                    return 1;
-                }
-                if(/\+/.test(mode)) {
-                    chain = mode.split("+");
-                    mode = chain[0];
-                    chain = chain[1].split(".");
-                    offsetBar = parseInt(chain[0], 10) || 0;
-                    offsetBeat = parseInt(chain[1], 10) || 0;
+                    return;
                 }
                 switch(mode) {
                 case "FIRST_BEAT":
@@ -305,8 +310,6 @@ dmaf.once("load_player", function(DMAF) {
                 default:
                     console.log("BeatPatternPlayer: Unrecognized patternPosition " + mode);
                 }
-                beat += offsetBar * (this.currentPattern && this.currentPattern.beatsPerBar || 16);
-                beat += offsetBeat;
                 return beat;
             }
         }
