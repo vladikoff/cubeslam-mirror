@@ -49,8 +49,6 @@
     "lib/support/select-text.js",
     "lib/support/see.js",
     "lib/support/mouse.js",
-    "lib/support/queue.js",
-    "lib/support/pointer-lock.js",
     "lib/support/buffer.js",
     "lib/support/pool.js",
     "lib/support/tick.js",
