@@ -5,15 +5,9 @@
         Puck can sometimes get stuck in side to side motion.
         Missing sound_on sound_off
         Missing button_over buton_down
-
-    CHRIS:
-        Short Countdown
-        Remove stop player on user_won_match.
-        Transpose with ball
-        User win/lose tone
-        Obstacle hit?
-
+        Pause
  -->
+
 <!-- AUDIO MIXING -->
     <!-- MAIN BUS -->
 
@@ -23,12 +17,12 @@
     </audioBus>
 
     <!-- MAIN BUS MUTE/UNMUTE -->
-    <transform triggers="sound_off">
+    <transform triggers="sound_off,pause">
         <properties instanceId="master_mute"
             targetType="audioRouter" targets="master_bus" targetParameter="volume"
             value="0" duration="100" />
     </transform>
-    <transform triggers="sound_on">
+    <transform triggers="sound_on,unpause">
         <properties instanceId="master_unmute"
             targetType="audioRouter" targets="master_bus" targetParameter="volume"
             value="0.9" duration="100" />
@@ -58,7 +52,7 @@
             <add patternId="synth_pop__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="gameover_music" >
+    <beatPatternPlayer triggers="gameover_screen" >
         <properties instanceId="main" />
         <flowItems>
             <start tempo="126" delay="0" beatsPerBar="16" />
@@ -79,13 +73,13 @@
     <beatPatternPlayer triggers="info_screen" >
         <properties instanceId="main" />
         <flowItems>
-            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
-            <add patternId="bass_filter__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="stab__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
-            <add patternId="synth_pop__12" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BAR" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass_filter__12" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__12" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__12" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="fog_over,multiball_over,deathball_over,mirrored_controls_over,timebomb_over,ghostball_over" >
+    <beatPatternPlayer triggers="fog_over,multiball_over,death_ball_over,mirrored_controls_over,timebomb_over,ghost_ball_over" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -100,6 +94,7 @@
     </beatPatternPlayer>
 
     <!-- COUNTDOWNS -->
+
     <!-- 3 BEAT COUNTDOWN -->
     <eventMapper triggers="countdown_init">
         <properties instanceId="handle_long" />
@@ -142,7 +137,6 @@
         </flowItems>
     </beatPatternPlayer>
 
-    <!-- 2 BEAT COUNTDOWN -->
     <eventMapper triggers="countdown_short">
         <properties instanceId="handle_short" />
         <eventMaps>
@@ -156,7 +150,6 @@
             <stop songPosition="ASAP" />
         </flowItems>
     </beatPatternPlayer>
-
     <beatPatternPlayer triggers="countdown_short_start">
         <properties instanceId="main" />
         <flowItems>
@@ -214,7 +207,7 @@
             <add patternId="synth_sharp__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="ghostball_activate" >
+    <beatPatternPlayer triggers="ghost_ball_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -245,7 +238,7 @@
             <add patternId="synth_warm__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
         </flowItems>
     </beatPatternPlayer>
-    <beatPatternPlayer triggers="deathball_activate" >
+    <beatPatternPlayer triggers="death_ball_activate" >
         <properties instanceId="main" />
         <flowItems>
             <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
@@ -264,7 +257,7 @@
         <properties instanceId="LevelTransposer" />
     </customCode>
     <!-- TRANSPOSE INCOMING MIDI DATA BEFORE SAMPLERS -->
-    <midiProcessor triggers="paddle_fx,extra_life,winloose_tone,shield_hit,bass_filter,lead_a,lead_b,strings,synth_funk,synth_plucked,synth_sharp,synth_warm,bass,bass_comp,stab,synth_comp,synth_perc,synth_pop" >
+    <midiProcessor triggers="item_up,item_down,paddle_fx,extra_life,winloose_tone,shield_hit,bass_filter,lead_a,lead_b,strings,synth_funk,synth_plucked,synth_sharp,synth_warm,bass,bass_comp,stab,synth_comp,synth_perc,synth_pop" >
         <properties instanceId="midi_transposer" />
         <properties transpose="customCode:LevelTransposer:transposeValue" quantize="" dynamic="0" scale="" root="" />
         <properties customScale="" />
@@ -296,17 +289,17 @@
             reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
             bus="master_bus" timingCorrection="PLAY" />
     </genericPlay>
-    <genericPlay triggers="user_lost_match">
+    <genericPlay triggers="user_lost_round">
         <properties delay="0" instanceId="loose_fanfare" soundFile="loose_fanfare" volume="0" loop="-1"
-            reTrig="-1" returnEvent="gameover_music" returnEventTime="0" preListen="0"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
             bus="master_bus" timingCorrection="PLAY" />
     </genericPlay>
-    <genericPlay triggers="user_won_match">
+    <genericPlay triggers="user_won_round">
         <properties delay="0" instanceId="win_fanfare" soundFile="win_fanfare" volume="0" loop="-1"
-            reTrig="-1" returnEvent="screen_break" returnEventTime="0" preListen="0"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
             bus="master_bus" timingCorrection="PLAY" />
     </genericPlay>
-    <genericPlay triggers="screen_break">
+    <genericPlay triggers="opponent_screen_explode">
         <properties delay="0" instanceId="opponent_screen_break_between_levels" soundFile="opponent_screen_break_between_levels" volume="0" loop="-1"
             reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
             bus="master_bus" timingCorrection="PLAY" />
@@ -314,9 +307,10 @@
 <!-- /MAKE EFFECTS SOUNDS -->
 
 <!-- /MAKE EFFECTS NOTES -->
-    <makeNote triggers="user_paddle_hit,opponent_paddle_hit,wall_hit,obstacle_hit,user_shield_hit,opponent_shield_hit,opponent_score_hit,fog_spawn,fog_activate">
+    <makeNote triggers="mirrored_controls_activate,mirrored_controls_spawn,fireball_activate,fireball_spawn,bulletproof_activate,bulletproof_spawn,multiball_activate,multiball_spawn,timebomb_activate,timebomb_spawn,ghost_ball_activate,ghost_ball_spawn,death_ball_activate,death_ball_spawn,extra_life_activate,user_paddle_hit,opponent_paddle_hit,wall_hit,obstacle_hit,user_shield_hit,opponent_shield_hit,opponent_score_hit,fog_spawn,fog_activate">
         <properties instanceId="makeFx" />
         <noteMaps>
+            <noteMap triggerIn="extra_life_activate" triggerOut="extra_life" note="E1" velocity="127" />
             <noteMap triggerIn="user_paddle_hit" triggerOut="paddle_fx" note="E1" velocity="127" />
             <noteMap triggerIn="opponent_paddle_hit" triggerOut="paddle_fx" note="E2" velocity="127" />
             <noteMap triggerIn="wall_hit" triggerOut="paddle_fx" note="B2" velocity="127" />
@@ -326,6 +320,21 @@
             <noteMap triggerIn="opponent_score_hit" triggerOut="winloose_tone" note="E0" velocity="127" />
             <noteMap triggerIn="fog_spawn" triggerOut="item_up" note="E3" velocity="127" />
             <noteMap triggerIn="fog_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="extra_life_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="death_ball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="death_ball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="ghost_ball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="ghost_ball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="timebomb_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="timebomb_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="multiball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="multiball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="bulletproof_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="bulletproof_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="fireball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="fireball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="mirrored_controls_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="mirrored_controls_activate" triggerOut="item_down" note="E3" velocity="127" />
         </noteMaps>
     </makeNote>
 <!-- /MAKE EFFECTS NOTES -->
@@ -352,7 +361,7 @@
         <sampleMapGroups>
             <sampleMapGroup name="map1">
                 <sampleMaps>
-                    <sampleMap name="Extralife" velocityLow="0" velocityHigh="127" />
+                    <sampleMap name="extralife" velocityLow="0" velocityHigh="127" />
                 </sampleMaps>
             </sampleMapGroup>
         </sampleMapGroups>
@@ -383,7 +392,7 @@
             </sampleMapGroup>
         </sampleMapGroups>
     </sampler>
-    <sampler triggers="Item_Up">
+    <sampler triggers="item_up">
         <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
@@ -396,7 +405,7 @@
             </sampleMapGroup>
         </sampleMapGroups>
     </sampler>
-    <sampler triggers="Item_Down">
+    <sampler triggers="item_down">
         <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>

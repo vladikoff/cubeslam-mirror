@@ -319,7 +319,10 @@
  	<samplemap name="Item_Up">
  		<range sound="Item_Up_E3" root="E3" low="E3" hi="Fs5" vol="0"/>
     </samplemap>
-     <samplemap sound="Item_Down">
+    <samplemap name="item_up">
+ 		<range sound="Item_Up_E3" root="E3" low="E3" hi="Fs5" vol="0"/>
+    </samplemap>
+     <samplemap name="item_down">
  		<range sound="Item_Down_E3" root="E3" low="E3" hi="Fs5" vol="0"/>
     </samplemap>
     <samplemap name="paddle_fx">
@@ -336,7 +339,7 @@
  		<range sound="PaddleFX_G3" root="G3" low="G3" hi="As3" vol="0"/>
  		<range sound="PaddleFX_B3" root="B3" low="B3" hi="E4"  vol="0"/>
     </samplemap>
-    <samplemap name="Extralife">
+    <samplemap name="extralife">
  		<range sound="ExtraLife_E1" root="E1" low="E1"  hi="G1" vol="0"/>
  		<range sound="ExtraLife_B1" root="B1" low="Gs1" hi="Ds2" vol="0"/>
  		<range sound="ExtraLife_E2" root="E2" low="E2"  hi="Cs3" vol="0"/>
