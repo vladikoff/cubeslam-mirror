@@ -584,7 +584,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="lead_a">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-8" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="true" volume="-8" bus="master_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="350" ampRelease="550" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -597,7 +597,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="lead_b">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-9" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="true" volume="-9" bus="master_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="100" ampRelease="640" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
