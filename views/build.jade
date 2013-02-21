@@ -307,13 +307,13 @@ html(lang='en')
       #canv-css
         .background.state.game
           img.bg(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg')
-          .bear
-            img.bear(src='/images/mobile/Bear_Animation_0059.png')
+          .bear.bob
+            #expressions
+        .game-board
+          .arena
         .shields
           .shields-a
           .shields-b
-        .game-board
-          .arena
     #extras.state.game.inactive
       ul
         li.icon-death-ball(data-icon='*') Death ball
@@ -338,7 +338,7 @@ html(lang='en')
         .state.game-pause.inactive
           button.play(href='#', data-icon='▶', type='button')
           button.sound(href='#', data-icon='♫', data-icon-off='♩', type='button')
-          button.info(href='#', data-icon='☢', type='button')
+          button.info(href='#', data-icon='⌽', type='button')
 
     //ERROR STATES
     section#error
@@ -407,15 +407,14 @@ html(lang='en')
             span Twitter
       #about
         ul
-          li
-            a Technology
-          //li
-            a#pointer-lock Mouse lock on
-          li
+          li.technology
+            a 
+              span Technology
+          li.terms
             a.notimplemented Terms &amp; privacy
-          li
+          li.localization
             a#localizationSwitch(href='#') EN
-          li
+          li.sound
             a.sound-switch.on(href='#')
               span.off Sound on
               span.on Sound off
