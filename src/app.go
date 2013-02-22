@@ -50,9 +50,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
   // Empty room
   if err != nil {
-    c.Debugf("%v",err)
     room := new(Room)
-	c.Debugf("%v", r)
     room.AddUser(userName)
     c.Debugf("Created room %s",roomName)
     if err := PutRoom(c, roomName, room); err != nil {
@@ -129,18 +127,10 @@ func Connected(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
-
     if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
-		if err := channel.Send(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
-			c.Criticalf("Error while sending turn credentials:",err)
-		}
-	}
-
-	c.Debugf("%v", r)
-
-    if room.HasUser(userName) == false {
-      c.Debugf("User %s not found in room %s",userName,roomName)
-      return;
+      if err := channel.Send(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
+        c.Criticalf("Error while sending turn credentials:",err)
+      }
     }
 
     room.ConnectUser(userName)
