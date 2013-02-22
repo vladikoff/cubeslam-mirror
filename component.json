@@ -25,7 +25,6 @@
     "lib/game.js",
     "lib/inp.js",
     "lib/network.js",
-    "lib/audio.js",
     "lib/camera.js",
     "lib/world.js",
     "lib/arb.js",
