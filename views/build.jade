@@ -430,24 +430,7 @@ html(lang='en')
     script(src='/_ah/channel/jsapi')
     script(src='//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js')
     script
-      Raven.config('http://d98688c7ba3c4ccd8f785280b9263ea0@192.168.0.130:9000/2').install();
-
-      // record a simple message
-      Raven.captureMessage('hello world!')
-
-      // wrap callback
-      Raven.wrap(function(){
-        hello
-      })()
-
-      setTimeout(Raven.wrap(function(){throw new Error('hi sentry')}),1)
-
-      // capture an exception
-      try {
-          errorThrowingCode();
-      } catch(err) {
-          Raven.captureException(err);
-      }
+      Raven.config('http://cff8af0b0fad4a77928b0112adb139a6@192.168.0.130:9000/2').install();
 
     script(src='/javascript/libs/three.{{.Minified}}js')
     script(src='/javascript/libs/TweenMax.min.js')
