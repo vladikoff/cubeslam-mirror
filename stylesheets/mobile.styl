@@ -8,10 +8,13 @@ html.mobile
     display block
 
   body
-    background linear-gradient(top, 0% #e4e4e4, 50% #e4e4e4, 51% #0088ff, 100% #0088ff)
     width 100%
     height 100%
     position absolute
+
+    &.game-pause
+      #gamepad
+        opacity .7
 
   #settingsGUIContainer
   , .play-friend
@@ -38,6 +41,9 @@ html.mobile
       width 100%
       padding 0
 
+      a.button
+        display none!important
+
       button 
         width auto
         min-width 0
@@ -47,6 +53,7 @@ html.mobile
 
   #mobile-menu
     absolute top 0 right 0
+    z-index 2
     button
       width 46px
       min-width 0
@@ -71,9 +78,9 @@ html.mobile
 
     .game-pause
       transform translateY(0)
-      transition transform 300ms
       position relative
       z-index 2
+      transition transform 300ms ease-out 
 
       .inactive
         transform translateY(100%)
@@ -86,14 +93,58 @@ html.mobile
   footer#footer
     display none
     height $footer-height
+    pointer-events none
+    a
+      pointer-events auto
+
+    ul
+      padding 13px 0 0 0
+      margin-top 0
+
+    .terms, .localization
+      display none
+
+    .technology, .sound
+      a
+        font-family 'icomoon'
+        width 20px
+        height 20px
+        font-size 12px
+        border-radius 3px
+        display table-cell
+        vertical-align middle
+        border 1px solid transparent
+
+        &:before
+          display inline-block
+          text-align center
+          width 100%
+          vertical-align middle
+
+      span
+        display none!important
+
+
+    .technology
+      margin-right 10px
+      a
+        background $color-yellow
+        &:before
+          content '⌽'
+          color #b58d33
+    .sound
+      a
+        background $color-green
+        &:before
+          content '♫'
+          color #306e2b
+        &.off
+          &:before
+            content '♩'
 
   body.main-menu
     #footer
       display block
-
-
-  #about
-    display none
 
   #canv-pixel
     width 1px
@@ -106,6 +157,9 @@ html.mobile
   #scores
     absolute top 10px left 10px  
     margin 0
+    z-index 20
+    pointer-events none
+
     .logo
       h1, img
         display none
@@ -118,17 +172,20 @@ html.mobile
         display inline-block
         margin 0
         margin-left 20px
-
+        p
+          font-size 10px
+          width 35px
         li
-          width 15px
-          height 15px
+          width 12px
+          height 12px
 
   #gamepad
     display none
     position absolute
-    top 15%
+    top 20%
     width 100%
-    z-index 100
+    z-index 2
+    transition opacity 300ms ease-out
 
     .button
       background-color #6bba6b
@@ -155,27 +212,45 @@ html.mobile
         left auto
         right 5%
 
-
   .state
     visibility hidden
-    display none
+    // display none
     &.active
       visibility visible
       display block
+    &.inactive
+      .content
+        opacity 0
 
-  .state.game-instructions
-    .animation
-      display none
-    .dialog
-      bottom $footer-height
-      top 0
-      height 100%
+    .content.animate
+      transition opacity .3s
+
+
+    &.game-instructions
+      .game-controls
+        display none
+      .dialog
+        bottom $footer-height
+        top 0
+        height 100%
+    &.game-over
+      h1
+        font-size 30px
+        z-index 6
+        padding 0 10px
+        margin-top 45px 
+      .dialog
+        height 100%
+        top 0
+        .content 
+          padding-top 50px
 
   .mobile
     .main-menu 
       width 100%
       height 100%
       position absolute
+      
   .state.game-instructions
     #game-controls
       display none
@@ -205,7 +280,21 @@ html.mobile
         width 100%
         height 100%
 
+      .bear
+        absolute top 650px left 1130px
+
+      .angry
+        absolute top 14px left 66px
+      .blink
+        absolute top 61px left 104px
+      .jawdrop
+        absolute top 91px left 94px
+      .flirt
+        absolute top 35px left 104px
+
     .game-board
+      position absolute
+      z-index 2
       width 1280px
       height 800px
       perspective 1200px
@@ -220,60 +309,46 @@ html.mobile
       font-size 0
       width 100%
       .shields-a, .shields-b
-        absolute top 0
+        absolute top 0px
+
       .shield
         position absolute
         display inline-block
-        background-position 0 0
+        background-color rgba(red, 0)
         transform-origin bottom center
-        transition transform .3s ease-out
+        transition-property transform 
+        transition-duration .3s
         transition-delay 0s
-        transform scaleY(.001)
+        transition-timing-function ease-in-out
+        transform scaleY(.005) translateZ(0)
         &.visible
           for row in 1 2 3
             &:nth-child({row})
               transition-delay 100ms * (row - 1)
-          transform scaleY(1)
+          transform scaleY(1) translateZ(0)
 
       .shields-a
         top 594px
         left 182px
         z-index 4
-        .shield
-          height 125px
         .shield-1
-          width 308px
-          left 0 
-          background-image url('/images/mobile/shield-p1-1.png')
+          left 0 10
         .shield-2
-          width 298px
           left 309px
-          background-image url('/images/mobile/shield-p1-2.png')
         .shield-3
-          width 309px
-          left 609px
-          background-image url('/images/mobile/shield-p1-3.png')
+          left 610px
 
       .shields-b
         top 163px
-        left 428px
-        z-index 2
-        .shield
-          height 60px
+        left 427px
+        z-index 0
 
         .shield-1
-          width 142px
           left 0
-          background-image url('/images/mobile/shield-p2-1.png')
         .shield-2
-          width 140px
-          left 142px
-          background-image url('/images/mobile/shield-p2-2.png')
+          left 143px
         .shield-3
-          width 143px
-          left 282px
-          background-image url('/images/mobile/shield-p2-3.png')
-
+          left 284px
 
     .arena
       width 1280px
@@ -329,11 +404,27 @@ html.mobile
     #gamepad
       display none!important
 
+
 @media (orientation: landscape)
   html.mobile
     .state.active
       #gamepad
         display block!important
+
+    #scores
+      width 100%
+
+      .logo
+        absolute right 70px 
+      
+      .singleplayer, .multiplayer
+        .player, .opponent
+          display block
+          margin-bottom 20px
+
+      p, 
+      ol
+        float left
 
     .dialog
       bottom 0
@@ -341,6 +432,8 @@ html.mobile
     header .nav
       bottom 10px
 
+    #game
+      top 45%
 
     body.main-menu
       #footer

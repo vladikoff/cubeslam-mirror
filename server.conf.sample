@@ -10,7 +10,7 @@
 #
 server {
     listen          8080;
-    server_name     SERVER_NAME;
+    server_name     localhost;
     root            "SERVER_ROOT";
 
     # http://wiki.nginx.org/HttpSslModule
@@ -34,6 +34,7 @@ server {
     gzip_vary           on;
 
     location / {
+        root        "SERVER_ROOT/public";
         try_files   $uri   @proxy;
     }
 
