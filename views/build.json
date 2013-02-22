@@ -1,7 +1,7 @@
 {
     "name": "chrome_pong",
-    "version": "0.0.1",
-    "dev": true,
+    "version": "0.1.0",
+    "dev": false,
     "root": "../verlet/views/",
     "to-dmaf-root": "./javascript/dmaf/",
     "deploy-to": "../verlet/public/javascript/",
