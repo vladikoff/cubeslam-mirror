@@ -33,9 +33,9 @@ func (r *Room) HasUser(user string) bool {
 }
 
 func (r *Room) AddUser(user string) {
-  if r.User1 == "" {
+  if r.User1 == "" && r.User2 != user {
     r.User1 = user
-  } else if r.User2 == "" {
+  } else if r.User2 == "" && r.User1 != user {
     r.User2 = user
   }
 }
