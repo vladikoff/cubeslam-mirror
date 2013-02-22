@@ -46,7 +46,20 @@ func Main(w http.ResponseWriter, r *http.Request) {
       http.Redirect(w, r, path, 302);
     } else {
       c.Criticalf("execution failed: %s", err)
+      return
     }
+
+    var newRoom string
+    // Create a new room name and check so it does not exist.
+    for newRoom = ""; newRoom == ""; newRoom = fake.DomainWord() {
+      if _, err := GetRoom(c, newRoom); err != nil {
+        // Room exists. Try a new room name..
+        newRoom = ""
+      }
+    }
+
+    http.Redirect(w, r, "/" + newRoom, 302);
+
     return;
   }
 
@@ -320,6 +333,7 @@ func init() {
   rand.Seed(now.Unix())
   http.HandleFunc("/", Main)
   http.HandleFunc("/message", OnMessage)
+  http.HandleFunc("/connect", Connected)
   http.HandleFunc("/disconnect", Disconnected)
   http.HandleFunc("/gce_announce", TurnServerAnnouncement)
   http.HandleFunc("/_ah/channel/connected/", Connected)
