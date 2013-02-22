@@ -15,6 +15,9 @@ html.mobile
     &.game-pause
       #gamepad
         opacity .7
+      button.pause
+        transition-delay 0ms
+        transform translateX(100%)
 
   #settingsGUIContainer
   , .play-friend
@@ -52,7 +55,7 @@ html.mobile
 
 
   #mobile-menu
-    absolute top 0 right 0
+    absolute top 0px right 0
     z-index 2
     button
       width 46px
@@ -75,17 +78,27 @@ html.mobile
       &.pause
         absolute right 0
         z-index 1
+        transition transform 250ms
+        transition-delay .7s
 
     .game-pause
-      transform translateY(0)
+      transform translateX(0)
       position relative
       z-index 2
       transition transform 300ms ease-out 
+      transition-delay 300ms
+      display block!important
 
-      .inactive
-        transform translateY(100%)
+      &.inactive
+        transform translateX(100%)
+        transition-delay 0ms
 
   .state.game-prompt
+    .background
+      transition none
+      height 60px
+      margin-top -30px
+      display none
     .prompt
       h1, h2
         font-size 30px
@@ -157,7 +170,7 @@ html.mobile
   #scores
     absolute top 10px left 10px  
     margin 0
-    z-index 20
+    z-index 1
     pointer-events none
 
     .logo
@@ -189,24 +202,22 @@ html.mobile
 
     .button
       background-color #6bba6b
-      width 56px
-      height 56px
-      border-radius 28px
+      width 72px
+      height 72px
+      border-radius 36px
       box-shadow 0 3px 5px rgba(0,0,0,.3) 
       absolute left 5%
 
       &:before
         content ' '
-        absolute bottom 1px left 2px 
-        width 52px
-        height 52px
-        border-radius 26px
+        absolute bottom 1px left 4.2%
+        width 93%
+        height 93%
+        border-radius 93%
         background-color #4daf4d
 
-
-
       &:active
-        background-position top right
+        box-shadow 0 1px 10px rgba(0,0,0,.3) 
 
       &:last-child
         left auto
@@ -214,7 +225,6 @@ html.mobile
 
   .state
     visibility hidden
-    // display none
     &.active
       visibility visible
       display block
@@ -274,6 +284,7 @@ html.mobile
     .background
       width 2560px
       height 1799px
+      display none!important
       z-index 0
       absolute top -670px left -50%
       img
@@ -308,6 +319,7 @@ html.mobile
       letter-spacing 0
       font-size 0
       width 100%
+      display none
       .shields-a, .shields-b
         absolute top 0px
 
@@ -316,16 +328,17 @@ html.mobile
         display inline-block
         background-color rgba(red, 0)
         transform-origin bottom center
-        transition-property transform 
+        transition-property transform
         transition-duration .3s
         transition-delay 0s
-        transition-timing-function ease-in-out
-        transform scaleY(.005) translateZ(0)
+        transition-timing-function ease-out
+        transform scaleY(.005)
+        backface-visibility hidden
         &.visible
-          for row in 1 2 3
-            &:nth-child({row})
-              transition-delay 100ms * (row - 1)
-          transform scaleY(1) translateZ(0)
+          // for row in 1 2 3
+          //   &:nth-child({row})
+          //     transition-delay 100ms * (row - 1)
+          transform scaleY(1)
 
       .shields-a
         top 594px
