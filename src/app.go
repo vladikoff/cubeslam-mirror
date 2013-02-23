@@ -49,8 +49,8 @@ func Main(w http.ResponseWriter, r *http.Request) {
       return
     }
 
-    var newRoom string
     // Create a new room name and check so it does not exist.
+    var newRoom string
     for newRoom = ""; newRoom == ""; newRoom = fake.DomainWord() {
       if _, err := GetRoom(c, newRoom); err != nil {
         // Room exists. Try a new room name..
@@ -291,11 +291,11 @@ func OnMessage(w http.ResponseWriter, r *http.Request) {
 }
 
 func MakeClientId(room string, user string) string {
-  return user + "@" + room;
+  return user + "-" + room;
 }
 
 func ParseClientId(clientId string) (string, string) {
-  from := strings.Split(clientId, "@")
+  from := strings.Split(clientId, "-")
   // room, user
   return from[1], from[0]
 }
