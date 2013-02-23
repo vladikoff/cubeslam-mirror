@@ -3,7 +3,6 @@ package webrtcing
 import (
   "src/faker"
   "appengine"
-  "appengine/channel"
   "encoding/json"
   "math/rand"
   "net/http"
@@ -141,12 +140,13 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
     // Create a channel token
     } else {
-      token, err := channel.Create(c, MakeClientId(roomName, userName))
-      if err != nil {
+      signal := new(Signal)
+      if err := signal.Init(c, MakeClientId(roomName, userName)); err != nil {
         http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
         return
       }
-      data.Token = token
+      signal.Save(c)
+      data.Token = signal.Token
     }
   }
 
@@ -162,8 +162,11 @@ func Connected(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
+
+    signal, err := GetSignal(c, MakeClientId(roomName, userName))
+
     if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
-      if err := ChannelSend(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
+      if err := signal.Send(c, turnclient.TurnConfig(c)); err != nil {
         c.Criticalf("Error while sending turn credentials:",err)
       }
     }
@@ -171,15 +174,16 @@ func Connected(w http.ResponseWriter, r *http.Request) {
     room.ConnectUser(userName)
     c.Debugf("Connected user %s to room %s",userName,roomName)
 
-    err := PutRoom(c, roomName, room)
+    err = PutRoom(c, roomName, room)
     if err == nil {
       // send connected to both when room is complete
       if room.Occupants() == 2 {
         otherUser := room.OtherUser(userName)
-        if err := ChannelSend(c, MakeClientId(roomName, otherUser), "connected"); err != nil {
+        otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
+        if err := otherSignal.Send(c, "connected"); err != nil {
           c.Criticalf("Error while sending connected:",err)
         }
-        if err := ChannelSend(c, MakeClientId(roomName, userName), "connected"); err != nil {
+        if err := signal.Send(c, "connected"); err != nil {
           c.Criticalf("Error while sending connected:",err)
         }
       } else {
@@ -223,10 +227,12 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
       } else {
         // let the other user know
         otherUser := room.OtherUser(userName)
-        if err := ChannelSend(c, MakeClientId(roomName, otherUser), "disconnected"); err != nil {
+        signal, _ := GetSignal(c, MakeClientId(roomName, userName))
+        otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
+        if err := otherSignal.Send(c, "disconnected"); err != nil {
           c.Criticalf("Error while sending disconnected:",err)
         }
-        if err := ChannelSend(c, MakeClientId(roomName, userName), "disconnected"); err != nil {
+        if err := signal.Send(c, "disconnected"); err != nil {
           c.Criticalf("Error while sending disconnected:",err)
         }
       }
@@ -282,7 +288,8 @@ func OnMessage(w http.ResponseWriter, r *http.Request) {
   if jsonmsg, err := json.Marshal(msg); err != nil {
     c.Criticalf("Error when marshaling json:", err)
   } else {
-    if err := ChannelSend(c, MakeClientId(roomName, otherUser), string(jsonmsg)); err != nil {
+    signal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
+    if err := signal.Send(c, string(jsonmsg)); err != nil {
       c.Criticalf("Error while sending JSON:",err)
     }
   }
@@ -317,15 +324,6 @@ func ReadData(d []byte) (interface{}, error) {
     return data, err
   }
   return data, nil
-}
-
-func ChannelSend(c appengine.Context, channelName string, data string) error {
-  var err error
-  c.Debugf("Sending to Channel API channel %s: %s", channelName, data)
-  if err = channel.Send(c, channelName, data); err != nil {
-    c.Errorf("Error when sending Channel API message:", err)
-  }
-  return err
 }
 
 func init() {
