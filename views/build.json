@@ -1,0 +1,35 @@
+{
+    "name": "chrome_pong",
+    "version": "0.1.0",
+    "dev": false,
+    "root": "../verlet/views/",
+    "to-dmaf-root": "./javascript/dmaf/",
+    "deploy-to": "../verlet/public/javascript/",
+    "config": {
+        "read": "../verlet/public/xml/config.xml",
+        "write": "../verlet/public/javascript/dmaf.js"
+    },
+    "immediate": true,
+    "dependencies": [
+        "audioNode",
+        "beatPattern",
+        "iterator",
+        "assetController",
+        "audioRouter",
+        "customCode",
+        "eventProcessor",
+        "mediaElement",
+        "midiProcessor",
+        "parameterProcessor",
+        "player",
+        "sound",
+        "stateProcessor",
+        "synth"
+    ],
+    "formats": [
+        "ogg",
+        "aac",
+        "mp3",
+        "wav"
+    ]
+}

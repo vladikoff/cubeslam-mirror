@@ -1,0 +1,341 @@
+<!--
+General rules:
+A property where a default value is not defined is a required value
+A property where "values" is not defined accepts any value of the correct type
+If min or max is not defined, then the values are set based on type
+-->
+<descriptors>
+    <descriptor class="action" type="assetController" id="loadCustomCode">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="baseURL" type="string" default="undefined" />
+        <property name="returnEvent" type="string" default="undefined" />
+        <property name="files" type="array" valueType="file" />
+    </descriptor>
+    <descriptor class="action" type="assetController" id="loadSound">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="baseURL" type="string" default="undefined" />
+        <property name="returnEvent" type="string" default="undefined" />
+        <property name="files" type="array" valueType="file" />
+    </descriptor>
+    <descriptor class="action" type="assetController" id="loadMIDI">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="baseURL" type="string" default="undefined" />
+        <property name="returnEvent" type="string" default="undefined" />
+        <property name="files" type="array" valueType="file" />
+    </descriptor>
+    <descriptor class="action" type="assetController" id="loadSampleMap">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="baseURL" type="string" default="undefined" />
+        <property name="returnEvent" type="string" default="undefined" />
+        <property name="files" type="array" valueType="file" />
+    </descriptor>
+    <descriptor class="action" type="customCode" id="customCode">
+        <property name="instanceId" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="action" type="customCode" id="userObject">
+        <property name="instanceId" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="action" type="mediaElement" id="mediaElement">
+        <property name="instanceId" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="action" type="control" id="mediaController">
+        <property name="instanceId" type="string" default="multi" />
+    </descriptor>
+    <descriptor class="action" type="sound" id="genericPlay" method="play">
+		<property name="delay" type="int" default="0" min="-1000000" max="1000000" />
+		<property name="instanceId" type="string" default="multi" />
+		<property name="soundFile" type="string" default="multi" />
+		<property name="multiSuffix" type="string" default="" />
+		<property name="volume" type="float" unit="dB" default="0" min="-90" max="+48" />
+		<property name="pan" type="int" default="0" min="-100" max="100" />
+		<property name="loop" type="int" unit="mS" default="-1" min="-1" max="100000" /> <!-- -1=off, 0=sample end loop, >0 = loop lenght in mS -->
+		<property name="reTrig" type="int" unit="mS" default="-1" min="-1" max="100000" /> <!-- -1=off, 0=on, >0 = reTrig block in mS -->
+		<property name="returnEvent" type="string" default="undefined" /> <!-- not sure about this -->
+		<property name="returnEventTime" type="int" unit="mS" default="-1" min="-1000000" max="100000" /> <!-- -1=off, 0=on, >0 = reTrig block in mS -->
+		<property name="preListen" type="int" default="0" min="0" max="500" />
+		<property name="bus" type="string" default="master" />
+		<property name="priority" type="boolean" default="false" />
+		<property name="timingCorrection" type="enum" default="PLAY" values="RESYNC,SYNC,PLAY"/>
+	</descriptor>
+    <descriptor class="action" type="sound" id="stepPlay" method="play">
+		<property name="delay" type="int" default="0" min="0" max="100000" />
+		<property name="instanceId" type="string" default="undefined" />
+		<property name="soundFiles" type="list" />
+		<property name="generator" type="enum" default="SHUFFLE" values="SHUFFLE,RANDOM,RANDOM_FIRST,ROUND_ROBIN" />
+		<property name="volume" type="float" default="0" min="-90" max="+48" />
+		<property name="pan" type="int" default="0" min="-100" max="100" />
+		<property name="reTrig" type="int" default="-1" min="-1" max="100000" /> <!-- -1=off, 0=on, >0 = reTrig block in mS -->
+		<property name="returnEvent" type="string" default="" values="ALL" />
+		<property name="returnEventTime" type="int" default="-1" min="-1000000" max="100000" /> <!-- -1=off, 0=on, >0 = reTrig block in mS -->
+		<property name="preListen" type="int" default="0" min="0" max="500" />
+		<property name="bus" type="string" default="master" values="ALL" />
+		<property name="priority" type="boolean" default="false" />
+		<property name="timingCorrection" type="enum" default="SYNC" values="SYNC,PLAY" />
+	</descriptor>
+    <descriptor class="action" type="sound" id="soundStop" method="stop">
+		<property name="delay" type="int" default="0" min="0" max="9999999" />
+		<property name="targets" type="list" />
+		<property name="multiSuffix" type="string" default="" />
+	</descriptor>
+    <descriptor class="action" type="midiProcessor" id="midiProcessor">
+        <property name="instanceId" type="string" default="someProcessor" />
+        <property name="transpose" type="int" default="0" min="-127" max="127" />
+        <property name="dynamic" type="int" default="0" min="-127" max="127" />
+        <property name="quantize" type="string" default="undefined" />
+        <property name="scale" type="string" default="major"
+            values="off,major,harmonicMinor,naturalMinor,majorPentatonic,minorPentatonic,dorian,phyrgian,lydian,mixolydian,locrian,doubleHarmonic,halfDim,custom,off"/>
+        <property name="customScale" type="string" default="0,0,0,0,0,0,0,0,0,0,0,0" />
+        <property name="root" type="string" default="C" values="C,C#,D,D#,E,F,F#,G,G#,A,A#,B" />
+    </descriptor>
+    <descriptor class="action" type="midiProcessor" id="makeNote">
+        <property name="instanceId" type="string" default="someProcessor" />
+        <property name="noteMaps" type="array" valueType="noteMap" />
+    </descriptor>
+    <descriptor class="type" type="noteMap" id="noteMap">
+        <property name="triggerIn" type="string" default="undefined" />
+        <property name="triggerOut" type="string" default="undefined" />
+        <property name="note" type="string" default="C4" />
+        <property name="velocity" type="int" min="0" max="127" default="127" />
+        <property name="duration" type="int" min="0" max="9999999" default="0" />
+    </descriptor>
+    <descriptor class="action" type="parameterProcessor" id="transform">
+        <property name="instanceId" type="string" default="undefined" />
+		<property name="delay" type="int" default="0" min="0" max="9999999" />
+		<property name="targetType" type="enum" default="SOUND" values="sound,audioRouter,synth" />
+		<property name="targets" type="list" />
+		<property name="targetParameter" type="string" />
+		<property name="multiSuffix" type="string" default="undefined" />
+		<property name="value" type="float" default="0" min="-9999999" max="9999999" />
+		<property name="duration" type="int" default="0" min="0" max="9999999" />
+		<property name="curve" type="int" default="0" min="-100" max="+100" />
+	</descriptor>
+    <descriptor class="action" type="parameterProcessor" id="macro">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="delay" type="int" default="0" min="0" max="9999999" />
+        <property name="macroTargets" type="array" valueType="macroTarget" />
+    </descriptor>
+    <descriptor class="action" type="stateProcessor" id="state">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="update" type="enum" default="onChange" values="onChange,always" />
+        <property name="stateMaps" type="array" valueType="stateMap" />
+    </descriptor>
+    <descriptor class="type" type="stateMap" id="stateMap">
+        <property name="in" type="list" />
+        <property name="state" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="action" type="eventProcessor" id="eventMapper">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="eventMaps" type="array" valueType="eventMap" />
+    </descriptor>
+    <descriptor class="action" type="eventProcessor" id="midiNoteMapper">
+        <property name="instanceId" type="string" default="undefined" />
+        <property name="eventMaps" type="array" valueType="eventMap" />
+    </descriptor>
+    <descriptor class="type" type="eventMap" id="eventMap">
+        <property name="in" type="list" />
+        <property name="out" type="string" />
+        <property name="delay" type="int" default="0" max="10000" min="0" />
+    </descriptor>
+    <descriptor class="action" type="player" id="timePatternPlayer">
+        <property name="instanceId" type="string" default="master_time_player" />
+        <property name="behavior" type="enum" values="LINEAR,DEFAULT" default="DEFAULT" />
+    </descriptor>
+    <descriptor class="action" type="player" id="beatPatternPlayer">
+        <property name="instanceId" type="string" default="master_beat_player" />
+        <property name="flowItems" type="array" valueType="flowItem" />
+    </descriptor>
+    <descriptor class="action" type="synth" id="sampler">
+        <property name="instanceId" type="string" default="undefined"  />
+        <property name="ignoreNoteOff" type="boolean" default="false" />
+        <property name="bus" type="string" default="master"  />
+        <property name="volume" type="int" default="0" min="-80" max="10" />
+        <property name="loop" type="boolean" default="false" />
+        <property name="ampAttack" type="int" default="0" min="0" max="500" />
+        <property name="ampDecay" type="int" default="0" min="0" max="500" />
+        <property name="ampRelease" type="int" default="0" min="0" max="500" />
+        <property name="ampSustain" type="float" default="1" min="0" max="1" />
+        <property name="ampVelocityRatio" type="float" default="1" min="0" max="1" />
+        <property name="filterOn" type="boolean" default="false" />
+        <property name="filterAttack" type="int" default="0" min="0" max="500" />
+        <property name="filterDecay" type="int" default="0" min="0" max="500" />
+        <property name="filterRelease" type="int" default="0" min="0" max="500" />
+        <property name="filterSustain" type="float" default="1" min="0" max="1" />
+        <property name="filterVelocityRatio" type="float" default="1" min="0" max="1" />
+        <property name="filterQ" type="float" default="0.0001" min="0.0001" max="30" />
+        <property name="filterFrequency" type="int" default="0" min="0" max="10" />
+        <property name="filterGain" type="float" default="0" min="0" max="1" />
+        <property name="audioNodes" type="array" valueType="audioNode" />
+        <property name="sampleMapGroups" type="array" valueType="sampleMapGroup"/>
+    </descriptor>
+    <descriptor class="action" type="audioRouter" id="audioBus">
+        <property name="instanceId" type="string" default="undefined"  />
+        <property name="outputBus" type="string" default="master"  />
+        <property name="volume" type="float" default="0" min="-80" max="40" />
+        <property name="pan" type="int" default="0" min="-100" max="100" />
+        <property name="audioNodes" type="array" valueType="audioNode" />
+    </descriptor>
+    <descriptor class="type" type="file" id="file">
+        <property name="name" type="string" default="undefined" />
+        <property name="type" type="enum" values="beatPattern,timePattern" default="" />
+    </descriptor>
+    <descriptor class="type" type="map" id="map">
+        <property name="inValue" type="string" default="undefined" />
+        <property name="outValue" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="type" type="macroTarget" id="target">
+        <property name="targetId" type="string" default="undefined" />
+        <property name="min" type="float" default="0" min="0" max="1" />
+        <property name="max" type="float" default="1" min="0" max="1" />
+        <property name="targetType" type="enum" default="BUS" values="SOUND,SYNTH,BUS" />
+        <property name="targetParameter" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="type" type="sampleMapGroup" id="sampleMapGroup">
+        <property name="name" type="string" default="undefined"  />
+        <property name="sampleMaps" type="array" valueType="sampleMap" />
+    </descriptor>
+    <descriptor class="type" type="sampleMap" id="sampleMap">
+        <property name="name" type="string" default="undefined"  />
+        <property name="velocityLow" type="int" default="0" min="0" max="127" />
+        <property name="velocityHigh" type="int" default="127"  min="0"  max="127" />
+    </descriptor>
+    <descriptor class="type" type="flowItem" id="start">
+        <property name="delay" type="int" default="0" min="0" max="Infinity" />
+        <property name="tempo" type="float" default="120" min="40" max="280" />
+        <property name="beatsPerBar" type="int" default="16" min="1" max="16" />
+        <property name="meter" type="list" default="simple" value="simple,compound" />
+        <property name="subdivision" type="string" default="16" values="1,2D,2,2T,4D,4,4T,8D,8,8T,16D,16,16T,32D,32,32T" />
+    </descriptor>
+    <descriptor class="type" type="flowItem" id="stop">
+        <property name="songPosition" type="string" default="NEXT_BEAT" />
+        <property name="returnEvent" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="type" type="flowItem" id="beatEvent">
+        <property name="songPosition" type="string" default="NEXT_BEAT" />
+        <property name="returnEvent" type="string" default="undefined" />
+        <property name="output" type="enum" default="onEvent" values="dispatch,onEvent" />
+    </descriptor>
+    <descriptor class="type" type="flowItem" id="add">
+        <property name="patternId" type="string" default="multi" />
+        <property name="channel" type="string" default="main" />
+        <property name="songPosition" type="string" default="NEXT_BAR" />
+        <property name="patternPosition" type="enum" default="SYNC"  values="SYNC,FIRST_BEAT" />
+        <property name="clearPending" type="boolean" default="true" />
+        <property name="replaceActive" type="boolean" default="true" />
+        <property name="setAsCurrent" type="boolean" default="true" />
+        <property name="loop" type="boolean" default="false" />
+        <property name="loopLength" type="int" default="129" min="1" max="65536"/>
+        <property name="clearPosition" type="string" default="NEXT_BAR" />
+    </descriptor>
+    <descriptor class="type" type="band" id="band">
+        <property name="bandType" type="enum" default="PEAKING" values="LOWPASS,HIGHPASS,BANDPASS,LOWSHELF,HIGHSHELF,PEAKING,NOTCH,ALLPASS"  automatable="false" />
+        <property name="frequency" type="float" default="800" min="20" max="22050" automatable="true" />
+        <property name="Q" type="float" default="1" min="0" max="100" automatable="true" />
+        <property name="gain" type="float" default="0" min="-40" max="40" automatable="true" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="chorus">
+        <property name="active" type="boolean" default="true" />
+        <property name="feedback" type="float" default="0" min="0" max="1" automatable="false"  />
+        <property name="delay" type="float" default="0.0045" min="0" max="1" automatable="false"  />
+        <property name="rate" type="float" default="1.5" min="0.01" max="8" automatable="false"  />
+        <property name="bypass" type="float" default="0" min="0" max="1" automatable="false"  />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="overdrive">
+        <property name="active" type="boolean" default="true" />
+        <property name="outputGain" type="float" default="0" min="0" max="1" automatable="true" />
+        <property name="drive" type="float" default="0" min="0" max="1" automatable="true" />
+        <property name="curveAmount" type="float" default="1" min="0" max="1" automatable="true"  />
+        <property name="algorithmIndex" type="int" default="0" min="0" max="5" automatable="false"  />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="compressor">
+        <property name="active" type="boolean" default="true" />
+        <property name="threshold" type="float" default="0" min="-100" max="0" automatable="true" />
+        <property name="makeupGain" type="float" default="1" min="0" max="100" automatable="true"  />
+        <property name="attack" type="float" default="1" min="0" max="1000" automatable="true"  />
+        <property name="release" type="float" default="1" min="0" max="3000" automatable="true"  />
+        <property name="ratio" type="float" default="4" min="1" max="20" automatable="true"  />
+        <property name="knee" type="float" default="5" min="0" max="40" automatable="true"  />
+        <property name="automakeup" type="boolean" default="false" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="cabinet">
+        <property name="active" type="boolean" default="true" />
+        <property name="makeupGain" type="float" default="1" min="0" max="20" automatable="true" />
+        <property name="impulsePath" type="string" default="undefined" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="filter">
+        <property name="active" type="boolean" default="true" />
+        <property name="frequency" type="float" default="20" min="20" max="22050" automatable="true"/>
+        <property name="Q" type="float" default="1" min="0" max="100" automatable="true" />
+        <property name="gain" type="float" default="0" min="-40" max="40" automatable="true" />
+        <property name="bypass" type="boolean" default="true" automatable="true" />
+        <property name="filterType" type="enum" default="LOWPASS" values="LOWPASS,HIGHPASS,BANDPASS,LOWSHELF,HIGHSHELF,PEAKING,NOTCH,ALLPASS" automatable="false" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="convolver">
+        <property name="active" type="boolean" default="true" />
+        <property name="highCut" type="float" default="22050" min="20" max="22050" automatable="true"/>
+        <property name="lowCut" type="float" default="20" min="20" max="22050" automatable="true" />
+        <property name="dryLevel" type="float" default="1" min="0" max="1" automatable="true" />
+        <property name="wetLevel" type="float" default="1" min="0" max="1" automatable="true" />
+        <property name="level" type="float" default="1" min="0" max="1" automatable="true" />
+        <property name="impulse" type="string" default="undefined" />
+    </descriptor>
+    <descriptor  class="type" type="audioNode" id="delay">
+        <property name="active" type="boolean" default="true" />
+        <property name="delayTime" type="float" default="30" min="0.001" max="10000" automatable="false"/>
+        <property name="feedback" type="float" default="0.45" min="0" max="0.9" automatable="true" />
+        <property name="cutoff" type="float" default="20" min="20" max="22050" automatable="true" />
+        <property name="dryLevel" type="float" default="1" min="0" max="1" automatable="true" />
+        <property name="wetLevel" type="float" default="1" min="0" max="1" automatable="true" />
+        <property name="tempoSync" type="string" default="undefined" automatable="false" />
+        <property name="subdivision" type="enum" default="8D" values="1,2D,2,2T,4D,4,4T,8D,8,8T,16D,16,16T,32D,32,32T" automatable="false" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="envelopeFollower">
+        <property name="active" type="boolean" default="true" />
+        <property name="attackTime" type="float" default="0.003" min="0" max="0.5" automatable="false" />
+        <property name="releaseTime" type="float" default="0.5" min="0" max="1" automatable="false" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="equalizer">
+        <property name="active" type="boolean" default="true" />
+        <property name="bands" type="array" valueType="band" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="lfo">
+        <property name="active" type="boolean" default="true" />
+        <property name="frequency" type="float" default="1" min="0" max="8" automatable="false" />
+        <property name="offset" type="float" default="0.85" min="0" max="22050" automatable="false" />
+        <property name="phase" type="float" default="0" min="0" max="6.28318530718" automatable="false" />
+        <property name="oscillation" type="float" default="0.3" min="-22050" max="22050" automatable="false" />
+        <property name="type" type="enum" default="SIN" values="SIN,SQUARE,TRIANGLE,SAWTOOTH" automatable="false" />
+    </descriptor>
+    <descriptor class="type" type="audioNode" id="phaser">
+        <property name="active" type="boolean" default="true" />
+        <property name="rate" type="float" default="1" min="0" max="8" automatable="false" />
+        <property name="depth" type="float" default="0.3" min="0" max="1" automatable="false" />
+        <property name="feedback" type="float" default="0.2" min="0" max="1" automatable="false" />
+        <property name="stereoPhase" type="int" default="30" min="0" max="180" automatable="false" />
+        <property name="baseModulationFrequency" type="float" default="700" min="500" max="1500" automatable="false" />
+    </descriptor>
+    <descriptor  class="type" type="audioNode" id="pingPongDelay">
+        <property name="active" type="boolean" default="true" />
+        <property name="delayTime" type="float" default="30" min="0.0001" max="10000" automatable="false"/>
+        <property name="feedback" type="float" default="0.45" min="0" max="0.9" automatable="true" />
+        <property name="cutoff" type="float" default="20" min="20" max="22050" automatable="true" />
+        <property name="dryLevel" type="float" default="1" min="0" max="1" automatable="true" />
+        <property name="wetLevel" type="float" default="1" min="0" max="1" automatable="true" />
+        <property name="tempoSync" type="string" default="undefined" automatable="false" />
+        <property name="subdivision" type="enum" default="8D" values="1,2D,2,2T,4D,4,4T,8D,8,8T,16D,16,16T,32D,32,32T" automatable="false" />
+    </descriptor>
+    <descriptor  class="type" type="audioNode" id="tremolo">
+        <property name="active" type="boolean" default="true" />
+        <property name="intensity" type="float" default="0.3" min="0" max="1" automatable="false" />
+        <property name="stereoPhase" type="int" default="0" min="0" max="180" automatable="false" />
+        <property name="rate" type="float" default="0.1" min="0.001" max="8" automatable="false" />
+    </descriptor>
+    <descriptor  class="type" type="audioNode" id="wahWah">
+        <property name="active" type="boolean" default="true" />
+        <property name="automode" type="boolean" default="false" />
+        <property name="baseFrequency" type="float" default="0.5" min="0" max="1" automatable="false"/>
+        <property name="excursionOctaves" type="int" default="2" min="1" max="6" automatable="false" />
+        <property name="sweep" type="float" default="0.2" min="0" max="1" automatable="false" />
+        <property name="resonance" type="float" default="10" min="1" max="100" automatable="false" />
+        <property name="sensitivity" type="float" default="0.5" min="-1" max="1" automatable="false" />
+    </descriptor>
+</descriptors>

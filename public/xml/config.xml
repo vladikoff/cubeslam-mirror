@@ -1,0 +1,1001 @@
+<?xml version="1.0"?>
+<actions>
+<!-- NOTES:
+    EINAR:
+        Puck can sometimes get stuck in side to side motion.
+        Missing sound_on sound_off
+        Missing button_over buton_down
+        Pause
+ -->
+
+<!-- AUDIO MIXING -->
+    <!-- MAIN BUS -->
+
+    <audioBus triggers="init_routing">
+        <properties instanceId="master_bus" pan="0" volume="0.75" outputBus="master"/>
+        <audioNodes></audioNodes>
+    </audioBus>
+
+    <!-- MAIN BUS MUTE/UNMUTE -->
+    <transform triggers="sound_off,pause">
+        <properties instanceId="master_mute"
+            targetType="audioRouter" targets="master_bus" targetParameter="volume"
+            value="0" duration="100" />
+    </transform>
+    <transform triggers="sound_on,unpause">
+        <properties instanceId="master_unmute"
+            targetType="audioRouter" targets="master_bus" targetParameter="volume"
+            value="0.9" duration="100" />
+    </transform>
+<!-- /AUDIO MIXING -->
+
+<!-- BEAT PATTERN PLAYER -->
+    <!-- INITIALIZE BEAT PATTERN PLAYER -->
+    <beatPatternPlayer triggers="init_routing" >
+        <properties instanceId="main" />
+        <flowItems>
+            <start beatsPerBar="16" tempo="126"  />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <!-- MAIN SCREENS -->
+    <beatPatternPlayer triggers="splash_screen" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BAR" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass_filter__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="strings__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__1" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="gameover_screen" >
+        <properties instanceId="main" />
+        <flowItems>
+            <start tempo="126" delay="0" beatsPerBar="16" />
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BAR" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="lead_a__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="lead_b__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="strings__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__2" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="info_screen" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BAR" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass_filter__12" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__12" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__12" channel="main" songPosition="NEXT_BAR" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BAR" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="fog_over,multiball_over,death_ball_over,mirrored_controls_over,timebomb_over,ghost_ball_over" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__4" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <!-- COUNTDOWNS -->
+
+    <!-- 3 BEAT COUNTDOWN -->
+    <eventMapper triggers="countdown_init">
+        <properties instanceId="handle_long" />
+        <eventMaps>
+            <eventMap in="countdown_init" out="countdown_long_start" delay="500" />
+            <eventMap in="countdown_init" out="stop_immediate" delay="0" />
+        </eventMaps>
+    </eventMapper>
+    <beatPatternPlayer triggers="stop_immediate">
+        <properties instanceId="main" />
+        <flowItems>
+            <stop songPosition="ASAP" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="countdown_long_start">
+        <properties instanceId="main" />
+        <flowItems>
+            <start beatsPerBar="16" tempo="126" delay="0" />
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass_comp__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_plucked__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_sharp__5" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <beatEvent songPosition="NEXT_BEAT+1.6" returnEvent="gameplay_init" output="onEvent" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <beatPatternPlayer triggers="gameplay_init" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__4" channel="main" songPosition="NEXT_BEAT" patternPosition="FIRST_BEAT" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <eventMapper triggers="countdown_short">
+        <properties instanceId="handle_short" />
+        <eventMaps>
+            <eventMap in="countdown_short" out="countdown_short_start" delay="3500"/>
+            <eventMap in="countdown_short" out="gameplay_init" delay="3500"/>
+        </eventMaps>
+    </eventMapper>
+    <beatPatternPlayer triggers="user_won_round,user_lost_round" >
+        <properties instanceId="main" />
+        <flowItems>
+            <stop songPosition="ASAP" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="countdown_short_start">
+        <properties instanceId="main" />
+        <flowItems>
+            <start beatsPerBar="16" tempo="126" />
+        </flowItems>
+    </beatPatternPlayer>
+
+    <!-- SPECIALS -->
+    <beatPatternPlayer triggers="fog_activate" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_funk__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_sharp__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_warm__3" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="mirrored_controls_activate" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="lead_a__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="lead_b__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_funk__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_plucked__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_sharp__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_warm__7" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="multiball_activate" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_funk__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_plucked__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_sharp__8" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="ghost_ball_activate" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_comp__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_funk__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_plucked__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_warm__9" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="timebomb_activate" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="stab__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_comp__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_perc__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_plucked__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_sharp__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_warm__10" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+    <beatPatternPlayer triggers="death_ball_activate" >
+        <properties instanceId="main" />
+        <flowItems>
+            <add patternId="empty_pattern" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="true" clearPosition="NEXT_BEAT" replaceActive="true" setAsCurrent="true" loop="true" loopLength="128" />
+            <add patternId="bass__11" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="bass_filter__11" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="dm_kraftwerk__11" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="lead_a__11" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+            <add patternId="synth_pop__11" channel="main" songPosition="NEXT_BEAT" patternPosition="SYNC" clearPending="false" clearPosition="NEXT_BEAT" replaceActive="false" setAsCurrent="false" loop="true" loopLength="128" />
+        </flowItems>
+    </beatPatternPlayer>
+<!-- /BEAT PATTERN PLAYER -->
+
+<!-- LEVEL TRANSPOSE -->
+    <!-- SET TRANSPOSE LEVEL FOR MIDI PROCESSOR -->
+    <customCode triggers="init_routing,user_won_round,user_lost_round,user_won_match,user_lost_match">
+        <properties instanceId="LevelTransposer" />
+    </customCode>
+    <!-- TRANSPOSE INCOMING MIDI DATA BEFORE SAMPLERS -->
+    <midiProcessor triggers="item_up,item_down,paddle_fx,extra_life,winloose_tone,shield_hit,bass_filter,lead_a,lead_b,strings,synth_funk,synth_plucked,synth_sharp,synth_warm,bass,bass_comp,stab,synth_comp,synth_perc,synth_pop" >
+        <properties instanceId="midi_transposer" />
+        <properties transpose="customCode:LevelTransposer:transposeValue" quantize="" dynamic="0" scale="" root="" />
+        <properties customScale="" />
+    </midiProcessor>
+<!-- /LEVEL TRANSPOSE -->
+
+
+    <!-- FX SOUNDS -->
+    <!--
+        user_paddle_hit = "PaddleFX_E1"
+        opponent_paddle_hit = "PaddleFX_E2"
+        wall_hit = "PaddleFX_B2"
+        obstacle_hit = "PaddleFX_E3"
+        opponent_shield_hit = "Shield_Hit_E3"
+        user_shield_hit = "Shield_Hit_E3"
+        opponent_score_hit = "Loose_E0"
+        <NAME>_spawn = "Item_Up_E3"
+        <Name>_activate = "Item_Down_E3"
+     -->
+
+<!-- MAKE EFFECTS SOUNDS -->
+    <genericPlay triggers="user_won_round">
+        <properties delay="0" instanceId="win_round_buzz" soundFile="win_round_buzz" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="user_lost_round">
+        <properties delay="0" instanceId="loose_round_buzz" soundFile="loose_round_buzz" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="user_lost_round">
+        <properties delay="0" instanceId="loose_fanfare" soundFile="loose_fanfare" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="user_won_round">
+        <properties delay="0" instanceId="win_fanfare" soundFile="win_fanfare" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+    <genericPlay triggers="opponent_screen_explode">
+        <properties delay="0" instanceId="opponent_screen_break_between_levels" soundFile="opponent_screen_break_between_levels" volume="0" loop="-1"
+            reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
+            bus="master_bus" timingCorrection="PLAY" />
+    </genericPlay>
+<!-- /MAKE EFFECTS SOUNDS -->
+
+<!-- /MAKE EFFECTS NOTES -->
+    <makeNote triggers="mirrored_controls_activate,mirrored_controls_spawn,fireball_activate,fireball_spawn,bulletproof_activate,bulletproof_spawn,multiball_activate,multiball_spawn,timebomb_activate,timebomb_spawn,ghost_ball_activate,ghost_ball_spawn,death_ball_activate,death_ball_spawn,extra_life_activate,user_paddle_hit,opponent_paddle_hit,wall_hit,obstacle_hit,user_shield_hit,opponent_shield_hit,opponent_score_hit,fog_spawn,fog_activate">
+        <properties instanceId="makeFx" />
+        <noteMaps>
+            <noteMap triggerIn="extra_life_activate" triggerOut="extra_life" note="E1" velocity="127" />
+            <noteMap triggerIn="user_paddle_hit" triggerOut="paddle_fx" note="E1" velocity="127" />
+            <noteMap triggerIn="opponent_paddle_hit" triggerOut="paddle_fx" note="E2" velocity="127" />
+            <noteMap triggerIn="wall_hit" triggerOut="paddle_fx" note="B2" velocity="127" />
+            <noteMap triggerIn="obstacle_hit" triggerOut="paddle_fx" note="E3" velocity="127" />
+            <noteMap triggerIn="opponent_shield_hit" triggerOut="shield_hit" note="E3" velocity="127" />
+            <noteMap triggerIn="user_shield_hit" triggerOut="shield_hit" note="E3" velocity="127" />
+            <noteMap triggerIn="opponent_score_hit" triggerOut="winloose_tone" note="E0" velocity="127" />
+            <noteMap triggerIn="fog_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="fog_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="extra_life_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="death_ball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="death_ball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="ghost_ball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="ghost_ball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="timebomb_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="timebomb_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="multiball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="multiball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="bulletproof_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="bulletproof_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="fireball_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="fireball_activate" triggerOut="item_down" note="E3" velocity="127" />
+            <noteMap triggerIn="mirrored_controls_spawn" triggerOut="item_up" note="E3" velocity="127" />
+            <noteMap triggerIn="mirrored_controls_activate" triggerOut="item_down" note="E3" velocity="127" />
+        </noteMaps>
+    </makeNote>
+<!-- /MAKE EFFECTS NOTES -->
+
+<!-- FX SAMPLERS -->
+    <sampler triggers="paddle_fx">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="paddle_fx" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="extra_life">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="extralife" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="winloose_tone">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="winloose_tone" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="shield_hit">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="Shield_Hit" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="item_up">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="Item_Up" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="item_down">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="Item_Down" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+<!-- /FX SAMPLERS -->
+
+<!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
+    <transform triggers="bass_filter_mute,lead_a_mute,lead_b_mute,strings_mute,synth_funk_mute,synth_plucked_mute,synth_sharp_mute,synth_warm_mute,dm_kraftwerk_mute,bass_mute,bass_comp_mute,stab_mute,synth_comp_mute,synth_perc_mute,synth_pop_mute">
+        <properties instanceId="muteInst"
+            targetType="synth" targets="multi" multiSuffix="_mute" targetParameter="volume"
+            value="-80" duration="100" />
+    </transform>
+    <transform triggers="bass_filter_unmute,lead_a_unmute,lead_b_unmute,strings_unmute,synth_funk_unmute,synth_plucked_unmute,synth_sharp_unmute,synth_warm_unmute,dm_kraftwerk_unmute,bass_unmute,bass_comp_unmute,stab_unmute,synth_comp_unmute,synth_perc_unmute,synth_pop_unmute">
+        <properties instanceId="unmuteInst"
+            targetType="synth" targets="multi" multiSuffix="_unmute" targetParameter="volume"
+            value="-5" duration="100" />
+    </transform>
+<!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
+
+<!-- INSTRUMENT SAMPLERS -->
+    <sampler triggers="bass_filter">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="bass_filter_low" velocityLow="0" velocityHigh="50" />
+                    <sampleMap name="bass_filter_mid" velocityLow="51" velocityHigh="100" />
+                    <sampleMap name="bass_filter_hi" velocityLow="101" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="bass_comp">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="master_bus" loop="true"/>
+        <properties ampAttack="10" ampDecay="450" ampRelease="500" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="bass">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="220" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="stab">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-4.5" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="100" ampSustain="1" ampVelocityRatio="0"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="strings">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-6" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="220" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="synth_comp">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-3.5" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="1" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="synth_funk">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-5.5" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="200" ampRelease="300" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="synth_perc">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-13" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="1" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="synth_plucked">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="0" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="45" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="synth_pop">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="350" ampSustain="1" ampVelocityRatio="0"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="synth_sharp">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-7.5" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="100" ampSustain="1" ampVelocityRatio="0"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="synth_warm">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-13" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="500" ampSustain="1" ampVelocityRatio="0"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="lead_a">
+        <properties instanceId="multi" ignoreNoteOff="true" volume="-8" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="350" ampRelease="550" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="lead_b">
+        <properties instanceId="multi" ignoreNoteOff="true" volume="-9" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="100" ampRelease="640" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+    <sampler triggers="dm_kraftwerk">
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-3" bus="master_bus" loop="true"/>
+        <properties ampAttack="1" ampDecay="1" ampRelease="1" ampSustain="1" ampVelocityRatio="1"/>
+        <properties filterOn="false"/>
+        <audioNodes />
+        <sampleMapGroups>
+            <sampleMapGroup name="map1">
+                <sampleMaps>
+                    <sampleMap name="multi" velocityLow="0" velocityHigh="127" />
+                </sampleMaps>
+            </sampleMapGroup>
+        </sampleMapGroups>
+    </sampler>
+<!-- /INSTRUMENT SAMPLERS -->
+
+<!-- LOAD ASSETS -->
+    <loadCustomCode triggers="preload_assets">
+        <properties instanceId="transpose_loader" baseURL="javascript/" returnEvent=""/>
+        <files>
+            <file name="transposer" />
+        </files>
+    </loadCustomCode>
+    <loadMIDI triggers="preload_assets">
+        <properties instanceId="midiLoader" baseURL="midi/" returnEvent="" />
+        <files>
+            <file name="bass" type="beatPattern" />
+            <file name="bass_comp" type="beatPattern" />
+            <file name="bass_filter" type="beatPattern" />
+            <file name="dm_kraftwerk" type="beatPattern" />
+            <file name="lead_a" type="beatPattern" />
+            <file name="lead_b" type="beatPattern" />
+            <file name="stab" type="beatPattern" />
+            <file name="strings" type="beatPattern" />
+            <file name="synth_comp" type="beatPattern" />
+            <file name="synth_funk" type="beatPattern" />
+            <file name="synth_perc" type="beatPattern" />
+            <file name="synth_plucked" type="beatPattern" />
+            <file name="synth_pop" type="beatPattern" />
+            <file name="synth_sharp" type="beatPattern" />
+            <file name="synth_warm" type="beatPattern" />
+            <file name="winloose_tone" type="beatPattern" />
+        </files>
+    </loadMIDI>
+    <loadSampleMap triggers="preload_assets">
+        <properties instanceId="load_sampleMaps" baseURL="xml/" returnEvent="" />
+        <files>
+            <file name="samplemaps" />
+        </files>
+    </loadSampleMap>
+    <!-- FX -->
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_fx" baseURL="audio/fx/" returnEvent="" />
+        <files>
+            <file name="Item_Up_E3" />
+            <file name="Item_Down_E3" />
+            <file name="PaddleFX_E0" />
+            <file name="PaddleFX_G0" />
+            <file name="PaddleFX_B0" />
+            <file name="PaddleFX_E1" />
+            <file name="PaddleFX_G1" />
+            <file name="PaddleFX_B1" />
+            <file name="PaddleFX_E2" />
+            <file name="PaddleFX_G2" />
+            <file name="PaddleFX_B2" />
+            <file name="PaddleFX_E3" />
+            <file name="PaddleFX_G3" />
+            <file name="PaddleFX_B3" />
+            <file name="ExtraLife_E1" />
+            <file name="ExtraLife_B1" />
+            <file name="ExtraLife_E2" />
+            <file name="Loose_Perc" />
+            <file name="Loose_E0" />
+            <file name="Loose_B0" />
+            <file name="Loose_E1" />
+            <file name="Loose_B1" />
+            <file name="Loose_E2" />
+            <file name="Loose_B2" />
+            <file name="Loose_E3" />
+            <file name="Loose_B3" />
+            <file name="Loose_E4" />
+            <file name="Loose_B4" />
+            <file name="Loose_E5" />
+            <file name="Loose_B5" />
+            <file name="Shield_Hit_E3" />
+            <file name="Shield_Hit_B3" />
+            <file name="Shield_Hit_E4" />
+            <file name="Shield_Hit_B4" />
+            <file name="loose_fanfare" />
+            <file name="loose_round_buzz" />
+            <file name="opponent_screen_break_between_levels" />
+            <file name="win_fanfare" />
+            <file name="win_round_buzz" />
+        </files>
+    </loadSound>
+    <!-- INSTRUMENTS -->
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_bass_comp" baseURL="audio/instruments/Bass_Comp/" returnEvent="" />
+        <files>
+            <file name="Bass_Comp_E-1" />
+            <file name="Bass_Comp_As-1" />
+            <file name="Bass_Comp_E0"  />
+            <file name="Bass_Comp_As0" />
+            <file name="Bass_Comp_E1"  />
+            <file name="Bass_Comp_As1" />
+            <file name="Bass_Comp_E2"  />
+            <file name="Bass_Comp_As2" />
+            <file name="Bass_Comp_E3"  />
+            <file name="Bass_Comp_As3" />
+            <file name="Bass_Comp_E4"  />
+            <file name="Bass_Comp_As4" />
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_bass" baseURL="audio/instruments/Bass/" returnEvent="" />
+        <files>
+            <file name="Bass_E0" />
+            <file name="Bass_As0"/>
+            <file name="Bass_E1" />
+            <file name="Bass_As1"/>
+            <file name="Bass_E2" />
+            <file name="Bass_As2"/>
+            <file name="Bass_E3" />
+            <file name="Bass_As3"/>
+            <file name="Bass_E4" />
+            <file name="Bass_As4"/>
+            <file name="Bass_E5" />
+            <file name="Bass_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_stab" baseURL="audio/instruments/Stab/" returnEvent="" />
+        <files>
+            <file name="Stab_E0" />
+            <file name="Stab_As0" />
+            <file name="Stab_E1" />
+            <file name="Stab_As1"/>
+            <file name="Stab_E2" />
+            <file name="Stab_As2"/>
+            <file name="Stab_E3" />
+            <file name="Stab_As3"/>
+            <file name="Stab_E4" />
+            <file name="Stab_As4"/>
+            <file name="Stab_E5" />
+            <file name="Stab_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_kraftwerk" baseURL="audio/instruments/DM_Kraftwerk/" returnEvent="" />
+        <files>
+            <file name="KICK" />
+            <file name="SNARE"  />
+            <file name="Hitt_2" />
+            <file name="hihat"  />
+            <file name="Tapp_L" />
+            <file name="Tapp_R" />
+            <file name="Battery_1" />
+            <file name="Battery_2" />
+            <file name="Battery_3" />
+            <file name="Battery_4" />
+            <file name="Battery_5" />
+            <file name="Battery_6" />
+            <file name="Battery_7" />
+            <file name="Battery_8" />
+            <file name="Battery_9" />
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_synth_perc" baseURL="audio/instruments/Synth_Perc/" returnEvent="" />
+        <files>
+            <file name="Synth_Perc_E0" />
+            <file name="Synth_Perc_As0"/>
+            <file name="Synth_Perc_E1" />
+            <file name="Synth_Perc_As1"/>
+            <file name="Synth_Perc_E2" />
+            <file name="Synth_Perc_As2"/>
+            <file name="Synth_Perc_E3" />
+            <file name="Synth_Perc_As3"/>
+            <file name="Synth_Perc_E4" />
+            <file name="Synth_Perc_As4"/>
+            <file name="Synth_Perc_E5" />
+            <file name="Synth_Perc_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_synth_pop" baseURL="audio/instruments/Synth_Pop/" returnEvent="" />
+        <files>
+            <file name="Synth_Pop_E0" />
+            <file name="Synth_Pop_As0"/>
+            <file name="Synth_Pop_E1" />
+            <file name="Synth_Pop_As1"/>
+            <file name="Synth_Pop_E2" />
+            <file name="Synth_Pop_As2"/>
+            <file name="Synth_Pop_E3" />
+            <file name="Synth_Pop_As3"/>
+            <file name="Synth_Pop_E4" />
+            <file name="Synth_Pop_As4"/>
+            <file name="Synth_Pop_E5" />
+            <file name="Synth_Pop_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_synth_comp" baseURL="audio/instruments/Synth_Comp/" returnEvent="" />
+        <files>
+            <file name="Synth_Comp_E0" />
+            <file name="Synth_Comp_As0"/>
+            <file name="Synth_Comp_E1" />
+            <file name="Synth_Comp_As1"/>
+            <file name="Synth_Comp_E2" />
+            <file name="Synth_Comp_As2"/>
+            <file name="Synth_Comp_E3" />
+            <file name="Synth_Comp_As3"/>
+            <file name="Synth_Comp_E4" />
+            <file name="Synth_Comp_As4"/>
+            <file name="Synth_Comp_E5" />
+            <file name="Synth_Comp_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_strings" baseURL="audio/instruments/Strings/" returnEvent="" />
+        <files>
+            <file name="Strings_E-1"/>
+            <file name="Strings_As-1"/>
+            <file name="Strings_E0"/>
+            <file name="Strings_As0"/>
+            <file name="Strings_E1"/>
+            <file name="Strings_As1"/>
+            <file name="Strings_E2"/>
+            <file name="Strings_As2"/>
+            <file name="Strings_E3"/>
+            <file name="Strings_As3"/>
+            <file name="Strings_E4" />
+            <file name="Strings_As4"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_synth_plucked" baseURL="audio/instruments/Synth_Plucked/" returnEvent="" />
+        <files>
+            <file name="Synth_Plucked_E0" />
+            <file name="Synth_Plucked_As0"/>
+            <file name="Synth_Plucked_E1" />
+            <file name="Synth_Plucked_As1"/>
+            <file name="Synth_Plucked_E2" />
+            <file name="Synth_Plucked_As2"/>
+            <file name="Synth_Plucked_E3" />
+            <file name="Synth_Plucked_As3"/>
+            <file name="Synth_Plucked_E4" />
+            <file name="Synth_Plucked_As4"/>
+            <file name="Synth_Plucked_E5" />
+            <file name="Synth_Plucked_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_synth_sharp" baseURL="audio/instruments/Synth_Sharp/" returnEvent="" />
+        <files>
+            <file name="Synth_Sharp_E1" />
+            <file name="Synth_Sharp_As1"/>
+            <file name="Synth_Sharp_E2" />
+            <file name="Synth_Sharp_As2"/>
+            <file name="Synth_Sharp_E3" />
+            <file name="Synth_Sharp_As3"/>
+            <file name="Synth_Sharp_E4" />
+            <file name="Synth_Sharp_As4"/>
+            <file name="Synth_Sharp_E5" />
+            <file name="Synth_Sharp_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_synth_funk" baseURL="audio/instruments/Synth_Funk/" returnEvent="" />
+        <files>
+            <file name="Synth_Funk_E0" />
+            <file name="Synth_Funk_As0"/>
+            <file name="Synth_Funk_E1" />
+            <file name="Synth_Funk_As1"/>
+            <file name="Synth_Funk_E2" />
+            <file name="Synth_Funk_As2"/>
+            <file name="Synth_Funk_E3" />
+            <file name="Synth_Funk_As3"/>
+            <file name="Synth_Funk_E4" />
+            <file name="Synth_Funk_As4"/>
+            <file name="Synth_Funk_E5" />
+            <file name="Synth_Funk_As5"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_synth_warm" baseURL="audio/instruments/Synth_Warm/" returnEvent="" />
+        <files>
+            <file name="Synth_Warm_E0" />
+            <file name="Synth_Warm_As0"/>
+            <file name="Synth_Warm_E1" />
+            <file name="Synth_Warm_As1"/>
+            <file name="Synth_Warm_E2" />
+            <file name="Synth_Warm_As2"/>
+            <file name="Synth_Warm_E3" />
+            <file name="Synth_Warm_As3"/>
+            <file name="Synth_Warm_E4" />
+            <file name="Synth_Warm_As4"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_lead_a" baseURL="audio/instruments/Lead_A/" returnEvent="" />
+        <files>
+            <file name="Lead_A_E1" />
+            <file name="Lead_A_As1"/>
+            <file name="Lead_A_E2" />
+            <file name="Lead_A_As2"/>
+            <file name="Lead_A_E3" />
+            <file name="Lead_A_As3"/>
+            <file name="Lead_A_E4" />
+            <file name="Lead_A_As4"/>
+            <file name="Lead_A_E5" />
+            <file name="Lead_A_As5"/>
+            <file name="Lead_A_E6" />
+            <file name="Lead_A_As6"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="dmaf_ready">
+        <properties instanceId="load_lead_b" baseURL="audio/instruments/Lead_B/" returnEvent="" />
+        <files>
+            <file name="Lead_B_E1" />
+            <file name="Lead_B_As1"/>
+            <file name="Lead_B_E2" />
+            <file name="Lead_B_As2"/>
+            <file name="Lead_B_E3" />
+            <file name="Lead_B_As3"/>
+            <file name="Lead_B_E4" />
+            <file name="Lead_B_As4"/>
+            <file name="Lead_B_E5" />
+            <file name="Lead_B_As5"/>
+            <file name="Lead_B_E6" />
+            <file name="Lead_B_As6"/>
+        </files>
+    </loadSound>
+    <loadSound triggers="preload_assets">
+        <properties instanceId="load_bass_filter" baseURL="audio/instruments/Bass_Filter/" returnEvent="" />
+        <files>
+            <file name="Bass_Filter_Low_E1" />
+            <file name="Bass_Filter_Low_As1"/>
+            <file name="Bass_Filter_Low_E2" />
+            <file name="Bass_Filter_Low_As2"/>
+            <file name="Bass_Filter_Low_E3" />
+            <file name="Bass_Filter_Low_As3"/>
+            <file name="Bass_Filter_Low_E4" />
+            <file name="Bass_Filter_Low_As4"/>
+            <file name="Bass_Filter_Low_E5" />
+            <file name="Bass_Filter_Low_As5"/>
+            <file name="Bass_Filter_Low_E6" />
+            <file name="Bass_Filter_Low_As6"/>
+            <file name="Bass_Filter_Low_E7" />
+            <file name="Bass_Filter_Low_As7"/>
+            <file name="Bass_Filter_Mid_E1" />
+            <file name="Bass_Filter_Mid_As1"/>
+            <file name="Bass_Filter_Mid_E2" />
+            <file name="Bass_Filter_Mid_As2"/>
+            <file name="Bass_Filter_Mid_E3" />
+            <file name="Bass_Filter_Mid_As3"/>
+            <file name="Bass_Filter_Mid_E4" />
+            <file name="Bass_Filter_Mid_As4"/>
+            <file name="Bass_Filter_Mid_E5" />
+            <file name="Bass_Filter_Mid_As5"/>
+            <file name="Bass_Filter_Mid_E6" />
+            <file name="Bass_Filter_Mid_As6"/>
+            <file name="Bass_Filter_Mid_E7" />
+            <file name="Bass_Filter_Mid_As7"/>
+            <file name="Bass_Filter_Hi_E1" />
+            <file name="Bass_Filter_Hi_As1" />
+            <file name="Bass_Filter_Hi_E2" />
+            <file name="Bass_Filter_Hi_As2" />
+            <file name="Bass_Filter_Hi_E3" />
+            <file name="Bass_Filter_Hi_As3" />
+            <file name="Bass_Filter_Hi_E4" />
+            <file name="Bass_Filter_Hi_As4" />
+            <file name="Bass_Filter_Hi_E5" />
+            <file name="Bass_Filter_Hi_As5" />
+            <file name="Bass_Filter_Hi_E6" />
+            <file name="Bass_Filter_Hi_As6" />
+            <file name="Bass_Filter_Hi_E7" />
+            <file name="Bass_Filter_Hi_As7" />
+        </files>
+    </loadSound>
+<!-- /LOAD ASSETS -->
+</actions>

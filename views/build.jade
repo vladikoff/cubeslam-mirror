@@ -408,7 +408,7 @@ html(lang='en')
       #about
         ul
           li.technology
-            a 
+            a
               span Technology
           li.terms
             a.notimplemented Terms &amp; privacy
@@ -432,6 +432,7 @@ html(lang='en')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src="/javascript/libs/dat.gui.js")
     script(src='/javascript/pong.{{.Minified}}js')
+    script(src='/javascript/dmaf.min.js')
     script
       require('paddle-battle')({
         room: '{{.Room}}',
