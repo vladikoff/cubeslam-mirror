@@ -98,8 +98,11 @@ html.mobile
       transition none
       height 60px
       margin-top -30px
-      display none
+      transform translateZ(0)
+      backface-visibility hidden
     .prompt
+      transform translateZ(0)
+      backface-visibility hidden
       h1, h2
         font-size 30px
 
@@ -275,43 +278,47 @@ html.mobile
     > canvas, > video
       display none
 
+
+  $w = 768px
+  $h = 480px
   #canv-css
     display block
-    width 1280px
-    height 800px
-    relative top -380px left -640px
+    width $w
+    height $h
+    relative top -260px 
+    left -1 * $w * .5
     transform-origin 50% 55%
     .background
-      width 2560px
-      height 1799px
-      display none!important
+      width 1536px
+      height 1079px
       z-index 0
-      absolute top -670px left -50%
+      absolute top -340px left -50%
+      background no-repeat center center
+      background-size cover
       img
         width 100%
         height 100%
 
       .bear
-        absolute top 650px left 1130px
+        absolute top 390px left 679px
 
       .angry
-        absolute top 14px left 66px
+        absolute top 8px left 40px
       .blink
-        absolute top 61px left 104px
+        absolute top 37px left 62px
       .jawdrop
-        absolute top 91px left 94px
+        absolute top 55px left 56px
       .flirt
-        absolute top 35px left 104px
+        absolute top 21px left 62px
 
     .game-board
       position absolute
       z-index 2
-      width 1280px
-      height 800px
-      perspective 1200px
+      width $w
+      height $h
+      perspective 640px
       perspective-origin 50% 0%
-      // transform translateZ(0)
-      // transform-style preserve-3d
+      transform translateZ(0)
       backface-visibility hidden
 
     .shields
@@ -319,7 +326,6 @@ html.mobile
       letter-spacing 0
       font-size 0
       width 100%
-      display none
       .shields-a, .shields-b
         absolute top 0px
 
@@ -335,39 +341,38 @@ html.mobile
         transform scaleY(.005)
         backface-visibility hidden
         &.visible
-          // for row in 1 2 3
-          //   &:nth-child({row})
-          //     transition-delay 100ms * (row - 1)
+          for row in 1 2 3
+            &:nth-child({row})
+              transition-delay 100ms * (row - 1)
           transform scaleY(1)
 
       .shields-a
-        top 594px
-        left 182px
+        top 420px
+        left 109px
         z-index 4
         .shield-1
-          left 0 10
+          left 0
         .shield-2
-          left 309px
+          left 186px
         .shield-3
-          left 610px
+          left 366px
 
       .shields-b
-        top 163px
-        left 427px
+        top 161px
+        left 254px
         z-index 0
 
         .shield-1
           left 0
         .shield-2
-          left 143px
+          left 87px
         .shield-3
-          left 284px
+          left 173px
 
     .arena
-      width 1280px
-      height 1900px
-      transform rotateX(79deg) translateX(0%) translateZ(-173px) translateY(-75%)
-
+      width $w
+      height 1024px
+      transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
       transform-style preserve-3d
       backface-visibility hidden
       // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
