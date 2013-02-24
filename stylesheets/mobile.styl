@@ -53,6 +53,9 @@ html.mobile
         padding-left 15px
         padding-right 15px
 
+    .notifications
+      display none
+
 
   #mobile-menu
     absolute top 0px right 0
@@ -95,7 +98,7 @@ html.mobile
 
   .state.game-prompt
     .background
-      transition none
+      // transition none
       height 60px
       margin-top -30px
       transform translateZ(0)
@@ -230,25 +233,29 @@ html.mobile
     visibility hidden
     &.active
       visibility visible
-      display block
-    &.inactive
-      .content
-        opacity 0
 
-    .content.animate
-      transition opacity .3s
+    .dialog
+      .content.animate
+        transition none
 
 
     &.game-instructions
       .game-controls
-        display none
+        display none!important
       .dialog
         bottom $footer-height
         top 0
         height 100%
-        transform translateX( 0 )
+      .content
+        transition none
+        // transform translateX(-100%)
       &.inactive
-        transform translateX(-100%)
+        display none!important
+        .content
+          transform translateX(-100%)
+      &.active
+        .content
+          transform translateX( 0 )
     &.game-over
       h1
         font-size 30px
@@ -424,6 +431,8 @@ html.mobile
   html.mobile
     #gamepad
       display none!important
+    #canv-css
+      top -236px
 
 
 @media (orientation: landscape)
