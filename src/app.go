@@ -39,14 +39,14 @@ func Main(w http.ResponseWriter, r *http.Request) {
   }
 
   q := r.URL.Query()
-  ws := q.Get("signal") != "ws"
+  appchan := q.Get("signal") != "ws"
 
   roomName := strings.TrimLeft(r.URL.Path,"/")
   userName := Random(10)
   fullRoom := false;
 
   // skip rooms when using WebSocket signals
-  if ws {
+  if appchan {
 
     turnclient := new(TurnClient)
     turnclient.SetProperties(c, r)
@@ -108,7 +108,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   // Data to be sent to the template:
   data := Template{Room:roomName, User: userName, AcceptLanguage: acceptLanguage, Minified: minified}
 
-  if ws {
+  if appchan {
     // Full room, skip token
     if fullRoom {
       c.Criticalf("Room full %s",roomName)
