@@ -6,9 +6,13 @@ html(lang='en')
   head
     meta(name='apple-mobile-web-app-capable',content='yes')
     meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
-    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
     title #{name}
-    link(rel='apple-touch-icon', href='/images/minipong.png')
+    link(rel='apple-touch-icon', href='/images/mobile/apple-touch-57.png')
+    link(rel='apple-touch-icon', sizes='72x72', href='/images/mobile/apple-touch-72.png')
+    link(rel='apple-touch-icon', sizes='114x114', href='/images/mobile/apple-touch-114.png')
+    link(rel='apple-touch-icon', sizes='144x144', href='/images/minipong.png')
+
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/pong.css')
 
@@ -75,9 +79,6 @@ html(lang='en')
           .vertical-center
             .info-animation.hidden
               //GAME INFO ANIMATION
-              .destroy-shield__label
-                  p Disable the shields!
-                  p Destroy the screen!
               .destroy-shield
                 .destroy-shield__anim-container
                   .destroy-shield__wall
@@ -90,6 +91,10 @@ html(lang='en')
                       .dash-tall.dash-black
 
                   .destroy-shield__weapon.icon-destroy-shield-weapon
+
+              .destroy-shield__label
+                p Disable the shields!
+                p Destroy the screen!
 
     //INVITE FRIEND
     section.state.friend-invite.game-invite.inactive
@@ -135,12 +140,12 @@ html(lang='en')
     //CAMERA REQUEST ATTENTION
     section.state.webcam-activate.inactive
       .dialog.top
-        .content.animate
+        .content
           h1.alert-info Please choose allow to connect your webcam and start friends play
 
     section.state.webcam-information.inactive
       .dialog.top
-        .content.animate
+        .content
           h1.alert-info Are you sure? Friends play is not possible without allowing webcam.
           .buttons
             button#activate-camera.red(arb:id='playFriendButton', type='button') Activate Camera
@@ -333,7 +338,7 @@ html(lang='en')
       #gamepad.state.game.inactive
         .button.left(type='button')
         .button.right(type='button')
-      nav#mobile-menu.state.game.inactive
+      nav#mobile-menu.state.game.inactive.animate
         button.pause(href='#', data-icon='▹', type='button')
         .state.game-pause.inactive
           button.play(href='#', data-icon='▶', type='button')
@@ -408,8 +413,7 @@ html(lang='en')
       #about
         ul
           li.technology
-            a
-              span Technology
+            a: span Technology
           li.terms
             a.notimplemented Terms &amp; privacy
           li.localization
