@@ -48,9 +48,9 @@ func Main(w http.ResponseWriter, r *http.Request) {
   // skip rooms when using WebSocket signals
   if appchan {
 
-    turnclient := new(TurnClient)
-    turnclient.SetProperties(c, r)
-    PutTurnClient(c, userName, roomName, turnclient)
+    // turnclient := new(TurnClient)
+    // turnclient.SetProperties(c, r)
+    // PutTurnClient(c, userName, roomName, turnclient)
 
     room, err := GetRoom(c, roomName)
 
@@ -137,11 +137,11 @@ func Connected(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
-    if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
-      if err := channel.Send(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
-        c.Criticalf("Error while sending turn credentials:",err)
-      }
-    }
+    // if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
+    //   if err := channel.Send(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
+    //     c.Criticalf("Error while sending turn credentials:",err)
+    //   }
+    // }
 
     room.ConnectUser(userName)
     c.Debugf("Connected user %s to room %s",userName,roomName)
