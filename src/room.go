@@ -8,9 +8,10 @@ import (
 type Room struct {
   User1 string
   User2 string
-  // AppEngine Channels API connected properly (
+  // AppEngine Channels API connected properly
   AEConnected1 bool
   AEConnected2 bool
+  // JavaScript Channels API connected properly
   JSConnected1 bool
   JSConnected2 bool
 }

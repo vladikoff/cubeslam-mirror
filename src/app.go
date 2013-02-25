@@ -84,7 +84,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
       room.AddUser(userName)
       c.Debugf("Created room %s",roomName)
       if err := PutRoom(c, roomName, room); err != nil {
-        c.Criticalf("could not save room: %s", err)
+        c.Criticalf("!!! could not save room: %s", err)
         return;
       }
 
@@ -157,7 +157,6 @@ func Main(w http.ResponseWriter, r *http.Request) {
   if err != nil { c.Criticalf("execution failed: %s", err) }
 }
 
-
 func AEConnected(w http.ResponseWriter, r *http.Request) {
   // AppEngine Channel API backend is initialized!
   c := appengine.NewContext(r)
@@ -168,8 +167,8 @@ func AEConnected(w http.ResponseWriter, r *http.Request) {
   if room, err := GetRoom(c, roomName); err == nil {
     room.AEConnectUser(userName)
     err = PutRoom(c, roomName, room)
-    if err == nil {
-      c.Criticalf("Could not put room %s: ",roomName,err)
+    if err != nil {
+      c.Criticalf("AEConnected could not put room %s: ",roomName,err)
     }
 
     if room.Connected(userName) {
@@ -190,8 +189,8 @@ func JSConnected(w http.ResponseWriter, r *http.Request) {
   if room, err := GetRoom(c, roomName); err == nil {
     room.JSConnectUser(userName)
     err = PutRoom(c, roomName, room)
-    if err == nil {
-      c.Criticalf("Could not put room %s: ",roomName,err)
+    if err != nil {
+      c.Criticalf("JSConnected could not put room %s: ",roomName,err)
     }
 
     if room.Connected(userName) {
@@ -255,7 +254,7 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
     } else {
       err := PutRoom(c, roomName, room)
       if err != nil {
-        c.Criticalf("Could not put room %s: ",roomName,err)
+        c.Criticalf("... Could not put room %s: ",roomName,err)
       } else {
         // let the other user know
         otherUser := room.OtherUser(userName)
