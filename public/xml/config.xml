@@ -341,7 +341,7 @@
 
 <!-- FX SAMPLERS -->
     <sampler triggers="paddle_fx">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -354,7 +354,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="extra_life">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -367,7 +367,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="winloose_tone">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -380,7 +380,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="shield_hit">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -393,7 +393,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="item_up">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -406,7 +406,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="item_down">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
