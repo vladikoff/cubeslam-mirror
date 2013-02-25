@@ -158,42 +158,73 @@ func Main(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func Connected(w http.ResponseWriter, r *http.Request) {
+func AEConnected(w http.ResponseWriter, r *http.Request) {
+  // AppEngine Channel API backend is initialized!
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
+
+  c.Debugf("AppEngine connected user %s to room %s",userName,roomName)
+
   if room, err := GetRoom(c, roomName); err == nil {
-
-    signal, err := GetSignal(c, MakeClientId(roomName, userName))
-
-    if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
-      if err := signal.Send(c, turnclient.TurnConfig(c)); err != nil {
-        c.Criticalf("Error while sending turn credentials:",err)
-      }
-    }
-
-    room.ConnectUser(userName)
-    c.Debugf("Connected user %s to room %s",userName,roomName)
-
+    room.AEConnectUser(userName)
     err = PutRoom(c, roomName, room)
     if err == nil {
-      // send connected to both when room is complete
-      if room.Occupants() == 2 {
-        otherUser := room.OtherUser(userName)
-        otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
-        if err := otherSignal.Send(c, "connected"); err != nil {
-          c.Criticalf("Error while sending connected:",err)
-        }
-        if err := signal.Send(c, "connected"); err != nil {
-          c.Criticalf("Error while sending connected:",err)
-        }
-      } else {
-        c.Debugf("Waiting for another user before sending 'connected'")
-      }
-    } else {
       c.Criticalf("Could not put room %s: ",roomName,err)
+    }
+
+    if room.Connected(userName) {
+      Connected(c, w, r, roomName, userName, room)
     }
   } else {
     c.Criticalf("Could not get room %s: ",roomName,err)
+  }
+}
+
+func JSConnected(w http.ResponseWriter, r *http.Request) {
+  // JavaScript Channel API code is initialized!
+  c := appengine.NewContext(r)
+  roomName, userName := ParseClientId(r.FormValue("from"))
+
+  c.Debugf("JavaScript connected user %s to room %s",userName,roomName)
+
+  if room, err := GetRoom(c, roomName); err == nil {
+    room.JSConnectUser(userName)
+    err = PutRoom(c, roomName, room)
+    if err == nil {
+      c.Criticalf("Could not put room %s: ",roomName,err)
+    }
+
+    if room.Connected(userName) {
+      Connected(c, w, r, roomName, userName, room)
+    }
+  } else {
+    c.Criticalf("Could not get room %s: ",roomName,err)
+  }
+}
+
+func Connected(c appengine.Context, w http.ResponseWriter, r *http.Request, roomName string, userName string, room *Room) {
+  // Both AppEngine Channels API backend AND the Javascript Channels API lib are initialized!
+
+  signal, _ := GetSignal(c, MakeClientId(roomName, userName))
+
+  if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
+    if err := signal.Send(c, turnclient.TurnConfig(c)); err != nil {
+      c.Criticalf("Error while sending turn credentials:",err)
+    }
+  }
+
+  // send connected to both when room is complete
+  if room.Occupants() == 2 {
+    otherUser := room.OtherUser(userName)
+    otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
+    if err := otherSignal.Send(c, "connected"); err != nil {
+      c.Criticalf("Error while sending connected:",err)
+    }
+    if err := signal.Send(c, "connected"); err != nil {
+      c.Criticalf("Error while sending connected:",err)
+    }
+  } else {
+    c.Debugf("Waiting for another user before sending 'connected'")
   }
 }
 
@@ -331,9 +362,9 @@ func init() {
   rand.Seed(now.Unix())
   http.HandleFunc("/", Main)
   http.HandleFunc("/message", OnMessage)
-  http.HandleFunc("/connect", Connected)
+  http.HandleFunc("/connect", JSConnected)
   http.HandleFunc("/disconnect", Disconnected)
   http.HandleFunc("/gce_announce", TurnServerAnnouncement)
-  // http.HandleFunc("/_ah/channel/connected/", Connected) // This might fire too early (before the javascript client is initialized). Instead, we are using /connect
+  http.HandleFunc("/_ah/channel/connected/", AEConnected)
   http.HandleFunc("/_ah/channel/disconnected/", Disconnected)
 }
