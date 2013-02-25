@@ -331,6 +331,16 @@ html.mobile
       transform translateZ(0)
       backface-visibility hidden
 
+    .arena
+      width $w
+      height 1024px
+      transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
+      transform-style preserve-3d
+      backface-visibility hidden
+      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
+      position absolute
+      z=index 1
+
     .shields
       absolute top 0
       letter-spacing 0
@@ -378,16 +388,6 @@ html.mobile
           left 87px
         .shield-3
           left 173px
-
-    .arena
-      width $w
-      height 1024px
-      transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
-      transform-style preserve-3d
-      backface-visibility hidden
-      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
-      position absolute
-      z=index 1
 
   .paddle, .p1, .p2
     position absolute
