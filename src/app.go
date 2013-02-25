@@ -38,44 +38,52 @@ func Main(w http.ResponseWriter, r *http.Request) {
     return;
   }
 
+  q := r.URL.Query()
+  appchan := q.Get("signal") != "ws"
+
   roomName := strings.TrimLeft(r.URL.Path,"/")
   userName := Random(10)
   fullRoom := false;
 
-  turnclient := new(TurnClient)
-  turnclient.SetProperties(c, r)
-  PutTurnClient(c, userName, roomName, turnclient)
+  // skip rooms when using WebSocket signals
+  if appchan {
 
-  room, err := GetRoom(c, roomName)
+    // turnclient := new(TurnClient)
+    // turnclient.SetProperties(c, r)
+    // PutTurnClient(c, userName, roomName, turnclient)
 
-  // Empty room
-  if err != nil {
-    room := new(Room)
-    room.AddUser(userName)
-    c.Debugf("Created room %s",roomName)
-    if err := PutRoom(c, roomName, room); err != nil {
-      c.Criticalf("could not save room: %s", err)
+    room, err := GetRoom(c, roomName)
+
+    // Empty room
+    if err != nil {
+      room := new(Room)
+      room.AddUser(userName)
+      c.Debugf("Created room %s",roomName)
+      if err := PutRoom(c, roomName, room); err != nil {
+        c.Criticalf("could not save room: %s", err)
+        return;
+      }
+
+    // Join room
+    } else if room.Occupants() == 1 {
+      room.AddUser(userName)
+      c.Debugf("Joined room %s",roomName)
+      if err := PutRoom(c, roomName, room); err != nil {
+        c.Criticalf("could not save room: %s", err)
+        return;
+      }
+
+    // Full room
+    } else if room.Occupants() == 2 {
+      c.Debugf("Full room %s",roomName)
+      fullRoom = true;
+
+    // DataStore error
+    } else if err != nil {
+      c.Criticalf("Error occured while getting room %s",roomName,err)
       return;
     }
 
-  // Join room
-  } else if room.Occupants() == 1 {
-    room.AddUser(userName)
-    c.Debugf("Joined room %s",roomName)
-    if err := PutRoom(c, roomName, room); err != nil {
-      c.Criticalf("could not save room: %s", err)
-      return;
-    }
-
-  // Full room
-  } else if room.Occupants() == 2 {
-    c.Debugf("Full room %s",roomName)
-    fullRoom = true;
-
-  // DataStore error
-  } else if err != nil {
-    c.Criticalf("Error occured while getting room %s",roomName,err)
-    return;
   }
 
   // Accept-Language:
@@ -100,19 +108,21 @@ func Main(w http.ResponseWriter, r *http.Request) {
   // Data to be sent to the template:
   data := Template{Room:roomName, User: userName, AcceptLanguage: acceptLanguage, Minified: minified}
 
-  // Full room, skip token
-  if fullRoom {
-    c.Criticalf("Room full %s",roomName)
-    data.State = "error full"
+  if appchan {
+    // Full room, skip token
+    if fullRoom {
+      c.Criticalf("Room full %s",roomName)
+      data.State = "error full"
 
-  // Create a channel token
-  } else {
-    token, err := channel.Create(c, MakeClientId(roomName, userName))
-    if err != nil {
-      http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
-      return
+    // Create a channel token
+    } else {
+      token, err := channel.Create(c, MakeClientId(roomName, userName))
+      if err != nil {
+        http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
+        return
+      }
+      data.Token = token
     }
-    data.Token = token
   }
 
   // Parse the template and output HTML:
@@ -127,11 +137,11 @@ func Connected(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
-    if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
-      if err := channel.Send(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
-        c.Criticalf("Error while sending turn credentials:",err)
-      }
-    }
+    // if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
+    //   if err := channel.Send(c, MakeClientId(roomName, userName), turnclient.TurnConfig(c)); err != nil {
+    //     c.Criticalf("Error while sending turn credentials:",err)
+    //   }
+    // }
 
     room.ConnectUser(userName)
     c.Debugf("Connected user %s to room %s",userName,roomName)
