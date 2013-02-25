@@ -334,6 +334,6 @@ func init() {
   http.HandleFunc("/connect", Connected)
   http.HandleFunc("/disconnect", Disconnected)
   http.HandleFunc("/gce_announce", TurnServerAnnouncement)
-  http.HandleFunc("/_ah/channel/connected/", Connected)
+  // http.HandleFunc("/_ah/channel/connected/", Connected) // This might fire too early (before the javascript client is initialized). Instead, we are using /connect
   http.HandleFunc("/_ah/channel/disconnected/", Disconnected)
 }
