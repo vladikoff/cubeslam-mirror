@@ -80,7 +80,7 @@ build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
-	node_modules/.bin/component-build
+	node_modules/.bin/component-build --dev
 
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<

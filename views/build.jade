@@ -1,5 +1,5 @@
 - var name = "Paddle Battle";
-- var url = 'http://google.com/{{.Room}}';
+- var url = 'http://webrtcgame.appspot.com/{{.Room}}';
 
 !!! 5
 html(lang='en')
@@ -68,7 +68,7 @@ html(lang='en')
                   .key__label.icon-arrow-right
                   .key__bg-outer
                     div.key__bg-inner
-              p or press
+              p press
               .key.key--big.default-key-anim
                 p.key__label SPACE
                 .key__bg-outer
@@ -314,6 +314,7 @@ html(lang='en')
           img.bg(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg')
           .bear.bob
             #expressions
+          p.bubble(data-name='BOB')
         .game-board
           .arena
         .shields

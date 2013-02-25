@@ -37,7 +37,7 @@ html.mobile
       display none
 
     hgroup
-      padding 0
+      padding 2% 0 0 0
 
     .nav
       bottom 70px
@@ -315,11 +315,27 @@ html.mobile
       .angry
         absolute top 8px left 40px
       .blink
-        absolute top 37px left 62px
+        absolute top 37px left 63px
       .jawdrop
-        absolute top 55px left 56px
+        absolute top 54px left 57px
       .flirt
         absolute top 21px left 62px
+
+      .bubble
+        position absolute
+        top 400px
+        left 905px
+        font-size 48px
+        &:before
+          top 0
+          color $color-beige
+        &:after
+          top 18px
+          right 11px
+          font-size 15px
+          letter-spacing 0.1em
+          content attr(data-name)
+
 
     .game-board
       position absolute
@@ -330,6 +346,16 @@ html.mobile
       perspective-origin 50% 0%
       transform translateZ(0)
       backface-visibility hidden
+
+    .arena
+      width $w
+      height 1024px
+      transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
+      transform-style preserve-3d
+      backface-visibility hidden
+      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
+      position absolute
+      z=index 1
 
     .shields
       absolute top 0
@@ -369,25 +395,15 @@ html.mobile
 
       .shields-b
         top 161px
-        left 254px
+        left 255px
         z-index 0
 
         .shield-1
           left 0
         .shield-2
-          left 87px
+          left 86px
         .shield-3
-          left 173px
-
-    .arena
-      width $w
-      height 1024px
-      transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
-      transform-style preserve-3d
-      backface-visibility hidden
-      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
-      position absolute
-      z=index 1
+          left 171px
 
   .paddle, .p1, .p2
     position absolute
