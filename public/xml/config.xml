@@ -449,6 +449,7 @@
 <!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
 
 <!-- INSTRUMENT SAMPLERS -->
+
     <sampler triggers="bass_filter">
         <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>

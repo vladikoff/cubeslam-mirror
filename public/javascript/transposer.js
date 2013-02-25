@@ -25,8 +25,6 @@ dmaf.once("load_custom", function (DMAF) {
                         break;
                 }
                 this.lastActionTime = actionTime;
-                console.groupCollapsed("TRANSPOSE LEVEL IS NOW", this.transposeValue);
-                console.groupEnd();
             }
         }
     });

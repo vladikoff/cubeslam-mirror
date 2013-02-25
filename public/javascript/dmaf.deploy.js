@@ -8,7 +8,7 @@
             pendingObjects: {},
             failure: function () {
                 var dummy = function DMAFisNotLoaded () {
-                    console.log("DMAF failed to load.");
+                    if (dmaf.log) console.log("DMAF failed to load.");
                 };
                 DMAF.dispatch("dmaf_fail");
                 for (var i in dmaf) if (dmaf.hasOwnProperty(i)) {
@@ -38,7 +38,7 @@
     dmaf.pending = [];
     //used by client to send messages to dmaf
     dmaf.tell = function (eventName, eventProperties, eventTime) {
-        console.log("DMAF.TELL:", eventName);
+        if (dmaf.log) console.log("DMAF.TELL:", eventName);
         if (!dmaf.active) return dmaf.pending.push([].slice.call(arguments));
         if (!eventTime) eventTime = DMAF.context.currentTime * 1000;
         DMAF.ActionManager.onEvent(eventName, eventTime, eventProperties);
@@ -91,14 +91,14 @@
         if (typeof id === "string") {
             id = DMAF.Utils.removeWhiteSpace(id);
             if (!id) {
-                console.log("DMAF: You must provide a valid id for the object you wish to register.");
+                if (dmaf.log) console.log("DMAF: You must provide a valid id for the object you wish to register.");
                 return;
             }
         } else {
-            console.log("DMAF: You must provide a valid id for the object you wish to register.");
+            if (dmaf.log) console.log("DMAF: You must provide a valid id for the object you wish to register.");
         }
         if (!obj || !(obj instanceof Object)) {
-            console.log("DMAF: You've tried to register an object not of type 'object'");
+            if (dmaf.log) console.log("DMAF: You've tried to register an object not of type 'object'");
             return;
         }
 
@@ -175,7 +175,7 @@ dmaf.once("load_core", function load_Actions (DMAF) {
         },
         createAction: function (data) {
             if (!DMAF[data.type] || !DMAF[data.type][data.id]) {
-                console.log("DMAF Could not find module of type", data.type, "with id", data.id,
+                if (dmaf.log) console.log("DMAF Could not find module of type", data.type, "with id", data.id,
                     "check the config.xml to make sure you've included this module.");
                 return;
             }
@@ -284,7 +284,7 @@ dmaf.once("load_core", function (DMAF) {
     };
     Clock.addFrameListener = function (id, callback, context) {
         if (checkDuplicate(id)) {
-            console.log("That frame listener is already running!", id);
+            if (dmaf.log) console.log("That frame listener is already running!", id);
             return;
         }
         frameEvents.push({
@@ -363,7 +363,7 @@ dmaf.once("load_framework", function DMAFInit(DMAF) {
             DMAF.ActionManager.onEvent("init_routing");
             DMAF.ActionManager.onEvent("dmaf_ready");
             dmaf.active = true;
-            console.log("dispatching dmaf_ready");
+            if (dmaf.log) console.log("dispatching dmaf_ready");
             DMAF.dispatch("dmaf_ready");
         }
     }
@@ -392,7 +392,7 @@ dmaf.once("load_core", function (DMAF) {
     DMAF.getInstanceProperty = function (type, instanceId, properties) {
         var instance = DMAF.getInstance(type, instanceId);
         if (!instance) {
-            console.log("missing instance", type, instanceId);
+            if (dmaf.log) console.log("missing instance", type, instanceId);
             return null;
         }
         property = instance;
@@ -405,7 +405,7 @@ dmaf.once("load_core", function (DMAF) {
             }
         }
         if (i !== ii) {
-            console.log("Could not find property.");
+            if (dmaf.log) console.log("Could not find property.");
             return null;
         }
         return property;
@@ -413,8 +413,7 @@ dmaf.once("load_core", function (DMAF) {
     DMAF.getInstanceProperty = verifyQueryPartial(DMAF.getInstanceProperty);
     DMAF.addInstance = function (instance) {
         if (!this.InstancePrototype.isPrototypeOf(instance)) {
-            console.log("DMAF.addInstance may only be used with DMAF instances");
-            console.trace();
+            if (dmaf.log) console.log("DMAF.addInstance may only be used with DMAF instances");
             return;
         }
         DMAF[instance.type][instance.id].addInstance(instance);
@@ -424,7 +423,7 @@ dmaf.once("load_core", function (DMAF) {
         if (instance) {
             return this[instance.type][instance.id].removeInstance(instanceId);
         } else {
-            console.log("DMAF.remove: Could not find instance", type, instanceId);
+            if (dmaf.log) console.log("DMAF.remove: Could not find instance", type, instanceId);
             return false;
         }
     };
@@ -475,13 +474,13 @@ dmaf.once("load_core", function (DMAF) {
                 return nested.instance.setProperty(nested.ref, value, duration, actionTime);
             } else {
                 if (colon.test(targetParameter)) {
-                    console.log("DMAF Does not support colon syntax for properties within arrays.");
+                    if (dmaf.log) console.log("DMAF Does not support colon syntax for properties within arrays.");
                     return;
                 } else {
                     if (this[targetParameter] !== undefined) {
                         value = this.verify(targetParameter, value);
                     } else {
-                        console.log(targetParameter, "is not a valid property for instance type", this.id);
+                        if (dmaf.log) console.log(targetParameter, "is not a valid property for instance type", this.id);
                         return;
                     }
                 }
@@ -549,7 +548,7 @@ dmaf.once("load_core", function (DMAF) {
                     error = model.value.indexOf(value) === -1;
                     break;
                 case "array":
-                    console.log("Array type found in verify", key, value, descriptor);
+                    if (dmaf.log) console.log("Array type found in verify", key, value, descriptor);
                     break;
                 case "boolean":
                     error = typeof value !== "boolean";
@@ -558,7 +557,7 @@ dmaf.once("load_core", function (DMAF) {
             if (!error) {
                 return value;
             } else {
-                console.log("DMAF Verification error", key, value, this);
+                if (dmaf.log) console.log("DMAF Verification error", key, value, this);
                 return model["default"];
             }
         }
@@ -605,11 +604,11 @@ dmaf.once("load_core", function (DMAF) {
                 args = arguments;
             }
             if (!args[0]) {
-                console.log("Missing arguments!");
+                if (dmaf.log) console.log("Missing arguments!");
                 return null;
             }
             if (!DMAF[args[0]]) {
-                console.log("Invalid type!", args[0]);
+                if (dmaf.log) console.log("Invalid type!", args[0]);
                 return null;
             }
             return f.apply(DMAF, args);
@@ -640,7 +639,7 @@ dmaf.once("load_core", function (DMAF) {
         if (parsers[type]) {
             return parsers[type].apply(DMAF, args);
         } else {
-            console.log("DMAF.parse: invalid type", type);
+            if (dmaf.log) console.log("DMAF.parse: invalid type", type);
             return null;
         }
     };
@@ -651,7 +650,7 @@ dmaf.once("load_core", function (DMAF) {
 
     function parseSampleMap(xml) {
         if (!xml) {
-            console.log("Problem parsing XML", arguments);
+            if (dmaf.log) console.log("Problem parsing XML", arguments);
             return;
         }
         var maps = xml.querySelectorAll("samplemap"),
@@ -932,7 +931,7 @@ dmaf.once("load_core", function (DMAF) {
                 this.ticksPerBeat = headerStream.read16BitInt();
                 if (this.ticksPerBeat & 0x8000) {
                     this.ticksPerBeat = 480;
-                    console.log("Time division in SMPTE, defaulting to 480 ticks per beat");
+                    if (dmaf.log) console.log("Time division in SMPTE, defaulting to 480 ticks per beat");
                 }
                 this.beatLengthInTicks = this.ticksPerBeat / 4;
                 return this;
@@ -1099,7 +1098,7 @@ dmaf.once("load_core", function load_Utils (DMAF) {
                 options = {};
             }
             onerror = options.fail ? options.fail : function DMAFajaxOnError (e) {
-                console.log("DMAF.ajax: Problem with request", src);
+                if (dmaf.log) console.log("DMAF.ajax: Problem with request", src);
             };
             function onreadystate () {
                 if (this.readyState === 4) {
@@ -1115,7 +1114,7 @@ dmaf.once("load_core", function load_Utils (DMAF) {
                     }
                     result = options.responseXML ? this.responseXML : this.response;
                     if (options.responseXML && !this.responseXML) {
-                        console.log("Problem with XMLHttpRequest: XML is missing or malformed.", src);
+                        if (dmaf.log) console.log("Problem with XMLHttpRequest: XML is missing or malformed.", src);
                         return onerror();
                     }
                     for (var i = 0, ii = callbacks.length; i < ii; i++) {
@@ -1309,22 +1308,22 @@ dmaf.once("load_core", function load_Utils (DMAF) {
         }
     };
     function typeError(value, model) {
-        console.log("DMAF TypeError for " + model.name + ": " + value + " is not of type " + model.type);
+        if (dmaf.log) console.log("DMAF TypeError for " + model.name + ": " + value + " is not of type " + model.type);
         return model["default"];
     }
 
     function rangeErrorMin(value, model) {
-        console.log("DMAF RangeError for " + model.name + ": " + value + " is below minimum threshold.");
+        if (dmaf.log) console.log("DMAF RangeError for " + model.name + ": " + value + " is below minimum threshold.");
         return model.min;
     }
 
     function rangeErrorMax(value, model) {
-        console.log("DMAF RangeError for " + model.name + ": " + value + " is above maximum threshold.");
+        if (dmaf.log) console.log("DMAF RangeError for " + model.name + ": " + value + " is above maximum threshold.");
         return model.max;
     }
 
     function listError(value, model) {
-        console.log("DMAF enumError for " + model.name + ": " + value + " is not an allowed value");
+        if (dmaf.log) console.log("DMAF enumError for " + model.name + ": " + value + " is not an allowed value");
         return model["default"];
     }
 });
@@ -1399,7 +1398,7 @@ dmaf.once("load_assetController", function (DMAF) {
         if (Assets[type] && Assets[type][id]) {
             return Assets[type][id];
         } else {
-            console.log("DMAF.getAsset: Couldn't find asset", type, id);
+            if (dmaf.log) console.log("DMAF.getAsset: Couldn't find asset", type, id);
             return null;
         }
     };
@@ -1446,7 +1445,7 @@ dmaf.once("load_assetController", function (DMAF) {
                     context: this,
                     responseXML: true,
                     fail: function () {
-                        console.log("Problem parsing samplemap file");
+                        if (dmaf.log) console.log("Problem parsing samplemap file");
                         this.onstep();
                     }
                 };
@@ -1471,7 +1470,7 @@ dmaf.once("load_assetController", function (DMAF) {
                         expectType: "string",
                         context: this,
                         fail: function () {
-                            console.log("Problem parsing midi file", path);
+                            if (dmaf.log) console.log("Problem parsing midi file", path);
                             this.onstep();
                         }.bind(this)
                     };
@@ -1498,21 +1497,21 @@ dmaf.once("load_assetController", function (DMAF) {
                     this.onstep();
                 }.bind(this),
                 decodeError = function (e) {
-                    console.log("Could not decode file", name, e);
+                    if (dmaf.log) console.log("Could not decode file", name, e);
                     this.onstep();
                 }.bind(this),
                 tries = 0;
 
                 function success (arraybuffer) {
-                    if (tries > 0) console.log("Retry success", name);
+                    if (tries > 0) if (dmaf.log) console.log("Retry success", name);
                     DMAF.context.decodeAudioData(arraybuffer, ondecode, decodeError);
                 }
                 function fail () {
                     if (++tries < 3) {
-                        console.log("Could not load audio file", name, "trying again.");
+                        if (dmaf.log) console.log("Could not load audio file", name, "trying again.");
                         DMAF.Utils.ajax(url, success, ajaxOptions, "buffer");
                     } else {
-                        console.log("Could not load audio file", name);
+                        if (dmaf.log) console.log("Could not load audio file", name);
                         this.onstep();
                     }
                 }
@@ -1589,7 +1588,6 @@ dmaf.once("load_audioRouter", function (DMAF) {
                 default:
                     return; //Needs value/property checks if more properties are to be added.
                 }
-                console.log("setAutomatableProperty>>>>>>>>>>>>>");
                 this.output[property].cancelScheduledValues(DMAF.context.currentTime);
                 this.output[property].setValueAtTime(this.output[property].value, DMAF.context.currentTime);
                 this.output[property][method](value, (actionTime + duration) / 1000);
@@ -1614,7 +1612,7 @@ dmaf.once("load_customCode", function load_Actions (DMAF) {
             var instance = DMAF.customCode[properties.instanceId].createInstance(properties);
             return instance;
         } else {
-            console.log(properties.instanceId, "was not registered with DMAF");
+            if (dmaf.log) console.log(properties.instanceId, "was not registered with DMAF");
         }
     };
 
@@ -1643,7 +1641,7 @@ dmaf.once("load_eventProcessor", function (DMAF) {
                 for (var i = 0, ii = this.eventMaps.length; i < ii; i++) {
                     if (this.eventMaps[i]["in"].indexOf(trigger) !== -1) {
                         if (trigger === this.eventMaps[i].out) {
-                            console.log("DMAF.EventMapper: ", trigger, " is the same in event as output. Ignoring...");
+                            if (dmaf.log) console.log("DMAF.EventMapper: ", trigger, " is the same in event as output. Ignoring...");
                             continue;
                         }
                         delay = this.eventMaps[i].delay || 0;
@@ -1682,7 +1680,7 @@ dmaf.once("load_eventProcessor", function (DMAF) {
                 for (var i = 0, ii = this.eventMaps.length; i < ii; i++) {
                     this.eventMaps[i]["in"] = parseInt(this.eventMaps[i]["in"], 10);
                     if (isNaN(this.eventMaps[i]["in"])) {
-                        console.log("In value for MidiNoteMapper is NaN!");
+                        if (dmaf.log) console.log("In value for MidiNoteMapper is NaN!");
                     }
                 }
             }
@@ -1715,7 +1713,7 @@ dmaf.once("load_mediaElement", function (DMAF) {
                 }
             },
             set: function () {
-                console.log("MediaElement currentTime is read-only");
+                if (dmaf.log) console.log("MediaElement currentTime is read-only");
             }
         },
         onAction: {
@@ -1724,7 +1722,7 @@ dmaf.once("load_mediaElement", function (DMAF) {
                 var id = this.instanceId,
                     element = DMAF.pendingObjects[id];
                 if (!element) {
-                    console.log("DMAF Could not locate mediaElement with id", this.instanceId);
+                    if (dmaf.log) console.log("DMAF Could not locate mediaElement with id", this.instanceId);
                 } else {
                     if (element instanceof HTMLElement) {
                         if (element.tagName === "VIDEO" || element.tagName === "AUDIO") {
@@ -1733,7 +1731,7 @@ dmaf.once("load_mediaElement", function (DMAF) {
                             this.lastPlayTime = element.currentTime;
                             DMAF.Clock.addFrameListener(this.type + ":" + this.instanceId, this.poll, this);
                         } else {
-                            console.log("DMAF does not support registering HTML elements other than <video> and <audio>");
+                            if (dmaf.log) console.log("DMAF does not support registering HTML elements other than <video> and <audio>");
                         }
                     }
                 }
@@ -1858,7 +1856,7 @@ dmaf.once("load_midiProcessor", function (DMAF) {
         onAction: {
             value: function (trigger, actionTime, eventProperties, actionProperties) {
                 if (!eventProperties || !eventProperties.midiNote) {
-                    console.log("no eventProperties");
+                    if (dmaf.log) console.log("no eventProperties");
                     return; //If there is no midi data, return;
                 }
                 if (this.transpose) {
@@ -1940,7 +1938,7 @@ dmaf.once("load_parameterProcessor", function (DMAF) {
                 while (this.targets.length) {
                     target = DMAF.getInstance(this.targetType, this.targets.shift());
                     if (target) {
-                        console.log("Transforming", this.targetParameter, "of", target.instanceId);
+                        if (dmaf.log) console.log("Transforming", this.targetParameter, "of", target.instanceId);
                         target.setProperty(this.targetParameter, this.value, this.duration, actionTime);
                     }
                 }
@@ -2007,7 +2005,6 @@ dmaf.once("load_player", function(DMAF) {
             set: function(value) {
                 this._tempo = value;
                 this.beatLength = (60 / value) * 250;
-                //TODO: Fix this now that DMAF doesn't have internal events.
                 DMAF.dispatch("tempo_" + this.instanceId, this._tempo);
             }
         },
@@ -2030,7 +2027,6 @@ dmaf.once("load_player", function(DMAF) {
                         switch(flowItem.id) {
                             case "start":
                                 if(this.state === this.RUNNING) {
-                                    //console.log("BeatPatternPlayer is already running. Ignoring start.");
                                     break;
                                 }
                                 if (flowItem.delay) {
@@ -2045,7 +2041,6 @@ dmaf.once("load_player", function(DMAF) {
                                 break;
                             case "stop":
                                 if (this.state === this.STOPPED) {
-                                    //console.log("BeatPatternPlayer is already stopped. Ignoring stop.");
                                     break;
                                 }
                                 DMAF.Clock.checkFunctionTime(actionTime, this.stop, [], this, flowItem);
@@ -2059,7 +2054,6 @@ dmaf.once("load_player", function(DMAF) {
         },
         addPattern: {
             value: function(properties) {
-                //console.log("adding pattern", properties.patternId);
                 if(this.state === this.RUNNING) {
                     properties.beatPattern = DMAF.getAsset("beatPattern", properties.patternId);
                     properties.addAtSongPosition = this.getSongPosition(properties.songPosition);
@@ -2082,7 +2076,7 @@ dmaf.once("load_player", function(DMAF) {
                         this.pendingPatterns.push(beatPatternInstance);
                     }
                 } else {
-                    console.log("BeatPatternPlayer: Cannot add pattern while player is not running.", properties.patternId);
+                    if (dmaf.log) console.log("BeatPatternPlayer: Cannot add pattern while player is not running.", properties.patternId);
                 }
             }
         },
@@ -2116,9 +2110,6 @@ dmaf.once("load_player", function(DMAF) {
                     this.activePatterns[i].gotoNextBeat();
                 }
                 var BEAT = this.songPosition.beat;
-                /*if (this.songPosition.beat === 1) console.clear();
-                if ((this.songPosition.beat - 1) % 4 === 0) BEAT += " BEAT";
-                console.log(BEAT);*/
                 this.updateActivePatterns();
                 for(i = 0, ii = this.activePatterns.length; i < ii; i++) {
                     this.activePatterns[i].executeEvents(eventTime, this.beatLength);
@@ -2158,7 +2149,6 @@ dmaf.once("load_player", function(DMAF) {
         },
         start: {
             value: function(flowItem, actionTime) {
-                //console.log("Starting beatPatternPlayer", ~~(DMAF.context.currentTime*1000));
                 this.tempo = flowItem.tempo || 120;
                 this.nextBeatTime = actionTime;
                 this.beatsPerBar = flowItem.beatsPerBar;
@@ -2178,7 +2168,6 @@ dmaf.once("load_player", function(DMAF) {
         },
         proceedStop: {
             value: function(flowItem) {
-                //console.log("Stopping beatPatternPlayer", ~~(DMAF.context.currentTime*1000));
                 this.state = this.STOPPED;
                 this.pendingPatterns.length = 0;
                 this.activePatterns.length = 0;
@@ -2244,7 +2233,7 @@ dmaf.once("load_player", function(DMAF) {
                     //do it now!
                     return position;
                 default:
-                    console.log("BeatPatternPlayer getSongPosition: Unrecognized songPosition ", mode);
+                    if (dmaf.log) console.log("BeatPatternPlayer getSongPosition: Unrecognized songPosition ", mode);
                 }
                 position.bar += offsetBar;
                 position.beat += offsetBeat;
@@ -2276,7 +2265,7 @@ dmaf.once("load_player", function(DMAF) {
                     beat++;
                     break;
                 default:
-                    console.log("BeatPatternPlayer: Unrecognized patternPosition " + mode);
+                    if (dmaf.log) console.log("BeatPatternPlayer: Unrecognized patternPosition " + mode);
                 }
                 beat += offsetBar * (this.currentPattern && this.currentPattern.beatsPerBar || 16);
                 beat += offsetBeat;
@@ -2297,7 +2286,7 @@ dmaf.once("load_player", function(DMAF) {
         difference = jsTime - contextTime;
         change = difference - checkDifference.lastDifference;
         if(Math.abs(change) > 5) {
-            console.log("DMAF: Adjusting next beat Time. Difference was " + change + "ms");
+            if (dmaf.log) console.log("DMAF: Adjusting next beat Time. Difference was " + change + "ms");
             checkDifference.lastDifference = difference;
             return change;
         } else {
@@ -2333,7 +2322,7 @@ dmaf.once("load_player", function(DMAF) {
                     }
                     pattern.startTime = actionTime;
                 } else {
-                    console.log("No time pattern with id ", patternId, "exists.");
+                    if (dmaf.log) console.log("No time pattern with id ", patternId, "exists.");
                 }
             }
         },
@@ -2350,7 +2339,7 @@ dmaf.once("load_player", function(DMAF) {
                         this.activePatterns.splice(index, 1);
                     }
                 } else {
-                    console.log("No time pattern with id ", patternId, "exists.");
+                    if (dmaf.log) console.log("No time pattern with id ", patternId, "exists.");
                 }
             }
         },
@@ -2401,7 +2390,7 @@ dmaf.once("load_sound", function (DMAF) {
                     var sound = DMAF.context.createBufferSource(),
                         buffer = DMAF.getAsset("buffer", this.getSoundFile());
                     if (!buffer) {
-                        console.log("GenericPlay: Buffer is missing. Check soundFile property.");
+                        if (dmaf.log) console.log("GenericPlay: Buffer is missing. Check soundFile property.");
                         return {buffer: {duration: -1}};
                     }
                     sound.id = UID++;
@@ -2445,7 +2434,6 @@ dmaf.once("load_sound", function (DMAF) {
             },
             proceedPlay: {
                 value: function (actionTime) {
-                    //console.log("Playing", this.instanceId);
                     var sound = this.createSound(),
                         preDelay = Math.abs(actionTime - DMAF.context.currentTime * 1000),
                         bufferLength = sound.buffer.duration * 1000,
@@ -2495,7 +2483,6 @@ dmaf.once("load_sound", function (DMAF) {
             },
             proceedStop: {
                 value: function () {
-                    //console.log("Stopping ", this.instanceId);
                     var i = this.sounds.length;
                     this.clearAll();
                     DMAF.sound[this.id].removeInstance(this.instanceId);
@@ -2607,7 +2594,8 @@ dmaf.once("load_stateProcessor", function (DMAF) {
                     }
                 }
                 if (!value) {
-                    return console.log("StateProcesor: No state found for", trigger);
+                    if (dmaf.log) console.log("StateProcesor: No state found for", trigger);
+                    return false;
                 }
                 if (PREVIOUS.test(value)) {
                     value = this.previous;
@@ -2715,7 +2703,7 @@ dmaf.once("load_synth", function (DMAF) {
                 if (this[eventProperties.type]) {
                     this[eventProperties.type](actionTime, eventProperties);
                 } else {
-                    console.log("Sampler does not recognize message ", eventProperties);
+                    if (dmaf.log) console.log("Sampler does not recognize message ", eventProperties);
                 }
             }
         },
@@ -2783,7 +2771,7 @@ dmaf.once("load_synth", function (DMAF) {
                     active[midiNote] = []; //If no array in the samples.active object, create one
                 }
                 if (this.loop && this.ignoreNoteOff) {
-                    console.log("Sampler Configuration Error: You cannot use looped samples with ignoreNoteOff.");
+                    if (dmaf.log) console.log("Sampler Configuration Error: You cannot use looped samples with ignoreNoteOff.");
                     if (eventProperties.duration) {
                         this.ignoreNoteOff = false;
                     } else {
@@ -4588,7 +4576,7 @@ dmaf.once("load_beatPattern", function (DMAF) {
                     this.executeDefault(currentRelativeTime, lastEventTime);
                     break;
                 default:
-                    console.log("Invalid behavior type for TimePattern", this.behavior);
+                    if (dmaf.log) console.log("Invalid behavior type for TimePattern", this.behavior);
             }
         },
         executeLinear: function (currentRelativeTime, lastEventTime) {
@@ -4641,10 +4629,9 @@ dmaf.once("load_beatPattern", function (DMAF) {
                 this.loopLength = properties.loopLength;
                 this.removeAtSongPosition = new DMAF.Processor.BeatPosition(Infinity, 1, this.player.beatsPerBar);
             } else {
-                console.error("You must specify a loopLength for pattern " + this.patternId + " if loop is set to true.");
+                if (dmaf.log) console.error("You must specify a loopLength for pattern " + this.patternId + " if loop is set to true.");
             }
             if (this.currentBeat === this.loopLength) {
-                console.log(this.currentBeat);
                 this.currentBeat = 1;
             }
         } else {
