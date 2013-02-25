@@ -115,6 +115,10 @@
           transition-duration .3s
           opacity 0
 
+      &.game-over-prompt
+        h4 
+          font-size 70px
+
     .content
       // z-index 3
       display flex
@@ -138,15 +142,14 @@
       text-align center
       padding 40px 0
 
-      h1, h2
+      h1, h2, h3, h4
         font-size 100px
 
     .background
-      height 180px
+      height 33%
       width 100%
       background rgba($color-red,.9)
-      absolute top 50%
-      margin-top -90px
+      absolute top 33%
       z-index 3
       transition all .5s
 
@@ -201,6 +204,9 @@
     .dialog
       height 33%
       min-height 266px
+      
+      .animate
+        transition-delay 500ms
 
     .scoreboard
       color #e83129

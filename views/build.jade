@@ -108,7 +108,7 @@ html(lang='en')
             button.red.return-mainmenu(type='button') Back
 
     //COUNTDOWN
-    section.state.game-prompt.inactive
+    section.state.game-prompt.game-over-prompt.inactive
       .background.animate
       .state.game-prompt-start.inactive
         .content.center.animate
@@ -124,8 +124,15 @@ html(lang='en')
       .state.game-prompt-round.inactive
         .content.center.animate
           #round-prompt.prompt
-            h2.bitmap Round 
+            h3.bitmap Round 
               span 1
+
+      .state.game-prompt-over.inactive
+        .content.center.animate
+          .prompt
+            h4.over.bitmap Game Over
+            h4.win.bitmap You Win
+            h4.loose.bitmap You Loose
 
     //PAUSE DIALOG
     section.state.game-pause.inactive
@@ -221,7 +228,7 @@ html(lang='en')
 
     //GAME OVER
     section.state.game-over.inactive
-      h1.bitmap.shadow Game Over
+      //h1.bitmap.shadow Game Over
       div
         .dialog
           .content.animate
