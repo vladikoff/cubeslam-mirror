@@ -10,7 +10,6 @@
 
 <!-- AUDIO MIXING -->
     <!-- MAIN BUS -->
-
     <audioBus triggers="init_routing">
         <properties instanceId="master_bus" pan="0" volume="0.75" outputBus="master"/>
         <audioNodes></audioNodes>
@@ -730,7 +729,7 @@
     </loadSound>
     <!-- INSTRUMENTS -->
     <loadSound triggers="dmaf_ready">
-        <properties instanceId="load_bass_comp" baseURL="audio/instruments/Bass_Comp/" returnEvent="" />
+        <properties instanceId="load_bass_comp" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Bass_Comp_E-1" />
             <file name="Bass_Comp_As-1" />
@@ -747,7 +746,7 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_bass" baseURL="audio/instruments/Bass/" returnEvent="" />
+        <properties instanceId="load_bass" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Bass_E0" />
             <file name="Bass_As0"/>
@@ -764,7 +763,7 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_stab" baseURL="audio/instruments/Stab/" returnEvent="" />
+        <properties instanceId="load_stab" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Stab_E0" />
             <file name="Stab_As0" />
@@ -781,7 +780,7 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_kraftwerk" baseURL="audio/instruments/DM_Kraftwerk/" returnEvent="" />
+        <properties instanceId="load_kraftwerk" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="KICK" />
             <file name="SNARE"  />
@@ -801,7 +800,7 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_synth_perc" baseURL="audio/instruments/Synth_Perc/" returnEvent="" />
+        <properties instanceId="load_synth_perc" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Synth_Perc_E0" />
             <file name="Synth_Perc_As0"/>
@@ -818,7 +817,7 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_synth_pop" baseURL="audio/instruments/Synth_Pop/" returnEvent="" />
+        <properties instanceId="load_synth_pop" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Synth_Pop_E0" />
             <file name="Synth_Pop_As0"/>
@@ -835,7 +834,7 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_synth_comp" baseURL="audio/instruments/Synth_Comp/" returnEvent="" />
+        <properties instanceId="load_synth_comp" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Synth_Comp_E0" />
             <file name="Synth_Comp_As0"/>
@@ -852,24 +851,20 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_strings" baseURL="audio/instruments/Strings/" returnEvent="" />
+        <properties instanceId="load_strings" baseURL="audio/Music/" returnEvent="" />
         <files>
-            <file name="Strings_E-1"/>
-            <file name="Strings_As-1"/>
-            <file name="Strings_E0"/>
+            <file name="Strings_E0" />
             <file name="Strings_As0"/>
-            <file name="Strings_E1"/>
+            <file name="Strings_E1" />
             <file name="Strings_As1"/>
-            <file name="Strings_E2"/>
+            <file name="Strings_E2" />
             <file name="Strings_As2"/>
-            <file name="Strings_E3"/>
+            <file name="Strings_E3" />
             <file name="Strings_As3"/>
-            <file name="Strings_E4" />
-            <file name="Strings_As4"/>
         </files>
     </loadSound>
     <loadSound triggers="dmaf_ready">
-        <properties instanceId="load_synth_plucked" baseURL="audio/instruments/Synth_Plucked/" returnEvent="" />
+        <properties instanceId="load_synth_plucked" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Synth_Plucked_E0" />
             <file name="Synth_Plucked_As0"/>
@@ -886,7 +881,7 @@
         </files>
     </loadSound>
     <loadSound triggers="dmaf_ready">
-        <properties instanceId="load_synth_sharp" baseURL="audio/instruments/Synth_Sharp/" returnEvent="" />
+        <properties instanceId="load_synth_sharp" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Synth_Sharp_E1" />
             <file name="Synth_Sharp_As1"/>
@@ -901,7 +896,7 @@
         </files>
     </loadSound>
     <loadSound triggers="dmaf_ready">
-        <properties instanceId="load_synth_funk" baseURL="audio/instruments/Synth_Funk/" returnEvent="" />
+        <properties instanceId="load_synth_funk" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Synth_Funk_E0" />
             <file name="Synth_Funk_As0"/>
@@ -918,7 +913,7 @@
         </files>
     </loadSound>
     <loadSound triggers="dmaf_ready">
-        <properties instanceId="load_synth_warm" baseURL="audio/instruments/Synth_Warm/" returnEvent="" />
+        <properties instanceId="load_synth_warm" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Synth_Warm_E0" />
             <file name="Synth_Warm_As0"/>
@@ -933,7 +928,7 @@
         </files>
     </loadSound>
     <loadSound triggers="dmaf_ready">
-        <properties instanceId="load_lead_a" baseURL="audio/instruments/Lead_A/" returnEvent="" />
+        <properties instanceId="load_lead_a" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Lead_A_E1" />
             <file name="Lead_A_As1"/>
@@ -950,7 +945,7 @@
         </files>
     </loadSound>
     <loadSound triggers="dmaf_ready">
-        <properties instanceId="load_lead_b" baseURL="audio/instruments/Lead_B/" returnEvent="" />
+        <properties instanceId="load_lead_b" baseURL="audio/Music/" returnEvent="" />
         <files>
             <file name="Lead_B_E1" />
             <file name="Lead_B_As1"/>
@@ -967,10 +962,8 @@
         </files>
     </loadSound>
     <loadSound triggers="preload_assets">
-        <properties instanceId="load_bass_filter" baseURL="audio/instruments/Bass_Filter/" returnEvent="" />
+        <properties instanceId="load_bass_filter" baseURL="audio/Music/" returnEvent="" />
         <files>
-            <file name="Bass_Filter_Low_E1" />
-            <file name="Bass_Filter_Low_As1"/>
             <file name="Bass_Filter_Low_E2" />
             <file name="Bass_Filter_Low_As2"/>
             <file name="Bass_Filter_Low_E3" />
@@ -981,10 +974,6 @@
             <file name="Bass_Filter_Low_As5"/>
             <file name="Bass_Filter_Low_E6" />
             <file name="Bass_Filter_Low_As6"/>
-            <file name="Bass_Filter_Low_E7" />
-            <file name="Bass_Filter_Low_As7"/>
-            <file name="Bass_Filter_Mid_E1" />
-            <file name="Bass_Filter_Mid_As1"/>
             <file name="Bass_Filter_Mid_E2" />
             <file name="Bass_Filter_Mid_As2"/>
             <file name="Bass_Filter_Mid_E3" />
@@ -995,22 +984,16 @@
             <file name="Bass_Filter_Mid_As5"/>
             <file name="Bass_Filter_Mid_E6" />
             <file name="Bass_Filter_Mid_As6"/>
-            <file name="Bass_Filter_Mid_E7" />
-            <file name="Bass_Filter_Mid_As7"/>
-            <file name="Bass_Filter_Hi_E1" />
-            <file name="Bass_Filter_Hi_As1" />
             <file name="Bass_Filter_Hi_E2" />
-            <file name="Bass_Filter_Hi_As2" />
+            <file name="Bass_Filter_Hi_As2"/>
             <file name="Bass_Filter_Hi_E3" />
-            <file name="Bass_Filter_Hi_As3" />
+            <file name="Bass_Filter_Hi_As3"/>
             <file name="Bass_Filter_Hi_E4" />
-            <file name="Bass_Filter_Hi_As4" />
+            <file name="Bass_Filter_Hi_As4"/>
             <file name="Bass_Filter_Hi_E5" />
-            <file name="Bass_Filter_Hi_As5" />
+            <file name="Bass_Filter_Hi_As5"/>
             <file name="Bass_Filter_Hi_E6" />
-            <file name="Bass_Filter_Hi_As6" />
-            <file name="Bass_Filter_Hi_E7" />
-            <file name="Bass_Filter_Hi_As7" />
+            <file name="Bass_Filter_Hi_As6"/>
         </files>
     </loadSound>
 <!-- /LOAD ASSETS -->
