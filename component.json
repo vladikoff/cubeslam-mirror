@@ -16,7 +16,7 @@
     "publicclass/log-worker": "*",
     "publicclass/base64-arraybuffer": "*",
     "visionmedia/debug": "*",
-    "ecarter/css-emitter": "*"
+    "ecarter/css-emitter": "4a453ae914a2cf328810fdf3fc361bc144b15821"
   },
   "scripts": [
     "index.js",
@@ -110,7 +110,9 @@
     "lib/shaders/simple_vertex.js",
     "lib/shaders/nano_vertex.js",
     "lib/geometry/index.js",
-    "lib/geometry/cloud.js",
+    "lib/geometry/cloud1.js",
+    "lib/geometry/cloud2.js",
+    "lib/geometry/cloud3.js",
     "lib/geometry/extra_deathball.js",
     "lib/geometry/extra_extralife.js",
     "lib/geometry/extra_fog.js",
