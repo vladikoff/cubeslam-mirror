@@ -94,4 +94,10 @@ func PutTurnClient(c appengine.Context, userName string, roomName string, turnCl
   return err;
 }
 
+func DeleteTurnClient(c appengine.Context, userName string, roomName string) error {
+  k := datastore.NewKey(c, "TurnClient", userName + "-" + roomName, 0, nil)
+ err := datastore.Delete(c, k)
+  return err;
+}
+
 

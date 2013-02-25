@@ -211,6 +211,7 @@ func Connected(c appengine.Context, w http.ResponseWriter, r *http.Request, room
     if err := signal.Send(c, turnclient.TurnConfig(c)); err != nil {
       c.Criticalf("Error while sending turn credentials:",err)
     }
+    DeleteTurnClient(c, userName, roomName) // Remove this data from Datastore when it has been sent to the client.
   }
 
   // send connected to both when room is complete
