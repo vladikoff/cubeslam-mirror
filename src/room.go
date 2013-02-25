@@ -104,6 +104,7 @@ func GetRoom(c appengine.Context, name string) (*Room, error) {
 func PutRoom(c appengine.Context, name string, room *Room) error {
   k := datastore.NewKey(c, "Room", name, 0, nil)
   _, err := datastore.Put(c, k, room)
+  c.Debugf("Storing %+v", room)
   return err;
 }
 
