@@ -15,17 +15,32 @@
         <properties instanceId="master_bus" pan="0" volume="0.75" outputBus="master"/>
         <audioNodes></audioNodes>
     </audioBus>
+    <audioBus triggers="init_routing">
+        <properties instanceId="pause_bus" pan="0" volume="0.75" outputBus="master_bus"/>
+        <audioNodes></audioNodes>
+    </audioBus>
 
     <!-- MAIN BUS MUTE/UNMUTE -->
-    <transform triggers="sound_off,pause">
+
+    <transform triggers="sound_off">
         <properties instanceId="master_mute"
             targetType="audioRouter" targets="master_bus" targetParameter="volume"
             value="0" duration="100" />
     </transform>
-    <transform triggers="sound_on,unpause">
+    <transform triggers="sound_on">
         <properties instanceId="master_unmute"
             targetType="audioRouter" targets="master_bus" targetParameter="volume"
-            value="0.9" duration="100" />
+            value="0.75" duration="100" />
+    </transform>
+    <transform triggers="pause">
+        <properties instanceId="pause_mute"
+            targetType="audioRouter" targets="pause_bus" targetParameter="volume"
+            value="0" duration="100" />
+    </transform>
+    <transform triggers="unpause">
+        <properties instanceId="pause_unmute"
+            targetType="audioRouter" targets="pause_bus" targetParameter="volume"
+            value="0.75" duration="100" />
     </transform>
 <!-- /AUDIO MIXING -->
 
@@ -282,27 +297,27 @@
     <genericPlay triggers="user_won_round">
         <properties delay="0" instanceId="win_round_buzz" soundFile="win_round_buzz" volume="0" loop="-1"
             reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
-            bus="master_bus" timingCorrection="PLAY" />
+            bus="pause_bus" timingCorrection="PLAY" />
     </genericPlay>
     <genericPlay triggers="user_lost_round">
         <properties delay="0" instanceId="loose_round_buzz" soundFile="loose_round_buzz" volume="0" loop="-1"
             reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
-            bus="master_bus" timingCorrection="PLAY" />
+            bus="pause_bus" timingCorrection="PLAY" />
     </genericPlay>
     <genericPlay triggers="user_lost_round">
         <properties delay="0" instanceId="loose_fanfare" soundFile="loose_fanfare" volume="0" loop="-1"
             reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
-            bus="master_bus" timingCorrection="PLAY" />
+            bus="pause_bus" timingCorrection="PLAY" />
     </genericPlay>
     <genericPlay triggers="user_won_round">
         <properties delay="0" instanceId="win_fanfare" soundFile="win_fanfare" volume="0" loop="-1"
             reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
-            bus="master_bus" timingCorrection="PLAY" />
+            bus="pause_bus" timingCorrection="PLAY" />
     </genericPlay>
     <genericPlay triggers="opponent_screen_explode">
         <properties delay="0" instanceId="opponent_screen_break_between_levels" soundFile="opponent_screen_break_between_levels" volume="0" loop="-1"
             reTrig="-1" returnEvent="" returnEventTime="0" preListen="0"
-            bus="master_bus" timingCorrection="PLAY" />
+            bus="pause_bus" timingCorrection="PLAY" />
     </genericPlay>
 <!-- /MAKE EFFECTS SOUNDS -->
 
@@ -341,7 +356,7 @@
 
 <!-- FX SAMPLERS -->
     <sampler triggers="paddle_fx">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -354,7 +369,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="extra_life">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -367,7 +382,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="winloose_tone">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -380,7 +395,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="shield_hit">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -393,7 +408,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="item_up">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -406,7 +421,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="item_down">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="false"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="false"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -434,8 +449,9 @@
 <!-- MUTE/UNMUTE INSTRUMENT SAMPLERS -->
 
 <!-- INSTRUMENT SAMPLERS -->
+
     <sampler triggers="bass_filter">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="1" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="450" ampRelease="260" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -450,7 +466,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="bass_comp">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="pause_bus" loop="true"/>
         <properties ampAttack="10" ampDecay="450" ampRelease="500" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -463,7 +479,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="bass">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="220" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -476,7 +492,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="stab">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-4.5" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-4.5" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="100" ampSustain="1" ampVelocityRatio="0"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -489,7 +505,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="strings">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-6" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-6" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="220" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -502,7 +518,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="synth_comp">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-3.5" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-3.5" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="1" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -515,7 +531,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="synth_funk">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-5.5" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-5.5" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="200" ampRelease="300" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -528,7 +544,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="synth_perc">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-13" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-13" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="1" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -541,7 +557,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="synth_plucked">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="0" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="0" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="45" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -554,7 +570,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="synth_pop">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-2" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="350" ampSustain="1" ampVelocityRatio="0"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -567,7 +583,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="synth_sharp">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-7.5" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-7.5" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="100" ampSustain="1" ampVelocityRatio="0"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -580,7 +596,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="synth_warm">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-13" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-13" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="500" ampSustain="1" ampVelocityRatio="0"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -593,7 +609,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="lead_a">
-        <properties instanceId="multi" ignoreNoteOff="true" volume="-8" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="true" volume="-8" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="350" ampRelease="550" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -606,7 +622,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="lead_b">
-        <properties instanceId="multi" ignoreNoteOff="true" volume="-9" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="true" volume="-9" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="100" ampRelease="640" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
@@ -619,7 +635,7 @@
         </sampleMapGroups>
     </sampler>
     <sampler triggers="dm_kraftwerk">
-        <properties instanceId="multi" ignoreNoteOff="false" volume="-3" bus="master_bus" loop="true"/>
+        <properties instanceId="multi" ignoreNoteOff="false" volume="-3" bus="pause_bus" loop="true"/>
         <properties ampAttack="1" ampDecay="1" ampRelease="1" ampSustain="1" ampVelocityRatio="1"/>
         <properties filterOn="false"/>
         <audioNodes />
