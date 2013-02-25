@@ -38,6 +38,7 @@
     dmaf.pending = [];
     //used by client to send messages to dmaf
     dmaf.tell = function (eventName, eventProperties, eventTime) {
+        console.log("DMAF.TELL:", eventName);
         if (!dmaf.active) return dmaf.pending.push([].slice.call(arguments));
         if (!eventTime) eventTime = DMAF.context.currentTime * 1000;
         DMAF.ActionManager.onEvent(eventName, eventTime, eventProperties);
@@ -367,7 +368,7 @@ dmaf.once("load_framework", function DMAFInit(DMAF) {
         }
     }
 });
-dmaf.addEventListener("load_core", function (DMAF) {
+dmaf.once("load_core", function (DMAF) {
     var colon = /[:]/;
     DMAF.registerInstance = function (type, id, constructor, doNotManage) {
         DMAF[type] = DMAF[type] || Object.create(null);
@@ -1053,7 +1054,7 @@ dmaf.once("load_core", function (DMAF) {
         return String.fromCharCode(string.charCodeAt(0) & 255);
     }
 });
-dmaf.addEventListener("load_core", function load_Utils (DMAF) {
+dmaf.once("load_core", function load_Utils (DMAF) {
     var INT = "int",
         FLOAT = "float",
         STRING = "string",
