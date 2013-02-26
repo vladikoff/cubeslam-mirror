@@ -30,8 +30,20 @@ func Main(w http.ResponseWriter, r *http.Request) {
   // redirect to room name
   if r.URL.Path == "/" {
     if fake, err := faker.New("en"); err == nil {
-      // TODO make sure the room doesn't exist...
-      http.Redirect(w, r, "/"+fake.DomainWord(), 302);
+      roomName := fake.DomainWord()
+      path := "/"
+
+      // room doesn't exists, redirect to it
+      // (or we'll just redirect back to "/")
+      if _, err := GetRoom(c, roomName); err != nil {
+        path = "/"+roomName
+      } else {
+        c.Debugf("Room already exist. Redirecting back to /")
+      }
+      if r.URL.RawQuery != "" {
+        path = path + "?"+r.URL.RawQuery
+      }
+      http.Redirect(w, r, path, 302);
     } else {
       c.Criticalf("execution failed: %s", err)
     }
