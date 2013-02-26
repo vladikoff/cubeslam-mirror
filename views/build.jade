@@ -108,7 +108,7 @@ html(lang='en')
             button.red.return-mainmenu(type='button') Back
 
     //COUNTDOWN
-    section.state.game-prompt.inactive
+    section.state.game-prompt.game-over-prompt.inactive
       .background.animate
       .state.game-prompt-start.inactive
         .content.center.animate
@@ -124,8 +124,15 @@ html(lang='en')
       .state.game-prompt-round.inactive
         .content.center.animate
           #round-prompt.prompt
-            h2.bitmap Round 
+            h3.bitmap Round 
               span 1
+
+      .state.game-prompt-over.inactive
+        .content.center.animate
+          .prompt
+            h4.over.bitmap Game Over
+            h4.win.bitmap You Win
+            h4.loose.bitmap You Loose
 
     //PAUSE DIALOG
     section.state.game-pause.inactive
@@ -134,7 +141,7 @@ html(lang='en')
           .vertical-center
             h2 Paused
             .buttons
-              button.blue.play-friend.notimplemented(type='button') Play Friend
+              button.blue.play-friend(type='button') Play Friend
               button.singleplayer.green.play(type='button') Resume (space)
 
     //CAMERA REQUEST ATTENTION
@@ -221,7 +228,7 @@ html(lang='en')
 
     //GAME OVER
     section.state.game-over.inactive
-      h1.bitmap.shadow Game Over
+      //h1.bitmap.shadow Game Over
       div
         .dialog
           .content.animate
@@ -317,6 +324,7 @@ html(lang='en')
           p.bubble(data-name='BOB')
         .game-board
           .arena
+            .extra.multiball
         .shields
           .shields-a
           .shields-b
