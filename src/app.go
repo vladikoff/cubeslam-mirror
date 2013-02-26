@@ -45,21 +45,8 @@ func Main(w http.ResponseWriter, r *http.Request) {
       http.Redirect(w, r, path, 302);
     } else {
       c.Criticalf("execution failed: %s", err)
-      return
     }
-
-    // Create a new room name and check so it does not exist.
-    var newRoom string
-    for newRoom = ""; newRoom == ""; newRoom = fake.DomainWord() {
-      if _, err := GetRoom(c, newRoom); err != nil {
-        // Room exists. Try a new room name..
-        newRoom = ""
-      }
-    }
-
-    http.Redirect(w, r, "/" + newRoom, 302);
-
-    return;
+    return
   }
 
   q := r.URL.Query()
@@ -71,10 +58,6 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
   // skip rooms when using WebSocket signals
   if appchan {
-
-    // turnclient := new(TurnClient)
-    // turnclient.SetProperties(c, r)
-    // PutTurnClient(c, userName, roomName, turnclient)
 
     room, err := GetRoom(c, roomName)
 
