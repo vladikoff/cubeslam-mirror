@@ -1,4 +1,10 @@
 $footer-height = 47px
+@keyframes extra-icon-puls
+  0%, 100% 
+    transform translate(0, 0px)
+  50%
+    transform translate(0, -7px)
+
 
 #canv-css
   display none
@@ -101,12 +107,13 @@ html.mobile
       // transition none
       height 60px
       margin-top -30px
+      top 50%
       transform translateZ(0)
       backface-visibility hidden
     .prompt
       transform translateZ(0)
       backface-visibility hidden
-      h1, h2
+      h1, h2, h3, h4
         font-size 30px
 
   footer#footer
@@ -421,6 +428,9 @@ html.mobile
     backface-visibility hidden
     transform-origin 50% 50% 0
     position absolute
+    .icon
+      background-color transparent
+      animation extra-icon-puls 2s infinite ease-out
 
 
 .puck
