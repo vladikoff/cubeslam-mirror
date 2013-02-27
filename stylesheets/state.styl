@@ -84,7 +84,7 @@
           background #2aa52a
           color $color-beige
 
-      span 
+      span
         position relative
     p
       max-width 350px
@@ -116,7 +116,7 @@
           opacity 0
 
       &.game-over-prompt
-        h4 
+        h4
           font-size 70px
 
     .content
@@ -128,7 +128,7 @@
       justify-content center
       align-content stretch
       align-items center
-      
+
       width 100%
       height 100%
       absolute top 0 left 0
@@ -179,7 +179,7 @@
       .buttons
         absolute top 50% right 30px
         margin-top -17px
-        button 
+        button
           margin 0
           font-size 11px
           padding 10px
@@ -204,7 +204,7 @@
     .dialog
       height 33%
       min-height 266px
-      
+
       .animate
         transition-delay 500ms
 
@@ -216,7 +216,7 @@
           margin-left 8px
         .social
           margin 42px 0 20px
-        h3 
+        h3
           padding 10px 0 19px
 
 
@@ -231,7 +231,7 @@
       padding-right 0
 
       &:last-child
-        margin-left 17px 
+        margin-left 17px
 
     ul.social
       .icon
@@ -257,7 +257,7 @@
       padding 21px 0 0 3px
       color $color-beige
 
-      span 
+      span
         display block
         font-size 11px
         margin-top 31px
@@ -349,6 +349,9 @@
       &.active
         transition-delay 200ms
         transform rotateY(-180deg)
+
+      &.latest-winner
+        animation score-blink 0.5s infinite
 
   .opponent
     li.active
