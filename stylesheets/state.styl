@@ -347,15 +347,16 @@
       &:first-child
         margin-left 0
       &.active
-        transition-delay 200ms
+        transition-delay 1200ms
         transform rotateY(-180deg)
+        animation score-blink 0.5s 12
 
-      &.latest-winner
-        animation score-blink 0.5s infinite
+      // &.latest-winner
+      //   animation score-blink 0.5s 12
 
   .opponent
     li.active
-      transition-delay 1500ms
+      transition-delay 2500ms
 
 #level
   &.inactive

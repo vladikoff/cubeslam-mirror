@@ -66,6 +66,7 @@
     "lib/states/webcam.js",
     "lib/states/friend.js",
     "lib/actions/index.js",
+    "lib/actions/bodies.js",
     "lib/actions/bullet.js",
     "lib/actions/paddle.js",
     "lib/actions/puck.js",
