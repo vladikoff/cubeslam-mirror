@@ -29,7 +29,7 @@ jsdom.env({
     }
 
     process.stdout.write('arb.register("webrtcgame:en", ');
-    process.stdout.write(JSON.stringify(result) + "\n");
+    process.stdout.write(JSON.stringify(result,null,2) + "\n");
     process.stdout.write(");\n");
 
   }
