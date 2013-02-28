@@ -58,6 +58,7 @@
     "lib/support/hash-code.js",
     "lib/support/exclude.js",
     "lib/states/index.js",
+    "lib/states/error.js",
     "lib/states/setup.js",
     "lib/states/mobile.js",
     "lib/states/loading.js",

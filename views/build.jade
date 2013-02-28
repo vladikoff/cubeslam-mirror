@@ -7,12 +7,13 @@ html(lang='en')
     meta(name='apple-mobile-web-app-capable',content='yes')
     meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name='description', content='Welcome to play Pong against your friends using new amazing technology DataChannels')
+
     title #{name}
     link(rel='apple-touch-icon', href='/images/mobile/apple-touch-57.png')
     link(rel='apple-touch-icon', sizes='72x72', href='/images/mobile/apple-touch-72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/mobile/apple-touch-114.png')
     link(rel='apple-touch-icon', sizes='144x144', href='/images/minipong.png')
-
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/pong.css')
 
@@ -358,7 +359,7 @@ html(lang='en')
           button.info(href='#', data-icon='⌽', type='button')
 
     //ERROR STATES
-    section#error
+    section#error.state.error.inactive
       .error.connection-error
         .dialog.middle
           .content.animate
@@ -397,7 +398,7 @@ html(lang='en')
               .buttons
                 a.button.red(href='') Reload
 
-      .error.datachannels
+      .state.error-datachannels.inactive
         .dialog.middle
           .content.animate
             .vertical-center
@@ -405,7 +406,7 @@ html(lang='en')
               p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
               button.return-mainmenu.red(type='button') Back
 
-      section.state.error.network-missing
+      //section.error.network-missing
         .dialog.middle
           .content.animate
             .vertical-center
