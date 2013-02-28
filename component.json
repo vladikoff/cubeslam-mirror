@@ -120,7 +120,7 @@
     "lib/geometry/extra_ghostball.js",
     "lib/geometry/extra_mirroredcontrols.js",
     "lib/geometry/extra_multiball.js",
-    "lib/geometry/extra_resize.js",
+    "lib/geometry/extra_paddleresize.js",
     "lib/geometry/extra_fireball.js",
     "lib/geometry/extra_timebomb.js",
     "lib/geometry/extra_shield.js",
