@@ -380,13 +380,17 @@
     height 36px
     position relative
     font-size .8em
-    display none
+    // display none
     opacity 0
-    transition opacity .3s
+    transition-duration .3s
+    transition-property opacity, transform, top
     position absolute
+    transform translateY(10px)
     &.visible
-      display block
+      // display block
       opacity 1
+      transform translateY(0)
+
     &:before
       border 1px solid rgba(255,255,255,.3)
       font-size 2.1em
