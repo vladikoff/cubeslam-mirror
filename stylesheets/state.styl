@@ -388,10 +388,14 @@
     transition-property opacity, transform, top
     position absolute
     transform translateY(10px)
+    top 0
     &.visible
       // display block
       opacity 1
       transform translateY(0)
+    &.active
+      animation extra-active 1s infinite
+      animation-timing-funciton ease-in-out
 
     &:before
       border 1px solid rgba(255,255,255,.3)
