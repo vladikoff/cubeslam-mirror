@@ -255,20 +255,23 @@ html(lang='en')
               .scoreboard.multiplayer
                 h3 Total wins
                 div
-                  p#me-levels.levels X
+                  p#me-levels.levels
+                    i X
                     span You
-                  p#opponent-levels.levels X
-                   span p2
+                  p#opponent-levels.levels
+                    i X
+                    span Friend
                 ul.social
                   li
                     a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
                       span Google+
-                    li
-                      a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
-                        span Facebook
-                    li
-                      a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
-                        span Twitter
+                  li
+                    a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
+                      span Facebook
+                  li
+                    a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
+                      span Twitter
+
                 button.green.play(type='button') Play Again (Space)
 
     section#scores.state.game.inactive
@@ -277,7 +280,7 @@ html(lang='en')
         h1 #{name}
         p.level Level 
           span#level 1
-        
+
 
       .multiplayer
         .player
