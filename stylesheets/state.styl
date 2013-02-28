@@ -364,19 +364,29 @@
 
 #extras
   position absolute
-  right 60px
+  right 70px + 36px
+  top 100px
   font-size 12px
   text-transform uppercase
+  ul
+    width 300px
   li
     color #FFF
     margin-bottom 10px
     padding 20px 0 0 0
     text-align right
     box-sizing border-box
+    width 300px
     height 36px
     position relative
     font-size .8em
     display none
+    opacity 0
+    transition opacity .3s
+    position absolute
+    &.visible
+      display block
+      opacity 1
     &:before
       border 1px solid rgba(255,255,255,.3)
       font-size 2.1em
