@@ -437,12 +437,32 @@ html.mobile
       animation extra-icon-puls 2s infinite ease-out
 
 
-.puck
-  position absolute
-  transform rotateX(-90deg) translateX(585px) translateY(-50%) translateZ(932px)
-  backface-visibility hidden
-  transform-style preserve-3d
-  transform-origin 50% 50% 0
+  .puck
+    position absolute
+    transform rotateX(-90deg) translateX(365px) translateY(-50%) translateZ(505px) scale(1.5)
+    backface-visibility hidden
+    transform-style preserve-3d
+    transform-origin 50% 50% 0
+
+  .effect.fog
+    position absolute
+    top 148px
+    left 96px
+    z-index 3
+    opacity 0
+    transition opacity .5s
+    
+    &.active
+      opacity 1
+    &.hidden
+      display none
+
+  .obstacle.triangles
+    position absolute
+    top 209px
+    left 189px
+    z-index 2
+  
 
 @media (orientation: portrait)
   html.mobile
