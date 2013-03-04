@@ -1,9 +1,19 @@
 $footer-height = 47px
-@keyframes extra-icon-puls
+@keyframes extra-icon-pulse
   0%, 100% 
     transform translate(0, 0px)
   50%
     transform translate(0, -7px)
+
+@keyframes effect-ghostball-pulse
+  0%, 100% 
+    opacity .4
+  50%
+    opacity .1
+  80%
+    opacity .7
+  90%
+    opacity .2
 
 
 #canv-css
@@ -207,7 +217,7 @@ html.mobile
           height 12px
 
   #gamepad
-    display none
+    display none!important
     position absolute
     top 20%
     width 100%
@@ -434,7 +444,7 @@ html.mobile
     position absolute
     .icon
       background-color transparent
-      animation extra-icon-puls 2s infinite ease-out
+      animation extra-icon-pulse 2s infinite ease-out
 
 
   .puck
@@ -443,6 +453,11 @@ html.mobile
     backface-visibility hidden
     transform-style preserve-3d
     transform-origin 50% 50% 0
+
+    &.ghostball
+      -webkit-filter grayscale(1)
+      animation effect-ghostball-pulse 2s infinite
+
 
   .effect.fog
     position absolute
@@ -457,11 +472,19 @@ html.mobile
     &.hidden
       display none
 
-  .obstacle.triangles
-    position absolute
-    top 209px
-    left 189px
-    z-index 2
+  .obstacles
+    .triangle-left
+      display none
+      position absolute
+      top 209px
+      left 189px
+      z-index 2
+    .triangle-right
+      display none
+      position absolute
+      top 209px
+      left 496px
+      z-index 2
   
 
 @media (orientation: portrait)
@@ -474,8 +497,8 @@ html.mobile
 
 @media (orientation: landscape)
   html.mobile
-    .state.active
-      #gamepad
+    .touch
+      #gamepad.state.active
         display block!important
 
     #scores
