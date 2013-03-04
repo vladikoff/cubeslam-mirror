@@ -91,7 +91,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
         c.Criticalf("!!! could not save room: %s", err)
         return;
       }
-      data.State = "empty"
+      data.State = "room-empty"
 
     // Join room
     } else if room.Occupants() == 1 {
@@ -101,12 +101,12 @@ func Main(w http.ResponseWriter, r *http.Request) {
         c.Criticalf("could not save room: %s", err)
         return;
       }
-      data.State = "lonely"
+      data.State = "room-lonely"
 
     // Full room
     } else if room.Occupants() == 2 {
       c.Debugf("Full room %s",roomName)
-      data.State = "error full"
+      data.State = "room-full"
 
     // DataStore error
     } else if err != nil {
