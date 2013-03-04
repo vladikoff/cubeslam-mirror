@@ -49,50 +49,6 @@ func Main(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  q := r.URL.Query()
-  appchan := q.Get("signal") != "ws"
-
-  roomName := strings.TrimLeft(r.URL.Path,"/")
-  userName := Random(10)
-  fullRoom := false;
-
-  // skip rooms when using WebSocket signals
-  if appchan {
-
-    room, err := GetRoom(c, roomName)
-
-    // Empty room
-    if err != nil {
-      room := new(Room)
-      room.AddUser(userName)
-      c.Debugf("Created room %s",roomName)
-      if err := PutRoom(c, roomName, room); err != nil {
-        c.Criticalf("!!! could not save room: %s", err)
-        return;
-      }
-
-    // Join room
-    } else if room.Occupants() == 1 {
-      room.AddUser(userName)
-      c.Debugf("Joined room %s",roomName)
-      if err := PutRoom(c, roomName, room); err != nil {
-        c.Criticalf("could not save room: %s", err)
-        return;
-      }
-
-    // Full room
-    } else if room.Occupants() == 2 {
-      c.Debugf("Full room %s",roomName)
-      fullRoom = true;
-
-    // DataStore error
-    } else if err != nil {
-      c.Criticalf("Error occured while getting room %s",roomName,err)
-      return;
-    }
-
-  }
-
   // Accept-Language:
   acceptLanguage := "en"
   var header map[string][]string;
@@ -112,25 +68,60 @@ func Main(w http.ResponseWriter, r *http.Request) {
     }
   }
 
+  q := r.URL.Query()
+  appchan := q.Get("signal") != "ws"
+
+  roomName := strings.TrimLeft(r.URL.Path,"/")
+  userName := Random(10)
+
   // Data to be sent to the template:
   data := Template{Room:roomName, User: userName, AcceptLanguage: acceptLanguage, Minified: minified}
 
+  // skip rooms when using WebSocket signals
   if appchan {
-    // Full room, skip token
-    if fullRoom {
-      c.Criticalf("Room full %s",roomName)
+
+    room, err := GetRoom(c, roomName)
+
+    // Empty room
+    if err != nil {
+      room := new(Room)
+      room.AddUser(userName)
+      c.Debugf("Created room %s",roomName)
+      if err := PutRoom(c, roomName, room); err != nil {
+        c.Criticalf("!!! could not save room: %s", err)
+        return;
+      }
+      data.State = "empty"
+
+    // Join room
+    } else if room.Occupants() == 1 {
+      room.AddUser(userName)
+      c.Debugf("Joined room %s",roomName)
+      if err := PutRoom(c, roomName, room); err != nil {
+        c.Criticalf("could not save room: %s", err)
+        return;
+      }
+      data.State = "lonely"
+
+    // Full room
+    } else if room.Occupants() == 2 {
+      c.Debugf("Full room %s",roomName)
       data.State = "error full"
 
-    // Create a channel token
-    } else {
-      signal := new(Signal)
-      if err := signal.Init(c, MakeClientId(roomName, userName)); err != nil {
-        http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
-        return
-      }
-      signal.Save(c)
-      data.Token = signal.Token
+    // DataStore error
+    } else if err != nil {
+      c.Criticalf("Error occured while getting room %s",roomName,err)
+      return;
     }
+
+    // Create a channel token
+    signal := new(Signal)
+    if err := signal.Init(c, MakeClientId(roomName, userName)); err != nil {
+      http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
+      return
+    }
+    signal.Save(c)
+    data.Token = signal.Token
   }
 
   // Parse the template and output HTML:
@@ -221,6 +212,8 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
       return;
     }
 
+    // get the other user before we remove the current one
+    otherUser := room.OtherUser(userName)
     empty := room.RemoveUser(userName)
     c.Debugf("Removed user %s from room %s",userName,roomName)
 
@@ -238,9 +231,8 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
       err := PutRoom(c, roomName, room)
       if err != nil {
         c.Criticalf("... Could not put room %s: ",roomName,err)
-      } else {
+      } else if otherUser != "" {
         // let the other user know
-        otherUser := room.OtherUser(userName)
         signal, _ := GetSignal(c, MakeClientId(roomName, userName))
         otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
         if err := otherSignal.Send(c, "disconnected"); err != nil {
@@ -249,6 +241,8 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
         if err := signal.Send(c, "disconnected"); err != nil {
           c.Criticalf("Error while sending disconnected:",err)
         }
+      } else {
+        c.Debugf("We should never get here because the room should be empty.")
       }
     }
   } else {
