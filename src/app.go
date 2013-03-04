@@ -221,6 +221,8 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
       return;
     }
 
+    // get the other user before we remove the current one
+    otherUser := room.OtherUser(userName)
     empty := room.RemoveUser(userName)
     c.Debugf("Removed user %s from room %s",userName,roomName)
 
@@ -238,9 +240,8 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
       err := PutRoom(c, roomName, room)
       if err != nil {
         c.Criticalf("... Could not put room %s: ",roomName,err)
-      } else {
+      } else if otherUser != "" {
         // let the other user know
-        otherUser := room.OtherUser(userName)
         signal, _ := GetSignal(c, MakeClientId(roomName, userName))
         otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
         if err := otherSignal.Send(c, "disconnected"); err != nil {
@@ -249,6 +250,8 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
         if err := signal.Send(c, "disconnected"); err != nil {
           c.Criticalf("Error while sending disconnected:",err)
         }
+      } else {
+        c.Debugf("We should never get here because the room should be empty.")
       }
     }
   } else {
