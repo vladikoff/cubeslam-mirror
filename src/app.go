@@ -346,5 +346,11 @@ func init() {
   if !appengine.IsDevAppServer() {
     // This fires too early in the development environment.
     http.HandleFunc("/_ah/channel/disconnected/", Disconnected)
+  } else {
+    // to avoid creating rooms in dev mode
+    http.HandleFunc("/_ah/channel/disconnected/", func(w http.ResponseWriter, r *http.Request){
+      w.Write([]byte("OK"))
+    })
+
   }
 }
