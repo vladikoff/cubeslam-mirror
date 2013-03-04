@@ -157,7 +157,7 @@ html(lang='en')
           h1.alert-info Are you sure? Friends play is not possible without allowing webcam.
           .buttons
             button#activate-camera.red(arb:id='playFriendButton', type='button') Activate Camera
-            a.button.play-computer.red(arb:id='playCPUButton', href='/') Start a new game
+            a.button.keyboard.red(arb:id='playCPUButton') Start a new game
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -224,8 +224,7 @@ html(lang='en')
                     .dash-medium.dash-white.sad-right-eye-anim-loop
             h2 Your friend left the game
             .buttons
-              button.blue.play-friend(type='button') Play another Friend
-              button.green.play(type='button') Play Computer (Space)
+              button.green.play.main-menu(type='button') Main Menu
 
     //GAME OVER
     section.state.game-over.inactive
@@ -249,7 +248,7 @@ html(lang='en')
                       a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
                         span Twitter
 
-              button.blue.play-friend(type='button') Play Friend
+              button.blue.main-menu(type='button') Main Menu
               button.green.play(type='button') Retry Level (Space)
 
             #scoreboard-multi.vertical-center
@@ -413,13 +412,13 @@ html(lang='en')
             .vertical-center
               h2 Error
               p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
-              button.return-mainmenu.red(type='button') Main Menu
+              button.main-menu.red(type='button') Main Menu
 
       //section.error.network-missing
         .dialog.middle
           .content.animate
             .vertical-center
-              button.return-mainmenu(type='button') Main Menu
+              button.main-menu(type='button') Main Menu
 
     footer#footer
       ul#socials.social
