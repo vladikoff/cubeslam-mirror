@@ -417,6 +417,45 @@ html(lang='en')
               .buttons
                 a.button.red(href='') Reload
 
+      .state.error.error-fullroom.inactive
+        .dialog.middle
+          .content.animate
+            .vertical-center
+              h2 Your friend is currently playing someone else!
+              .cpu-conn-failed-anim
+                .cpu-wth-eyes
+                  .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+                  .cpu-wth-eyes__container
+                    .cpu-wth-eyes__eyes
+                      .dash-medium.dash-white.sad-left-eye-anim-loop
+                      .dash-medium.dash-white.sad-right-eye-anim-loop
+
+                .dash-anim-line
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+
+                .cross-fail-anim
+                  .icon-cross
+
+                .dash-anim-line
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+                  .dash-small.dash-black
+
+                .cpu-wth-eyes
+                  .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+                  .cpu-wth-eyes__container
+                    .cpu-wth-eyes__eyes
+                      .dash-medium.dash-white.sad-left-eye-anim-loop
+                      .dash-medium.dash-white.sad-right-eye-anim-loop
+
+              p You can create a new game to invite a friend of you own
+              p or go back to main menu to play the single player game
+              .buttons
+                button.main-menu.red(type='button') Main Menu
+                a.button.red(href='/') New Game
+
       .state.error-datachannels.inactive
         .dialog.middle
           .content.animate
