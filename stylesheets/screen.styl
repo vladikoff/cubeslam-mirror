@@ -77,6 +77,11 @@ html
   .active *
     transform translateZ(0)
 
+  &.game-pause
+    footer, section.game-pause .dialog
+      transform scaleX(-1)
+
+
 @import 'header'
 @import 'footer'
 @import 'dialogs'
