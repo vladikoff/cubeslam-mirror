@@ -1,6 +1,6 @@
 - var name = "Paddle Battle";
 - var url = 'http://webrtcgame.appspot.com/';
-- var urlWithRoomId = '{url}{{.Room}}';
+- var urlWithRoomId = url+'{{.Room}}';
 
 !!! 5
 html(lang='en')
@@ -198,6 +198,19 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2 Your friend has arrived
             button.play-friend.blue(type='button') Play Friend
+
+    //WAITING FRIEND ACCEPT
+    section.state.game-wait.inactive
+      .dialog.middle
+        .content.animate
+          .vertical-center
+            .cpu-wth-eyes
+              .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+              .cpu-wth-eyes__container
+                .cpu-wth-eyes__eyes
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+                  .dash-medium.dash-white.blinking-eyes-anim-loop
+            h2 Waiting for you friend to start
 
     //WAITING FRIEND ACCEPT
     section.state.friend-accept.inactive
