@@ -1,9 +1,21 @@
 $footer-height = 47px
-@keyframes extra-icon-puls
+@keyframes extra-icon-pulse
   0%, 100% 
-    transform translate(0, 0px)
+    transform translate(0, 0px) scale(.9)
   50%
-    transform translate(0, -7px)
+    transform translate(0, -7px) scale(1.1)
+
+@keyframes effect-ghostball-pulse
+  0%, 100% 
+    opacity .4
+  50%
+    opacity .1
+
+@keyframes effect-force
+  0%
+    background-position: -510px -359px
+  100%
+    background-position: 250px -359px
 
 
 #canv-css
@@ -27,6 +39,7 @@ html.mobile
 
   #settingsGUIContainer
   , .play-friend
+  , button.main-menu
   , .links
   , .multiplayer
   , section.state.game-pause
@@ -207,7 +220,7 @@ html.mobile
           height 12px
 
   #gamepad
-    display none
+    display none!important
     position absolute
     top 20%
     width 100%
@@ -434,7 +447,7 @@ html.mobile
     position absolute
     .icon
       background-color transparent
-      animation extra-icon-puls 2s infinite ease-out
+      animation extra-icon-pulse 1s infinite
 
 
   .puck
@@ -444,6 +457,13 @@ html.mobile
     transform-style preserve-3d
     transform-origin 50% 50% 0
 
+    &.ghostball
+      -webkit-filter grayscale(1)
+      animation effect-ghostball-pulse 2s infinite
+    &.flash
+      opacity .6
+
+
   .effect.fog
     position absolute
     top 148px
@@ -451,17 +471,40 @@ html.mobile
     z-index 3
     opacity 0
     transition opacity .5s
+    transform translateZ(0)
+    backface-visibility hidden
     
     &.active
       opacity 1
     &.hidden
       display none
 
-  .obstacle.triangles
-    position absolute
-    top 209px
-    left 189px
-    z-index 2
+  .force
+    display none
+    absolute left 50% top 385px
+    margin-left -126px
+    animation effect-force .5s infinite alternate
+    animation-timing-function steps(3)
+    // transform translateZ(0)
+    backface-visibility hidden
+    &.active
+      display block
+
+  .obstacles
+    transform translateZ(0)
+    backface-visibility hidden
+    .triangle-left
+      display none
+      position absolute
+      top 210px
+      left 188px
+      z-index 2
+    .triangle-right
+      display none
+      position absolute
+      top 210px
+      left 497px
+      z-index 2
   
 
 @media (orientation: portrait)
@@ -474,8 +517,8 @@ html.mobile
 
 @media (orientation: landscape)
   html.mobile
-    .state.active
-      #gamepad
+    .touch
+      #gamepad.state.active
         display block!important
 
     #scores
