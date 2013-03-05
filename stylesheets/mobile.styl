@@ -333,7 +333,11 @@ html.mobile
 
       .bear
         absolute top 390px left 679px
-
+        transform translateZ(0)
+        backface-visibility hidden
+        > * 
+          transform translateZ(0)
+          backface-visibility hidden
       .angry
         absolute top 8px left 40px
       .blink
@@ -396,13 +400,13 @@ html.mobile
         transition-duration .3s
         transition-delay 0s
         transition-timing-function ease-out
-        transform scaleY(.005)
+        transform scaleY(.005) translateZ(0)
         backface-visibility hidden
         &.visible
           for row in 1 2 3
             &:nth-child({row})
               transition-delay 100ms * (row - 1)
-          transform scaleY(1)
+          transform scaleY(1) translateZ(0)
 
       .shields-a
         top 420px
@@ -491,8 +495,9 @@ html.mobile
       display block
 
   .obstacles
-    transform translateZ(0)
-    backface-visibility hidden
+    .obstacle
+      transform translateZ(0)
+      backface-visibility hidden
     .triangle-left
       display none
       position absolute
