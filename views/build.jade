@@ -28,13 +28,9 @@ html(lang='en')
 
       .nav
         .notifications
-          p.notification.empty.bubble No one is currently playing in this room, invite a friend.
           p.notification.full.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
           p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
-          p.notification.multiplayer.bubble.slave(arb:id='friendIsWaiting') Your friend is waiting for you to join this Game Room!
-          p.notification.error.webcam.error.bubble.slave(arb:id='noWebcam') You don't have a webcam and you can thereby only play against the computer
 
-        a.button.full.green(arb:id='newRoom', href='/') Start new room
         button.play-friend.green(arb:id='playFriendButton', type='button') Play friend
         button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
 
@@ -157,8 +153,7 @@ html(lang='en')
         .content
           h1.alert-info Are you sure? Friends play is not possible without allowing webcam.
           .buttons
-            button#activate-camera.red(arb:id='playFriendButton', type='button') Activate Camera
-            a.button.keyboard.red(arb:id='playCPUButton') Start a new game
+            a.button.keyboard.red(arb:id='playCPUButton', href='/') Start a new game
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -250,7 +245,7 @@ html(lang='en')
               .scoreboard.single
                   div
                     p#single-levels.levels X
-                    h3 Levels Cleared
+                    h3 Levels Reached
                   ul.social
                     li
                       a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
@@ -363,7 +358,8 @@ html(lang='en')
         li.icon-time-bomb(data-icon='*') Time Bomb
         li.icon-track-ball(data-icon='*') Track ball
         li.icon-lazer-paddle(data-icon='*') Lazer paddle
-        li.icon-mirrored-controls(data-icon='*') Mirrored Controls
+        li.icon-mirrored-controls(data-icon='*')
+          span Mirrored Controls
         li.icon-bulletproof(data-icon='*') Bullet Proof
 
 

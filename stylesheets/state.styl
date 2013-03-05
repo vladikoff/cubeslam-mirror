@@ -174,18 +174,18 @@
 
   &.webcam-information
     .dialog
-      button
+      button, .button
         margin 10px 0px 20px 0px
       .buttons
         absolute top 50% right 30px
-        margin-top -19px
+        margin-top -8px
         line-height 1em
-        button
+        button, .button
           margin 0
           font-size 11px
           padding 10px
       .alert-info
-        padding-right 330px
+        padding-right 200px
   &.game-over
     text-align center
     height 100%
@@ -397,6 +397,11 @@
     &.active
       animation extra-active 1s infinite
       animation-timing-funciton ease-in-out
+
+      span
+        transform scaleX(-1)
+        transform-origin center center
+        display inline-block
 
     &:before
       border 1px solid rgba(255,255,255,.3)
