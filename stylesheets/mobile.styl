@@ -471,6 +471,8 @@ html.mobile
     z-index 3
     opacity 0
     transition opacity .5s
+    transform translateZ(0)
+    backface-visibility hidden
     
     &.active
       opacity 1
@@ -483,10 +485,14 @@ html.mobile
     margin-left -126px
     animation effect-force .5s infinite alternate
     animation-timing-function steps(3)
+    // transform translateZ(0)
+    backface-visibility hidden
     &.active
       display block
 
   .obstacles
+    transform translateZ(0)
+    backface-visibility hidden
     .triangle-left
       display none
       position absolute
@@ -497,7 +503,7 @@ html.mobile
       display none
       position absolute
       top 210px
-      left 496px
+      left 497px
       z-index 2
   
 
