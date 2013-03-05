@@ -39,6 +39,7 @@ html.mobile
 
   #settingsGUIContainer
   , .play-friend
+  , button.main-menu
   , .links
   , .multiplayer
   , section.state.game-pause
@@ -482,6 +483,8 @@ html.mobile
     margin-left -126px
     animation effect-force .5s infinite alternate
     animation-timing-function steps(3)
+    &.active
+      display block
 
   .obstacles
     .triangle-left
