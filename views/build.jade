@@ -1,5 +1,6 @@
 - var name = "Paddle Battle";
-- var url = 'http://webrtcgame.appspot.com/{{.Room}}';
+- var url = 'http://webrtcgame.appspot.com/';
+- var urlWithRoomId = '{url}{{.Room}}';
 
 !!! 5
 html(lang='en')
@@ -104,7 +105,7 @@ html(lang='en')
           .vertical-center
             h2 share this link to Invite a Friend
             p.share-url
-              span.url= url
+              span.url= urlWithRoomId
             p You will be notified when your friend enter the game
             button.red.return-mainmenu(type='button') Main Menu
 
@@ -327,6 +328,7 @@ html(lang='en')
           p.bubble(data-name='BOB')
         .game-board
           .arena
+            .effect.force
         .shields
           .shields-a
           .shields-b
