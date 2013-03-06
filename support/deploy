@@ -1,6 +1,7 @@
 #!/bin/sh
 
 name="$1"
+version=${2-`cat .version`}
 
 case "$name" in
   "alfredsgame" | \
@@ -8,8 +9,13 @@ case "$name" in
   "einarsgame" | \
   "gogglesgame" | \
   "gogglesgame1")
-    echo "deploying $name"
-    sed -i.tmp 's/application: .*/application: '"$name"'/' app.yaml
+    echo "deploying $name@$version"
+    sed -i.tmp 's/^application: .*/application: '"$name"'/' app.yaml
+    sed -i.tmp 's/^version: .*/version: '$version'/' app.yaml
+
+    # increment and write the version
+    version=$(( version+1 ))
+    echo "$version" > .version
 
     # use python instead of the python-2.5 that is hard coded in appcfg.
     # or ssl won't work on osx.

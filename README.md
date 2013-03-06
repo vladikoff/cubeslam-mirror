@@ -37,3 +37,13 @@ Chrome Pong (working title)
     $ make deploy-webrtcgame
 
   Where the `webrtcgame` part depends on the app you want to deploy to. See the Makefile for available options.
+
+### Versioned deploys
+
+  Right now it will automatically increment the version number on each deploy. Simply because it will be easier to refer to a version while doing QA.
+
+  If you want to deploy to a specific version (like to version 1 which will be the default) you add `v=` like this:
+
+    $ make deploy-webrtcgame v=1
+
+  The version can be anything that can be a subdomain such as "hello-there-123". Which would be accessible at http://hello-there-123.webrtcgame.appspot.com/.
