@@ -305,7 +305,7 @@ func OnMessage(w http.ResponseWriter, r *http.Request) {
   otherUser := room.OtherUser(userName)
   if jsonmsg, err := json.Marshal(msg); err != nil {
     c.Criticalf("Error when marshaling json:", err)
-  } else {
+  } else if otherUser != "" {
     signal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
     if err := signal.Send(c, string(jsonmsg)); err != nil {
       c.Criticalf("Error while sending JSON:",err)
