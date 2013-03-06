@@ -375,8 +375,8 @@ html(lang='en')
 
     //ERROR STATES
     section#error.state.error.inactive
-      state.error.connection.inactive
-        .dialog.middle
+      .state.error-connection.inactive
+        .dialog.bottom
           .content.animate
             .vertical-center
               h2(arb:id='errorConnectionHeader') Connection Error!
@@ -413,8 +413,8 @@ html(lang='en')
               .buttons
                 a.button.red(href='', arb:id='buttonReload') Reload
 
-      .state.error.error-fullroom.inactive
-        .dialog.middle
+      .state.error-fullroom.inactive
+        .dialog.bottom
           .content.animate
             .vertical-center
               h2(arb:id='errorOccupiedHeader') Your friend is currently playing someone else!
@@ -453,7 +453,7 @@ html(lang='en')
                 a.button.red(href='/', arb:id='buttonNewGame') New Game
 
       .state.error-datachannels.inactive
-        .dialog.middle
+        .dialog.bottom
           .content.animate
             .vertical-center
               h2(arb:id='errorDCHeader') Error
@@ -461,7 +461,7 @@ html(lang='en')
               button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
 
       //section.error.network-missing
-        .dialog.middle
+        .dialog.bottom
           .content.animate
             .vertical-center
               button.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
@@ -486,7 +486,8 @@ html(lang='en')
             a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
           li.localization
             a#localizationSwitch(href='#') EN
-            a#localizationSwitch(href='#') RV
+          li.localization
+            a#localizationSwitch(href='#') EN
           li.sound
             a.sound-switch.off(href='#')
               span.off(arb:id='soundOn') Sound on
