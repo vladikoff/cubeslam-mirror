@@ -1,13 +1,14 @@
-var see = require('../lib/support/see');
+var see = require('../lib/support/see2');
 
 var visited = [];
 
 var states = {
-  Root: { enter: function(ctx){visited.push('root enter')} },
+  Root: { name: 'root', enter: function(ctx){visited.push('root enter')} },
 
-  Setup: { enter: function(ctx){visited.push('setup enter')} },
+  Setup: { name: 'setup', enter: function(ctx){visited.push('setup enter')} },
 
   Loading: {
+    name: 'loading',
     enter: function(ctx){
       visited.push('loading enter')
       see('/main-menu')
@@ -19,6 +20,7 @@ var states = {
   },
 
   MainMenu: {
+    name: 'main menu',
     enter: function(ctx){
       visited.push('main menu enter')
       see('/game/play')
@@ -30,6 +32,7 @@ var states = {
 
   Friend: {
     Invite: {
+      name: 'friend invite',
       enter: function(ctx){
         visited.push('friend invite '+ctx.pathname+' enter')
       },
@@ -42,6 +45,7 @@ var states = {
   Game: {
 
     Setup: {
+      name: 'game setup',
       enter: function(ctx){
         visited.push('game setup enter')
       },
@@ -52,6 +56,7 @@ var states = {
     },
 
     Play: {
+      name: 'game play',
       enter: function(ctx){
         visited.push('game play enter')
       },
