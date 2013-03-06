@@ -80,6 +80,10 @@ func Main(w http.ResponseWriter, r *http.Request) {
   // skip rooms when using WebSocket signals
   if appchan {
 
+    turnclient := new(TurnClient)
+    turnclient.SetProperties(c, r)
+    PutTurnClient(c, userName, roomName, turnclient)
+
     room, err := GetRoom(c, roomName)
 
     // Empty room
@@ -185,6 +189,8 @@ func Connected(c appengine.Context, w http.ResponseWriter, r *http.Request, room
       c.Criticalf("Error while sending turn credentials:",err)
     }
     DeleteTurnClient(c, userName, roomName) // Remove this data from Datastore when it has been sent to the client.
+  } else {
+    c.Debugf("No TURN client found:",err)
   }
 
   // send connected to both when room is complete
