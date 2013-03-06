@@ -4,9 +4,25 @@ var visited = []
   , events = { enter: [], leave: [] };
 
 var states = {
-  Root: { name: 'root', enter: function(ctx){visited.push('root enter')} },
+  Root: {
+    name: 'root',
+    enter: function(ctx){
+      visited.push('root enter')
+    },
+    leave: function(ctx){
+      throw new Error('should never leave root')
+    }
+  },
 
-  Setup: { name: 'setup', enter: function(ctx){visited.push('setup enter')} },
+  Setup: {
+    name: 'setup',
+    enter: function(ctx){
+      visited.push('setup enter')
+    },
+    leave: function(ctx){
+      throw new Error('should never leave setup')
+    }
+  },
 
   Loading: {
     name: 'loading',
@@ -24,7 +40,6 @@ var states = {
     name: 'main menu',
     enter: function(ctx){
       visited.push('main menu enter')
-      see('/game/play')
     },
     leave: function(ctx){
       visited.push('main menu leave')
@@ -39,6 +54,16 @@ var states = {
       },
       leave: function(ctx){
         visited.push('friend invite '+ctx.pathname+' leave')
+      }
+    },
+
+    Waiting: {
+      name: 'friend waiting',
+      enter: function(ctx){
+        visited.push('friend waiting enter')
+      },
+      leave: function(ctx){
+        visited.push('friend waiting leave')
       }
     }
   },
@@ -100,7 +125,12 @@ var states = {
     Activate: {
       enter: function(ctx){
         visited.push('webcam activate enter')
-        see('/webcam/waiting')
+        this.timeout = setTimeout(function(){
+          see('/webcam/waiting')
+        },20)
+      },
+      cleanup: function(ctx){
+        clearTimeout(this.timeout)
       }
     },
 
@@ -155,6 +185,7 @@ see('/',states.Setup)
 see('/loading',states.Loading)
 see('/main-menu',states.MainMenu)
 see('/friend/invite',states.Friend.Invite)
+see('/friend/waiting',states.Friend.Waiting)
 see('/webcam/activate',states.Webcam.Activate)
 see('/webcam/waiting',states.Webcam.Waiting)
 see('/game',states.Game.Setup)
@@ -176,9 +207,14 @@ leave() // empty because of async leave
 
 // wait 1.5s (for loading.leave to complete)
 setTimeout(function(){
-  path('main menu enter','main menu leave','game setup enter','game play enter')
-  enter('/main-menu','/game','/game/play')
-  leave('/loading','/main-menu')
+  path('main menu enter')
+  enter('/main-menu')
+  leave('/loading')
+
+  see('/game/play')
+  path('main menu leave','game setup enter','game play enter')
+  enter('/game','/game/play')
+  leave('/main-menu')
 
   see('/game/invite')
   path('game play leave','friend invite /game/invite enter')
@@ -199,16 +235,16 @@ setTimeout(function(){
   // now test abort() and queue
   see('/webcam/activate')
   see('/main-menu')
-  path('friend invite /friend/invite leave','webcam activate enter','webcam waiting enter','webcam waiting leave')
-  enter('/webcam/activate','/webcam/waiting')
-  leave('/friend/invite','/friend','/webcam/activate')
+  path('friend invite /friend/invite leave','webcam activate enter','main menu enter')
+  enter('/webcam/activate','/main-menu')
+  leave('/friend/invite','/webcam/activate') // <<--- correct?
 
 
   see.abort()
   see('/friend/invite')
-  path('webcam waiting cleanup','friend invite /friend/invite enter')
+  path('main menu leave','friend invite /friend/invite enter')
   enter('/friend/invite')
-  leave('/webcam') // no /webcam/waiting because of abort()
+  leave('/main-menu') // no /webcam/waiting because of abort()
 
   see('/game/prompt/level')
   path('friend invite /friend/invite leave','game setup enter','prompt enter','prompt level enter','prompt level leave')
@@ -219,6 +255,23 @@ setTimeout(function(){
     path('prompt level cleanup','prompt round enter','prompt round leave','prompt round cleanup','prompt start enter','prompt start leave','prompt start cleanup','prompt leave','game play enter')
     enter('/game/prompt/round','/game/prompt/start','/game/play')
     leave('/game/prompt/level','/game/prompt/round','/game/prompt/start','/game/prompt')
+
+    // test a regression
+    see('/main-menu')
+    path('game play leave','game setup leave','main menu enter')
+    enter('/main-menu')
+    leave('/game/play','/game')
+
+    see('/friend/waiting')
+    path('main menu leave','friend waiting enter')
+    enter('/friend/waiting')
+    leave('/main-menu')
+
+    see('/webcam/activate')
+    path('friend waiting leave','webcam activate enter')
+    enter('/webcam/activate')
+    leave('/friend/waiting')
+
   },700)
 
 },1500)
