@@ -110,6 +110,7 @@ see('/game/invite',states.Friend.Invite)
 
 
 see('/loading')
+see('/main-menu') // tests queing
 path('root enter','setup enter','loading enter','loading leave')
 
 // wait 1.5s (for loading.leave to complete)
@@ -122,7 +123,11 @@ setTimeout(function(){
   see('/friend/invite')
   path('friend invite /game/invite leave','game setup leave','friend invite /friend/invite enter')
 
-  // now test abort()
+  // test ignoring the same path
+  see('/friend/invite')
+  path()
+
+  // now test abort() and queue
   see('/webcam/activate')
   see('/main-menu')
   path('friend invite /friend/invite leave','webcam activate enter','webcam waiting enter','webcam waiting leave')
