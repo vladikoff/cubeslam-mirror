@@ -20,11 +20,8 @@ html(lang='en')
 
   body(class="{{.State}}")
     header.state.main-menu.animate
-      hgroup
-        h2 Welcome to
-        h1.copy
-          img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
-        h3 a chrome experiment
+      h1
+        img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
 
       .nav
         .notifications
@@ -36,13 +33,12 @@ html(lang='en')
 
       .links
         a.experiment(href='http://google.com/', target='_blank', data-icon='⬢')
-          span Chrome Experiment
+          span(arb:id='chromeExperiment') Chrome Experiment
         a.from(href='http://google.com/', target='_blank', data-icon='☃')
-          span Made with some friends from Google
+          span(arb:id='friendFromGoogle') Made with some friends from Google
 
     .state.loading.active
       .computer(data-icon='⎚')
-      // .spinner(data-icon='*')
       .loading__anim
         .pad
         .ball
@@ -54,7 +50,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .game-controls.vertical-center
-            h2 Game controls
+            h2(arb:id='gameInstructionsHeader') Game controls
             div.animation
               .kb-anim
                 .dash-big.dash-black
@@ -66,13 +62,13 @@ html(lang='en')
                   .key__label.icon-arrow-right
                   .key__bg-outer
                     div.key__bg-inner
-              p press
+              p(arb:id='gameInstructionsPress') press
               .key.key--big.default-key-anim
                 p.key__label SPACE
                 .key__bg-outer
                   div.key__bg-inner
-              p to pause
-            button.green.play(type='button') Ok (SPACE)
+              p(arb:id='gameInstructionsPause') to pause
+            button.green.play(type='button', arb:id='buttonOk') Ok (SPACE)
 
           .vertical-center
             .info-animation.hidden
@@ -91,19 +87,19 @@ html(lang='en')
                   .destroy-shield__weapon.icon-destroy-shield-weapon
 
               .destroy-shield__label
-                p Disable the shields!
-                p Destroy the screen!
+                p(arb:id='gameInstructionsSheilds') Disable the shields!
+                p(arb:id='gameInstructionsMission') Destroy the screen!
 
     //INVITE FRIEND
     section.state.friend-invite.game-invite.inactive
       .dialog
         .content.animate
           .vertical-center
-            h2 share this link to Invite a Friend
+            h2(arb:id='inviteHeader') share this link to Invite a Friend
             p.share-url
               span.url= urlWithRoomId
-            p You will be notified when your friend enter the game
-            button.red.return-mainmenu(type='button') Main Menu
+            p(arb:id='inviteNotified') You will be notified when your friend enter the game
+            button.red.return-mainmenu(type='button',arb:id='buttonMainMenu') Main Menu
 
     //COUNTDOWN
     section.state.game-prompt.game-over-prompt.inactive
@@ -111,49 +107,49 @@ html(lang='en')
       .state.game-prompt-start.inactive
         .content.center.animate
           #start-prompt.prompt
-            h1.bitmap Start
+            h1.bitmap(arb:id='promptStart') Start
 
       .state.game-prompt-level.inactive
         .content.center.animate
           #level-prompt.prompt
-            h2.bitmap Level 
+            h2.bitmap(arb:id='promptLevel') Level 
               span 1
 
       .state.game-prompt-round.inactive
         .content.center.animate
           #round-prompt.prompt
-            h3.bitmap Ball 
+            h3.bitmap(arb:id='promptBall') Ball 
               span 1
 
       .state.game-prompt-over.inactive
         .content.center.animate
           .prompt
-            h4.over.bitmap Game Over
-            h4.win.bitmap You Win
-            h4.loose.bitmap You Loose
+            h4.over.bitmap(arb:id='promptOver') Game Over
+            h4.win.bitmap(arb:id='promptWin') You Win
+            h4.loose.bitmap(arb:id='promptLoose') You Loose
 
     //PAUSE DIALOG
     section.state.game-pause.inactive
       .dialog
         .content.animate
           .vertical-center
-            h2 Paused
+            h2(arb:id='pauseHeader') Paused
             .buttons
-              button.blue.main-menu(type='button') Main Menu
-              button.singleplayer.green.play(type='button') Resume (space)
+              button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
+              button.singleplayer.green.play(type='button', arb:id='buttonResume') Resume (space)
 
     //CAMERA REQUEST ATTENTION
     section.state.webcam-activate.inactive
       .dialog.top
         .content
-          h1.alert-info Please choose allow to connect your webcam and start friends play
+          h1.alert-info(arb:id='webcamAllow') Please choose allow to connect your webcam and start friends play
 
     section.state.webcam-information.inactive
       .dialog.top
         .content
-          h1.alert-info Are you sure? Friends play is not possible without allowing webcam.
+          h1.alert-info(arb:id='webcamDenied') Are you sure? Friends play is not possible without allowing webcam.
           .buttons
-            a.button.keyboard.red(arb:id='playCPUButton', href='/') Start a new game
+            a.button.keyboard.red(arb:id='buttonNewGame', href='/') New game
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -164,7 +160,7 @@ html(lang='en')
               .webcam-spinner__bg.icon-webcam
               .webcam-spinner__quarter
                 .icon-quarter-circle
-            h2 Waiting for friend<br/>to activate camera
+            h2(arb:id='waitingForCamera') Waiting for friend<br/>to activate camera
 
     //WAITING FRIEND
     section.state.friend-waiting.inactive
@@ -177,8 +173,8 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2 Your friend is waiting for you in the arena
-            button.play-friend.blue(type='button') Play Friend
+            h2(arb:id='waitingForAcceptance') Your friend is waiting for you in the arena
+            button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
     //FRIEND ARRIVED
     section.state.friend-arrived.inactive
@@ -191,8 +187,8 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2 Your friend has arrived
-            button.play-friend.blue(type='button') Play Friend
+            h2(arb:id='friendArrived') Your friend has arrived
+            button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
     //WAITING FRIEND ACCEPT
     section.state.game-wait.inactive
@@ -205,7 +201,7 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2 Waiting for you friend to start
+            h2(arb:id='waitingForGameStart') Waiting for you friend to start
 
     //WAITING FRIEND ACCEPT
     section.state.friend-accept.inactive
@@ -218,7 +214,7 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2 Waiting for you friend to accept
+            h2(arb:id='waitingFriendAccept') Waiting for you friend to accept
 
     //OPPONENT LEFT DIALOG
     section.state.friend-left.inactive
@@ -231,9 +227,9 @@ html(lang='en')
                   .cpu-wth-eyes__eyes
                     .dash-medium.dash-white.sad-left-eye-anim-loop
                     .dash-medium.dash-white.sad-right-eye-anim-loop
-            h2 Your friend left the game
+            h2(arb:id='leftGame') Your friend left the game
             .buttons
-              button.green.play.main-menu(type='button') Main Menu
+              button.green.play.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
 
     //GAME OVER
     section.state.game-over.inactive
@@ -245,7 +241,7 @@ html(lang='en')
               .scoreboard.single
                   div
                     p#single-levels.levels X
-                    h3 Level Reached
+                    h3(arb:id='levelReached') Level Reached
                   ul.social
                     li
                       a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
@@ -257,19 +253,19 @@ html(lang='en')
                       a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
                         span Twitter
 
-              button.blue.main-menu(type='button') Main Menu
-              button.green.play(type='button') Retry Level (Space)
+              button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
+              button.green.play(type='button', arb:id='buttonRetry') Retry Level (Space)
 
             #scoreboard-multi.vertical-center
               .scoreboard.multiplayer
-                h3 Total wins
+                h3(arb:id='scoreTotalWins') Total wins
                 div
                   p#me-levels.levels
                     i X
-                    span You
+                    span(arb:id='playerYou') You
                   p#opponent-levels.levels
                     i X
-                    span Friend
+                    span(arb:id='playerFriend') Friend
                 ul.social
                   li
                     a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
@@ -281,26 +277,26 @@ html(lang='en')
                     a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
                       span Twitter
 
-                button.green.play(type='button') Play Again (Space)
+                button.green.play(type='button', arb:id='buttonPlayAgain') Play Again (Space)
 
     section#scores.state.game.inactive
       .logo
         img(src="/images/minipong.png", alt='logo')
         h1 #{name}
-        p.level Level 
+        p.level(arb:id='scoreLevel') Level
           span#level 1
 
 
       .multiplayer
         .player
-          p You
+          p(arb:id='playerYou') You
           ol
             li
             li
             li
 
         .opponent
-          p Friend
+          p(arb:id='playerFriend') Friend
           ol
             li
             li
@@ -308,14 +304,14 @@ html(lang='en')
 
       .singleplayer
         .player
-          p You
+          p(arb:id='playerYou') You
           ol
             li.active
             li.active
             li.active
 
         .opponent
-          p CPU
+          p(arb:id='playerCPU') CPU
           ol
             li.active
             li.active
@@ -383,7 +379,7 @@ html(lang='en')
         .dialog.middle
           .content.animate
             .vertical-center
-              h2 Connection Error!
+              h2(arb:id='errorConnectionHeader') Connection Error!
               .cpu-conn-failed-anim
                 .cpu-wth-eyes
                   .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
@@ -412,16 +408,16 @@ html(lang='en')
                       .dash-medium.dash-white.sad-left-eye-anim-loop
                       .dash-medium.dash-white.sad-right-eye-anim-loop
 
-              p You can try reloading the page
-              p or try the single player game
+              p(arb:id='errorConnectionReload') You can try reloading the page
+              p(arb:id='errorConnectionOr') or try the single player game
               .buttons
-                a.button.red(href='') Reload
+                a.button.red(href='', arb:id='buttonReload') Reload
 
       .state.error.error-fullroom.inactive
         .dialog.middle
           .content.animate
             .vertical-center
-              h2 Your friend is currently playing someone else!
+              h2(arb:id='errorOccupiedHeader') Your friend is currently playing someone else!
               .cpu-conn-failed-anim
                 .cpu-wth-eyes
                   .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
@@ -450,25 +446,25 @@ html(lang='en')
                       .dash-medium.dash-white.sad-left-eye-anim-loop
                       .dash-medium.dash-white.sad-right-eye-anim-loop
 
-              p You can create a new game to invite a friend of you own
-              p or go back to main menu to play the single player game
+              p(arb:id='errorOccupiedNew') You can create a new game to invite a friend of you own
+              p(arb:id='errorOccupiedOr') or go back to main menu to play the single player game
               .buttons
-                button.main-menu.red(type='button') Main Menu
-                a.button.red(href='/') New Game
+                button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
+                a.button.red(href='/', arb:id='buttonNewGame') New Game
 
       .state.error-datachannels.inactive
         .dialog.middle
           .content.animate
             .vertical-center
-              h2 Error
-              p Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
-              button.main-menu.red(type='button') Main Menu
+              h2(arb:id='errorDCHeader') Error
+              p(arb:id='errorDCBrowserSupport') Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
+              button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
 
       //section.error.network-missing
         .dialog.middle
           .content.animate
             .vertical-center
-              button.main-menu(type='button') Main Menu
+              button.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
 
     footer#footer
       ul#socials.social
@@ -484,15 +480,16 @@ html(lang='en')
       #about
         ul
           li.technology
-            a(target='_blank'): span Technology
+            a(target='_blank') 
+              span(arb:id='footerTechnology') Technology
           li.terms
-            a(target='_blank', href='https://www.google.com/policies/') Terms &amp; privacy
+            a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
           li.localization
             a#localizationSwitch(href='#') EN
           li.sound
             a.sound-switch.off(href='#')
-              span.off Sound on
-              span.on Sound off
+              span.off(arb:id='soundOn') Sound on
+              span.on(arb:id='soundOff') Sound off
 
     #fpsCameraCapture
 
