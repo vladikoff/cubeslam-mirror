@@ -44,7 +44,7 @@ type TurnClient struct {
 
 func (tc *TurnClient) SetProperties(c appengine.Context, r *http.Request) error {
   tc.IP = r.RemoteAddr
-  idx := strings.LastIndex(tc.IP, ":") 
+  idx := strings.LastIndex(tc.IP, ":")
   if idx != -1 {
     tc.IP = tc.IP[:idx] // Remove port from address, if there is one.
   }
@@ -72,7 +72,7 @@ func (tc *TurnClient) TurnConfig(c appengine.Context) string {
 
   if turnserver, err := GetTurnServer(c, tc.Geo); err == nil {
     serverIP = turnserver.IP
-	sharedKey = turnserver.SharedKey
+	  sharedKey = turnserver.SharedKey
   }
 
   hmac := md5.New()
