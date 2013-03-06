@@ -7,7 +7,7 @@ dmaf.once("load_custom", function (DMAF) {
     LevelTransposer.prototype = Object.create(DMAF.InstancePrototype, {
         onAction: {
             value: function (trigger, actionTime, eventProperties, actionProperties) {
-                var throttle = actionTime - this.lastActionTime < 5000;
+                var throttle = (actionTime - this.lastActionTime) < 5000;
                 switch (trigger) {
                     case "user_won_round":
                         if (throttle) return;
