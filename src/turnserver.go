@@ -28,6 +28,9 @@ func GetTurnServer(c appengine.Context, geo string) (*TurnServer, error) {
   k := datastore.NewKey(c, "TurnServer", geo, 0, nil)
   r := new(TurnServer)
   err := datastore.Get(c, k, r)
+  if err != nil {
+    c.Criticalf("Error when getting TURN server for geo " + geo + ":", err)
+  }
   return r, err;
 }
 
