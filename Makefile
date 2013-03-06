@@ -33,15 +33,15 @@ prepare-deploy: $(MINIFY)
 	@:
 
 deploy-alfred: prepare-deploy
-	support/deploy alfredsgame $(VERSION)
+	support/deploy alfredsgame $(v)
 deploy-einar: prepare-deploy
-	support/deploy einarsgame $(VERSION)
+	support/deploy einarsgame $(v)
 deploy-goggles: prepare-deploy
-	support/deploy gogglesgame $(VERSION)
+	support/deploy gogglesgame $(v)
 deploy-goggles1: prepare-deploy
-	support/deploy gogglesgame1 $(VERSION)
+	support/deploy gogglesgame1 $(v)
 deploy-webrtc: prepare-deploy
-	support/deploy webrtcgame $(VERSION)
+	support/deploy webrtcgame $(v)
 
 node_modules/:
 	npm install
