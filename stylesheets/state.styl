@@ -283,21 +283,28 @@
   top 100px
   left 70px
   line-height 15px
+  text-transform uppercase
 
-  img
-    margin-bottom 14px
+  .logo
+    font-size 11px
+
+    img
+      margin-bottom 14px
+
+    .level
+      margin-top 1px
 
   &.inactive
     display none
 
   .player, .opponent
-    margin-top 10px
+    margin-top 5px
     p
       font-size 11px
-      margin-bottom 3px
+      margin-bottom 8px
 
   .player
-    margin-top 20px
+    margin-top 13px
 
   ol
     li
@@ -306,7 +313,7 @@
       height 26px
       border 2px solid #edecd6
       display inline-block
-      margin-left 7px
+      margin-left 2px
       position relative
       transition transform 300ms ease-in-out
       transform-style preserve-3d
@@ -329,6 +336,7 @@
         backface-visibility hidden
         background transparent url('/images/score-rect.png') no-repeat center center
         background-size cover
+        box-shadow 0 2px 6px rgba(0,0,0,.2)
 
 
       &:first-child
