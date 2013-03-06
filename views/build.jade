@@ -92,7 +92,7 @@ html(lang='en')
                   .destroy-shield__weapon.icon-destroy-shield-weapon
 
               .destroy-shield__label
-                p(arb:id='gameInstructionsSheilds') Disable the shields!
+                p(arb:id='gameInstructionsShields') Disable the shields!
                 p(arb:id='gameInstructionsMission') Destroy the screen!
 
     //INVITE FRIEND
@@ -107,7 +107,7 @@ html(lang='en')
             button.red.return-mainmenu(type='button',arb:id='buttonMainMenu') Main Menu
 
     //COUNTDOWN
-    section.state.game-prompt.game-over-prompt.inactive
+    section.state.game-prompt.inactive
       .background.animate
       .state.game-prompt-start.inactive
         .content.center.animate
@@ -485,7 +485,7 @@ html(lang='en')
       #about
         ul
           li.technology
-            a(target='_blank') 
+            a(target='_blank')
               span(arb:id='footerTechnology') Technology
           li.terms
             a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
