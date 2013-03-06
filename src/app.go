@@ -85,7 +85,10 @@ func Main(w http.ResponseWriter, r *http.Request) {
     if !appengine.IsDevAppServer() {
       turnclient := new(TurnClient)
       turnclient.SetProperties(c, r)
-      PutTurnClient(c, userName, roomName, turnclient)
+      err := PutTurnClient(c, userName, roomName, turnclient)
+      if err != nil {
+        c.Criticalf("Could not save TurnClient: %s", err)
+      }
     }
 
     room, err := GetRoom(c, roomName)
@@ -184,7 +187,7 @@ func JSConnected(w http.ResponseWriter, r *http.Request) {
 }
 
 func Connected(c appengine.Context, w http.ResponseWriter, r *http.Request, roomName string, userName string, room *Room) {
-  // Both AppEngine Channels API backend AND the Javascript Channels API lib are initialized!
+  c.Debugf("Both AppEngine Channels API backend AND the Javascript Channels API lib are initialized! roomName:" + roomName + " userName:" + userName)
 
   signal, _ := GetSignal(c, MakeClientId(roomName, userName))
 
