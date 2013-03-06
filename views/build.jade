@@ -375,7 +375,7 @@ html(lang='en')
 
     //ERROR STATES
     section#error.state.error.inactive
-      .error.connection-error
+      state.error.connection.inactive
         .dialog.middle
           .content.animate
             .vertical-center
@@ -457,7 +457,7 @@ html(lang='en')
           .content.animate
             .vertical-center
               h2(arb:id='errorDCHeader') Error
-              p(arb:id='errorDCBrowserSupport') Sorry. your browser does not support 2 player game in friends play. install a modern browser like google chrome, or try single player game.
+              p(arb:id='errorDCBrowserSupport') Sorry. your browser does not support 2 player game in friends play. install a modern browser like <a href='google.com'>google chrome</a>, or try single player game.
               button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
 
       //section.error.network-missing
@@ -486,6 +486,7 @@ html(lang='en')
             a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
           li.localization
             a#localizationSwitch(href='#') EN
+            a#localizationSwitch(href='#') RV
           li.sound
             a.sound-switch.off(href='#')
               span.off(arb:id='soundOn') Sound on
@@ -513,5 +514,5 @@ html(lang='en')
         room: '{{.Room}}',
         user: '{{.User}}',
         token: '{{.Token}}',
-        acceptLanguage: 'en,{{.AcceptLanguage}}'
+        acceptLanguage: 'en,rv,{{.AcceptLanguage}}'
       })
