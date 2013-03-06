@@ -42,6 +42,34 @@ var states = {
     }
   },
 
+  Webcam: {
+
+    Activate: {
+      enter: function(ctx){
+        visited.push('webcam activate enter')
+        see('/webcam/waiting')
+      }
+    },
+
+    Waiting: {
+      enter: function(ctx){
+        visited.push('webcam waiting enter')
+        see('/game/play')
+      },
+
+      leave: function(ctx,next){
+        visited.push('webcam waiting leave')
+        this.timeout = setTimeout(next,10000);
+      },
+
+      cleanup: function(ctx){
+        visited.push('webcam waiting cleanup')
+        clearTimeout(this.timeout)
+      }
+    }
+
+  },
+
   Game: {
 
     Setup: {
@@ -74,6 +102,8 @@ see('/',states.Setup)
 see('/loading',states.Loading)
 see('/main-menu',states.MainMenu)
 see('/friend/invite',states.Friend.Invite)
+see('/webcam/activate',states.Webcam.Activate)
+see('/webcam/waiting',states.Webcam.Waiting)
 see('/game',states.Game.Setup)
 see('/game/play',states.Game.Play)
 see('/game/invite',states.Friend.Invite)
@@ -91,6 +121,15 @@ setTimeout(function(){
 
   see('/friend/invite')
   path('friend invite /game/invite leave','game setup leave','friend invite /friend/invite enter')
+
+  // now test abort()
+  see('/webcam/activate')
+  see('/main-menu')
+  path('friend invite /friend/invite leave','webcam activate enter','webcam waiting enter','webcam waiting leave')
+  see.abort()
+  see('/friend/invite')
+  path('webcam waiting cleanup','friend invite /friend/invite enter')
+
 },1500)
 
 
