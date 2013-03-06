@@ -375,8 +375,8 @@ html(lang='en')
 
     //ERROR STATES
     section#error.state.error.inactive
-      state.error.connection.inactive
-        .dialog.middle
+      .state.error-connection.inactive
+        .dialog.bottom
           .content.animate
             .vertical-center
               h2(arb:id='errorConnectionHeader') Connection Error!
@@ -413,7 +413,7 @@ html(lang='en')
               .buttons
                 a.button.red(href='', arb:id='buttonReload') Reload
 
-      .state.error.error-fullroom.inactive
+      .state.error-fullroom.inactive
         .dialog.bottom
           .content.animate
             .vertical-center
@@ -486,7 +486,8 @@ html(lang='en')
             a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
           li.localization
             a#localizationSwitch(href='#') EN
-            a#localizationSwitch(href='#') RV
+          li.localization
+            a#localizationSwitch(href='#') EN
           li.sound
             a.sound-switch.off(href='#')
               span.off(arb:id='soundOn') Sound on
