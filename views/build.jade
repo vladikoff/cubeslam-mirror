@@ -4,17 +4,22 @@
 
 !!! 5
 html(lang='en')
-  head
+  head(prefix='og: http://ogp.me/ns#')
     meta(name='apple-mobile-web-app-capable',content='yes')
     meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
     meta(name='description', content='Welcome to play Pong against your friends using new amazing technology DataChannels')
+    meta(property='og:type', content='website')
+    //meta(property='og:image', content='')
+    meta(property='og:url', content=url)
 
     title #{name}
     link(rel='apple-touch-icon', href='/images/mobile/apple-touch-57.png')
     link(rel='apple-touch-icon', sizes='72x72', href='/images/mobile/apple-touch-72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/mobile/apple-touch-114.png')
     link(rel='apple-touch-icon', sizes='144x144', href='/images/minipong.png')
+    link(rel='canonical', href=url)
+
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/pong.css')
 
@@ -326,7 +331,7 @@ html(lang='en')
 
       #canv-css
         .background.state.game
-          img.bg(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg')
+          img.bg(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
           .bear.bob
             #expressions
           p.bubble(data-name='BOB')
@@ -362,10 +367,10 @@ html(lang='en')
     //MOBILE
     section.mobile
       section.state.main-menu.inactive
-        img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg')
+        img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
       #gamepad.state.game.inactive
-        .button.left(type='button')
-        .button.right(type='button')
+        button.left(type='button')
+        button.right(type='button')
       nav#mobile-menu.state.game.inactive.animate
         button.pause(href='#', data-icon='▹', type='button')
         .state.game-pause.inactive

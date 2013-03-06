@@ -53,10 +53,7 @@ html.mobile
     background no-repeat center center
     background-size cover
 
-    h2, h3
-      display none
-
-    hgroup
+    h1
       padding 2% 0 0 0
 
     .nav
@@ -222,18 +219,21 @@ html.mobile
   #gamepad
     display none!important
     position absolute
-    top 20%
+    bottom 50%
     width 100%
     z-index 2
     transition opacity 300ms ease-out
 
-    .button
+    button
       background-color #6bba6b
       width 72px
       height 72px
       border-radius 36px
       box-shadow 0 3px 5px rgba(0,0,0,.3) 
       absolute left 5%
+      padding 0
+      outline 0
+      border 0
 
       &:before
         content ' '
@@ -278,16 +278,12 @@ html.mobile
         .content
           transform translateX( 0 )
     &.game-over
-      h1
-        font-size 30px
-        z-index 6
-        padding 0 10px
-        margin-top 45px 
       .dialog
         height 100%
+        min-height 0
         top 0
-        .content 
-          padding-top 50px
+        .scoreboard
+          padding 0 0 15px
 
   .mobile
     .main-menu 
@@ -535,10 +531,10 @@ html.mobile
       .singleplayer, .multiplayer
         .player, .opponent
           display block
-          margin-bottom 20px
-
-      p, 
-      ol
+          clearfix()
+      p
+        margin-bottom 0
+      p, ol
         float left
 
     .dialog
