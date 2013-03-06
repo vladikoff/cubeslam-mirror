@@ -47,7 +47,7 @@ type TurnClient struct {
 
 func (tc *TurnClient) SetProperties(c appengine.Context, r *http.Request) error {
   tc.IP = r.RemoteAddr
-  idx := strings.LastIndex(tc.IP, ":") 
+  idx := strings.LastIndex(tc.IP, ":")
   if idx != -1 {
     tc.IP = tc.IP[:idx] // Remove port from address, if there is one.
   }
@@ -55,15 +55,15 @@ func (tc *TurnClient) SetProperties(c appengine.Context, r *http.Request) error 
   latlong := strings.Split(r.Header.Get("X-Appengine-Citylatlong"), ",")
   //lat, _ := strconv.ParseInt(latlong[0], 10, 32)
   if len(latlong) != 2 {
-	 tc.Geo = "us"
+    tc.Geo = "us"
   } else {
-	long, _ := strconv.ParseInt(latlong[1], 10, 32)
-	if long < -25 || long > 89 {
-		// Anything west of Iceland or east of India is considered to be US. The rest is EU.
-		tc.Geo = "us"
-	} else {
-		tc.Geo = "eu"
-	}
+    long, _ := strconv.ParseInt(latlong[1], 10, 32)
+    if long < -25 || long > 89 {
+      // Anything west of Iceland or east of India is considered to be US. The rest is EU.
+      tc.Geo = "us"
+  	} else {
+      tc.Geo = "eu"
+  	}
   }
   return nil
 }
@@ -75,7 +75,7 @@ func (tc *TurnClient) TurnConfig(c appengine.Context) string {
 
   if turnserver, err := GetTurnServer(c, tc.Geo); err == nil {
     serverIP = turnserver.IP
-	sharedKey = turnserver.SharedKey
+    sharedKey = turnserver.SharedKey
   }
 
   hmac := md5.New()
@@ -99,7 +99,7 @@ func PutTurnClient(c appengine.Context, userName string, roomName string, turnCl
 
 func DeleteTurnClient(c appengine.Context, userName string, roomName string) error {
   k := datastore.NewKey(c, "TurnClient", userName + "-" + roomName, 0, nil)
- err := datastore.Delete(c, k)
+  err := datastore.Delete(c, k)
   return err;
 }
 

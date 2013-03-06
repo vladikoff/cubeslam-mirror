@@ -80,9 +80,13 @@ func Main(w http.ResponseWriter, r *http.Request) {
   // skip rooms when using WebSocket signals
   if appchan {
 
-    turnclient := new(TurnClient)
-    turnclient.SetProperties(c, r)
-    PutTurnClient(c, userName, roomName, turnclient)
+    // doesn't work locally (unless we have a turn server running)
+    // so disabling it in dev for now...
+    if !appengine.IsDevAppServer() {
+      turnclient := new(TurnClient)
+      turnclient.SetProperties(c, r)
+      PutTurnClient(c, userName, roomName, turnclient)
+    }
 
     room, err := GetRoom(c, roomName)
 
