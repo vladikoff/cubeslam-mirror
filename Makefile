@@ -92,7 +92,7 @@ build/build-stylus.css: $(STYLUS)
 
 build/build-3d.js: components $(COMPONENTS) $(COMPONENT) component.json
 	# the 1,208 sed script removes the require.js part
-	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js) > $@
+	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build $(DEV)
