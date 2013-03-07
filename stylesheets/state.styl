@@ -30,8 +30,27 @@
       flex 0 1 auto
 
     .computer
-      font-size 136px
+      color $color-red
       display inline
+      position relative
+      font-size 14px
+      text-align center
+      text-transform uppercase
+      letter-spacing 3px
+
+      &:before
+        color #000
+        display block
+        font-size 136px
+        margin-bottom 20px
+
+      &:after
+        height 49px
+        width 1px
+        border-left 1px dotted $color-beige
+        absolute top 31px left 48px
+        content ''
+
 
   &.state.game-instructions,
   &.state.game-start
