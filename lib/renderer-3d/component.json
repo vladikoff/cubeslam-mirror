@@ -5,7 +5,6 @@
   "development": {},
   "scripts": [
     "index.js",
-    "themes.js",
     "materials.js",
     "player.js",
     "environment.js",
