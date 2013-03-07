@@ -8,7 +8,7 @@ SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
-MINIFY=build public/javascript/pong.min.js public/javascript/libs/three.min.js build/build.min.js
+MINIFY=build build/build-3d.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js build/build.min.js
 
 DEV?=--dev
 DEBUG?=true
@@ -21,10 +21,11 @@ GEOMETRY_JS += lib/renderer-3d/geometry/terrain3.js lib/renderer-3d/geometry/bea
 							 lib/renderer-3d/geometry/moose.js lib/renderer-3d/geometry/terrain3.js \
 							 lib/renderer-3d/geometry/cpu.js
 
-build: build-shaders build-geometry build-component build-styles build-jade build-localization
+build: build-shaders build-geometry build-component build-styles build-jade build-localization build-renderer
 	@:
 
-build-min: build build/build.min.js
+build-min: build $(MINIFY)
+build-renderer: build/build-3d.js
 build-shaders: $(SHADERS_JS) lib/renderer-3d/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
 build-jade: build/build.html
@@ -56,6 +57,9 @@ node_modules/:
 components/: node_modules
 	node_modules/.bin/component-install
 
+lib/renderer-3d/components/:
+	(cd lib/renderer-3d/ && node_modules/.bin/component-install)
+
 lib/renderer-3d/shaders/%.js: lib/renderer-3d/shaders/%.glsl
 	support/str-to-js > $@ < $<
 
@@ -85,6 +89,10 @@ build/%.html: views/%.jade
 
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
+
+build/build-3d.js: components $(COMPONENTS) $(COMPONENT) component.json
+	# the 1,208 sed script removes the require.js part
+	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js) > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build $(DEV)

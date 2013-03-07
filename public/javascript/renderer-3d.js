@@ -1,1 +1,1 @@
-../../lib/renderer-3d/build/build.js
+../../build/build-3d.js

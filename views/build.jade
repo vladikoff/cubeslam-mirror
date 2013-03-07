@@ -509,7 +509,6 @@ html(lang='en')
     script(src='/javascript/libs/dat.gui.js')
     script(src='/javascript/pong.{{.Minified}}js')
     script(src='/javascript/renderer-3d.js')
-    script(src='/javascript/dmaf.min.js')
     script
       // hack to lazy load 3d renderer
       require.alias("renderer-3d/index.js", "paddle-battle/lib/renderer-3d/index.js");
@@ -517,12 +516,15 @@ html(lang='en')
       require.alias("component-jquery/index.js", "renderer-3d/deps/jquery/index.js");
       require.alias("publicclass-geom/index.js", "renderer-3d/deps/geom/index.js");
       require.alias("publicclass-stash/index.js", "renderer-3d/deps/stash/index.js");
-      require.alias("paddle-battle/lib/settings.js", "renderer-3d/settings/index.js");
-      require.alias("paddle-battle/lib/themes.js", "renderer-3d/themes/index.js");
-      require.alias("paddle-battle/lib/actions/index.js", "renderer-3d/actions/index.js");
-      require.alias("paddle-battle/lib/sim/body-flags.js", "renderer-3d/sim/body-flags/index.js");
-      require.alias("paddle-battle/lib/world.js", "renderer-3d/world/index.js");
-      require.alias("paddle-battle/lib/support/improved-noise.js", "renderer-3d/improved-noise/index.js");
+
+      // these are accessible at parent level in renderer-3d
+      require.alias("paddle-battle/lib/settings.js", "settings/index.js");
+      require.alias("paddle-battle/lib/themes.js", "themes/index.js");
+      require.alias("paddle-battle/lib/actions/index.js", "actions/index.js");
+      require.alias("paddle-battle/lib/sim/body-flags.js", "sim/body-flags/index.js");
+      require.alias("paddle-battle/lib/world.js", "world/index.js");
+      require.alias("paddle-battle/lib/support/improved-noise.js", "improved-noise/index.js");
+      require.alias("paddle-battle/lib/dmaf.min.js", "dmaf.min/index.js");
 
       require('paddle-battle')(ctx = {
         room: '{{.Room}}',

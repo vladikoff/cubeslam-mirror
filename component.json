@@ -32,6 +32,7 @@
     "lib/arb.js",
     "lib/localization.js",
     "lib/ai.js",
+    "lib/dmaf.min.js",
     "lib/themes.js",
     "lib/puppeteer.js",
     "lib/rtc/index.js",
@@ -120,7 +121,6 @@
     "lib/levels/mobile/level3.js",
     "lib/levels/mobile/level4.js",
     "lib/levels/mobile/level5.js",
-    "lib/levels/mobile/level6.js",
-    "lib/dmaf.min.js"
+    "lib/levels/mobile/level6.js"
   ]
 }

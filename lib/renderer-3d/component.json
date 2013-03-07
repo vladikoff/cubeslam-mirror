@@ -38,6 +38,7 @@
     "geometry/extra_deathball.js",
     "geometry/extra_extralife.js",
     "geometry/extra_fog.js",
+    "geometry/extra_laser.js",
     "geometry/extra_ghostball.js",
     "geometry/extra_mirroredcontrols.js",
     "geometry/extra_multiball.js",
