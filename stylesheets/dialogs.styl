@@ -16,7 +16,7 @@
     text-transform uppercase
 
   .buttons
-    line-height 55px
+    padding-top 30px
 
   &.top
     top 0
@@ -35,15 +35,21 @@
     min-height 266px
 
   h2
-    font-family 'Varela', sans-serif
-    color #e83028
+    color $color-red
     font-weight normal
     margin 0
     font-size 14px
     line-height 25px
-    padding 10px 0px 10px 0px
+    padding 5px 0px 10px 0px
+  h3
+    color $color-red
+    font-weight normal
+    margin 0
+    font-size 11px
+    line-height 25px
+    padding 5px 0px 5px 0px
   p
-    color #e83028
+    color $color-red
 
     span
       &.green
@@ -62,6 +68,21 @@
     .vertical-center
       display table-cell
       vertical-align middle
+
+  .bubble
+    padding-top 35px
+    &:before
+      font-size 40px
+      top -5px
+      left 40px
+    &:after
+      content attr(data-player)
+      top 6px
+      left 40px
+      color #f9f9db
+      font-size 15px
+      font-weight bold
+      letter-spacing 0px
 
 .state.inactive .dialog
   .animate

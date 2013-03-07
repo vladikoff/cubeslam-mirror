@@ -172,13 +172,13 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes
+            .cpu-wth-eyes.bubble(data-player='p1')
               .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2(arb:id='waitingForAcceptance') Your friend is waiting for you in the arena
+            h3(arb:id='waitingForAcceptance') Your friend is waiting for you in the arena
             button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
     //FRIEND ARRIVED
@@ -186,13 +186,13 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes
+            .cpu-wth-eyes.bubble(data-player='p2')
               .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2(arb:id='friendArrived') Your friend has arrived
+            h3(arb:id='friendArrived') Your friend has arrived
             button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
     //WAITING FRIEND ACCEPT
@@ -200,7 +200,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes
+            .cpu-wth-eyes.bubble(data-player='p1')
               .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
@@ -213,7 +213,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes
+            .cpu-wth-eyes.bubble(data-player='p1')
               .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
@@ -227,7 +227,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes
+            .cpu-wth-eyes.bubble(data-player='p1')
                 .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
                 .cpu-wth-eyes__container
                   .cpu-wth-eyes__eyes
@@ -387,34 +387,6 @@ html(lang='en')
           .content.animate
             .vertical-center
               h2(arb:id='errorConnectionHeader') Connection Error!
-              .cpu-conn-failed-anim
-                .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
-                  .cpu-wth-eyes__container
-                    .cpu-wth-eyes__eyes
-                      .dash-medium.dash-white.sad-left-eye-anim-loop
-                      .dash-medium.dash-white.sad-right-eye-anim-loop
-
-                .dash-anim-line
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-
-                .cross-fail-anim
-                  .icon-cross
-
-                .dash-anim-line
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-
-                .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
-                  .cpu-wth-eyes__container
-                    .cpu-wth-eyes__eyes
-                      .dash-medium.dash-white.sad-left-eye-anim-loop
-                      .dash-medium.dash-white.sad-right-eye-anim-loop
-
               p(arb:id='errorConnectionReload') You can try reloading the page
               p(arb:id='errorConnectionOr') or try the single player game
               .buttons
@@ -424,7 +396,7 @@ html(lang='en')
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorOccupiedHeader') Your friend is currently playing someone else!
+              h2(arb:id='errorOccupiedHeader') The game is full!
               p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
               p(arb:id='errorOccupiedOr') or go to main menu to play the single player game
               .buttons
