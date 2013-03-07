@@ -1,9 +1,9 @@
 JADE = $(shell find views/*.jade)
 STYLUS=$(wildcard stylesheets/*.styl)
-GEOMETRY=$(wildcard lib/geometry/*.obj)
+GEOMETRY=$(wildcard lib/renderer-3d/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
-SHADERS=$(wildcard lib/shaders/*.glsl)
+SHADERS=$(wildcard lib/renderer-3d/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
@@ -11,19 +11,20 @@ LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 MINIFY=build/build.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js
 
 # adding special cased geometry
-GEOMETRY_JS += lib/geometry/terrain3.js lib/geometry/bear.js \
-							 lib/geometry/paw.js lib/geometry/rabbit.js \
-							 lib/geometry/bird1.js lib/geometry/bird2.js \
-							 lib/geometry/bird3.js lib/geometry/bird4.js \
-							 lib/geometry/moose.js lib/geometry/terrain3.js \
-							 lib/geometry/cpu.js
+GEOMETRY_JS += lib/renderer-3d/geometry/terrain3.js lib/renderer-3d/geometry/bear.js \
+							 lib/renderer-3d/geometry/paw.js lib/renderer-3d/geometry/rabbit.js \
+							 lib/renderer-3d/geometry/bird1.js lib/renderer-3d/geometry/bird2.js \
+							 lib/renderer-3d/geometry/bird3.js lib/renderer-3d/geometry/bird4.js \
+							 lib/renderer-3d/geometry/moose.js lib/renderer-3d/geometry/terrain3.js \
+							 lib/renderer-3d/geometry/cpu.js
 
 build: build-shaders build-geometry build-component build-styles build-jade build-localization
 	@:
 
 build-min: build build/build.min.js
-build-shaders: $(SHADERS_JS) lib/shaders/index.js
-build-geometry: $(GEOMETRY_JS) lib/geometry/index.js
+
+build-shaders: $(SHADERS_JS) lib/renderer-3d/shaders/index.js
+build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
 build-jade: build/build.html
 build-component: build/build.js
 build-styles: build/build-stylus.css
@@ -49,13 +50,13 @@ node_modules/:
 components/: node_modules
 	node_modules/.bin/component-install
 
-lib/shaders/%.js: lib/shaders/%.glsl
+lib/renderer-3d/shaders/%.js: lib/renderer-3d/shaders/%.glsl
 	support/str-to-js > $@ < $<
 
-lib/geometry/%.json: lib/geometry/%.obj
-	python lib/geometry/convert_obj_three.py -i $< -o $@ -x 100.0
+lib/renderer-3d/geometry/%.json: lib/renderer-3d/geometry/%.obj
+	python lib/renderer-3d/geometry/convert_obj_three.py -i $< -o $@ -x 100.0
 
-lib/geometry/%.js: lib/geometry/%.json
+lib/renderer-3d/geometry/%.js: lib/renderer-3d/geometry/%.json
 	support/str-to-js > $@ < $<
 
 # we don't really use build.min.js so
