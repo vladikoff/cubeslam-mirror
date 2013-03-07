@@ -221,6 +221,7 @@ html(lang='en')
                   .dash-medium.dash-white.blinking-eyes-anim-loop
             h2(arb:id='waitingFriendAccept') Waiting for you friend to accept
 
+
     //OPPONENT LEFT DIALOG
     section.state.friend-left.inactive
       .dialog.middle
@@ -288,7 +289,7 @@ html(lang='en')
       .logo
         img(src="/images/minipong.png", alt='logo')
         h1 #{name}
-        p.level(arb:id='scoreLevel') Level
+        p.level(arb:id='scoreLevel') Level 
           span#level 1
 
 
@@ -424,36 +425,8 @@ html(lang='en')
           .content.animate
             .vertical-center
               h2(arb:id='errorOccupiedHeader') Your friend is currently playing someone else!
-              .cpu-conn-failed-anim
-                .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
-                  .cpu-wth-eyes__container
-                    .cpu-wth-eyes__eyes
-                      .dash-medium.dash-white.sad-left-eye-anim-loop
-                      .dash-medium.dash-white.sad-right-eye-anim-loop
-
-                .dash-anim-line
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-
-                .cross-fail-anim
-                  .icon-cross
-
-                .dash-anim-line
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-                  .dash-small.dash-black
-
-                .cpu-wth-eyes
-                  .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
-                  .cpu-wth-eyes__container
-                    .cpu-wth-eyes__eyes
-                      .dash-medium.dash-white.sad-left-eye-anim-loop
-                      .dash-medium.dash-white.sad-right-eye-anim-loop
-
-              p(arb:id='errorOccupiedNew') You can create a new game to invite a friend of you own
-              p(arb:id='errorOccupiedOr') or go back to main menu to play the single player game
+              p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
+              p(arb:id='errorOccupiedOr') or go to main menu to play the single player game
               .buttons
                 button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
                 a.button.red(href='/', arb:id='buttonNewGame') New Game
