@@ -372,7 +372,8 @@ html(lang='en')
         button.left(type='button')
         button.right(type='button')
       nav#mobile-menu.state.game.inactive.animate
-        button.pause(href='#', data-icon='▹', type='button')
+        .state.game-play.inactive
+          button.pause(href='#', data-icon='▹', type='button')
         .state.game-pause.inactive
           button.play(href='#', data-icon='▶', type='button')
           button.sound(href='#', data-icon='♫', data-icon-off='♩', type='button')
