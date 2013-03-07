@@ -27,7 +27,7 @@ var arb = {
     }
 
     process.stdout.write('arb.register("' + namespace + '", ');
-    process.stdout.write(JSON.stringify(rovarspraketizer(obj)));
+    process.stdout.write(JSON.stringify(rovarspraketizer(obj),null,2));
     process.stdout.write(');');
 
   }
