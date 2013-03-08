@@ -340,14 +340,6 @@ html.mobile
         > * 
           transform translateZ(0)
           backface-visibility hidden
-      .angry
-        absolute top 8px left 40px
-      .blink
-        absolute top 37px left 63px
-      .jawdrop
-        absolute top 54px left 57px
-      .flirt
-        absolute top 21px left 62px
 
       .bubble
         position absolute
@@ -433,18 +425,17 @@ html.mobile
         .shield-3
           left 171px
 
-  .paddle, .p1, .p2
-    position absolute
-    transform-style preserve-3d
-    transform rotateX(90deg) translateX(200px) translateZ(1567px) translateY(-50%)
+  #expressions 
+    transform translateZ(0)
     backface-visibility hidden
-    transform-origin 50% 50% 0
-
-    .gfx 
-      transition transform .5s cubic-bezier(0.000, 0.000, 0.405, 1.650)
-
-  .p2
-    z-index 3
+  .angry
+    absolute top 8px left 40px
+  .blink
+    absolute top 37px left 63px
+  .jawdrop
+    absolute top 54px left 57px
+  .flirt
+    absolute top 21px left 62px
 
   .extra
     transform-style preserve-3d
@@ -454,7 +445,6 @@ html.mobile
     .icon
       background-color transparent
       animation extra-icon-pulse 1s infinite
-
 
   .puck
     position absolute
@@ -512,6 +502,22 @@ html.mobile
       top 210px
       left 497px
       z-index 2
+
+
+.paddle, 
+#p1, 
+#p2
+  position absolute
+  transform-style preserve-3d
+  transform rotateX(90deg) translateX(200px) translateZ(1567px) translateY(-50%)
+  backface-visibility hidden
+  transform-origin 50% 50% 0
+
+  .gfx 
+    transition transform .5s cubic-bezier(0.000, 0.000, 0.405, 1.650)
+
+#p2
+  z-index 3
   
 
 @media (orientation: portrait)
