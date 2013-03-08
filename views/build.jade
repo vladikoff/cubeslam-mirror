@@ -249,7 +249,7 @@ html(lang='en')
                     h3(arb:id='levelReached') Level Reached
                   ul.social
                     li
-                      a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
+                      a.icon(data-icon='g', href='https://plus.google.com/share?url=#{url}')
                         span Google+
                     li
                       a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
@@ -334,7 +334,7 @@ html(lang='en')
           img.bg(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
           .bear.bob
             #expressions
-          p.bubble(data-name='BOB')
+          //p.bubble(data-name='BOB')
         .game-board
           .arena
             .effect.force
