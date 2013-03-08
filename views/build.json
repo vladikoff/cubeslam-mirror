@@ -9,16 +9,12 @@
         "read": "../verlet/public/xml/config.xml",
         "write": "../verlet/public/javascript/dmaf.js"
     },
-    "immediate": true,
     "dependencies": [
-        "audioNode",
         "beatPattern",
-        "iterator",
         "assetController",
         "audioRouter",
         "customCode",
         "eventProcessor",
-        "mediaElement",
         "midiProcessor",
         "parameterProcessor",
         "player",
