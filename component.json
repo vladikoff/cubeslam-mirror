@@ -126,6 +126,7 @@
     "lib/renderer-3d/geometry/extra_fireball.js",
     "lib/renderer-3d/geometry/extra_timebomb.js",
     "lib/renderer-3d/geometry/extra_shield.js",
+    "lib/renderer-3d/geometry/extra_laser.js",
     "lib/renderer-3d/geometry/extra_random.js",
     "lib/renderer-3d/geometry/terrain3.js",
     "lib/renderer-3d/geometry/bear.js",
