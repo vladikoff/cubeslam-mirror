@@ -37,13 +37,13 @@ html(lang='en')
         button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
 
       .links
-        a.experiment(href='http://google.com/', target='_blank', data-icon='⬢')
+        a.experiment.icon(href='http://google.com/', target='_blank', data-icon='⬢')
           span(arb:id='chromeExperiment') Chrome Experiment
-        a.from(href='http://google.com/', target='_blank', data-icon='☃')
+        a.from.icon(href='http://google.com/', target='_blank', data-icon='☃')
           span(arb:id='friendFromGoogle') Made with some friends from Google
 
     .state.loading.active
-      .computer(data-icon='⎚') Loading
+      .computer.icon(data-icon='⎚') Loading
       .loading__anim
         .pad
         .ball
@@ -172,7 +172,7 @@ html(lang='en')
         .content.animate
           .vertical-center
             .cpu-wth-eyes.bubble(data-player='p1')
-              .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+              .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
@@ -186,7 +186,7 @@ html(lang='en')
         .content.animate
           .vertical-center
             .cpu-wth-eyes.bubble(data-player='p2')
-              .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+              .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
@@ -200,7 +200,7 @@ html(lang='en')
         .content.animate
           .vertical-center
             .cpu-wth-eyes.bubble(data-player='p1')
-              .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+              .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
@@ -213,7 +213,7 @@ html(lang='en')
         .content.animate
           .vertical-center
             .cpu-wth-eyes.bubble(data-player='p1')
-              .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+              .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
@@ -227,7 +227,7 @@ html(lang='en')
         .content.animate
           .vertical-center
             .cpu-wth-eyes.bubble(data-player='p1')
-                .cpu-wth-eyes__bg.icon-computer(data-icon='⎚')
+                .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
                 .cpu-wth-eyes__container
                   .cpu-wth-eyes__eyes
                     .dash-medium.dash-white.sad-left-eye-anim-loop
@@ -355,19 +355,19 @@ html(lang='en')
 
     #extras.state.game.inactive
       ul
-        li.icon-death-ball(data-icon='*') Death ball
-        li.icon-ghost-ball(data-icon='*') Ghost ball
-        li.icon-magnetic-ball(data-icon='*') Magnetic ball
-        li.icon-paddle-resize(data-icon='*') Paddle Resize
-        li.icon-fog(data-icon='*') Fog
-        li.icon-multiball(data-icon='*') Multi ball
-        li.icon-extra-life(data-icon='*') Extra life
-        li.icon-time-bomb(data-icon='*') Time Bomb
-        li.icon-track-ball(data-icon='*') Track ball
-        li.icon-lazer-paddle(data-icon='*') Lazer paddle
-        li.icon-mirrored-controls(data-icon='*')
+        li.icon.death-ball.icon(data-icon='*') Death ball
+        li.icon.ghost-ball(data-icon='*') Ghost ball
+        li.icon.magnetic-ball(data-icon='*') Magnetic ball
+        li.icon.paddle-resize(data-icon='*') Paddle Resize
+        li.icon.fog(data-icon='*') Fog
+        li.icon.multiball(data-icon='*') Multi ball
+        li.icon.extra-life(data-icon='*') Extra life
+        li.icon.time-bomb(data-icon='*') Time Bomb
+        li.icon.track-ball(data-icon='*') Track ball
+        li.icon.lazer-paddle(data-icon='*') Lazer paddle
+        li.icon.mirrored-controls(data-icon='*')
           span Mirrored Controls
-        li.icon-bulletproof(data-icon='*') Bullet Proof
+        li.icon.bulletproof(data-icon='*') Bullet Proof
 
 
     //MOBILE
@@ -379,11 +379,11 @@ html(lang='en')
         button.right(type='button')
       nav#mobile-menu.state.game.inactive.animate
         .state.game-play.inactive
-          button.pause(href='#', data-icon='▹', type='button')
+          button.pause.icon(href='#', data-icon='▹', type='button')
         .state.game-pause.inactive
-          button.play(href='#', data-icon='▶', type='button')
-          button.sound(href='#', data-icon='♫', data-icon-off='♩', type='button')
-          button.info(href='#', data-icon='⌽', type='button')
+          button.play.icon(href='#', data-icon='▶', type='button')
+          button.sound.icon(href='#', data-icon='♫', data-icon-off='♩', type='button')
+          button.info.icon(href='#', data-icon='⌽', type='button')
 
     //ERROR STATES
     section#error.state.error.inactive
