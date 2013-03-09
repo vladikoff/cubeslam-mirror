@@ -249,7 +249,7 @@ html(lang='en')
                     h3(arb:id='levelReached') Level Reached
                   ul.social
                     li
-                      a.icon(data-icon='g', href='https://plus.google.com/share?url='+url)
+                      a.icon(data-icon='g', href='https://plus.google.com/share?url=#{url}')
                         span Google+
                     li
                       a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
@@ -288,7 +288,7 @@ html(lang='en')
       .logo
         img(src="/images/minipong.png", alt='logo')
         h1 #{name}
-        p.level(arb:id='scoreLevel') Level 
+        p.level(arb:id='scoreLevel') Level
           span#level 1
 
 
@@ -334,7 +334,7 @@ html(lang='en')
           img.bg(data-src-mobile='/images/mobile/mobile-bg-mobile.jpg', data-src-tablet='/images/mobile/mobile-bg-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
           .bear.bob
             #expressions
-          p.bubble(data-name='BOB')
+          //p.bubble(data-name='BOB')
         .game-board
           .arena
             .effect.force
@@ -461,7 +461,7 @@ html(lang='en')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src='/javascript/libs/dat.gui.js')
     script(src='/javascript/pong.{{.Minified}}js')
-    script(src='/javascript/dmaf.min.js')
+    //- script(src='/javascript/dmaf.min.js')
     script
       //- Raven.config('https://01f75138e63f44fea0df1f309f2f0941@murmuring-sands-2509.herokuapp.com/2').install();
     script
