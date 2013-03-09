@@ -52,19 +52,25 @@ func (tc *TurnClient) SetProperties(c appengine.Context, r *http.Request) error 
     tc.IP = tc.IP[:idx] // Remove port from address, if there is one.
   }
 
-  latlong := strings.Split(r.Header.Get("X-Appengine-Citylatlong"), ",")
-  //lat, _ := strconv.ParseInt(latlong[0], 10, 32)
-  if len(latlong) != 2 {
-    tc.Geo = "us"
+  formValue := r.FormValue("turn")
+  if formValue == "us" || formValue == "eu" {
+    tc.Geo = formValue
   } else {
-    long, _ := strconv.ParseInt(latlong[1], 10, 32)
-    if long < -25 || long > 89 {
-      // Anything west of Iceland or east of India is considered to be US. The rest is EU.
+    latlong := strings.Split(r.Header.Get("X-Appengine-Citylatlong"), ",")
+    //lat, _ := strconv.ParseInt(latlong[0], 10, 32)
+    if len(latlong) != 2 {
       tc.Geo = "us"
-  	} else {
-      tc.Geo = "eu"
-  	}
+    } else {
+      long, _ := strconv.ParseInt(latlong[1], 10, 32)
+      if long < -25 || long > 89 {
+        // Anything west of Iceland or east of India is considered to be US. The rest is EU.
+        tc.Geo = "us"
+      } else {
+        tc.Geo = "eu"
+      }
+    }
   }
+
   return nil
 }
 
