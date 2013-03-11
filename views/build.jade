@@ -30,10 +30,10 @@ html(lang='en')
 
       .nav
         .notifications
-          p.notification.full.bubble(arb:id="friendPlayingSomeoneElse") Your friend is playing against someone else right now.
+          p.notification.full.bubble(arb:id="friendPlayingSomeoneElse") Your Friend is playing someone else.
           p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
 
-        button.play-friend.green(arb:id='playFriendButton', type='button') Play friend
+        button.play-friend.green(arb:id='playFriendButton', type='button') Play Friend
         button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
 
       .links
@@ -72,7 +72,7 @@ html(lang='en')
                 .key__bg-outer
                   div.key__bg-inner
               p(arb:id='gameInstructionsPause') to pause
-            button.green.play(type='button', arb:id='buttonOk') Ok (SPACE)
+            button.green.play(type='button', arb:id='buttonOk') OK (SPACE)
 
           .vertical-center
             .info-animation.hidden
@@ -91,7 +91,7 @@ html(lang='en')
                   .destroy-shield__weapon.icon-destroy-shield-weapon
 
               .destroy-shield__label
-                p(arb:id='gameInstructionsShields') Disable the shields!
+                p(arb:id='gameInstructionsShields') Disable the shields
                 p(arb:id='gameInstructionsMission') Destroy the screen!
 
     //INVITE FRIEND
@@ -99,10 +99,10 @@ html(lang='en')
       .dialog
         .content.animate
           .vertical-center
-            h2(arb:id='inviteHeader') share this link to Invite a Friend
+            h2(arb:id='inviteHeader') You are the Player here share this link to invite a friend 
             p.share-url
               span.url= urlWithRoomId
-            p(arb:id='inviteNotified') You will be notified when your friend enter the game
+            p(arb:id='inviteNotified') We'll let you know when they arrive
             button.red.return-mainmenu(type='button',arb:id='buttonMainMenu') Main Menu
 
     //COUNTDOWN
@@ -130,7 +130,7 @@ html(lang='en')
           .prompt
             h4.over.bitmap(arb:id='promptOver') Game Over
             h4.win.bitmap(arb:id='promptWin') You Win
-            h4.loose.bitmap(arb:id='promptLoose') You Loose
+            h4.loose.bitmap(arb:id='promptLoose') You Lose
 
     //PAUSE DIALOG
     section.state.game-pause.inactive
@@ -140,20 +140,21 @@ html(lang='en')
             h2(arb:id='pauseHeader') Paused
             .buttons
               button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
-              button.singleplayer.green.play(type='button', arb:id='buttonResume') Resume (space)
+              button.singleplayer.green.play(type='button', arb:id='buttonResume') Resume 
+                span.keyboard (space)
 
     //CAMERA REQUEST ATTENTION
     section.state.webcam-activate.inactive
       .dialog.top
         .content
-          h1.alert-info(arb:id='webcamAllow') Please choose allow to connect your webcam and start friends play
+          h1.alert-info(arb:id='webcamAllow') The two-person game requires access to your webcam
 
     section.state.webcam-information.inactive
       .dialog.top
         .content
-          h1.alert-info(arb:id='webcamDenied') Are you sure? Friends play is not possible without allowing webcam.
+          h1.alert-info(arb:id='webcamDenied') Sorry, You can't play against your friend without webcam
           .buttons
-            a.button.keyboard.red(arb:id='buttonNewGame', href='/') New game
+            a.button.red(arb:id='buttonNewGame', href='/') Main Menu
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -164,7 +165,7 @@ html(lang='en')
               .webcam-spinner__bg.icon-webcam
               .webcam-spinner__quarter
                 .icon-quarter-circle
-            h2(arb:id='waitingForCamera') Waiting for friend<br/>to activate camera
+            h2(arb:id='waitingForCamera') Waiting for friend<br/>to allow camera
 
     //WAITING FRIEND
     section.state.friend-waiting.inactive
@@ -177,7 +178,7 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h3(arb:id='waitingForAcceptance') Your friend is waiting for you in the arena
+            h3(arb:id='waitingForAcceptance') Your friend is waiting for you
             button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
     //FRIEND ARRIVED
@@ -191,10 +192,10 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h3(arb:id='friendArrived') Your friend has arrived
+            h3(arb:id='friendArrived') Your Friend has arrived
             button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
-    //WAITING FRIEND ACCEPT
+    //WAITING FRIEND START GAME
     section.state.game-wait.inactive
       .dialog.middle
         .content.animate
@@ -205,7 +206,7 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2(arb:id='waitingForGameStart') Waiting for you friend to start
+            h2(arb:id='waitingForGameStart') Waiting for Friend to Start Game
 
     //WAITING FRIEND ACCEPT
     section.state.friend-accept.inactive
@@ -218,7 +219,7 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h2(arb:id='waitingFriendAccept') Waiting for you friend to accept
+            h2(arb:id='waitingFriendAccept') Waiting for Friend to accept
 
 
     //OPPONENT LEFT DIALOG
@@ -232,7 +233,7 @@ html(lang='en')
                   .cpu-wth-eyes__eyes
                     .dash-medium.dash-white.sad-left-eye-anim-loop
                     .dash-medium.dash-white.sad-right-eye-anim-loop
-            h2(arb:id='leftGame') Your friend left the game
+            h2(arb:id='leftGame') Your Friend has left
             .buttons
               button.green.play.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
 
@@ -259,11 +260,12 @@ html(lang='en')
                         span Twitter
 
               button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
-              button.green.play(type='button', arb:id='buttonRetry') Retry Level (Space)
+              button.green.play(type='button', arb:id='buttonRetry') Retry Level
+                span.keyboard (Space)
 
             #scoreboard-multi.vertical-center
               .scoreboard.multiplayer
-                h3(arb:id='scoreTotalWins') Total wins
+                h3(arb:id='scoreTotalWins') Game Score
                 div
                   p#me-levels.levels
                     i X
@@ -282,7 +284,8 @@ html(lang='en')
                     a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
                       span Twitter
 
-                button.green.play(type='button', arb:id='buttonPlayAgain') Play Again (Space)
+                button.green.play(type='button', arb:id='buttonPlayAgain') Play Again 
+                  span.keyboard (Space)
 
     section#scores.state.game.inactive
       .logo
@@ -290,7 +293,6 @@ html(lang='en')
         h1 #{name}
         p.level(arb:id='scoreLevel') Level
           span#level 1
-
 
       .multiplayer
         .player
@@ -391,17 +393,16 @@ html(lang='en')
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorConnectionHeader') Connection Error!
-              p(arb:id='errorConnectionReload') You can try reloading the page
-              p(arb:id='errorConnectionOr') or try the single player game
+              h2(arb:id='errorConnectionHeader') Connection Error
+              p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection 
               .buttons
-                a.button.red(href='', arb:id='buttonReload') Reload
+                a.button.red(href='', arb:id='buttonReload') Reload 
 
       .state.error-fullroom.inactive
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorOccupiedHeader') The game is full!
+              h2(arb:id='errorOccupiedHeader') Your Friend is playing someone else
               p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
               p(arb:id='errorOccupiedOr') or go to main menu to play the single player game
               .buttons
@@ -412,8 +413,9 @@ html(lang='en')
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorDCHeader') Error
-              p(arb:id='errorDCBrowserSupport') Sorry. your browser does not support 2 player game in friends play. install a modern browser like <a href='google.com'>google chrome</a>, or try single player game.
+              h2(arb:id='errorDCHeader') Does not compute
+              p(arb:id='errorDCBrowserSupport') Sorry, the two player Game does not support your browser
+              a.main-menu.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
               button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
 
       //section.error.network-missing
