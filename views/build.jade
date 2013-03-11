@@ -291,23 +291,23 @@ html(lang='en')
       .logo
         img(src="/images/minipong.png", alt='logo')
         h1 #{name}
-        p.level(arb:id='scoreLevel') Level
+        p.level(arb:id='scoreLevel') Level 
           span#level 1
 
       .multiplayer
         .player
           p(arb:id='playerYou') You
           ol
-            li
-            li
-            li
+            li.active
+            li.active
+            li.active
 
         .opponent
           p(arb:id='playerFriend') Friend
           ol
-            li
-            li
-            li
+            li.active
+            li.active
+            li.active
 
       .singleplayer
         .player
@@ -318,7 +318,7 @@ html(lang='en')
             li.active
 
         .opponent
-          p(arb:id='playerCPU') CPU
+          p(arb:id='playerCPU') Bob
           ol
             li.active
             li.active
@@ -463,7 +463,6 @@ html(lang='en')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src='/javascript/libs/dat.gui.js')
     script(src='/javascript/pong.{{.Minified}}js')
-    //- script(src='/javascript/dmaf.min.js')
     script
       //- Raven.config('https://01f75138e63f44fea0df1f309f2f0941@murmuring-sands-2509.herokuapp.com/2').install();
     script
