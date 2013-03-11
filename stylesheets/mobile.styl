@@ -220,8 +220,7 @@ html.mobile
 
   #gamepad
     display none!important
-    position absolute
-    bottom 50%
+    absolute bottom 50%
     width 100%
     z-index 2
     transition opacity 300ms ease-out
@@ -237,13 +236,25 @@ html.mobile
       outline 0
       border 0
 
-      &:before
+      &.left:before
+        left 20px
+      &.right:before
+        left 26px
+
+      &:after
         content ' '
         absolute bottom 1px left 4.2%
         width 93%
         height 93%
         border-radius 93%
         background-color #4daf4d
+
+      &:before
+        font-size 36px
+        color #295d21
+        absolute top 27%
+        z-index 2
+
 
       &:active
         box-shadow 0 1px 10px rgba(0,0,0,.3) 
@@ -531,6 +542,8 @@ html.mobile
 @media (orientation: landscape)
   html.mobile
     .touch
+      .keyboard
+        display none
       #gamepad.state.active
         display block!important
 
