@@ -345,7 +345,7 @@ html.mobile
         display none
 
       .bear
-        absolute top 390px left 679px
+        absolute top 389px left 679px
         transform translateZ(0)
         backface-visibility hidden
         > * 
@@ -459,7 +459,7 @@ html.mobile
 
   .puck
     position absolute
-    transform rotateX(-90deg) translateX(365px) translateY(-50%) translateZ(505px) scale(1.5)
+    transform rotateX(-90deg) translateX(361px) translateY(-50%) translateZ(505px) scale(1.5)
     backface-visibility hidden
     transform-style preserve-3d
     transform-origin 50% 50% 0
@@ -533,6 +533,9 @@ html.mobile
 
 @media (orientation: portrait)
   html.mobile
+    .touch 
+      .keyboard
+        display none
     #gamepad
       display none!important
     #canv-css
