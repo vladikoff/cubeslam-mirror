@@ -345,10 +345,22 @@ html(lang='en')
             .shield.shield-1
             .shield.shield-2
             .shield.shield-3
+            .shield.shield-4
+            .shield.shield-5
+            .shield.shield-6
+            .shield.shield-7
+            .shield.shield-8
+            .shield.shield-9
           .shields-b
             .shield.shield-1
             .shield.shield-2
             .shield.shield-3
+            .shield.shield-4
+            .shield.shield-5
+            .shield.shield-6
+            .shield.shield-7
+            .shield.shield-8
+            .shield.shield-9
         .effects
           .effect.fog.hidden
         .obstacles
@@ -377,8 +389,8 @@ html(lang='en')
       section.state.main-menu.inactive
         img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
       #gamepad.state.game.inactive
-        button.left(type='button')
-        button.right(type='button')
+        button.left.icon(type='button', data-icon='<')
+        button.right.icon(type='button', data-icon='>')
       nav#mobile-menu.state.game.inactive.animate
         .state.game-play.inactive
           button.pause.icon(href='#', data-icon='▹', type='button')
@@ -415,8 +427,9 @@ html(lang='en')
             .vertical-center
               h2(arb:id='errorDCHeader') Does not compute
               p(arb:id='errorDCBrowserSupport') Sorry, the two player Game does not support your browser
-              a.main-menu.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
-              button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
+              .buttons
+                a.button.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
+                button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
 
       //section.error.network-missing
         .dialog.bottom
