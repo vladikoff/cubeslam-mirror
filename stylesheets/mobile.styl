@@ -429,7 +429,6 @@ html.mobile
         transition-property transform
         transition-duration .3s
         transition-delay 0s
-        transition-timing-function ease-out
         transform scaleY(.005) translateZ(0)
         backface-visibility hidden
         &.visible
@@ -439,24 +438,93 @@ html.mobile
         top 420px
         left 109px
         z-index 4
-        .shield-1
+        transform translateZ(0)
+        backface-visibility hidden
+
+        .s3-01
           left 0
-        .shield-2
+        .s3-02
           left 186px
-        .shield-3
+        .s3-03
           left 366px
+
+        .s6-01
+          left 0
+        .s6-02
+          left 95px
+        .s6-03
+          left 186px
+        .s6-04
+          left 276px
+        .s6-05
+          left 366px
+        .s6-06
+          left 457px
+
+        .s9-01
+          left 0
+        .s9-02
+          left 62px
+        .s9-03
+          left 125px
+        .s9-04
+          left 186px
+        .s9-05
+          left 246px
+        .s9-06
+          left 306px
+        .s9-07
+          left 366px
+        .s9-08
+          left 427px
+        .s9-09
+          left 487px
 
       .shields-b
         top 161px
-        left 255px
+        left 254px
         z-index 0
+        transform translateZ(0)
+        backface-visibility hidden
 
-        .shield-1
+        .s3-01
           left 0
-        .shield-2
+        .s3-02
           left 86px
-        .shield-3
+        .s3-03
           left 171px
+
+        .s6-01
+          left 0
+        .s6-02
+          left 44px
+        .s6-03
+          left 88px
+        .s6-04
+          left 132px
+        .s6-05
+          left 174px
+        .s6-06
+          left 216px
+
+        .s9-01
+          left 0
+        .s9-02
+          left 30px
+        .s9-03
+          left 58px
+        .s9-04
+          left 87px
+        .s9-05
+          left 115px
+        .s9-06
+          left 145px
+        .s9-07
+          left 173px
+        .s9-08
+          left 201px
+        .s9-09
+          left 230px
 
   #expressions 
     transform translateZ(0)
@@ -524,18 +592,21 @@ html.mobile
     .obstacle
       transform translateZ(0)
       backface-visibility hidden
-    .triangle-left
-      display none
       position absolute
+      display none
+      z-index 2
+    .triangle-left
       top 210px
       left 188px
-      z-index 2
     .triangle-right
-      display none
-      position absolute
       top 210px
       left 497px
-      z-index 2
+    .hexagon
+      top 209px
+      left 302px
+    .diamond
+      top 209px
+      left 305px
 
 #p1, 
 #p2
