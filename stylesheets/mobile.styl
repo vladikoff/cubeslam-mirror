@@ -38,6 +38,10 @@ html.mobile
       button.pause
         transition-delay 0ms
         transform translateX(100%)
+    &.game-prompt-start
+      .state.game-prompt
+        .background
+          background-color rgba($color-green, 1)
 
   #settingsGUIContainer
   , .play-friend
@@ -80,9 +84,9 @@ html.mobile
     absolute top 0px right 0
     z-index 2
     button
-      width 46px
+      width 48px
+      height 48px
       min-width 0
-      height 46px
       margin 0
       padding 0
       border none
@@ -117,14 +121,17 @@ html.mobile
 
   .state.game-prompt
     .background
-      transition none
+      // transition none
       height 60px
       margin-top -30px
       top 50%
+      background rgba($color-red,1)
       transform translateZ(0)
       backface-visibility hidden
-    .content
-      transition-duration 0!important
+
+    // .content
+    //   transition-duration 0!important
+    //   transition-delay .1ms!important
 
     .prompt
       transform translateZ(0)
@@ -343,7 +350,9 @@ html.mobile
       background no-repeat center center
       background-size cover
       transform translateZ(0)
-        backface-visibility hidden
+      backface-visibility hidden
+      // display none!important
+
       img
         width 100%
         height 100%
@@ -401,7 +410,6 @@ html.mobile
       transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
       transform-style preserve-3d
       backface-visibility hidden
-      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
       position absolute
       z=index 1
 
@@ -425,9 +433,6 @@ html.mobile
         transform scaleY(.005) translateZ(0)
         backface-visibility hidden
         &.visible
-          for row in 1 2 3
-            &:nth-child({row})
-              transition-delay 100ms * (row - 1)
           transform scaleY(1) translateZ(0)
 
       .shields-a
@@ -476,7 +481,8 @@ html.mobile
 
   .puck
     position absolute
-    transform rotateX(-90deg) translateX(361px) translateY(-50%) translateZ(505px) scale(1.5)
+    display block
+    background-repeat no-repeat
     backface-visibility hidden
     transform-style preserve-3d
     transform-origin 50% 50% 0
@@ -531,13 +537,12 @@ html.mobile
       left 497px
       z-index 2
 
-
-.paddle, 
 #p1, 
 #p2
+  display block
+  background-repeat no-repeat
   position absolute
   transform-style preserve-3d
-  transform rotateX(90deg) translateX(200px) translateZ(1567px) translateY(-50%)
   backface-visibility hidden
   transform-origin 50% 50% 0
 

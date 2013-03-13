@@ -86,6 +86,7 @@
     "lib/renderer-css/bear.js",
     "lib/renderer-css/extra.js",
     "lib/renderer-css/effects.js",
+    "lib/renderer-css/obstacle.js",
     "lib/renderer-css/shield.js",
     "lib/renderer-css/puck.js",
     "lib/renderer-css/paddle.js",
