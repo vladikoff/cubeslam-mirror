@@ -159,19 +159,22 @@
     .background
       height 33%
       width 100%
-      background rgba($color-red,.9)
+      background $color-red
       absolute top 33%
       z-index 3
-      transition all .5s
+      transition background .5s
 
     &.active
       .background
-        opacity 1
+        opacity .9
     &.inactive
       .background
         opacity 0
 
   &.game-pause
+    .buttons
+      margin-top 5px
+      padding-top 0
     button
       display block
       min-width 275px
@@ -180,8 +183,6 @@
         margin-top 20px
     h2
       padding-bottom 20px
-    p
-      padding-bottom 25px
 
   &.webcam-information, &.webcam-activate
     .dialog

@@ -451,60 +451,6 @@ a JS script.
   .key__bg-inner 
     animation keyright-fade-out-in 3s infinite
     opacity 0
-  
-
-
-
-// Mouse Animation
-// ==========================================================================
-@keyframes mouse-move 
-  10%, 100% 
-    transform translate(0, 0)
-  50% 
-    transform translate(20px, 0)
-  
-
-.mouse-anim 
-  width 60px
-
-.mouse-anim > .dash-big
-.mouse-anim > .icon-mouse 
-  animation mouse-move 1.6s infinite
-
-.mouse-anim > .dash-big 
-  animation-delay 100ms
-  margin-left 5px
-
-.mouse-anim > .icon-mouse 
-  margin-top 15px
-
-
-// Countdown
-// ==========================================================================
-.countdown-sprite, .countdown-countdown_1, .countdown-countdown_2, .countdown-countdown_3, .countdown__num[data-number="3"], .countdown__num[data-number="2"], .countdown__num[data-number="1"]
-  background url('/images/countdown.png') no-repeat
-
-.countdown-countdown_1 
-  background-position 0 -1436px
-
-.countdown-countdown_2 
-  background-position 0 0
-
-.countdown-countdown_3 
-  background-position 0 -718px
-
-@keyframes countdown-transition 
-  100% 
-    opacity 1
-  100% 
-    opacity 0
-
-.countdown 
-  display block
-  position relative
-  width 988px
-  height 716px
-
 
 .bubble
   position relative

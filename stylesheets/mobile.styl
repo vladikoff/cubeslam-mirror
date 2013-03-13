@@ -80,9 +80,9 @@ html.mobile
     absolute top 0px right 0
     z-index 2
     button
-      width 46px
+      width 48px
+      height 48px
       min-width 0
-      height 46px
       margin 0
       padding 0
       border none
@@ -117,14 +117,16 @@ html.mobile
 
   .state.game-prompt
     .background
-      transition none
+      // transition none
       height 60px
       margin-top -30px
       top 50%
       transform translateZ(0)
       backface-visibility hidden
-    .content
-      transition-duration 0!important
+
+    // .content
+    //   transition-duration 0!important
+    //   transition-delay .1ms!important
 
     .prompt
       transform translateZ(0)
@@ -188,14 +190,6 @@ html.mobile
     #footer
       display block
 
-  #canv-pixel
-    width 1px
-    height 1px
-    border 5px solid pink
-    background blue
-    position absolute
-    z-index 3
-
   #scores
     absolute top 10px left 10px  
     margin 0
@@ -222,7 +216,7 @@ html.mobile
           height 12px
 
   #gamepad
-    display none!important
+    display none
     absolute bottom 50%
     width 100%
     z-index 2
@@ -233,7 +227,7 @@ html.mobile
       width 72px
       height 72px
       border-radius 36px
-      box-shadow 0 3px 5px rgba(0,0,0,.3) 
+      // box-shadow 0 3px 5px rgba(0,0,0,.3) 
       absolute left 5%
       padding 0
       outline 0
@@ -259,8 +253,8 @@ html.mobile
         z-index 2
 
 
-      &:active
-        box-shadow 0 1px 10px rgba(0,0,0,.3) 
+      // &:active
+      //   box-shadow 0 1px 10px rgba(0,0,0,.3) 
 
       &:last-child
         left auto
@@ -339,11 +333,14 @@ html.mobile
       width 1536px
       height 1079px
       z-index 0
+      display none
       absolute top -340px left -50%
       background no-repeat center center
       background-size cover
       transform translateZ(0)
-        backface-visibility hidden
+      backface-visibility hidden
+      // display none!important
+
       img
         width 100%
         height 100%
@@ -363,8 +360,8 @@ html.mobile
 
       .bear
         absolute top 390px left 679px
-        transform translateZ(0)
-        backface-visibility hidden
+        // transform translateZ(0)
+        // backface-visibility hidden
         > * 
           transform translateZ(0)
           backface-visibility hidden
@@ -373,16 +370,7 @@ html.mobile
         position absolute
         top 400px
         left 905px
-        font-size 48px
-        &:before
-          top 0
-          color $color-beige
-        &:after
-          top 18px
-          right 11px
-          font-size 15px
-          letter-spacing 0.1em
-          content attr(data-name)
+        
 
 
     .game-board
@@ -401,7 +389,6 @@ html.mobile
       transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
       transform-style preserve-3d
       backface-visibility hidden
-      // background linear-gradient(bottom, rgba(255,255,0,.9), rgba(255,255,0,.4))
       position absolute
       z=index 1
 
@@ -410,48 +397,111 @@ html.mobile
       letter-spacing 0
       font-size 0
       width 100%
+      transform translateZ(0)
+      backface-visibility hidden
+
       .shields-a, .shields-b
         absolute top 0px
 
       .shield
         position absolute
-        display inline-block
-        background-color rgba(red, 0)
+        display block
         transform-origin bottom center
         transition-property transform
         transition-duration .3s
         transition-delay 0s
-        transition-timing-function ease-out
         transform scaleY(.005) translateZ(0)
         backface-visibility hidden
         &.visible
-          for row in 1 2 3
-            &:nth-child({row})
-              transition-delay 100ms * (row - 1)
           transform scaleY(1) translateZ(0)
 
       .shields-a
         top 420px
         left 109px
         z-index 4
-        .shield-1
+
+        .s3-01
           left 0
-        .shield-2
+        .s3-02
           left 186px
-        .shield-3
+        .s3-03
           left 366px
+
+        .s6-01
+          left 0
+        .s6-02
+          left 95px
+        .s6-03
+          left 186px
+        .s6-04
+          left 276px
+        .s6-05
+          left 366px
+        .s6-06
+          left 457px
+
+        .s9-01
+          left 0
+        .s9-02
+          left 62px
+        .s9-03
+          left 125px
+        .s9-04
+          left 186px
+        .s9-05
+          left 246px
+        .s9-06
+          left 306px
+        .s9-07
+          left 366px
+        .s9-08
+          left 427px
+        .s9-09
+          left 487px
 
       .shields-b
         top 161px
-        left 255px
+        left 254px
         z-index 0
 
-        .shield-1
+        .s3-01
           left 0
-        .shield-2
+        .s3-02
           left 86px
-        .shield-3
+        .s3-03
           left 171px
+
+        .s6-01
+          left 0
+        .s6-02
+          left 44px
+        .s6-03
+          left 88px
+        .s6-04
+          left 132px
+        .s6-05
+          left 174px
+        .s6-06
+          left 216px
+
+        .s9-01
+          left 0
+        .s9-02
+          left 30px
+        .s9-03
+          left 58px
+        .s9-04
+          left 87px
+        .s9-05
+          left 115px
+        .s9-06
+          left 145px
+        .s9-07
+          left 173px
+        .s9-08
+          left 201px
+        .s9-09
+          left 230px
 
   #expressions 
     transform translateZ(0)
@@ -472,11 +522,12 @@ html.mobile
     position absolute
     .icon
       background-color transparent
-      animation extra-icon-pulse 1s infinite
+      // animation extra-icon-pulse 1s infinite
 
   .puck
+    display none
     position absolute
-    transform rotateX(-90deg) translateX(361px) translateY(-50%) translateZ(505px) scale(1.5)
+    display block
     backface-visibility hidden
     transform-style preserve-3d
     transform-origin 50% 50% 0
@@ -518,26 +569,28 @@ html.mobile
     .obstacle
       transform translateZ(0)
       backface-visibility hidden
-    .triangle-left
-      display none
       position absolute
+      display none
+      z-index 2
+    .triangle-left
       top 210px
       left 188px
-      z-index 2
     .triangle-right
-      display none
-      position absolute
       top 210px
       left 497px
-      z-index 2
+    .hexagon
+      top 209px
+      left 302px
+    .diamond
+      top 209px
+      left 305px
 
-
-.paddle, 
 #p1, 
 #p2
+  display block
+  background-repeat no-repeat
   position absolute
   transform-style preserve-3d
-  transform rotateX(90deg) translateX(200px) translateZ(1567px) translateY(-50%)
   backface-visibility hidden
   transform-origin 50% 50% 0
 
