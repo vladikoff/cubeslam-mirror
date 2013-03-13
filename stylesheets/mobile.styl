@@ -38,10 +38,6 @@ html.mobile
       button.pause
         transition-delay 0ms
         transform translateX(100%)
-    &.game-prompt-start
-      .state.game-prompt
-        .background
-          background-color rgba($color-green, 1)
 
   #settingsGUIContainer
   , .play-friend
@@ -125,7 +121,6 @@ html.mobile
       height 60px
       margin-top -30px
       top 50%
-      background rgba($color-red,1)
       transform translateZ(0)
       backface-visibility hidden
 
@@ -195,14 +190,6 @@ html.mobile
     #footer
       display block
 
-  #canv-pixel
-    width 1px
-    height 1px
-    border 5px solid pink
-    background blue
-    position absolute
-    z-index 3
-
   #scores
     absolute top 10px left 10px  
     margin 0
@@ -229,7 +216,7 @@ html.mobile
           height 12px
 
   #gamepad
-    display none!important
+    display none
     absolute bottom 50%
     width 100%
     z-index 2
@@ -240,7 +227,7 @@ html.mobile
       width 72px
       height 72px
       border-radius 36px
-      box-shadow 0 3px 5px rgba(0,0,0,.3) 
+      // box-shadow 0 3px 5px rgba(0,0,0,.3) 
       absolute left 5%
       padding 0
       outline 0
@@ -266,8 +253,8 @@ html.mobile
         z-index 2
 
 
-      &:active
-        box-shadow 0 1px 10px rgba(0,0,0,.3) 
+      // &:active
+      //   box-shadow 0 1px 10px rgba(0,0,0,.3) 
 
       &:last-child
         left auto
@@ -346,6 +333,7 @@ html.mobile
       width 1536px
       height 1079px
       z-index 0
+      display none
       absolute top -340px left -50%
       background no-repeat center center
       background-size cover
@@ -372,8 +360,8 @@ html.mobile
 
       .bear
         absolute top 390px left 679px
-        transform translateZ(0)
-        backface-visibility hidden
+        // transform translateZ(0)
+        // backface-visibility hidden
         > * 
           transform translateZ(0)
           backface-visibility hidden
@@ -382,16 +370,7 @@ html.mobile
         position absolute
         top 400px
         left 905px
-        font-size 48px
-        &:before
-          top 0
-          color $color-beige
-        &:after
-          top 18px
-          right 11px
-          font-size 15px
-          letter-spacing 0.1em
-          content attr(data-name)
+        
 
 
     .game-board
@@ -418,13 +397,15 @@ html.mobile
       letter-spacing 0
       font-size 0
       width 100%
+      transform translateZ(0)
+      backface-visibility hidden
+
       .shields-a, .shields-b
         absolute top 0px
 
       .shield
         position absolute
-        display inline-block
-        background-color rgba(red, 0)
+        display block
         transform-origin bottom center
         transition-property transform
         transition-duration .3s
@@ -438,8 +419,6 @@ html.mobile
         top 420px
         left 109px
         z-index 4
-        transform translateZ(0)
-        backface-visibility hidden
 
         .s3-01
           left 0
@@ -484,8 +463,6 @@ html.mobile
         top 161px
         left 254px
         z-index 0
-        transform translateZ(0)
-        backface-visibility hidden
 
         .s3-01
           left 0
@@ -545,12 +522,12 @@ html.mobile
     position absolute
     .icon
       background-color transparent
-      animation extra-icon-pulse 1s infinite
+      // animation extra-icon-pulse 1s infinite
 
   .puck
+    display none
     position absolute
     display block
-    background-repeat no-repeat
     backface-visibility hidden
     transform-style preserve-3d
     transform-origin 50% 50% 0
