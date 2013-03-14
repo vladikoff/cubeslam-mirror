@@ -27,7 +27,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
   // redirect to room name
-  if r.URL.Path == "/" {
+  if r.URL.Path == "/" && !strings.Contains(r.Header.Get("User-Agent"),"facebookexternalhit") {
     if fake, err := faker.New("en"); err == nil {
       roomName := fake.DomainWord()
       path := "/"
