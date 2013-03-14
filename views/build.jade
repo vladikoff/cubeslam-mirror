@@ -1,4 +1,5 @@
 - var name = "Paddle Battle";
+- var description = "Welcome to play Pong against your friends using new amazing technology DataChannels";
 - var url = 'http://webrtcgame.appspot.com/';
 - var urlWithRoomId = url+'{{.Room}}';
 
@@ -8,9 +9,11 @@ html(lang='en')
     meta(name='apple-mobile-web-app-capable',content='yes')
     meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
-    meta(name='description', content='Welcome to play Pong against your friends using new amazing technology DataChannels')
+    meta(name='description', content=description)
     meta(property='og:type', content='website')
-    //meta(property='og:image', content='')
+    meta(property='og:title', content=name)
+    meta(property='og:description', content=description)
+    meta(property='og:image', content='/images/mobile/apple-touch-114.png')
     meta(property='og:url', content=url)
 
     title #{name}
@@ -376,17 +379,17 @@ html(lang='en')
 
     #extras.state.game.inactive
       ul
-        li.icon.death-ball(data-icon='*') Death ball
-        li.icon.ghost-ball(data-icon='*') Ghost ball
-        li.icon.magnetic-ball(data-icon='*') Magnetic ball
-        li.icon.paddle-resize(data-icon='*') Paddle Resize
+        li.icon.deathball(data-icon='*') Death ball
+        li.icon.ghostball(data-icon='*') Ghost ball
+        li.icon.magneticball(data-icon='*') Magnetic ball
+        li.icon.paddleresize(data-icon='*') Paddle Resize
         li.icon.fog(data-icon='*') Fog
         li.icon.multiball(data-icon='*') Multi ball
-        li.icon.extra-life(data-icon='*') Extra life
-        li.icon.time-bomb(data-icon='*') Time Bomb
-        li.icon.track-ball(data-icon='*') Track ball
-        li.icon.lazer-paddle(data-icon='*') Lazer paddle
-        li.icon.mirrored-controls(data-icon='*')
+        li.icon.extralife(data-icon='*') Extra life
+        li.icon.timebomb(data-icon='*') Time Bomb
+        li.icon.trackball(data-icon='*') Track ball
+        li.icon.lazerpaddle(data-icon='*') Lazer paddle
+        li.icon.mirroredcontrols(data-icon='*')
           span Mirrored Controls
         li.icon.bulletproof(data-icon='*') Bullet Proof
 
