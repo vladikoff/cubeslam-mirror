@@ -12,7 +12,7 @@ uniform sampler2D tBroken;
 uniform vec2 resolution;
 
 float rand( vec2 co ) {
-    return fract(sin((co.x+co.y*1e3)*1e-3)*1.e5);
+    return fract(sin((co.x+co.y*1e3+0.001)*1e-3)*1.e5);
 }
 
 void main(void)
@@ -24,7 +24,7 @@ void main(void)
     float noise = rand(vec2(xs,ys)+vec2(0.0,0.9*ofs));
 
     vec2 tempUv = vUv;
-    tempUv.x += sin(vUv.y*10.0)*0.01+cos(vUv.y*40.0)*0.005;
+    tempUv.x += sin(vUv.y*10.0+0.001)*0.01+cos(vUv.y*40.0+0.001)*0.005;
     tempUv.y = mix(vUv.y,fract(vUv.y-time*0.3),noiseAmount);
 
     vec3 videoOrg = texture2D(tVideo, vUv).rgb;
