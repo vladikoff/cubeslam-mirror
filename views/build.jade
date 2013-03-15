@@ -153,11 +153,18 @@ html(lang='en')
           h1.alert-info(arb:id='webcamAllow') The two-person game requires access to your webcam
 
     section.state.webcam-information.inactive
-      .dialog.top
+      .dialog.middle
         .content
-          h1.alert-info(arb:id='webcamDenied') Sorry, You can't play against your friend without webcam
-          .buttons
-            a.button.red(arb:id='buttonNewGame', href='/') Main Menu
+          .vertical-center
+            h1(arb:id='webcamDeniedHeaderH1') Aw, Shucks!
+            h2(arb:id='webcamDeniedHeaderH2') Webcam blocked!
+            p(arb:id='webcamDeniedInfo') It looks like you've blocked access to your webcam. 
+            h3(arb:id='webcamDeniedHeaderH3') To allow access:
+            ol
+              li(arb:id='webcamDeniedStep1') Click the lock on the left side of the address bar
+              li(arb:id='webcamDeniedStep2') In the permissions menu, click "Media: Blocked by you"
+              li(arb:id='webcamDeniedStep3') Select "Always allow on this site." You can change this later.
+              li(arb:id='webcamDeniedStep4') Click out of the menu and refresh the page
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -175,7 +182,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes.bubble(data-player='p1')
+            .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
@@ -189,7 +196,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes.bubble(data-player='p2')
+            .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
@@ -203,7 +210,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes.bubble(data-player='p1')
+            .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
@@ -216,7 +223,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes.bubble(data-player='p1')
+            .cpu-wth-eyes
               .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
               .cpu-wth-eyes__container
                 .cpu-wth-eyes__eyes
@@ -230,7 +237,7 @@ html(lang='en')
       .dialog.middle
         .content.animate
           .vertical-center
-            .cpu-wth-eyes.bubble(data-player='p1')
+            .cpu-wth-eyes
                 .cpu-wth-eyes__bg.icon-computer.icon(data-icon='⎚')
                 .cpu-wth-eyes__container
                   .cpu-wth-eyes__eyes

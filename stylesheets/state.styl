@@ -184,7 +184,7 @@
     h2
       padding-bottom 20px
 
-  &.webcam-information, &.webcam-activate
+  &.webcam-activate
     .dialog
       h1
         font-size 11px
@@ -200,8 +200,37 @@
           font-size 11px
           padding 10px
   &.webcam-information
+    .dialog
+      text-align center
+    h1, h2
+      font-size 14px
+      padding 0
+      color $color-red
+      margin 0
+      line-height 1.5em
+
+    h2
+      margin-bottom 22px
+
+    h3
+      margin 16px 0 0 
+
+    p, ol
+      font-size 11px
+      color $color-red
+    ol
+      list-style inside
+      list-style-type decimal
+      line-height 1.65em
+      li
+        &:before
+          counter-increment item
+
+    button, .button
+      margin 10px 0px 20px 0px
     .alert-info
         padding-right 200px
+
   &.webcam-waiting
     &.active
      .dialog
@@ -233,7 +262,7 @@
 
     .scoreboard
       color #e83129
-      padding 20px 0px 30px 0px
+      padding 0px 0px 30px 0px
       &.multiplayer
         .levels:last-child
           margin-left 8px
@@ -269,7 +298,7 @@
           border-color $color-green
 
     h3
-      padding 10px 0 23px
+      padding 4px 0 17px
 
     .levels
       font-size 24px
@@ -317,8 +346,8 @@
   color $color-beige
   position absolute
   z-index 2
-  top 100px
-  left 70px
+  top 6%
+  left 6%
   line-height 15px
   text-transform uppercase
 
