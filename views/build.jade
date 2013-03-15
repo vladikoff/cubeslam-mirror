@@ -153,7 +153,7 @@ html(lang='en')
           h1.alert-info(arb:id='webcamAllow') The two-person game requires access to your webcam
 
     section.state.webcam-information.inactive
-      .dialog.middle
+      .dialog.bottom
         .content
           .vertical-center
             h1(arb:id='webcamDeniedHeaderH1') Aw, Shucks!
@@ -165,6 +165,9 @@ html(lang='en')
               li(arb:id='webcamDeniedStep2') In the permissions menu, click "Media: Blocked by you"
               li(arb:id='webcamDeniedStep3') Select "Always allow on this site." You can change this later.
               li(arb:id='webcamDeniedStep4') Click out of the menu and refresh the page
+            .buttons
+              p You can still Play the computer
+              a.button.red(href='/', arb:id='buttonMainMenu') Main Menu
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -431,7 +434,7 @@ html(lang='en')
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorOccupiedHeader') Your Friend is playing someone else
+              h2(arb:id='errorOccupiedHeader') Your friend is playing someone else
               p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
               p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
               .buttons
@@ -442,8 +445,8 @@ html(lang='en')
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorDCHeader') Does not compute
-              p(arb:id='errorDCBrowserSupport') Sorry, the two player Game does not support your browser
+              h2(arb:id='errorDCHeader') Browser not supported
+              p(arb:id='errorDCBrowserSupport') Sorry, the two-player game requires DataChannels. Please try again using Chrome
               .buttons
                 a.button.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
                 button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
