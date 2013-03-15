@@ -1,5 +1,5 @@
-application: einarsgame
-version: 2
+application: webrtcgame
+version: 3
 runtime: go
 api_version: go1
 
