@@ -6,7 +6,7 @@
     "component/confirmation": "*",
     "component/cookie": "*",
     "component/jquery": "1.8.2",
-    "component/preloader": "*",
+    "inear/preloader": "*",
     "publicclass/request-animation-frame": "*",
     "publicclass/geom": "*",
     "publicclass/copy": "*",
