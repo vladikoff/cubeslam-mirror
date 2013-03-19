@@ -152,6 +152,7 @@
     "lib/levels/level7.js",
     "lib/levels/level8.js",
     "lib/levels/level9.js",
-    "lib/levels/level10.js"
+    "lib/levels/level10.js",
+    "lib/dmaf.min.js"
   ]
 }

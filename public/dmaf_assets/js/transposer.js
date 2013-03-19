@@ -1,4 +1,4 @@
-dmaf.once("load_custom", function (DMAF) {
+dmaf.once("load_modules", function (DMAF) {
 
     function LevelTransposer () {
         this.transposeValue = 0;
