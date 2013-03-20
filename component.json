@@ -144,6 +144,7 @@
     "lib/renderer-3d/geometry/cpu.js",
     "lib/levels/index.js",
     "lib/levels/sets/index.js",
+    "lib/levels/sets/empty.js",
     "lib/levels/sets/breakout.js",
     "lib/levels/sets/triangles.js",
     "lib/levels/sets/diamond.js",
