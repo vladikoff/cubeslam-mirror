@@ -1,5 +1,5 @@
 application: einarsgame
-version: 4
+version: 5
 runtime: go
 api_version: go1
 
