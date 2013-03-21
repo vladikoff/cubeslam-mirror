@@ -512,7 +512,7 @@ html(lang='en')
     script
       //- Raven.config('https://01f75138e63f44fea0df1f309f2f0941@murmuring-sands-2509.herokuapp.com/2').install();
     script
-      require('paddle-battle')({
+      require('paddle-battle')(ctx = {
         room: '{{.Room}}',
         user: '{{.User}}',
         token: '{{.Token}}',
