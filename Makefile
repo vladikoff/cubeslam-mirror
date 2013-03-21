@@ -8,7 +8,7 @@ SHADERS_JS=$(SHADERS:.glsl=.js)
 COMPONENT=$(shell find lib -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
-MINIFY=build/build.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js
+MINIFY=build public/javascript/pong.min.js public/javascript/libs/three.min.js build/build.min.js
 
 DEV?=--dev
 DEBUG?=true
@@ -25,15 +25,18 @@ build: build-shaders build-geometry build-component build-styles build-jade buil
 	@:
 
 build-min: build build/build.min.js
-
 build-shaders: $(SHADERS_JS) lib/renderer-3d/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
 build-jade: build/build.html
 build-component: build/build.js
 build-styles: build/build-stylus.css
 build-localization: build/localization.arb
+force-build:
+	touch lib/app.js
 
-prepare-deploy: $(MINIFY)
+prepare-deploy: DEV=
+prepare-deploy: DEBUG=false
+prepare-deploy: force-build $(MINIFY)
 	@:
 
 deploy-alfred: prepare-deploy
@@ -123,6 +126,6 @@ proxy: server.conf
 
 .SUFFIXES:
 .PHONY: proxy clean clean-geometry clean-localization \
-				build build-min build-shaders build-styles \
+				build build-min build-shaders build-styles force-build \
 				build-geometry build-component build-localization \
 				prepare-deploy deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred
