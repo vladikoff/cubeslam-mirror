@@ -10,6 +10,9 @@ COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 MINIFY=build/build.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js
 
+DEV?=--dev
+DEBUG?=true
+
 # adding special cased geometry
 GEOMETRY_JS += lib/renderer-3d/geometry/terrain3.js lib/renderer-3d/geometry/bear.js \
 							 lib/renderer-3d/geometry/paw.js lib/renderer-3d/geometry/rabbit.js \
@@ -66,10 +69,10 @@ build/build.min.js: build/build.js
 	touch $@
 
 public/javascript/libs/%.min.js: public/javascript/libs/%.js
-	node_modules/.bin/uglifyjs $< -p 3 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -o $@
+	node_modules/.bin/uglifyjs $< -p 3 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -d DEBUG=$(DEBUG) -o $@
 
 public/javascript/%.min.js: public/javascript/%.js
-	node_modules/.bin/uglifyjs $< -p 2 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint > $@
+	node_modules/.bin/uglifyjs $< -p 2 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -d DEBUG=$(DEBUG) > $@
 
 %.min.js: %.js
 	node_modules/.bin/uglifyjs $< -p 1 --source-map $@.map -c -m --lint > $@
@@ -81,7 +84,7 @@ build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
-	node_modules/.bin/component-build --dev
+	node_modules/.bin/component-build $(DEV)
 
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<
