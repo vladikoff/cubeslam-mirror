@@ -199,6 +199,10 @@ see('/game/prompt/start',states.Prompt.Start)
 see.on('enter',function(ctx){ events.enter.push(ctx.pathname) })
 see.on('leave',function(ctx){ events.leave.push(ctx.pathname) })
 
+// test see.bind()
+console.assert(see.bind('/loading') === see.bind('/loading'), 'see.bind(x) === see.bind(x)')
+console.assert(see.bind('/loading') !== see.bind('/main-menu'), 'see.bind(x) !== see.bind(y)')
+
 see('/loading')
 see('/main-menu') // tests queing
 path('root enter','setup enter','loading enter','loading leave')
