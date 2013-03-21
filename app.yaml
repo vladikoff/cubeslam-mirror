@@ -1,5 +1,5 @@
 application: webrtcgame
-version: dinahmoe
+version: x
 runtime: go
 api_version: go1
 
