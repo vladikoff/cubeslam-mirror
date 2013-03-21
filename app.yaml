@@ -1,5 +1,5 @@
-application: einarsgame
-version: 4
+application: webrtcgame
+version: x
 runtime: go
 api_version: go1
 
@@ -8,12 +8,8 @@ handlers:
   static_dir: public/javascript
 - url: /images
   static_dir: public/images
-- url: /audio
-  static_dir: public/audio
-- url: /xml
-  static_dir: public/xml
-- url: /midi
-  static_dir: public/midi
+- url: /dmaf_assets
+  static_dir: public/dmaf_assets
 - url: /lang
   static_dir: public/lang
 - url: /fonts
