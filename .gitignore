@@ -14,5 +14,5 @@ report
 public/*/*.min.*
 public/*/*/*.min.*
 server.conf
-.sublime-workspace
-.sublime-project
+*.sublime-workspace
+*.sublime-project
