@@ -90,8 +90,8 @@ build/%.html: views/%.jade
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
-build/build-3d.js: components $(COMPONENTS) $(COMPONENT) component.json
-	# the 1,208 sed script removes the require.js part
+build/build-3d.js: components $(GEOMETRY_JS) $(SHADERS_JS) $(COMPONENTS) $(COMPONENT) component.json
+	@# the 1,208 sed script removes the require.js part
 	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
