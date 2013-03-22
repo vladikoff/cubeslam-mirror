@@ -5,7 +5,9 @@ GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
 SHADERS=$(wildcard lib/renderer-3d/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
-COMPONENT=$(shell find lib -name "*.js" -type f)
+LIB=$(shell find lib -name "*.js" -type f)
+LIB_3D=$(shell find lib/renderer-3d -name "*.js" -type f)
+LIB_CSS=$(shell find lib/renderer-3d -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
 MINIFY=build build/build-3d.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js build/build.min.js
@@ -87,15 +89,15 @@ build/%.html: views/%.jade
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
-build/build-3d.js: $(GEOMETRY_JS) $(SHADERS_JS)
+build/build-3d.js: $(LIB_3D) $(GEOMETRY_JS) $(SHADERS_JS)
 	@# the 1,208 sed script removes the require.js part
 	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
 
-build/build-css.js:
+build/build-css.js: $(LIB_CSS)
 	@# the 1,208 sed script removes the require.js part
 	(cd lib/renderer-css && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
 
-build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
+build/build.js: components $(COMPONENTS) $(LIB) component.json
 	node_modules/.bin/component-build $(DEV)
 
 lang/arbs/rv.arb: lang/arbs/en.arb
