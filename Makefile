@@ -25,7 +25,7 @@ build: build-shaders build-geometry build-component build-styles build-jade buil
 	@:
 
 build-min: build $(MINIFY)
-build-renderer: build/build-3d.js
+build-renderer: build/build-3d.js build/build-css.js
 build-shaders: $(SHADERS_JS) lib/renderer-3d/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
 build-jade: build/build.html
@@ -57,9 +57,6 @@ node_modules/:
 components/: node_modules
 	node_modules/.bin/component-install
 
-lib/renderer-3d/components/:
-	(cd lib/renderer-3d/ && node_modules/.bin/component-install)
-
 lib/renderer-3d/shaders/%.js: lib/renderer-3d/shaders/%.glsl
 	support/str-to-js > $@ < $<
 
@@ -90,9 +87,13 @@ build/%.html: views/%.jade
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
-build/build-3d.js: components $(GEOMETRY_JS) $(SHADERS_JS) $(COMPONENTS) $(COMPONENT) component.json
+build/build-3d.js: $(GEOMETRY_JS) $(SHADERS_JS)
 	@# the 1,208 sed script removes the require.js part
 	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
+
+build/build-css.js:
+	@# the 1,208 sed script removes the require.js part
+	(cd lib/renderer-css && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
 
 build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
 	node_modules/.bin/component-build $(DEV)

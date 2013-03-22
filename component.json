@@ -6,7 +6,7 @@
     "component/confirmation": "*",
     "component/cookie": "*",
     "component/jquery": "1.8.2",
-    "inear/preloader": "*",
+    "component/preloader": "*",
     "publicclass/request-animation-frame": "*",
     "publicclass/geom": "*",
     "publicclass/copy": "*",
@@ -17,8 +17,7 @@
     "publicclass/log-worker": "*",
     "publicclass/base64-arraybuffer": "*",
     "visionmedia/debug": "*",
-    "ecarter/css-emitter": "4a453ae914a2cf328810fdf3fc361bc144b15821",
-    "publicclass/geom-poly": "*"
+    "ecarter/css-emitter": "4a453ae914a2cf328810fdf3fc361bc144b15821"
   },
   "scripts": [
     "index.js",
@@ -86,14 +85,6 @@
     "lib/renderer.js",
     "lib/renderer-debug.js",
     "lib/renderer-2d.js",
-    "lib/renderer-css/index.js",
-    "lib/renderer-css/bear.js",
-    "lib/renderer-css/extra.js",
-    "lib/renderer-css/effects.js",
-    "lib/renderer-css/obstacle.js",
-    "lib/renderer-css/shield.js",
-    "lib/renderer-css/puck.js",
-    "lib/renderer-css/paddle.js",
     "lib/levels/index.js",
     "lib/levels/sets/index.js",
     "lib/levels/sets/empty.js",

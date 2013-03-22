@@ -1,0 +1,16 @@
+{
+  "name": "renderer-css",
+  "description": "",
+  "dependencies": {},
+  "development": {},
+  "scripts": [
+    "index.js",
+    "bear.js",
+    "extra.js",
+    "effects.js",
+    "obstacle.js",
+    "shield.js",
+    "puck.js",
+    "paddle.js"
+  ]
+}
