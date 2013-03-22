@@ -10,7 +10,7 @@ LIB_3D=$(shell find lib/renderer-3d -name "*.js" -type f)
 LIB_CSS=$(shell find lib/renderer-3d -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
-MINIFY=build build/build-3d.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js build/build.min.js
+MINIFY=build build/build-3d.min.js public/javascript/pong.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js public/javascript/libs/three.min.js build/build.min.js
 
 DEV?=--dev
 DEBUG?=true
