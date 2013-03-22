@@ -83,6 +83,7 @@
     "lib/actions/debug.js",
     "lib/actions/player.js",
     "lib/actions/shields.js",
+    "lib/renderer.js",
     "lib/renderer-debug.js",
     "lib/renderer-2d.js",
     "lib/renderer-css/index.js",
