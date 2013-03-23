@@ -5,10 +5,12 @@ GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
 SHADERS=$(wildcard lib/renderer-3d/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
-COMPONENT=$(shell find lib -name "*.js" -type f)
+LIB=$(shell find lib -name "*.js" -type f)
+LIB_3D=$(shell find lib/renderer-3d -name "*.js" -type f)
+LIB_CSS=$(shell find lib/renderer-3d -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
-MINIFY=build public/javascript/pong.min.js public/javascript/libs/three.min.js build/build.min.js
+MINIFY=build build/build-3d.min.js public/javascript/pong.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js public/javascript/libs/three.min.js build/build.min.js
 
 DEV?=--dev
 DEBUG?=true
@@ -21,10 +23,11 @@ GEOMETRY_JS += lib/renderer-3d/geometry/terrain3.js lib/renderer-3d/geometry/bea
 							 lib/renderer-3d/geometry/moose.js lib/renderer-3d/geometry/terrain3.js \
 							 lib/renderer-3d/geometry/cpu.js
 
-build: build-shaders build-geometry build-component build-styles build-jade build-localization
+build: build-shaders build-geometry build-component build-styles build-jade build-localization build-renderer
 	@:
 
-build-min: build build/build.min.js
+build-min: build $(MINIFY)
+build-renderer: build/build-3d.js build/build-css.js
 build-shaders: $(SHADERS_JS) lib/renderer-3d/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
 build-jade: build/build.html
@@ -86,7 +89,15 @@ build/%.html: views/%.jade
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
-build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
+build/build-3d.js: $(LIB_3D) $(GEOMETRY_JS) $(SHADERS_JS)
+	@# the 1,208 sed script removes the require.js part
+	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
+
+build/build-css.js: $(LIB_CSS)
+	@# the 1,208 sed script removes the require.js part
+	(cd lib/renderer-css && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
+
+build/build.js: components $(COMPONENTS) $(LIB) component.json
 	node_modules/.bin/component-build $(DEV)
 
 lang/arbs/rv.arb: lang/arbs/en.arb

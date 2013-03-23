@@ -505,17 +505,14 @@ html(lang='en')
 
 
     script(src='/_ah/channel/jsapi')
-    script(src='/javascript/libs/three.{{.Minified}}js')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src='/javascript/libs/dat.gui.js')
     script(src='/javascript/pong.{{.Minified}}js')
-    //- script(src='//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js')
-    script
-      //- Raven.config('https://01f75138e63f44fea0df1f309f2f0941@murmuring-sands-2509.herokuapp.com/2').install();
     script
       require('paddle-battle')(ctx = {
         room: '{{.Room}}',
         user: '{{.User}}',
         token: '{{.Token}}',
-        acceptLanguage: 'en,rv,{{.AcceptLanguage}}'
+        acceptLanguage: 'en,rv,{{.AcceptLanguage}}',
+        ext: '.{{.Minified}}js'
       })
