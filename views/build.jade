@@ -343,7 +343,7 @@ html(lang='en')
       canvas#canv-2d(width='320',height='480')
       canvas#canv-db(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120',autoplay)
-      video#localInput.hidden(width='160',height='120',autoplay)
+      video#localInput.hidden(width='160',height='120',autoplay,muted)
 
       #canv-css
         .background.state.game
@@ -353,7 +353,7 @@ html(lang='en')
             .effect.hit-player.hidden
           .bear.bob
             #expressions
-          //p.bubble(data-name='BOB')
+          p.name
         .game-board
           .arena
             .effect.force
@@ -420,6 +420,15 @@ html(lang='en')
           button.play.icon(href='#', data-icon='▶', type='button')
           button.sound.icon(href='#', data-icon='♫', data-icon-off='♩', type='button')
           button.info.icon(href='#', data-icon='⌽', type='button')
+      .state.cssinfo.game-cssinfo
+        h1 About Mobile Chrome Pong
+        p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+        h2 Play friend on desktop
+        p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+        .buttons
+          button.red Close
+
+
 
     //ERROR STATES
     section#error.state.error.inactive
@@ -514,5 +523,6 @@ html(lang='en')
         user: '{{.User}}',
         token: '{{.Token}}',
         acceptLanguage: 'en,rv,{{.AcceptLanguage}}',
-        ext: '.{{.Minified}}js'
+        ext: '.{{.Minified}}js',
+        dev: {{.Dev}}
       })
