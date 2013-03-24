@@ -91,11 +91,11 @@ build/build-stylus.css: $(STYLUS)
 
 build/build-3d.js: $(LIB_3D) $(GEOMETRY_JS) $(SHADERS_JS)
 	@# the 1,208 sed script removes the require.js part
-	(cd lib/renderer-3d && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
+	(cd lib/renderer-3d && ../../node_modules/.bin/component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
 
 build/build-css.js: $(LIB_CSS)
 	@# the 1,208 sed script removes the require.js part
-	(cd lib/renderer-css && component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
+	(cd lib/renderer-css && ../../node_modules/.bin/component build && sed -e 1,208d build/build.js | cat - aliases.js) > $@
 
 build/build.js: components $(COMPONENTS) $(LIB) component.json
 	node_modules/.bin/component-build $(DEV)
