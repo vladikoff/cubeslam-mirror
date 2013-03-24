@@ -37,8 +37,8 @@ html(lang='en')
           p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
 
         button.play-friend.green(arb:id='playFriendButton', type='button') Play Friend
-        button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
-        button.play-mobile.green(arb:id='playButton', type='button') Play
+        button.play-computer.start.green(arb:id='playCPUButton', type='button') Play Computer
+        button.play-mobile.start.green(arb:id='playButton', type='button') Play
 
       .links
         a.experiment.icon(href='http://google.com/', target='_blank', data-icon='⬢')
@@ -409,6 +409,7 @@ html(lang='en')
     section.mobile
       section.state.main-menu.inactive
         img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
+      h4.state.game-over.bitmap(arb:id='promptOver') Game Over
       #gamepad.state.game.inactive
         button.left.icon(type='button', data-icon='<')
         button.right.icon(type='button', data-icon='>')

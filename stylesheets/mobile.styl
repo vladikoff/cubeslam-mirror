@@ -41,6 +41,7 @@ html.mobile
 
   #settingsGUIContainer
   , .play-friend
+  , .play-computer
   , button.main-menu
   , .links
   , .multiplayer
@@ -71,6 +72,9 @@ html.mobile
         min-width 0
         padding-left 15px
         padding-right 15px
+
+    .play-mobile
+      display inline-block
 
     .notifications
       display none
@@ -145,6 +149,12 @@ html.mobile
       padding 13px 0 0 0
       margin-top 0
 
+      li
+        margin-left 13px
+
+        &:first-child
+          margin-left 0
+
     .terms, .localization
       display none
 
@@ -170,7 +180,7 @@ html.mobile
 
 
     .technology
-      margin-right 10px
+      // margin-right 10px
       a
         background $color-yellow
         &:before
@@ -216,7 +226,7 @@ html.mobile
           height 12px
 
   #gamepad
-    display none
+    display none!important
     absolute bottom 50%
     width 100%
     z-index 2
@@ -295,8 +305,7 @@ html.mobile
         .scoreboard
           padding 0 0 15px
         .social
-          absolute bottom 20px
-          width 100%
+          display none
           li
             margin-right 5px
           a
@@ -311,7 +320,17 @@ html.mobile
       width 100%
       height 100%
       position absolute
-      
+    
+    h4.game-over
+      position absolute
+      z-index 5
+      width 100%
+      top 0
+      font-size 30px
+      color #ffd05a
+      text-shadow 0 0.1em 0 #876b2a
+
+
   .state.game-instructions
     #game-controls
       display none
@@ -404,7 +423,7 @@ html.mobile
       letter-spacing 0
       font-size 0
       width 100%
-      transform translateZ(0)
+      transform translateZ(1)
       backface-visibility hidden
 
       .shields-a, .shields-b
@@ -618,6 +637,11 @@ html.mobile
     #canv-css
       top -236px
 
+    body.game-over
+      #footer
+        display inline-block
+        background-color transparent
+
 
 @media (orientation: landscape)
   html.mobile
@@ -662,7 +686,7 @@ html.mobile
       #canv-css
         top -266px
 
-    body.main-menu
+    body.main-menu, body.game-over
       #footer
         display inline-block
         background-color transparent
