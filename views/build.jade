@@ -343,7 +343,7 @@ html(lang='en')
       canvas#canv-2d(width='320',height='480')
       canvas#canv-db(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120',autoplay)
-      video#localInput.hidden(width='160',height='120',autoplay)
+      video#localInput.hidden(width='160',height='120',autoplay,muted)
 
       #canv-css
         .background.state.game
@@ -523,5 +523,6 @@ html(lang='en')
         user: '{{.User}}',
         token: '{{.Token}}',
         acceptLanguage: 'en,rv,{{.AcceptLanguage}}',
-        ext: '.{{.Minified}}js'
+        ext: '.{{.Minified}}js',
+        dev: {{.Dev}}
       })
