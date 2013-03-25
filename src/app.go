@@ -369,8 +369,8 @@ func init() {
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", JSConnected)
   http.HandleFunc("/disconnect", Disconnected)
-  http.HandleFunc("/occupants", Occupants)
   http.HandleFunc("/gce_announce", TurnServerAnnouncement)
+  http.HandleFunc("/_occupants", Occupants)
   http.HandleFunc("/_ah/channel/connected/", AEConnected)
   if !appengine.IsDevAppServer() {
     // This fires too early in the development environment.
