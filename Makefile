@@ -32,7 +32,7 @@ build-min: build $(MINIFY)
 build-renderer: build/build-3d.js build/build-css.js
 build-shaders: $(SHADERS_JS) lib/renderer-3d/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
-build-jade: build/build.html
+build-jade: build/build.html build/tech.html
 build-component: build/build.js
 build-styles: build/build-stylus.css
 build-localization: build/localization.arb
