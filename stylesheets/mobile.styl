@@ -23,6 +23,10 @@ $footer-height = 47px
 html.mobile
   width 100%
   background $color-beige
+  .touch
+    #debug-info
+      display none!important
+
   .mobile
     display block
 
@@ -81,7 +85,7 @@ html.mobile
 
 
   #mobile-menu
-    absolute top 0px right 0
+    absolute top 45px right 0
     z-index 2
     button
       width 48px
@@ -92,9 +96,12 @@ html.mobile
       border none
       display block
 
-      &.play, &.pause
+      &.play
         background $color-blue
-        color #205688
+        color $color-beige
+      &.pause
+        background $color-beige
+        color $color-blue
       &.sound
         background $color-green
         color #306e2b
@@ -180,7 +187,6 @@ html.mobile
 
 
     .technology
-      // margin-right 10px
       a
         background $color-yellow
         &:before
@@ -221,9 +227,12 @@ html.mobile
         p
           font-size 10px
           width 35px
+          margin 0 0 2px
         li
           width 12px
           height 12px
+          &:before
+            top -14%
 
   #gamepad
     display none!important
@@ -320,6 +329,8 @@ html.mobile
       width 100%
       height 100%
       position absolute
+    .cssinfo
+      position absolute
     
     h4.game-over
       position absolute
@@ -329,6 +340,7 @@ html.mobile
       font-size 30px
       color #ffd05a
       text-shadow 0 0.1em 0 #876b2a
+      pointer-events none
 
 
   .state.game-instructions
@@ -491,11 +503,11 @@ html.mobile
         z-index 0
 
         .s3-01
-          left 0
+          left 1px
         .s3-02
-          left 86px
+          left 87px
         .s3-03
-          left 171px
+          left 172px
 
         .s6-01
           left 0
@@ -548,10 +560,10 @@ html.mobile
     position absolute
     .icon
       background-color transparent
-      animation extra-icon-pulse 1s infinite
+      backface-visibility hidden
+      // animation extra-icon-pulse 1s infinite
 
   .puck
-    display none
     position absolute
     display block
     backface-visibility hidden
@@ -559,7 +571,7 @@ html.mobile
     transform-origin 50% 50% 0
 
     &.ghostball
-      -webkit-filter grayscale(1)
+      // -webkit-filter grayscale(1)
       animation effect-ghostball-pulse 2s infinite
     &.flash
       opacity .6
@@ -635,7 +647,7 @@ html.mobile
     #gamepad
       display none!important
     #canv-css
-      top -236px
+      top -255px
 
     body.game-over
       #footer
@@ -661,12 +673,16 @@ html.mobile
         padding-bottom 30px
       .social 
         bottom 10px
+    #canv-css
+      top -290px
 
     #scores
       width 100%
 
       .logo
-        absolute right 70px 
+        absolute right 19px
+        p
+          float none
       
       .singleplayer, .multiplayer
         .player, .opponent
@@ -690,4 +706,3 @@ html.mobile
       #footer
         display inline-block
         background-color transparent
-
