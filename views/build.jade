@@ -35,16 +35,6 @@ html(lang='en')
       ga('create', 'UA-39581099-1');
       ga('send', 'pageview');
 
-      function trackOutboundLink(link, category, action) {
-        try { 
-          ga.send('event', category , action); 
-        } catch(err){}
-         
-        setTimeout(function() {
-          document.location.href = link.href;
-        }, 100);
-      }
-
   body(class="{{.State}}")
     header.state.main-menu.animate
       h1
@@ -60,9 +50,9 @@ html(lang='en')
         button.play-mobile.start.green(arb:id='playButton', type='button') Play
 
       .links
-        a.experiment.icon(href='http://chromeexperiments.com/', onclick='trackOutboundLink(this, "Outbound Links", "http://chromeexperiments.com/""); return false;', target='_blank', data-icon='⬢')
+        a.experiment.icon(href='http://chromeexperiments.com/', onclick='ga("send",event", "Outbound Links", "http://chromeexperiments.com/");', target='_blank', data-icon='⬢')
           span(arb:id='chromeExperiment') Chrome Experiment
-        a.from.icon(href='http://google.com/',onclick='trackOutboundLink(this, "Outbound Links", "http://google.com/"); return false;', target='_blank', data-icon='☃')
+        a.from.icon(href='http://google.com/', onclick='ga("send","event", "Outbound Links", "http://google.com/");', target='_blank', data-icon='☃')
           span(arb:id='friendFromGoogle') Made with some friends from Google
 
     .state.loading.active
@@ -510,10 +500,10 @@ html(lang='en')
       #about
         ul
           li.technology
-            a(target='_blank', href='/tech')
+            a(target='_blank', href='/tech', onclick='ga("send","event", "Outbound Links", "/tech");')
               span(arb:id='footerTechnology') Technology
           li.terms
-            a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
+            a(target='_blank', href='https://www.google.com/policies/', onclick='ga("send",event", "Outbound Links", "http://google.com/policies/");', arb:id='footerTerms') Terms &amp; privacy
           li.localization
             a#localizationSwitch(href='#') EN
           li.sound
