@@ -24,7 +24,7 @@ html(lang='en')
     link(rel='canonical', href=url)
 
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
-    link(rel='stylesheet', href='/stylesheets/pong.css')
+    link(rel='stylesheet', href='/stylesheets/slam.css')
 
     script(type='text/javascript')
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -376,7 +376,6 @@ html(lang='en')
         .game-board
           .arena
             .effect.force
-            //.puck.puck-16
         .shields
           .shields-a
             .shield.shield-1
@@ -440,12 +439,13 @@ html(lang='en')
           button.sound.icon(href='#', data-icon='♫', data-icon-off='♩', type='button')
           button.info.icon(href='#', data-icon='⌽', type='button')
       .state.cssinfo.game-cssinfo
-        h1 About Mobile Chrome Pong
-        p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
-        h2 Play friend on desktop
-        p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
-        .buttons
-          button.red Close
+        .content
+          h1.bitmap.shadow(arb:id='aboutMobileH1') About Mobile Chrome Pong
+          p(arb:id='aboutMobileText1') Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+          h2.bitmap.shadow(arb:id='aboutMobileH2') Play friend on desktop
+          p(arb:id='aboutMobileText2') Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+          .buttons
+            button.red(arb:id='buttonClose') Close
 
 
 
@@ -510,7 +510,7 @@ html(lang='en')
       #about
         ul
           li.technology
-            a(target='_blank')
+            a(target='_blank', href='/tech')
               span(arb:id='footerTechnology') Technology
           li.terms
             a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
@@ -535,9 +535,9 @@ html(lang='en')
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src='/javascript/libs/dat.gui.js')
-    script(src='/javascript/pong.{{.Minified}}js')
+    script(src='/javascript/slam.{{.Minified}}js')
     script
-      require('paddle-battle')(ctx = {
+      require('slam')(ctx = {
         room: '{{.Room}}',
         user: '{{.User}}',
         token: '{{.Token}}',

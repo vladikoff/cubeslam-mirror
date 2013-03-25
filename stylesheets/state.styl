@@ -336,6 +336,24 @@
       &.hidden
         display none
 
+  &.game-cssinfo
+    background $color-beige
+    absolute top 0 left 0
+    width 100%
+    height 100%
+    overflow scroll
+    text-align center
+
+    .content
+      margin 0 auto
+      max-width 800px
+      padding 30px 50px
+
+    h1, h2
+      font-size 25px
+      line-height 1.4em
+
+
 .game-controls
   width 100%
 
@@ -430,6 +448,7 @@
   .opponent
     li.active
       transition-delay 2500ms
+
 
 #level
   &.inactive

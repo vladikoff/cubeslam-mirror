@@ -1,5 +1,5 @@
 {
-  "name": "paddle-battle",
+  "name": "slam",
   "dependencies": {
     "component/emitter": "*",
     "component/mousetrap": "*",
