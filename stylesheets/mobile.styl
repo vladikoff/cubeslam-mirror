@@ -59,6 +59,7 @@ html.mobile
   header
     background no-repeat center center
     background-size cover
+    transition-duration 1ms
 
     h1
       padding 2% 0 0 0
@@ -128,7 +129,7 @@ html.mobile
 
   .state.game-prompt
     .background
-      // transition none
+      transition none
       height 60px
       margin-top -30px
       top 50%
@@ -286,7 +287,7 @@ html.mobile
 
     .dialog
       .content.animate
-        transition none
+        transition-duration 1ms
 
 
     &.game-instructions
@@ -325,7 +326,7 @@ html.mobile
           margin-left 0
 
   .mobile
-    .main-menu 
+    .main-menu
       width 100%
       height 100%
       position absolute
@@ -400,9 +401,9 @@ html.mobile
         absolute top 390px left 679px
         // transform translateZ(0)
         // backface-visibility hidden
-        > * 
-          transform translateZ(0)
-          backface-visibility hidden
+        // > * 
+        //   transform translateZ(0)
+        //   backface-visibility hidden
 
       .bubble
         position absolute
@@ -415,19 +416,19 @@ html.mobile
       position absolute
       z-index 2
       width $w
-      height $h
+      // height $h
       perspective 640px
       perspective-origin 50% 0%
-      transform translateZ(0)
+      // transform translateZ(0)
       backface-visibility hidden
 
     .arena
       width $w
-      height 1024px
-      transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
+      // height 1024px
+      // transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
       transform-style preserve-3d
       backface-visibility hidden
-      position absolute
+      absolute top 290px left 84px
       z=index 1
 
     .shields
@@ -542,8 +543,8 @@ html.mobile
           left 230px
 
   #expressions 
-    transform translateZ(0)
-    backface-visibility hidden
+    // transform translateZ(0)
+    // backface-visibility hidden
   .angry
     absolute top 8px left 40px
   .blink
@@ -572,7 +573,8 @@ html.mobile
 
     &.ghostball
       // -webkit-filter grayscale(1)
-      animation effect-ghostball-pulse 2s infinite
+      // animation effect-ghostball-pulse 2s infinite
+      opacity .4
     &.flash
       opacity .6
 
@@ -598,7 +600,7 @@ html.mobile
     margin-left -126px
     animation effect-force .5s infinite alternate
     animation-timing-function steps(3)
-    // transform translateZ(0)
+    transform translateZ(0)
     backface-visibility hidden
     &.active
       display block
