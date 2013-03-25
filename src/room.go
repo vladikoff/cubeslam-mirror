@@ -113,3 +113,20 @@ func DelRoom(c appengine.Context, name string) error {
   err := datastore.Delete(c, k)
   return err;
 }
+
+func TotalOccupants(c appengine.Context) (int, error) {
+  q := datastore.NewQuery("Room")
+  t := 0
+  for x := q.Run(c); ; {
+    var r Room
+    _, err := x.Next(&r)
+    if err == datastore.Done {
+      break;
+    }
+    if err != nil {
+      return -1, err
+    }
+    t += r.Occupants()
+  }
+  return t, nil
+}
