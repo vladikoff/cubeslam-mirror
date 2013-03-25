@@ -8,6 +8,7 @@ import (
   "net/http"
   "text/template"
   "strings"
+  "strconv"
   "io/ioutil"
   "time"
   "os"
@@ -282,6 +283,19 @@ func TurnServerAnnouncement(w http.ResponseWriter, r *http.Request) {
   PutTurnServer(c, "us", usTurnServer)
 }
 
+func Occupants(w http.ResponseWriter, r *http.Request) {
+  c := appengine.NewContext(r)
+  w.Header().Set("Content-Type", "text/html; charset=utf-8")
+  total, err := TotalOccupants(c)
+  if err != nil {
+    c.Criticalf("%s",err)
+    return
+  }
+  totalString := strconv.FormatInt(int64(total),10)
+  c.Debugf("Current occupants: %s",totalString)
+  w.Write([]byte(totalString))
+}
+
 func OnMessage(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
 
@@ -355,6 +369,7 @@ func init() {
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", JSConnected)
   http.HandleFunc("/disconnect", Disconnected)
+  http.HandleFunc("/occupants", Occupants)
   http.HandleFunc("/gce_announce", TurnServerAnnouncement)
   http.HandleFunc("/_ah/channel/connected/", AEConnected)
   if !appengine.IsDevAppServer() {
