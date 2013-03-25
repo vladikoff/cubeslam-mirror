@@ -421,12 +421,12 @@ html(lang='en')
           button.info.icon(href='#', data-icon='⌽', type='button')
       .state.cssinfo.game-cssinfo
         .content
-          h1.bitmap.shadow About Mobile Chrome Pong
-          p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
-          h2.bitmap.shadow Play friend on desktop
-          p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+          h1.bitmap.shadow(arb:id='aboutMobileH1') About Mobile Chrome Pong
+          p(arb:id='aboutMobileText1') Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+          h2.bitmap.shadow(arb:id='aboutMobileH2') Play friend on desktop
+          p(arb:id='aboutMobileText2') Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
           .buttons
-            button.red Close
+            button.red(arb:id='buttonClose') Close
 
 
 
@@ -491,7 +491,7 @@ html(lang='en')
       #about
         ul
           li.technology
-            a(target='_blank')
+            a(target='_blank', href='/tech')
               span(arb:id='footerTechnology') Technology
           li.terms
             a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy

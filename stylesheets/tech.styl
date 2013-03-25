@@ -1,0 +1,93 @@
+$width = 960px
+.about
+  overflow scroll
+  body
+    overflow scroll
+  header
+    height 400px
+    box-sizing border-box
+    background #1f1f1f
+    color $color-beige
+    text-align center
+    text-transform uppercase
+
+    h1, h2
+      font-size 34px
+      display inline-block
+      margin 0
+
+    h1
+      padding-left 85px
+      margin-left 18px
+      position relative
+      &:before
+        content ' '
+        display inline-block
+        width 68px
+        height 51px
+        background url('/images/minipong.png') no-repeat
+        position absolute
+        top -20px
+        left 0
+
+
+    hgroup
+      padding 180px 0 0
+      margin 0 auto
+      width $width
+
+  section
+    position relative
+    padding 670px 0 180px
+    overflow hidden
+    > *
+      width $width
+      margin 0 auto
+      display block
+      position relative
+
+    h1
+      font-size 36px
+      color $color-beige
+      line-height 1.5em
+      text-align center
+
+      &:after
+        content ' '
+        background url('/images/tech/ornament.png')
+        width 659px
+        height 63px
+        display block
+        margin 7px auto 14px
+
+
+    p
+      max-width 790px
+      font-size 22px
+      color $color-beige
+      line-height 1.4em
+      text-align center
+
+    img
+      absolute top 0
+      width auto
+      left 50%
+      margin-left -797px
+
+
+  #webrtc
+    background #5d5d77
+
+  #renderers
+    background #040406
+
+  #audio
+    background #649089
+
+  #platform
+    background #9bc6c5
+
+  #opensource
+    background #649089    
+
+
