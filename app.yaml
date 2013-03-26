@@ -27,9 +27,6 @@ handlers:
 - url: /(.*\.html)
   static_files: public/\1
   upload: public/(.*\.html)
-- url: /tech
-  static_files: public/tech.html
-  upload: public/tech.html
 
 - url: /.*
   script: _go_app

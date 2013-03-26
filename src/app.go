@@ -51,25 +51,6 @@ func Main(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  // Accept-Language:
-  acceptLanguage := "en"
-  var header map[string][]string;
-  header = r.Header
-  if _,ok := header["Accept-Language"]; ok {
-    acceptLanguage = strings.Join(header["Accept-Language"], ",")
-  }
-
-  // Is minified js newer?
-  // TODO there must be a better way?!
-  minified := ""
-  if mi, err := os.Stat("build/build.min.js"); err == nil {
-    if bi, err := os.Stat("build/build.js"); err == nil {
-      if mi.ModTime().Unix() > bi.ModTime().Unix() {
-        minified = "min."
-      }
-    }
-  }
-
   q := r.URL.Query()
   appchan := q.Get("signal") != "ws"
 
@@ -77,7 +58,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   userName := Random(10)
 
   // Data to be sent to the template:
-  data := Template{Room:roomName, User: userName, AcceptLanguage: acceptLanguage, Minified: minified, Dev: appengine.IsDevAppServer() }
+  data := Template{Room:roomName, User: userName, AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer() }
 
   // skip rooms when using WebSocket signals
   if appchan {
@@ -143,6 +124,21 @@ func Main(w http.ResponseWriter, r *http.Request) {
   err = template.Execute(w, data)
   if err != nil { c.Criticalf("execution failed: %s", err) }
 }
+
+func Tech(w http.ResponseWriter, r *http.Request) {
+  c := appengine.NewContext(r)
+  w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+  // Data to be sent to the template:
+  data := Template{AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer() }
+
+  // Parse the template and output HTML:
+  template, err := template.ParseFiles("build/tech.html")
+  if err != nil { c.Criticalf("execution failed: %s", err) }
+  err = template.Execute(w, data)
+  if err != nil { c.Criticalf("execution failed: %s", err) }
+}
+
 
 func AEConnected(w http.ResponseWriter, r *http.Request) {
   // AppEngine Channel API backend is initialized!
@@ -343,6 +339,34 @@ func ParseClientId(clientId string) (string, string) {
   return from[1], from[0]
 }
 
+func AcceptLanguage(r *http.Request) string {
+  acceptLanguage := "en"
+  if _,ok := r.Header["Accept-Language"]; ok {
+    acceptLanguage = strings.Join(r.Header["Accept-Language"], ",")
+  }
+  // let ?lang override
+  q := r.URL.Query()
+  if q.Get("lang") != "" {
+    acceptLanguage = q.Get("lang")
+  }
+  return acceptLanguage;
+}
+
+func Minified() string {
+  // Is minified js newer?
+  // TODO there must be a better way?!
+  minified := ""
+  if mi, err := os.Stat("build/build.min.js"); err == nil {
+    if bi, err := os.Stat("build/build.js"); err == nil {
+      if mi.ModTime().Unix() > bi.ModTime().Unix() {
+        minified = "min."
+      }
+    }
+  }
+  return minified
+}
+
+
 func Random(length int) string {
   // only upper case because the link will be upper case when copied
   printables := "ABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"
@@ -366,6 +390,7 @@ func init() {
   now := time.Now()
   rand.Seed(now.Unix())
   http.HandleFunc("/", Main)
+  http.HandleFunc("/tech", Tech)
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", JSConnected)
   http.HandleFunc("/disconnect", Disconnected)
