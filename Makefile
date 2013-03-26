@@ -104,7 +104,7 @@ build/build.js: components $(COMPONENTS) $(LIB) component.json
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<
 
-lang/arbs/%.arb: build/*.html
+lang/arbs/en.arb: build/*.html
 	node lang/langparse.js $^ > $@
 
 build/localization.arb: lang/arbs/*.arb
