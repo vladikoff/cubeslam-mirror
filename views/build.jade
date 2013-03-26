@@ -27,7 +27,7 @@ html(lang='en')
     link(rel='stylesheet', href='/stylesheets/slam.css')
 
     script(type='text/javascript')
-      
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-39581099-3']);
       _gaq.push(['_trackPageview', '/']);
@@ -40,7 +40,7 @@ html(lang='en')
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');      
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   body(class="{{.State}}")
     header.state.main-menu.animate
@@ -159,7 +159,7 @@ html(lang='en')
           .vertical-center
             h2(arb:id='pauseHeader') Paused
             .buttons
-              button.singleplayer.green.play(type='button') 
+              button.singleplayer.green.play(type='button')
                 span(arb:id='buttonResume') Resume
                 span.keyboard(arb:id='space') (space)
               button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
@@ -291,7 +291,7 @@ html(lang='en')
                         span Twitter
 
               button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
-              button.green.play(type='button') 
+              button.green.play(type='button')
                 span(arb:id='buttonRetry') Retry Level
                 span.keyboard(arb:id='space') (Space)
 
@@ -541,7 +541,7 @@ html(lang='en')
         room: '{{.Room}}',
         user: '{{.User}}',
         token: '{{.Token}}',
-        acceptLanguage: 'en,rv,{{.AcceptLanguage}}',
+        acceptLanguage: '{{.AcceptLanguage}}',
         ext: '.{{.Minified}}js',
         dev: {{.Dev}}
       })

@@ -44,7 +44,7 @@ html.about(lang='en')
       img(src='/images/tech/opensource.jpg', alt='Animals playing pong')
       h1(arb:id='openTitle') Open source
       p(arb:id='openText') You can check out <strong>Cube Slam&rsquo;s</strong> source on <strong>&lt;Google Code&gt;</strong> or in the <strong>Chrome Developer Tools</strong> (you&rsquo;ll need to enable source maps). Also, as a reward for reading this far: you can add the ?&#8288;dev parameter to the URL to enable dat.gui and tweak all the levels, extras, and other attributes of the game. Have fun!
-      
+
     script(src='/javascript/slam.{{.Minified}}js')
     script
       require('slam/lib/localization').init('{{.AcceptLanguage}}')
