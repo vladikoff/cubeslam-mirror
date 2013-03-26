@@ -1,36 +1,34 @@
-var
-  fs = require("fs"),
-  jsdom = require("jsdom");
+var fs = require("fs")
+  , jsdom = require("jsdom");
 
-jsdom.env({
-  html: fs.readFileSync('/dev/stdin', 'utf8'),
-  scripts: [ 'jquery.js' ],
-  done: function(err, window) {
+var files = process.argv.slice(2);
 
-    var
-      $,
-      result = {
-        "@@locale": "en",
-        "@@context": "WebRTC Game"
-      };
+var result = {
+  "@@locale": "en",
+  "@@context": "WebRTC Game"
+};
+var pending = 2;
 
-    if (err) {
-
-      console.log(err);
-
-    } else {
-
-      $ = window.jQuery;
-
-      $('*').filter(function() { return $(this).attr('arb:id'); }).each(function() {
+files.forEach(function(file){
+  jsdom.env({
+    html: fs.readFileSync(file, 'utf8'),
+    scripts: [ 'jquery.js' ],
+    done: function(err, window) {
+      if (err) {
+        console.log(err);
+      } else {
+        var $ = window.jQuery;
+        $('*').filter(function() { return $(this).attr('arb:id'); }).each(function() {
           result[$(this).attr('arb:id')] = $(this).html();
-      });
-
+        });
+      }
+      --pending || done()
     }
+  });
+})
 
-    process.stdout.write('arb.register("webrtcgame:en", ');
-    process.stdout.write(JSON.stringify(result,null,2) + "\n");
-    process.stdout.write(");\n");
-
-  }
-});
+function done(){
+  process.stdout.write('arb.register("webrtcgame:en",');
+  process.stdout.write(JSON.stringify(result,null,2));
+  process.stdout.write(");\n");
+}

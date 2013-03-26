@@ -94,11 +94,9 @@ build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
 build/build-3d.js: $(LIB_3D) $(GEOMETRY_JS) $(SHADERS_JS)
-	@# the 1,208 sed script removes the require.js part
 	(cd lib/renderer-3d && ../../node_modules/.bin/component build && sed -e 1,$(REQUIRE_LINES)d build/build.js | cat - aliases.js) > $@
 
 build/build-css.js: $(LIB_CSS)
-	@# the 1,208 sed script removes the require.js part
 	(cd lib/renderer-css && ../../node_modules/.bin/component build && sed -e 1,$(REQUIRE_LINES)d build/build.js | cat - aliases.js) > $@
 
 build/build.js: components $(COMPONENTS) $(LIB) component.json
@@ -107,8 +105,8 @@ build/build.js: components $(COMPONENTS) $(LIB) component.json
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<
 
-lang/arbs/%.arb: build/build.html
-	node lang/langparse.js > $@ < $<
+lang/arbs/%.arb: build/*.html
+	node lang/langparse.js $^ > $@
 
 build/localization.arb: $(LANGUAGES)
 	cat lang/arbs/*.arb > build/localization.arb
