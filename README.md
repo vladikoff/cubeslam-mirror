@@ -1,5 +1,5 @@
-Chrome Pong (working title)
-===========================
+Cube Slam
+=========
 
 
 ## Building
