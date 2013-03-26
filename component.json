@@ -21,6 +21,7 @@
   },
   "scripts": [
     "index.js",
+    "lib/tracking.js",
     "lib/settings.js",
     "lib/app.js",
     "lib/game.js",
