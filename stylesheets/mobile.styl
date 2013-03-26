@@ -237,11 +237,9 @@ html.mobile
         li
           width 12px
           height 12px
-          &:before
-            top -14%
 
   #gamepad
-    display none!important
+    // display none!important
     position absolute 
     bottom 50%
     width 100%
@@ -253,7 +251,7 @@ html.mobile
       width 72px
       height 72px
       border-radius 36px
-      // box-shadow 0 3px 5px rgba(0,0,0,.3) 
+      box-shadow 0 3px 5px rgba(0,0,0,.3) 
       position absolute 
       left 5%
       padding 0
@@ -283,8 +281,12 @@ html.mobile
         z-index 2
 
 
-      // &:active
-      //   box-shadow 0 1px 10px rgba(0,0,0,.3) 
+      &:active, &.down
+        box-shadow 0 1px 3px rgba(0,0,0,.1) 
+        top 2px
+        &:after
+          bottom inherit
+          top 1px 
 
       &:last-child
         left auto
