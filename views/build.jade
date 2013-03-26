@@ -30,7 +30,7 @@ html(lang='en')
       
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-39581099-3']);
-      _gaq.push(['_trackPageview']);
+      _gaq.push(['_trackPageview', '/']);
 
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -57,9 +57,9 @@ html(lang='en')
         button.play-mobile.start.green(arb:id='playButton', type='button') Play
 
       .links
-        a.experiment.icon(href='http://chromeexperiments.com/', onclick='_gaq.push(["_trackEvent", "Outbound Links", "http://chromeexperiments.com/"]);', target='_blank', data-icon='⬢')
+        a.experiment.icon(href='http://chromeexperiments.com/', target='_blank', data-icon='⬢')
           span(arb:id='chromeExperiment') Chrome Experiment
-        a.from.icon(href='http://google.com/', onclick='_gaq.push(["_trackEvent", "Outbound Links", "http://google.com/"]);', target='_blank', data-icon='☃')
+        a.from.icon(href='http://google.com/', target='_blank', data-icon='☃')
           span(arb:id='friendFromGoogle') Made with some friends from Google
 
     .state.loading.active

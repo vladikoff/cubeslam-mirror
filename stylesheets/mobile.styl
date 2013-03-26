@@ -86,7 +86,9 @@ html.mobile
 
 
   #mobile-menu
-    absolute top 45px right 0
+    position absolute 
+    top 45px 
+    right 0
     z-index 2
     button
       width 48px
@@ -110,7 +112,8 @@ html.mobile
         background $color-yellow
         color #b58d33
       &.pause
-        absolute right 0
+        position absolute 
+        right 0
         z-index 1
         transition transform 250ms
         transition-delay .7s
@@ -208,7 +211,9 @@ html.mobile
       display block
 
   #scores
-    absolute top 10px left 10px  
+    position absolute 
+    top 10px 
+    left 10px  
     margin 0
     z-index 1
     pointer-events none
@@ -237,7 +242,8 @@ html.mobile
 
   #gamepad
     display none!important
-    absolute bottom 50%
+    position absolute 
+    bottom 50%
     width 100%
     z-index 2
     transition opacity 300ms ease-out
@@ -248,7 +254,8 @@ html.mobile
       height 72px
       border-radius 36px
       // box-shadow 0 3px 5px rgba(0,0,0,.3) 
-      absolute left 5%
+      position absolute 
+      left 5%
       padding 0
       outline 0
       border 0
@@ -260,7 +267,9 @@ html.mobile
 
       &:after
         content ' '
-        absolute bottom 1px left 4.2%
+        position absolute 
+        bottom 1px 
+        left 4.2%
         width 93%
         height 93%
         border-radius 93%
@@ -269,7 +278,8 @@ html.mobile
       &:before
         font-size 36px
         color #295d21
-        absolute top 27%
+        position absolute 
+        top 27%
         z-index 2
 
 
@@ -364,7 +374,8 @@ html.mobile
     display block
     width $w
     height $h
-    relative top -260px 
+    position relative 
+    top -260px 
     left -1 * $w * .5
     transform-origin 50% 55%
     .background
@@ -431,7 +442,8 @@ html.mobile
       z=index 1
 
     .shields
-      absolute top 0
+      position absolute 
+      top 0
       letter-spacing 0
       font-size 0
       width 100%
@@ -439,7 +451,8 @@ html.mobile
       backface-visibility hidden
 
       .shields-a, .shields-b
-        absolute top 0px
+        position absolute 
+        top 0px
 
       .shield
         position absolute
@@ -595,7 +608,9 @@ html.mobile
 
   .force
     display none
-    absolute left 38% top 98px
+    position absolute 
+    left 38% 
+    top 98px
     margin-left -126px
     animation effect-force .5s infinite alternate
     animation-timing-function steps(3)
@@ -681,7 +696,8 @@ html.mobile
       width 100%
 
       .logo
-        absolute right 19px
+        position absolute 
+        right 19px
         p
           float none
       
