@@ -1,0 +1,135 @@
+#scores
+  color $color-beige
+  position absolute
+  z-index 2
+  top 6%
+  left 6%
+  line-height 15px
+  text-transform uppercase
+
+  .logo
+    font-size 11px
+
+    h1
+      margin 0
+      font-size 11px
+
+    img
+      margin-bottom 14px
+
+    .level
+      margin-top 1px
+
+  &.inactive
+    display none
+
+  .player, .opponent
+    margin-top 5px
+    p
+      font-size 11px
+      margin 0 0 8px
+
+  .player
+    margin-top 13px
+
+  ol
+    li
+      perspective 20
+      width 26px
+      height 26px
+      border 2px solid $color-beige
+      display inline-block
+      margin-left 2px
+      position relative
+      transition transform 300ms ease-in-out
+      transform-style preserve-3d
+      transform-origin center center
+      perspective 2000px
+      backface-visibility hidden
+
+      for row in 1 2 3
+        &:nth-child({row})
+          transition-delay 200ms * (3 - row)
+
+      &:before
+        content ''
+        display block
+        absolute top -7.1% left -23.1%
+        width 131%
+        height 127%
+
+        transform rotateY(180deg)
+        backface-visibility hidden
+        background transparent url('/images/score-rect.png') no-repeat center center
+        background-size cover
+        box-shadow 0 2px 6px rgba(0,0,0,.2)
+
+
+      &:first-child
+        margin-left 0
+      &.active
+        transition-delay 1200ms
+        transform rotateY(-180deg)
+        animation score-blink 0.5s 12
+
+      // &.latest-winner
+      //   animation score-blink 0.5s 12
+
+  .opponent
+    li.active
+      transition-delay 2500ms
+
+
+#level
+  &.inactive
+    display none
+
+#extras
+  position absolute
+  right 70px + 36px
+  top 100px
+  font-size 12px
+  text-transform uppercase
+  ul
+    width 300px
+  li
+    color $color-beige
+    margin-bottom 10px
+    padding 20px 5px 0 0
+    text-align right
+    box-sizing border-box
+    width 300px
+    height 36px
+    position relative
+    font-size .8em
+    opacity 0
+    transition-duration .3s
+    transition-property opacity, transform, top
+    position absolute
+    transform translateY(10px)
+    top 0
+    &.visible
+      opacity 1
+      transform translateY(0)
+    &.active
+      animation extra-active 1s infinite
+      animation-timing-funciton ease-in-out
+
+      span
+        transform scaleX(-1)
+        transform-origin center center
+        display inline-block
+
+    &:before
+      border 1px solid rgba(255,255,255,.3)
+      font-size 2.1em
+      line-height 1em
+      letter-spacing 0
+      padding .5em .5em
+      text-align center
+      box-sizing border-box
+      border-radius 1em
+      color $color-beige
+      absolute right -45px top 2px
+      background-clip text
+
