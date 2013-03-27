@@ -404,19 +404,18 @@ html(lang='en')
 
     #extras.state.game.inactive
       ul
-        li.icon.deathball(data-icon='*') Death ball
-        li.icon.ghostball(data-icon='*') Ghost ball
-        li.icon.magneticball(data-icon='*') Magnetic ball
-        li.icon.paddleresize(data-icon='*') Paddle Resize
-        li.icon.fog(data-icon='*') Fog
-        li.icon.multiball(data-icon='*') Multi ball
-        li.icon.extralife(data-icon='*') Extra life
-        li.icon.timebomb(data-icon='*') Time Bomb
-        li.icon.fireball(data-icon='*') Fire ball
-        li.icon.lazerpaddle(data-icon='*') Lazer paddle
+        li.icon.deathball(data-icon='*', arb:id='extraDeathBall') Death ball
+        li.icon.ghostball(data-icon='*', arb:id='extraGHostBall') Ghost ball
+        li.icon.paddleresize(data-icon='*', arb:id='extraMagneticBall') Paddle Resize
+        li.icon.fog(data-icon='*', arb:id='extraFog') Fog
+        li.icon.multiball(data-icon='*', arb:id='extraMultiBall') Multi ball
+        li.icon.extralife(data-icon='*', arb:id='extraShield') Extra shield
+        li.icon.timebomb(data-icon='*', arb:id='extraTimeBomb') Time Bomb
+        li.icon.fireball(data-icon='*', arb:id='extraFireBall') Fire ball
+        li.icon.laser(data-icon='*', arb:id='extraLaserPaddle') Laser paddle
         li.icon.mirroredcontrols(data-icon='*')
-          span Mirrored Controls
-        li.icon.bulletproof(data-icon='*') Bullet Proof
+          span(arb:id='extraMirroredControl') Mirrored Controls
+        li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bullet Proof
 
 
     //MOBILE
