@@ -24,7 +24,19 @@ html(lang='en')
     link(rel='canonical', href=url)
 
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
-    link(rel='stylesheet', href='/stylesheets/pong.css')
+    link(rel='stylesheet', href='/stylesheets/slam.css')
+
+    script(type='text/javascript')
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39581099-3']);
+      _gaq.push(['_trackPageview', '/']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
   body(class="{{.State}}")
     header.state.main-menu.animate
@@ -37,11 +49,11 @@ html(lang='en')
           p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
 
         button.play-friend.green(arb:id='playFriendButton', type='button') Play Friend
-        button.play-computer.green(arb:id='playCPUButton', type='button') Play Computer
-        button.play-mobile.green(arb:id='playButton', type='button') Play
+        button.play-computer.start.green(arb:id='playCPUButton', type='button') Play Computer
+        button.play-mobile.start.green(arb:id='playButton', type='button') Play
 
       .links
-        a.experiment.icon(href='http://google.com/', target='_blank', data-icon='⬢')
+        a.experiment.icon(href='http://chromeexperiments.com/', target='_blank', data-icon='⬢')
           span(arb:id='chromeExperiment') Chrome Experiment
         a.from.icon(href='http://google.com/', target='_blank', data-icon='☃')
           span(arb:id='friendFromGoogle') Made with some friends from Google
@@ -143,7 +155,8 @@ html(lang='en')
           .vertical-center
             h2(arb:id='pauseHeader') Paused
             .buttons
-              button.singleplayer.green.play(type='button', arb:id='buttonResume') Resume
+              button.singleplayer.green.play(type='button')
+                span(arb:id='buttonResume') Resume
                 span.keyboard(arb:id='space') (space)
               button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
 
@@ -167,7 +180,7 @@ html(lang='en')
               li(arb:id='webcamDeniedStep3') Select "Always allow on this site." You can change this later.
               li(arb:id='webcamDeniedStep4') Click out of the menu and refresh the page
             .buttons
-              p You can still Play the computer
+              p(arb:id='webcamButtonExplanation') or, you can still play the computer
               a.button.red(href='/', arb:id='buttonMainMenu') Main Menu
 
     //WAITING FOR FRIEND CAMERA
@@ -253,11 +266,11 @@ html(lang='en')
 
     //GAME OVER
     section.state.game-over.inactive
-      //h1.bitmap.shadow Game Over
       div
         .dialog
           .content.animate
             #scoreboard-single.vertical-center
+              h1.mobile.bitmap.shadow(arb:id='promptOver') Game Over
               .scoreboard.single
                   div
                     p#single-levels.levels X
@@ -274,8 +287,9 @@ html(lang='en')
                         span Twitter
 
               button.blue.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
-              button.green.play(type='button', arb:id='buttonRetry') Retry Level
-                span.keyboard (Space)
+              button.green.play(type='button')
+                span(arb:id='buttonRetry') Retry Level
+                span.keyboard(arb:id='space') (Space)
 
             #scoreboard-multi.vertical-center
               .scoreboard.multiplayer
@@ -298,8 +312,9 @@ html(lang='en')
                     a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
                       span Twitter
 
-                button.green.play(type='button', arb:id='buttonPlayAgain') Play Again
-                  span.keyboard (Space)
+                button.green.play(type='button')
+                  span(arb:id='buttonPlayAgain') Play Again
+                  span.keyboard(arb:id='space') (Space)
 
     section#scores.state.game.inactive
       .logo
@@ -343,7 +358,7 @@ html(lang='en')
       canvas#canv-2d(width='320',height='480')
       canvas#canv-db(width='320',height='480')
       video#remoteInput.hidden(width='160',height='120',autoplay)
-      video#localInput.hidden(width='160',height='120',autoplay)
+      video#localInput.hidden(width='160',height='120',autoplay,muted)
 
       #canv-css
         .background.state.game
@@ -353,11 +368,11 @@ html(lang='en')
             .effect.hit-player.hidden
           .bear.bob
             #expressions
-          //p.bubble(data-name='BOB')
+          p.name
+          .swipe-instruction
         .game-board
           .arena
             .effect.force
-            //.puck.puck-16
         .shields
           .shields-a
             .shield.shield-1
@@ -390,19 +405,18 @@ html(lang='en')
 
     #extras.state.game.inactive
       ul
-        li.icon.deathball(data-icon='*') Death ball
-        li.icon.ghostball(data-icon='*') Ghost ball
-        li.icon.magneticball(data-icon='*') Magnetic ball
-        li.icon.paddleresize(data-icon='*') Paddle Resize
-        li.icon.fog(data-icon='*') Fog
-        li.icon.multiball(data-icon='*') Multi ball
-        li.icon.extralife(data-icon='*') Extra life
-        li.icon.timebomb(data-icon='*') Time Bomb
-        li.icon.fireball(data-icon='*') Fire ball
-        li.icon.lazerpaddle(data-icon='*') Lazer paddle
+        li.icon.deathball(data-icon='*', arb:id='extraDeathBall') Death ball
+        li.icon.ghostball(data-icon='*', arb:id='extraGHostBall') Ghost ball
+        li.icon.paddleresize(data-icon='*', arb:id='extraMagneticBall') Paddle Resize
+        li.icon.fog(data-icon='*', arb:id='extraFog') Fog
+        li.icon.multiball(data-icon='*', arb:id='extraMultiBall') Multi ball
+        li.icon.extralife(data-icon='*', arb:id='extraShield') Extra shield
+        li.icon.timebomb(data-icon='*', arb:id='extraTimeBomb') Time Bomb
+        li.icon.fireball(data-icon='*', arb:id='extraFireBall') Fire ball
+        li.icon.laser(data-icon='*', arb:id='extraLaserPaddle') Laser paddle
         li.icon.mirroredcontrols(data-icon='*')
-          span Mirrored Controls
-        li.icon.bulletproof(data-icon='*') Bullet Proof
+          span(arb:id='extraMirroredControl') Mirrored Controls
+        li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bullet Proof
 
 
     //MOBILE
@@ -419,6 +433,16 @@ html(lang='en')
           button.play.icon(href='#', data-icon='▶', type='button')
           button.sound.icon(href='#', data-icon='♫', data-icon-off='♩', type='button')
           button.info.icon(href='#', data-icon='⌽', type='button')
+      .state.cssinfo.game-cssinfo
+        .content
+          h1.bitmap.shadow(arb:id='aboutMobileH1') About Mobile Chrome Pong
+          p(arb:id='aboutMobileText1') Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+          h2.bitmap.shadow(arb:id='aboutMobileH2') Play friend on desktop
+          p(arb:id='aboutMobileText2') Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
+          .buttons
+            button.green(arb:id='buttonClose') Close
+
+
 
     //ERROR STATES
     section#error.state.error.inactive
@@ -481,10 +505,10 @@ html(lang='en')
       #about
         ul
           li.technology
-            a(target='_blank')
+            a(target='_blank', href='/tech', onclick='_gaq.push(["_trackEvent", "Outbound Links", "/tech"]);')
               span(arb:id='footerTechnology') Technology
           li.terms
-            a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
+            a(target='_blank', href='https://www.google.com/policies/', onclick='_gaq.push(["_trackEvent", "Outbound Links", "http://google.com/policies/"]);', arb:id='footerTerms') Terms &amp; privacy
           li.localization
             a#localizationSwitch(href='#') EN
           li.sound
@@ -499,19 +523,20 @@ html(lang='en')
       #settingsLevelsGUI
       #uiTopContent
 
+    #debug-info
+      pre
+
 
     script(src='/_ah/channel/jsapi')
-    //- script(src='//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js')
-    script(src='/javascript/libs/three.{{.Minified}}js')
     script(src='/javascript/libs/TweenMax.min.js')
     script(src='/javascript/libs/dat.gui.js')
-    script(src='/javascript/pong.{{.Minified}}js')
+    script(src='/javascript/slam.{{.Minified}}js')
     script
-      //- Raven.config('https://01f75138e63f44fea0df1f309f2f0941@murmuring-sands-2509.herokuapp.com/2').install();
-    script
-      require('paddle-battle')({
+      require('slam')(ctx = {
         room: '{{.Room}}',
         user: '{{.User}}',
         token: '{{.Token}}',
-        acceptLanguage: 'en,rv,{{.AcceptLanguage}}'
+        acceptLanguage: '{{.AcceptLanguage}}',
+        ext: '.{{.Minified}}js',
+        dev: {{.Dev}}
       })

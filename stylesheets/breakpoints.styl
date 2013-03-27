@@ -5,6 +5,7 @@
         &.bitmap
           font-size 83px
 
+
 @media all and (max-width: 980px) and (min-width: 751px)
   .state
     .prompt
@@ -18,3 +19,71 @@
       h1, h2, h3, h4
         &.bitmap
           font-size 45px
+
+
+
+@media all and (max-width: 449px) and (min-width: 0px)
+  #scores
+    left 20px
+
+@media all and (max-width: 749px) and (min-width: 0px)
+  #extras ul
+    display none
+
+  #scores
+    
+    .logo
+      img
+        display none
+
+    ol li
+      width 16px
+      height 16px
+      margin-left 2px
+
+    .player, .opponent
+      margin-top 5px
+      p
+        font-size 11  px
+
+
+@media all and (min-width: 750px) and (max-width: 1799px)
+  #extras ul
+    display block
+
+  #scores
+    left 6%
+
+    .logo
+      img
+        display block
+
+    ol li
+      width 26px
+      height 26px
+      margin-left 2px
+
+@media all and (min-width: 1800px)
+  #extras 
+    font-size 16px
+
+    ul
+      display block
+
+      li
+        padding 25px 21px 0 0
+
+  #scores
+    left 100px
+
+    .logo
+      img
+        display block
+
+      .level
+        margin-top 6px
+
+    ol li
+      width 46px
+      height 46px
+      margin-left 4px

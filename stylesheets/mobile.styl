@@ -23,6 +23,10 @@ $footer-height = 47px
 html.mobile
   width 100%
   background $color-beige
+  .touch
+    #debug-info
+      display none!important
+
   .mobile
     display block
 
@@ -41,6 +45,7 @@ html.mobile
 
   #settingsGUIContainer
   , .play-friend
+  , .play-computer
   , button.main-menu
   , .links
   , .multiplayer
@@ -54,6 +59,7 @@ html.mobile
   header
     background no-repeat center center
     background-size cover
+    transition-duration 1ms
 
     h1
       padding 2% 0 0 0
@@ -72,12 +78,17 @@ html.mobile
         padding-left 15px
         padding-right 15px
 
+    .play-mobile
+      display inline-block
+
     .notifications
       display none
 
 
   #mobile-menu
-    absolute top 0px right 0
+    position absolute 
+    top 45px 
+    right 0
     z-index 2
     button
       width 48px
@@ -88,9 +99,12 @@ html.mobile
       border none
       display block
 
-      &.play, &.pause
+      &.play
         background $color-blue
-        color #205688
+        color $color-beige
+      &.pause
+        background $color-beige
+        color $color-blue
       &.sound
         background $color-green
         color #306e2b
@@ -98,7 +112,8 @@ html.mobile
         background $color-yellow
         color #b58d33
       &.pause
-        absolute right 0
+        position absolute 
+        right 0
         z-index 1
         transition transform 250ms
         transition-delay .7s
@@ -117,7 +132,7 @@ html.mobile
 
   .state.game-prompt
     .background
-      // transition none
+      transition none
       height 60px
       margin-top -30px
       top 50%
@@ -140,10 +155,18 @@ html.mobile
     pointer-events none
     a
       pointer-events auto
+      width 22px
+      height 22px
 
     ul
       padding 13px 0 0 0
       margin-top 0
+
+      li
+        margin-left 13px
+
+        &:first-child
+          margin-left 0
 
     .terms, .localization
       display none
@@ -170,7 +193,6 @@ html.mobile
 
 
     .technology
-      margin-right 10px
       a
         background $color-yellow
         &:before
@@ -191,12 +213,22 @@ html.mobile
       display block
 
   #scores
-    absolute top 10px left 10px  
+    position absolute 
+    top 10px 
+    left 0
+    width 100%
     margin 0
     z-index 1
     pointer-events none
+    box-sizing border-box
 
     .logo
+      position absolute 
+      right 14px
+      .level
+        margin-top 6px
+      p
+        float none
       h1, img
         display none
 
@@ -211,13 +243,15 @@ html.mobile
         p
           font-size 10px
           width 35px
+          margin 0 0 2px
         li
           width 12px
           height 12px
 
   #gamepad
-    display none
-    absolute bottom 50%
+    display none!important
+    position absolute 
+    bottom 50%
     width 100%
     z-index 2
     transition opacity 300ms ease-out
@@ -227,8 +261,9 @@ html.mobile
       width 72px
       height 72px
       border-radius 36px
-      // box-shadow 0 3px 5px rgba(0,0,0,.3) 
-      absolute left 5%
+      box-shadow 0 3px 5px rgba(0,0,0,.3) 
+      position absolute 
+      left 5%
       padding 0
       outline 0
       border 0
@@ -240,7 +275,9 @@ html.mobile
 
       &:after
         content ' '
-        absolute bottom 1px left 4.2%
+        position absolute 
+        bottom 1px 
+        left 4.2%
         width 93%
         height 93%
         border-radius 93%
@@ -249,12 +286,17 @@ html.mobile
       &:before
         font-size 36px
         color #295d21
-        absolute top 27%
+        position absolute 
+        top 27%
         z-index 2
 
 
-      // &:active
-      //   box-shadow 0 1px 10px rgba(0,0,0,.3) 
+      &:active, &.down
+        box-shadow 0 1px 3px rgba(0,0,0,.1) 
+        top 2px
+        &:after
+          bottom inherit
+          top 1px 
 
       &:last-child
         left auto
@@ -267,8 +309,7 @@ html.mobile
 
     .dialog
       .content.animate
-        transition none
-
+        transition-duration 1ms
 
     &.game-instructions
       .game-controls
@@ -279,7 +320,6 @@ html.mobile
         height 100%
       .content
         transition none
-        // transform translateX(-100%)
       &.inactive
         display none!important
         .content
@@ -289,14 +329,20 @@ html.mobile
           transform translateX( 0 )
     &.game-over
       .dialog
+        h1
+          font-size 30px
+          margin-top 0
+          text-align center
+
         height 100%
         min-height 0
         top 0
+        .content
+          padding-bottom 0
         .scoreboard
           padding 0 0 15px
         .social
-          absolute bottom 20px
-          width 100%
+          display none
           li
             margin-right 5px
           a
@@ -307,11 +353,24 @@ html.mobile
           margin-left 0
 
   .mobile
-    .main-menu 
+    .main-menu
       width 100%
       height 100%
       position absolute
-      
+    .cssinfo
+      position absolute
+    
+    h4.game-over
+      position absolute
+      z-index 5
+      width 100%
+      top 0
+      font-size 30px
+      color #ffd05a
+      text-shadow 0 0.1em 0 #876b2a
+      pointer-events none
+
+
   .state.game-instructions
     #game-controls
       display none
@@ -333,7 +392,8 @@ html.mobile
     display block
     width $w
     height $h
-    relative top -260px 
+    position relative 
+    top -260px 
     left -1 * $w * .5
     transform-origin 50% 55%
     .background
@@ -346,7 +406,6 @@ html.mobile
       background-size cover
       transform translateZ(0)
       backface-visibility hidden
-      // display none!important
 
       img
         width 100%
@@ -366,12 +425,14 @@ html.mobile
             display none
 
       .bear
-        absolute top 390px left 679px
-        // transform translateZ(0)
-        // backface-visibility hidden
-        > * 
-          transform translateZ(0)
-          backface-visibility hidden
+        position absolute 
+        top 390px 
+        left 679px
+        transform translateZ(0)
+        backface-visibility hidden
+        // > * 
+        //   transform translateZ(0)
+        //   backface-visibility hidden
 
       .bubble
         position absolute
@@ -379,36 +440,47 @@ html.mobile
         left 905px
         
 
+      .swipe-instruction
+        background transparent url('/images/mobile/swipe-arrows.png') no-repeat
+        width 186px
+        height 42px
+        margin 0 auto
+        position absolute
+        top 858px
+        left 677px
+
 
     .game-board
       position absolute
       z-index 2
       width $w
-      height $h
+      // height $h
       perspective 640px
       perspective-origin 50% 0%
-      transform translateZ(0)
+      // transform translateZ(0)
       backface-visibility hidden
 
     .arena
       width $w
-      height 1024px
-      transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
+      // height 1024px
+      // transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
       transform-style preserve-3d
       backface-visibility hidden
-      position absolute
+      absolute top 290px left 84px
       z=index 1
 
     .shields
-      absolute top 0
+      position absolute 
+      top 0
       letter-spacing 0
       font-size 0
       width 100%
-      transform translateZ(0)
+      transform translateZ(1)
       backface-visibility hidden
 
       .shields-a, .shields-b
-        absolute top 0px
+        position absolute 
+        top 0px
 
       .shield
         position absolute
@@ -472,11 +544,11 @@ html.mobile
         z-index 0
 
         .s3-01
-          left 0
+          left 1px
         .s3-02
-          left 86px
+          left 87px
         .s3-03
-          left 171px
+          left 172px
 
         .s6-01
           left 0
@@ -511,8 +583,8 @@ html.mobile
           left 230px
 
   #expressions 
-    transform translateZ(0)
-    backface-visibility hidden
+    // transform translateZ(0)
+    // backface-visibility hidden
   .angry
     absolute top 8px left 40px
   .blink
@@ -529,10 +601,10 @@ html.mobile
     position absolute
     .icon
       background-color transparent
-      animation extra-icon-pulse 1s infinite
+      backface-visibility hidden
+      // animation extra-icon-pulse 1s infinite
 
   .puck
-    display none
     position absolute
     display block
     backface-visibility hidden
@@ -540,8 +612,9 @@ html.mobile
     transform-origin 50% 50% 0
 
     &.ghostball
-      -webkit-filter grayscale(1)
-      animation effect-ghostball-pulse 2s infinite
+      // -webkit-filter grayscale(1)
+      // animation effect-ghostball-pulse 2s infinite
+      opacity .4
     &.flash
       opacity .6
 
@@ -563,11 +636,13 @@ html.mobile
 
   .force
     display none
-    absolute left 50% top 385px
+    position absolute 
+    left 38% 
+    top 98px
     margin-left -126px
     animation effect-force .5s infinite alternate
     animation-timing-function steps(3)
-    // transform translateZ(0)
+    transform translateZ(0) matrix3d(1, 0, 0, 0, 0, 0.11667073709933327, 0.993170649538486, 0, 0, -0.993170649538486, 0.11667073709933327, 0, 0, 133.06863596332892, -778.6025754663666, 1)
     backface-visibility hidden
     &.active
       display block
@@ -610,13 +685,28 @@ html.mobile
 
 @media (orientation: portrait)
   html.mobile
+    .swipe-instruction
+      display none
     .touch 
       .keyboard
         display none
+
+      .swipe-instruction
+        display block
+        transition opacity .5s
+        transition-delay .4s
+        &.hide
+          opacity 0
+
     #gamepad
       display none!important
     #canv-css
-      top -236px
+      top -255px
+
+    body.game-over
+      #footer
+        display inline-block
+        background-color transparent
 
 
 @media (orientation: landscape)
@@ -637,12 +727,11 @@ html.mobile
         padding-bottom 30px
       .social 
         bottom 10px
+    #canv-css
+      top -290px
 
     #scores
       width 100%
-
-      .logo
-        absolute right 70px 
       
       .singleplayer, .multiplayer
         .player, .opponent
@@ -662,8 +751,10 @@ html.mobile
       #canv-css
         top -266px
 
-    body.main-menu
+    body.main-menu, body.game-over
       #footer
         display inline-block
         background-color transparent
 
+    .swipe-instruction
+      display none

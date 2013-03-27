@@ -13,6 +13,10 @@
   position:absolute;
 }
 
+.disabled {
+  opacity:0.5;
+}
+
 #statsDebug {
   height:auto;
   width:auto;
@@ -91,15 +95,13 @@
 }
 
 #videoInput {
-  display:none;
-
-    left:5px;
-    margin-top: 15px;
-    -webkit-transform: scale(-1,1);
-    width: 640px;
-    height:480px;
-    border-radius: 8px 8px 8px 8px;
-
+  display: none;
+  left:5px;
+  margin-top: 15px;
+  width: 640px;
+  height:480px;
+  border-radius: 8px;
+  -webkit-transform: scale(-1,1);
 }
 
 #uiTopContent {
@@ -112,46 +114,23 @@
 }
 
 
-#debug-info {
-  // display:none;
-  position: absolute;
-  z-index: 100000;
-  right: 0;
-  top: 80px;
-  height: 50%;
-  width: 150px;
-  background: rgba(0,0,0,0.2);
-  padding: 10px;
-  margin-right: -150px;
-  list-style: none;
-  overflow: scroll;
-  letter-spacing: 0;
+#debug-info
+  position absolute
+  z-index 100000
+  right 0
+  top 20px
+  width 150px
+  max-height 90%
+  background rgba(255,255,255,0.5)
+  padding 10px
+  list-style none
+  overflow scroll
+  letter-spacing 0
 
-  /*
-  <li class='data-channel'><span class='label'>{label}</span> {id1} -> {id2}</li>
-  <li class='state-history {source}'>{state}</li>
-  <li class='host-status {status}'>{status}</li>
-  */
-  time, .debug-type {
-    text-indent: -10000px;
-    width: 0;
-    position: absolute;
-    left: -1000px;
-  }
-  .host-status { background: grey; }
-  .host-status.host { color: blue; }
-  .host-status.guest { color: red; }
-  .data-channel { color: green; background: lightgrey; }
-  .state-history { color: white; }
-  .state-history.local { background: darkblue; }
-  .state-history.local-invite { background: lightblue; }
-  .state-history.remote { background: darkred; }
-  li {
-    margin-bottom: 1px;
-    white-space: pre;
-  }
+  pre
+    tab-size 2
+    font-size 10px
+    font-family Lucida Console, Monaco, monospace
 
-  &:hover {
-    margin-right: 0;
-  }
-}
+  &:hover
+    margin-right 0

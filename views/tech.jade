@@ -1,0 +1,48 @@
+!!! 5
+html.about(lang='en')
+  head
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+
+    title Cube Slam - About the tech
+    link(rel='apple-touch-icon', href='/images/mobile/apple-touch-57.png')
+    link(rel='apple-touch-icon', sizes='72x72', href='/images/mobile/apple-touch-72.png')
+    link(rel='apple-touch-icon', sizes='114x114', href='/images/mobile/apple-touch-114.png')
+    link(rel='apple-touch-icon', sizes='144x144', href='/images/minipong.png')
+
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
+    link(rel='stylesheet', href='/stylesheets/slam.css')
+
+  body
+    header
+      hgroup
+        h2(arb:id='aboutTitle') Cube Slam
+        h1(arb:id='aboutTech') About the tech
+
+     section#webrtc
+      img(src='/images/tech/webrtc.png', alt='Animals playing pong')
+      h1(arb:id='webrtcTitle') WebRTC
+      p(arb:id='webrtcText') <strong>Cube Slam</strong> is built using <strong>WebRTC</strong>, an open web technology that lets you video chat with your friends right in the browser, no plug-ins or downloads necessary. The <strong>getUserMedia API</strong> provides access to your webcam and microphone, <strong>RTCPeerConnection</strong> sends the audio and video to your friends, and <strong>RTCDataChannel</strong> exchanges all the bits and pieces that keep the game in sync.
+
+    section#audio
+      img(src='/images/tech/audio.png', alt='Animals playing pong')
+      h1(arb:id='audioTitle') Web Audio
+      p(arb:id='audioText') The <strong>Cube Slam</strong> music-tracker and sound manager are built on the <strong>Web Audio API</strong>, allowing for a dynamic soundtrack that adapts in real-time to every level you reach and extra you unlock.
+
+    section#renderers
+      img(src='/images/tech/3d.png', alt='Animals playing pong')
+      h1(arb:id='3dTitle') WebGL & CSS3
+      p(arb:id='3dText') If you play <strong>Cube Slam</strong> on Chrome or Firefox, you&rsquo;ll see real-time 3D rendering enabled by <strong>WebGL</strong> and three.js. If you don&rsquo;t have <strong>WebGL</strong>, you can still play <strong>Cube Slam</strong> in 3D thanks to <strong>CSS3</strong>, with the same game engine running under the hood. All the graphics run on your GPU, freeing the CPU for other tasks.
+
+    section#platform
+      img(src='/images/tech/platform.png', alt='Animals playing pong')
+      h1(arb:id='platformTitle') Google Cloud Platform
+      p(arb:id='platformText') <strong>Cube Slam</strong> is built entirely on <strong>Google&rsquo;s Cloud Platform</strong>. The app is hosted on <strong>App Engine</strong> with a backend written in <strong>Go</strong>, and the <strong>Channel API</strong> is used to set up the connection with your opponent. If one of the players is behind a firewall, the game uses a <strong>STUN/TURN</strong> server hosted on <strong>Compute Engine</strong> to exchange data. <strong>PageSpeed</strong> helps things load quickly, and <strong>AppCache</strong> lets you play offline.
+
+    section#opensource
+      img(src='/images/tech/opensource.jpg', alt='Animals playing pong')
+      h1(arb:id='openTitle') Open source
+      p(arb:id='openText') You can check out <strong>Cube Slam&rsquo;s</strong> source on <strong>&lt;Google Code&gt;</strong> or in the <strong>Chrome Developer Tools</strong> (you&rsquo;ll need to enable source maps). Also, as a reward for reading this far: you can add the ?&#8288;dev parameter to the URL to enable dat.gui and tweak all the levels, extras, and other attributes of the game. Have fun!
+
+    script(src='/javascript/slam.{{.Minified}}js')
+    script
+      require('slam/lib/localization').init('{{.AcceptLanguage}}')

@@ -1,5 +1,5 @@
 application: webrtcgame
-version: x
+version: 2
 runtime: go
 api_version: go1
 
@@ -47,3 +47,7 @@ skip_files:
 - ^(.*/)?.*/RCS/.*
 - ^(.*/)?\..*
 - ^(.*/)?node_modules/.*$
+- ^(.*/)?components/.*$
+- ^(.*/)?lib/.*$
+- ^(.*/)?test/.*$
+- ^(.*/)?ui/.*$

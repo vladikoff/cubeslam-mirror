@@ -5,10 +5,16 @@ GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
 SHADERS=$(wildcard lib/renderer-3d/shaders/*.glsl)
 SHADERS_JS=$(SHADERS:.glsl=.js)
-COMPONENT=$(shell find lib -name "*.js" -type f)
+LIB=$(shell find lib -name "*.js" -type f)
+LIB_3D=$(shell find lib/renderer-3d -name "*.js" -type f)
+LIB_CSS=$(shell find lib/renderer-css -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
-LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
-MINIFY=build/build.min.js public/javascript/pong.min.js public/javascript/libs/three.min.js
+MINIFY=build build/build-3d.min.js public/javascript/slam.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js public/javascript/libs/three.min.js build/build.min.js
+
+REQUIRE_LINES=$(shell wc -l < node_modules/component/node_modules/component-builder/node_modules/component-require/lib/require.js | tr -d ' ')
+
+DEV?=--dev
+DEBUG?=true
 
 # adding special cased geometry
 GEOMETRY_JS += lib/renderer-3d/geometry/terrain3.js lib/renderer-3d/geometry/bear.js \
@@ -18,19 +24,25 @@ GEOMETRY_JS += lib/renderer-3d/geometry/terrain3.js lib/renderer-3d/geometry/bea
 							 lib/renderer-3d/geometry/moose.js lib/renderer-3d/geometry/terrain3.js \
 							 lib/renderer-3d/geometry/cpu.js
 
-build: build-shaders build-geometry build-component build-styles build-jade build-localization
+build: build-shaders build-geometry build-component build-styles build-jade build-localization build-renderer
 	@:
 
-build-min: build build/build.min.js
-
+build-min: build $(MINIFY)
+build-renderer: build/build-3d.js build/build-css.js
 build-shaders: $(SHADERS_JS) lib/renderer-3d/shaders/index.js
 build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
-build-jade: build/build.html
+build-jade: build/build.html build/tech.html
 build-component: build/build.js
 build-styles: build/build-stylus.css
 build-localization: build/localization.arb
+force-build:
+	touch lib/app.js
+	touch lib/renderer-3d/index.js
+	touch lib/renderer-css/index.js
 
-prepare-deploy: $(MINIFY)
+prepare-deploy: DEV=
+prepare-deploy: DEBUG=false
+prepare-deploy: force-build $(MINIFY)
 	@:
 
 deploy-alfred: prepare-deploy
@@ -66,10 +78,10 @@ build/build.min.js: build/build.js
 	touch $@
 
 public/javascript/libs/%.min.js: public/javascript/libs/%.js
-	node_modules/.bin/uglifyjs $< -p 3 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -o $@
+	node_modules/.bin/uglifyjs $< -p 3 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -d DEBUG=$(DEBUG) -o $@
 
 public/javascript/%.min.js: public/javascript/%.js
-	node_modules/.bin/uglifyjs $< -p 2 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint > $@
+	node_modules/.bin/uglifyjs $< -p 2 --source_map_url $(@:public%=%).map --source-map $@.map -c -m --lint -d DEBUG=$(DEBUG) > $@
 
 %.min.js: %.js
 	node_modules/.bin/uglifyjs $< -p 1 --source-map $@.map -c -m --lint > $@
@@ -80,23 +92,29 @@ build/%.html: views/%.jade
 build/build-stylus.css: $(STYLUS)
 	node_modules/.bin/stylus --use nib < stylesheets/screen.styl --include-css -I stylesheets > $@
 
-build/build.js: components $(COMPONENTS) $(COMPONENT) component.json
-	node_modules/.bin/component-build --dev
+build/build-3d.js: $(LIB_3D) $(GEOMETRY_JS) $(SHADERS_JS)
+	(cd lib/renderer-3d && ../../node_modules/.bin/component build && sed -e 1,$(REQUIRE_LINES)d build/build.js | cat - aliases.js) > $@
+
+build/build-css.js: $(LIB_CSS)
+	(cd lib/renderer-css && ../../node_modules/.bin/component build && sed -e 1,$(REQUIRE_LINES)d build/build.js | cat - aliases.js) > $@
+
+build/build.js: components $(COMPONENTS) $(LIB) component.json
+	node_modules/.bin/component-build $(DEV)
 
 lang/arbs/rv.arb: lang/arbs/en.arb
 	node lang/rovarspraketizer.js > $@ < $<
 
-lang/arbs/%.arb: build/build.html
-	node lang/langparse.js > $@ < $<
+lang/arbs/en.arb: build/*.html
+	node lang/langparse.js $^ > $@
 
-build/localization.arb: $(LANGUAGES)
-	cat lang/arbs/*.arb > build/localization.arb
+build/localization.arb: lang/arbs/*.arb
+	cat $^ > build/localization.arb
 
 clean: clean-geometry clean-localization
 	rm -Rf build/ components/ $(SHADERS_JS)
 
 clean-localization:
-	rm -Rf $(LANGUAGES)
+	rm -Rf lang/arbs/*.arb
 
 clean-geometry:
 	rm -Rf $(GEOMETRY_JS) $(GEOMETRY_JSON)
@@ -115,11 +133,11 @@ proxy: server.conf
 	mkdir -p /tmp/nginx/pong
 	ln -sf "${PWD}/server.conf" /tmp/nginx/pong/server.conf
 	nginx -s reload || nginx
-	dev_appserver.py --use_sqlite  -a 0.0.0.0 -c -p 8081 .
+	dev_appserver.py --host 0.0.0.0 --clear_datastore --port 8081 . || dev_appserver.py -a 0.0.0.0 -c -p 8081 .
 
 
 .SUFFIXES:
 .PHONY: proxy clean clean-geometry clean-localization \
-				build build-min build-shaders build-styles \
+				build build-min build-shaders build-styles force-build \
 				build-geometry build-component build-localization \
 				prepare-deploy deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred
