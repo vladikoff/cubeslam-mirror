@@ -215,12 +215,20 @@ html.mobile
   #scores
     position absolute 
     top 10px 
-    left 10px  
+    left 0
+    width 100%
     margin 0
     z-index 1
     pointer-events none
+    box-sizing border-box
 
     .logo
+      position absolute 
+      right 14px
+      .level
+        margin-top 6px
+      p
+        float none
       h1, img
         display none
 
@@ -241,7 +249,7 @@ html.mobile
           height 12px
 
   #gamepad
-    // display none!important
+    display none!important
     position absolute 
     bottom 50%
     width 100%
@@ -312,7 +320,6 @@ html.mobile
         height 100%
       .content
         transition none
-        // transform translateX(-100%)
       &.inactive
         display none!important
         .content
@@ -399,7 +406,6 @@ html.mobile
       background-size cover
       transform translateZ(0)
       backface-visibility hidden
-      // display none!important
 
       img
         width 100%
@@ -419,9 +425,11 @@ html.mobile
             display none
 
       .bear
-        absolute top 390px left 679px
-        // transform translateZ(0)
-        // backface-visibility hidden
+        position absolute 
+        top 390px 
+        left 679px
+        transform translateZ(0)
+        backface-visibility hidden
         // > * 
         //   transform translateZ(0)
         //   backface-visibility hidden
@@ -431,6 +439,15 @@ html.mobile
         top 400px
         left 905px
         
+
+      .swipe-instruction
+        background transparent url('/images/mobile/swipe-arrows.png') no-repeat
+        width 186px
+        height 42px
+        margin 0 auto
+        position absolute
+        top 858px
+        left 677px
 
 
     .game-board
@@ -668,9 +685,19 @@ html.mobile
 
 @media (orientation: portrait)
   html.mobile
+    .swipe-instruction
+      display none
     .touch 
       .keyboard
         display none
+
+      .swipe-instruction
+        display block
+        transition opacity .5s
+        transition-delay .4s
+        &.hide
+          opacity 0
+
     #gamepad
       display none!important
     #canv-css
@@ -705,12 +732,6 @@ html.mobile
 
     #scores
       width 100%
-
-      .logo
-        position absolute 
-        right 19px
-        p
-          float none
       
       .singleplayer, .multiplayer
         .player, .opponent
@@ -734,3 +755,6 @@ html.mobile
       #footer
         display inline-block
         background-color transparent
+
+    .swipe-instruction
+      display none
