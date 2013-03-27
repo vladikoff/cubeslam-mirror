@@ -133,7 +133,7 @@ proxy: server.conf
 	mkdir -p /tmp/nginx/pong
 	ln -sf "${PWD}/server.conf" /tmp/nginx/pong/server.conf
 	nginx -s reload || nginx
-	dev_appserver.py --use_sqlite  -a 0.0.0.0 -c -p 8081 .
+	dev_appserver.py --host 0.0.0.0 --clear_datastore --port 8081 . || dev_appserver.py -a 0.0.0.0 -c -p 8081 .
 
 
 .SUFFIXES:
