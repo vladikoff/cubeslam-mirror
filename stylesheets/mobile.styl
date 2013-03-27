@@ -155,6 +155,8 @@ html.mobile
     pointer-events none
     a
       pointer-events auto
+      width 22px
+      height 22px
 
     ul
       padding 13px 0 0 0
@@ -320,9 +322,16 @@ html.mobile
           transform translateX( 0 )
     &.game-over
       .dialog
+        h1
+          font-size 30px
+          margin-top 0
+          text-align center
+
         height 100%
         min-height 0
         top 0
+        .content
+          padding-bottom 0
         .scoreboard
           padding 0 0 15px
         .social

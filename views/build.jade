@@ -270,11 +270,11 @@ html(lang='en')
 
     //GAME OVER
     section.state.game-over.inactive
-      //h1.bitmap.shadow Game Over
       div
         .dialog
           .content.animate
             #scoreboard-single.vertical-center
+              h1.mobile.bitmap.shadow(arb:id='promptOver') Game Over
               .scoreboard.single
                   div
                     p#single-levels.levels X
@@ -427,7 +427,6 @@ html(lang='en')
     section.mobile
       section.state.main-menu.inactive
         img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
-      h4.state.game-over.bitmap(arb:id='promptOver') Game Over
       #gamepad.state.game.inactive
         button.left.icon(type='button', data-icon='<')
         button.right.icon(type='button', data-icon='>')
@@ -445,7 +444,7 @@ html(lang='en')
           h2.bitmap.shadow(arb:id='aboutMobileH2') Play friend on desktop
           p(arb:id='aboutMobileText2') Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis.
           .buttons
-            button.red(arb:id='buttonClose') Close
+            button.green(arb:id='buttonClose') Close
 
 
 
