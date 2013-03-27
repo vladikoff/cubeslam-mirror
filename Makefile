@@ -1,5 +1,5 @@
 JADE = $(shell find views/*.jade)
-STYLUS=$(wildcard stylesheets/*.styl)
+STYLUS=$(shell find stylesheets/ -name "*.styl" -type f)
 GEOMETRY=$(wildcard lib/renderer-3d/geometry/*.obj)
 GEOMETRY_JSON=$(GEOMETRY:.obj=.json)
 GEOMETRY_JS=$(GEOMETRY:.obj=.js)
