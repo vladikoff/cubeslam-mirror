@@ -36,6 +36,11 @@ html.mobile
     position absolute
     background $color-beige
 
+    &.mirror
+      #gamepad
+        transform scaleX(-1)
+
+
     &.game-pause
       #gamepad
         opacity .7
@@ -174,8 +179,6 @@ html.mobile
     .technology, .sound
       a
         font-family 'icomoon'
-        width 20px
-        height 20px
         font-size 12px
         border-radius 3px
         display table-cell
