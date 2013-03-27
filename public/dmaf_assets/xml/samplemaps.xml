@@ -347,6 +347,6 @@
  		<range sound="Shield_Hit_E3" root="E3" low="E3" hi="As3" vol="-9"/>
  		<range sound="Shield_Hit_B3" root="B3" low="B3" hi="Ds4" vol="-9"/>
  		<range sound="Shield_Hit_E4" root="E4" low="E4" hi="As4" vol="-9"/>
- 		<range sound="Shield_Hit_B4" root="B4" low="B4" hi="B5" vol="-9"/>
+ 		<range sound="Shield_Hit_B4" root="B4" low="B4" hi="B6" vol="-9"/>
  	</samplemap>
 </samplemaps>
