@@ -1,6 +1,39 @@
 $w = 768px
 $h = 480px
 html.mobile
+  
+  &.theme-green
+    #canv-css
+      .background
+        -webkit-filter hue-rotate(320deg)
+  &.theme-purple
+    #canv-css
+      .background
+        -webkit-filter unquote('hue-rotate(-319deg) saturate(33%)')
+  &.theme-pastell
+    #canv-css
+      .background
+        -webkit-filter unquote('hue-rotate(-29deg) saturate(73%)')
+  &.theme-pink
+    #canv-css
+      .background
+        -webkit-filter unquote('hue-rotate(-29deg) saturate(73%)')
+  &.theme-light
+    #canv-css
+      .background
+        -webkit-filter unquote('hue-rotate(181deg) saturate(63%)')
+  &.theme-orange
+    #canv-css
+      .background
+        -webkit-filter hue-rotate(181deg)
+  &.theme-forrest
+    #canv-css
+      .background
+        -webkit-filter unquote('hue-rotate(-99deg) saturate(33%)')
+
+  // .theme-blackhorizon
+  // .theme-redhorizon
+
   #canv-css
     display block
     width $w
@@ -20,6 +53,7 @@ html.mobile
       background-size cover
       transform translateZ(0)
       backface-visibility hidden
+      transition -webkit-filter 1.5s 
 
       img
         width 100%
