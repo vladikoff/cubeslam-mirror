@@ -11,6 +11,8 @@ LIB_CSS=$(shell find lib/renderer-css -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 MINIFY=build build/build-3d.min.js public/javascript/slam.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js public/javascript/libs/three.min.js build/build.min.js
 
+GENERATED_LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
+
 REQUIRE_LINES=$(shell wc -l < node_modules/component/node_modules/component-builder/node_modules/component-require/lib/require.js | tr -d ' ')
 
 DEV?=--dev
@@ -107,14 +109,14 @@ lang/arbs/rv.arb: lang/arbs/en.arb
 lang/arbs/en.arb: build/*.html
 	node lang/langparse.js $^ > $@
 
-build/localization.arb: lang/arbs/*.arb
+build/localization.arb: $(GENERATED_LANGUAGES) lang/arbs/*.arb
 	cat $^ > build/localization.arb
 
 clean: clean-geometry clean-localization
 	rm -Rf build/ components/ $(SHADERS_JS)
 
 clean-localization:
-	rm -Rf lang/arbs/*.arb
+	rm -Rf $(GENERATED_LANGUAGES)
 
 clean-geometry:
 	rm -Rf $(GEOMETRY_JS) $(GEOMETRY_JSON)
