@@ -94,14 +94,17 @@ html.mobile
       .shield
         position absolute
         display block
+        opacity .5
         transform-origin bottom center
-        transition-property transform
+        transition-property transform, opacity
         transition-duration .3s
         transition-delay 0s
         transform scaleY(.005) translateZ(0)
         backface-visibility hidden
         &.visible
           transform scaleY(1) translateZ(0)
+        &.bulletproof
+          opacity 1
 
       .shields-a
         top 420px
