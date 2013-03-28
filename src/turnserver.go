@@ -58,15 +58,19 @@ func (tc *TurnClient) SetProperties(c appengine.Context, r *http.Request) error 
   } else {
     latlong := strings.Split(r.Header.Get("X-Appengine-Citylatlong"), ",")
     //lat, _ := strconv.ParseInt(latlong[0], 10, 32)
+    c.Debugf("latlong = %+v", latlong)
     if len(latlong) != 2 {
       tc.Geo = "us"
     } else {
-      long, _ := strconv.ParseInt(latlong[1], 10, 32)
-      if long < -25 || long > 89 {
+      long, _ := strconv.ParseFloat(latlong[1], 10)
+	  c.Debugf("lang = %+v", long)
+      if int(long) < -25 || int(long) > 89 {
         // Anything west of Iceland or east of India is considered to be US. The rest is EU.
         tc.Geo = "us"
+		c.Debugf("us")
       } else {
         tc.Geo = "eu"
+		c.Debugf("eu")
       }
     }
   }
