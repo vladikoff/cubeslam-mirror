@@ -85,7 +85,7 @@ func (tc *TurnClient) TurnConfig(c appengine.Context) string {
   }
 
   hmac := md5.New()
-  io.WriteString(hmac, username + ":" + tc.IP + ":" + sharedKey)
+  io.WriteString(hmac, username + ":" + sharedKey)
 
   return "{\"type\":\"turn\", \"url\":\"turn:" + username + "@" + serverIP + ":3478\", \"credential\":\"" + hex.EncodeToString(hmac.Sum(nil)) + "\"}"
 }

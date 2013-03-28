@@ -4,11 +4,11 @@ html.mobile
   
   &.theme-green
     #canv-css
-      .background
-        -webkit-filter hue-rotate(320deg)
+      .background, .extra
+        -webkit-filter unquote('hue-rotate(320deg) saturate(59%)')
   &.theme-purple
     #canv-css
-      .background
+      .background, .obstacles .obstacle
         -webkit-filter unquote('hue-rotate(-319deg) saturate(33%)')
   &.theme-pastell
     #canv-css
@@ -20,7 +20,7 @@ html.mobile
         -webkit-filter unquote('hue-rotate(-29deg) saturate(73%)')
   &.theme-light
     #canv-css
-      .background
+      .backgroundm
         -webkit-filter unquote('hue-rotate(181deg) saturate(63%)')
   &.theme-orange
     #canv-css
@@ -277,7 +277,7 @@ html.mobile
     &.ghostball
       // -webkit-filter grayscale(1)
       // animation effect-ghostball-pulse 2s infinite
-      opacity .3
+      opacity .2
     &.flash
       opacity .6
 

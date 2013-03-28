@@ -1,5 +1,5 @@
 application: webrtcgame
-version: 2
+version: themes
 runtime: go
 api_version: go1
 
