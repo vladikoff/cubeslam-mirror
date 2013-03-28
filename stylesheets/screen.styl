@@ -63,8 +63,16 @@ html
   top 0
   display none
 
-#debug-info
-  display none
+#latency
+  color white
+  absolute top right
+  z-index 10
+  &.good
+    background-color green
+  &.ok
+    background-color orange
+  &.bad
+    background-color red
 
 .mirror
   transform scaleX(-1)
