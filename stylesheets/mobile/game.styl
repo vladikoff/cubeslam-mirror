@@ -4,8 +4,8 @@ html.mobile
   
   &.theme-green
     #canv-css
-      .background
-        -webkit-filter hue-rotate(320deg)
+      .background, .extra
+        -webkit-filter unquote('hue-rotate(320deg) saturate(59%)')
   &.theme-purple
     #canv-css
       .background, .obstacles .obstacle
@@ -42,6 +42,7 @@ html.mobile
     top -260px 
     left -1 * $w * .5
     transform-origin 50% 55%
+    backface-visibility hidden
     // -webkit-filter hue-rotate(-60deg)
     .background
       width 1536px

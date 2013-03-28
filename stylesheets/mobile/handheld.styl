@@ -67,7 +67,10 @@ html.mobile
     transition-duration 1ms
 
     h1
-      padding 2% 0 0 0
+      padding 0 0 0 0
+      margin 0
+      position relative 
+      top 5%
 
     .nav
       bottom 70px
@@ -136,6 +139,8 @@ html.mobile
         transition-delay 0ms
 
   .state.game-prompt
+    transform translate3d(0,0,1)
+    backface-visibility hidden
     .background
       transition none
       height 60px
@@ -164,7 +169,7 @@ html.mobile
       height 22px
 
     ul
-      padding 13px 0 0 0
+      padding 11px 0 0 0
       margin-top 0
 
       li
@@ -250,6 +255,8 @@ html.mobile
         li
           width 12px
           height 12px
+          &:before
+            box-shadow none
 
   #gamepad
     display none!important
