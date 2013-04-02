@@ -41,7 +41,7 @@
     "lib/sim/body.js",
     "lib/sim/body-flags.js",
     "lib/sim/force.js",
-    "lib/sim/physics.js",
+    "lib/sim/physics2.js",
     "lib/sim/shapes.js",
     "lib/sim/integration.js",
     "lib/sim/collisions.js",
