@@ -30,6 +30,7 @@ handlers:
 
 - url: /.*
   script: _go_app
+  secure: always
   # TODO require login on /xyz but not /_ah/*
   # login: admin
 
