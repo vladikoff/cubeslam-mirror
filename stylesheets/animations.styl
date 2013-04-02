@@ -298,18 +298,21 @@
   letter-spacing 3px
 
 .loading__anim .ball
-  animation loading-ball 2.8s linear infinite both
+  /*animation loading-ball 2.8s linear infinite both*/
+  transform translate(16px, 44px)
   height 3px
 
 .loading__anim .pad
   height 13px
 
 .loading__anim .pad:nth-child(1)
-  animation loading-pad-left 2.8s linear infinite both
+  /*animation loading-pad-left 2.8s linear infinite both*/
+  transform translateY(40px)
   left 0
 
 .loading__anim .pad:nth-child(3)
-  animation loading-pad-right 2.8s linear infinite both
+  /*animation loading-pad-right 2.8s linear infinite both*/
+  transform translateY(55px)
   right 0
 
 body.game-prompt-start
