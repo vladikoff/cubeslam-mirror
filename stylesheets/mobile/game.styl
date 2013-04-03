@@ -41,6 +41,7 @@ html.mobile
     backface-visibility hidden
     // -webkit-filter hue-rotate(-60deg)
     .background
+      pointer-events none
       width 1536px
       height 1079px
       z-index 0
@@ -96,6 +97,7 @@ html.mobile
         position absolute
         top 858px
         left 677px
+        pointer-events auto
 
     .game-board
       position absolute
@@ -104,6 +106,7 @@ html.mobile
       perspective 640px
       perspective-origin 50% 0%
       backface-visibility hidden
+      pointer-events none
 
     .arena
       width $w
