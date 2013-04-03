@@ -1,39 +1,35 @@
 $w = 768px
 $h = 480px
+
+@keyframes extra-icon-pulse
+  0%, 100% 
+    transform translate(0, 0px) scale(.9)
+  50%
+    transform translate(0, -7px) scale(1.1)
+
+@keyframes effect-ghostball-pulse
+  0%, 100% 
+    opacity .4
+  50%
+    opacity .1
+
+@keyframes effect-screen
+  0% 
+    opacity 0
+  15% 
+    opacity 1
+  75% 
+    opacity 1
+  100%
+    opacity 0
+
+@keyframes effect-force
+  0%
+    background-position: -510px -359px
+  100%
+    background-position: 250px -359px
+
 html.mobile
-  
-  &.theme-green
-    #canv-css
-      .background, .extra
-        -webkit-filter unquote('hue-rotate(320deg) saturate(59%)')
-  &.theme-purple
-    #canv-css
-      .background, .obstacles .obstacle
-        -webkit-filter unquote('hue-rotate(-319deg) saturate(33%)')
-  &.theme-pastell
-    #canv-css
-      .background
-        -webkit-filter unquote('hue-rotate(-29deg) saturate(73%)')
-  &.theme-pink
-    #canv-css
-      .background
-        -webkit-filter unquote('hue-rotate(-29deg) saturate(73%)')
-  &.theme-light
-    #canv-css
-      .background
-        -webkit-filter unquote('hue-rotate(181deg) saturate(63%)')
-  &.theme-orange
-    #canv-css
-      .background
-        -webkit-filter hue-rotate(181deg)
-  &.theme-forrest
-    #canv-css
-      .background
-        -webkit-filter unquote('hue-rotate(-99deg) saturate(33%)')
-
-  // .theme-blackhorizon
-  // .theme-redhorizon
-
   #canv-css
     display block
     width $w
@@ -64,14 +60,18 @@ html.mobile
       .screen
         absolute top 390px left 635px
         .hit-player, .hit-cpu
+          position absolute 
+          top 0
           opacity 0
-          transition opacity .4s
+          // transition opacity .4s
           transform translateZ(0)
           backface-visibility hidden
           &.active
             opacity 1
+            animation effect-screen 2.4s
           &.hidden
-            display none
+            opacity 0
+            // display none
 
       .bear
         position absolute 
@@ -130,13 +130,15 @@ html.mobile
       .shield
         position absolute
         display block
-        opacity .5
+        opacity 0
         transform-origin bottom center
         transition-property transform, opacity
         transition-duration .3s
         transition-delay 0s
         transform scaleY(.005) translateZ(0)
         backface-visibility hidden
+        &.active
+          opacity .5
         &.visible
           transform scaleY(1) translateZ(0)
         &.bulletproof
@@ -295,29 +297,32 @@ html.mobile
     
     &.active
       opacity 1
-    &.hidden
-      display none
 
   .force
-    display none
+    opacity 0
+    // display none
     position absolute 
     left 38% 
     top 98px
     margin-left -126px
-    animation effect-force .5s infinite alternate
-    animation-timing-function steps(3)
     transform translateZ(0) matrix3d(1, 0, 0, 0, 0, 0.11667073709933327, 0.993170649538486, 0, 0, -0.993170649538486, 0.11667073709933327, 0, 0, 133.06863596332892, -778.6025754663666, 1)
     backface-visibility hidden
     &.active
-      display block
+      opacity 1
+      animation effect-force .5s infinite alternate
+      animation-timing-function steps(3)
 
   .obstacles
     .obstacle
       transform translateZ(0)
       backface-visibility hidden
       position absolute
-      display none
+      transition opacity .3s
+      // display none
+      opacity 0
       z-index 2
+      &.active
+        opacity 1
     .triangle-left
       top 210px
       left 188px
