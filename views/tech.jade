@@ -12,6 +12,17 @@ html.about(lang='en')
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/slam.css')
 
+    script(type='text/javascript')
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39581099-3']);
+      _gaq.push(['_trackPageview', '/about']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
   body
     header
       hgroup
@@ -44,5 +55,40 @@ html.about(lang='en')
       p(arb:id='openText') You can check out <strong>Cube Slam&rsquo;s</strong> source on <strong>&lt;Google Code&gt;</strong> or in the <strong>Chrome Developer Tools</strong> (you&rsquo;ll need to enable source maps). Also, as a reward for reading this far: you can add the ?&#8288;dev parameter to the URL to enable dat.gui and tweak all the levels, extras, and other attributes of the game. Have fun!
 
     script(src='/javascript/slam.{{.Minified}}js')
+    script
+      var $ = require('component-jquery')
+        , sections = $('section')
+        , timer
+      $(window).resize(function(){
+        if( timer )
+          clearTimeout( timer );
+        timer = setTimeout(function(){
+          var h = $(window).height();
+          if($('section').outerHeight() < h)
+            $('section').css('height',h)
+          else
+            $('section').removeAttr('style');
+        }, 100)
+      }).resize();
+
+      $(window).scroll(function(){
+        var scrollTop = $(window).scrollTop()
+          , height = $(window).height()
+          , padding = np = $('header').height()
+          , changed = $();
+        $('body').css('paddingTop', padding);
+        sections.removeClass('sticky').each( function(){
+          var el = $(this)
+            , oh = el.outerHeight();
+          if(el.offset().top + oh <= height + scrollTop) {
+            np += oh;
+            changed = changed.add(this);
+          } 
+        })
+        if(np != padding) {
+          $('body').css('paddingTop', np);
+          changed.addClass('sticky');
+        }
+      }).scroll();
     script
       require('slam/lib/localization').init('{{.AcceptLanguage}}')
