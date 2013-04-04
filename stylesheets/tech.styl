@@ -7,19 +7,28 @@ $width = 960px
     overflow auto
     min-width $width
     font-family Helvetica, Arial
+    padding-top 400px
   header
     height 400px
+    width 100%
     box-sizing border-box
     background #1f1f1f
     color $color-beige
     text-align center
     text-transform uppercase
+    position fixed
+    top 0
 
     h1, h2
       font-size 34px
       display inline-block
       margin 0
       font-weight bold
+      a
+        color $color-beige
+        text-decoration none
+        &:hover
+          text-decoration underline
 
     h1
       padding-left 85px
@@ -45,6 +54,11 @@ $width = 960px
     position relative
     padding 670px 0 112px
     overflow hidden
+    box-sizing border-box
+    &.sticky
+      position fixed
+      bottom 0
+      width 100%
     > *
       width $width
       margin 0 auto
