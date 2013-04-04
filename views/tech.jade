@@ -47,10 +47,17 @@ html.about(lang='en')
     script
       var $ = require('component-jquery')
         , sections = $('section')
+        , timer
       $(window).resize(function(){
-        var h = $(window).height();
-        if($('section').outerHeight() < h)
-          $('section').css('height',h)
+        if( timer )
+          clearTimeout( timer );
+        timer = setTimeout(function(){
+          var h = $(window).height();
+          if($('section').outerHeight() < h)
+            $('section').css('height',h)
+          else
+            $('section').removeAttr('style');
+        }, 100)
       }).resize();
 
       $(window).scroll(function(){
@@ -62,7 +69,7 @@ html.about(lang='en')
         sections.removeClass('sticky').each( function(){
           var el = $(this)
             , oh = el.outerHeight();
-          if(el.offset().top + oh < height + scrollTop) {
+          if(el.offset().top + oh <= height + scrollTop) {
             np += oh;
             changed = changed.add(this);
           } 
