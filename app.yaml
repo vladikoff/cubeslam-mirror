@@ -1,5 +1,5 @@
 application: webrtcgame
-version: 1
+version: dinahmoe
 runtime: go
 api_version: go1
 
@@ -30,7 +30,8 @@ handlers:
 
 - url: /.*
   script: _go_app
-  secure: always
+  # TODO enable this when going live, messy while developing
+  # secure: always
   # TODO require login on /xyz but not /_ah/*
   # login: admin
 

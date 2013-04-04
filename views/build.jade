@@ -435,12 +435,16 @@ html(lang='en')
           button.info.icon(href='#', data-icon='⌽', type='button')
       .state.cssinfo.game-cssinfo
         .content
-          h1.bitmap.shadow(arb:id='aboutMobileH1') About Cube Slam
-          p(arb:id='aboutMobileText1') Cube Slam is a Chrome Experiment built to showcase the latest technology in Google Chrome.
-          h2.bitmap.shadow(arb:id='aboutMobileH2') Play friend on desktop
-          p(arb:id='aboutMobileText2') Visit <a href="http://cubeslam.com">cubeslam.com</a> in Chrome on your computer to play face to face against a friend.
-          .buttons
-            button.green(arb:id='buttonClose') Close
+          div
+            img(src='/images/mobile/about.jpg')
+            h1(arb:id='aboutMobileH1') About Cube Slam
+            p(arb:id='aboutMobileText1') Cube Slam is a Chrome Experiment built to showcase the latest technology in Google Chrome.
+          div
+            img(src='/images/mobile/gameboard.jpg')
+            h2(arb:id='aboutMobileH2') Play friend on desktop
+            p(arb:id='aboutMobileText2') Visit <a href="http://cubeslam.com">cubeslam.com</a> in Chrome on your computer to play face to face against a friend.
+            .buttons
+              button.green(arb:id='buttonClose') Close
 
 
 
