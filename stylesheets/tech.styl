@@ -5,7 +5,6 @@ $width = 960px
     height auto
     width auto
     overflow auto
-    min-width $width
     // font-family Helvetica, Arial
     padding-top 400px
   header
@@ -31,28 +30,11 @@ $width = 960px
           text-decoration underline
 
     h1
-      padding-left 85px
-      margin-left 18px
-      position relative
-      &:before
-        content ' '
-        display inline-block
-        width 68px
-        height 51px
-        background url('/images/minicubeslam.png') no-repeat
-        position absolute
-        top -20px
-        left 0
-
-
-    hgroup
-      padding 198px 0 0
-      margin 0 auto
-      width $width
+      margin 170px 0 0
 
   section
     position relative
-    padding 670px 0 150px
+    padding 456px 0 150px
     overflow hidden
     box-sizing border-box
     &.sticky
@@ -60,7 +42,7 @@ $width = 960px
       bottom 0
       width 100%
     > *
-      width $width
+      max-width $width
       margin 0 auto
       display block
       position relative
@@ -74,7 +56,7 @@ $width = 960px
       &:after
         content ' '
         background url('/images/tech/ornament.png') center center
-        width 225px
+        max-width 659px
         height 49px
         display block
         margin 10px auto 22px
@@ -82,7 +64,7 @@ $width = 960px
 
     p
       max-width 790px
-      font-size 22px
+      font-size 16px
       color $color-beige
       line-height 1.4em
       text-align center
@@ -93,7 +75,9 @@ $width = 960px
       top 0
       left 50%
       width auto
-      margin-left -797px
+      margin-left -480px
+      max-width inherit
+      width $width
 
 
   #webrtc
@@ -106,9 +90,9 @@ $width = 960px
     background #517676
 
   #platform
-    background #9bc6c5
+    background #1f1f1f
 
   #opensource
-    background #08141d    
+    background #04080a    
 
 
