@@ -45,4 +45,32 @@ html.about(lang='en')
 
     script(src='/javascript/slam.{{.Minified}}js')
     script
+      var $ = require('component-jquery')
+        , sections = $('section')
+      $(window).resize(function(){
+        var h = $(window).height();
+        if($('section').outerHeight() < h)
+          $('section').css('height',h)
+      }).resize();
+
+      $(window).scroll(function(){
+        var scrollTop = $(window).scrollTop()
+          , height = $(window).height()
+          , padding = np = $('header').height()
+          , changed = $();
+        $('body').css('paddingTop', padding);
+        sections.removeClass('sticky').each( function(){
+          var el = $(this)
+            , oh = el.outerHeight();
+          if(el.offset().top + oh < height + scrollTop) {
+            np += oh;
+            changed = changed.add(this);
+          } 
+        })
+        if(np != padding) {
+          $('body').css('paddingTop', np);
+          changed.addClass('sticky');
+        }
+      }).scroll();
+    script
       require('slam/lib/localization').init('{{.AcceptLanguage}}')
