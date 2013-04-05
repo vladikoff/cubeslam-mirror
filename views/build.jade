@@ -90,19 +90,21 @@ html(lang='en')
               p(arb:id='gameInstructionsPause') to pause
             button.green.play(type='button', arb:id='buttonOk') OK (SPACE)
 
-          .vertical-center
-            .info-animation.hidden
+          .vertical-center.hidden
+            .info-animation
               //GAME INFO ANIMATION
               .destroy-shield
                 .destroy-shield__anim-container
                   .destroy-shield__wall
+                    .wall.top
+                    .wall.left
                     .destroy-shield__eyes
-                      .dash-black
-                      .dash-black
+                      .dash-beige
+                      .dash-beige
                     .destroy-shield__shields
-                      .dash-tall.dash-black
-                      .dash-tall.dash-black
-                      .dash-tall.dash-black
+                      .dash-tall.dash-beige
+                      .dash-tall.dash-beige
+                      .dash-tall.dash-beige
 
                   .destroy-shield__weapon.icon-destroy-shield-weapon
 
