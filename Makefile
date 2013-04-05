@@ -137,9 +137,17 @@ proxy: server.conf
 	nginx -s reload || nginx
 	dev_appserver.py --host 0.0.0.0 --clear_datastore --port 8081 . || dev_appserver.py -a 0.0.0.0 -c -p 8081 .
 
+test:
+	node test/buffer.js
+	node test/inputs-buffer.js
+	node test/eps.js
+	node test/hash-code.js
+	node test/see.js
+	node test/tick.js
+
 
 .SUFFIXES:
-.PHONY: proxy clean clean-geometry clean-localization \
+.PHONY: test proxy clean clean-geometry clean-localization \
 				build build-min build-shaders build-styles force-build \
 				build-geometry build-component build-localization \
 				prepare-deploy deploy-webrtc deploy-goggles1 deploy-goggles deploy-einar deploy-alfred
