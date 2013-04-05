@@ -58,36 +58,42 @@ html.about(lang='en')
       var $ = require('component-jquery')
         , sections = $('section')
         , timer
-      $(window).resize(function(){
-        if( timer )
-          clearTimeout( timer );
-        timer = setTimeout(function(){
-          var h = $(window).height();
-          if($('section').outerHeight() < h)
-            $('section').css('height',h)
-          else
-            $('section').removeAttr('style');
-        }, 100)
-      }).resize();
+        , touch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
-      $(window).scroll(function(){
-        var scrollTop = $(window).scrollTop()
-          , height = $(window).height()
-          , padding = np = $('header').height()
-          , changed = $();
-        $('body').css('paddingTop', padding);
-        sections.removeClass('sticky').each( function(){
-          var el = $(this)
-            , oh = el.outerHeight();
-          if(el.offset().top + oh <= height + scrollTop) {
-            np += oh;
-            changed = changed.add(this);
-          } 
-        })
-        if(np != padding) {
-          $('body').css('paddingTop', np);
-          changed.addClass('sticky');
-        }
-      }).scroll();
+      if( touch ){ 
+        $('html').addClass('touch')
+      } else {
+        $(window).resize(function(){
+          if( timer )
+            clearTimeout( timer );
+          timer = setTimeout(function(){
+            var h = $(window).height();
+            if($('section').outerHeight() < h)
+              $('section').css('height',h)
+            else
+              $('section').removeAttr('style');
+          }, 100)
+        }).resize();
+
+        $(window).scroll(function(){
+          var scrollTop = $(window).scrollTop()
+            , height = $(window).height()
+            , padding = np = $('header').height()
+            , changed = $();
+          $('body').css('paddingTop', padding);
+          sections.removeClass('sticky').each( function(){
+            var el = $(this)
+              , oh = el.outerHeight();
+            if(el.offset().top + oh <= height + scrollTop) {
+              np += oh;
+              changed = changed.add(this);
+            } 
+          })
+          if(np != padding) {
+            $('body').css('paddingTop', np);
+            changed.addClass('sticky');
+          }
+        }).scroll();
+      }
     script
       require('slam/lib/localization').init('{{.AcceptLanguage}}')
