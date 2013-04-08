@@ -106,7 +106,6 @@ html.mobile
       perspective 640px
       perspective-origin 50% 0%
       backface-visibility hidden
-      pointer-events none
 
     .arena
       width $w
@@ -279,6 +278,9 @@ html.mobile
     transform-style preserve-3d
     transform-origin 50% 50% 0
 
+    .icon
+      position absolute
+
     &.ghostball
       // -webkit-filter grayscale(1)
       // animation effect-ghostball-pulse 2s infinite
@@ -287,7 +289,34 @@ html.mobile
       opacity .6
 
 
+  .bullet
+    width 30px
+    height 30px
+    background #ffed53
+    position absolute
+    transform matrix3d(1, 0, 0, 0, 0, 0.116671, 0.993171, 0, 0, -0.993170649538486, 0.11667073709933327, 0, 0, 133.06863596332892, -778.6025754663666, 1) translate3d(514px, 705px, 0px)
+    &:before
+      display none
+      position absolute
+      top 30px
+      width 30px
+      height 30px
+      background #ffed53
+      content ' '
+      opacity .6
+    &:after
+      display none
+      position absolute
+      top 60px
+      width 30px
+      height 30px
+      background #ffed53
+      content ' '
+      opacity .3
+
+
   .effect.fog
+    pointer-events none
     position absolute
     top 148px
     left 96px

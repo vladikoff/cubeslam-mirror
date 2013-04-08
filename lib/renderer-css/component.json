@@ -11,6 +11,7 @@
     "obstacle.js",
     "shield.js",
     "puck.js",
+    "bullet.js",
     "paddle.js"
   ]
 }
