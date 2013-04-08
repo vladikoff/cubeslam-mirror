@@ -1,4 +1,4 @@
-dmaf("LevelTransposer", ["DMAF", "Instance"], function (DMAF, Instance) {
+dmaf("LevelTransposer", ["DMAF", "Instance", "privateMethods"], function (DMAF, Instance) {
 
     function LevelTransposer () {
         this.transposeValue = 0;
