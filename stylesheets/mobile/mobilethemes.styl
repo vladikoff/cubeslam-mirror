@@ -1,7 +1,8 @@
 html.mobile
   &.theme-default
     #canv-css
-      .background, .extra
+      .background, 
+      .extra
         -webkit-filter unquote('hue-rotate(360deg)')
   &.theme-green
     #canv-css
@@ -11,10 +12,8 @@ html.mobile
         -webkit-filter unquote('hue-rotate(83deg) saturate(100%)')
   &.theme-purple
     #canv-css
-      .background, .obstacles .obstacle
-        -webkit-filter unquote('hue-rotate(291deg) saturate(36%)')
-      .extra
-        -webkit-filter unquote('hue-rotate(273deg) saturate(100%)')
+      .background
+        -webkit-filter unquote('hue-rotate(360deg)')
   &.theme-pastell
     #canv-css
       .background
@@ -29,7 +28,8 @@ html.mobile
         -webkit-filter unquote('hue-rotate(349deg) saturate(100%)')
   &.theme-light
     #canv-css
-      .background, .obstacles .obstacle
+      .background, 
+      .obstacles .obstacle
         -webkit-filter unquote('hue-rotate(181deg) saturate(63%)')
       .extra
         -webkit-filter unquote('hue-rotate(112deg) saturate(100%)')
