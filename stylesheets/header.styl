@@ -10,8 +10,20 @@ header.main-menu
 
   &.active
     opacity 1
+
+    h1 img
+      transition opacity .6s
+      opacity 1
+      &.delay
+        transition-delay 3.5s
+
+
   &.inactive
     opacity 0
+
+    h1 img
+      opacity 0
+      transform translateZ(0)
 
   p
     margin 0
