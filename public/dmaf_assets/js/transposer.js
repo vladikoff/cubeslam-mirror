@@ -1,10 +1,10 @@
-dmaf.once("load_modules", function (DMAF) {
+dmaf("LevelTransposer", ["DMAF", "Instance"], function (DMAF, Instance) {
 
     function LevelTransposer () {
         this.transposeValue = 0;
         this.lastActionTime = -5000;
     }
-    LevelTransposer.prototype = Object.create(DMAF.InstancePrototype, {
+    LevelTransposer.prototype = Object.create(Instance, {
         onAction: {
             value: function (trigger, actionTime, eventProperties, actionProperties) {
                 var throttle = (actionTime - this.lastActionTime) < 5000;
