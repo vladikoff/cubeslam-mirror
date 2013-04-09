@@ -1,0 +1,4 @@
+cron:
+- description: expire rooms
+  url: /_expire
+  schedule: every hour
