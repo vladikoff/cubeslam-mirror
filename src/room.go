@@ -148,7 +148,7 @@ func TotalOccupants(c appengine.Context) (int, error) {
 }
 
 func ExpiredRooms(c appengine.Context) ([]Room, error) {
-  an_hour_ago := time.Now().Add(-time.Minute)
+  an_hour_ago := time.Now().Add(-time.Hour)
   rooms := make([]Room,0)
   q := datastore.NewQuery("Room").Filter("LastChanged <",an_hour_ago)
   for x := q.Run(c); ; {
