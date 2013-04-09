@@ -9,8 +9,8 @@ handlers:
   static_dir: public/javascript
 - url: /images
   static_dir: public/images
-- url: /dmaf_assets
-  static_dir: public/dmaf_assets
+- url: /dmaf__assets
+  static_dir: public/dmaf__assets
 - url: /lang
   static_dir: public/lang
 - url: /fonts
