@@ -257,7 +257,7 @@
  		<range sound="shield_hit_E4" root="E4" low="E4" hi="As4" vol="-9"/>
  		<range sound="shield_hit_B4" root="B4" low="B4" hi="B6" vol="-9"/>
  	</samplemap>
- 	<samplemap name="shield_reset_up">
- 		<range sound="shield_reset_up" root="E3" low="E3" hi="Fs5" vol="0"/>
+ 	<samplemap name="shield_up">
+ 		<range sound="shield_up" root="E3" low="E3" hi="Fs5" vol="0"/>
     </samplemap>
 </samplemaps>
