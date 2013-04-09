@@ -1,0 +1,263 @@
+<samplemaps>
+	<samplemap name="strings">
+		<range sound="strings_E0" root="E0" low="E0" hi="A0" vol="0"/>
+		<range sound="strings_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="strings_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="strings_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="strings_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="strings_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="strings_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="strings_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+    </samplemap>
+    <samplemap name="bass_filter_low">
+    	<range sound="bass_filter_low_E2" root="E2" low="E2" hi="A2" vol="7"/>
+		<range sound="bass_filter_low_As2" root="As2" low="As2" hi="Ds3" vol="7"/>
+		<range sound="bass_filter_low_E3" root="E3" low="E3" hi="A3" vol="7"/>
+		<range sound="bass_filter_low_As3" root="As3" low="As3" hi="Ds4" vol="7"/>
+		<range sound="bass_filter_low_E4" root="E4" low="E4" hi="A4" vol="7"/>
+		<range sound="bass_filter_low_As4" root="As4" low="As4" hi="Ds5" vol="7"/>
+		<range sound="bass_filter_low_E5" root="E5" low="E5" hi="A5" vol="7"/>
+		<range sound="bass_filter_low_As5" root="As5" low="As5" hi="Ds6" vol="7"/>
+		<range sound="bass_filter_low_E6" root="E6" low="E6" hi="A6" vol="7"/>
+		<range sound="bass_filter_low_As6" root="As6" low="As6" hi="As7" vol="7"/>
+	</samplemap>
+	<samplemap name="bass_filter_mid">
+		<range sound="bass_filter_mid_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="bass_filter_mid_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="bass_filter_mid_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="bass_filter_mid_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="bass_filter_mid_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="bass_filter_mid_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="bass_filter_mid_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="bass_filter_mid_As5" root="As5" low="As5" hi="Ds6" vol="0"/>
+		<range sound="bass_filter_mid_E6" root="E6" low="E6" hi="A6" vol="0"/>
+		<range sound="bass_filter_mid_As6" root="As6" low="As6" hi="As7" vol="0"/>
+	</samplemap>
+	<samplemap name="bass_filter_hi">
+		<range sound="bass_filter_hi_E2" root="E2" low="E2" hi="A2" vol="-6"/>
+		<range sound="bass_filter_hi_As2" root="As2" low="As2" hi="Ds3" vol="-6"/>
+		<range sound="bass_filter_hi_E3" root="E3" low="E3" hi="A3" vol="-6"/>
+		<range sound="bass_filter_hi_As3" root="As3" low="As3" hi="Ds4" vol="-6"/>
+		<range sound="bass_filter_hi_E4" root="E4" low="E4" hi="A4" vol="-6"/>
+		<range sound="bass_filter_hi_As4" root="As4" low="As4" hi="Ds5" vol="-6"/>
+		<range sound="bass_filter_hi_E5" root="E5" low="E5" hi="A5" vol="-6"/>
+		<range sound="bass_filter_hi_As5" root="As5" low="As5" hi="Ds6" vol="-6"/>
+		<range sound="bass_filter_hi_E6" root="E6" low="E6" hi="A6" vol="-6"/>
+		<range sound="bass_filter_hi_As6" root="As6" low="As6" hi="As7" vol="-6"/>
+    </samplemap>
+    <samplemap name="bass_comp">
+ 		<range sound="bass_comp_As-1" root="E-1" low="C-1" hi="A-1" vol="0"/>
+		<range sound="bass_comp_As-1" root="As-1" low="As-1" hi="Ds0" vol="0"/>
+		<range sound="bass_comp_E0" root="E0" low="E0" hi="A0" vol="0"/>
+		<range sound="bass_comp_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="bass_comp_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="bass_comp_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="bass_comp_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="bass_comp_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="bass_comp_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="bass_comp_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="bass_comp_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="bass_comp_As4" root="As4" low="As4" hi="E7" vol="0"/>
+    </samplemap>
+    <samplemap name="stab">
+		<range sound="stab_E0" root="E0" low="E0" hi="A0" vol="0"/>
+		<range sound="stab_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="stab_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="stab_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="stab_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="stab_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="stab_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="stab_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="stab_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="stab_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="stab_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="stab_As5" root="As5" low="As5" hi="E6" vol="0"/>
+    </samplemap>
+    <samplemap name="bass">
+		<range sound="bass_E0" root="E0" low="C0" hi="A0" vol="0"/>
+		<range sound="bass_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="bass_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="bass_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="bass_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="bass_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="bass_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="bass_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="bass_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="bass_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="bass_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="bass_As5" root="As5" low="As5" hi="B6" vol="0"/>
+    </samplemap>
+	<samplemap name="dm_kraftwerk">
+		<range sound="kick" root="C1" low="C1" hi="C1" vol="3"/>
+ 		<range sound="snare" root="Cs1" low="Cs1" hi="Cs1" vol="-5"/>
+ 		<range sound="hit" root="D1" low="D1" hi="D1" vol="0"/>
+ 		<range sound="hihat" root="Ds1" low="Ds1" hi="Ds1" vol="5"/>
+ 		<range sound="tapp_l" root="E1" low="E1" hi="E1" vol="12"/>
+ 		<range sound="tapp_r" root="F1" low="F1" hi="F1" vol="12"/>
+ 		<range sound="battery_1" root="Fs1" low="Fs1" hi="Fs1" vol="0"/>
+ 		<range sound="battery_2" root="G1" low="G1" hi="G1" vol="0"/>
+ 		<range sound="battery_3" root="Gs1" low="Gs1" hi="Gs1" vol="0"/>
+ 		<range sound="battery_4" root="A1" low="A1" hi="A1" vol="0"/>
+ 		<range sound="battery_5" root="As1" low="As1" hi="As1" vol="0"/>
+ 		<range sound="battery_6" root="B1" low="B1" hi="B1" vol="0"/>
+ 		<range sound="battery_7" root="C2" low="C2" hi="C2" vol="0"/>
+ 		<range sound="battery_8" root="Cs2" low="Cs2" hi="Cs2" vol="0"/>
+ 		<range sound="battery_9" root="D2" low="D2" hi="D2" vol="0"/>
+ 	</samplemap>
+	<samplemap name="synth_perc">
+		<range sound="synth_perc_E0" root="E0" low="C0" hi="A0" vol="0"/>
+		<range sound="synth_perc_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="synth_perc_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="synth_perc_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="synth_perc_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="synth_perc_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="synth_perc_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="synth_perc_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="synth_perc_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="synth_perc_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="synth_perc_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="synth_perc_As5" root="As5" low="As5" hi="E6" vol="0"/>
+    </samplemap>
+   	<samplemap name="synth_pop">
+		<range sound="synth_pop_E0" root="E0" low="C0" hi="A0" vol="0"/>
+		<range sound="synth_pop_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="synth_pop_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="synth_pop_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="synth_pop_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="synth_pop_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="synth_pop_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="synth_pop_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="synth_pop_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="synth_pop_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="synth_pop_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="synth_pop_As5" root="As5" low="As5" hi="E6" vol="0"/>
+    </samplemap>
+    <samplemap name="synth_comp">
+		<range sound="synth_comp_E0" root="E0" low="C0" hi="A0" vol="0"/>
+		<range sound="synth_comp_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="synth_comp_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="synth_comp_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="synth_comp_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="synth_comp_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="synth_comp_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="synth_comp_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="synth_comp_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="synth_comp_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="synth_comp_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="synth_comp_As5" root="As5" low="As5" hi="As7" vol="0"/>
+    </samplemap>
+ 	<samplemap name="synth_plucked">
+		<range sound="synth_plucked_E0" root="E0" low="C0" hi="A0" vol="0"/>
+		<range sound="synth_plucked_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="synth_plucked_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="synth_plucked_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="synth_plucked_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="synth_plucked_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="synth_plucked_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="synth_plucked_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="synth_plucked_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="synth_plucked_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="synth_plucked_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="synth_plucked_As5" root="As5" low="As5" hi="As6" vol="0"/>
+    </samplemap>
+ 	<samplemap name="synth_sharp">
+		<range sound="synth_sharp_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="synth_sharp_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="synth_sharp_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="synth_sharp_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="synth_sharp_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="synth_sharp_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="synth_sharp_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="synth_sharp_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="synth_sharp_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="synth_sharp_As5" root="As5" low="As5" hi="Ds6" vol="0"/>
+		<range sound="synth_sharp_E6" root="E6" low="E6" hi="A6" vol="0"/>
+		<range sound="synth_sharp_As6" root="As6" low="As6" hi="As7" vol="0"/>
+    </samplemap>
+  	<samplemap name="synth_funk">
+		<range sound="synth_funk_E0" root="E0" low="C0" hi="A0" vol="0"/>
+		<range sound="synth_funk_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="synth_funk_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="synth_funk_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="synth_funk_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="synth_funk_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="synth_funk_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="synth_funk_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="synth_funk_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="synth_funk_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="synth_funk_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="synth_funk_As5" root="As5" low="As5" hi="As6" vol="0"/>
+    </samplemap>
+  	<samplemap name="synth_warm">
+		<range sound="synth_warm_E0" root="E0" low="C0" hi="A0" vol="0"/>
+		<range sound="synth_warm_As0" root="As0" low="As0" hi="Ds1" vol="0"/>
+		<range sound="synth_warm_E1" root="E1" low="E1" hi="A1" vol="0"/>
+		<range sound="synth_warm_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="synth_warm_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="synth_warm_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="synth_warm_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="synth_warm_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="synth_warm_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="synth_warm_As4" root="As4" low="As4" hi="As6" vol="0"/>
+    </samplemap>
+   	<samplemap name="lead_a">
+		<range sound="lead_a_E1" root="E1" low="C1" hi="A1" vol="0"/>
+		<range sound="lead_a_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="lead_a_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="lead_a_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="lead_a_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="lead_a_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="lead_a_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="lead_a_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="lead_a_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="lead_a_As5" root="As5" low="As5" hi="Ds6" vol="0"/>
+		<range sound="lead_a_E6" root="E6" low="E6" hi="A6" vol="0"/>
+		<range sound="lead_a_As6" root="As6" low="As6" hi="As7" vol="0"/>
+    </samplemap>
+    <samplemap name="lead_b">
+		<range sound="lead_b_E1" root="E1" low="C1" hi="A1" vol="0"/>
+		<range sound="lead_b_As1" root="As1" low="As1" hi="Ds2" vol="0"/>
+		<range sound="lead_b_E2" root="E2" low="E2" hi="A2" vol="0"/>
+		<range sound="lead_b_As2" root="As2" low="As2" hi="Ds3" vol="0"/>
+		<range sound="lead_b_E3" root="E3" low="E3" hi="A3" vol="0"/>
+		<range sound="lead_b_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
+		<range sound="lead_b_E4" root="E4" low="E4" hi="A4" vol="0"/>
+		<range sound="lead_b_As4" root="As4" low="As4" hi="Ds5" vol="0"/>
+		<range sound="lead_b_E5" root="E5" low="E5" hi="A5" vol="0"/>
+		<range sound="lead_b_As5" root="As5" low="As5" hi="Ds6" vol="0"/>
+		<range sound="lead_b_E6" root="E6" low="E6" hi="A6" vol="0"/>
+		<range sound="lead_b_As6" root="As6" low="As6" hi="As7" vol="0"/>
+    </samplemap>
+
+ 	<samplemap name="item_up">
+ 		<range sound="item_up_E3" root="E3" low="E3" hi="Fs5" vol="0"/>
+    </samplemap>
+    <samplemap name="paddle_fx">
+ 		<range sound="paddlefx_E0" root="E0" low="C0" hi="Fs0" vol="0"/>
+ 		<range sound="paddlefx_G0" root="G0" low="G0" hi="As0" vol="0"/>
+ 		<range sound="paddlefx_B0" root="B0" low="B0" hi="Ds1" vol="0"/>
+ 		<range sound="paddlefx_E1" root="E1" low="E1" hi="Fs1" vol="0"/>
+ 		<range sound="paddlefx_G1" root="G1" low="G1" hi="As1" vol="0"/>
+ 		<range sound="paddlefx_B1" root="B1" low="B1" hi="Ds2" vol="0"/>
+ 		<range sound="paddlefx_E2" root="E2" low="E2" hi="Fs2" vol="0"/>
+ 		<range sound="paddlefx_G2" root="G2" low="G2" hi="As2" vol="0"/>
+ 		<range sound="paddlefx_B2" root="B2" low="B2" hi="Ds3" vol="0"/>
+ 		<range sound="paddlefx_E3" root="E3" low="E3" hi="Fs3" vol="0"/>
+ 		<range sound="paddlefx_G3" root="G3" low="G3" hi="As3" vol="0"/>
+ 		<range sound="paddlefx_B3" root="B3" low="B3" hi="E7"  vol="0"/>
+    </samplemap>
+    <samplemap name="item_activate">
+ 		<range sound="item_activate_E1" root="E1" low="E1"  hi="G1" vol="0"/>
+ 		<range sound="item_activate_B1" root="B1" low="Gs1" hi="Ds2" vol="0"/>
+ 		<range sound="item_activate_E2" root="E2" low="E2"  hi="Cs3" vol="0"/>
+    </samplemap>
+ 	<samplemap name="shield_hit">
+ 		<range sound="shield_hit_E3" root="E3" low="E3" hi="As3" vol="-9"/>
+ 		<range sound="shield_hit_B3" root="B3" low="B3" hi="Ds4" vol="-9"/>
+ 		<range sound="shield_hit_E4" root="E4" low="E4" hi="As4" vol="-9"/>
+ 		<range sound="shield_hit_B4" root="B4" low="B4" hi="B6" vol="-9"/>
+ 	</samplemap>
+ 	<samplemap name="shield_up">
+ 		<range sound="shield_up" root="E3" low="E3" hi="Fs5" vol="0"/>
+    </samplemap>
+</samplemaps>
