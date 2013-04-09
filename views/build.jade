@@ -1,5 +1,5 @@
 - var name = "Cube Slam";
-- var description = "Welcome to play Pong against your friends using new amazing technology DataChannels";
+- var description = "Play face-to-face against your friends.";
 - var url = 'http://cubeslam.com/';
 - var urlWithRoomId = url+'{{.Room}}';
 
@@ -362,7 +362,7 @@ html(lang='en')
       video#remoteInput.hidden(width='160',height='120',autoplay)
       video#localInput.hidden(width='160',height='120',autoplay,muted)
 
-      #canv-css
+      #canv-css.state.game.inactive
         .background.state.game
           img.bg(data-src-mobile='/images/mobile/game-mobile.jpg', data-src-tablet='/images/mobile/game-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
           .screen
@@ -397,7 +397,9 @@ html(lang='en')
             .shield.shield-8
             .shield.shield-9
         .effects
-          .effect.fog.hidden
+          .effect.fog
+          .effect.explosion.p1
+          .effect.explosion.p2
         .obstacles
           .obstacle.triangle-left
           .obstacle.triangle-right
@@ -419,7 +421,6 @@ html(lang='en')
         li.icon.mirroredcontrols(data-icon='*')
           span(arb:id='extraMirroredControl') Mirrored Controls
         li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bullet Proof
-
 
     //MOBILE
     section.mobile
@@ -457,9 +458,9 @@ html(lang='en')
           .content.animate
             .vertical-center
               h2(arb:id='errorConnectionHeader') Connection Error
-              p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection
+              p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection.
               .buttons
-                a.button.red(href='', arb:id='buttonReload') Reload
+                a.button.red(href='', arb:id='buttonReload') Reload 
 
       .state.error-fullroom.inactive
         .dialog.bottom
@@ -476,8 +477,8 @@ html(lang='en')
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorDCHeader') Browser not supported
-              p(arb:id='errorDCBrowserSupport') Sorry, the two-player game requires DataChannels. Please try again using Chrome
+              h2(arb:id='errorDCHeader') Please try in Chrome
+              p(arb:id='errorDCBrowserSupport') Sorry, the two-player game requires Chrome.
               .buttons
                 a.button.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
                 button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
@@ -533,6 +534,9 @@ html(lang='en')
       pre
 
     #latency
+      .dialog.top
+        .content
+          h1.alert-info(arb:id='latency') You seem to be too far away from your friend to be able to play this smoothly, but keep going!
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/dat.gui.js')

@@ -279,6 +279,27 @@ func TurnServerAnnouncement(w http.ResponseWriter, r *http.Request) {
   PutTurnServer(c, "us", usTurnServer)
 }
 
+func Expire(w http.ResponseWriter, r *http.Request) {
+  c := appengine.NewContext(r)
+  w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+  // Find expired rooms
+  rooms, err := ExpiredRooms(c)
+  if err != nil {
+    c.Criticalf("%s",err)
+    return
+  }
+  c.Debugf("Expired rooms: %v",rooms)
+
+  // Delete the rooms
+  if err := DelRooms(c, rooms); err != nil {
+    c.Criticalf("%s",err)
+    return
+  }
+  w.Write([]byte("OK"))
+}
+
+
 func Occupants(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -395,6 +416,7 @@ func init() {
   http.HandleFunc("/connect", JSConnected)
   http.HandleFunc("/disconnect", Disconnected)
   http.HandleFunc("/gce_announce", TurnServerAnnouncement)
+  http.HandleFunc("/_expire", Expire)
   http.HandleFunc("/_occupants", Occupants)
   http.HandleFunc("/_ah/channel/connected/", AEConnected)
   if !appengine.IsDevAppServer() {
