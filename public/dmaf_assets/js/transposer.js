@@ -9,18 +9,11 @@ dmaf("LevelTransposer", ["DMAF", "Instance", "privateMethods"], function (DMAF, 
             value: function (trigger, actionTime, eventProperties, actionProperties) {
                 var throttle = (actionTime - this.lastActionTime) < 5000;
                 switch (trigger) {
-                    case "user_won_round":
+                    case "transpose_midi":
                         if (throttle) return;
                         this.transposeValue++;
                         break;
-                    case "user_lost_round":
-                        if (throttle) return;
-                        this.transposeValue++;
-                        break;
-                    case "user_won_match":
-                        this.transposeValue = 0;
-                        break;
-                    case "user_lost_match":
+                    case "transpose_midi_reset":
                         this.transposeValue = 0;
                         break;
                 }
