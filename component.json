@@ -128,6 +128,7 @@
     "lib/levels/mobile/level3.js",
     "lib/levels/mobile/level4.js",
     "lib/levels/mobile/level5.js",
-    "lib/levels/mobile/level6.js"
+    "lib/levels/mobile/level6.js",
+    "lib/levels/mobile/level7.js"
   ]
 }
