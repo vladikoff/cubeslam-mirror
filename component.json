@@ -14,7 +14,8 @@
     "publicclass/latency": "*",
     "publicclass/base64-arraybuffer": "*",
     "visionmedia/debug": "*",
-    "ecarter/css-emitter": "4a453ae914a2cf328810fdf3fc361bc144b15821"
+    "ecarter/css-emitter": "4a453ae914a2cf328810fdf3fc361bc144b15821",
+    "publicclass/geom-poly": "*"
   },
   "scripts": [
     "index.js",
@@ -24,7 +25,6 @@
     "lib/game.js",
     "lib/inp.js",
     "lib/network.js",
-    "lib/camera.js",
     "lib/world.js",
     "lib/arb.js",
     "lib/localization.js",

@@ -33,7 +33,7 @@
     text-align left
 
     .content 
-      padding 15px 30px
+      padding 2px 30px 3px
       box-sizing border-box
       display block
       height auto
@@ -102,3 +102,12 @@
   //   text-align left
   //   transform-origin center center
   //   transform rotateX( 85deg )
+
+#notifications
+  .dialog
+    top -100%
+    transition top .5s
+    
+    &.active
+      top 0
+

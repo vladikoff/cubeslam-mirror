@@ -81,46 +81,87 @@ $theme-redhorizon-alternate = #217745
   line-height 1
   font-smoothing antialiased
 
-.icon.laser:before
-  content "\e000"
+// .icon.laser:before
+//   content "\e000"
 
-.icon.multiball:before
-  content "\e001"
+// .icon.multiball:before
+//   content "\e001"
 
-.icon.mirroredcontrols:before
-  content "\e002"
+// .icon.mirroredcontrols:before
+//   content "\e002"
 
-.icon.ghostball:before
-  content "\e003"
+// .icon.ghostball:before
+//   content "\e003"
 
-.icon.deathball:before
-  content "\e004"
+// .icon.deathball:before
+//   content "\e004"
 
-.icon.paddleresize:before
-  content "\e005"
+// .icon.paddleresize:before
+//   content "\e005"
 
-.icon.extralife:before
-  content "\e006"
+// .icon.extralife:before
+//   content "\e006"
 
-.icon.timebomb:before
-  content "\e009"
+// .icon.timebomb:before
+//   content "\e009"
 
-.icon.fog:before
-  content "\e00a"
+// .icon.fog:before
+//   content "\e00a"
 
-.icon.fireball:before
-  content "\e00b"
+// .icon.fireball:before
+//   content "\e00b"
 
-.icon.bulletproof:before
-  content "\e00d"
+// .icon.bulletproof:before
+//   content "\e00d"
 
 
-.ui-darken
-  color #444444 !important
-  border-color #444444 !important
-.ui-darken:before
-  color #444444 !important
-  border-color #444444 !important
+.icon.timebomb:before 
+  content "\23"
+
+.icon.extralife:before 
+  content "\24"
+
+.icon.bulletproof:before 
+  content "\25"
+
+.icon.random:before 
+  content "\26"
+
+.icon.paddleresize:before 
+  content "\27"
+
+.icon.obsticles:before 
+  content "\28"
+
+.icon.multiball:before 
+  content "\29"
+
+.icon.mirrored:before 
+  content "\2b"
+
+.icon.laser:before 
+  content "\2c"
+
+.icon.ghostball:before 
+  content "\2d"
+
+.icon.fog:before 
+  content "\2e"
+
+.icon.fireball:before 
+  content "\2f"
+
+.icon.deathball:before 
+  content "\3b"
+
+
+html:not(.mobile)
+  .ui-darken
+    color #444444 !important
+    border-color #444444 !important
+  .ui-darken:before
+    color #444444 !important
+    border-color #444444 !important
 
 $color-beige = #f9f9db
 $color-green = #40a040
@@ -305,16 +346,16 @@ $color-yellow = #ffd059
   .effect.fog {width:576px; height:355px; background-position: -2px -2px}
 
   .explosion.p1 {width:558px; height:255px; background-position: -2px -359px}
-  .explosion.p2 {width:470px; height:203px; background-position: -2px -616px}
+  .explosion.p2 {width:470px; height:203px; background-position: -562px -359px}
 
   .force {width:252px; height:252px;}
 
-  .force-1 {background-position: -562px -613px}
-  .force-2 {background-position: -580px -2px}
-  .force-3 {background-position: -562px -359px}
+  .force-1 {width:252px; height:252px; background-position: -2px -616px}
+  .force-2 {width:252px; height:252px; background-position: -256px -616px}
+  .force-3 {width:252px; height:252px; background-position: -510px -616px}
 
-  .hit-cpu {width:266px; height:146px; background-position: -270px -821px}
-  .hit-player {width:266px; height:146px; background-position: -2px -821px}
+  .hit-cpu {width:266px; height:146px; background-position: -764px -616px}
+  .hit-player {width:266px; height:146px; background-position: -2px -870px}
 
   .obstacle {display:block; background-repeat: no-repeat;background-image:url('/images/mobile/obstacles.png');}
   .diamond {width:159px; height:126px; background-position: -172px -2px}
