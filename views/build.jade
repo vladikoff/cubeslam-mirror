@@ -533,10 +533,11 @@ html(lang='en')
     #debug-info
       pre
 
-    #latency
-      .dialog.top
+    #notifications
+      #latency.dialog.top
         .content
-          h1.alert-info(arb:id='latency') You seem to be too far away from your friend to be able to play this smoothly, but keep going!
+          h1.alert-info(arb:id='latency') You seem to be too far away from your friend to be able to play this smoothly, but keep going!        
+    #latencyMeter
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/dat.gui.js')
