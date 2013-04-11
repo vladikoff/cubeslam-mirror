@@ -1055,10 +1055,10 @@ dat.controllers.FunctionController = (function (Controller, dom, common) {
     var _this = this;
 
     this.__button = document.createElement('div');
-    this.__button.innerHTML = text === undefined ? 'Fire' : text;
+    this.__button.innerHTML = text === undefined ? '' : text;
     dom.bind(this.__button, 'click', function(e) {
-      e.preventDefault();
-      _this.fire();
+      e.preventDefault(text);
+      _this.fire(text);
       return false;
     });
 
@@ -1077,14 +1077,14 @@ dat.controllers.FunctionController = (function (Controller, dom, common) {
       Controller.prototype,
       {
 
-        fire: function() {
+        fire: function( label ) {
           if (this.__onChange) {
             this.__onChange.call(this);
           }
           if (this.__onFinishChange) {
             this.__onFinishChange.call(this, this.getValue());
           }
-          this.getValue().call(this.object);
+          this.getValue().call(this.object,label);
         }
       }
 
@@ -2876,7 +2876,7 @@ dat.controllers.factory = (function (OptionController, NumberControllerBox, Numb
         }
 
         if (common.isFunction(initialValue)) {
-          return new FunctionController(object, property, '');
+          return new FunctionController(object, property, arguments[2]);
         }
 
         if (common.isBoolean(initialValue)) {
@@ -3115,7 +3115,7 @@ dat.controllers.ColorController = (function (Controller, dom, Color, interpret, 
 
     function onBlur() {
       var i = interpret(this.value);
-      
+
       if (i !== false) {
         _this.__color.__state = i;
         _this.setValue(_this.__color.toOriginal());
