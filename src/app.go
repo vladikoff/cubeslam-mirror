@@ -39,7 +39,8 @@ func Main(w http.ResponseWriter, r *http.Request) {
       if _, err := GetRoom(c, roomName); err != nil {
         path = "/"+roomName
       } else {
-        c.Debugf("Room already exist. Redirecting back to /")
+        c.Debugf("Room already exist. Generating a random string instead.")
+        path = "/"+Random(5)
       }
       if r.URL.RawQuery != "" {
         path = path + "?"+r.URL.RawQuery
