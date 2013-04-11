@@ -58,7 +58,6 @@
     "lib/support/buffer.js",
     "lib/support/pool.js",
     "lib/support/tick.js",
-    "lib/support/now.js",
     "lib/support/rand.js",
     "lib/support/time-sync.js",
     "lib/support/hash-code.js",
