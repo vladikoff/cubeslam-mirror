@@ -50,6 +50,7 @@ w.setInt8(10)
 w.setUint8(130)
 w.setInt16(1024)
 w.setUint16(1024)
+w.writeString('hello world!')
 
 var res = buf.slice(0,w.offset);
 var r = new Reader(res);
@@ -57,6 +58,7 @@ eql(r,r.getInt8(),10)
 eql(r,r.getUint8(),130)
 eql(r,r.getInt16(),1024)
 eql(r,r.getUint16(),1024)
+eql(r,r.readString(),'hello world!')
 
 var w = new Writer(buf);
 w.setInt8(20)

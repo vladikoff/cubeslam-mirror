@@ -7,6 +7,7 @@
     "component/jquery": "1.9.1",
     "component/preloader": "*",
     "publicclass/request-animation-frame": "*",
+    "publicclass/now": "*",
     "publicclass/geom": "*",
     "publicclass/copy": "*",
     "publicclass/stash": "*",
@@ -35,6 +36,7 @@
     "lib/inputs/index.js",
     "lib/inputs/network.js",
     "lib/inputs/buffer.js",
+    "lib/inputs/interpolate.js",
     "lib/inputs/types.js",
     "lib/inputs/util.js",
     "lib/rtc/index.js",
@@ -57,7 +59,6 @@
     "lib/support/buffer.js",
     "lib/support/pool.js",
     "lib/support/tick.js",
-    "lib/support/now.js",
     "lib/support/rand.js",
     "lib/support/time-sync.js",
     "lib/support/hash-code.js",
@@ -128,6 +129,7 @@
     "lib/levels/mobile/level3.js",
     "lib/levels/mobile/level4.js",
     "lib/levels/mobile/level5.js",
-    "lib/levels/mobile/level6.js"
+    "lib/levels/mobile/level6.js",
+    "lib/levels/mobile/level7.js"
   ]
 }
