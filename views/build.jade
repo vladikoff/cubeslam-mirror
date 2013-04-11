@@ -90,9 +90,26 @@ html(lang='en')
               p(arb:id='gameInstructionsPause') to pause
             button.green.play(type='button', arb:id='buttonOk') OK (SPACE)
 
-          .vertical-center.hidden
-            .info-animation
+          .vertical-center
+            .info-animation.mobile.hidden
               //GAME INFO ANIMATION
+              .swipe-animation.rotate
+                .icon.device(data-icon='▣')
+                .dashed-line
+                .keys
+                  .left
+                  .right
+                .loading__anim
+                  .pad
+                  .ball
+                  .pad
+
+              .swipe-label
+                p(arb:id='gameInstructionsMobileSwipe') Swipe left/right at the bottom of the screen
+                p(arb:id='gameInstructionsMobilePress') or press left/right buttons in horizontal mode
+          
+          .vertical-center
+            .info-animation.objective.hidden
               .destroy-shield
                 .destroy-shield__anim-container
                   .destroy-shield__wall
@@ -318,43 +335,7 @@ html(lang='en')
                   span(arb:id='buttonPlayAgain') Play Again
                   span.keyboard(arb:id='space') (Space)
 
-    section#scores.state.game.inactive
-      .logo
-        img(src="/images/minicubeslam.png", alt='logo')
-        h1 #{name}
-        p.level(arb:id='scoreLevel') Level 
-          span#level 1
-
-      .multiplayer
-        .player
-          p(arb:id='playerYou') You
-          ol
-            li.active
-            li.active
-            li.active
-
-        .opponent
-          p(arb:id='playerFriend') Friend
-          ol
-            li.active
-            li.active
-            li.active
-
-      .singleplayer
-        .player
-          p(arb:id='playerYou') You
-          ol
-            li.active
-            li.active
-            li.active
-
-        .opponent
-          p(arb:id='playerCPU') Bob
-          ol
-            li.active
-            li.active
-            li.active
-
+    //RENDERERS
     #game
       canvas#canv-3d(width='320',height='480')
       canvas#canv-2d(width='320',height='480')
@@ -407,6 +388,45 @@ html(lang='en')
           .obstacle.diamond
           .obstacle.block-rect
 
+    //GAME SCORES
+    section#scores.state.game.inactive
+      .logo
+        img(src="/images/minicubeslam.png", alt='logo')
+        h1 #{name}
+        p.level(arb:id='scoreLevel') Level 
+          span#level 1
+
+      .multiplayer
+        .player
+          p(arb:id='playerYou') You
+          ol
+            li.active
+            li.active
+            li.active
+
+        .opponent
+          p(arb:id='playerFriend') Friend
+          ol
+            li.active
+            li.active
+            li.active
+
+      .singleplayer
+        .player
+          p(arb:id='playerYou') You
+          ol
+            li.active
+            li.active
+            li.active
+
+        .opponent
+          p(arb:id='playerCPU') Bob
+          ol
+            li.active
+            li.active
+            li.active
+
+    //GAMEEXTRA ICONS
     #extras.state.game.inactive
       ul
         li.icon.deathball(data-icon='*', arb:id='extraDeathBall') Death ball
@@ -445,7 +465,8 @@ html(lang='en')
           div
             img(src='/images/mobile/gameboard.jpg')
             h2(arb:id='aboutMobileH2') Play friend on desktop
-            p(arb:id='aboutMobileText2') Visit cubeslam.com in Chrome on your computer to play face to face against a friend.
+            p(arb:id='aboutMobileText2') Visit cubeslam.com in Chrome on your computer to play face to face against a friend. 
+            a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
             .buttons
               button.green(arb:id='buttonClose') Close
 
@@ -498,6 +519,7 @@ html(lang='en')
             .vertical-center
               button.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
 
+    //FOOTER
     footer#footer
       ul#socials.social
         li
@@ -523,6 +545,11 @@ html(lang='en')
               span.off(arb:id='soundOn') Sound on
               span.on(arb:id='soundOff') Sound off
 
+    #notifications
+      #latency.dialog.top
+        .content
+          h1.alert-info(arb:id='latency') You seem to be too far away from your friend to be able to play this smoothly, but keep going!
+
     #fpsCameraCapture
 
     #settingsGUIContainer
@@ -533,10 +560,6 @@ html(lang='en')
     #debug-info
       pre
 
-    #notifications
-      #latency.dialog.top
-        .content
-          h1.alert-info(arb:id='latency') You seem to be too far away from your friend to be able to play this smoothly, but keep going!        
     #latencyMeter
 
     script(src='/_ah/channel/jsapi')
