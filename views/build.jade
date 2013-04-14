@@ -138,7 +138,7 @@ html(lang='en')
             p.share-url
               span.url= urlWithRoomId
             p(arb:id='inviteNotified') We'll let you know when they arrive
-            button.red.return-mainmenu(type='button',arb:id='buttonMainMenu') Main Menu
+            button.green.return-mainmenu(type='button',arb:id='buttonMainMenu') Main Menu
 
     //COUNTDOWN
     section.state.game-prompt.inactive
@@ -200,7 +200,7 @@ html(lang='en')
               li(arb:id='webcamDeniedStep4') Click out of the menu and refresh the page
             .buttons
               p(arb:id='webcamButtonExplanation') or, you can still play the computer
-              a.button.red(href='/', arb:id='buttonMainMenu') Main Menu
+              a.button.green(href='/', arb:id='buttonMainMenu') Main Menu
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -456,7 +456,7 @@ html(lang='en')
           button.play.icon(href='#', data-icon='▶', type='button')
           button.sound.icon.sound-switch(href='#', data-icon='♫', data-icon-off='♩', type='button')
           button.info.icon(href='#', data-icon='⌽', type='button')
-      .state.cssinfo.game-cssinfo.game-over-cssinfo
+      .state.cssinfo.game-cssinfo.game-over-cssinfo.inactive
         .content
           div
             img(src='/images/mobile/about.jpg')
@@ -481,7 +481,7 @@ html(lang='en')
               h2(arb:id='errorConnectionHeader') Connection Error
               p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection.
               .buttons
-                a.button.red(href='', arb:id='buttonReconnect') Reconnect 
+                a.button.green(href='', arb:id='buttonReconnect') Reconnect 
 
       .state.error-fullroom.inactive
         .dialog.bottom
@@ -491,8 +491,8 @@ html(lang='en')
               p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
               p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
               .buttons
-                button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
-                a.button.red(href='/', arb:id='buttonNewGame') New Game
+                button.main-menu.green(type='button', arb:id='buttonMainMenu') Main Menu
+                a.button.green.new(href='/', arb:id='buttonNewGame') New Game
 
       .state.error-datachannels.inactive
         .dialog.bottom
@@ -501,8 +501,8 @@ html(lang='en')
               h2(arb:id='errorDCHeader') Please try in Chrome
               p(arb:id='errorDCBrowserSupport') Sorry, the two-player game requires Chrome.
               .buttons
-                a.button.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
-                button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
+                a.button.green(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
+                button.main-menu.green(type='button', arb:id='buttonMainMenu') Main Menu
 
       .state.error-browser.inactive
         .dialog.bottom
@@ -511,7 +511,7 @@ html(lang='en')
               h2(arb:id='errorBrowserHeader') Browser not supported
               p(arb:id='errorBrowserSupport') Sorry, this game does not support your browser
               .buttons
-                a.button.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
+                a.button.green(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
 
       //section.error.network-missing
         .dialog.bottom
