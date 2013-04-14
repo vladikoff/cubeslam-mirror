@@ -1,5 +1,5 @@
 application: webrtcgame
-version: s
+version: p
 runtime: go
 api_version: go1
 
