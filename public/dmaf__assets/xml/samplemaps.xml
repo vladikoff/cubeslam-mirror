@@ -10,16 +10,16 @@
 		<range sound="strings_As3" root="As3" low="As3" hi="Ds4" vol="0"/>
     </samplemap>
     <samplemap name="bass_filter_low">
-    	<range sound="bass_filter_low_E2" root="E2" low="E2" hi="A2" vol="7"/>
-		<range sound="bass_filter_low_As2" root="As2" low="As2" hi="Ds3" vol="7"/>
-		<range sound="bass_filter_low_E3" root="E3" low="E3" hi="A3" vol="7"/>
-		<range sound="bass_filter_low_As3" root="As3" low="As3" hi="Ds4" vol="7"/>
-		<range sound="bass_filter_low_E4" root="E4" low="E4" hi="A4" vol="7"/>
-		<range sound="bass_filter_low_As4" root="As4" low="As4" hi="Ds5" vol="7"/>
-		<range sound="bass_filter_low_E5" root="E5" low="E5" hi="A5" vol="7"/>
-		<range sound="bass_filter_low_As5" root="As5" low="As5" hi="Ds6" vol="7"/>
-		<range sound="bass_filter_low_E6" root="E6" low="E6" hi="A6" vol="7"/>
-		<range sound="bass_filter_low_As6" root="As6" low="As6" hi="As7" vol="7"/>
+    	<range sound="bass_filter_low_E2" root="E2" low="E2" hi="A2" vol="10"/>
+		<range sound="bass_filter_low_As2" root="As2" low="As2" hi="Ds3" vol="10"/>
+		<range sound="bass_filter_low_E3" root="E3" low="E3" hi="A3" vol="10"/>
+		<range sound="bass_filter_low_As3" root="As3" low="As3" hi="Ds4" vol="10"/>
+		<range sound="bass_filter_low_E4" root="E4" low="E4" hi="A4" vol="10"/>
+		<range sound="bass_filter_low_As4" root="As4" low="As4" hi="Ds5" vol="10"/>
+		<range sound="bass_filter_low_E5" root="E5" low="E5" hi="A5" vol="10"/>
+		<range sound="bass_filter_low_As5" root="As5" low="As5" hi="Ds6" vol="10"/>
+		<range sound="bass_filter_low_E6" root="E6" low="E6" hi="A6" vol="10"/>
+		<range sound="bass_filter_low_As6" root="As6" low="As6" hi="As7" vol="10"/>
 	</samplemap>
 	<samplemap name="bass_filter_mid">
 		<range sound="bass_filter_mid_E2" root="E2" low="E2" hi="A2" vol="0"/>
