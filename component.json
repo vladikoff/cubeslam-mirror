@@ -15,8 +15,7 @@
     "publicclass/latency": "*",
     "publicclass/base64-arraybuffer": "*",
     "visionmedia/debug": "*",
-    "ecarter/css-emitter": "4a453ae914a2cf328810fdf3fc361bc144b15821",
-    "publicclass/geom-poly": "*"
+    "ecarter/css-emitter": "4a453ae914a2cf328810fdf3fc361bc144b15821"
   },
   "scripts": [
     "index.js",
@@ -36,7 +35,6 @@
     "lib/inputs/index.js",
     "lib/inputs/network.js",
     "lib/inputs/buffer.js",
-    "lib/inputs/interpolate.js",
     "lib/inputs/types.js",
     "lib/inputs/util.js",
     "lib/rtc/index.js",
@@ -48,6 +46,7 @@
     "lib/sim/physics.js",
     "lib/sim/shapes.js",
     "lib/sim/integration.js",
+    "lib/sim/interpolate.js",
     "lib/sim/collisions.js",
     "lib/support/diff.js",
     "lib/support/inspect.js",
