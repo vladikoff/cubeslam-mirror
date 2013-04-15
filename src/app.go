@@ -39,7 +39,8 @@ func Main(w http.ResponseWriter, r *http.Request) {
       if _, err := GetRoom(c, roomName); err != nil {
         path = "/"+roomName
       } else {
-        c.Debugf("Room already exist. Redirecting back to /")
+        c.Debugf("Room already exist. Generating a random string instead.")
+        path = "/"+Random(5)
       }
       if r.URL.RawQuery != "" {
         path = path + "?"+r.URL.RawQuery
@@ -241,6 +242,26 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
   }
 }
 
+func Expire(w http.ResponseWriter, r *http.Request) {
+  c := appengine.NewContext(r)
+  w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+  // Find expired rooms
+  rooms, err := ExpiredRooms(c)
+  if err != nil {
+    c.Criticalf("%s",err)
+    return
+  }
+  c.Debugf("Expired rooms: %v",rooms)
+
+  // Delete the rooms
+  if err := DelRooms(c, rooms); err != nil {
+    c.Criticalf("%s",err)
+    return
+  }
+  w.Write([]byte("OK"))
+}
+
 func Occupants(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -356,6 +377,7 @@ func init() {
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", JSConnected)
   http.HandleFunc("/disconnect", Disconnected)
+  http.HandleFunc("/_expire", Expire)
   http.HandleFunc("/_occupants", Occupants)
   http.HandleFunc("/_ah/channel/connected/", AEConnected)
   if !appengine.IsDevAppServer() {

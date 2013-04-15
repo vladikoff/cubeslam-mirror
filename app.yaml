@@ -1,15 +1,16 @@
 application: webrtcgame
-version: dinahmoe
+version: s
 runtime: go
 api_version: go1
 
 handlers:
+# Static
 - url: /javascript
   static_dir: public/javascript
 - url: /images
   static_dir: public/images
-- url: /dmaf_assets
-  static_dir: public/dmaf_assets
+- url: /dmaf__assets
+  static_dir: public/dmaf__assets
 - url: /lang
   static_dir: public/lang
 - url: /fonts
@@ -28,6 +29,12 @@ handlers:
   static_files: public/\1
   upload: public/(.*\.html)
 
+# Tasks
+- url: /_expire
+  script: _go_app
+  login: admin
+
+# Rooms
 - url: /.*
   script: _go_app
   # TODO enable this when going live, messy while developing

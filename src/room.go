@@ -3,9 +3,11 @@ package webrtcing
 import (
   "appengine"
   "appengine/datastore"
+  "time"
 )
 
 type Room struct {
+  Name string
   User1 string
   User2 string
   // AppEngine Channels API connected properly
@@ -14,6 +16,8 @@ type Room struct {
   // JavaScript Channels API connected properly
   JSConnected1 bool
   JSConnected2 bool
+  // Used to clean up old rooms
+  LastChanged time.Time
 }
 
 func (r *Room) OtherUser(user string) string {
@@ -102,6 +106,8 @@ func GetRoom(c appengine.Context, name string) (*Room, error) {
 }
 
 func PutRoom(c appengine.Context, name string, room *Room) error {
+  room.Name = name
+  room.LastChanged = time.Now()
   k := datastore.NewKey(c, "Room", name, 0, nil)
   _, err := datastore.Put(c, k, room)
   c.Debugf("Storing %+v", room)
@@ -111,6 +117,16 @@ func PutRoom(c appengine.Context, name string, room *Room) error {
 func DelRoom(c appengine.Context, name string) error {
   k := datastore.NewKey(c, "Room", name, 0, nil)
   err := datastore.Delete(c, k)
+  return err;
+}
+
+func DelRooms(c appengine.Context, rooms []Room) error {
+  keys := make([]*datastore.Key,0)
+  for _, room := range(rooms) {
+    keys = append(keys, datastore.NewKey(c, "Room", room.Name, 0, nil))
+  }
+  c.Debugf("Deleting Rooms: %+v",keys)
+  err := datastore.DeleteMulti(c, keys)
   return err;
 }
 
@@ -129,4 +145,23 @@ func TotalOccupants(c appengine.Context) (int, error) {
     t += r.Occupants()
   }
   return t, nil
+}
+
+func ExpiredRooms(c appengine.Context) ([]Room, error) {
+  an_hour_ago := time.Now().Add(-time.Hour)
+  rooms := make([]Room,0)
+  q := datastore.NewQuery("Room").Filter("LastChanged <",an_hour_ago)
+  for x := q.Run(c); ; {
+    var room Room
+    _, err := x.Next(&room)
+    if err == datastore.Done {
+      break;
+    }
+    if err != nil {
+      return nil, err
+    }
+    c.Debugf("ExpiredRoom: %+v",room)
+    rooms = append(rooms, room)
+  }
+  return rooms, nil
 }

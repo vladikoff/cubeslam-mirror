@@ -13,6 +13,12 @@ $h = 480px
   50%
     opacity .1
 
+@keyframes effect-timebomb-pulse
+  0%, 100% 
+    opacity 1
+  50%
+    opacity .6
+
 @keyframes effect-screen
   0% 
     opacity 0
@@ -25,9 +31,9 @@ $h = 480px
 
 @keyframes effect-force
   0%
-    background-position: -510px -359px
+    background-position: -510px -616px
   100%
-    background-position: 250px -359px
+    background-position: 250px -616px
 
 html.mobile
   #canv-css
@@ -286,6 +292,9 @@ html.mobile
       -webkit-filter grayscale(1)
       // animation effect-ghostball-pulse 2s infinite
       opacity .2
+    &.timebomb
+      animation effect-timebomb-pulse 1s infinite
+      opacity .2
 
     &.flash
       opacity .6
@@ -317,19 +326,29 @@ html.mobile
       opacity .3
 
 
-  .effect.fog
-    pointer-events none
-    position absolute
-    top 148px
-    left 96px
-    z-index 3
-    opacity 0
-    transition opacity .5s
-    transform translateZ(0)
-    backface-visibility hidden
-    
+  .effect
+    &.fog, &.explosion
+      pointer-events none
+      position absolute
+      transition opacity .5s
+      transform translateZ(0)
+      backface-visibility hidden
+      z-index 3
+      opacity 0
+      
     &.active
       opacity 1
+
+    &.fog
+      top 148px
+      left 96px
+      
+    &.p1.explosion  
+      top 242px
+      left 105px
+    &.p2.explosion
+      top 140px
+      left 150px
 
   .force
     opacity 0

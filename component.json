@@ -7,6 +7,7 @@
     "component/jquery": "1.9.1",
     "component/preloader": "*",
     "publicclass/request-animation-frame": "*",
+    "publicclass/now": "*",
     "publicclass/geom": "*",
     "publicclass/copy": "*",
     "publicclass/stash": "*",
@@ -24,7 +25,6 @@
     "lib/game.js",
     "lib/inp.js",
     "lib/network.js",
-    "lib/camera.js",
     "lib/world.js",
     "lib/arb.js",
     "lib/localization.js",
@@ -46,6 +46,7 @@
     "lib/sim/physics.js",
     "lib/sim/shapes.js",
     "lib/sim/integration.js",
+    "lib/sim/interpolate.js",
     "lib/sim/collisions.js",
     "lib/support/diff.js",
     "lib/support/inspect.js",
@@ -57,7 +58,6 @@
     "lib/support/buffer.js",
     "lib/support/pool.js",
     "lib/support/tick.js",
-    "lib/support/now.js",
     "lib/support/rand.js",
     "lib/support/time-sync.js",
     "lib/support/hash-code.js",
@@ -128,6 +128,7 @@
     "lib/levels/mobile/level3.js",
     "lib/levels/mobile/level4.js",
     "lib/levels/mobile/level5.js",
-    "lib/levels/mobile/level6.js"
+    "lib/levels/mobile/level6.js",
+    "lib/levels/mobile/level7.js"
   ]
 }

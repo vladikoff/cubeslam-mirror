@@ -164,6 +164,45 @@
   50%
     opacity .4
 
+
+@keyframes swipe-device-animation
+  0%, 100%, 27%, 80%
+    transform rotate(0deg)
+  30%, 77%
+    transform rotate(90deg)
+
+@keyframes swipe-game-animation
+  0%, 100%, 27%, 80%
+    transform rotate(90deg) scale(.7) translate(0, 0)
+  50%, 30%, 77%
+    transform rotate(90deg) scale(0.6) translate(10px, -12px)
+
+@keyframes swipe-button-left-animation
+  0%, 100%, 30%, 77%
+    opacity 0
+  32%, 48%
+    opacity 1
+  49%, 75%
+    opacity .3
+
+@keyframes swipe-button-right-animation
+  0%, 100%, 30%, 77%
+    opacity 0
+  32%, 48%
+    opacity .3
+  75%, 49% 
+    opacity 1
+
+@keyframes swipe-line-animation
+  0%, 100%, 27%, 80%
+    transform translate(0,0)
+    width 31px
+  30%, 77%
+    transform translate(12px, 6px)
+    width 23px
+      
+
+
 .destroy-shield__label > p, .destroy-shield__wall, .destroy-shield__shields > div:nth-child(1), .destroy-shield__weapon
   animation 5s cubic-bezier(0.42, 0.8, 1, 1) infinite
 
@@ -319,7 +358,7 @@
   letter-spacing 3px
 
 .loading__anim .ball
-  /*animation loading-ball 2.8s linear infinite both*/
+  animation loading-ball 2.8s linear infinite both
   transform translate(16px, 44px)
   height 3px
 
@@ -327,14 +366,80 @@
   height 13px
 
 .loading__anim .pad:nth-child(1)
-  /*animation loading-pad-left 2.8s linear infinite both*/
+  animation loading-pad-left 2.8s linear infinite both
   transform translateY(40px)
   left 0
 
 .loading__anim .pad:nth-child(3)
-  /*animation loading-pad-right 2.8s linear infinite both*/
+  animation loading-pad-right 2.8s linear infinite both
   transform translateY(55px)
   right 0
+
+.swipe-animation
+  position relative
+  margin-top -120px
+  .device
+    font-size 92px
+    animation swipe-device-animation 7s linear infinite both
+
+  .loading__anim
+    position relative
+    margin 0
+    top -53px
+    left 113px
+    transform rotate(90deg) scale(.7)
+    animation swipe-game-animation 7s linear infinite both
+
+  .dashed-line
+    height 1px
+    width 31px
+    border-top 1px dotted $color-beige
+    absolute top 40px left 89px
+    animation swipe-line-animation 7s linear infinite both
+    content ' '
+    display block
+
+  .keys
+    position absolute
+    top 42px
+    left 90px
+    width 2px
+    height 2px
+    .right, .left
+      width 8px
+      height 8px
+      background $color-beige
+      position absolute
+      content ' '
+      border-radius 8px
+    .left
+      animation swipe-button-left-animation 7s linear infinite both
+    .right
+      left 37px
+      animation swipe-button-right-animation 7s linear infinite both
+
+
+
+.swipe-label
+  position relative
+  top 19px
+  left -45px
+  line-height 1.4em
+  width 300px
+
+  p
+    white-space inherit!important
+    position absolute
+    opacity 0
+    animation 5s cubic-bezier(0.42, 0.8, 1, 1) infinite
+
+    &:nth-child(1)
+      animation-name shield-label-1
+
+    &:nth-child(2)
+      animation-name shield-label-2
+
+
 
 body.game-prompt-start
   .state.game-prompt

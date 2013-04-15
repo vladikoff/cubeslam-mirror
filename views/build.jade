@@ -48,8 +48,8 @@ html(lang='en')
           p.notification.full.bubble(arb:id="friendPlayingSomeoneElse") Your Friend is playing someone else.
           p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
 
-        button.play-friend.green(arb:id='playFriendButton', type='button') Play Friend
-        button.play-computer.start.green(arb:id='playCPUButton', type='button') Play Computer
+        button.play-friend.green(arb:id='playFriendButton', type='button') Play A Friend
+        button.play-computer.start.green(arb:id='playCPUButton', type='button') Play A Bear
         button.play-mobile.start.green(arb:id='playButton', type='button') Play
 
       .links
@@ -90,9 +90,26 @@ html(lang='en')
               p(arb:id='gameInstructionsPause') to pause
             button.green.play(type='button', arb:id='buttonOk') OK (SPACE)
 
-          .vertical-center.hidden
-            .info-animation
+          .vertical-center
+            .info-animation.mobile.hidden
               //GAME INFO ANIMATION
+              .swipe-animation.rotate
+                .icon.device(data-icon='▣')
+                .dashed-line
+                .keys
+                  .left
+                  .right
+                .loading__anim
+                  .pad
+                  .ball
+                  .pad
+
+              .swipe-label
+                p(arb:id='gameInstructionsMobileSwipe') Swipe left/right at the bottom of the screen
+                p(arb:id='gameInstructionsMobilePress') or press left/right buttons in horizontal mode
+          
+          .vertical-center
+            .info-animation.objective.hidden
               .destroy-shield
                 .destroy-shield__anim-container
                   .destroy-shield__wall
@@ -121,7 +138,7 @@ html(lang='en')
             p.share-url
               span.url= urlWithRoomId
             p(arb:id='inviteNotified') We'll let you know when they arrive
-            button.red.return-mainmenu(type='button',arb:id='buttonMainMenu') Main Menu
+            button.green.return-mainmenu(type='button',arb:id='buttonMainMenu') Main Menu
 
     //COUNTDOWN
     section.state.game-prompt.inactive
@@ -183,7 +200,7 @@ html(lang='en')
               li(arb:id='webcamDeniedStep4') Click out of the menu and refresh the page
             .buttons
               p(arb:id='webcamButtonExplanation') or, you can still play the computer
-              a.button.red(href='/', arb:id='buttonMainMenu') Main Menu
+              a.button.green(href='/', arb:id='buttonMainMenu') Main Menu
 
     //WAITING FOR FRIEND CAMERA
     section.state.webcam-waiting.inactive
@@ -318,43 +335,7 @@ html(lang='en')
                   span(arb:id='buttonPlayAgain') Play Again
                   span.keyboard(arb:id='space') (Space)
 
-    section#scores.state.game.inactive
-      .logo
-        img(src="/images/minicubeslam.png", alt='logo')
-        h1 #{name}
-        p.level(arb:id='scoreLevel') Level 
-          span#level 1
-
-      .multiplayer
-        .player
-          p(arb:id='playerYou') You
-          ol
-            li.active
-            li.active
-            li.active
-
-        .opponent
-          p(arb:id='playerFriend') Friend
-          ol
-            li.active
-            li.active
-            li.active
-
-      .singleplayer
-        .player
-          p(arb:id='playerYou') You
-          ol
-            li.active
-            li.active
-            li.active
-
-        .opponent
-          p(arb:id='playerCPU') Bob
-          ol
-            li.active
-            li.active
-            li.active
-
+    //RENDERERS
     #game
       canvas#canv-3d(width='320',height='480')
       canvas#canv-2d(width='320',height='480')
@@ -397,7 +378,9 @@ html(lang='en')
             .shield.shield-8
             .shield.shield-9
         .effects
-          .effect.fog.hidden
+          .effect.fog
+          .effect.explosion.p1
+          .effect.explosion.p2
         .obstacles
           .obstacle.triangle-left
           .obstacle.triangle-right
@@ -405,6 +388,45 @@ html(lang='en')
           .obstacle.diamond
           .obstacle.block-rect
 
+    //GAME SCORES
+    section#scores.state.game.inactive
+      .logo
+        img(src="/images/minicubeslam.png", alt='logo')
+        h1 #{name}
+        p.level(arb:id='scoreLevel') Level 
+          span#level 1
+
+      .multiplayer
+        .player
+          p(arb:id='playerYou') You
+          ol
+            li.active
+            li.active
+            li.active
+
+        .opponent
+          p(arb:id='playerFriend') Friend
+          ol
+            li.active
+            li.active
+            li.active
+
+      .singleplayer
+        .player
+          p(arb:id='playerYou') You
+          ol
+            li.active
+            li.active
+            li.active
+
+        .opponent
+          p(arb:id='playerCPU') Bob
+          ol
+            li.active
+            li.active
+            li.active
+
+    //GAMEEXTRA ICONS
     #extras.state.game.inactive
       ul
         li.icon.deathball(data-icon='*', arb:id='extraDeathBall') Death ball
@@ -420,7 +442,6 @@ html(lang='en')
           span(arb:id='extraMirroredControl') Mirrored Controls
         li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bullet Proof
 
-
     //MOBILE
     section.mobile
       section.state.main-menu.inactive
@@ -435,7 +456,7 @@ html(lang='en')
           button.play.icon(href='#', data-icon='▶', type='button')
           button.sound.icon.sound-switch(href='#', data-icon='♫', data-icon-off='♩', type='button')
           button.info.icon(href='#', data-icon='⌽', type='button')
-      .state.cssinfo.game-cssinfo.game-over-cssinfo
+      .state.cssinfo.game-cssinfo.game-over-cssinfo.inactive
         .content
           div
             img(src='/images/mobile/about.jpg')
@@ -444,7 +465,8 @@ html(lang='en')
           div
             img(src='/images/mobile/gameboard.jpg')
             h2(arb:id='aboutMobileH2') Play friend on desktop
-            p(arb:id='aboutMobileText2') Visit <a href="http://cubeslam.com">cubeslam.com</a> in Chrome on your computer to play face to face against a friend.
+            p(arb:id='aboutMobileText2') Visit cubeslam.com in Chrome on your computer to play face to face against a friend. 
+            a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
             .buttons
               button.green(arb:id='buttonClose') Close
 
@@ -457,9 +479,9 @@ html(lang='en')
           .content.animate
             .vertical-center
               h2(arb:id='errorConnectionHeader') Connection Error
-              p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection
+              p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection.
               .buttons
-                a.button.red(href='', arb:id='buttonReload') Reload
+                a.button.green(href='', arb:id='buttonReconnect') Reconnect 
 
       .state.error-fullroom.inactive
         .dialog.bottom
@@ -469,18 +491,18 @@ html(lang='en')
               p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
               p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
               .buttons
-                button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
-                a.button.red(href='/', arb:id='buttonNewGame') New Game
+                button.main-menu.green(type='button', arb:id='buttonMainMenu') Main Menu
+                a.button.green.new(href='/', arb:id='buttonNewGame') New Game
 
       .state.error-datachannels.inactive
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorDCHeader') Browser not supported
-              p(arb:id='errorDCBrowserSupport') Sorry, the two-player game requires DataChannels. Please try again using Chrome
+              h2(arb:id='errorDCHeader') Please try in Chrome
+              p(arb:id='errorDCBrowserSupport') Sorry, the two-player game requires Chrome.
               .buttons
-                a.button.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
-                button.main-menu.red(type='button', arb:id='buttonMainMenu') Main Menu
+                a.button.green(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
+                button.main-menu.green(type='button', arb:id='buttonMainMenu') Main Menu
 
       .state.error-browser.inactive
         .dialog.bottom
@@ -489,7 +511,7 @@ html(lang='en')
               h2(arb:id='errorBrowserHeader') Browser not supported
               p(arb:id='errorBrowserSupport') Sorry, this game does not support your browser
               .buttons
-                a.button.red(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
+                a.button.green(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
 
       //section.error.network-missing
         .dialog.bottom
@@ -497,6 +519,7 @@ html(lang='en')
             .vertical-center
               button.main-menu(type='button', arb:id='buttonMainMenu') Main Menu
 
+    //FOOTER
     footer#footer
       ul#socials.social
         li
@@ -522,6 +545,11 @@ html(lang='en')
               span.off(arb:id='soundOn') Sound on
               span.on(arb:id='soundOff') Sound off
 
+    #notifications
+      #latency.dialog.top
+        .content
+          h1.alert-info(arb:id='latency') You seem to be too far away from your friend to be able to play this smoothly, but keep going!
+
     #fpsCameraCapture
 
     #settingsGUIContainer
@@ -532,7 +560,7 @@ html(lang='en')
     #debug-info
       pre
 
-    #latency
+    #latencyMeter
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/dat.gui.js')
