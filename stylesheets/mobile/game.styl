@@ -3,9 +3,9 @@ $h = 480px
 
 @keyframes extra-icon-pulse
   0%, 100% 
-    transform translate(0, 0px) scale(.9)
+    transform translate(0, 0px) scale(.8)
   50%
-    transform translate(0, -7px) scale(1.1)
+    transform translate(0, -7px) scale(1)
 
 @keyframes effect-ghostball-pulse
   0%, 100% 
@@ -116,10 +116,10 @@ html.mobile
     .arena
       width $w
       // transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
-      transform-style preserve-3d
-      // backface-visibility hidden
+      -moz-transform-style preserve-3d
+      -moz-backface-visibility hidden
       absolute top 290px left 94px
-      z=index 1
+      z-index 1
 
     .shields
       position absolute 
@@ -268,22 +268,21 @@ html.mobile
     absolute top 21px left 62px
 
   .extra
-    transform-style preserve-3d
     backface-visibility hidden
     transform-origin 50% 50% 0
     position absolute
     .icon
       background-color transparent
       backface-visibility hidden
-      // animation extra-icon-pulse 1s infinite
+      animation extra-icon-pulse 1s infinite
 
   .puck
     position absolute
     display block
     backface-visibility hidden
-    transform-style preserve-3d
     transform-origin 50% 50% 0
     transition -webkit-filter .5s
+    z-index 4
 
     .icon
       position absolute
@@ -352,7 +351,6 @@ html.mobile
 
   .force
     opacity 0
-    // display none
     position absolute 
     left 38% 
     top 98px
@@ -394,7 +392,6 @@ html.mobile
   display block
   background-repeat no-repeat
   position absolute
-  transform-style preserve-3d
   backface-visibility hidden
   transform-origin 50% 50% 0
 
@@ -403,6 +400,9 @@ html.mobile
 
   &.fireball
     opacity .3
+
+#p1
+  z-index 5
 
 #p2
   z-index 3
