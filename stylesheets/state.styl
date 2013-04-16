@@ -211,18 +211,16 @@
         height auto
         bottom 0
         position absolute
-    h1, h2
+    h1, h3
       font-size 14px
       padding 0
       color $color-red
       margin 0
       line-height 1.5em
 
-    h1
+    h1, h3
       margin-top 30px
-
-    h2
-      margin-bottom 22px
+      margin-bottom 5px
 
     h3
       margin 16px 0 0 
@@ -230,16 +228,18 @@
     p, ol
       font-size 11px
       color $color-red
+      letter-spacing 2px
     ol
       list-style inside
       list-style-type decimal
       line-height 1.65em
+      margin-bottm 10px
       li
         &:before
           counter-increment item
 
-    button, .button
-      margin 10px 0px 30px 0px
+    button, a.button
+      margin 20px 0px 30px 0px
     .alert-info
         padding-right 200px
 
@@ -334,6 +334,7 @@
       position relative
       z-index 1
       font-style normal
+      letter-spacing 0
 
   &.game-instructions
     z-index 3
