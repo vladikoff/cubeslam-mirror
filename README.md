@@ -75,6 +75,8 @@ Add these to the URL querystring to toggle some flags.
   * `momentum` - set to `off` to turn off paddle momentum
   * `round` - set to a number to start at that particular round
   * `extras` - set to a comma separated list of extras to override the level extras.
+  * `framerate` - set to a number to set the games framerate
+  * `speed` - set to a number to set the games unit speed. which all speeds are based upon.
 
 ### Localization
 

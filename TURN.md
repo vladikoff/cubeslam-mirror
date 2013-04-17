@@ -4,3 +4,7 @@
 [2013-03-07 02:09:54] Alfred: Och för att kolla hur många befintliga anslutning som restund tycker finns så kör man:
 echo turnstats | nc -w 1 -u 127.0.0.1 33000 | grep allocs_cur
 [2013-03-07 02:10:26] Alfred: restund behåller dock allokeringen/anslutningen rätt så länge efter att data ha slutat skickas, så man kan ta den med en nypa salt..
+
+| instance-1364489529-2817 - eu
+| instance-1364674394-5085 - us
+$ python2.6 /usr/local/Cellar/gcutil/1.7.2/libexec/lib/google_compute_engine/gcutil/gcutil --project=turnserver ssh instance-1364674394-5085

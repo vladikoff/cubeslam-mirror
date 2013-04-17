@@ -2,29 +2,29 @@ $w = 768px
 $h = 480px
 
 @keyframes extra-icon-pulse
-  0%, 100% 
+  0%, 100%
     transform translate(0, 0px) scale(.8)
   50%
     transform translate(0, -7px) scale(1)
 
 @keyframes effect-ghostball-pulse
-  0%, 100% 
+  0%, 100%
     opacity .4
   50%
     opacity .1
 
 @keyframes effect-timebomb-pulse
-  0%, 100% 
+  0%, 100%
     opacity 1
   50%
     opacity .6
 
 @keyframes effect-screen
-  0% 
+  0%
     opacity 0
-  15% 
+  15%
     opacity 1
-  75% 
+  75%
     opacity 1
   100%
     opacity 0
@@ -36,12 +36,19 @@ $h = 480px
     background-position: 250px -616px
 
 html.mobile
+  #game #canv-2d
+    position fixed
+    top 20px
+    left 0
+    z-index 10
+    opacity 0.5
+
   #canv-css
     display block
     width $w
     height $h
-    position relative 
-    top -260px 
+    position relative
+    top -260px
     left -1 * $w * .5
     transform-origin 50% 55%
     backface-visibility hidden
@@ -57,7 +64,7 @@ html.mobile
       background-size cover
       transform translateZ(0)
       backface-visibility hidden
-      transition -webkit-filter 1.5s 
+      transition -webkit-filter 1.5s
 
       img
         width 100%
@@ -67,7 +74,7 @@ html.mobile
       .screen
         absolute top 390px left 635px
         .hit-player, .hit-cpu
-          position absolute 
+          position absolute
           top 0
           opacity 0
           // transition opacity .4s
@@ -81,12 +88,12 @@ html.mobile
             // display none
 
       .bear
-        position absolute 
-        top 390px 
+        position absolute
+        top 390px
         left 679px
         transform translateZ(0)
         backface-visibility hidden
-        // > * 
+        // > *
         //   transform translateZ(0)
         //   backface-visibility hidden
 
@@ -94,7 +101,7 @@ html.mobile
           position absolute
           top 0
           left 166px
-        
+
       .swipe-instruction
         background transparent url('/images/mobile/swipe-arrows.png') no-repeat
         width 186px
@@ -124,7 +131,7 @@ html.mobile
       z-index 1
 
     .shields
-      position absolute 
+      position absolute
       top 0
       letter-spacing 0
       font-size 0
@@ -133,7 +140,7 @@ html.mobile
       backface-visibility hidden
 
       .shields-a, .shields-b
-        position absolute 
+        position absolute
         top 0px
 
       .shield
@@ -257,7 +264,7 @@ html.mobile
         .s9-09
           left 230px
 
-  #expressions 
+  #expressions
     // transform translateZ(0)
     // backface-visibility hidden
   .angry
@@ -336,15 +343,15 @@ html.mobile
       backface-visibility hidden
       z-index 3
       opacity 0
-      
+
     &.active
       opacity 1
 
     &.fog
       top 148px
       left 96px
-      
-    &.p1.explosion  
+
+    &.p1.explosion
       top 242px
       left 105px
     &.p2.explosion
@@ -353,8 +360,8 @@ html.mobile
 
   .force
     opacity 0
-    position absolute 
-    left 38% 
+    position absolute
+    left 38%
     top 98px
     margin-left -126px
     transform translateZ(0) matrix3d(1, 0, 0, 0, 0, 0.11667073709933327, 0.993170649538486, 0, 0, -0.993170649538486, 0.11667073709933327, 0, 0, 133.06863596332892, -778.6025754663666, 1)
@@ -382,14 +389,14 @@ html.mobile
     .triangle-right
       top 210px
       left 497px
-    .hexagon
+    .octagon
       top 209px
       left 302px
     .diamond
       top 209px
       left 305px
 
-#p1, 
+#p1,
 #p2
   display block
   background-repeat no-repeat
@@ -397,7 +404,7 @@ html.mobile
   backface-visibility hidden
   transform-origin 50% 50% 0
 
-  .gfx 
+  .gfx
     transition transform .5s cubic-bezier(0.000, 0.000, 0.405, 1.650)
 
   &.fireball
