@@ -58,6 +58,12 @@ func Main(w http.ResponseWriter, r *http.Request) {
   roomName := strings.TrimLeft(r.URL.Path,"/")
   userName := Random(10)
 
+  // to make sure that players have the same settings
+  // in multiplayer we include the query in the room nama
+  if r.URL.RawQuery != "" {
+    roomName = roomName + "?"+r.URL.RawQuery
+  }
+
   // Data to be sent to the template:
   data := Template{Room:roomName, User: userName, AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer() }
 
