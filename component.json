@@ -91,6 +91,7 @@
     "lib/levels/sets/index.js",
     "lib/levels/sets/empty.js",
     "lib/levels/sets/barrier.js",
+    "lib/levels/sets/pipe.js",
     "lib/levels/sets/breakout.js",
     "lib/levels/sets/triangles.js",
     "lib/levels/sets/diamond.js",
