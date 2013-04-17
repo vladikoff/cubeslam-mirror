@@ -61,19 +61,19 @@ console.log(byteSize(hashCode(world0)))
 
 function byteSize(n){
   if( range(n,-Math.pow(2,8)/2,Math.pow(2,8)/2) )
-    return 'int8 - '+n;
+    return '  int8 - '+n;
   if( range(n,0,Math.pow(2,8)) )
-    return 'uint8 - '+n;
+    return ' uint8 - '+n;
   if( range(n,-Math.pow(2,16)/2,Math.pow(2,16)/2) )
-    return 'int16 - '+n;
+    return ' int16 - '+n;
   if( range(n,0,Math.pow(2,16)) )
     return 'uint16 - '+n;
   if( range(n,-Math.pow(2,32)/2,Math.pow(2,32)/2) )
-    return 'int32 - '+n;
+    return ' int32 - '+n;
   if( range(n,0,Math.pow(2,32)) )
     return 'uint32 - '+n;
   if( range(n,-Math.pow(2,64)/2,Math.pow(2,64)/2) )
-    return 'int64 - '+n;
+    return ' int64 - '+n;
   if( range(n,0,Math.pow(2,64)) )
     return 'uint64 - '+n;
   return 'string'
