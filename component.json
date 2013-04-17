@@ -23,7 +23,6 @@
     "lib/settings.js",
     "lib/app.js",
     "lib/game.js",
-    "lib/inp.js",
     "lib/network.js",
     "lib/world.js",
     "lib/arb.js",
