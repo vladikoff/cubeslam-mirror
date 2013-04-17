@@ -1,6 +1,5 @@
 footer#footer
   display block
-  overflow hidden
   height 40px
   background #000
   position absolute
@@ -86,6 +85,33 @@ footer#footer
     &.on .on,
     &.off .off
       display inline
+
+  #multiplayer-notification
+    display none
+    position absolute
+    top -77px
+    right 30px
+    padding 18px 15px 0
+    background #000
+    height 46px
+    box-sizing border-box
+    color $color-beige
+    font-size 9px
+    white-space nowrap
+    text-align left
+
+    &:before
+      content ' '
+      width 0px
+      height 0px
+      border-style solid
+      border-width 0 15px 15px 0
+      border-color transparent #000 transparent transparent
+      display block
+      position absolute
+      right 15px 
+      bottom -15px
+
 
 body.loading
   footer#footer

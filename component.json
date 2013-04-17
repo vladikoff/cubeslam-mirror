@@ -29,6 +29,7 @@
     "lib/localization.js",
     "lib/ai.js",
     "lib/dmaf.min.js",
+    "lib/sound.js",
     "lib/themes.js",
     "lib/puppeteer.js",
     "lib/inputs/index.js",
