@@ -78,11 +78,11 @@ html.mobile
           top 0
           opacity 0
           // transition opacity .4s
-          transform translateZ(0)
-          backface-visibility hidden
           &.active
             opacity 1
             animation effect-screen 2.4s
+            transform translateZ(0)
+            backface-visibility hidden
           &.hidden
             opacity 0
             // display none
@@ -123,8 +123,10 @@ html.mobile
     .arena
       width $w
       // transform rotateX(83.3deg) translateX(0%) translateZ(-223px) translateY(-74%)
-      -moz-transform-style preserve-3d
-      -moz-backface-visibility hidden
+      // -moz-transform-style preserve-3d
+      // -moz-backface-visibility hidden
+      transform-style preserve-3d
+      backface-visibility hidden
       absolute top 290px left 94px
       z-index 1
 
