@@ -406,9 +406,24 @@ html.mobile
 
   .gfx
     transition transform .5s cubic-bezier(0.000, 0.000, 0.405, 1.650)
+    transition-property transform, opacity
+    position absolute
+    z-index 1
 
   &.fireball
-    opacity .3
+    .gfx
+      opacity .8
+    &:before
+      position absolute
+      width 60%
+      height 50%
+      background yellow
+      top 0
+      margin 7% 20%
+      box-sizing border-box
+      opacity 0.8
+      z-index 0
+      content ' '
 
 #p1
   z-index 5
