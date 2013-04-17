@@ -94,6 +94,7 @@
     "lib/levels/sets/triangles.js",
     "lib/levels/sets/diamond.js",
     "lib/levels/sets/hexagon.js",
+    "lib/levels/sets/octagon.js",
     "lib/levels/sets/center-attract.js",
     "lib/levels/sets/diagonal-attract.js",
     "lib/levels/sets/diagonal-blocks.js",
