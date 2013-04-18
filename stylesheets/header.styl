@@ -10,18 +10,14 @@ header.main-menu
 
   &.active
     opacity 1
-
-    h1 img
-      transition opacity .6s
+    .hgroup
       opacity 1
 
 
   &.inactive
     opacity 0
-
-    h1 img
+    .hgroup
       opacity 0
-      transform translateZ(0)
 
   p
     margin 0
@@ -58,16 +54,25 @@ header.main-menu
     .notification
       display none
 
+  .hgroup
+    transform translateZ(0)
+    transition opacity .6s
+    &.delay
+      transition-delay 3.5s
 
   h1
-    padding 60px 0px 10px 0px
+    padding 60px 0px 20px 0px
+    margin 0
 
     img
       width 70%
       height auto
       margin-bottom 0
-      &.delay
-        transition-delay 3.5s
+
+  h2
+    font-size 12px
+    margin 0
+    color $color-beige
 
   .links
     .experiment, .from
