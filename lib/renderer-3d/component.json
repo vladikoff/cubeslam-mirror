@@ -8,6 +8,7 @@
     "materials.js",
     "player.js",
     "environment.js",
+    "generate-forrest.js",
     "effects.js",
     "effect-skins.js",
     "cpu.js",
