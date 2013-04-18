@@ -71,6 +71,7 @@ Add these to the URL querystring to toggle some flags.
 
 ### Game play
 
+  * 'quality' - Render/performance quality in webgl. Valid values is 'high' (quality) and 'low' (performance)
   * `god` - no player can die
   * `momentum` - set to `off` to turn off paddle momentum
   * `round` - set to a number to start at that particular round
