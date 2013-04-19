@@ -1,6 +1,5 @@
 
 // eps as defined in states/game
-
 var GAME_EPS = 1e-6;
 function gameEPS(x){ return Math.round(x/GAME_EPS) * GAME_EPS }
 
@@ -25,14 +24,15 @@ function ceilEPS(x){ return Math.round(Math.ceil(x/HASH_EPS) * HASH_EPS) }
 
 function testEPS(fn,a,b){
   try {
-    console.assert(fn(a) === fn(b),'- %s %s should equal %s',fn.name,fn(a),fn(b));
-    console.log('  %s',fn.name)
+    console.assert(fn(a) === fn(b),'%s %s should equal %s',fn.name,fn(a),fn(b));
+    console.log('  ok %s',fn.name)
   } catch(e){
-    console.warn(e.message)
+    console.warn('  fail %s %s',e.message)
   }
 }
 
 function test(a,b){
+  console.log('testing if %s ~== %s',a,b)
   testEPS(hashEPS,a,b)
   testEPS(gameEPS,a,b)
   testEPS(floorEPS,a,b)
@@ -46,3 +46,4 @@ function test(a,b){
 // test values from failed hashes
 test(202.4999943566786,202.50000073437667)
 test(202.9999943566786,203.00000073437667)
+test(937.4917403425054,937.5014297671311)
