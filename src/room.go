@@ -64,6 +64,7 @@ func (r *Room) RemoveUser(user string) bool {
 }
 
 func (r *Room) AEConnectUser(user string) {
+  r.AddUser(user) // Adds the user if it was not added already
   if user == r.User1 {
     r.AEConnected1 = true
   }
@@ -73,6 +74,7 @@ func (r *Room) AEConnectUser(user string) {
 }
 
 func (r *Room) JSConnectUser(user string) {
+  r.AddUser(user) // Adds the user if it was not added already
   if user == r.User1 {
     r.JSConnected1 = true
   }

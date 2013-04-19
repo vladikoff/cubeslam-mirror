@@ -71,23 +71,12 @@ func Main(w http.ResponseWriter, r *http.Request) {
   // skip rooms when using WebSocket signals
   if appchan {
 
-    // doesn't work locally (unless we have a turn server running)
-    // so disabling it in dev for now...
-    if !appengine.IsDevAppServer() {
-      turnclient := new(TurnClient)
-      turnclient.SetProperties(c, r)
-      err := PutTurnClient(c, userName, roomName, turnclient)
-      if err != nil {
-        c.Criticalf("Could not save TurnClient: %s", err)
-      }
-    }
-
     room, err := GetRoom(c, roomName)
 
     // Empty room
     if err != nil {
       room := new(Room)
-      room.AddUser(userName)
+      // room.AddUser(userName)
       c.Debugf("Created room %s",roomName)
       if err := PutRoom(c, roomName, room); err != nil {
         c.Criticalf("!!! could not save room: %s", err)
@@ -97,8 +86,8 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
     // Join room
     } else if room.Occupants() == 1 {
-      room.AddUser(userName)
-      c.Debugf("Joined room %s",roomName)
+      // room.AddUser(userName)
+      // c.Debugf("Joined room %s",roomName)
       if err := PutRoom(c, roomName, room); err != nil {
         c.Criticalf("could not save room: %s", err)
         return;
@@ -197,15 +186,6 @@ func Connected(c appengine.Context, w http.ResponseWriter, r *http.Request, room
 
   signal, _ := GetSignal(c, MakeClientId(roomName, userName))
 
-  if turnclient, err := GetTurnClient(c, userName, roomName); err == nil {
-    if err := signal.Send(c, turnclient.TurnConfig(c)); err != nil {
-      c.Criticalf("Error while sending turn credentials:",err)
-    }
-    DeleteTurnClient(c, userName, roomName) // Remove this data from Datastore when it has been sent to the client.
-  } else {
-    c.Debugf("No TURN client found:",err)
-  }
-
   // send connected to both when room is complete
   if room.Occupants() == 2 {
     otherUser := room.OtherUser(userName)
@@ -269,24 +249,6 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
   }
 }
 
-func TurnServerAnnouncement(w http.ResponseWriter, r *http.Request) {
-
-  // How to validate the origin of those requests? (And is it necessary to validate that?)
-
-  c := appengine.NewContext(r)
-
-  euTurnServer := new(TurnServer)
-  euTurnServer.SetIP(r.FormValue("europe-west"))
-  euTurnServer.SetSharedKey(r.FormValue("europe-west_data"))
-
-  usTurnServer := new(TurnServer)
-  usTurnServer.SetIP(r.FormValue("us-central"))
-  usTurnServer.SetSharedKey(r.FormValue("us-central_data"))
-
-  PutTurnServer(c, "eu", euTurnServer)
-  PutTurnServer(c, "us", usTurnServer)
-}
-
 func Expire(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -306,7 +268,6 @@ func Expire(w http.ResponseWriter, r *http.Request) {
   }
   w.Write([]byte("OK"))
 }
-
 
 func Occupants(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
@@ -429,7 +390,6 @@ func init() {
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", JSConnected)
   http.HandleFunc("/disconnect", Disconnected)
-  http.HandleFunc("/gce_announce", TurnServerAnnouncement)
   http.HandleFunc("/_expire", Expire)
   http.HandleFunc("/_occupants", Occupants)
   http.HandleFunc("/_ah/channel/connected/", AEConnected)
