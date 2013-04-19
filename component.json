@@ -62,6 +62,7 @@
     "lib/support/time-sync.js",
     "lib/support/hash-code.js",
     "lib/support/exclude.js",
+    "lib/support/estimate-slow-down.js",
     "lib/support/improved-noise.js",
     "lib/states/index.js",
     "lib/states/error.js",
