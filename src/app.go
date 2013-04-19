@@ -76,7 +76,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
     // Empty room
     if err != nil {
       room := new(Room)
-      room.AddUser(userName)
+      // room.AddUser(userName)
       c.Debugf("Created room %s",roomName)
       if err := PutRoom(c, roomName, room); err != nil {
         c.Criticalf("!!! could not save room: %s", err)
@@ -86,8 +86,8 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
     // Join room
     } else if room.Occupants() == 1 {
-      room.AddUser(userName)
-      c.Debugf("Joined room %s",roomName)
+      // room.AddUser(userName)
+      // c.Debugf("Joined room %s",roomName)
       if err := PutRoom(c, roomName, room); err != nil {
         c.Criticalf("could not save room: %s", err)
         return;
