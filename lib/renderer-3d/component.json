@@ -9,6 +9,7 @@
     "player.js",
     "environment.js",
     "generate-forrest.js",
+    "bullet.js",
     "shield.js",
     "effects.js",
     "effect-skins.js",
