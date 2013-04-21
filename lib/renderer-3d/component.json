@@ -17,7 +17,6 @@
     "cpu.js",
     "camera-controller.js",
     "animals.js",
-    "object-pool.js",
     "animals/bear.js",
     "animals/bird1.js",
     "animals/bird4.js",
