@@ -61,18 +61,32 @@ html.about(lang='en')
       var $ = require('component-jquery')
         , sections = $('section')
         , timer
-        , touch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+        , touch = 'ontouchstart' in window || navigator.msMaxTouchPoints
+        , ol = $('<ol id="nav"></ol>');
+
+      sections.each(function(){
+        var id = $(this).attr('id');
+        ol.append('<li><a href="#'+id+'"></a></li>')
+      })
+      ol.find('a').click(function(){
+        $('body').css('paddingTop', $('header').height());
+        sections.removeClass('sticky');
+        var t = $($(this).attr('href')).offset().top;
+        $(window).scrollTop(t);
+      })
+      $('body').append(ol);
 
       if( touch ){ 
         $('html').addClass('touch')
       } else {
+        var wheight = 0;
         $(window).resize(function(){
           if( timer )
             clearTimeout( timer );
           timer = setTimeout(function(){
-            var h = $(window).height();
-            if($('section').outerHeight() < h)
-              $('section').css('height',h)
+            wheight = $(window).height()
+            if($('section').outerHeight() < wheight)
+              $('section').css('height',wheight)
             else
               $('section').removeAttr('style');
           }, 100)
@@ -80,17 +94,21 @@ html.about(lang='en')
 
         $(window).scroll(function(){
           var scrollTop = $(window).scrollTop()
-            , height = $(window).height()
             , padding = np = $('header').height()
             , changed = $();
           $('body').css('paddingTop', padding);
           sections.removeClass('sticky').each( function(){
             var el = $(this)
               , oh = el.outerHeight();
-            if(el.offset().top + oh <= height + scrollTop) {
+            if(el.offset().top + oh <= wheight + scrollTop) {
               np += oh;
               changed = changed.add(this);
             } 
+            if(el.offset().top - (oh/2) < scrollTop) {
+              var id = el.attr('id');
+              $('[href="#'+id+'"]').parent().addClass('active')
+              .siblings().removeClass('active');
+            }
           })
           if(np != padding) {
             $('body').css('paddingTop', np);
