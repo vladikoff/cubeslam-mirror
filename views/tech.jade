@@ -82,9 +82,11 @@ html.about(lang='en')
         var wheight = 0;
         $(window).resize(function(){
           wheight = $(window).height()
-          $('section').removeAttr('style');
-          if($('section').outerHeight() < wheight)
-            $('section').css('height',wheight)
+          sections.removeAttr('style');
+          sections.each( function(){
+            if($(this).outerHeight() < wheight)
+              $(this).css('height',wheight)
+          })
           $(window).scroll();
         }).resize();
 
