@@ -94,7 +94,7 @@ html.mobile
       display none
 
 
-  #mobile-menu
+  #mobile-menum, .cssinfo .buttons
     position absolute 
     top 45px 
     right 0
@@ -114,6 +114,11 @@ html.mobile
       &.pause
         background $color-beige
         color $color-blue
+        position absolute 
+        right 0
+        z-index 1
+        transition transform 250ms
+        transition-delay .7s
       &.sound
         background $color-green
         color #306e2b
@@ -123,12 +128,11 @@ html.mobile
       &.info
         background $color-yellow
         color #b58d33
-      &.pause
-        position absolute 
-        right 0
-        z-index 1
-        transition transform 250ms
-        transition-delay .7s
+      &.return
+        background #ffd059
+        color #b58d33
+        
+
 
     .game-pause, .game-play
       transform translateX(0)
