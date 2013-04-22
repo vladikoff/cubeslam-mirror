@@ -53,6 +53,14 @@
         font-size 136px
         margin-bottom 20px
 
+  &.state.friend-arrived, 
+  &.state.friend-waiting
+    h2, h3
+      padding 9px 0px 21px 0px
+
+  &.state.friend-accept
+    h2
+      padding 10px 0px 5px 0px    
 
   &.state.game-instructions,
   &.state.game-start
@@ -248,6 +256,7 @@
      .dialog
       .animate
         transition-delay 1.5s
+
 
   &.game-over
     text-align center
