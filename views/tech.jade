@@ -81,15 +81,11 @@ html.about(lang='en')
       } else {
         var wheight = 0;
         $(window).resize(function(){
-          if( timer )
-            clearTimeout( timer );
-          timer = setTimeout(function(){
-            wheight = $(window).height()
-            if($('section').outerHeight() < wheight)
-              $('section').css('height',wheight)
-            else
-              $('section').removeAttr('style');
-          }, 100)
+          wheight = $(window).height()
+          $('section').removeAttr('style');
+          if($('section').outerHeight() < wheight)
+            $('section').css('height',wheight)
+          $(window).scroll();
         }).resize();
 
         $(window).scroll(function(){
