@@ -1,4 +1,4 @@
-dmaf("CheckMobile", ["DMAF", "Instance", "ActionManager"], function (DMAF, Instance, ActionManager) {
+dmaf("CheckMobile", ["DMAF", "Instance", "events"], function (DMAF, Instance, events) {
 
     var music_started = false;
 
@@ -30,26 +30,26 @@ dmaf("CheckMobile", ["DMAF", "Instance", "ActionManager"], function (DMAF, Insta
                     case "splash_screen":
                         if (isMobile.any() === null) {
                             //DO THIS IF IT'S A DESKTOP BROWSER
-                            ActionManager.onEvent("init_beatpatternplayer");
-                            ActionManager.onEvent("splash_screen_music");
+                            events.dispatch("init_beatpatternplayer");
+                            events.dispatch("splash_screen_music");
                         } else {
                             //DO THIS IF IT'S A MOBILE BROWSER
                             if (music_started === true) {
-                                ActionManager.onEvent("splash_screen_music");
+                                events.dispatch("splash_screen_music");
                             }
                         }
                         break;
                     case "info_screen":
                         if (isMobile.any() === null) {
                             //DO THIS IF IT'S A DESKTOP BROWSER
-                            ActionManager.onEvent("info_screen_music");
+                            events.dispatch("info_screen_music");
                         } else {
                             //DO THIS IF IT'S A MOBILE BROWSER
                             if (music_started === true) {
-                                ActionManager.onEvent("info_screen_music");
+                                events.dispatch("info_screen_music");
                             } else {
-                                ActionManager.onEvent("init_beatpatternplayer");
-                                ActionManager.onEvent("info_screen_music");
+                                events.dispatch("init_beatpatternplayer");
+                                events.dispatch("info_screen_music");
                                 music_started = true;
                             }
                         }
