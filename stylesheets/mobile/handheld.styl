@@ -44,6 +44,9 @@ html.mobile
   , #notifications
   , #settingsGUIContainer
   , #debug-info
+  , #canv-3d
+  , #canv-2d
+  , #canv-db
     display none!important
 
   // #settingsGUIContainer
@@ -59,11 +62,16 @@ html.mobile
     h1
       padding 0 0 0 0
       margin 0
+
+    h2
+      display none
+
+    .hgroup.delay
+      transition-delay 0s
+
+    .hgroup
       position relative 
       top 5%
-
-      img.delay
-        transition-delay 0s
 
     .nav
       bottom 70px
@@ -142,7 +150,6 @@ html.mobile
       height 60px
       margin-top -30px
       top 50%
-      transform translateZ(0)
       backface-visibility hidden
 
     // .content
@@ -317,7 +324,7 @@ html.mobile
 
     .dialog
       .content.animate
-        transition-duration 1ms
+        transition-duration 0ms
 
     &.game-instructions
       .game-controls
