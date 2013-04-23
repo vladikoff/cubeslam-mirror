@@ -18,7 +18,7 @@ var r = new Reader(msg);
 console.assert(r.getUint16()  === 0) // frame
 console.assert(r.getInt8()    === MOVE_X[0])
 console.assert(r.getUint8()   === MOVE_X[1])
-console.assert(r.getFloat32() === MOVE_X[2])
+console.assert(r.getFloat64() === MOVE_X[2])
 console.assert(r.getInt8()    === HIT_A[0])
 console.assert(r.getUint8()   === HIT_A[1])
 
