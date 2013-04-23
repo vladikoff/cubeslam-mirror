@@ -41,9 +41,9 @@ html(lang='en')
   body(class="{{.State}}")
     header.state.main-menu.animate.inactive
       .hgroup
+        h2(arb:id="playFaceToFace") Play face-to-face against your friends
         h1
           img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
-        h2(arb:id="playFaceToFace") Play face-to-face against your friends
 
       .nav
         .notifications
@@ -461,12 +461,12 @@ html(lang='en')
       .state.cssinfo.game-cssinfo.game-over-cssinfo.inactive
         .content
           div
-            h1(arb:id='aboutMobileH1') About
-            p(arb:id='aboutMobileText1') Cube slam is a chrome experiment built to showcase the latest technology in Google Chrome.
+            h1(arb:id='aboutMobileH1') About Mobile Cube Slam
+            p(arb:id='aboutMobileText1') Cube Slam is a chrome experiment built to showcase the latest technology in Google Chrome.
           div
-            img(src='/images/mobile/gameboard.jpg')
+            img(src='/images/mobile/gameboard.jpg', width='600', height='281')
             p(arb:id='aboutMobileText2') Visit cubeslam.com in Chrome on your computer to play face to face against a friend.
-            a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
+            a.terms(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
             .buttons
               button.return.icon(href='#', data-icon='↩', type='button')
 
@@ -557,7 +557,12 @@ html(lang='en')
             a.sound-switch.off(href='#')
               span.off(arb:id='soundOn') Sound on
               span.on(arb:id='soundOff') Sound off
-            p#multiplayer-notification(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
+            p#multiplayer-notification.notification-flag(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
+          li.latency.inactive
+            div#latencyMeter.good 
+              span 331
+              p#latency-notification.notification-flag(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
+
 
     #notifications
       #latency.dialog.top
@@ -573,8 +578,6 @@ html(lang='en')
 
     #debug-info
       pre
-
-    #latencyMeter
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/dat.gui.js')

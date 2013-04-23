@@ -7,6 +7,10 @@
   &.active
     visibility visible
 
+  &.inactive .dialog.middle .content
+    transform-origin center center
+    transform rotateX( -90deg )
+
   &.loading
     position relative
     background-color $color-beige
@@ -73,12 +77,6 @@
     top 0
     left 0
     z-index 3
-    perspective 2000px
-    transform rotateX( 0 )
-
-  &.inactive .dialog.middle .content
-    transform-origin center center
-    transform rotateX( -90deg )
 
   &.friend-invite
     .share-url
@@ -368,30 +366,34 @@
     .content
       margin 0 auto
       width 320px
-      padding 30px 0 10px
+      padding 15px 0 10px
       box-sizing border-box
-
-      div
-        margin-bottom 30px
 
     img
       width 100%
-      margin 0 auto
+      height auto
+      margin 15px auto
 
     p
-      text-align justify
+      text-align center
       margin 0
 
     p, a
       color $color-beige
       font-size 13px
       line-height 1.4em
+      letter-spacing 0
       text-transform inherit
 
-    button
-      width 100%
-      border none
-      outline none
+
+    .terms
+      display block
+      padding 15px
+      text-align center
+
+
+    .buttons
+      position fixed!important
 
     h1, h2
       color $color-beige
@@ -399,4 +401,7 @@
       line-height 1.4em
       text-transform uppercase
       text-align center
+      margin 27px auto 0px
+      max-width 220px
+      min-height 60px
 

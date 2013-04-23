@@ -78,6 +78,15 @@ footer#footer
         text-decoration none
         &:hover
           text-decoration underline
+      
+      &.sound, &.latency
+        position relative
+
+      &.latency
+        text-transform lowercase
+        &.inactive
+          display none
+
 
   .sound-switch
     .on, .off
@@ -86,11 +95,11 @@ footer#footer
     &.off .off
       display inline
 
-  #multiplayer-notification
+  .notification-flag
     display none
     position absolute
-    top -77px
-    right 30px
+    top -92px
+    right 10px
     padding 18px 15px 0
     background #000
     height 46px

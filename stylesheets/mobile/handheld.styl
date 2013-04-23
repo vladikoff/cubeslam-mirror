@@ -52,7 +52,7 @@ html.mobile
   // #settingsGUIContainer
 
   .dialog
-    bottom $footer-height
+    bottom 0
 
   header
     background no-repeat center center
@@ -72,6 +72,7 @@ html.mobile
     .hgroup
       position relative 
       top 5%
+      padding 0
 
     .nav
       bottom 70px
@@ -165,6 +166,10 @@ html.mobile
       backface-visibility hidden
       h1, h2, h3, h4
         font-size 30px
+
+      h4.over
+        font-size 25px
+
 
   footer#footer
     display none
@@ -327,8 +332,13 @@ html.mobile
       visibility visible
 
     .dialog
+      background $color-beige
+      transform-style preserve-3d
+      backface-visibility hidden
+      transform translateZ(0)
       .content.animate
-        transition-duration 0ms
+        transition none
+        // transition-duration 0ms
 
     &.game-instructions
       .game-controls
@@ -341,11 +351,6 @@ html.mobile
         transition none
       &.inactive
         display none!important
-        .content
-          transform translateX(-100%)
-      &.active
-        .content
-          transform translateX( 0 )
     &.game-over
       .dialog
         h1
@@ -395,6 +400,10 @@ html.mobile
   .state.game-instructions
     #game-controls
       display none
+
+  .game-instructions
+    #game
+      visibility hidden!important
 
   #game
     opacity 1
