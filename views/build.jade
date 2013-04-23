@@ -557,7 +557,12 @@ html(lang='en')
             a.sound-switch.off(href='#')
               span.off(arb:id='soundOn') Sound on
               span.on(arb:id='soundOff') Sound off
-            p#multiplayer-notification(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
+            p#multiplayer-notification.notification-flag(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
+          li.latency.inactive
+            div#latencyMeter.good 
+              span 331
+              p#latency-notification.notification-flag(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
+
 
     #notifications
       #latency.dialog.top
@@ -573,8 +578,6 @@ html(lang='en')
 
     #debug-info
       pre
-
-    #latencyMeter
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/dat.gui.js')

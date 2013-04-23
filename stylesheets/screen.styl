@@ -67,15 +67,20 @@ html
   display none
 
 #latencyMeter
-  color white
-  absolute top left
-  z-index 10
+  // color white
+  // absolute top left
+  // z-index 10
+  font-size 11px
+  margin 0
   &.good
-    background-color green
+    color green
   &.ok
-    background-color orange
+    color orange
   &.bad
-    background-color red
+    color red
+
+  span:after
+    content 'ms'
 
 .mirror
   transform scaleX(-1)
