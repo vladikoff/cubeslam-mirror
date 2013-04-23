@@ -99,6 +99,7 @@
     "lib/levels/sets/columns.js",
     "lib/levels/sets/breakout.js",
     "lib/levels/sets/triangles.js",
+    "lib/levels/sets/triangles-attract.js",
     "lib/levels/sets/triangles-mini.js",
     "lib/levels/sets/diamond.js",
     "lib/levels/sets/hexagon.js",
