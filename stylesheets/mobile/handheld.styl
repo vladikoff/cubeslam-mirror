@@ -166,6 +166,10 @@ html.mobile
       h1, h2, h3, h4
         font-size 30px
 
+      h4.over
+        font-size 25px
+
+
   footer#footer
     display none
     height $footer-height
@@ -331,6 +335,10 @@ html.mobile
         transition-duration 0ms
 
     &.game-instructions
+      background $color
+      transform-style preserve-3d
+      backface-visibility hidden
+      transform translateZ(0)
       .game-controls
         display none!important
       .dialog
@@ -341,11 +349,6 @@ html.mobile
         transition none
       &.inactive
         display none!important
-        .content
-          transform translateX(-100%)
-      &.active
-        .content
-          transform translateX( 0 )
     &.game-over
       .dialog
         h1

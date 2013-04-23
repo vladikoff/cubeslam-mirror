@@ -403,10 +403,11 @@ html.mobile
   transform-origin 50% 50% 0
 
   .gfx
-    transition transform .5s cubic-bezier(0.000, 0.000, 0.405, 1.650)
+    transition transform .5s
     transition-property transform, opacity
     position absolute
     z-index 1
+    transform-origin-y bottom
 
   &.fireball
     .gfx
