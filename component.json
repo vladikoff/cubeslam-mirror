@@ -24,6 +24,7 @@
     "lib/app.js",
     "lib/game.js",
     "lib/network.js",
+    "lib/extra-icons.js",
     "lib/world.js",
     "lib/arb.js",
     "lib/localization.js",
