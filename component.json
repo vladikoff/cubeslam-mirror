@@ -121,6 +121,7 @@
     "lib/levels/single/level9.js",
     "lib/levels/single/level10.js",
     "lib/levels/single/level11.js",
+    "lib/levels/single/level12.js",
     "lib/levels/multi/index.js",
     "lib/levels/multi/level1.js",
     "lib/levels/multi/level2.js",
