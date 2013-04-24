@@ -88,8 +88,8 @@
 		<range sound="bass_As5" root="As5" low="As5" hi="B6" vol="0"/>
     </samplemap>
 	<samplemap name="dm_kraftwerk">
-		<range sound="kick" root="C1" low="C1" hi="C1" vol="3"/>
- 		<range sound="snare" root="Cs1" low="Cs1" hi="Cs1" vol="-5"/>
+		<range sound="kick" root="C1" low="C1" hi="C1" vol="2"/>
+ 		<range sound="snare" root="Cs1" low="Cs1" hi="Cs1" vol="-6"/>
  		<range sound="hit" root="D1" low="D1" hi="D1" vol="0"/>
  		<range sound="hihat" root="Ds1" low="Ds1" hi="Ds1" vol="5"/>
  		<range sound="tapp_l" root="E1" low="E1" hi="E1" vol="12"/>
