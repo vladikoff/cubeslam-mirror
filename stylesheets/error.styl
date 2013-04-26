@@ -63,9 +63,16 @@
   // button, .button
   // font-size 11px
   
-html.ie
+html.ie, body.error-browser
   #error
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
     height 100%
+    background red
     background-image url('/images/mobile/error-bg.jpg')
-    .dialog, .content
+
+    .dialog, .content, .state
       background transparent
