@@ -19,11 +19,6 @@ html(lang='en')
     meta(property='og:description', content=description)
     meta(property='og:image', content='#{url}images/mobile/apple-touch-114.png')
     meta(property='og:url', content=url)
-
-    // [if IE]>
-      script
-        alert('wtf')
-
     // if lt IE 9
       script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
 
@@ -50,10 +45,8 @@ html(lang='en')
 
   body(class="{{.State}}")
     header.state.main-menu.animate.inactive
-      .hgroup
-        h2(arb:id="playFaceToFace") Play face-to-face against your friends
-        h1
-          img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
+      h1
+        img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
 
       .nav
         .notifications
