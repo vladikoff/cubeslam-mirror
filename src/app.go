@@ -354,7 +354,7 @@ func Minified() string {
 
 func Random(length int) string {
   // only upper case because the link will be upper case when copied
-  printables := "ABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"
+  printables := "ABCDEFGHIJKLMNOPQRSTUVWXYX"
   result := ""
   for i := 0; i < length; i++ {
     pos := rand.Intn(len(printables) - 1)
