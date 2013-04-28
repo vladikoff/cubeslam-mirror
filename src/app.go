@@ -1,7 +1,6 @@
 package webrtcing
 
 import (
-  "src/faker"
   "appengine"
   "encoding/json"
   "math/rand"
@@ -31,25 +30,21 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
   // redirect to room name
   if r.URL.Path == "/" && !strings.Contains(r.Header.Get("User-Agent"),"facebookexternalhit") {
-    if fake, err := faker.New("en"); err == nil {
-      roomName := fake.DomainWord()
-      path := "/"
+    roomName := Random(6)
+    path := "/"
 
-      // room doesn't exists, redirect to it
-      // (or we'll just redirect back to "/")
-      if _, err := GetRoom(c, roomName); err != nil {
-        path = "/"+roomName
-      } else {
-        c.Debugf("Room already exist. Generating a random string instead.")
-        path = "/"+Random(5)
-      }
-      if r.URL.RawQuery != "" {
-        path = path + "?"+r.URL.RawQuery
-      }
-      http.Redirect(w, r, path, 302);
+    // room doesn't exists, redirect to it
+    // (or we'll just redirect back to "/")
+    if _, err := GetRoom(c, roomName); err != nil {
+      path = "/"+roomName
     } else {
-      c.Criticalf("execution failed: %s", err)
+      c.Debugf("Room already exist. Generating a random string instead.")
+      path = "/"+Random(6)
     }
+    if r.URL.RawQuery != "" {
+      path = path + "?"+r.URL.RawQuery
+    }
+    http.Redirect(w, r, path, 302);
     return
   }
 
