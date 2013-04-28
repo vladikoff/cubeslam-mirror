@@ -203,12 +203,26 @@
     transform translate(12px, 6px)
     width 23px
       
+@keyframes swipe-label-1
+  0%, 100%, 27%, 80%
+    opacity 1
+
+  30%, 77%
+    opacity 0
+
+@keyframes swipe-label-2
+  0%, 100%, 27%, 80%
+    opacity 0
+
+  30%, 77%
+    opacity 1
 
 
 .destroy-shield__label > p, .destroy-shield__wall, .destroy-shield__shields > div:nth-child(1), .destroy-shield__weapon
   animation 5s cubic-bezier(0.42, 0.8, 1, 1) infinite
 
 .destroy-shield
+  width 210px
   perspective 800
   position relative
 
@@ -379,7 +393,8 @@
 
 .swipe-animation
   position relative
-  margin-top -100px
+  width 210px
+  margin -110px auto 0
   .device
     font-size 92px
     animation swipe-device-animation 7s linear infinite both
@@ -425,21 +440,20 @@
 .swipe-label
   position relative
   top 19px
-  left -45px
   line-height 1.4em
-  width 300px
+  width 240px
 
   p
     white-space inherit!important
     position absolute
     opacity 0
-    animation 5s cubic-bezier(0.42, 0.8, 1, 1) infinite
+    animation 7s cubic-bezier(0.42, 0.8, 1, 1) infinite
 
     &:nth-child(1)
-      animation-name shield-label-1
+      animation-name swipe-label-1
 
     &:nth-child(2)
-      animation-name shield-label-2
+      animation-name swipe-label-2
 
 
 

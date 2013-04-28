@@ -8,16 +8,20 @@ header.main-menu
   color #f8fadb
   transition opacity 400ms ease-out
 
+  &.delay
+    transition-delay 3.5s
+
   &.active
     opacity 1
-    h1
-      opacity 1
+    // h1
+    //   opacity 1
 
 
   &.inactive
     opacity 0
-    h1
-      opacity 0
+    transition-delay 0s
+    // h1
+    //   opacity 0
 
   p
     margin 0
@@ -56,10 +60,8 @@ header.main-menu
 
   h1
     transform translateZ(0)
-    transition opacity .6s
+    // transition opacity .6s
     padding 60px
-    &.delay
-      transition-delay 3.5s
 
   h1
     margin 0
