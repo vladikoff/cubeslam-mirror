@@ -166,6 +166,17 @@ var states = {
       }
     },
 
+    Other: {
+      name: 'game other',
+      enter: function(ctx){
+        visited.push('game other enter')
+      },
+
+      leave: function(ctx){
+        visited.push('game other leave')
+      }
+    },
+
     Play: {
       name: 'game play',
       enter: function(ctx){
@@ -189,6 +200,7 @@ see('/friend/waiting',states.Friend.Waiting)
 see('/webcam/activate',states.Webcam.Activate)
 see('/webcam/waiting',states.Webcam.Waiting)
 see('/game',states.Game.Setup)
+see('/game',states.Game.Other)
 see('/game/play',states.Game.Play)
 see('/game/invite',states.Friend.Invite)
 see('/game/prompt',states.Prompt)
@@ -216,8 +228,8 @@ setTimeout(function(){
   leave('/loading')
 
   see('/game/play')
-  path('main menu leave','game setup enter','game play enter')
-  enter('/game','/game/play')
+  path('main menu leave','game setup enter','game other enter','game play enter')
+  enter('/game','/game','/game/play')
   leave('/main-menu')
 
   see('/game/invite')
@@ -226,9 +238,9 @@ setTimeout(function(){
   leave('/game/play')
 
   see('/friend/invite')
-  path('friend invite /game/invite leave','game setup leave','friend invite /friend/invite enter')
+  path('friend invite /game/invite leave','game other leave','game setup leave','friend invite /friend/invite enter')
   enter('/friend/invite')
-  leave('/game/invite','/game')
+  leave('/game/invite','/game','/game')
 
   // test ignoring the same path
   see('/friend/invite')
@@ -251,8 +263,8 @@ setTimeout(function(){
   leave('/main-menu') // no /webcam/waiting because of abort()
 
   see('/game/prompt/level')
-  path('friend invite /friend/invite leave','game setup enter','prompt enter','prompt level enter','prompt level leave')
-  enter('/game','/game/prompt','/game/prompt/level')
+  path('friend invite /friend/invite leave','game setup enter','game other enter','prompt enter','prompt level enter','prompt level leave')
+  enter('/game','/game','/game/prompt','/game/prompt/level')
   leave('/friend/invite')
 
   setTimeout(function(){
@@ -262,9 +274,9 @@ setTimeout(function(){
 
     // test a regression
     see('/main-menu')
-    path('game play leave','game setup leave','main menu enter')
+    path('game play leave','game other leave','game setup leave','main menu enter')
     enter('/main-menu')
-    leave('/game/play','/game')
+    leave('/game/play','/game','/game')
 
     see('/friend/waiting')
     path('main menu leave','friend waiting enter')
@@ -281,26 +293,28 @@ setTimeout(function(){
 },1500)
 
 function enter(){
-  console.assert(eql(events.enter,arguments),'enter events does not match:\n\t visited: '+events.enter.join(',')+'\n\texpected: '+[].join.call(arguments,','))
+  console.assert(eql(events.enter,arguments),'enter events does not match:\n\t visited: '+events.enter.join(',')+'\n\texpected: '+[].join.call(arguments,',')+'\n\n')
   events.enter.length = 0;
 }
 
 function leave(){
-  console.assert(eql(events.leave,arguments),'leave events does not match:\n\t visited: '+events.leave.join(',')+'\n\texpected: '+[].join.call(arguments,','))
+  console.assert(eql(events.leave,arguments),'leave events does not match:\n\t visited: '+events.leave.join(',')+'\n\texpected: '+[].join.call(arguments,',')+'\n\n')
   events.leave.length = 0;
 }
 
 function path(){
-  console.assert(eql(visited,arguments),'paths does not match:\n\t visited: '+visited.join(',')+'\n\texpected: '+[].join.call(arguments,','))
+  console.assert(eql(visited,arguments),'paths does not match:\n\t visited: '+visited.join(',')+'\n\texpected: '+[].join.call(arguments,',')+'\n\n')
   visited.length = 0;
 }
 
 function eql(a,b){
-  if( a.length !== b.length )
+  if( a.length !== b.length ){
     return false;
+  }
   for(var i=0; i<a.length; i++){
-    if( a[i] !== b[i] )
+    if( a[i] !== b[i] ){
       return false;
+    }
   }
   return true;
 }
