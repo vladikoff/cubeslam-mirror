@@ -1,0 +1,21 @@
+{
+  "regexdash": true,
+  "browser": true,
+  "wsh": true,
+  "curly": true,
+  "eqeqeq": true,
+  "trailing": true,
+  "sub": true,
+  "laxcomma": true,
+  "expr": true,
+  "lastsemic": true,
+  "camelcase": true,
+  "indent": 2,
+  "quotmark": true,
+  "asi": true,
+  "undef": true,
+  "predef": [
+    "require",
+    "module",
+  ]
+}

@@ -10,7 +10,7 @@ lib/geometry/*.js
 lang/arbs/en.arb
 lang/arbs/rv.arb
 .sass-cache
-.jshintrc
+!.jshintrc
 report
 public/*/*.min.*
 public/*/*/*.min.*
