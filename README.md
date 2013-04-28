@@ -78,6 +78,8 @@ Add these to the URL querystring to toggle some flags.
   * `extras` - set to a comma separated list of extras to override the level extras.
   * `framerate` - set to a number to set the games framerate
   * `speed` - set to a number to set the games unit speed. which all speeds are based upon.
+  * `ns` - the namespace of levels. can be either `single`, `mobile` or `multi`.
+  * `level` - the level to play. can be any number but there's up to 11 scripted levels. after that it'll be randomized.
 
 ### Localization
 
