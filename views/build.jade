@@ -19,6 +19,7 @@ html(lang='en')
     meta(property='og:description', content=description)
     meta(property='og:image', content='#{url}images/mobile/apple-touch-114.png')
     meta(property='og:url', content=url)
+
     // if lt IE 9
       script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
 
@@ -561,10 +562,12 @@ html(lang='en')
               span.off(arb:id='soundOn') Sound on
               span.on(arb:id='soundOff') Sound off
             p#multiplayer-notification.notification-flag(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
-          li.latency.inactive
-            div#latencyMeter.good 
-              span 331
-              p#latency-notification.notification-flag(arb:id='latencyBumpiness') Sorry, high latency! The game might be bumpy.
+          li.latency
+            div#latencyMeter
+              span.number.good 331
+            p#latency-notification.notification-flag
+              span.auto(arb:id='latencyBumpiness') Sorry, high latency! The game might be bumpy.
+              span.details(arb:id='latencyDetails') This number measures latency, or how long it takes information to travel from you to your friend and back. Above 100 milliseconds, the game gets out of sync, so things feel bumpy. Sorry about that!
 
 
     //#notifications
