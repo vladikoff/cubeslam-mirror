@@ -114,6 +114,7 @@
     "lib/levels/sets/diagonal-blocks.js",
     "lib/levels/sets/deathball-blocks.js",
     "lib/levels/sets/tridiamonds.js",
+    "lib/levels/sets/diagonal-rocks.js",
     "lib/levels/single/index.js",
     "lib/levels/single/level1.js",
     "lib/levels/single/level2.js",
