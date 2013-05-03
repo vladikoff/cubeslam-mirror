@@ -52,10 +52,6 @@ html(lang='en')
         img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
 
       .nav
-        .notifications
-          p.notification.full.bubble(arb:id="friendPlayingSomeoneElse") Your Friend is playing someone else.
-          p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
-
         button.play-friend.green(arb:id='playFriendButton', type='button') Play A Friend
         button.play-computer.start.green(arb:id='playCPUButton', type='button') Play A Bear
         button.play-mobile.start.green(arb:id='playButton', type='button') Play
@@ -191,20 +187,19 @@ html(lang='en')
     section.state.webcam-activate.inactive
       .dialog.top
         .content
-          h1.alert-info(arb:id='webcamAllow') The two-person game requires access to your webcam
+          h1.alert-info(arb:id='webcamAllow') Please allow access to your webcam to play your friend.
 
     section.state.webcam-information.inactive
       .dialog.bottom
         .content
           .vertical-center
-            h1(arb:id='webcamDeniedHeaderH1') Aw, Shucks! Webcam blocked!
+            h1(arb:id='webcamDeniedHeaderH1') Sorry, You can't play against your friend without webcam
             p(arb:id='webcamDeniedInfo') It looks like you've blocked access to your webcam.
             h3(arb:id='webcamDeniedHeaderH3') To allow access:
             ol
-              li(arb:id='webcamDeniedStep1') Click the camera on the right side in the address bar
-              li(arb:id='webcamDeniedStep2') In the permissions menu, click "Media: Blocked by you"
-              li(arb:id='webcamDeniedStep3') Select "Always allow on this site." You can change this later.
-              li(arb:id='webcamDeniedStep4') Click out of the menu and refresh the page
+              li(arb:id='webcamDeniedStep1') Click the camera icon on the right side of the address bar
+              li(arb:id='webcamDeniedStep2') Select "Always allow www.cubeslam.com to access your camera and microphone" and click "Done"
+              li(arb:id='webcamDeniedStep3') Click "Reload"
             .buttons
               p(arb:id='webcamButtonExplanation') or, you can still play the computer
               a.button.green(href='/', arb:id='buttonMainMenu') Main Menu
@@ -218,7 +213,7 @@ html(lang='en')
               .webcam-spinner__bg.icon-webcam
               .webcam-spinner__quarter
                 .icon-quarter-circle
-            h2(arb:id='waitingForCamera') Waiting for friend<br/>to allow camera
+            h2(arb:id='waitingForCamera') Waiting for Friend<br/>to allow camera
 
     //WAITING FRIEND
     section.state.friend-waiting.inactive
@@ -231,7 +226,7 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h3(arb:id='waitingForAcceptance') Your friend is waiting for you
+            h3(arb:id='waitingForAcceptance') Your friend is waiting for You
             button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
     //FRIEND ARRIVED
@@ -353,7 +348,7 @@ html(lang='en')
 
       #canv-css.state.game.inactive
         .background.state.game
-          img.bg(data-src-mobile='/images/mobile/game-mobile.jpg', data-src-tablet='/images/mobile/game-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
+          img.bg(data-src-mobile='/images/mobile/game-mobile.jpg', data-src-tablet='/images/mobile/game-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=', alt='Mobile background')
           .screen
             .effect.hit-cpu.hidden
             .effect.hit-player.hidden
@@ -399,7 +394,7 @@ html(lang='en')
     //GAME SCORES
     section#scores.state.game.inactive
       .logo
-        img(src="/images/minicubeslam.png", alt='logo')
+        img(src="/images/minicubeslam.png", alt='Cube Slam Logo')
         h1 #{name}
         p.level(arb:id='scoreLevel') Level 
           span#level 1
@@ -441,19 +436,19 @@ html(lang='en')
         li.icon.ghostball(data-icon='*', arb:id='extraGHostBall') Ghost ball
         li.icon.paddleresize(data-icon='*', arb:id='extraPaddleResize') Paddle Resize
         li.icon.fog(data-icon='*', arb:id='extraFog') Fog
-        li.icon.multiball(data-icon='*', arb:id='extraMultiBall') Multi ball
+        li.icon.multiball(data-icon='*', arb:id='extraMultiBall') Multiball
         li.icon.extralife(data-icon='*', arb:id='extraShield') Extra shield
         li.icon.timebomb(data-icon='*', arb:id='extraTimeBomb') Time Bomb
-        li.icon.fireball(data-icon='*', arb:id='extraFireBall') Fire ball
+        li.icon.fireball(data-icon='*', arb:id='extraFireBall') Fireball
         li.icon.laser(data-icon='*', arb:id='extraLaserPaddle') Laser paddle
         li.icon.mirroredcontrols(data-icon='*')
           span(arb:id='extraMirroredControl') Mirrored Controls
-        li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bullet Proof
+        li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bulletproof
 
     //MOBILE
     section.mobile
       section.state.main-menu.inactive
-        img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
+        img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=', alt='')
       #gamepad.state.game.inactive
         button.left.icon(type='button', data-icon='<')
         button.right.icon(type='button', data-icon='>')
@@ -467,10 +462,10 @@ html(lang='en')
       .state.cssinfo.game-cssinfo.game-over-cssinfo.inactive
         .content
           div
-            h1(arb:id='aboutMobileH1') About Mobile Cube Slam
+            h1(arb:id='aboutMobileH1') About &nbsp;Cube Slam
             p(arb:id='aboutMobileText1') Cube Slam is a chrome experiment built to showcase the latest technology in Google Chrome.
           div
-            img(src='/images/mobile/gameboard.jpg', width='600', height='281')
+            img(src='/images/mobile/gameboard.jpg', width='600', height='281', alt='mobile game board')
             p(arb:id='aboutMobileText2') Visit cubeslam.com in Chrome on your computer to play face to face against a friend.
             a.terms(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
             .buttons
@@ -493,7 +488,7 @@ html(lang='en')
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorOccupiedHeader') Your friend is playing someone else
+              h2(arb:id='errorOccupiedHeader') Your friend is playing someone else.
               p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
               p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
               .buttons
@@ -525,7 +520,7 @@ html(lang='en')
             .vertical-center
               h2(arb:id='errorMobileLonelyRoomHeader') Please try in Chrome on your computer
               p(arb:id='errorMobileLonelyTwoPlayer') Sorry, the mobile version of Cube Slam doesn't support the two-player game.
-              p(arb:id='errorMobileLonelyVisit') Visit in Chrome on your computer to play your friend.
+              p(arb:id='errorMobileLonelyVisit') Visit this URL in Chrome on your computer to play your friend:
               p.share-url
                 span.url= urlWithRoomId
               .buttons
