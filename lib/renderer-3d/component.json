@@ -29,6 +29,7 @@
     "shaders/animal_vs.js",
     "shaders/animal_fs.js",
     "shaders/video_fs.js",
+    "shaders/video_mobile_fs.js",
     "shaders/localvideo_fs.js",
     "shaders/shield_fs.js",
     "shaders/overlay_fs.js",
