@@ -3,6 +3,7 @@ package webrtcing
 import (
   "appengine"
   "encoding/json"
+  "encoding/base64"
   "math/rand"
   "net/http"
   "text/template"
@@ -379,7 +380,7 @@ func Cleanup(str string) string {
 func init() {
   now := time.Now()
   rand.Seed(now.Unix())
-  http.HandleFunc("/", Main)
+  http.HandleFunc("/", Auth(Main))
   http.HandleFunc("/tech", Tech)
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", JSConnected)
@@ -395,6 +396,41 @@ func init() {
     http.HandleFunc("/_ah/channel/disconnected/", func(w http.ResponseWriter, r *http.Request){
       w.Write([]byte("OK"))
     })
-
   }
 }
+
+func Auth(handler http.HandlerFunc) http.HandlerFunc {
+  return func(w http.ResponseWriter, r *http.Request) {
+    if CheckAuth(r) == false {
+      RequireAuth(w, r)
+    } else {
+      handler(w, r)
+    }
+  }
+}
+
+func CheckAuth(r *http.Request) bool {
+  s := strings.SplitN(r.Header.Get("Authorization"), " ", 2)
+  if len(s) != 2 || s[0] != "Basic" {
+    return false
+  }
+  b, err := base64.StdEncoding.DecodeString(s[1])
+  if err != nil {
+    return false
+  }
+  pair := strings.SplitN(string(b), ":", 2)
+  if len(pair) != 2 {
+    return false
+  }
+  if pair[1] == "bob" {
+    return true
+  }
+  return false
+}
+
+func RequireAuth(w http.ResponseWriter, r *http.Request) {
+  w.Header().Set("WWW-Authenticate", `Basic realm="Cube Slam"`)
+  w.WriteHeader(401)
+  w.Write([]byte("401 Unauthorized\n"))
+}
+
