@@ -193,7 +193,7 @@ html(lang='en')
       .dialog.bottom
         .content
           .vertical-center
-            h1(arb:id='webcamDeniedHeaderH1') Sorry, You can't play against your friend without webcam
+            h1(arb:id='webcamDeniedHeaderH1') Sorry, you need your webcam to play your friend
             p(arb:id='webcamDeniedInfo') It looks like you've blocked access to your webcam.
             h3(arb:id='webcamDeniedHeaderH3') To allow access:
             ol
@@ -201,7 +201,7 @@ html(lang='en')
               li(arb:id='webcamDeniedStep2') Select "Always allow www.cubeslam.com to access your camera and microphone" and click "Done"
               li(arb:id='webcamDeniedStep3') Click "Reload"
             .buttons
-              p(arb:id='webcamButtonExplanation') or, you can still play the computer
+              p(arb:id='webcamButtonExplanation') Or you can still play the computer:
               a.button.green(href='/', arb:id='buttonMainMenu') Main Menu
 
     //WAITING FOR FRIEND CAMERA
@@ -482,18 +482,18 @@ html(lang='en')
               h2(arb:id='errorConnectionHeader') Connection Error
               p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection.
               .buttons
-                a.button.green(href='', arb:id='buttonReconnect') Reconnect
+                a.button.green(href='', arb:id='buttonReconnect') Reload
 
       .state.error-fullroom.inactive
         .dialog.bottom
           .content.animate
             .vertical-center
-              h2(arb:id='errorOccupiedHeader') Your friend is playing someone else.
-              p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
-              p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
+              h2(arb:id='errorOccupiedHeader') Your friend is playing someone else
+              //- p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
+              //- p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
               .buttons
                 button.main-menu.green(type='button', arb:id='buttonMainMenu') Main Menu
-                a.button.green.new(href='/', arb:id='buttonNewGame') New Game
+                //- a.button.green.new(href='/', arb:id='buttonNewGame') New Game
 
       .state.error-datachannels.inactive
         .dialog.bottom
