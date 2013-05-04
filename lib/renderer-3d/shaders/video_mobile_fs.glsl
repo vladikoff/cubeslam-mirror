@@ -14,10 +14,6 @@ uniform vec2 resolution;
 void main(void)
 {
 
-    float xs = floor(gl_FragCoord.x / 4.0);
-    float ys = floor(gl_FragCoord.y / 4.0);
-    float ofs = fract(time);
-
     vec2 tempUv = vUv;
 
     tempUv.y = mix(vUv.y,fract(vUv.y-time*0.3),noiseAmount);
