@@ -17,9 +17,9 @@ void main(void)
     float xs = floor(gl_FragCoord.x / 4.0);
     float ys = floor(gl_FragCoord.y / 4.0);
     float ofs = fract(time);
-    
+
     vec2 tempUv = vUv;
-  
+
     tempUv.y = mix(vUv.y,fract(vUv.y-time*0.3),noiseAmount);
 
     vec3 videoOrg = texture2D(tVideo, vUv).rgb;
@@ -29,7 +29,7 @@ void main(void)
     vec3 color = mix( videoOrg, videoDistort,noiseAmount);
     vec3 finalColor = mix(color,vec3(0.0,0.0,0.0),brokenColor);
 
-    //finalColor = mix( finalColor, arenaColor, clamp((vWorldPosition.y+90.0)/-resolution.y,0.0,1.0));
+    finalColor = mix( finalColor, arenaColor, clamp((vWorldPosition.y+90.0)/-resolution.y,0.0,1.0));
 
     //scanlines
     //finalColor += vec3(0.01) * sin( (vUv.y) * 360.0 );
