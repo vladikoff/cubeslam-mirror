@@ -54,7 +54,7 @@ html.about(lang='en')
     section#opensource
       img(src='/images/tech/opensource.jpg', alt='Animals playing pong')
       h1(arb:id='openTitle') Open source
-      p(arb:id='openText') You can check out Cube Slam&rsquo;s source on &lt;Google Code&gt; or in the Chrome Developer Tools (you&rsquo;ll need to enable source maps). Also, as a reward for reading this far: you can add the ?&#8288;dev parameter to the URL to enable dat.gui and tweak all the levels, extras, and other attributes of the game. Have fun!
+      p(arb:id='openText') You can check out Cube Slam&rsquo;s source on Google Code or in the Chrome Developer Tools (you&rsquo;ll need to enable source maps). Also, as a reward for reading this far: you can add the ?&#8288;dev parameter to the URL to enable dat.gui and tweak all the levels, extras, and other attributes of the game. Have fun!
 
     script(src='/javascript/slam.{{.Minified}}js')
     script
@@ -76,7 +76,7 @@ html.about(lang='en')
       })
       $('body').append(ol);
 
-      if( touch ){ 
+      if( touch ){
         $('html').addClass('touch')
       } else {
         var wheight = 0;
@@ -101,7 +101,7 @@ html.about(lang='en')
             if(el.offset().top + oh <= wheight + scrollTop) {
               np += oh;
               changed = changed.add(this);
-            } 
+            }
             if(el.offset().top - (oh/2) < scrollTop) {
               var id = el.attr('id');
               $('[href="#'+id+'"]').parent().addClass('active')
