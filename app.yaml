@@ -7,21 +7,26 @@ handlers:
 # Static
 - url: /javascript
   static_dir: public/javascript
+  expiration: '1d'
 - url: /images
   static_dir: public/images
+  expiration: '1d'
 - url: /dmaf__assets
   static_dir: public/dmaf__assets
+  expiration: '1d'
 - url: /lang
   static_dir: public/lang
+  expiration: '1d'
 - url: /fonts
   static_dir: public/fonts
+  expiration: '1d'
 - url: /stylesheets
   static_dir: public/stylesheets
-- url: /swf
-  static_dir: public/swf
+  expiration: '1d'
 - url: /favicon.ico
   static_files: public/images/favicon.ico
   upload: public/favicon.ico
+  expiration: '7d'
 - url: /robots.txt
   static_files: public/robots.txt
   upload: public/robots.txt
@@ -60,3 +65,8 @@ skip_files:
 - ^(.*/)?lib/.*$
 - ^(.*/)?test/.*$
 - ^(.*/)?ui/.*$
+
+pagespeed:
+  domains_to_rewrite:
+  - www.cubeslam.com
+  - https://www.cubeslam.com
