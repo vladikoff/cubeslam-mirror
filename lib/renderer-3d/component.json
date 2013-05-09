@@ -31,6 +31,7 @@
     "shaders/localvideo_fs.js",
     "shaders/overlay_fs.js",
     "shaders/nano_vertex.js",
+    "shaders/simple_vertex.js",
     "geometry/index.js",
     "geometry/cloud1.js",
     "geometry/cloud2.js",
