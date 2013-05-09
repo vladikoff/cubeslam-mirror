@@ -1,6 +1,6 @@
 # CubeSlam Benchmarks Nexus 10
 
-Tested on commit 982b61 with the changes stated.
+Tested on commit 448d8038 with the changes stated.
 
 ## Chrome Stable 26
 
