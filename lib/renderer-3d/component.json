@@ -52,6 +52,7 @@
     "geometry/extra_shield.js",
     "geometry/extra_random.js",
     "geometry/terrain3.js",
+    "geometry/terrain-low.js",
     "geometry/bear.js",
     "geometry/paw.js",
     "geometry/rabbit.js",
