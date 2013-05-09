@@ -13156,11 +13156,11 @@ THREE.CanvasRenderer = function ( parameters ) {
 
 	this.domElement = _canvas;
 
-	this.devicePixelRatio = 1/*parameters.devicePixelRatio !== undefined
+	this.devicePixelRatio = parameters.devicePixelRatio !== undefined
 				? parameters.devicePixelRatio
 				: window.devicePixelRatio !== undefined
 					? window.devicePixelRatio
-					: 1;*/
+					: 1;
 
 	this.autoClear = true;
 	this.sortObjects = true;
@@ -17572,11 +17572,11 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	this.domElement = _canvas;
 	this.context = null;
-	this.devicePixelRatio = 1/*parameters.devicePixelRatio !== undefined
+	this.devicePixelRatio = parameters.devicePixelRatio !== undefined
 				? parameters.devicePixelRatio
 				: window.devicePixelRatio !== undefined
 					? window.devicePixelRatio
-					: 1;*/
+					: 1;
 
 	// clearing
 
