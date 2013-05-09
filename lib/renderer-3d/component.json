@@ -19,7 +19,6 @@
     "animals.js",
     "animals/bear.js",
     "animals/bird1.js",
-    "animals/bird4.js",
     "animals/moose.js",
     "animals/rabbit.js",
     "shaders/index.js",
