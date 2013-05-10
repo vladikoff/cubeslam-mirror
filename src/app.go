@@ -1,7 +1,8 @@
-package webrtcing
+package rtc
 
 import (
   "appengine"
+  "appengine/channel"
   "encoding/json"
   "encoding/base64"
   "math/rand"
@@ -72,7 +73,6 @@ func Main(w http.ResponseWriter, r *http.Request) {
     // Empty room
     if err != nil {
       room := new(Room)
-      // room.AddUser(userName)
       c.Debugf("Created room %s",roomName)
       if err := PutRoom(c, roomName, room); err != nil {
         c.Criticalf("!!! could not save room: %s", err)
@@ -80,19 +80,12 @@ func Main(w http.ResponseWriter, r *http.Request) {
       }
       data.State = "room-empty"
 
-    // Join room
+    // Lonely room
     } else if room.Occupants() == 1 {
-      // room.AddUser(userName)
-      // c.Debugf("Joined room %s",roomName)
-      if err := PutRoom(c, roomName, room); err != nil {
-        c.Criticalf("could not save room: %s", err)
-        return;
-      }
       data.State = "room-lonely"
 
     // Full room
     } else if room.Occupants() == 2 {
-      c.Debugf("Full room %s",roomName)
       data.State = "room-full"
 
     // DataStore error
@@ -102,13 +95,12 @@ func Main(w http.ResponseWriter, r *http.Request) {
     }
 
     // Create a channel token
-    signal := new(Signal)
-    if err := signal.Init(c, MakeClientId(roomName, userName)); err != nil {
-      http.Error(w, "Couldn't create Channel", http.StatusInternalServerError)
-      return
+    clientId := MakeClientId(roomName, userName)
+    token, err := channel.Create(c, clientId)
+    if err != nil {
+      c.Criticalf("Error while creating token: %s", err)
     }
-    signal.Save(c)
-    data.Token = signal.Token
+    data.Token = token
   }
 
   // Parse the template and output HTML:
@@ -132,72 +124,56 @@ func Tech(w http.ResponseWriter, r *http.Request) {
   if err != nil { c.Criticalf("execution failed: %s", err) }
 }
 
-
-func AEConnected(w http.ResponseWriter, r *http.Request) {
-  // AppEngine Channel API backend is initialized!
+func OnConnect(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
 
-  c.Debugf("AppEngine connected user %s to room %s",userName,roomName)
+  c.Debugf("Connected user %s to room %s",userName,roomName)
 
   if room, err := GetRoom(c, roomName); err == nil {
-    room.AEConnectUser(userName)
-    err = PutRoom(c, roomName, room)
-    if err != nil {
-      c.Criticalf("AEConnected could not put room %s: ",roomName,err)
+
+    // see if user is in room
+    if room.HasUser(userName) {
+      // user already in the room
+      // just send "connected" again in
+      // case it was missed last time
+
+    // or see if it's full
+    } else if room.Occupants() == 2 {
+      if err := channel.Send(c, MakeClientId(roomName, userName), "full"); err != nil {
+        c.Criticalf("Error while sending full:",err)
+      }
+      return;
+
+    // or add a user to the room
+    } else {
+      room.AddUser(userName)
+      err = PutRoom(c, roomName, room)
+      if err != nil {
+        c.Criticalf("Connected could not put room %s: ",roomName,err)
+      }
     }
 
-    if room.Connected(userName) {
-      Connected(c, w, r, roomName, userName, room)
+    // send connected to both when room is complete
+    if room.Occupants() == 2 {
+      otherUser := room.OtherUser(userName)
+      c.Debugf("Room Complete, sending 'connected' to %s and %s",userName,otherUser)
+      if err := channel.Send(c, MakeClientId(roomName, otherUser), "connected"); err != nil {
+        c.Criticalf("Error while sending connected:",err)
+      }
+      if err := channel.Send(c, MakeClientId(roomName, userName), "connected"); err != nil {
+        c.Criticalf("Error while sending connected:",err)
+      }
+    } else {
+      c.Debugf("Waiting for another user before sending 'connected'")
     }
+
   } else {
     c.Criticalf("Could not get room %s: ",roomName,err)
   }
 }
 
-func JSConnected(w http.ResponseWriter, r *http.Request) {
-  // JavaScript Channel API code is initialized!
-  c := appengine.NewContext(r)
-  roomName, userName := ParseClientId(r.FormValue("from"))
-
-  c.Debugf("JavaScript connected user %s to room %s",userName,roomName)
-
-  if room, err := GetRoom(c, roomName); err == nil {
-    room.JSConnectUser(userName)
-    err = PutRoom(c, roomName, room)
-    if err != nil {
-      c.Criticalf("JSConnected could not put room %s: ",roomName,err)
-    }
-
-    if room.Connected(userName) {
-      Connected(c, w, r, roomName, userName, room)
-    }
-  } else {
-    c.Criticalf("Could not get room %s: ",roomName,err)
-  }
-}
-
-func Connected(c appengine.Context, w http.ResponseWriter, r *http.Request, roomName string, userName string, room *Room) {
-  c.Debugf("Both AppEngine Channels API backend AND the Javascript Channels API lib are initialized! roomName:" + roomName + " userName:" + userName)
-
-  signal, _ := GetSignal(c, MakeClientId(roomName, userName))
-
-  // send connected to both when room is complete
-  if room.Occupants() == 2 {
-    otherUser := room.OtherUser(userName)
-    otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
-    if err := otherSignal.Send(c, "connected"); err != nil {
-      c.Criticalf("Error while sending connected:",err)
-    }
-    if err := signal.Send(c, "connected"); err != nil {
-      c.Criticalf("Error while sending connected:",err)
-    }
-  } else {
-    c.Debugf("Waiting for another user before sending 'connected'")
-  }
-}
-
-func Disconnected(w http.ResponseWriter, r *http.Request) {
+func OnDisconnect(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   roomName, userName := ParseClientId(r.FormValue("from"))
   if room, err := GetRoom(c, roomName); err == nil {
@@ -227,22 +203,49 @@ func Disconnected(w http.ResponseWriter, r *http.Request) {
       if err != nil {
         c.Criticalf("... Could not put room %s: ",roomName,err)
       } else if otherUser != "" {
-        // let the other user know
-        signal, _ := GetSignal(c, MakeClientId(roomName, userName))
-        otherSignal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
-        if err := otherSignal.Send(c, "disconnected"); err != nil {
+        c.Debugf("disconnected sent to %s",MakeClientId(roomName, otherUser))
+        if err := channel.Send(c, MakeClientId(roomName, otherUser), "disconnected"); err != nil {
           c.Criticalf("Error while sending disconnected:",err)
         }
-        if err := signal.Send(c, "disconnected"); err != nil {
+        c.Debugf("disconnected sent to %s",MakeClientId(roomName, userName))
+        if err := channel.Send(c, MakeClientId(roomName, userName), "disconnected"); err != nil {
           c.Criticalf("Error while sending disconnected:",err)
         }
       } else {
-        c.Debugf("We should never get here because the room should be empty.")
+        c.Criticalf("We should never get here because the room should be empty.")
       }
     }
   } else {
     c.Criticalf("Could not get room %s: ",roomName,err)
   }
+}
+
+func OnMessage(w http.ResponseWriter, r *http.Request) {
+  c := appengine.NewContext(r)
+
+  roomName, userName := ParseClientId(r.FormValue("from"))
+
+  b, err := ioutil.ReadAll(r.Body);
+  if err != nil {
+    c.Criticalf("%s",err)
+    return
+  }
+  r.Body.Close()
+
+  c.Debugf("received channel data message: %s",b)
+
+  room, err := GetRoom(c, roomName)
+  if err != nil {
+    c.Criticalf("Error while retreiving room:",err)
+  }
+  otherUser := room.OtherUser(userName)
+  if otherUser != "" {
+    if err := channel.Send(c, MakeClientId(roomName, otherUser), string(b)); err != nil {
+      c.Criticalf("Error while sending JSON:",err)
+    }
+  }
+
+  w.Write([]byte("OK"))
 }
 
 func Expire(w http.ResponseWriter, r *http.Request) {
@@ -276,43 +279,6 @@ func Occupants(w http.ResponseWriter, r *http.Request) {
   totalString := strconv.FormatInt(int64(total),10)
   c.Debugf("Current occupants: %s",totalString)
   w.Write([]byte(totalString))
-}
-
-func OnMessage(w http.ResponseWriter, r *http.Request) {
-  c := appengine.NewContext(r)
-
-  roomName, userName := ParseClientId(r.FormValue("from"))
-
-  b, err := ioutil.ReadAll(r.Body);
-  if err != nil {
-    c.Criticalf("%s",err)
-    return
-  }
-  r.Body.Close()
-
-  msg, err := ReadData(b)
-  if err != nil {
-    c.Criticalf("Error reading JSON",err)
-    return
-  }
-
-  c.Debugf("received channel data message: %s",b)
-
-  room, err := GetRoom(c, roomName)
-  if err != nil {
-    c.Criticalf("Error while retreiving room:",err)
-  }
-  otherUser := room.OtherUser(userName)
-  if jsonmsg, err := json.Marshal(msg); err != nil {
-    c.Criticalf("Error when marshaling json:", err)
-  } else if otherUser != "" {
-    signal, _ := GetSignal(c, MakeClientId(roomName, otherUser))
-    if err := signal.Send(c, string(jsonmsg)); err != nil {
-      c.Criticalf("Error while sending JSON:",err)
-    }
-  }
-
-  w.Write([]byte("OK"))
 }
 
 func MakeClientId(room string, user string) string {
@@ -383,20 +349,10 @@ func init() {
   http.HandleFunc("/", Auth(Main))
   http.HandleFunc("/tech", Tech)
   http.HandleFunc("/message", OnMessage)
-  http.HandleFunc("/connect", JSConnected)
-  http.HandleFunc("/disconnect", Disconnected)
-  http.HandleFunc("/_expire", Expire)
-  http.HandleFunc("/_occupants", Occupants)
-  http.HandleFunc("/_ah/channel/connected/", AEConnected)
-  if !appengine.IsDevAppServer() {
-    // This fires too early in the development environment.
-    http.HandleFunc("/_ah/channel/disconnected/", Disconnected)
-  } else {
-    // to avoid creating rooms in dev mode
-    http.HandleFunc("/_ah/channel/disconnected/", func(w http.ResponseWriter, r *http.Request){
-      w.Write([]byte("OK"))
-    })
-  }
+  http.HandleFunc("/connect", OnConnect)
+  http.HandleFunc("/disconnect", OnDisconnect)
+  http.HandleFunc("/_ah/channel/connected/", OnConnect)
+  http.HandleFunc("/_ah/channel/disconnected/", OnDisconnect)
 }
 
 func Auth(handler http.HandlerFunc) http.HandlerFunc {

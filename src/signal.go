@@ -1,4 +1,4 @@
-package webrtcing
+package rtc
 
 import (
   "appengine"
