@@ -3,6 +3,7 @@ precision mediump float;
 #endif
 
 varying vec2 vUv;
+uniform int bgr;
 uniform float time;
 uniform float noiseAmount;
 uniform sampler2D tVideo;
@@ -19,7 +20,10 @@ void main(void)
 
     vec3 finalColor = mix(texture2D(tVideo, vUv).rgb,vec3(noise*0.2),noiseAmount);
 
-    gl_FragColor=vec4(finalColor,1.0);
-
+    if( bgr == 1 ){
+        gl_FragColor=vec4(finalColor.b,finalColor.g,finalColor.r,1.0);
+    } else {
+        gl_FragColor=vec4(finalColor.rgb,1.0);
+    }
 }
 

@@ -7,6 +7,7 @@ varying vec2 vUv;
 uniform vec3 arenaColor;
 uniform float time;
 uniform float noiseAmount;
+uniform int bgr;
 uniform sampler2D tVideo;
 uniform sampler2D tBroken;
 uniform vec2 resolution;
@@ -30,7 +31,11 @@ void main(void)
     //scanlines
     //finalColor += vec3(0.01) * sin( (vUv.y) * 360.0 );
 
-    gl_FragColor=vec4(finalColor,1.0);
+    if( bgr == 1 ){
+        gl_FragColor=vec4(finalColor.b,finalColor.g,finalColor.r,1.0);
+    } else {
+        gl_FragColor=vec4(finalColor.rgb,1.0);
+    }
 
 }
 
