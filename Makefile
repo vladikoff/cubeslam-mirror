@@ -12,8 +12,11 @@ COMPONENTS=$(shell find components -name "*.js" -type f)
 MINIFY=build build/build-3d.min.js public/javascript/slam.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js public/javascript/libs/three.min.js build/build.min.js
 
 GENERATED_LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
+AVAILABLE_LANGUAGES=$(wildcard lang/arbs/*.arb)
+LINKED_LANGUAGES=$(patsubst lang/arbs/%.arb,public/lang/%.arb,$(AVAILABLE_LANGUAGES))
 
-REQUIRE_LINES=$(shell wc -l < node_modules/component/node_modules/component-builder/node_modules/component-require/lib/require.js | tr -d ' ')
+REQUIRE_PATH=$(shell find node_modules -name 'require.js' -type f | head -n 1)
+REQUIRE_LINES=$(shell wc -l < $(REQUIRE_PATH) | tr -d ' ')
 
 DEV?=--dev
 DEBUG?=true
@@ -26,6 +29,7 @@ GEOMETRY_JS += lib/renderer-3d/geometry/terrain3.js lib/renderer-3d/geometry/bea
 							 lib/renderer-3d/geometry/moose.js lib/renderer-3d/geometry/terrain3.js \
 							 lib/renderer-3d/geometry/cpu.js
 
+
 build: build-shaders build-geometry build-component build-styles build-jade build-localization build-renderer
 	@:
 
@@ -36,7 +40,7 @@ build-geometry: $(GEOMETRY_JS) lib/renderer-3d/geometry/index.js
 build-jade: build/build.html build/tech.html
 build-component: build/build.js
 build-styles: build/build-stylus.css
-build-localization: build/localization.arb
+build-localization: build/localization.arb $(LINKED_LANGUAGES)
 force-build:
 	touch lib/app.js
 	touch lib/renderer-3d/index.js
@@ -111,6 +115,9 @@ lang/arbs/en.arb: build/*.html
 
 build/localization.arb: $(GENERATED_LANGUAGES) lang/arbs/*.arb
 	cat $^ > build/localization.arb
+
+public/lang/%.arb: lang/arbs/%.arb
+	ln -s ../../$< $@
 
 clean: clean-geometry clean-localization
 	rm -Rf build/ components/ $(SHADERS_JS)
