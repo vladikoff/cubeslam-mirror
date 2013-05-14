@@ -11,7 +11,7 @@ LIB_CSS=$(shell find lib/renderer-css -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
 MINIFY=build build/build-3d.min.js public/javascript/slam.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js public/javascript/libs/three.min.js build/build.min.js
 
-GENERATED_LANGUAGES=lang/arbs/en.arb lang/arbs/rv.arb
+GENERATED_LANGUAGES=lang/arbs/en-US.arb
 AVAILABLE_LANGUAGES=$(wildcard lang/arbs/*.arb)
 LINKED_LANGUAGES=$(patsubst lang/arbs/%.arb,public/lang/%.arb,$(AVAILABLE_LANGUAGES))
 
@@ -107,10 +107,7 @@ build/build-css.js: $(LIB_CSS)
 build/build.js: components $(COMPONENTS) $(LIB) component.json
 	node_modules/.bin/component-build $(DEV)
 
-lang/arbs/rv.arb: lang/arbs/en.arb
-	node lang/rovarspraketizer.js > $@ < $<
-
-lang/arbs/en.arb: build/*.html
+lang/arbs/en-US.arb: build/*.html
 	node lang/langparse.js $^ > $@
 
 build/localization.arb: $(GENERATED_LANGUAGES) lang/arbs/*.arb
