@@ -55,6 +55,7 @@
     "lib/support/draw.js",
     "lib/support/info.js",
     "lib/support/select-text.js",
+    "lib/support/language-codes.js",
     "lib/support/see.js",
     "lib/support/mouse.js",
     "lib/support/buffer.js",
