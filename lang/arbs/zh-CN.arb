@@ -1,4 +1,4 @@
-arb.register("webrtcgame:zh-CN", {
+arb.register("cubeslam:zh-CN", {
   "@@context": "WebRTC Game",
   "playFriendButton": "与朋友对战",
   "playCPUButton": "与熊对战",

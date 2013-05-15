@@ -1,4 +1,4 @@
-arb.register("webrtcgame:es-419", {
+arb.register("cubeslam:es-419", {
   "@@context": "WebRTC Game",
   "playFriendButton": "Jugar contra un amigo",
   "playCPUButton": "Jugar contra un oso",

@@ -4,8 +4,7 @@ var fs = require("fs")
 var files = process.argv.slice(2);
 
 var result = {
-  "@@locale": "en",
-  "@@context": "WebRTC Game"
+  "@@locale": "en-US"
 };
 var pending = 2;
 
@@ -28,7 +27,7 @@ files.forEach(function(file){
 })
 
 function done(){
-  process.stdout.write('arb.register("webrtcgame:en",');
+  process.stdout.write('arb.register("cubeslam:en-US",');
   process.stdout.write(JSON.stringify(result,null,2));
   process.stdout.write(");\n");
 }

@@ -1,4 +1,4 @@
-arb.register("webrtcgame:sv", {
+arb.register("cubeslam:sv", {
   "@@context": "WebRTC Game",
   "friendPlayingSomeoneElse": "Anslutningsfel! Försök att uppdatera sidan för att spela multiplayer eller spela mot datorn.",
   "playFriendButton": "Spela vän",
