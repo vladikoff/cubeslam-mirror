@@ -149,25 +149,31 @@ html(lang='en')
         .content.center.animate
           #start-prompt.prompt
             h1.bitmap Start
+            div(arb:id='promptStart').subtitle
 
       .state.game-prompt-level.inactive
         .content.center.animate
           #level-prompt.prompt
             h2.bitmap Level 
               span 1
+            div(arb:id='promptLevel').subtitle
 
       .state.game-prompt-round.inactive
         .content.center.animate
           #round-prompt.prompt
             h3.bitmap Ball 
               span 1
+            div(arb:id='promptBall').subtitle
 
       .state.game-prompt-over.inactive
         .content.center.animate
           .prompt
             h4.over.bitmap Game Over
+            div(arb:id='promptOver').over.subtitle
             h4.win.bitmap You Win
+            div(arb:id='promptWin').win.subtitle
             h4.loose.bitmap You Lose
+            div(arb:id='promptLoose').loose.subtitle
 
     //PAUSE DIALOG
     section.state.game-pause.inactive
