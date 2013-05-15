@@ -1,6 +1,6 @@
 // ICONS
 // ==========================================================================
-.icons-sprite, 
+.icons-sprite,
 .icons-cam,
 .icons-cam__spinner,
 .icons-cross-fail,
@@ -8,53 +8,53 @@
 .icons-key-arrow-right,
 .icons-mouse,
 .icon-webcam,
-.icon-quarter-circle, 
-.icon-arrow-left, 
-.icon-arrow-right, 
-.icon-cross, 
-.icon-mouse 
-  background url('../images/icons-s4e56167bd4.png') no-repeat
-
-.icons-sprite, 
-.icon-webcam, 
-.icon-quarter-circle, 
-.icon-arrow-left, 
+.icon-quarter-circle,
+.icon-arrow-left,
 .icon-arrow-right,
 .icon-cross,
-.icon-mouse, 
+.icon-mouse
+  background url('../images/icons-s4e56167bd4.png') no-repeat
+
+.icons-sprite,
+.icon-webcam,
+.icon-quarter-circle,
+.icon-arrow-left,
+.icon-arrow-right,
+.icon-cross,
+.icon-mouse,
 .icon-destroy-shield-weapon
   background url('../images/icons-s2edcc2712a.png') no-repeat
 
-.icons-cam 
+.icons-cam
   background-position 0 0
 
-.icons-cam__spinner 
+.icons-cam__spinner
   background-position 0 -205px
 
-.icons-cross-fail 
+.icons-cross-fail
   background-position 0 -161px
 
-.icons-key-arrow-left 
+.icons-key-arrow-left
   background-position 0 -321px
 
-.icons-key-arrow-right 
+.icons-key-arrow-right
   background-position 0 -310px
 
-.icons-mouse 
+.icons-mouse
   background-position 0 -260px
 
-.icon-webcam 
+.icon-webcam
   background-position 0 0
   height 65px
   width 51px
 
 
-.icon-destroy-shield-weapon 
+.icon-destroy-shield-weapon
   background-position 0 -332px
   height 24px
   width 24px
 
-.icon-quarter-circle 
+.icon-quarter-circle
   background-position 0 -205px
   height 53px
   width 53px
@@ -63,22 +63,22 @@
   height 92px
   width 67px
 
-.icon-arrow-left 
+.icon-arrow-left
   background-position 0 -321px
   height 9px
   width 9px
 
-.icon-arrow-right 
+.icon-arrow-right
   background-position 0 -310px
   height 9px
   width 9px
 
-.icon-cross 
+.icon-cross
   background-position 0 -161px
   height 42px
   width 42px
 
-.icon-mouse 
+.icon-mouse
   background-position 0 -260px
   height 48px
   width 39px
@@ -87,28 +87,28 @@
 // DASHES
 // Differents size and colors
 // ==========================================================================
-.dash-white 
+.dash-white
   background #F9F9DA
 
-.dash-black 
+.dash-black
   background #000
 
 .dash-beige
   background $color-beige
 
-.dash-tall 
+.dash-tall
   width 30px
   height 20px
 
-.dash-big 
+.dash-big
   width 30px
   height 6px
 
-.dash-medium 
+.dash-medium
   width 14px
   height 4px
 
-.dash-small 
+.dash-small
   width 14px
   height 6px
 
@@ -119,24 +119,24 @@
 
 // Spiner animation
 //
-@keyframes spinner-rotate 
-  from 
+@keyframes spinner-rotate
+  from
     transform rotate(0deg) scaleZ(0)
-  to 
+  to
     transform rotate(360deg) scaleZ(0)
-  
 
 
-.webcam-spinner 
+
+.webcam-spinner
   position relative
   left 50%
   margin-left -50px
 
-.webcam-spinner__bg 
+.webcam-spinner__bg
   position absolute
   margin 19px 0 0 27px
 
-.webcam-spinner__quarter 
+.webcam-spinner__quarter
   animation spinner-rotate 1.5s infinite
   height 106px
   width 106px
@@ -148,7 +148,7 @@
 //
 // Just a computer with eyes whithout any anim.
 //
-.cpu-wth-eyes 
+.cpu-wth-eyes
   position relative
   left 50%
   margin-left -34px
@@ -156,36 +156,36 @@
   width 67px
   // margin-bottom 20px
 
-  .cpu-wth-eyes__bg 
+  .cpu-wth-eyes__bg
     position absolute
 
 .cpu-wth-eyes__container
   position relative
 
-.cpu-wth-eyes__eyes 
+.cpu-wth-eyes__eyes
   position absolute
   top 24px
   left 17px
-  &> 
-    divfirst-of-type 
+  &>
+    divfirst-of-type
       margin-right 5px
-    
-    div 
+
+    div
       display inline-block
-    
-  
+
+
 
 // COMPUTER CONNECTION LOOP ANIMATION
 // ==========================================================================
 
 // Eyes blinking animation.
 //
-@keyframes cpu-blinking 
-  20%, 40%, 50% 
+@keyframes cpu-blinking
+  20%, 40%, 50%
     transform scaleY(1)
-  30%, 45% 
+  30%, 45%
     transform scaleY(0.2)
-  
+
 
 
 .play-anim .cpu-wth-eyes__eyes > div,
@@ -193,63 +193,63 @@
   animation cpu-blinking 2s
 
 
-.blinking-eyes-anim-loop 
+.blinking-eyes-anim-loop
   animation cpu-blinking 2s infinite
 
 
 // Sad eyes animation.
 //
-@keyframes cpu-sad-right-eye 
-  10%, 30%, 40%, 100% 
+@keyframes cpu-sad-right-eye
+  10%, 30%, 40%, 100%
     transform scaleY(1) rotate(0deg)
-  20%, 35% 
+  20%, 35%
     transform scaleY(0.2) rotate(0deg)
-  60%, 94% 
+  60%, 94%
     transform scaleY(1) rotate(20deg)
-  
+
 
 @keyframes cpu-sad-left-eye
-  10%, 30%, 40%, 100% 
+  10%, 30%, 40%, 100%
     transform scaleY(1) rotate(0deg)
-  20%, 35% 
+  20%, 35%
     transform scaleY(0.2) rotate(0deg)
-  60%, 94% 
+  60%, 94%
     transform scaleY(1) rotate(-20deg)
-  
+
 .sad-left-eye-anim-loop
   animation cpu-sad-left-eye 3s infinite
   transform-origin 100% 50%
 
-.sad-right-eye-anim-loop 
+.sad-right-eye-anim-loop
   animation cpu-sad-right-eye 3s infinite
   transform-origin 0% 50%
 
 
 .play-anim .dash-anim-line > div,
-.reverse-anim .dash-anim-line > div 
+.reverse-anim .dash-anim-line > div
   animation up-and-down 2s
 
 // Computers connection animation.
 // Linked by a dash lines which have a wave effect.
 // ==========================================================================
-.cpu-conn-anim 
+.cpu-conn-anim
   position relative
 
-.cpu-conn-anim > div 
+.cpu-conn-anim > div
   display inline-block
 
-.dash-anim-line 
+.dash-anim-line
   position relative
   vertical-align top
   top 34px
   margin 0 10px
-  &>divlast-of-type 
+  &>divlast-of-type
     margin-right 0
-  
-  &>div 
+
+  &>div
     display inline-block
     margin-right 5px
-  
+
 
 /*
 Two states managed from a js script
@@ -265,81 +265,81 @@ Two states managed from a js script
 It was too tricky to have a perfect sync without using
 a JS script.
 */
-.play-anim .cpu-wth-eyeslast-of-type .cpu-wth-eyes__eyes > div 
+.play-anim .cpu-wth-eyeslast-of-type .cpu-wth-eyes__eyes > div
   animation-delay 1.4s
 
-.play-anim .dash-anim-line > div:nth-of-type(1) 
+.play-anim .dash-anim-line > div:nth-of-type(1)
   animation-delay 850ms
 
-.play-anim .dash-anim-line > div:nth-of-type(2) 
+.play-anim .dash-anim-line > div:nth-of-type(2)
   animation-delay 950ms
 
-.play-anim .dash-anim-line > div:nth-of-type(3) 
+.play-anim .dash-anim-line > div:nth-of-type(3)
   animation-delay 1050ms
 
-.play-anim .dash-anim-line > div:nth-of-type(4) 
+.play-anim .dash-anim-line > div:nth-of-type(4)
   animation-delay 1150ms
 
-.play-anim .dash-anim-line > div:nth-of-type(5) 
+.play-anim .dash-anim-line > div:nth-of-type(5)
   animation-delay 1250ms
 
-.play-anim .dash-anim-line > div:nth-of-type(6) 
+.play-anim .dash-anim-line > div:nth-of-type(6)
   animation-delay 1350ms
 
-.play-anim .dash-anim-line > div:nth-of-type(7) 
+.play-anim .dash-anim-line > div:nth-of-type(7)
   animation-delay 1450ms
 
-.play-anim .dash-anim-line > div:nth-of-type(8) 
+.play-anim .dash-anim-line > div:nth-of-type(8)
   animation-delay 1550ms
 
-.play-anim .dash-anim-line > div:nth-of-type(9) 
+.play-anim .dash-anim-line > div:nth-of-type(9)
   animation-delay 1650ms
 
-.reverse-anim .cpu-wth-eyesfirst-of-type .cpu-wth-eyes__eyes > div 
+.reverse-anim .cpu-wth-eyesfirst-of-type .cpu-wth-eyes__eyes > div
   animation-delay 1.4s
 
-.reverse-anim .dash-anim-line > div:nth-of-type(10) 
+.reverse-anim .dash-anim-line > div:nth-of-type(10)
   animation-delay 750ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(9) 
+.reverse-anim .dash-anim-line > div:nth-of-type(9)
   animation-delay 850ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(8) 
+.reverse-anim .dash-anim-line > div:nth-of-type(8)
   animation-delay 950ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(7) 
+.reverse-anim .dash-anim-line > div:nth-of-type(7)
   animation-delay 1050ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(6) 
+.reverse-anim .dash-anim-line > div:nth-of-type(6)
   animation-delay 1150ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(5) 
+.reverse-anim .dash-anim-line > div:nth-of-type(5)
   animation-delay 1250ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(4) 
+.reverse-anim .dash-anim-line > div:nth-of-type(4)
   animation-delay 1350ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(3) 
+.reverse-anim .dash-anim-line > div:nth-of-type(3)
   animation-delay 1450ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(2) 
+.reverse-anim .dash-anim-line > div:nth-of-type(2)
   animation-delay 1550ms
 
-.reverse-anim .dash-anim-line > div:nth-of-type(1) 
+.reverse-anim .dash-anim-line > div:nth-of-type(1)
   animation-delay 1650ms
 
 
 /* KEY
 // ========================================================================== */
-.key 
+.key
   position relative
 
-.key__label 
+.key__label
   position absolute
   font-size 11px
   text-align center
 
-.key__bg-inner 
+.key__bg-inner
   border-radius 6px
   position absolute
   border 1px solid #000
@@ -347,111 +347,111 @@ a JS script.
   margin-left 3px
   margin-top -1px
 
-.key__bg-outer 
+.key__bg-outer
   border-radius 8px
   border 2px solid #000
 
-.key--small 
-  .icon-arrow-right 
+.key--small
+  .icon-arrow-right
     margin 21px 0 0 24px
-  
-  .key__bg-inner 
+
+  .key__bg-inner
     width 44px
     height 43px
-  
-  .key__bg-outer 
+
+  .key__bg-outer
     width 52px
     height 48px
-  
-  .icon-arrow-left 
+
+  .icon-arrow-left
     margin 21px 0 0 24px
-  
-.key--big 
+
+.key--big
   .key__label
-  .key__bg-outer 
-    width 135px
+  .key__bg-outer
+    width 215px
     height 46px
-  
-  .key__bg-inner 
-    width 128px
+
+  .key__bg-inner
+    width 208px
     height 43px
-  
-  .key__label 
+
+  .key__label
     margin-top 20px
-  
+
 
 
 // Keyboard animation
 // ==========================================================================
-@keyframes dash-right-to-left-to-right 
-  10%, 100% 
+@keyframes dash-right-to-left-to-right
+  10%, 100%
     transform translate(0, 0)
-  47%, 53% 
+  47%, 53%
     transform translate(80px, 0)
 
-@keyframes keyleft-fade-in-out 
-  10%, 35%, 100% 
+@keyframes keyleft-fade-in-out
+  10%, 35%, 100%
     opacity 1
-  47%, 87% 
+  47%, 87%
     opacity 0
-  
+
 
 
 // Key left animation.
 // Fade on the inner border + move the arrow
 //
-@keyframes keyleft-arrow-up-down 
-  10%, 35%, 95% 
+@keyframes keyleft-arrow-up-down
+  10%, 35%, 95%
     transform translate(0, -2px)
-  
-  47%, 87% 
+
+  47%, 87%
     transform translate(0, 0)
-  
+
 
 
 // Key right animation.
 // Fade on the inner border + move the arrow
 //
 @keyframes keyright-fade-out-in
-  10%, 35%, 100% 
+  10%, 35%, 100%
     opacity 0
-  47%, 87% 
+  47%, 87%
     opacity 1
-  
 
 
-@keyframes keyright-arrow-down-up 
-  10%, 35%, 98% 
+
+@keyframes keyright-arrow-down-up
+  10%, 35%, 98%
     transform translate(0, 0)
-  47%, 92% 
-    transform translate(0, -2px)  
+  47%, 92%
+    transform translate(0, -2px)
 
 // Key animations
 //
-.default-key-anim .key__label 
+.default-key-anim .key__label
   animation keyleft-arrow-up-down 3s infinite
   transform translate(0, -2px)
 
-.default-key-anim .key__bg-inner 
+.default-key-anim .key__bg-inner
   animation keyleft-fade-in-out 3s infinite
 
-.kb-anim 
+.kb-anim
   position relative
-  .key 
+  .key
     display inline-block
     margin 15px 7px 0 0
-  
-  .dash-big 
+
+  .dash-big
     animation dash-right-to-left-to-right 3s infinite
     margin-left 14px
-  
+
 
 // right key
-.kb-anim > div:nth-of-type(3) 
-  .key__label 
+.kb-anim > div:nth-of-type(3)
+  .key__label
     animation keyright-arrow-down-up 3s infinite
-  
-  .key__bg-inner 
+
+  .key__bg-inner
     animation keyright-fade-out-in 3s infinite
     opacity 0
 
