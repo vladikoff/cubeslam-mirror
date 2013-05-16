@@ -20,7 +20,7 @@ arb.register("cubeslam:sv", {
   "promptStart": "Börja",
   "promptLevel": "Nivå&nbsp;<span>1</span>",
   "promptBall": "Boll&nbsp;<span>1</span>",
-  "promptOver": "Game Over",
+  "promptOver": "",
   "promptWin": "Du vann",
   "promptLoose": "Du förlorade",
   "pauseHeader": "Pausat",
