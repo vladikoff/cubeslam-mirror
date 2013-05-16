@@ -5,7 +5,8 @@
         top 6%
         img
           width 85%
-
+      .nav
+        bottom 70px
 
     .swipe-instruction
       display none
@@ -67,14 +68,16 @@
     .dialog
       bottom 0
 
-    header .nav
-      bottom 54px
     header .links
       .experiment, .from
         bottom 50px
 
       #canv-css
         top -266px
+
+    header
+      .nav
+        bottom 54px
 
     body.main-menu, body.game-over
       #footer
@@ -85,12 +88,25 @@
       display none
 
 
+@media all and (max-height: 300px)
+  html.mobile
+    header
+      .nav
+        bottom 10px
+
+@media all and (min-height: 300px ) and (orientation: landscape)
+  html.mobile
+    header
+      .nav
+        bottom 54px
+
 @media all and (min-width: 0px) and (min-height: 0px) and (max-width: 800px)
+
   html.mobile
     .state.game-prompt
       .background
-        height 200px
-        margin-top -100px
+        height 140px
+        margin-top -70px
 
       h1, h2, h3, h4
         font-size 30px
@@ -102,7 +118,8 @@
         font-size 15px
         line-height 30px
 
-@media all and (min-width: 801px) and (min-height: 640px) and (max-width: 4800px)
+@media all and (min-width: 801px) and (max-width: 4800px)
+
   html.mobile
     .state.game-prompt
       .background
@@ -110,7 +127,7 @@
         margin-top -100px
 
       h1, h2, h3, h4
-        font-size 60px
+        font-size 40px
 
       div.subtitle
         font-size 25px
