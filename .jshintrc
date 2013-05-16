@@ -20,7 +20,6 @@
     "TweenMax": true,
     "Sine":true,
     "Back":true,
-    "Elastic":true,
-    "shaders":true
+    "Elastic":true
   }
 }
