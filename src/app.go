@@ -346,7 +346,7 @@ func Cleanup(str string) string {
 func init() {
   now := time.Now()
   rand.Seed(now.Unix())
-  http.HandleFunc("/", Auth(Main))
+  http.HandleFunc("/", Main)
   http.HandleFunc("/tech", Tech)
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", OnConnect)
