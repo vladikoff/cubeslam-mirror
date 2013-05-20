@@ -115,4 +115,5 @@ html.about(lang='en')
         }).scroll();
       }
     script
-      require('slam/lib/localization').init('{{.AcceptLanguage}}')
+      require('slam/lib/localization').parse('{{.AcceptLanguage}}').load()
+
