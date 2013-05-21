@@ -15,17 +15,17 @@ html(lang='en')
     meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
     meta(name='google-site-verification', content='4iEvCOWOW4j9kZKZTAgguUJBoDq5PRx_6AdEYOi8RZ0')
-    meta(name='description', content=description)
+    meta(name='description', content=description, arb:id='metaDescription')
     meta(property='og:type', content='website')
-    meta(property='og:title', content=name)
-    meta(property='og:description', content=description)
+    meta(property='og:title', content=name, arb:id='title')
+    meta(property='og:description', content=description, arb:id='metaDescription')
     meta(property='og:image', content='#{url}images/mobile/apple-touch-114.png')
     meta(property='og:url', content=url)
 
     // if lt IE 9
       script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
 
-    title #{name}
+    title(arb:id='title') #{name}
     link(rel='apple-touch-icon', href='/images/mobile/apple-touch-57.png')
     link(rel='apple-touch-icon', sizes='72x72', href='/images/mobile/apple-touch-72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/mobile/apple-touch-114.png')
