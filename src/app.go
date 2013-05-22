@@ -305,6 +305,12 @@ func AcceptLanguage(r *http.Request) string {
 }
 
 func Minified() string {
+  // Minify when in production
+  if !appengine.IsDevAppServer() {
+    return "min."
+  }
+
+
   // Is minified js newer?
   // TODO there must be a better way?!
   minified := ""
