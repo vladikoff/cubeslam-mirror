@@ -1,5 +1,5 @@
 #ifdef GL_ES
-precision highp float;
+precision mediump float;
 #endif
 
 varying vec3 vWorldPosition;
@@ -15,7 +15,6 @@ uniform vec2 resolution;
 float rand( vec2 co ) {
     return fract(sin((co.x+co.y*1e3+0.001)*1e-3)*1.e5);
 }
-
 
 void main(void)
 {
