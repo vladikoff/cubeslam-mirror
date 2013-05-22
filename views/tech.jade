@@ -115,5 +115,9 @@ html.about(lang='en')
         }).scroll();
       }
     script
-      require('slam/lib/localization').parse('{{.AcceptLanguage}}').load()
+      window.onload = function(){
+        var lang = require('slam/lib/localization')
+        lang.parse('{{.AcceptLanguage}}')
+        lang.load()
+      }
 
