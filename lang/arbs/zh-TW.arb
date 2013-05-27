@@ -1,4 +1,5 @@
 arb.register("cubeslam:zh-TW", {
+  "@@locale": "zh-TW",
   "@@context": "Cube Slam",
   "metaDescription": "與好友面對面進行對戰。",
   "playFriendButton": "與好友對戰",

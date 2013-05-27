@@ -1,4 +1,5 @@
 arb.register("cubeslam:sw", {
+  "@@locale": "sw",
   "@@context": "Cube Slam",
   "metaDescription": "Cheza ana kwa ana dhidi ya marafiki zako.",
   "playFriendButton": "Cheza Rafiki",

@@ -1,4 +1,5 @@
 arb.register("cubeslam:mr", {
+  "@@locale": "mr",
   "@@context": "Cube Slam",
   "metaDescription": "आपल्‍या मित्रांशी समोरा-समोर खेळा.",
   "playFriendButton": "मित्राशी खेळा",

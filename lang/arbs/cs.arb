@@ -1,4 +1,5 @@
 arb.register("cubeslam:cs", {
+  "@@locale": "cs",
   "@@context": "Cube Slam",
   "metaDescription": "Zahrajte si tváří v tvář proti přátelům.",
   "playFriendButton": "Hrát proti kamarádovi",

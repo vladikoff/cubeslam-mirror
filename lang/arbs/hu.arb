@@ -1,4 +1,5 @@
 arb.register("cubeslam:hu", {
+  "@@locale": "hu",
   "@@context": "Cube Slam",
   "metaDescription": "Játsszon ismerősei ellen szemtől szemben.",
   "playFriendButton": "Játék egy ismerőssel",

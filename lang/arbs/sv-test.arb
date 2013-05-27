@@ -1,4 +1,5 @@
 arb.register("cubeslam:sv", {
+  "@@locale": "sv",
   "@@context": "Cube Slam",
   "friendPlayingSomeoneElse": "Anslutningsfel! Försök att uppdatera sidan för att spela multiplayer eller spela mot datorn.",
   "playFriendButton": "Spela vän",

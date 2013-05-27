@@ -1,4 +1,5 @@
 arb.register("cubeslam:sl", {
+  "@@locale": "sl",
   "@@context": "Cube Slam",
   "metaDescription": "Igrajte iz oči v oči s prijatelji.",
   "playFriendButton": "Igrajte s prijateljem",
