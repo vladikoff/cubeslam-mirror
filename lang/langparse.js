@@ -6,7 +6,8 @@ var files = process.argv.slice(2);
 var pending = files.length;
 
 var result = {
-  '@@locale': 'en-US'
+  '@@locale': 'en-US',
+  '@@context': 'Cube Slam'
 };
 
 files.forEach(function(file){
