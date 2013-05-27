@@ -1,6 +1,6 @@
 arb.register("cubeslam:es", {
   "@@context": "WebRTC Game",
-  "metaDescription": "Jugar cara a cara contra tus amigos.",
+  "metaDescription": "Juega contra tus amigos cara a cara.",
   "title": "Cube Slam",
   "playFriendButton": "Jugar contra amigo",
   "playCPUButton": "Jugar contra oso",

@@ -1,5 +1,6 @@
 arb.register("cubeslam:pl", {
   "@@context": "WebRTC Game",
+  "metaDescription": "Zagraj twarzą w twarz ze znajomymi.",
   "playFriendButton": "Zagraj ze znajomym",
   "playCPUButton": "Zagraj z misiem",
   "playButton": "Zagraj",

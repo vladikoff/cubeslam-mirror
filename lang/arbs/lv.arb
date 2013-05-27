@@ -1,5 +1,6 @@
 arb.register("cubeslam:lv", {
   "@@context": "WebRTC Game",
+  "metaDescription": "Spēlējiet pret saviem draugiem.",
   "playFriendButton": "Spēle ar draugu",
   "playCPUButton": "Spēle ar lāci",
   "playButton": "Spēlēt",

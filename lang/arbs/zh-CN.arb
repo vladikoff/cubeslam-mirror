@@ -1,5 +1,6 @@
 arb.register("cubeslam:zh-CN", {
   "@@context": "WebRTC Game",
+  "metaDescription": "与好友面对面地对战。",
   "playFriendButton": "与朋友对战",
   "playCPUButton": "与熊对战",
   "playButton": "开始游戏",

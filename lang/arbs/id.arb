@@ -1,5 +1,6 @@
 arb.register("cubeslam:id", {
   "@@context": "WebRTC Game",
+  "metaDescription": "Hadapi teman Anda satu lawan satu.",
   "playFriendButton": "Bermain dengan Teman",
   "playCPUButton": "Bermain dengan Beruang",
   "playButton": "Mainkan",
