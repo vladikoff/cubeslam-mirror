@@ -92,7 +92,7 @@ arb.register('cubeslam:en-US',{
   "3dTitle": "WebGL &amp; CSS3",
   "3dText": "If you play Cube Slam on Chrome or Firefox, you’ll see real-time 3D rendering enabled by WebGL and three.js. If you don’t have WebGL, you can still play Cube Slam in 3D thanks to CSS3, with the same game engine running under the hood. All the graphics run on your GPU, freeing the CPU for other tasks.",
   "platformTitle": "Google Cloud Platform",
-  "platformText": "Cube Slam is built entirely on Google’s Cloud Platform. The app is hosted on App Engine with a backend written in Go, and the Channel API is used to set up the connection with your opponent. If one of the players is behind a firewall, the game uses a STUN/TURN server hosted on Compute Engine to exchange data. PageSpeed helps things load quickly, and AppCache lets you play offline.",
+  "platformText": "Cube Slam is built entirely on Google Cloud Platform. The app is hosted on Google App Engine with a backend written in Go, and the Channel API is used to set up the connection with your opponent. If one of the players is behind a firewall, the game uses a STUN/TURN server hosted on Google Compute Engine to exchange data. PageSpeed helps things load quickly, and AppCache lets you play offline.",
   "openTitle": "Open source",
   "openText": "You can check out Cube Slam’s source on Google Code or in the Chrome Developer Tools (you’ll need to enable source maps). Also, as a reward for reading this far: you can add the ?⁠dev parameter to the URL to enable dat.gui and tweak all the levels, extras, and other attributes of the game. Have fun!"
 });

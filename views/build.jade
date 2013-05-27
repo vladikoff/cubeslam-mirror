@@ -46,10 +46,12 @@ html(lang='en')
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-  body(class="{{.State}}")
+  body(class="{{.State}}", itemscope, itemtype='http://schema.org/Product')
     header.state.main-menu.animate.inactive
-      h1
+      h1(itemprop='name')
         img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
+      h2.state.inactive(itemprop='description') #{description}
+
 
       .nav
         button.play-friend.green(arb:id='playFriendButton', type='button') Play A Friend
@@ -550,7 +552,7 @@ html(lang='en')
           a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
             span Facebook
         li
-          a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
+          a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name} - #{description}')
             span Twitter
       #about
         ul
