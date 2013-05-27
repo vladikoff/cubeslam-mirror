@@ -1,7 +1,7 @@
 arb.register("cubeslam:ja", {
   "@@context": "WebRTC Game",
   "playFriendButton": "友だちと対戦",
-  "playCPUButton": "熊と対戦",
+  "playCPUButton": "クマと対戦",
   "playButton": "プレイ",
   "chromeExperiment": "Chrome Experiment",
   "friendFromGoogle": "有志による共同開発: Google",
