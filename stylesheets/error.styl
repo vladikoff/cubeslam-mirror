@@ -19,7 +19,94 @@
     button
       margin-right 17px
 
+  .error-lonelyroom
+    position absolute
+    top 0
+    background-image url('/images/mobile/error-bg.jpg')
+    background-repeat no-repeat 
+    background-position center center
+    background-size cover
+    height 100%
+    width 100%
+    .dialog
+      background transparent
+      .content
+        background transparent
+        height auto
+        position absolute
+        bottom 20px
+        padding 0 30px
+        box-sizing border-box
+
+    p, h2
+      color $color-beige
+
+    h2
+      font-size 13px
+      line-height 1.4em
+    p
+      font-size 10px
+
+    p.share-url
+      height 34px
+      outline 2px solid #FFF
+      border 2px solid #1485d5
+      background #FFF
+      color #000
+      display block
+      padding 8px 0
+      box-sizing border-box
+      text-align center
+      margin-top 15px
+
 
   // button, .button
   // font-size 11px
   
+html.ie, body.error-browser
+  .loading
+    display none!important
+  header 
+    opacity 1
+    background transparent!important
+    .nav, .links
+      display none
+
+  #error
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    height 100%
+    background #1487d5 url('/images/mobile/error-bg.jpg') center top no-repeat
+    background-size cover
+
+    .state 
+      height 100%
+      width 100%
+      position absolute
+      z-index 10
+
+    .dialog, .content, .state
+      background transparent
+      display block
+
+    .dialog.bottom
+      position static
+      height 100%
+
+    .content
+      height 100%
+      position relative
+      display block
+
+    .vertical-center
+      display block
+      padding-bottom 50px
+      width 100%
+      position absolute
+      bottom 0
+
+    h2, h3, p
+      color $color-beige

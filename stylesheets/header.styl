@@ -8,20 +8,20 @@ header.main-menu
   color #f8fadb
   transition opacity 400ms ease-out
 
+  &.delay
+    transition-delay 3.5s
+
   &.active
     opacity 1
-
-    h1 img
-      transition opacity .6s
-      opacity 1
+    // h1
+    //   opacity 1
 
 
   &.inactive
     opacity 0
-
-    h1 img
-      opacity 0
-      transform translateZ(0)
+    transition-delay 0s
+    // h1
+    //   opacity 0
 
   p
     margin 0
@@ -58,34 +58,35 @@ header.main-menu
     .notification
       display none
 
+  h1
+    transform translateZ(0)
+    // transition opacity .6s
+    padding 60px
 
   h1
-    padding 60px 0px 10px 0px
+    margin 0
 
     img
       width 70%
       height auto
       margin-bottom 0
-      &.delay
-        transition-delay 3.5s
+
+  h2
+    font-size 14px
+    margin 0
+    color $color-beige
 
   .links
-    .experiment, .from
+    .experiment
       text-transform none
       display block
       text-decoration none
       position absolute 
-      bottom 67px
+      bottom 50px
       font-size 56px
       color #ffffff
+      left 20px
+      line-height 1.15em
 
       span
         display none
-
-    .from
-      right 30px
-      font-size 61px
-
-    .experiment
-      left 30px
-      line-height 1.15em

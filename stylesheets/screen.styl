@@ -66,16 +66,27 @@ html
   top 0
   display none
 
+#benchmarks
+  position absolute
+  top 50px
+  background white
+
 #latencyMeter
-  color white
-  absolute top right
-  z-index 10
-  &.good
-    background-color green
-  &.ok
-    background-color orange
-  &.bad
-    background-color red
+  // color white
+  // absolute top left
+  // z-index 10
+  font-size 11px
+  margin 0
+  span
+    &.good
+      color green
+    &.ok
+      color orange
+    &.bad
+      color red
+
+  span:after
+    content 'ms'
 
 .mirror
   transform scaleX(-1)
@@ -103,3 +114,5 @@ html
 @import 'breakpoints'
 @import 'theme'
 @import 'tech'
+@import 'ie'
+@import 'io'

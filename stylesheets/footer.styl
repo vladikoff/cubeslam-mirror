@@ -73,11 +73,51 @@ footer#footer
       padding 0 0 0 0
       display inline-block
       margin-right 20px
+
       a
         color: #e8e8ca
         text-decoration none
         &:hover
           text-decoration underline
+      
+      &.sound, &.latency
+        position relative
+
+      &.latency
+        width 46px
+        text-transform lowercase
+        cursor pointer
+        span
+          display block
+        .auto 
+          white-space nowrap
+        .details
+          display none
+        .number
+          cursor pointer
+
+        &:hover
+          .number
+            text-decoration underline
+
+          .notification-flag
+            width 400px
+            display block
+            text-decoration none
+            .auto
+              display none
+            .details
+              display block
+              line-height 1.3em
+
+
+        &.inactive
+          display none
+
+        .notification-flag
+          span
+            padding-bottom 16px
+
 
   .sound-switch
     .on, .off
@@ -86,19 +126,24 @@ footer#footer
     &.off .off
       display inline
 
-  #multiplayer-notification
+  .sound
+    .notification-flag
+      height 46px
+      white-space nowrap
+
+
+  .notification-flag
     display none
     position absolute
-    top -77px
-    right 30px
+    bottom 40px
+    right 10px
     padding 18px 15px 0
     background #000
-    height 46px
     box-sizing border-box
     color $color-beige
     font-size 9px
-    white-space nowrap
     text-align left
+    text-transform uppercase
 
     &:before
       content ' '

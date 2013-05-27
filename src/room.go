@@ -1,4 +1,4 @@
-package webrtcing
+package rtc
 
 import (
   "appengine"
@@ -10,13 +10,6 @@ type Room struct {
   Name string
   User1 string
   User2 string
-  // AppEngine Channels API connected properly
-  AEConnected1 bool
-  AEConnected2 bool
-  // JavaScript Channels API connected properly
-  JSConnected1 bool
-  JSConnected2 bool
-  // Used to clean up old rooms
   LastChanged time.Time
 }
 
@@ -51,44 +44,12 @@ func (r *Room) AddUser(user string) {
 func (r *Room) RemoveUser(user string) bool {
   if user == r.User2 {
     r.User2 = ""
-    r.AEConnected2 = false
-    r.JSConnected2 = false
   }
   if user == r.User1 {
     r.User1 = ""
-    r.AEConnected1 = false
-    r.JSConnected1 = false
   }
   // returns true if it should be deleted
   return r.Occupants() == 0
-}
-
-func (r *Room) AEConnectUser(user string) {
-  if user == r.User1 {
-    r.AEConnected1 = true
-  }
-  if user == r.User2 {
-    r.AEConnected2 = true
-  }
-}
-
-func (r *Room) JSConnectUser(user string) {
-  if user == r.User1 {
-    r.JSConnected1 = true
-  }
-  if user == r.User2 {
-    r.JSConnected2 = true
-  }
-}
-
-func (r *Room) Connected(user string) bool {
-  if user == r.User1 && r.AEConnected1 && r.JSConnected1 {
-    return true
-  }
-  if user == r.User2 && r.AEConnected2 && r.JSConnected2 {
-    return true
-  }
-  return false
 }
 
 func (r *Room) Occupants() int {

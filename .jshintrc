@@ -1,0 +1,25 @@
+{
+  "regexdash": true,
+  "browser": true,
+  "devel": true,
+  "curly": true,
+  "trailing": true,
+  "sub": true,
+  "laxcomma": true,
+  "expr": true,
+  "lastsemic": true,
+  "camelcase": false,
+  "quotmark": true,
+  "asi": true,
+  "undef": true,
+  "globals": {
+    "require": true,
+    "module": true,
+    "exports": true,
+    "THREE": true,
+    "TweenMax": true,
+    "Sine":true,
+    "Back":true,
+    "Elastic":true
+  }
+}

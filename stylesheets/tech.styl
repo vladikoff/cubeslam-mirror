@@ -21,7 +21,8 @@ $width = 960px
     h1
       font-size 34px
       display block
-      margin 157px 0 0
+      padding 121px 0 0
+      margin 0
       font-weight bold
       a
         color $color-beige
@@ -30,7 +31,7 @@ $width = 960px
           text-decoration underline
 
     .play-link
-      margin-top 50px
+      margin-top 35px
       border 3px solid #ffcb4d
       font-size 20px
       color #ffcb4d
@@ -67,7 +68,6 @@ $width = 960px
         display block
         margin 10px auto 22px
 
-
     p
       max-width 790px
       font-size 16px
@@ -87,19 +87,40 @@ $width = 960px
 
 
   #webrtc
-    background #d95938
+    background #6d8689
 
   #renderers
     background #13030f
 
   #audio
-    background #517676
+    background #783c5f
 
   #platform
-    background #1f1f1f
+    background #a7bebe
 
   #opensource
-    background #04080a    
+    background #0e191e    
+
+  #nav
+    position fixed
+    top 50%
+    margin-top -91px
+    right 30px
+    list-style none
+    li
+      display block
+      margin-bottom 10px
+
+      a
+        width 25px
+        height 25px
+        border-radius 25px
+        border 2px solid $color-beige
+        display block
+
+      &.active
+        a
+          background $color-beige
 
   &.touch
     body

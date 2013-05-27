@@ -37,19 +37,21 @@ html.mobile
   .play-friend
   , .play-computer
   , button.main-menu
-  , .links
   , .multiplayer
   , section.state.game-pause
   , #extras
   , #notifications
   , #settingsGUIContainer
   , #debug-info
+  , #canv-3d
+  , #canv-2d
+  , #canv-db
     display none!important
 
   // #settingsGUIContainer
 
   .dialog
-    bottom $footer-height
+    bottom 0
 
   header
     background no-repeat center center
@@ -59,21 +61,37 @@ html.mobile
     h1
       padding 0 0 0 0
       margin 0
-      position relative 
-      top 5%
 
-      img.delay
-        transition-delay 0s
+    h2
+      display none
+
+    &.delay
+      transition-delay 0s
+
+    h1
+      position relative
+      top 5%
+      padding 0
+
+    .links
+      .from
+        font-size 47px
+        right 15px
+        bottom 69px
+      .experiment
+        font-size 42px
+        bottom 66px
+        left 15px
 
     .nav
-      bottom 70px
+     
       width 100%
       padding 0
 
       a.button
         display none!important
 
-      button 
+      button
         width auto
         min-width 0
         padding-left 15px
@@ -86,9 +104,9 @@ html.mobile
       display none
 
 
-  #mobile-menu
-    position absolute 
-    top 45px 
+  #mobile-menu, .cssinfo .buttons
+    position absolute
+    top 45px
     right 0
     z-index 2
     button
@@ -106,6 +124,11 @@ html.mobile
       &.pause
         background $color-beige
         color $color-blue
+        position absolute
+        right 0
+        z-index 1
+        transition transform 250ms
+        transition-delay .7s
       &.sound
         background $color-green
         color #306e2b
@@ -115,18 +138,17 @@ html.mobile
       &.info
         background $color-yellow
         color #b58d33
-      &.pause
-        position absolute 
-        right 0
-        z-index 1
-        transition transform 250ms
-        transition-delay .7s
+      &.return
+        background #ffd059
+        color #b58d33
+
+
 
     .game-pause, .game-play
       transform translateX(0)
       position relative
       z-index 2
-      transition transform 300ms ease-out 
+      transition transform 300ms ease-out
       transition-delay 300ms
       display block!important
 
@@ -139,10 +161,9 @@ html.mobile
     backface-visibility hidden
     .background
       transition none
-      height 60px
-      margin-top -30px
+      height 100px
+      margin-top -50px
       top 50%
-      transform translateZ(0)
       backface-visibility hidden
 
     // .content
@@ -152,8 +173,8 @@ html.mobile
     .prompt
       transform translateZ(0)
       backface-visibility hidden
-      h1, h2, h3, h4
-        font-size 30px
+
+
 
   footer#footer
     display none
@@ -219,8 +240,8 @@ html.mobile
       display block
 
   #scores
-    position absolute 
-    top 10px 
+    position absolute
+    top 10px
     left 0
     width 100%
     margin 0
@@ -229,7 +250,7 @@ html.mobile
     box-sizing border-box
 
     .logo
-      position absolute 
+      position absolute
       right 14px
       .level
         margin-top 6px
@@ -258,7 +279,7 @@ html.mobile
 
   #gamepad
     display none!important
-    position absolute 
+    position absolute
     bottom 50%
     width 100%
     z-index 2
@@ -269,8 +290,8 @@ html.mobile
       width 72px
       height 72px
       border-radius 36px
-      box-shadow 0 3px 5px rgba(0,0,0,.3) 
-      position absolute 
+      box-shadow 0 3px 5px rgba(0,0,0,.3)
+      position absolute
       left 5%
       padding 0
       outline 0
@@ -283,8 +304,8 @@ html.mobile
 
       &:after
         content ' '
-        position absolute 
-        bottom 1px 
+        position absolute
+        bottom 1px
         left 4.2%
         width 93%
         height 93%
@@ -294,17 +315,17 @@ html.mobile
       &:before
         font-size 36px
         color #295d21
-        position absolute 
+        position absolute
         top 27%
         z-index 2
 
 
       &:active, &.down
-        box-shadow 0 1px 3px rgba(0,0,0,.1) 
+        box-shadow 0 1px 3px rgba(0,0,0,.1)
         top 2px
         &:after
           bottom inherit
-          top 1px 
+          top 1px
 
       &:last-child
         left auto
@@ -316,10 +337,18 @@ html.mobile
       visibility visible
 
     .dialog
+      background $color-beige
+      transform-style preserve-3d
+      backface-visibility hidden
+      transform translateZ(0)
       .content.animate
-        transition-duration 1ms
+        transition none
+        // transition-duration 0ms
 
     &.game-instructions
+      p
+        width auto
+        margin-left auto
       .game-controls
         display none!important
       .dialog
@@ -330,11 +359,8 @@ html.mobile
         transition none
       &.inactive
         display none!important
-        .content
-          transform translateX(-100%)
       &.active
-        .content
-          transform translateX( 0 )
+        display block!important
     &.game-over
       .dialog
         h1
@@ -359,6 +385,8 @@ html.mobile
           width auto
           padding 10px 20px
           margin-left 0
+      &.inactive
+        display none!important
 
   .mobile
     .main-menu
@@ -369,7 +397,7 @@ html.mobile
       position absolute
       z-index 6
 
-    
+
     h4.game-over
       position absolute
       z-index 5
@@ -384,6 +412,10 @@ html.mobile
   .state.game-instructions
     #game-controls
       display none
+
+  .game-instructions
+    #game
+      visibility hidden!important
 
   #game
     opacity 1

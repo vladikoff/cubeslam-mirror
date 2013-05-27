@@ -1,22 +1,31 @@
 - var name = "Cube Slam";
 - var description = "Play face-to-face against your friends.";
-- var url = 'http://cubeslam.com/';
+- var url = 'https://cubeslam.com/';
 - var urlWithRoomId = url+'{{.Room}}';
 
 !!! 5
+//\[if IE]><html class="ie"><![endif]
+//\[if !IE]><!
 html(lang='en')
+  //\<![endif]
   head(prefix='og: http://ogp.me/ns#')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     meta(name='apple-mobile-web-app-capable',content='yes')
     meta(name='viewport',content='initial-scale=1, maximum-scale=1, minimum-scale=1')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
-    meta(name='description', content=description)
+    meta(name='google-site-verification', content='4iEvCOWOW4j9kZKZTAgguUJBoDq5PRx_6AdEYOi8RZ0')
+    meta(name='description', content=description, arb:id='metaDescription')
     meta(property='og:type', content='website')
-    meta(property='og:title', content=name)
-    meta(property='og:description', content=description)
+    meta(property='og:title', content=name, arb:id='title')
+    meta(property='og:description', content=description, arb:id='metaDescription')
     meta(property='og:image', content='#{url}images/mobile/apple-touch-114.png')
     meta(property='og:url', content=url)
 
-    title #{name}
+    // if lt IE 9
+      script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
+
+    title(arb:id='title') #{name}
     link(rel='apple-touch-icon', href='/images/mobile/apple-touch-57.png')
     link(rel='apple-touch-icon', sizes='72x72', href='/images/mobile/apple-touch-72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/images/mobile/apple-touch-114.png')
@@ -25,8 +34,7 @@ html(lang='en')
 
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Varela')
     link(rel='stylesheet', href='/stylesheets/slam.css')
-
-    script(type='text/javascript')
+    script
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-39581099-3']);
@@ -38,16 +46,14 @@ html(lang='en')
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-  body(class="{{.State}}")
+  body(class="{{.State}}", itemscope, itemtype='http://schema.org/Product')
     header.state.main-menu.animate.inactive
-      h1
+      h1(itemprop='name')
         img(src='/images/logo_large.png', width='1533', height='155', alt='#{name}')
+      h2.state.inactive(itemprop='description') #{description}
+
 
       .nav
-        .notifications
-          p.notification.full.bubble(arb:id="friendPlayingSomeoneElse") Your Friend is playing someone else.
-          p.notification.connection-error.error.bubble(arb:id="friendPlayingSomeoneElse") Connection error! Try to reload the page to play multiplayer or play against the computer.
-
         button.play-friend.green(arb:id='playFriendButton', type='button') Play A Friend
         button.play-computer.start.green(arb:id='playCPUButton', type='button') Play A Bear
         button.play-mobile.start.green(arb:id='playButton', type='button') Play
@@ -55,8 +61,6 @@ html(lang='en')
       .links
         a.experiment.icon(href='http://chromeexperiments.com/', target='_blank', data-icon='⬢')
           span(arb:id='chromeExperiment') Chrome Experiment
-        a.from.icon(href='http://google.com/', target='_blank', data-icon='☃')
-          span(arb:id='friendFromGoogle') Made with some friends from Google
 
     .state.loading.active
       .computer.icon(arb:id='loading',data-icon='⎚') Loading
@@ -84,7 +88,7 @@ html(lang='en')
                     div.key__bg-inner
               p(arb:id='gameInstructionsPress') to move and
               .key.key--big.default-key-anim
-                p.key__label SPACE
+                p(arb:id='space').key__label SPACE
                 .key__bg-outer
                   div.key__bg-inner
               p(arb:id='gameInstructionsPause') to pause
@@ -105,8 +109,8 @@ html(lang='en')
                   .pad
 
               .swipe-label
-                p(arb:id='gameInstructionsMobileSwipe') Swipe left/right at the bottom of the screen
-                p(arb:id='gameInstructionsMobilePress') or press left/right buttons in horizontal mode
+                p(arb:id='gameInstructionsMobileSwipe') Swipe at the bottom of the screen
+                p(arb:id='gameInstructionsMobilePress') Or press buttons in landscape mode
 
           .vertical-center
             .info-animation.objective.hidden
@@ -146,26 +150,32 @@ html(lang='en')
       .state.game-prompt-start.inactive
         .content.center.animate
           #start-prompt.prompt
-            h1.bitmap(arb:id='promptStart') Start
+            h1.bitmap Start
+            div(arb:id='promptStart').subtitle
 
       .state.game-prompt-level.inactive
         .content.center.animate
           #level-prompt.prompt
-            h2.bitmap(arb:id='promptLevel') Level 
+            h2.bitmap Level 
               span 1
+            div(arb:id='promptLevel').subtitle
 
       .state.game-prompt-round.inactive
         .content.center.animate
           #round-prompt.prompt
-            h3.bitmap(arb:id='promptBall') Ball 
+            h3.bitmap Ball 
               span 1
+            div(arb:id='promptBall').subtitle
 
       .state.game-prompt-over.inactive
         .content.center.animate
           .prompt
-            h4.over.bitmap(arb:id='promptOver') Game Over
-            h4.win.bitmap(arb:id='promptWin') You Win
-            h4.loose.bitmap(arb:id='promptLoose') You Lose
+            h4.over.bitmap Game Over
+            div(arb:id='promptOver').over.subtitle
+            h4.win.bitmap You Win
+            div(arb:id='promptWin').win.subtitle
+            h4.loose.bitmap You Lose
+            div(arb:id='promptLoose').loose.subtitle
 
     //PAUSE DIALOG
     section.state.game-pause.inactive
@@ -183,22 +193,21 @@ html(lang='en')
     section.state.webcam-activate.inactive
       .dialog.top
         .content
-          h1.alert-info(arb:id='webcamAllow') The two-person game requires access to your webcam
+          h1.alert-info(arb:id='webcamAllow') Please allow access to your webcam to play your friend.
 
     section.state.webcam-information.inactive
       .dialog.bottom
         .content
           .vertical-center
-            h1(arb:id='webcamDeniedHeaderH1') Aw, Shucks! Webcam blocked!
+            h1(arb:id='webcamDeniedHeaderH1') Sorry, you need your webcam to play your friend
             p(arb:id='webcamDeniedInfo') It looks like you've blocked access to your webcam.
             h3(arb:id='webcamDeniedHeaderH3') To allow access:
             ol
-              li(arb:id='webcamDeniedStep1') Click the camera on the right side in the address bar
-              li(arb:id='webcamDeniedStep2') In the permissions menu, click "Media: Blocked by you"
-              li(arb:id='webcamDeniedStep3') Select "Always allow on this site." You can change this later.
-              li(arb:id='webcamDeniedStep4') Click out of the menu and refresh the page
+              li(arb:id='webcamDeniedStep1') Click the camera icon on the right side of the address bar
+              li(arb:id='webcamDeniedStep2') Select "Always allow www.cubeslam.com to access your camera and microphone" and click "Done"
+              li(arb:id='webcamDeniedStep3') Click "Reload"
             .buttons
-              p(arb:id='webcamButtonExplanation') or, you can still play the computer
+              p(arb:id='webcamButtonExplanation') Or you can still play the computer:
               a.button.green(href='/', arb:id='buttonMainMenu') Main Menu
 
     //WAITING FOR FRIEND CAMERA
@@ -210,7 +219,7 @@ html(lang='en')
               .webcam-spinner__bg.icon-webcam
               .webcam-spinner__quarter
                 .icon-quarter-circle
-            h2(arb:id='waitingForCamera') Waiting for friend<br/>to allow camera
+            h2(arb:id='waitingForCamera') Waiting for Friend<br/>to allow camera
 
     //WAITING FRIEND
     section.state.friend-waiting.inactive
@@ -223,7 +232,7 @@ html(lang='en')
                 .cpu-wth-eyes__eyes
                   .dash-medium.dash-white.blinking-eyes-anim-loop
                   .dash-medium.dash-white.blinking-eyes-anim-loop
-            h3(arb:id='waitingForAcceptance') Your friend is waiting for you
+            h3(arb:id='waitingForAcceptance') Your friend is waiting for You
             button.play-friend.blue(type='button', arb:id='buttonPlayFriend') Play Friend
 
     //FRIEND ARRIVED
@@ -288,12 +297,14 @@ html(lang='en')
         .dialog
           .content.animate
             #scoreboard-single.vertical-center
-              h1.mobile.bitmap.shadow(arb:id='promptOver') Game Over
+              h1.mobile.bitmap.shadow Game Over
+              div.mobile.subtitle.shadow(arb:id='promptOver')
+
               .scoreboard.single
                   div
+                    h3(arb:id='levelReached') Level Reached
                     p#single-levels.levels
                       i X
-                    h3(arb:id='levelReached') Level Reached
                   ul.social
                     li
                       a.icon(data-icon='g', href='https://plus.google.com/share?url=#{url}')
@@ -332,7 +343,7 @@ html(lang='en')
                       span Twitter
 
                 button.green.play(type='button')
-                  span(arb:id='buttonPlayAgain') Play Again
+                  span(arb:id='buttonNextLevel') Next Level
                   span.keyboard(arb:id='space') (Space)
 
     //RENDERERS
@@ -345,7 +356,7 @@ html(lang='en')
 
       #canv-css.state.game.inactive
         .background.state.game
-          img.bg(data-src-mobile='/images/mobile/game-mobile.jpg', data-src-tablet='/images/mobile/game-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
+          img.bg(data-src-mobile='/images/mobile/game-mobile.jpg', data-src-tablet='/images/mobile/game-full.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=', alt='Mobile background')
           .screen
             .effect.hit-cpu.hidden
             .effect.hit-player.hidden
@@ -391,7 +402,7 @@ html(lang='en')
     //GAME SCORES
     section#scores.state.game.inactive
       .logo
-        img(src="/images/minicubeslam.png", alt='logo')
+        img(src="/images/minicubeslam.png", alt='Cube Slam Logo')
         h1 #{name}
         p.level(arb:id='scoreLevel') Level 
           span#level 1
@@ -431,21 +442,21 @@ html(lang='en')
       ul
         li.icon.deathball(data-icon='*', arb:id='extraDeathBall') Death ball
         li.icon.ghostball(data-icon='*', arb:id='extraGHostBall') Ghost ball
-        li.icon.paddleresize(data-icon='*', arb:id='extraMagneticBall') Paddle Resize
+        li.icon.paddleresize(data-icon='*', arb:id='extraPaddleResize') Paddle Resize
         li.icon.fog(data-icon='*', arb:id='extraFog') Fog
-        li.icon.multiball(data-icon='*', arb:id='extraMultiBall') Multi ball
+        li.icon.multiball(data-icon='*', arb:id='extraMultiBall') Multiball
         li.icon.extralife(data-icon='*', arb:id='extraShield') Extra shield
         li.icon.timebomb(data-icon='*', arb:id='extraTimeBomb') Time Bomb
-        li.icon.fireball(data-icon='*', arb:id='extraFireBall') Fire ball
+        li.icon.fireball(data-icon='*', arb:id='extraFireBall') Fireball
         li.icon.laser(data-icon='*', arb:id='extraLaserPaddle') Laser paddle
         li.icon.mirroredcontrols(data-icon='*')
           span(arb:id='extraMirroredControl') Mirrored Controls
-        li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bullet Proof
+        li.icon.bulletproof(data-icon='*', arb:id='extraBulletProof') Bulletproof
 
     //MOBILE
     section.mobile
       section.state.main-menu.inactive
-        img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=')
+        img(data-src-mobile='/images/mobile/landing-mobile.jpg', data-src-tablet='/images/mobile/landing-tablet.jpg', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUeNoBAgD9/wAAAAIAAVMrnDAAAAAASUVORK5CYII=', alt='')
       #gamepad.state.game.inactive
         button.left.icon(type='button', data-icon='<')
         button.right.icon(type='button', data-icon='>')
@@ -459,16 +470,14 @@ html(lang='en')
       .state.cssinfo.game-cssinfo.game-over-cssinfo.inactive
         .content
           div
-            img(src='/images/mobile/about.jpg')
-            h1(arb:id='aboutMobileH1') About Cube Slam
-            p(arb:id='aboutMobileText1') Cube Slam is a Chrome Experiment built to showcase the latest technology in Google Chrome.
+            h1(arb:id='aboutMobileH1') About<br/>Cube Slam
+            p(arb:id='aboutMobileText1') Cube Slam is a chrome experiment built to showcase the latest technology in Google Chrome.
           div
-            img(src='/images/mobile/gameboard.jpg')
-            h2(arb:id='aboutMobileH2') Play friend on desktop
+            img(src='/images/mobile/gameboard.jpg', width='600', height='281', alt='mobile game board')
             p(arb:id='aboutMobileText2') Visit cubeslam.com in Chrome on your computer to play face to face against a friend.
-            a(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
+            a.terms(target='_blank', href='https://www.google.com/policies/', arb:id='footerTerms') Terms &amp; privacy
             .buttons
-              button.green(arb:id='buttonClose') Close
+              button.return.icon(href='#', data-icon='↩', type='button')
 
 
 
@@ -481,18 +490,19 @@ html(lang='en')
               h2(arb:id='errorConnectionHeader') Connection Error
               p(arb:id='errorConnectionReload') Sorry, we had trouble making the connection.
               .buttons
-                a.button.green(href='', arb:id='buttonReconnect') Reconnect
+                a.button.green(href='', arb:id='buttonReconnect') Reload
 
       .state.error-fullroom.inactive
         .dialog.bottom
           .content.animate
             .vertical-center
               h2(arb:id='errorOccupiedHeader') Your friend is playing someone else
-              p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
-              p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
+              //- p(arb:id='errorOccupiedNew') Create a new game to invite a friend of you own
+              //- p(arb:id='errorOccupiedOr') or go to main menu to play against Bob
               .buttons
-                button.main-menu.green(type='button', arb:id='buttonMainMenu') Main Menu
-                a.button.green.new(href='/', arb:id='buttonNewGame') New Game
+                //button.main-menu.green(type='button', arb:id='buttonMainMenu') Main Menu
+                //- a.button.green.new(href='/', arb:id='buttonNewGame') New Game
+                a.button.green.new(href='/', arb:id='buttonMainMenu') Main Menu
 
       .state.error-datachannels.inactive
         .dialog.bottom
@@ -513,6 +523,19 @@ html(lang='en')
               .buttons
                 a.button.green(href='https://www.google.com/chrome/', arb:id='buttonInstallChrome') Install Chrome
 
+      .state.error-lonelyroom.inactive
+        .dialog.bottom
+          .content.animate
+            .vertical-center
+              h2(arb:id='errorMobileLonelyRoomHeader') Please try in Chrome on your computer
+              p(arb:id='errorMobileLonelyTwoPlayer') Sorry, the mobile version of Cube Slam doesn't support the two-player game.
+              p(arb:id='errorMobileLonelyVisit') Visit this URL in Chrome on your computer to play your friend:
+              p.share-url
+                span.url= urlWithRoomId
+              .buttons
+                a.button.green(href='/', arb:id='buttonPlayMobileGame') Play Mobile Game
+
+
       //section.error.network-missing
         .dialog.bottom
           .content.animate
@@ -529,7 +552,7 @@ html(lang='en')
           a.icon(data-icon='f', href='https://www.facebook.com/sharer.php?u=#{url}&t=#{name}')
             span Facebook
         li
-          a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name}')
+          a.icon(data-icon='t', href='http://twitter.com/intent/tweet?url=#{url}&text=#{name} - #{description}')
             span Twitter
       #about
         ul
@@ -544,12 +567,13 @@ html(lang='en')
             a.sound-switch.off(href='#')
               span.off(arb:id='soundOn') Sound on
               span.on(arb:id='soundOff') Sound off
-            p#multiplayer-notification(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
-
-    #notifications
-      #latency.dialog.top
-        .content
-          h1.alert-info(arb:id='latency') You seem to be too far away from your friend to be able to play this smoothly, but keep going!
+            p#multiplayer-notification.notification-flag(arb:id='headphonesMultiplayer') Use your headphones and turn the music on!
+          li.latency.inactive
+            div#latencyMeter
+              span.number.good 331
+            p#latency-notification.notification-flag
+              span.auto(arb:id='latencyBumpiness') Sorry, high latency! The game might be bumpy.
+              span.details(arb:id='latencyDetails') This number measures latency, or how long it takes information to travel from you to your friend and back. Above 100 milliseconds, the game gets out of sync, so things feel bumpy. Sorry about that!
 
     #fpsCameraCapture
 
@@ -561,10 +585,11 @@ html(lang='en')
     #debug-info
       pre
 
-    #latencyMeter
+    #benchmarks
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/dat.gui.js')
+    script(src='/javascript/libs/stats.js')
     script(src='/javascript/slam.{{.Minified}}js')
     script
       require('slam')(ctx = {

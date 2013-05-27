@@ -52,9 +52,7 @@ html.mobile
     left -1 * $w * .5
     transform-origin 50% 55%
     backface-visibility hidden
-    // -webkit-filter hue-rotate(-60deg)
     .background
-      pointer-events none
       width 1536px
       height 1079px
       z-index 0
@@ -405,10 +403,11 @@ html.mobile
   transform-origin 50% 50% 0
 
   .gfx
-    transition transform .5s cubic-bezier(0.000, 0.000, 0.405, 1.650)
+    transition transform .5s
     transition-property transform, opacity
     position absolute
     z-index 1
+    transform-origin-y bottom
 
   &.fireball
     .gfx

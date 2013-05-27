@@ -7,10 +7,10 @@ var MOVE_Y = [1,1,-10];
 var HIT_A = [2,0];
 var HIT_B = [2,1];
 
-var PING_A = [3,'ping',10];
-var PONG_A = [3,'pong',10];
-var PING_B = [3,'ping',70];
-var PONG_B = [3,'pong',70];
+var PING_A = [-1,10];
+var PONG_A = [-2,10];
+var PING_B = [-1,70];
+var PONG_B = [-2,70];
 
 var msg = buf.build(0,[MOVE_X,HIT_A])
 
@@ -18,7 +18,7 @@ var r = new Reader(msg);
 console.assert(r.getUint16()  === 0) // frame
 console.assert(r.getInt8()    === MOVE_X[0])
 console.assert(r.getUint8()   === MOVE_X[1])
-console.assert(r.getFloat32() === MOVE_X[2])
+console.assert(r.getFloat64() === MOVE_X[2])
 console.assert(r.getInt8()    === HIT_A[0])
 console.assert(r.getUint8()   === HIT_A[1])
 
@@ -76,17 +76,13 @@ console.assert(inputs[1][1] === MOVE_X[1])
 console.assert(inputs[1][2] === MOVE_X[2])
 console.assert(inputs[2][0] === PING_A[0])
 console.assert(inputs[2][1] === PING_A[1])
-console.assert(inputs[2][2] === PING_A[2])
 
 var inputs = buf.parse(messages[1]);
 console.assert(inputs.length === 4) // frame, pong a, ping b, pong b
 console.assert(inputs[0]    === 1)     // frame
 console.assert(inputs[1][0] === PONG_A[0])
 console.assert(inputs[1][1] === PONG_A[1])
-console.assert(inputs[1][2] === PONG_A[2])
 console.assert(inputs[2][0] === PING_B[0])
 console.assert(inputs[2][1] === PING_B[1])
-console.assert(inputs[2][2] === PING_B[2])
 console.assert(inputs[3][0] === PONG_B[0])
 console.assert(inputs[3][1] === PONG_B[1])
-console.assert(inputs[3][2] === PONG_B[2])

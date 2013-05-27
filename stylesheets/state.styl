@@ -7,6 +7,10 @@
   &.active
     visibility visible
 
+  &.inactive .dialog.middle .content
+    transform-origin center center
+    transform rotateX( -90deg )
+
   &.loading
     position relative
     background-color $color-beige
@@ -53,6 +57,20 @@
         font-size 136px
         margin-bottom 20px
 
+  &.friend-arrived,
+  &.friend-waiting,
+  &.game-wait,
+  &.friend-accept,
+  &.friend-left
+    h2, h3
+      padding 11px 0px 23px 0px
+
+    button
+      margin-top 0
+
+  &.state.friend-accept
+    h2
+      padding 10px 0px 5px 0px
 
   &.state.game-instructions,
   &.state.game-start
@@ -65,18 +83,12 @@
     top 0
     left 0
     z-index 3
-    perspective 2000px
-    transform rotateX( 0 )
-
-  &.inactive .dialog.middle .content
-    transform-origin center center
-    transform rotateX( -90deg )
 
   &.friend-invite
     .share-url
       background $color-beige
       color #2aa52a
-      width 350px
+      min-width 350px
       padding 8px 5px 7px 5px
       border 1px solid #2aa52a
       display inline-block
@@ -88,6 +100,7 @@
         outline none
       span
         z-index 2
+        font-size 17px
         &::selection
           background #2aa52a
           color $color-beige
@@ -95,7 +108,7 @@
       span
         position relative
     p
-      max-width 350px
+      // max-width 350px
       margin 0 auto 20px
       line-height 1.4em
 
@@ -157,12 +170,17 @@
 
       h1, h2, h3, h4
         font-size 100px
+        margin 0
+
+      div.subtitle
+        text-transform uppercase
+        color $color-beige
 
     .background
       height 33%
       width 100%
       background $color-red
-      position absolute 
+      position absolute
       top 33%
       z-index 3
       transition background .5s
@@ -223,7 +241,7 @@
       margin-bottom 5px
 
     h3
-      margin 16px 0 0 
+      margin 16px 0 0
 
     p, ol
       font-size 11px
@@ -249,9 +267,22 @@
       .animate
         transition-delay 1.5s
 
+
   &.game-over
     text-align center
     height 100%
+
+    .bitmap
+      line-height 1.2em
+
+    .subtitle
+      color $color-yellow
+      margin 0
+      font-size 25px
+      text-shadow 0 .06em 0 #876b2a
+      line-height 1.2em
+      margin-top -23px
+      margin-bottom 10px
 
     #opponent-levels
       &:after
@@ -309,6 +340,8 @@
       box-sizing border-box
       padding 21px 0 0 0
       color $color-beige
+      margin-bottom 20px
+      min-width 52px
 
       position relative
       &:after
@@ -340,10 +373,12 @@
     z-index 3
     .info-animation
       display inline-block
-      width 210px
+      // width 210px
       p
         font-size 14px
         white-space nowrap
+        width 490px
+        margin-left -145px
       &.hidden
         display none
 
@@ -359,37 +394,34 @@
     .content
       margin 0 auto
       width 320px
-      padding 30px 0 10px
+      padding 15px 0 10px
       box-sizing border-box
-
-      div
-        margin-bottom 30px
-
-    .buttons
-        margin-top 30px
 
     img
       width 100%
-      margin 0 auto
+      height auto
+      margin 15px auto
 
     p
-      text-align justify
+      text-align center
       margin 0
 
     p, a
       color $color-beige
       font-size 13px
       line-height 1.4em
+      letter-spacing 0
       text-transform inherit
 
-    button
-      width 100%
-      border none
-      outline none
 
-    h1
-      margin-top -100px
+    .terms
+      display block
+      padding 15px
+      text-align center
 
+
+    .buttons
+      position fixed!important
 
     h1, h2
       color $color-beige
@@ -397,15 +429,7 @@
       line-height 1.4em
       text-transform uppercase
       text-align center
-
-      &:after
-        content ' '
-        background url('/images/tech/ornament.png') center center
-        background-size cover
-        width 225px
-        height 25px
-        display block
-        margin 10px auto 22px
-        position relative
-        z-index 2
+      margin 27px auto 0px
+      max-width 220px
+      min-height 60px
 
