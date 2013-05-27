@@ -1,5 +1,5 @@
 arb.register("cubeslam:iw", {
-  "@@context": "WebRTC Game",
+  "@@context": "Cube Slam",
   "metaDescription": "שחקו פנים אל פנים עם החברים שלכם.",
   "playFriendButton": "שחקו מול חבר",
   "playCPUButton": "שחקו מול דוב",

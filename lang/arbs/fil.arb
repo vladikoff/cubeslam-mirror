@@ -1,5 +1,5 @@
 arb.register("cubeslam:fil", {
-  "@@context": "WebRTC Game",
+  "@@context": "Cube Slam",
   "metaDescription": "Makipaglaro nang face-to-face sa iyong mga kaibigan.",
   "playFriendButton": "Makipaglaro sa Isang Kaibigan",
   "playCPUButton": "Makipaglaro sa Isang Oso",
