@@ -1,5 +1,6 @@
 arb.register("cubeslam:sv", {
-  "@@context": "WebRTC Game",
+  "@@locale": "sv",
+  "@@context": "Cube Slam",
   "friendPlayingSomeoneElse": "Anslutningsfel! Försök att uppdatera sidan för att spela multiplayer eller spela mot datorn.",
   "playFriendButton": "Spela vän",
   "playCPUButton": "Spela dator",

@@ -1,5 +1,7 @@
 arb.register("cubeslam:sr", {
-  "@@context": "WebRTC Game",
+  "@@locale": "sr",
+  "@@context": "Cube Slam",
+  "metaDescription": "Играјте против пријатеља лицем у лице.",
   "playFriendButton": "Играјте против пријатеља",
   "playCPUButton": "Играјте против медведа",
   "playButton": "Играјте",

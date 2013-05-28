@@ -1,5 +1,7 @@
 arb.register("cubeslam:sw", {
-  "@@context": "WebRTC Game",
+  "@@locale": "sw",
+  "@@context": "Cube Slam",
+  "metaDescription": "Cheza ana kwa ana dhidi ya marafiki zako.",
   "playFriendButton": "Cheza Rafiki",
   "playCPUButton": "Cheza Dubu",
   "playButton": "Cheza",

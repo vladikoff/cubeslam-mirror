@@ -1,5 +1,7 @@
 arb.register("cubeslam:nl", {
-  "@@context": "WebRTC Game",
+  "@@locale": "nl",
+  "@@context": "Cube Slam",
+  "metaDescription": "Live spelen tegen uw vrienden.",
   "playFriendButton": "Tegen een vriend spelen",
   "playCPUButton": "Tegen een beer spelen",
   "playButton": "Spelen",
