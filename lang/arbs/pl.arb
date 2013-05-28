@@ -95,5 +95,5 @@ arb.register("cubeslam:pl", {
   "platformTitle": "Platforma Google Cloud",
   "platformText": "Gra Cube Slam jest w całości oparta na platformie Cloud firmy Google. Hosting aplikacji jest zapewniany przez App Engine, którego zaplecze napisano w Go, a do nawiązania połączenia z przeciwnikiem służy interfejs API Channel. Jeśli jeden z graczy jest za zaporą sieciową, gra do wymiany danych używa serwera STUN/TURN, którego hosting zapewnia Compute Engine. Dzięki technologii PageSpeed wszystko wczytuje się szybko, a AppCache pozwala na grę offline.",
   "openTitle": "Oprogramowanie typu open source",
-  "openText": "Źródło gry Cube Slam można wyświetlić w Google Code lub w narzędziach Chrome dla programistów (należy włączyć mapy źródła). A teraz, skoro udało Ci się doczytać do tego miejsca, mamy nagrodę: do adresu URL możesz dodać parametr ?⁠dev, aby włączyć dat.gui, co pozwala na dostosowywanie wszystkich poziomów, bonusów i innych atrybutów gry. Miłej zabawy!"
+  "openText": "Źródło gry Cube Slam można wyświetlić w Google Code lub w narzędziach Chrome dla programistów (należy włączyć mapy źródła). A teraz, skoro udało Ci się doczytać do tego miejsca, mamy nagrodę: do adresu URL możesz dodać parametr ?dev, aby włączyć dat.gui, co pozwala na dostosowywanie wszystkich poziomów, bonusów i innych atrybutów gry. Miłej zabawy!"
 });
