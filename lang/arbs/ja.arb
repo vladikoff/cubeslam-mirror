@@ -64,7 +64,7 @@ arb.register("cubeslam:ja", {
   "extraBulletProof": "防弾",
   "aboutMobileH1": "Cube Slam<br />について",
   "aboutMobileText1": "Cube Slam は、Google Chrome の最新技術を体験できる Chrome Experiment の 1 つです。",
-  "aboutMobileText2": "友たぢと対面でプレイするには、パソコンの Chrome で cubeslam.com にアクセスしてください。",
+  "aboutMobileText2": "友だちと対面でプレイするには、パソコンの Chrome で cubeslam.com にアクセスしてください。",
   "footerTerms": "利用規約とプライバシー",
   "errorConnectionHeader": "接続エラー",
   "errorConnectionReload": "接続で問題が発生しました。",

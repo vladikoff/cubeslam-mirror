@@ -22,7 +22,7 @@ arb.register("cubeslam:nl", {
   "promptStart": "Start",
   "promptLevel": "Level&nbsp;<span>1</span>",
   "promptBall": "Bal&nbsp;<span>1</span>",
-  "promptOver": "Game over",
+  "promptOver": "",
   "promptWin": "Je hebt gewonnen",
   "promptLoose": "Je hebt verloren",
   "pauseHeader": "Onderbroken",
