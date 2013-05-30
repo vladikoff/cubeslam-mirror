@@ -13,7 +13,6 @@ lang/arbs/rv.arb
 !.jshintrc
 report
 public/*/*.min.*
-public/*/*/*.min.*
 server.conf
 *.sublime-workspace
 *.sublime-project
