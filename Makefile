@@ -9,7 +9,7 @@ LIB=$(shell find lib -name "*.js" -type f)
 LIB_3D=$(shell find lib/renderer-3d -name "*.js" -type f)
 LIB_CSS=$(shell find lib/renderer-css -name "*.js" -type f)
 COMPONENTS=$(shell find components -name "*.js" -type f)
-MINIFY=build build/build-3d.min.js public/javascript/slam.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js public/javascript/libs/three.min.js build/build.min.js
+MINIFY=build build/build-3d.min.js public/javascript/slam.min.js public/javascript/renderer-3d.min.js public/javascript/renderer-css.min.js build/build.min.js
 
 GENERATED_LANGUAGES=lang/arbs/en-US.arb
 AVAILABLE_LANGUAGES=$(wildcard lang/arbs/*.arb)
