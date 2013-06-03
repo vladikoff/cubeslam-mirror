@@ -79,6 +79,21 @@
     li.active
       transition-delay 2500ms
 
+  &.no-transforms
+    ol
+      li
+        background transparent
+        transform rotateY(0deg) !important
+        
+        &:before
+          transform rotateY(0deg) !important
+          background transparent
+        &.active
+          transform rotateY(0deg) !important
+          background $color-beige
+          animation score-blink 0.5s 3
+          
+
 
 #level
   &.inactive
