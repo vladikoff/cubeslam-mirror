@@ -589,14 +589,15 @@ html(lang='en')
 
     script(src='/_ah/channel/jsapi')
     script(src='/javascript/libs/dat.gui.js')
-    script(src='/javascript/libs/stats.js')
-    script(src='/javascript/slam.{{.Minified}}js')
+    script(src='/javascript/libs/stats.{{.Minified}}js')
+    script(src='/javascript/slam.{{.Minified}}js?v={{.Version}}')
     script
       require('slam')(ctx = {
         room: '{{.Room}}',
         user: '{{.User}}',
         token: '{{.Token}}',
         acceptLanguage: '{{.AcceptLanguage}}',
-        ext: '.{{.Minified}}js',
-        dev: {{.Dev}}
+        ext: '.{{.Minified}}js?v={{.Version}}',
+        dev: {{.Dev}},
+        v: '{{.Version}}'
       })

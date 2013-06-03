@@ -24,6 +24,7 @@ type Template struct {
   AcceptLanguage string
   Minified string
   Dev bool
+  Version string
 }
 
 func Main(w http.ResponseWriter, r *http.Request) {
@@ -63,7 +64,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   }
 
   // Data to be sent to the template:
-  data := Template{Room:roomName, User: userName, AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer() }
+  data := Template{Room:roomName, User: userName, AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer(), Version: appengine.VersionID(c) }
 
   // skip rooms when using WebSocket signals
   if appchan {
