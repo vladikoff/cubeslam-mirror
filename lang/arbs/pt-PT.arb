@@ -46,7 +46,7 @@ arb.register("cubeslam:pt-PT", {
   "levelReached": "Nível Alcançado",
   "buttonRetry": "Voltar a Tentar Nível",
   "scoreTotalWins": "Pontuação do Jogo",
-  "playerYou": "Utilizador",
+  "playerYou": "Você",
   "playerFriend": "Amigo",
   "buttonNextLevel": "Nível Seguinte",
   "scoreLevel": "Nível&nbsp;<span id=\"level\">1</span>",
