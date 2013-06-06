@@ -7,22 +7,23 @@ handlers:
 # Static
 - url: /javascript
   static_dir: public/javascript
-  expiration: '1d'
+  expiration: '7d'
 - url: /images
   static_dir: public/images
-  expiration: '1d'
+  expiration: '7d'
 - url: /dmaf__assets
   static_dir: public/dmaf__assets
-  expiration: '1d'
+  expiration: '7d'
 - url: /lang
   static_dir: public/lang
-  expiration: '1d'
+  expiration: '7d'
+  mime_type: application/javascript
 - url: /fonts
   static_dir: public/fonts
-  expiration: '1d'
+  expiration: '7d'
 - url: /stylesheets
   static_dir: public/stylesheets
-  expiration: '1d'
+  expiration: '7d'
 - url: /favicon.ico
   static_files: public/images/favicon.ico
   upload: public/favicon.ico
