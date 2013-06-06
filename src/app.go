@@ -32,7 +32,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
   // redirect to room name
-  if r.URL.Path == "/" && !strings.Contains(r.Header.Get("User-Agent"),"facebookexternalhit") {
+  if r.URL.Path == "/" && !SkipRedirect(r.Header.Get("User-Agent")) {
     roomName := Random(6)
     path := "/"
 
@@ -399,3 +399,12 @@ func RequireAuth(w http.ResponseWriter, r *http.Request) {
   w.Write([]byte("401 Unauthorized\n"))
 }
 
+func SkipRedirect(ua string) bool {
+  if strings.Contains(ua,"facebookexternalhit") {
+    return true
+  }
+  if strings.Contains(ua,"Googlebot") {
+    return true
+  }
+  return false
+}
