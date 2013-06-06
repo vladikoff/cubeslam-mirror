@@ -69,7 +69,6 @@
     "lib/support/improved-noise.js",
     "lib/states/index.js",
     "lib/states/error.js",
-    "lib/states/io.js",
     "lib/states/setup.js",
     "lib/states/mobile.js",
     "lib/states/loading.js",

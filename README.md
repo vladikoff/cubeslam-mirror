@@ -71,7 +71,7 @@ Add these to the URL querystring to toggle some flags.
 
 ### Game play
 
-  * 'quality' - Render/performance quality in webgl. Valid values is 'high' (quality) and 'low' (performance)
+  * `quality` - webgl rendering quality. possible values are `best`, `high`, `low`, `mobile`
   * `god` - no player can die
   * `momentum` - set to `off` to turn off paddle momentum
   * `round` - set to a number to start at that particular round
@@ -92,4 +92,5 @@ Add these to the URL querystring to toggle some flags.
   * `mobile` - force mobile
   * `paused` - start game in paused mode. step forward a frame using `.`-key.
   * `silent` - don't load in sounds
-  * `dmaf` - turn on dmaf logs*
+  * `dmaf` - turn on dmaf logs
+

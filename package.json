@@ -1,12 +1,12 @@
 {
-  "name": "verlet-simulator",
-  "version": "0.0.0",
-  "description": "",
+  "name": "cubeslam",
+  "version": "1.0.0",
+  "description": "Play face-to-face against your friends",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "BSD",
+  "license": "MIT",
   "devDependencies": {
     "component": "*",
     "stylus": "git://github.com/stonebranch/stylus.git",
