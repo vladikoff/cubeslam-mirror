@@ -358,6 +358,8 @@ func init() {
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", OnConnect)
   http.HandleFunc("/disconnect", OnDisconnect)
+  http.HandleFunc("/_expire", Expire)
+  http.HandleFunc("/_occupants", Occupants)
   http.HandleFunc("/_ah/channel/connected/", OnConnect)
   http.HandleFunc("/_ah/channel/disconnected/", OnDisconnect)
 }
