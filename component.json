@@ -64,6 +64,7 @@
     "lib/support/rand.js",
     "lib/support/time-sync.js",
     "lib/support/hash-code.js",
+    "lib/support/valid-video.js",
     "lib/support/exclude.js",
     "lib/support/estimate-slow-down.js",
     "lib/support/improved-noise.js",
