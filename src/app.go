@@ -194,13 +194,13 @@ func OnDisconnect(w http.ResponseWriter, r *http.Request) {
 
     // delete empty rooms
     if empty {
-      err := DelRoom(c, roomName)
-      if err != nil {
-        c.Criticalf("OnDisconnect: Could not del room %s: ",roomName,err)
-        return
-      } else {
-        c.Debugf("OnDisconnect: Removed empty room %s",roomName)
-      }
+      // err := DelRoom(c, roomName)
+      // if err != nil {
+      //   c.Criticalf("OnDisconnect: Could not del room %s: ",roomName,err)
+      //   return
+      // } else {
+      //   c.Debugf("OnDisconnect: Removed empty room %s",roomName)
+      // }
 
     // save room if not empty
     } else {
