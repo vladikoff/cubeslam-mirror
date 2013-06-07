@@ -29,7 +29,11 @@ type Template struct {
 
 func Main(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
-  w.Header().Set("Content-Type", "text/html; charset=utf-8")
+  h := w.Header()
+  h.Set("Content-Type", "text/html; charset=utf-8")
+  h.Set("Cache-Control", "no-cache")
+
+  c.Debugf("Headers: %v",r.Header)
 
   // redirect to room name
   if r.URL.Path == "/" && !SkipRedirect(r.Header.Get("User-Agent")) {
@@ -120,6 +124,20 @@ func Tech(w http.ResponseWriter, r *http.Request) {
 
   // Parse the template and output HTML:
   template, err := template.ParseFiles("build/tech.html")
+  if err != nil { c.Criticalf("execution failed: %s", err) }
+  err = template.Execute(w, data)
+  if err != nil { c.Criticalf("execution failed: %s", err) }
+}
+
+func AppCache(w http.ResponseWriter, r *http.Request) {
+  c := appengine.NewContext(r)
+  w.Header().Set("Content-Type", "text/cache-manifest")
+
+  // Data to be sent to the template:
+  data := Template{ Version: appengine.VersionID(c) }
+
+  // Parse the template and output HTML:
+  template, err := template.ParseFiles("support/manifest.appcache.skel")
   if err != nil { c.Criticalf("execution failed: %s", err) }
   err = template.Execute(w, data)
   if err != nil { c.Criticalf("execution failed: %s", err) }
@@ -352,6 +370,7 @@ func init() {
   now := time.Now()
   rand.Seed(now.Unix())
   http.HandleFunc("/", Main)
+  http.HandleFunc("/manifest.appcache", AppCache)
   http.HandleFunc("/tech", Tech)
   http.HandleFunc("/message", OnMessage)
   http.HandleFunc("/connect", OnConnect)
