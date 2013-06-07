@@ -142,7 +142,7 @@ func OnConnect(w http.ResponseWriter, r *http.Request) {
 
     // or see if it's full
     } else if room.Occupants() == 2 {
-      c.Debugf("Room Full, sending 'full' to %s and %s",userName)
+      c.Debugf("Room Full, sending 'full' to %s",userName)
       if err := channel.Send(c, MakeClientId(roomName, userName), "full"); err != nil {
         c.Criticalf("OnConnect: Error while sending full:",err)
       }
@@ -192,32 +192,23 @@ func OnDisconnect(w http.ResponseWriter, r *http.Request) {
     empty := room.RemoveUser(userName)
     c.Debugf("OnDisconnect: Removed user %s from room %s",userName,roomName)
 
-    // delete empty rooms
-    if empty {
-      // err := DelRoom(c, roomName)
-      // if err != nil {
-      //   c.Criticalf("OnDisconnect: Could not del room %s: ",roomName,err)
-      //   return
-      // } else {
-      //   c.Debugf("OnDisconnect: Removed empty room %s",roomName)
-      // }
+    err := PutRoom(c, roomName, room)
+    if err != nil {
+      c.Criticalf("OnDisconnect: Could not put room %s: ",roomName,err)
+      return;
+    }
 
-    // save room if not empty
-    } else {
-      err := PutRoom(c, roomName, room)
-      if err != nil {
-        c.Criticalf("OnDisconnect: Could not put room %s: ",roomName,err)
-      } else if otherUser != "" {
-        c.Debugf("disconnected sent to %s",MakeClientId(roomName, otherUser))
-        if err := channel.Send(c, MakeClientId(roomName, otherUser), "disconnected"); err != nil {
-          c.Criticalf("OnDisconnect: Error while sending 'disconnected':",err)
-        }
-        c.Debugf("disconnected sent to %s",MakeClientId(roomName, userName))
-        if err := channel.Send(c, MakeClientId(roomName, userName), "disconnected"); err != nil {
-          c.Criticalf("OnDisconnect: Error while sending 'disconnected':",err)
-        }
-      } else {
-        c.Criticalf("OnDisconnect: We should never get here because the room should be empty.")
+    if empty {
+      c.Debugf("OnDisconnect: Room is now empty.")
+
+    } else if otherUser != "" {
+      c.Debugf("disconnected sent to %s",MakeClientId(roomName, otherUser))
+      if err := channel.Send(c, MakeClientId(roomName, otherUser), "disconnected"); err != nil {
+        c.Criticalf("OnDisconnect: Error while sending 'disconnected':",err)
+      }
+      c.Debugf("disconnected sent to %s",MakeClientId(roomName, userName))
+      if err := channel.Send(c, MakeClientId(roomName, userName), "disconnected"); err != nil {
+        c.Criticalf("OnDisconnect: Error while sending 'disconnected':",err)
       }
     }
   } else {
