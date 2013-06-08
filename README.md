@@ -1,6 +1,7 @@
 Cube Slam
 =========
 
+Cube Slam is a WebRTC Chrome Experiment that you can play face-to-face against your friends.
 
 ## Building
 
