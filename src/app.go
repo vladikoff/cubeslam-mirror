@@ -31,7 +31,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   h := w.Header()
   h.Set("Content-Type", "text/html; charset=utf-8")
-  h.Set("Cache-Control", "no-cache")
+  h.Set("Cache-Control", "private, max-age=0, must-revalidate")
 
   c.Debugf("Headers: %v",r.Header)
 
@@ -59,7 +59,6 @@ func Main(w http.ResponseWriter, r *http.Request) {
   appchan := q.Get("signal") != "ws"
 
   roomName := strings.TrimLeft(r.URL.Path,"/")
-  userName := Random(10)
 
   // to make sure that players have the same settings
   // in multiplayer we include the query in the room nama
@@ -68,7 +67,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   }
 
   // Data to be sent to the template:
-  data := Template{Room:roomName, User: userName, AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer(), Version: appengine.VersionID(c) }
+  data := Template{Room:roomName, AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer(), Version: appengine.VersionID(c) }
 
   // skip rooms when using WebSocket signals
   if appchan {
@@ -98,14 +97,6 @@ func Main(w http.ResponseWriter, r *http.Request) {
       c.Criticalf("Error occured while getting room %s",roomName,err)
       return;
     }
-
-    // Create a channel token
-    clientId := MakeClientId(roomName, userName)
-    token, err := channel.Create(c, clientId)
-    if err != nil {
-      c.Criticalf("Error while creating token: %s", err)
-    }
-    data.Token = token
   }
 
   // Parse the template and output HTML:
@@ -132,6 +123,7 @@ func Tech(w http.ResponseWriter, r *http.Request) {
 func AppCache(w http.ResponseWriter, r *http.Request) {
   c := appengine.NewContext(r)
   w.Header().Set("Content-Type", "text/cache-manifest")
+  w.Header().Set("Cache-Control", "private, max-age=0, must-revalidate")
 
   // Data to be sent to the template:
   data := Template{ Version: appengine.VersionID(c) }
@@ -141,6 +133,22 @@ func AppCache(w http.ResponseWriter, r *http.Request) {
   if err != nil { c.Criticalf("execution failed: %s", err) }
   err = template.Execute(w, data)
   if err != nil { c.Criticalf("execution failed: %s", err) }
+}
+
+func OnToken(w http.ResponseWriter, r *http.Request) {
+  c := appengine.NewContext(r)
+  roomName := r.FormValue("room")
+  if roomName != "" {
+    userName := Random(10)
+    clientId := MakeClientId(roomName, userName)
+    token, err := channel.Create(c, clientId)
+    if err != nil {
+      c.Criticalf("Error while creating token: %s", err)
+    }
+    w.Write([]byte("user="+userName+"&token="+token))
+  } else {
+    w.WriteHeader(http.StatusBadRequest)
+  }
 }
 
 func OnConnect(w http.ResponseWriter, r *http.Request) {
@@ -309,14 +317,9 @@ func ParseClientId(clientId string) (string, string) {
 }
 
 func AcceptLanguage(r *http.Request) string {
-  acceptLanguage := "en"
+  acceptLanguage := "en-US"
   if _,ok := r.Header["Accept-Language"]; ok {
     acceptLanguage = strings.Join(r.Header["Accept-Language"], ",")
-  }
-  // let ?lang override
-  q := r.URL.Query()
-  if q.Get("lang") != "" {
-    acceptLanguage = q.Get("lang")
   }
   return acceptLanguage;
 }
@@ -372,9 +375,10 @@ func init() {
   http.HandleFunc("/", Main)
   http.HandleFunc("/manifest.appcache", AppCache)
   http.HandleFunc("/tech", Tech)
-  http.HandleFunc("/message", OnMessage)
-  http.HandleFunc("/connect", OnConnect)
-  http.HandleFunc("/disconnect", OnDisconnect)
+  http.HandleFunc("/_token", OnToken)
+  http.HandleFunc("/_message", OnMessage)
+  http.HandleFunc("/_connect", OnConnect)
+  http.HandleFunc("/_disconnect", OnDisconnect)
   http.HandleFunc("/_expire", Expire)
   http.HandleFunc("/_occupants", Occupants)
   http.HandleFunc("/_ah/channel/connected/", OnConnect)

@@ -43,10 +43,7 @@ handlers:
 # Rooms
 - url: /.*
   script: _go_app
-  # TODO enable this when going live, messy while developing
   secure: always
-  # TODO require login on /xyz but not /_ah/*
-  # login: admin
 
 inbound_services:
 - channel_presence

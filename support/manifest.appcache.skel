@@ -150,6 +150,11 @@ http://themes.googleusercontent.com/static/fonts/varela/v4/yNZkEnhwnBUaXAL8M0Uk6
 FALLBACK:
 / /offline
 
+SETTINGS:
+prefer-online
+
 NETWORK:
 /_ah/channel/jsapi
+http://*
+https://*
 *
