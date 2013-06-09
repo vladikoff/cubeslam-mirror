@@ -228,11 +228,11 @@ func OnDisconnect(w http.ResponseWriter, r *http.Request) {
       c.Debugf("OnDisconnect: Room is now empty.")
 
     } else if otherUser != "" {
-      c.Debugf("disconnected sent to %s",MakeClientId(roomName, otherUser))
+      c.Debugf("Removed %s. Sending 'disconnected' to %s",userName,MakeClientId(roomName, otherUser))
       if err := channel.Send(c, MakeClientId(roomName, otherUser), "disconnected"); err != nil {
         c.Criticalf("OnDisconnect: Error while sending 'disconnected':",err)
       }
-      c.Debugf("disconnected sent to %s",MakeClientId(roomName, userName))
+      c.Debugf("Removed %s. Sending 'disconnected' to %s",userName,MakeClientId(roomName, userName))
       if err := channel.Send(c, MakeClientId(roomName, userName), "disconnected"); err != nil {
         c.Criticalf("OnDisconnect: Error while sending 'disconnected':",err)
       }
