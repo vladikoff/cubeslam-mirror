@@ -1,5 +1,5 @@
 application: webrtcgame
-version: live
+version: cheats
 runtime: go
 api_version: go1
 
@@ -31,6 +31,9 @@ handlers:
 - url: /robots.txt
   static_files: public/robots.txt
   upload: public/robots.txt
+- url: /cheats.html
+  static_files: public/cheats.html
+  upload: public/cheats.html
 - url: /(.*\.html)
   static_files: public/\1
   upload: public/(.*\.html)
