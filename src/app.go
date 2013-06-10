@@ -36,7 +36,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   c.Debugf("Headers: %v",r.Header)
 
   // redirect to room name
-  if r.URL.Path == "/" && !SkipRedirect(r.Header.Get("User-Agent")) {
+  if r.URL.Path == "/" && !SkipRedirect(r) {
     roomName := Random(6)
     path := "/"
 
@@ -61,7 +61,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
   roomName := strings.TrimLeft(r.URL.Path,"/")
 
   // to make sure that players have the same settings
-  // in multiplayer we include the query in the room nama
+  // in multiplayer we include the query in the room name
   if r.URL.RawQuery != "" {
     roomName = Cleanup(roomName + "-" + r.URL.RawQuery)
   }
@@ -76,11 +76,19 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
     // Empty room
     if err != nil {
-      room := new(Room)
-      c.Debugf("Created room %s",roomName)
-      if err := PutRoom(c, roomName, room); err != nil {
-        c.Criticalf("!!! could not save room: %s", err)
-        return;
+      c.Debugf("GetRoom err %+v",err)
+
+      // make sure room name is never empty
+      // because it will break /_expire
+      if roomName == "" {
+        c.Debugf("Room with no name. Won't create.")
+      } else {
+        room = new(Room)
+        c.Debugf("Created room %s",roomName)
+        if err := PutRoom(c, roomName, room); err != nil {
+          c.Criticalf("!!! could not save room: %s", err)
+          return;
+        }
       }
       data.State = "room-empty"
 
@@ -420,7 +428,11 @@ func RequireAuth(w http.ResponseWriter, r *http.Request) {
   w.Write([]byte("401 Unauthorized\n"))
 }
 
-func SkipRedirect(ua string) bool {
+func SkipRedirect(r *http.Request) bool {
+  ua := r.Header.Get("User-Agent")
+  if r.URL.Query().Get("redirect") == "no" {
+    return true
+  }
   if strings.Contains(ua,"facebookexternalhit") {
     return true
   }
