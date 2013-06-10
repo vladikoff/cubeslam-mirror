@@ -70,25 +70,21 @@ func Main(w http.ResponseWriter, r *http.Request) {
   data := Template{Room:roomName, AcceptLanguage: AcceptLanguage(r), Minified: Minified(), Dev: appengine.IsDevAppServer(), Version: appengine.VersionID(c) }
 
   // skip rooms when using WebSocket signals
-  if appchan {
+  // or when room name is empty
+  if roomName == "" {
+    c.Debugf("Room with no name.")
+    data.State = "room-empty"
 
+  } else if appchan {
     room, err := GetRoom(c, roomName)
 
     // Empty room
-    if err != nil {
-      c.Debugf("GetRoom err %+v",err)
-
-      // make sure room name is never empty
-      // because it will break /_expire
-      if roomName == "" {
-        c.Debugf("Room with no name. Won't create.")
-      } else {
-        room = new(Room)
-        c.Debugf("Created room %s",roomName)
-        if err := PutRoom(c, roomName, room); err != nil {
-          c.Criticalf("!!! could not save room: %s", err)
-          return;
-        }
+    if room == nil {
+      room = new(Room)
+      c.Debugf("Created room %s",roomName)
+      if err := PutRoom(c, roomName, room); err != nil {
+        c.Criticalf("Error occured while creating room %s: %+v", roomName, err)
+        return;
       }
       data.State = "room-empty"
 
@@ -102,7 +98,7 @@ func Main(w http.ResponseWriter, r *http.Request) {
 
     // DataStore error
     } else if err != nil {
-      c.Criticalf("Error occured while getting room %s",roomName,err)
+      c.Criticalf("Error occured while getting room %s: %+v",roomName,err)
       return;
     }
   }

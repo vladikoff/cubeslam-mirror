@@ -63,6 +63,9 @@ func GetRoom(c appengine.Context, name string) (*Room, error) {
   k := datastore.NewKey(c, "Room", name, 0, nil)
   r := new(Room)
   err := datastore.Get(c, k, r)
+  if err == datastore.ErrNoSuchEntity {
+    return nil, err
+  }
   return r, err;
 }
 
